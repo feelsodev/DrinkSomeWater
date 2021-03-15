@@ -16,6 +16,9 @@
 		A58350F925FFCD0B001AA609 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58350F725FFCD0B001AA609 /* LaunchScreen.storyboard */; };
 		A583511725FFCF7E001AA609 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583511625FFCF7E001AA609 /* MainViewController.swift */; };
 		A583511F25FFCFB7001AA609 /* MainViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583511E25FFCFB7001AA609 /* MainViewReactor.swift */; };
+		A583512325FFD1B2001AA609 /* DrinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583512225FFD1B2001AA609 /* DrinkViewController.swift */; };
+		A583512625FFD1BE001AA609 /* DrinkViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583512525FFD1BE001AA609 /* DrinkViewReactor.swift */; };
+		A583512A25FFD2C1001AA609 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583512925FFD2C1001AA609 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		A58350FA25FFCD0B001AA609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A583511625FFCF7E001AA609 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A583511E25FFCFB7001AA609 /* MainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewReactor.swift; sourceTree = "<group>"; };
+		A583512225FFD1B2001AA609 /* DrinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewController.swift; sourceTree = "<group>"; };
+		A583512525FFD1BE001AA609 /* DrinkViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewReactor.swift; sourceTree = "<group>"; };
+		A583512925FFD2C1001AA609 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +81,8 @@
 		A58350EB25FFCD09001AA609 /* DrinkSomeWater */ = {
 			isa = PBXGroup;
 			children = (
+				A583512825FFD2B2001AA609 /* BaseComponent */,
+				A583512125FFD198001AA609 /* Drink */,
 				A583511525FFCF5E001AA609 /* Main */,
 				A58350EC25FFCD09001AA609 /* AppDelegate.swift */,
 				A58350EE25FFCD09001AA609 /* SceneDelegate.swift */,
@@ -94,6 +102,23 @@
 				A583511E25FFCFB7001AA609 /* MainViewReactor.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		A583512125FFD198001AA609 /* Drink */ = {
+			isa = PBXGroup;
+			children = (
+				A583512225FFD1B2001AA609 /* DrinkViewController.swift */,
+				A583512525FFD1BE001AA609 /* DrinkViewReactor.swift */,
+			);
+			path = Drink;
+			sourceTree = "<group>";
+		};
+		A583512825FFD2B2001AA609 /* BaseComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A583512925FFD2C1001AA609 /* BaseViewController.swift */,
+			);
+			path = BaseComponent;
 			sourceTree = "<group>";
 		};
 		AC0AF68626D5CBACF8A7DC8F /* Pods */ = {
@@ -221,7 +246,10 @@
 			files = (
 				A58350F125FFCD09001AA609 /* ViewController.swift in Sources */,
 				A58350ED25FFCD09001AA609 /* AppDelegate.swift in Sources */,
+				A583512625FFD1BE001AA609 /* DrinkViewReactor.swift in Sources */,
 				A583511F25FFCFB7001AA609 /* MainViewReactor.swift in Sources */,
+				A583512325FFD1B2001AA609 /* DrinkViewController.swift in Sources */,
+				A583512A25FFD2C1001AA609 /* BaseViewController.swift in Sources */,
 				A58350EF25FFCD09001AA609 /* SceneDelegate.swift in Sources */,
 				A583511725FFCF7E001AA609 /* MainViewController.swift in Sources */,
 			);
