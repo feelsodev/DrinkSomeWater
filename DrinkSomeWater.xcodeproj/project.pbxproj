@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C3B6142E6A612229B89FD20 /* Pods_DrinkSomeWater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */; };
 		A58350ED25FFCD09001AA609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58350EC25FFCD09001AA609 /* AppDelegate.swift */; };
 		A58350EF25FFCD09001AA609 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58350EE25FFCD09001AA609 /* SceneDelegate.swift */; };
 		A58350F125FFCD09001AA609 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58350F025FFCD09001AA609 /* ViewController.swift */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FBBD24534AEAB0D6C58FD1B /* Pods-DrinkSomeWater.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.debug.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.debug.xcconfig"; sourceTree = "<group>"; };
+		8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrinkSomeWater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58350E925FFCD09001AA609 /* DrinkSomeWater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrinkSomeWater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58350EC25FFCD09001AA609 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A58350EE25FFCD09001AA609 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		A58350F525FFCD0B001AA609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A58350F825FFCD0B001AA609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A58350FA25FFCD0B001AA609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C3B6142E6A612229B89FD20 /* Pods_DrinkSomeWater.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		71BBE197FBE07A1781C819D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A58350E025FFCD09001AA609 = {
 			isa = PBXGroup;
 			children = (
 				A58350EB25FFCD09001AA609 /* DrinkSomeWater */,
 				A58350EA25FFCD09001AA609 /* Products */,
+				AC0AF68626D5CBACF8A7DC8F /* Pods */,
+				71BBE197FBE07A1781C819D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,16 @@
 			path = DrinkSomeWater;
 			sourceTree = "<group>";
 		};
+		AC0AF68626D5CBACF8A7DC8F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3FBBD24534AEAB0D6C58FD1B /* Pods-DrinkSomeWater.debug.xcconfig */,
+				CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A58350FD25FFCD0B001AA609 /* Build configuration list for PBXNativeTarget "DrinkSomeWater" */;
 			buildPhases = (
+				58AB7005A5AD4790A1F750E0 /* [CP] Check Pods Manifest.lock */,
 				A58350E525FFCD09001AA609 /* Sources */,
 				A58350E625FFCD09001AA609 /* Frameworks */,
 				A58350E725FFCD09001AA609 /* Resources */,
+				50E6DD340218BABF9B2F1A1F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50E6DD340218BABF9B2F1A1F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58AB7005A5AD4790A1F750E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DrinkSomeWater-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A58350E525FFCD09001AA609 /* Sources */ = {
@@ -283,6 +352,7 @@
 		};
 		A58350FE25FFCD0B001AA609 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FBBD24534AEAB0D6C58FD1B /* Pods-DrinkSomeWater.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +372,7 @@
 		};
 		A58350FF25FFCD0B001AA609 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
