@@ -16,7 +16,6 @@ class MainViewController: BaseViewController, View {
         $0.textColor = .black
     }
     let goal = UILabel().then {
-        $0.text = "0"
         $0.textAlignment = .center
         $0.textColor = .black
     }
@@ -35,7 +34,24 @@ class MainViewController: BaseViewController, View {
     }
     
     func bind(reactor: MainViewReactor) {
+        // Action
+        self.addButton.rx.tap
+            .map { Reactor.Action.increse }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
+        self.subButton.rx.tap
+            .map { Reactor.Action.decrese }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // State
+        reactor.state
+            .map { $0.count }
+            .distinctUntilChanged()
+            .map { "\($0)" }
+            .bind(to: goal.rx.text)
+            .disposed(by: disposeBag)
     }
     
     override func setupConstraints() {
