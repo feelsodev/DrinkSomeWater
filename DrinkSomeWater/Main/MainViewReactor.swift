@@ -9,6 +9,18 @@ import Foundation
 import ReactorKit
 import RxSwift
 
-class MainViewReactor {
+class MainViewReactor: Reactor {
+    enum Action {
+        
+    }
     
+    enum Mutate {
+        
+    }
+    
+    struct State {
+        
+    }
+    
+    let initialState: State = State()
 }
