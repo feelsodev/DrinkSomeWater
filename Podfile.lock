@@ -10,6 +10,7 @@ PODS:
   - RxSwift (6.1.0)
   - SnapKit (5.0.1)
   - Then (2.7.0)
+  - WaveAnimationView (1.0.2)
   - WeakMapTable (1.2.0)
 
 DEPENDENCIES:
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - RxSwift
   - SnapKit
   - Then
+  - WaveAnimationView
 
 SPEC REPOS:
   trunk:
@@ -27,6 +29,7 @@ SPEC REPOS:
     - RxSwift
     - SnapKit
     - Then
+    - WaveAnimationView
     - WeakMapTable
 
 SPEC CHECKSUMS:
@@ -36,8 +39,9 @@ SPEC CHECKSUMS:
   RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: f3e66c1e55e75a841fba2d1f72699484b313dab5
+PODFILE CHECKSUM: 20d1a0c3b9cbac17ec2dcbe687c591f85741ae2c
 
 COCOAPODS: 1.10.1

@@ -9,6 +9,7 @@ import UIKit
 import ReactorKit
 import RxCocoa
 import RxSwift
+import WaveAnimationView
 
 class MainViewController: BaseViewController, View {
     let descript = UILabel().then {
@@ -22,15 +23,30 @@ class MainViewController: BaseViewController, View {
     let addButton = UIButton().then {
         $0.setTitle("+", for: .normal)
         $0.setTitleColor(.black, for: .normal)
+        $0.addTarget(self, action: #selector(addWarter), for: .touchUpInside)
     }
     let subButton = UIButton().then {
         $0.setTitle("-", for: .normal)
         $0.setTitleColor(.black, for: .normal)
     }
+    let wave = WaveAnimationView(frame: CGRect(x: 200, y: 200, width: 100, height: 100),
+                                 frontColor: .gray,
+                                 backColor: .darkGray)
+    
+    var point: Float = 0.1 {
+        didSet {
+            self.wave.setProgress(self.point)
+            self.view.layoutIfNeeded()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        wave.layer.cornerRadius = 50
+        wave.layer.masksToBounds = true
+        wave.setProgress(self.point)
+        wave.startAnimation()
     }
     
     func bind(reactor: MainViewReactor) {
@@ -55,7 +71,7 @@ class MainViewController: BaseViewController, View {
     }
     
     override func setupConstraints() {
-        [self.descript, self.goal, self.addButton, self.subButton].forEach { self.view.addSubview($0) }
+        [self.descript, self.goal, self.addButton, self.subButton, self.wave].forEach { self.view.addSubview($0) }
         
         self.descript.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100)
@@ -76,5 +92,9 @@ class MainViewController: BaseViewController, View {
             $0.trailing.equalTo(self.goal.snp.leading).offset(-10)
             $0.width.height.equalTo(50)
         }
+    }
+    
+    @objc func addWarter() {
+        self.point += 0.1
     }
 }

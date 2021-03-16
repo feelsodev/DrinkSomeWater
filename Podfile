@@ -10,7 +10,7 @@ target 'DrinkSomeWater' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'ReactorKit'
-
+  pod 'WaveAnimationView'
   # Pods for DrinkSomeWater
 
 end
