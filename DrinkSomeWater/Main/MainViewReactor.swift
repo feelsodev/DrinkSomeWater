@@ -11,16 +11,38 @@ import RxSwift
 
 class MainViewReactor: Reactor {
     enum Action {
-        
+        case increse
+        case decrese
     }
     
-    enum Mutate {
-        
+    enum Mutation {
+        case increaseValue
+        case decreaseValue
     }
     
     struct State {
-        
+        var count = 0
     }
     
     let initialState: State = State()
+    
+    func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case .increse:
+            return .just(.increaseValue)
+        case .decrese:
+            return .just(.decreaseValue)
+        }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var newState = state
+        switch mutation {
+        case .increaseValue:
+            newState.count += 1
+        case .decreaseValue:
+            newState.count -= 1
+        }
+        return newState
+    }
 }
