@@ -81,13 +81,8 @@
 		A58350EB25FFCD09001AA609 /* DrinkSomeWater */ = {
 			isa = PBXGroup;
 			children = (
-				A58351492601CA28001AA609 /* ViewController */,
-				A58350EC25FFCD09001AA609 /* AppDelegate.swift */,
-				A58350EE25FFCD09001AA609 /* SceneDelegate.swift */,
-				A58350F025FFCD09001AA609 /* ViewController.swift */,
-				A58350F225FFCD09001AA609 /* Main.storyboard */,
-				A58350F525FFCD0B001AA609 /* Assets.xcassets */,
-				A58350F725FFCD0B001AA609 /* LaunchScreen.storyboard */,
+				A58351D026026746001AA609 /* Resources */,
+				A58351CF26026740001AA609 /* Sources */,
 				A58350FA25FFCD0B001AA609 /* Info.plist */,
 			);
 			path = DrinkSomeWater;
@@ -127,6 +122,27 @@
 				A583511525FFCF5E001AA609 /* Main */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A58351CF26026740001AA609 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A58350EC25FFCD09001AA609 /* AppDelegate.swift */,
+				A58350EE25FFCD09001AA609 /* SceneDelegate.swift */,
+				A58350F025FFCD09001AA609 /* ViewController.swift */,
+				A58351492601CA28001AA609 /* ViewController */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A58351D026026746001AA609 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A58350F225FFCD09001AA609 /* Main.storyboard */,
+				A58350F525FFCD0B001AA609 /* Assets.xcassets */,
+				A58350F725FFCD0B001AA609 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		AC0AF68626D5CBACF8A7DC8F /* Pods */ = {

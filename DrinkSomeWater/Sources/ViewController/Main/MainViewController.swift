@@ -22,21 +22,18 @@ class MainViewController: BaseViewController, View {
     }
     lazy var wave = WaveAnimationView(
         frame: CGRect(x: 0, y: 0, width: 100, height: 300),
-        frontColor: .gray,
-        backColor: .darkGray
+        frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
+        backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     ).then {
         $0.layer.cornerRadius = 50
         $0.layer.borderWidth = 1
         $0.layer.masksToBounds = true
         $0.setProgress(self.point)
         $0.startAnimation()
+        $0.backgroundColor = .white
     }
     let addWarter = UIButton().then {
-        $0.setTitle("+", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .blue
-        $0.layer.cornerRadius = 30
-        $0.layer.masksToBounds = true
+        $0.setImage(UIImage(named: "bulkuk"), for: .normal)
     }
     
     @objc func onChangeValueSlider(_ sender: UISlider) {
@@ -61,7 +58,7 @@ class MainViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = #colorLiteral(red: 0.6, green: 0.8352941176, blue: 0.9019607843, alpha: 1)
     }
     
     func bind(reactor: MainViewReactor) {
