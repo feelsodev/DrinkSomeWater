@@ -9,6 +9,20 @@ import Foundation
 import ReactorKit
 import RxSwift
 
-class DrinkViewReactor {
+class DrinkViewReactor: Reactor {
     
+    
+    enum Action {
+        
+    }
+    
+    enum Muatation {
+        
+    }
+    
+    struct State {
+        
+    }
+    
+    var initialState: State = State()
 }
