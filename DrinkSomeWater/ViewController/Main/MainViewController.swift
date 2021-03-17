@@ -33,6 +33,22 @@ class MainViewController: BaseViewController, View {
                                  frontColor: .gray,
                                  backColor: .darkGray)
     
+    let slider = UISlider().then {
+        $0.maximumValue = 1
+        $0.minimumValue = 0
+        $0.value = 0.5
+        $0.maximumTrackTintColor = UIColor.gray
+        $0.minimumTrackTintColor = UIColor.black
+        $0.addTarget(self,
+                     action: #selector(onChangeValueSlider(_:)),
+                     for: .valueChanged)
+
+    }
+    
+    @objc func onChangeValueSlider(_ sender: UISlider) {
+        self.wave.setProgress(sender.value)
+    }
+    
     var point: Float = 0.1 {
         didSet {
             self.wave.setProgress(self.point)
@@ -71,7 +87,7 @@ class MainViewController: BaseViewController, View {
     }
     
     override func setupConstraints() {
-        [self.descript, self.goal, self.addButton, self.subButton, self.wave].forEach { self.view.addSubview($0) }
+        [self.descript, self.goal, self.addButton, self.subButton, self.wave, self.slider].forEach { self.view.addSubview($0) }
         
         self.descript.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100)
@@ -92,9 +108,15 @@ class MainViewController: BaseViewController, View {
             $0.trailing.equalTo(self.goal.snp.leading).offset(-10)
             $0.width.height.equalTo(50)
         }
+        self.slider.snp.makeConstraints {
+            $0.top.equalTo(self.subButton.snp.bottom).offset(29)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(200)
+            $0.height.equalTo(40)
+        }
     }
     
     @objc func addWarter() {
-        self.point += 0.1
+        self.point += 0.01
     }
 }
