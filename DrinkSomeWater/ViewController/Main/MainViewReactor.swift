@@ -45,4 +45,8 @@ class MainViewReactor: Reactor {
         }
         return newState
     }
+    
+    func reactorForCreatingDrink() -> DrinkViewReactor {
+      return DrinkViewReactor()
+    }
 }
