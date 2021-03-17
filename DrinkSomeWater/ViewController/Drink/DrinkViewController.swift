@@ -14,7 +14,7 @@ class DrinkViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = .white
     }
     
     init(reactor: DrinkViewReactor) {

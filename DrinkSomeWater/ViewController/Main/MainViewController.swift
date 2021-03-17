@@ -20,74 +20,72 @@ class MainViewController: BaseViewController, View {
         $0.textAlignment = .center
         $0.textColor = .black
     }
-    let addButton = UIButton().then {
+    lazy var wave = WaveAnimationView(
+        frame: CGRect(x: 0, y: 0, width: 100, height: 300),
+        frontColor: .gray,
+        backColor: .darkGray
+    ).then {
+        $0.layer.cornerRadius = 50
+        $0.layer.borderWidth = 1
+        $0.layer.masksToBounds = true
+        $0.setProgress(self.point)
+        $0.startAnimation()
+    }
+    let addWarter = UIButton().then {
         $0.setTitle("+", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.addTarget(self, action: #selector(addWarter), for: .touchUpInside)
-    }
-    let subButton = UIButton().then {
-        $0.setTitle("-", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-    }
-    let wave = WaveAnimationView(frame: CGRect(x: 200, y: 200, width: 100, height: 100),
-                                 frontColor: .gray,
-                                 backColor: .darkGray)
-    
-    let slider = UISlider().then {
-        $0.maximumValue = 1
-        $0.minimumValue = 0
-        $0.value = 0.5
-        $0.maximumTrackTintColor = UIColor.gray
-        $0.minimumTrackTintColor = UIColor.black
-        $0.addTarget(self,
-                     action: #selector(onChangeValueSlider(_:)),
-                     for: .valueChanged)
-
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = .blue
+        $0.layer.cornerRadius = 30
+        $0.layer.masksToBounds = true
     }
     
     @objc func onChangeValueSlider(_ sender: UISlider) {
         self.wave.setProgress(sender.value)
     }
     
-    var point: Float = 0.1 {
+    var point: Float = 0.7 {
         didSet {
             self.wave.setProgress(self.point)
             self.view.layoutIfNeeded()
         }
     }
     
+    init(reactor: MainViewReactor) {
+        super.init()
+        self.reactor = reactor
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        wave.layer.cornerRadius = 50
-        wave.layer.masksToBounds = true
-        wave.setProgress(self.point)
-        wave.startAnimation()
     }
     
     func bind(reactor: MainViewReactor) {
         // Action
-        self.addButton.rx.tap
-            .map { Reactor.Action.increse }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
-        self.subButton.rx.tap
-            .map { Reactor.Action.decrese }
-            .bind(to: reactor.action)
+        self.addWarter.rx.tap
+            .map { reactor.reactorForCreatingDrink }
+            .subscribe { [weak self] reactor in
+                guard let `self` = self else { return }
+                let vc = DrinkViewController(reactor: DrinkViewReactor())
+                self.present(vc, animated: true, completion: nil)
+            }
             .disposed(by: disposeBag)
         
         // State
         reactor.state
             .map { $0.count }
             .distinctUntilChanged()
-            .map { "\($0)" }
+            .map { "\($0) ml" }
             .bind(to: goal.rx.text)
             .disposed(by: disposeBag)
     }
     
     override func setupConstraints() {
-        [self.descript, self.goal, self.addButton, self.subButton, self.wave, self.slider].forEach { self.view.addSubview($0) }
+        [self.descript, self.goal, self.wave, self.addWarter].forEach { self.view.addSubview($0) }
         
         self.descript.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100)
@@ -98,25 +96,16 @@ class MainViewController: BaseViewController, View {
             $0.centerX.equalToSuperview()
             $0.width.height.equalTo(50)
         }
-        self.addButton.snp.makeConstraints {
-            $0.top.equalTo(self.goal)
-            $0.leading.equalTo(self.goal.snp.trailing).offset(10)
-            $0.width.height.equalTo(50)
-        }
-        self.subButton.snp.makeConstraints {
-            $0.top.equalTo(self.goal)
-            $0.trailing.equalTo(self.goal.snp.leading).offset(-10)
-            $0.width.height.equalTo(50)
-        }
-        self.slider.snp.makeConstraints {
-            $0.top.equalTo(self.subButton.snp.bottom).offset(29)
+        self.wave.snp.makeConstraints {
+            $0.top.equalTo(self.goal.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(200)
-            $0.height.equalTo(40)
+            $0.width.equalTo(100)
+            $0.height.equalTo(300)
         }
-    }
-    
-    @objc func addWarter() {
-        self.point += 0.01
+        self.addWarter.snp.makeConstraints {
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(60)
+        }
     }
 }
