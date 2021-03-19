@@ -141,10 +141,10 @@
 		A58351CF26026740001AA609 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A58351492601CA28001AA609 /* ViewController */,
 				A515812A26033E3700127C98 /* Services */,
 				A58350EC25FFCD09001AA609 /* AppDelegate.swift */,
 				A58350EE25FFCD09001AA609 /* SceneDelegate.swift */,
-				A58351492601CA28001AA609 /* ViewController */,
 			);
 			path = Sources;
 			sourceTree = "<group>";

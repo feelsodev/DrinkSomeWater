@@ -60,6 +60,22 @@ class DrinkViewController: BaseViewController, View {
   
   func bind(reactor: DrinkViewReactor) {
     
+    // action
+    self.addWater.rx.tap
+      .map { Reactor.Action.increseWater }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+    
+    self.subWater.rx.tap
+      .map { Reactor.Action.decreseWater }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+    
+    // state
+    reactor.state.asObservable()
+      .map { $0.current / $0.total }
+      .bind(to: self.cup.rx.setProgress)
+      .disposed(by: disposeBag)
   }
   
   override func setupConstraints() {
@@ -86,6 +102,14 @@ extension Reactive where Base: UIView {
   var backgroundColor: Binder<UIColor> {
     return Binder(self.base) { view, color in
       view.backgroundColor = color
+    }
+  }
+}
+
+extension Reactive where Base: WaveAnimationView {
+  var setProgress: Binder<Float> {
+    return Binder(self.base) { view, progress in
+      view.setProgress(progress)
     }
   }
 }
