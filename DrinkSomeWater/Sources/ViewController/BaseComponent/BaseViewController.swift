@@ -11,23 +11,23 @@ import RxSwift
 import Then
 
 class BaseViewController: UIViewController {
-    var disposeBag = DisposeBag()
+  var disposeBag = DisposeBag()
+  
+  init() {
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required convenience init?(coder aDecoder: NSCoder) {
+    self.init()
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupConstraints()
+  }
+  
+  // override point
+  func setupConstraints() {
     
-    init() {
-      super.init(nibName: nil, bundle: nil)
-    }
-
-    required convenience init?(coder aDecoder: NSCoder) {
-      self.init()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupConstraints()
-    }
-    
-    // override point
-    func setupConstraints() {
-      
-    }
+  }
 }

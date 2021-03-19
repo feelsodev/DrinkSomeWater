@@ -8,9 +8,9 @@
 import Foundation
 
 class BaseService {
-    unowned let provider: ServiceProviderProtocol
-    
-    init(provider: ServiceProviderProtocol) {
-        self.provider = provider
-    }
+  unowned let provider: ServiceProviderProtocol
+  
+  init(provider: ServiceProviderProtocol) {
+    self.provider = provider
+  }
 }

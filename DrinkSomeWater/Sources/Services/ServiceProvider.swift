@@ -8,9 +8,9 @@
 import Foundation
 
 protocol ServiceProviderProtocol: class {
-    var warterService: WaterServiceProtocol { get }
+  var warterService: WaterServiceProtocol { get }
 }
 
 final class ServiceProvider: ServiceProviderProtocol {
-    lazy var warterService: WaterServiceProtocol = WaterService(provider: self)
+  lazy var warterService: WaterServiceProtocol = WaterService(provider: self)
 }

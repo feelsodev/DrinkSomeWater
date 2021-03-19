@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7C3B6142E6A612229B89FD20 /* Pods_DrinkSomeWater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */; };
+		A515819E2603B9CA00127C98 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515819D2603B9CA00127C98 /* ServiceProvider.swift */; };
+		A51581A22603BA0900127C98 /* WaterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51581A12603BA0900127C98 /* WaterService.swift */; };
+		A51581A52603BA1300127C98 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51581A42603BA1300127C98 /* BaseService.swift */; };
 		A58350ED25FFCD09001AA609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58350EC25FFCD09001AA609 /* AppDelegate.swift */; };
 		A58350EF25FFCD09001AA609 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58350EE25FFCD09001AA609 /* SceneDelegate.swift */; };
-		A58350F125FFCD09001AA609 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58350F025FFCD09001AA609 /* ViewController.swift */; };
 		A58350F425FFCD09001AA609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58350F225FFCD09001AA609 /* Main.storyboard */; };
 		A58350F625FFCD0B001AA609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A58350F525FFCD0B001AA609 /* Assets.xcassets */; };
 		A58350F925FFCD0B001AA609 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58350F725FFCD0B001AA609 /* LaunchScreen.storyboard */; };
@@ -24,10 +26,12 @@
 /* Begin PBXFileReference section */
 		3FBBD24534AEAB0D6C58FD1B /* Pods-DrinkSomeWater.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.debug.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.debug.xcconfig"; sourceTree = "<group>"; };
 		8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrinkSomeWater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A515819D2603B9CA00127C98 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		A51581A12603BA0900127C98 /* WaterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterService.swift; sourceTree = "<group>"; };
+		A51581A42603BA1300127C98 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		A58350E925FFCD09001AA609 /* DrinkSomeWater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrinkSomeWater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58350EC25FFCD09001AA609 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A58350EE25FFCD09001AA609 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A58350F025FFCD09001AA609 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A58350F325FFCD09001AA609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A58350F525FFCD0B001AA609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A58350F825FFCD0B001AA609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +62,16 @@
 				8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A515812A26033E3700127C98 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A515819D2603B9CA00127C98 /* ServiceProvider.swift */,
+				A51581A12603BA0900127C98 /* WaterService.swift */,
+				A51581A42603BA1300127C98 /* BaseService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A58350E025FFCD09001AA609 = {
@@ -127,9 +141,9 @@
 		A58351CF26026740001AA609 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A515812A26033E3700127C98 /* Services */,
 				A58350EC25FFCD09001AA609 /* AppDelegate.swift */,
 				A58350EE25FFCD09001AA609 /* SceneDelegate.swift */,
-				A58350F025FFCD09001AA609 /* ViewController.swift */,
 				A58351492601CA28001AA609 /* ViewController */,
 			);
 			path = Sources;
@@ -268,13 +282,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A58350F125FFCD09001AA609 /* ViewController.swift in Sources */,
+				A51581A22603BA0900127C98 /* WaterService.swift in Sources */,
 				A58350ED25FFCD09001AA609 /* AppDelegate.swift in Sources */,
 				A583512625FFD1BE001AA609 /* DrinkViewReactor.swift in Sources */,
 				A583511F25FFCFB7001AA609 /* MainViewReactor.swift in Sources */,
 				A583512325FFD1B2001AA609 /* DrinkViewController.swift in Sources */,
+				A515819E2603B9CA00127C98 /* ServiceProvider.swift in Sources */,
 				A583512A25FFD2C1001AA609 /* BaseViewController.swift in Sources */,
 				A58350EF25FFCD09001AA609 /* SceneDelegate.swift in Sources */,
+				A51581A52603BA1300127C98 /* BaseService.swift in Sources */,
 				A583511725FFCF7E001AA609 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

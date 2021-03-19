@@ -10,19 +10,24 @@ import ReactorKit
 import RxSwift
 
 class DrinkViewReactor: Reactor {
+  
+  enum Action {
     
+  }
+  
+  enum Muatation {
     
-    enum Action {
-        
-    }
+  }
+  
+  struct State {
     
-    enum Muatation {
-        
-    }
-    
-    struct State {
-        
-    }
-    
-    var initialState: State = State()
+  }
+  
+  let initialState: State
+  let provider: ServiceProviderProtocol
+  
+  init(provider: ServiceProviderProtocol) {
+    self.initialState = State()
+    self.provider = provider
+  }
 }
