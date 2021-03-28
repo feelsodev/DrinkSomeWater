@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxViewController
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
