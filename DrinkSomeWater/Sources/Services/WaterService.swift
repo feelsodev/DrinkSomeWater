@@ -31,8 +31,10 @@ class WaterService: BaseService, WaterServiceProtocol {
   
   @discardableResult
   func updateWater(to ml: Int) -> Observable<Int> {
-    event.onNext(.updateWater(ml))
     return self.fetchWater()
       .map { $0 + ml }
+      .do(onNext: { water in
+        self.event.onNext(.updateWater(water))
+      })
   }
 }
