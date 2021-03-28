@@ -23,10 +23,11 @@ class WaterService: BaseService, WaterServiceProtocol {
   let event = PublishSubject<WaterEvent>()
   
   func fetchWater() -> Observable<Int> {
-    let currentWater = 10
+    let currentWater = 500
     return .just(currentWater)
   }
   
+  @discardableResult
   func updateWater(to ml: Int) -> Observable<Int> {
     event.onNext(.updateWater(ml))
     return self.fetchWater()
