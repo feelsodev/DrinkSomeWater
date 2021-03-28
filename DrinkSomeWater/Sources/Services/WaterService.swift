@@ -15,6 +15,8 @@ enum WaterEvent {
 protocol WaterServiceProtocol {
   var event: PublishSubject<WaterEvent> { get }
   func fetchWater() -> Observable<Int>
+  
+  @discardableResult
   func updateWater(to ml: Int) -> Observable<Int>
 }
 
