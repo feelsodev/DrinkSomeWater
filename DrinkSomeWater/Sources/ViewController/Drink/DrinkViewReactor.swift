@@ -10,23 +10,26 @@ import ReactorKit
 import RxSwift
 
 class DrinkViewReactor: Reactor {
-  
   enum Action {
     case increseWater
     case decreseWater
+    case addWater
   }
   
-  enum Muatation {
+  enum Mutation {
     case increseWaterValue
     case decreseWaterValue
+    case dismiss
   }
   
   struct State {
-    var total: Float = 1000
-    var current: Float = 500
+    var total: Float = 500
+    var current: Float = 150
+    var progress: Float = 0
+    var shouldDismissed: Bool = false
   }
   
-  let initialState: State
+  var initialState: State
   let provider: ServiceProviderProtocol
   
   init(provider: ServiceProviderProtocol) {
@@ -34,26 +37,45 @@ class DrinkViewReactor: Reactor {
     self.provider = provider
   }
   
-  func mutate(action: Action) -> Observable<Action> {
+  func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .increseWater:
-      return .just(.increseWater)
+      return .just(.increseWaterValue)
     case .decreseWater:
-      return .just(.decreseWater)
+      return .just(.decreseWaterValue)
+    case .addWater:
+      let ml = self.initialState.current
+      return self.provider.warterService.updateWater(to: Int(ml))
+        .map { _ in .dismiss}
     }
   }
   
-  func reduce(state: State, mutation: Action) -> State {
+  func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {
-    case .increseWater:
-      if newState.total >= newState.current + 50 {
-          newState.current += 50
+    case .increseWaterValue:
+      let total = newState.total
+      let current = newState.current
+      let progress = current / total
+      
+      if total >= current + 50 {
+        newState.current += 50
+        self.initialState.current += 50
       }
-    case .decreseWater:
-      if 0 <= newState.current - 50 {
+      newState.progress = progress
+    case .decreseWaterValue:
+      let total = newState.total
+      let current = newState.current
+      let progress = current / total
+      
+      if 0 <= current - 50 {
         newState.current -= 50
+        self.initialState.current -= 50
       }
+      
+      newState.progress = progress
+    case .dismiss:
+      newState.shouldDismissed = true
     }
     return newState
   }
