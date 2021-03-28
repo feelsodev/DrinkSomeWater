@@ -27,7 +27,6 @@ class MainViewController: BaseViewController, View {
   ).then {
     $0.layer.borderWidth = 1
     $0.layer.masksToBounds = true
-    $0.setProgress(self.point)
     $0.startAnimation()
     $0.backgroundColor = .white
   }
@@ -37,13 +36,6 @@ class MainViewController: BaseViewController, View {
   
   @objc func onChangeValueSlider(_ sender: UISlider) {
     self.wave.setProgress(sender.value)
-  }
-  
-  var point: Float = 0.1 {
-    didSet {
-      self.wave.setProgress(self.point)
-      self.view.layoutIfNeeded()
-    }
   }
   
   init(reactor: MainViewReactor) {
@@ -61,25 +53,27 @@ class MainViewController: BaseViewController, View {
   }
   
   func bind(reactor: MainViewReactor) {
+    
     // Action
+    self.rx.viewDidLoad
+      .map { Reactor.Action.refresh }
+      .bind(to: reactor.action )
+      .disposed(by: self.disposeBag)
+    
     self.addWarter.rx.tap
-      .map { reactor.reactorForCreatingDrink }
-      .subscribe { [weak self] reactor in
+      .map(reactor.reactorForCreatingDrink)
+      .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
-        let provider = ServiceProvider()
-        let reactor = DrinkViewReactor(provider: provider)
         let vc = DrinkViewController(reactor: reactor)
         self.present(vc, animated: true, completion: nil)
-      }
-      .disposed(by: disposeBag)
+      })
+      .disposed(by: self.disposeBag)
     
     // State
     reactor.state
-      .map { $0.count }
-      .distinctUntilChanged()
-      .map { "\($0) ml" }
-      .bind(to: goal.rx.text)
-      .disposed(by: disposeBag)
+      .map { $0.progress }
+      .bind(to: self.wave.rx.setProgress)
+      .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
