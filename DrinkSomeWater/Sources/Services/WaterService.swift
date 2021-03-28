@@ -14,14 +14,22 @@ enum WaterEvent {
 
 protocol WaterServiceProtocol {
   var event: PublishSubject<WaterEvent> { get }
+  func fetchWater() -> Observable<Int>
   func updateWater(to ml: Int) -> Observable<Int>
 }
 
 class WaterService: BaseService, WaterServiceProtocol {
+  
   let event = PublishSubject<WaterEvent>()
+  
+  func fetchWater() -> Observable<Int> {
+    let currentWater = 10
+    return .just(currentWater)
+  }
   
   func updateWater(to ml: Int) -> Observable<Int> {
     event.onNext(.updateWater(ml))
-    return .just(ml)
+    return self.fetchWater()
+      .map { $0 + ml }
   }
 }
