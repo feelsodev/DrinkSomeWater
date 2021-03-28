@@ -9,6 +9,8 @@ target 'DrinkSomeWater' do
   pod 'SnapKit'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxOptional'
+  pod 'RxViewController'
   pod 'ReactorKit'
   pod 'WaveAnimationView'
   # Pods for DrinkSomeWater
