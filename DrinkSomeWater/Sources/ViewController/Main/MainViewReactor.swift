@@ -11,17 +11,17 @@ import RxSwift
 
 class MainViewReactor: Reactor {
   enum Action {
-    case increse
-    case decrese
+    case refresh
   }
   
   enum Mutation {
-    case increaseValue
-    case decreaseValue
+    case updateWater(Int)
   }
   
   struct State {
-    var count = 0
+    var total: Float = 1000
+    var ml: Float = 0
+    var progress: Float = 0
   }
   
   let initialState: State
@@ -34,20 +34,39 @@ class MainViewReactor: Reactor {
   
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
-    case .increse:
-      return .just(.increaseValue)
-    case .decrese:
-      return .just(.decreaseValue)
+    case .refresh:
+      return self.provider.warterService.fetchWater()
+        .map { ml in
+          return .updateWater(ml)
+        }
+    }
+  }
+  
+  func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+    let waterEventMutation = self.provider.warterService.event
+      .flatMap { [weak self] waterEvent -> Observable<Mutation> in
+        self?.mutate(waterEvent: waterEvent) ?? .empty()
+      }
+    return Observable.merge(mutation, waterEventMutation)
+  }
+  
+  private func mutate(waterEvent: WaterEvent) -> Observable<Mutation> {
+    let state = self.currentState
+    switch waterEvent {
+    case let .updateWater(ml):
+      let total = ml + Int(state.ml)
+      return .just(.updateWater(total))
     }
   }
   
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {
-    case .increaseValue:
-      newState.count += 1
-    case .decreaseValue:
-      newState.count -= 1
+    case let .updateWater(ml):
+      let total = newState.total
+      let current = newState.ml + Float(ml)
+      let progress = Float(current / total)
+      newState.progress = progress
     }
     return newState
   }
