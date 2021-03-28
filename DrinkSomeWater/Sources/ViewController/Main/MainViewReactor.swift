@@ -15,7 +15,7 @@ class MainViewReactor: Reactor {
   }
   
   enum Mutation {
-    case updateWater(Int)
+    case updateWater(Float)
   }
   
   struct State {
@@ -54,7 +54,7 @@ class MainViewReactor: Reactor {
     let state = self.currentState
     switch waterEvent {
     case let .updateWater(ml):
-      let total = ml + Int(state.ml)
+      let total = ml + state.ml
       return .just(.updateWater(total))
     }
   }

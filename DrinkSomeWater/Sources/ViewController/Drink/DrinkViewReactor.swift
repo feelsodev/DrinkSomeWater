@@ -45,7 +45,7 @@ class DrinkViewReactor: Reactor {
       return .just(.decreseWaterValue)
     case .addWater:
       let ml = self.initialState.current
-      return self.provider.warterService.updateWater(to: Int(ml))
+      return self.provider.warterService.updateWater(to: ml)
         .map { _ in .dismiss}
     }
   }
