@@ -41,7 +41,19 @@ class DrinkViewController: BaseViewController, View {
     $0.layer.masksToBounds = true
     $0.setProgress(0.5)
     $0.startAnimation()
-    $0.backgroundColor = .white
+    $0.backgroundColor = .lightGray
+  }
+  
+  let ml = UILabel().then {
+    $0.textColor = .black
+  }
+  
+  let completeButton = UIButton().then {
+    $0.setTitle("DRINK UP!", for: .normal)
+    $0.setTitleColor(.white, for: .normal)
+    $0.backgroundColor = .black
+    $0.layer.cornerRadius = 10
+    $0.layer.masksToBounds = true
   }
   
   override func viewDidLoad() {
@@ -71,15 +83,37 @@ class DrinkViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: disposeBag)
     
+    self.completeButton.rx.tap
+      .map { Reactor.Action.addWater }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     // state
     reactor.state.asObservable()
+      .map { $0.current }
+      .distinctUntilChanged()
+      .map { "\(Int($0))ml" }
+      .bind(to: self.ml.rx.text)
+      .disposed(by: disposeBag)
+    
+    reactor.state.asObservable()
       .map { $0.current / $0.total }
+      .map { Float($0) }
       .bind(to: self.cup.rx.setProgress)
       .disposed(by: disposeBag)
+    
+    reactor.state.asObservable()
+      .map { $0.shouldDismissed }
+      .distinctUntilChanged()
+      .filter { $0 }
+      .subscribe { [weak self] _ in
+        self?.dismiss(animated: true, completion: nil)
+      }
+      .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
-    [self.cup, self.addWater, self.subWater].forEach { self.view.addSubview($0) }
+    [self.cup, self.addWater, self.subWater, self.ml, self.completeButton].forEach { self.view.addSubview($0) }
     self.cup.snp.makeConstraints {
       $0.centerX.centerY.equalToSuperview()
       $0.width.equalTo(150)
@@ -94,6 +128,16 @@ class DrinkViewController: BaseViewController, View {
       $0.bottom.equalTo(self.cup.snp.bottom).offset(-10)
       $0.leading.equalTo(self.cup.snp.trailing).offset(10)
       $0.width.height.equalTo(70)
+    }
+    self.ml.snp.makeConstraints {
+      $0.top.equalTo(self.cup.snp.bottom).offset(30)
+      $0.centerX.equalToSuperview()
+    }
+    self.completeButton.snp.makeConstraints {
+      $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+      $0.centerX.equalToSuperview()
+      $0.width.equalTo(100)
+      $0.height.equalTo(30)
     }
   }
 }
