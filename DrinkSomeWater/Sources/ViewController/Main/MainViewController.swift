@@ -25,7 +25,22 @@ final class MainViewController: BaseViewController, View {
     $0.textColor = .black
   }
   
-  let wave = WaveAnimationView(
+  let lid = UIView().then {
+    $0.layer.borderWidth = 0.1
+    $0.layer.cornerRadius = 5
+    $0.layer.borderColor = UIColor.lightGray.cgColor
+    $0.layer.masksToBounds = true
+    $0.backgroundColor = #colorLiteral(red: 0.07843137255, green: 0.5605390058, blue: 1, alpha: 1)
+  }
+  
+  let lidNeck = UIView().then {
+    $0.layer.borderWidth = 0.1
+    $0.layer.borderColor = UIColor.lightGray.cgColor
+    $0.layer.masksToBounds = true
+    $0.backgroundColor = .white
+  }
+  
+  let bottle = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: 200, height: 400),
     frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
     backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
@@ -76,12 +91,13 @@ final class MainViewController: BaseViewController, View {
     // State
     reactor.state
       .map { $0.progress }
-      .bind(to: self.wave.rx.setProgress)
+      .bind(to: self.bottle.rx.setProgress)
       .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
-    [self.descript, self.goal, self.wave, self.addWarter].forEach { self.view.addSubview($0) }
+    [self.descript, self.goal, self.lid, self.lidNeck, self.bottle, self.addWarter]
+      .forEach { self.view.addSubview($0) }
     
     self.descript.snp.makeConstraints {
       $0.top.equalToSuperview().offset(100)
@@ -92,7 +108,19 @@ final class MainViewController: BaseViewController, View {
       $0.centerX.equalToSuperview()
       $0.width.height.equalTo(50)
     }
-    self.wave.snp.makeConstraints {
+    self.lid.snp.makeConstraints {
+      $0.bottom.equalTo(self.lidNeck.snp.top)
+      $0.centerX.equalToSuperview()
+      $0.width.equalTo(100)
+      $0.height.equalTo(30)
+    }
+    self.lidNeck.snp.makeConstraints {
+      $0.bottom.equalTo(self.bottle.snp.top)
+      $0.centerX.equalToSuperview()
+      $0.width.equalTo(50)
+      $0.height.equalTo(20)
+    }
+    self.bottle.snp.makeConstraints {
       $0.top.equalTo(self.goal.snp.bottom).offset(20)
       $0.centerX.equalToSuperview()
       $0.width.equalTo(200)
@@ -101,7 +129,7 @@ final class MainViewController: BaseViewController, View {
     self.addWarter.snp.makeConstraints {
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(20)
       $0.centerX.equalToSuperview()
-      $0.width.height.equalTo(60)
+      $0.width.height.equalTo(80)
     }
   }
 }
