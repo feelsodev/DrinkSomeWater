@@ -6,3 +6,24 @@
 //
 
 import Foundation
+
+protocol UserDefaultsServiceProtocol {
+  func value<T>(forkey key: UserDefaultsKey<T>) -> T?
+  func set<T>(value: T?, forkey key: UserDefaultsKey<T>)
+}
+
+final class UserDefaultsService: BaseService, UserDefaultsServiceProtocol {
+  
+  private var defaults: UserDefaults {
+    return UserDefaults.standard
+  }
+  
+  func value<T>(forkey key: UserDefaultsKey<T>) -> T? {
+    return self.defaults.value(forKey: key.key) as? T
+  }
+  
+  func set<T>(value: T?, forkey key: UserDefaultsKey<T>) {
+    self.defaults.set(value, forKey: key.key)
+    self.defaults.synchronize()
+  }
+}
