@@ -74,4 +74,8 @@ final class MainViewReactor: Reactor {
   func reactorForCreatingDrink() -> DrinkViewReactor {
     return DrinkViewReactor(provider: self.provider)
   }
+  
+  func refactorForCreactingSetting() -> SettingViewReactor {
+    return SettingViewReactor(provider: self.provider)
+  }
 }

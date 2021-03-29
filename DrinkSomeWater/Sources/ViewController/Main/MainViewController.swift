@@ -16,15 +16,14 @@ final class MainViewController: BaseViewController, View {
   // MARK: UI
   
   let descript = UILabel().then {
-    $0.text = "하루 목표치"
-    $0.textColor = .black
+    $0.text = "Today's intake of your goal"
+    $0.font = .systemFont(ofSize: 20, weight: .medium)
+    $0.textColor = .darkGray
   }
-  
   let goal = UILabel().then {
     $0.textAlignment = .center
     $0.textColor = .black
   }
-  
   let lid = UIView().then {
     $0.layer.borderWidth = 0.1
     $0.layer.cornerRadius = 5
@@ -32,14 +31,12 @@ final class MainViewController: BaseViewController, View {
     $0.layer.masksToBounds = true
     $0.backgroundColor = #colorLiteral(red: 0.07843137255, green: 0.5605390058, blue: 1, alpha: 1)
   }
-  
   let lidNeck = UIView().then {
     $0.layer.borderWidth = 0.1
     $0.layer.borderColor = UIColor.lightGray.cgColor
     $0.layer.masksToBounds = true
     $0.backgroundColor = .white
   }
-  
   let bottle = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: 200, height: 400),
     frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
@@ -52,9 +49,22 @@ final class MainViewController: BaseViewController, View {
     $0.startAnimation()
     $0.backgroundColor = .white
   }
-  
   let addWarter = UIButton().then {
     $0.setImage(UIImage(named: "bulkuk"), for: .normal)
+  }
+  let setView = UIButton().then {
+    $0.setImage(UIImage(systemName: "gear")?
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
+    $0.tintColor = .white
+    $0.contentVerticalAlignment = .fill
+    $0.contentHorizontalAlignment = .fill
+    $0.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+    $0.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    $0.layer.shadowOpacity = 1.0
+    $0.layer.shadowRadius = 0.0
+    $0.layer.masksToBounds = false
+    $0.layer.cornerRadius = 4.0
   }
   
   init(reactor: MainViewReactor) {
@@ -79,6 +89,15 @@ final class MainViewController: BaseViewController, View {
       .bind(to: reactor.action )
       .disposed(by: self.disposeBag)
     
+    self.setView.rx.tap
+      .map(reactor.refactorForCreactingSetting)
+      .subscribe(onNext: { [weak self] reactor in
+        guard let `self` = self else { return }
+        let vc = SettingViewController(reactor: reactor)
+        self.present(vc, animated: true, completion: nil)
+      })
+      .disposed(by: self.disposeBag)
+    
     self.addWarter.rx.tap
       .map(reactor.reactorForCreatingDrink)
       .subscribe(onNext: { [weak self] reactor in
@@ -96,9 +115,14 @@ final class MainViewController: BaseViewController, View {
   }
   
   override func setupConstraints() {
-    [self.descript, self.goal, self.lid, self.lidNeck, self.bottle, self.addWarter]
+    [self.setView, self.descript, self.goal, self.lid, self.lidNeck, self.bottle, self.addWarter]
       .forEach { self.view.addSubview($0) }
     
+    self.setView.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+      $0.trailing.equalToSuperview().offset(-10)
+      $0.width.height.equalTo(50)
+    }
     self.descript.snp.makeConstraints {
       $0.top.equalToSuperview().offset(100)
       $0.centerX.equalToSuperview()
