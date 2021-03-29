@@ -11,31 +11,35 @@ import RxCocoa
 import RxSwift
 import WaveAnimationView
 
-class MainViewController: BaseViewController, View {
+final class MainViewController: BaseViewController, View {
+  
+  // MARK: UI
+  
   let descript = UILabel().then {
     $0.text = "하루 목표치"
     $0.textColor = .black
   }
+  
   let goal = UILabel().then {
     $0.textAlignment = .center
     $0.textColor = .black
   }
-  lazy var wave = WaveAnimationView(
+  
+  let wave = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: 200, height: 400),
     frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
     backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
-    $0.layer.borderWidth = 1
+    $0.layer.borderWidth = 0.1
+    $0.layer.cornerRadius = 15
+    $0.layer.borderColor = UIColor.lightGray.cgColor
     $0.layer.masksToBounds = true
     $0.startAnimation()
     $0.backgroundColor = .white
   }
+  
   let addWarter = UIButton().then {
     $0.setImage(UIImage(named: "bulkuk"), for: .normal)
-  }
-  
-  @objc func onChangeValueSlider(_ sender: UISlider) {
-    self.wave.setProgress(sender.value)
   }
   
   init(reactor: MainViewReactor) {

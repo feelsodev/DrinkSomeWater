@@ -9,7 +9,7 @@ import Foundation
 import ReactorKit
 import RxSwift
 
-class MainViewReactor: Reactor {
+final class MainViewReactor: Reactor {
   enum Action {
     case refresh
   }
@@ -64,7 +64,7 @@ class MainViewReactor: Reactor {
     switch mutation {
     case let .updateWater(ml):
       let total = newState.total
-      let current = newState.ml + Float(ml)
+      let current = newState.ml + ml
       let progress = Float(current / total)
       newState.progress = progress
     }
