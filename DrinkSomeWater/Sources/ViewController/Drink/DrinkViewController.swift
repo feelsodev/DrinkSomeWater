@@ -41,7 +41,7 @@ class DrinkViewController: BaseViewController, View {
     $0.layer.masksToBounds = true
     $0.setProgress(0.5)
     $0.startAnimation()
-    $0.backgroundColor = .lightGray
+    $0.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.7387895976)
   }
   
   let ml = UILabel().then {

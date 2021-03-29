@@ -23,7 +23,7 @@ class BaseViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupConstraints()
+    self.setupConstraints()
   }
   
   // override point
