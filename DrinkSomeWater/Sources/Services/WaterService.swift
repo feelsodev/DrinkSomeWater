@@ -20,8 +20,7 @@ protocol WaterServiceProtocol {
   func updateWater(to ml: Float) -> Observable<Float>
 }
 
-class WaterService: BaseService, WaterServiceProtocol {
-  
+final class WaterService: BaseService, WaterServiceProtocol {
   let event = PublishSubject<WaterEvent>()
   
   func fetchWater() -> Observable<Float> {
