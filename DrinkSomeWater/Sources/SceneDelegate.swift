@@ -17,6 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     window = UIWindow(frame: UIScreen.main.bounds)
     let serviceProvider = ServiceProvider()
+    
+    // 최초 앱 설치시 값이 목표 용량치가 없을 경우 1500으로 초기화
+    if serviceProvider.userDefaultsService.value(forkey: .goal) == nil {
+      serviceProvider.userDefaultsService.set(value: 1500, forkey: .goal)
+    }
     let mainReactor = MainViewReactor(provider: serviceProvider)
     let mainView = MainViewController(reactor: mainReactor)
     window?.rootViewController = mainView
