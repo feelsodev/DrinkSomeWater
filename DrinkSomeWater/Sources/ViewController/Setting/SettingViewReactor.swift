@@ -11,6 +11,7 @@ import RxSwift
 
 final class SettingViewReactor: Reactor {
   enum Action {
+    case loadGoal
     case changeGoalWater(Int)
   }
   
@@ -32,6 +33,11 @@ final class SettingViewReactor: Reactor {
   
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
+    case .loadGoal:
+      return self.provider.warterService.fetchGoal()
+        .map { ml in
+          return .changeGoalWaterValue(ml)
+        }
     case let .changeGoalWater(ml):
       return .just(.changeGoalWaterValue(ml))
     }
@@ -41,10 +47,9 @@ final class SettingViewReactor: Reactor {
     var newState = state
     switch mutation {
     case let .changeGoalWaterValue(ml):
-      let result = ml - ml % 100
-      newState.value = result
+      let value = ml - ml % 100
+      newState.value = value
     }
-    
     return newState
   }
 }

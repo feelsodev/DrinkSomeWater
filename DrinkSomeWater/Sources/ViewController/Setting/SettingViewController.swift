@@ -18,7 +18,6 @@ final class SettingViewController: BaseViewController, View {
   lazy var slider = UISlider().then {
     $0.maximumValue = 3000
     $0.minimumValue = 1500
-    $0.value = 2000
     $0.tintColor = .darkGray
   }
   
@@ -38,6 +37,11 @@ final class SettingViewController: BaseViewController, View {
   
   func bind(reactor: SettingViewReactor) {
     // Action
+    self.rx.viewDidLoad
+      .map { Reactor.Action.loadGoal }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     self.slider.rx.value
       .map { Int($0) }
       .map { Reactor.Action.changeGoalWater($0) }
