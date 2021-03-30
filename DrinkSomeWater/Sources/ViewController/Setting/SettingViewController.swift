@@ -69,6 +69,15 @@ final class SettingViewController: BaseViewController, View {
       .disposed(by: self.disposeBag)
     
     reactor.state.asObservable()
+      .map { Float($0.value) }
+      .distinctUntilChanged()
+      .subscribe(onNext: { [weak self] value in
+        guard let `self` = self else { return }
+        self.slider.value = value
+      })
+      .disposed(by: self.disposeBag)
+    
+    reactor.state.asObservable()
       .map { $0.shouldDismissed }
       .distinctUntilChanged()
       .filter { $0 }
