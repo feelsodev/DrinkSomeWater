@@ -12,19 +12,21 @@ import RxSwift
 final class MainViewReactor: Reactor {
   enum Action {
     case refresh
+    case refreshGoal
   }
   
   enum Mutation {
     case updateWater(Float)
+    case updateGoal(Float)
   }
   
   struct State {
-    var total: Float = 1000
+    var total: Float = 0
     var ml: Float = 0
     var progress: Float = 0
   }
   
-  let initialState: State
+  var initialState: State
   let provider: ServiceProviderProtocol
   
   init(provider: ServiceProviderProtocol) {
@@ -39,6 +41,11 @@ final class MainViewReactor: Reactor {
         .map { ml in
           return .updateWater(ml)
         }
+    case .refreshGoal:
+      return self.provider.warterService.fetchGoal()
+        .map { ml in
+          return .updateGoal(Float(ml))
+        }
     }
   }
   
@@ -51,11 +58,11 @@ final class MainViewReactor: Reactor {
   }
   
   private func mutate(waterEvent: WaterEvent) -> Observable<Mutation> {
-    let state = self.currentState
     switch waterEvent {
     case let .updateWater(ml):
-      let total = ml + state.ml
-      return .just(.updateWater(total))
+      return .just(.updateWater(ml))
+    case let .updateGoal(ml):
+      return .just(.updateGoal(Float(ml)))
     }
   }
   
@@ -63,10 +70,11 @@ final class MainViewReactor: Reactor {
     var newState = state
     switch mutation {
     case let .updateWater(ml):
-      let total = newState.total
-      let current = newState.ml + ml
-      let progress = Float(current / total)
-      newState.progress = progress
+      newState.ml = ml
+      newState.progress = Float(ml / newState.total)
+    case let .updateGoal(total):
+      newState.total = total
+      newState.progress = Float(newState.ml / total)
     }
     return newState
   }

@@ -16,9 +16,9 @@ final class MainViewController: BaseViewController, View {
   // MARK: UI
   
   let descript = UILabel().then {
-    $0.text = "Today's intake of your goal"
     $0.font = .systemFont(ofSize: 20, weight: .medium)
     $0.textColor = .darkGray
+    $0.numberOfLines = 0
   }
   let goal = UILabel().then {
     $0.textAlignment = .center
@@ -89,6 +89,11 @@ final class MainViewController: BaseViewController, View {
       .bind(to: reactor.action )
       .disposed(by: self.disposeBag)
     
+    self.rx.viewDidLoad
+      .map { Reactor.Action.refreshGoal }
+      .bind(to: reactor.action )
+      .disposed(by: self.disposeBag)
+    
     self.setView.rx.tap
       .map(reactor.refactorForCreactingSetting)
       .subscribe(onNext: { [weak self] reactor in
@@ -108,9 +113,14 @@ final class MainViewController: BaseViewController, View {
       .disposed(by: self.disposeBag)
     
     // State
-    reactor.state
+    reactor.state.asObservable()
       .map { $0.progress }
       .bind(to: self.bottle.rx.setProgress)
+      .disposed(by: self.disposeBag)
+    
+    reactor.state.asObservable()
+      .map { "Today's intake \($0.ml)\n of your goal : \($0.total)" }
+      .bind(to: self.descript.rx.text)
       .disposed(by: self.disposeBag)
   }
   
