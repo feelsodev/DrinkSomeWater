@@ -15,6 +15,7 @@ enum WaterEvent {
 protocol WaterServiceProtocol {
   var event: PublishSubject<WaterEvent> { get }
   func fetchWater() -> Observable<Float>
+  func fetchGoal() -> Observable<Int>
   
   @discardableResult
   func updateWater(to ml: Float) -> Observable<Float>
@@ -26,6 +27,13 @@ final class WaterService: BaseService, WaterServiceProtocol {
   func fetchWater() -> Observable<Float> {
     let currentWater: Float = 500
     return .just(currentWater)
+  }
+  
+  func fetchGoal() -> Observable<Int> {
+    guard let goalWater = self.provider.userDefaultsService.value(forkey: .goal) else {
+      return .empty()
+    }
+    return .just(goalWater)
   }
   
   @discardableResult
