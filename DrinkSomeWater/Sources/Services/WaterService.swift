@@ -19,6 +19,9 @@ protocol WaterServiceProtocol {
   
   @discardableResult
   func updateWater(to ml: Float) -> Observable<Float>
+  
+  @discardableResult
+  func updateGoal(to ml: Int) -> Observable<Int>
 }
 
 final class WaterService: BaseService, WaterServiceProtocol {
@@ -43,5 +46,11 @@ final class WaterService: BaseService, WaterServiceProtocol {
       .do(onNext: { water in
         self.event.onNext(.updateWater(water))
       })
+  }
+  
+  @discardableResult
+  func updateGoal(to ml: Int) -> Observable<Int> {
+    self.provider.userDefaultsService.set(value: ml, forkey: .goal)
+    return .just(ml)
   }
 }
