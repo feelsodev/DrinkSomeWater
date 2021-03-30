@@ -7,6 +7,11 @@
 
 import Foundation
 
+extension UserDefaultsKey {
+  static var goal: Key<[[String: Any]]> { return "goal" }
+  static var current: Key<[[String: Any]]> { return "current" }
+}
+
 protocol UserDefaultsServiceProtocol {
   func value<T>(forkey key: UserDefaultsKey<T>) -> T?
   func set<T>(value: T?, forkey key: UserDefaultsKey<T>)
