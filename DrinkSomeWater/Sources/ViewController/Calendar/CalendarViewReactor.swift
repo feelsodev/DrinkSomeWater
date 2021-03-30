@@ -6,3 +6,25 @@
 //
 
 import Foundation
+import ReactorKit
+import RxSwift
+
+final class CalendarViewReactor: Reactor {
+  enum Action {
+    
+  }
+  
+  enum Mutation {
+    
+  }
+  
+  struct State {
+    
+  }
+  
+  var initialState: State
+  
+  init() {
+    self.initialState = State()
+  }
+}
