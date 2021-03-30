@@ -72,7 +72,6 @@ class DrinkViewReactor: Reactor {
         newState.current -= 50
         self.initialState.current -= 50
       }
-      
       newState.progress = progress
     case .dismiss:
       newState.shouldDismissed = true

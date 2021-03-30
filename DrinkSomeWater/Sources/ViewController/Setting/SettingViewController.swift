@@ -13,7 +13,7 @@ import RxSwift
 final class SettingViewController: BaseViewController, View {
   
   let goalWater = UILabel().then {
-    $0.font = .systemFont(ofSize: 20, weight: .medium)
+    $0.font = .systemFont(ofSize: 40, weight: .medium)
     $0.textColor = .darkGray
   }
   let slider = UISlider().then {
@@ -98,7 +98,7 @@ final class SettingViewController: BaseViewController, View {
       $0.top.equalTo(self.goalWater.snp.bottom).offset(50)
       $0.centerX.equalToSuperview()
       $0.width.equalTo(230)
-      $0.height.equalTo(40)
+      $0.height.equalTo(70)
     }
     self.setButton.snp.makeConstraints {
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
