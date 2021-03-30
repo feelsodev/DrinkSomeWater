@@ -9,6 +9,7 @@ import UIKit
 import ReactorKit
 import RxCocoa
 import RxSwift
+import WaveAnimationView
 
 final class SettingViewController: BaseViewController, View {
   
@@ -28,6 +29,15 @@ final class SettingViewController: BaseViewController, View {
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
   }
+  lazy var waveBackground = WaveAnimationView(
+    frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
+    frontColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1),
+    backColor: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+  ).then {
+    $0.backgroundColor = .white
+    $0.setProgress(0.5)
+    $0.startAnimation()
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -44,6 +54,7 @@ final class SettingViewController: BaseViewController, View {
   }
   
   func bind(reactor: SettingViewReactor) {
+    
     // Action
     self.rx.viewDidLoad
       .map { Reactor.Action.loadGoal }
@@ -88,8 +99,12 @@ final class SettingViewController: BaseViewController, View {
   }
   
   override func setupConstraints() {
-    [self.goalWater, self.slider, self.setButton].forEach { self.view.addSubview($0) }
+    self.view.addSubview(self.waveBackground)
+    [self.goalWater, self.slider, self.setButton].forEach { self.waveBackground.addSubview($0) }
     
+    self.waveBackground.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
     self.goalWater.snp.makeConstraints {
       $0.top.equalToSuperview().offset(100)
       $0.centerX.equalToSuperview()

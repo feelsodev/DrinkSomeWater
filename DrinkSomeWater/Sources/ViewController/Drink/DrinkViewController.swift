@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import WaveAnimationView
 
-class DrinkViewController: BaseViewController, View {
+final class DrinkViewController: BaseViewController, View {
   let addWater = UIButton().then {
     $0.tintColor = .blue
     $0.setImage(UIImage(systemName: "plus.circle")?
@@ -37,11 +37,13 @@ class DrinkViewController: BaseViewController, View {
     frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
     backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
-    $0.layer.borderWidth = 1
+    $0.layer.borderWidth = 2
+    $0.layer.borderColor = UIColor.lightGray.cgColor
+    $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
     $0.setProgress(0.5)
     $0.startAnimation()
-    $0.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.7387895976)
+    $0.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
   }
   
   let ml = UILabel().then {
@@ -113,7 +115,8 @@ class DrinkViewController: BaseViewController, View {
   }
   
   override func setupConstraints() {
-    [self.cup, self.addWater, self.subWater, self.ml, self.completeButton].forEach { self.view.addSubview($0) }
+    [self.cup, self.addWater, self.subWater, self.ml, self.completeButton]
+      .forEach { self.view.addSubview($0) }
     self.cup.snp.makeConstraints {
       $0.centerX.centerY.equalToSuperview()
       $0.width.equalTo(150)

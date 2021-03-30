@@ -9,7 +9,7 @@ import Foundation
 import ReactorKit
 import RxSwift
 
-class DrinkViewReactor: Reactor {
+final class DrinkViewReactor: Reactor {
   enum Action {
     case increseWater
     case decreseWater
