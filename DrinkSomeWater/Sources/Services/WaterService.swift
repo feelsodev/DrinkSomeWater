@@ -10,6 +10,7 @@ import RxSwift
 
 enum WaterEvent {
   case updateWater(Float)
+  case updateGoal(Int)
 }
 
 protocol WaterServiceProtocol {
@@ -28,8 +29,9 @@ final class WaterService: BaseService, WaterServiceProtocol {
   let event = PublishSubject<WaterEvent>()
   
   func fetchWater() -> Observable<Float> {
-    let currentWater: Float = 500
-    return .just(currentWater)
+    guard let currentValue = self.provider.userDefaultsService.value(forkey: .current) else { return .just(0)
+    }
+    return .just(Float(currentValue))
   }
   
   func fetchGoal() -> Observable<Int> {
@@ -41,8 +43,15 @@ final class WaterService: BaseService, WaterServiceProtocol {
   
   @discardableResult
   func updateWater(to ml: Float) -> Observable<Float> {
+    if let currentValue = self.provider.userDefaultsService.value(forkey: .current) {
+      self.provider.userDefaultsService.set(value: currentValue + Int(ml), forkey: .current)
+      
+      // 초기화 위한 슈가 코드
+//      self.provider.userDefaultsService.set(value: 0, forkey: .current)
+    }
+    
     return self.fetchWater()
-      .map { $0 + ml }
+      .map { $0 }
       .do(onNext: { water in
         self.event.onNext(.updateWater(water))
       })
@@ -51,6 +60,7 @@ final class WaterService: BaseService, WaterServiceProtocol {
   @discardableResult
   func updateGoal(to ml: Int) -> Observable<Int> {
     self.provider.userDefaultsService.set(value: ml, forkey: .goal)
+    self.event.onNext(.updateGoal(ml))
     return .just(ml)
   }
 }
