@@ -13,14 +13,17 @@ final class SettingViewReactor: Reactor {
   enum Action {
     case loadGoal
     case changeGoalWater(Int)
+    case setGoal
   }
   
   enum Mutation {
     case changeGoalWaterValue(Int)
+    case dismiss
   }
   
   struct State {
-    var value: Int = 1500
+    var value: Int = 0
+    var shouldDismissed: Bool = false
   }
   
   var initialState: State
@@ -40,6 +43,10 @@ final class SettingViewReactor: Reactor {
         }
     case let .changeGoalWater(ml):
       return .just(.changeGoalWaterValue(ml))
+    case .setGoal:
+      let currentValue = self.initialState.value
+      return self.provider.warterService.updateGoal(to: currentValue)
+        .map { _ in .dismiss }
     }
   }
   
@@ -48,7 +55,10 @@ final class SettingViewReactor: Reactor {
     switch mutation {
     case let .changeGoalWaterValue(ml):
       let value = ml - ml % 100
+      self.initialState.value = value
       newState.value = value
+    case .dismiss:
+      newState.shouldDismissed = true
     }
     return newState
   }
