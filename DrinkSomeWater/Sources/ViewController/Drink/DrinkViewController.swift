@@ -72,7 +72,7 @@ class DrinkViewController: BaseViewController, View {
   
   func bind(reactor: DrinkViewReactor) {
     
-    // action
+    // Action
     self.addWater.rx.tap
       .map { Reactor.Action.increseWater }
       .bind(to: reactor.action)
@@ -88,7 +88,7 @@ class DrinkViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
     
-    // state
+    // State
     reactor.state.asObservable()
       .map { $0.current }
       .distinctUntilChanged()

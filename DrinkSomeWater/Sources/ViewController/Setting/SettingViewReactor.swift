@@ -11,15 +11,15 @@ import RxSwift
 
 final class SettingViewReactor: Reactor {
   enum Action {
-    
+    case changeGoalWater(Int)
   }
   
   enum Mutation {
-    
+    case changeGoalWaterValue(Int)
   }
   
   struct State {
-    
+    var value: Int = 1500
   }
   
   var initialState: State
@@ -28,5 +28,23 @@ final class SettingViewReactor: Reactor {
   init(provider: ServiceProviderProtocol) {
     self.initialState = State()
     self.provider = provider
+  }
+  
+  func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case let .changeGoalWater(ml):
+      return .just(.changeGoalWaterValue(ml))
+    }
+  }
+  
+  func reduce(state: State, mutation: Mutation) -> State {
+    var newState = state
+    switch mutation {
+    case let .changeGoalWaterValue(ml):
+      let result = ml - ml % 100
+      newState.value = result
+    }
+    
+    return newState
   }
 }
