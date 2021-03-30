@@ -44,10 +44,19 @@ final class MainViewController: BaseViewController, View {
   ).then {
     $0.layer.borderWidth = 0.1
     $0.layer.cornerRadius = 15
-    $0.layer.borderColor = UIColor.lightGray.cgColor
+    $0.layer.borderColor = UIColor.white.cgColor
     $0.layer.masksToBounds = true
     $0.startAnimation()
     $0.backgroundColor = .white
+  }
+  lazy var waveBackground = WaveAnimationView(
+    frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
+    frontColor: .clear,
+    backColor: #colorLiteral(red: 0.6, green: 0.8352941176, blue: 0.9019607843, alpha: 1)
+  ).then {
+    $0.backgroundColor = #colorLiteral(red: 0.8339943543, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    $0.setProgress(0.5)
+    $0.startAnimation()
   }
   let addWarter = UIButton().then {
     $0.setImage(UIImage(named: "bulkuk"), for: .normal)
@@ -55,6 +64,20 @@ final class MainViewController: BaseViewController, View {
   let setView = UIButton().then {
     $0.setImage(UIImage(systemName: "gear")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
+    $0.tintColor = .white
+    $0.contentVerticalAlignment = .fill
+    $0.contentHorizontalAlignment = .fill
+    $0.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+    $0.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    $0.layer.shadowOpacity = 1.0
+    $0.layer.shadowRadius = 0.0
+    $0.layer.masksToBounds = false
+    $0.layer.cornerRadius = 4.0
+  }
+  let calendarView = UIButton().then {
+    $0.setImage(UIImage(systemName: "calendar")?
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .light)), for: .normal)
     $0.tintColor = .white
     $0.contentVerticalAlignment = .fill
     $0.contentHorizontalAlignment = .fill
@@ -125,9 +148,19 @@ final class MainViewController: BaseViewController, View {
   }
   
   override func setupConstraints() {
-    [self.setView, self.descript, self.goal, self.lid, self.lidNeck, self.bottle, self.addWarter]
-      .forEach { self.view.addSubview($0) }
+    self.view.addSubview(self.waveBackground)
+    [self.calendarView, self.setView, self.descript, self.goal, self.lid, self.lidNeck, self.bottle, self.addWarter]
+      .forEach { self.waveBackground.addSubview($0) }
     
+    self.waveBackground.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
+    self.calendarView.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+      $0.leading.equalToSuperview().offset(10)
+      $0.width.equalTo(60)
+      $0.height.equalTo(50)
+    }
     self.setView.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
       $0.trailing.equalToSuperview().offset(-10)
