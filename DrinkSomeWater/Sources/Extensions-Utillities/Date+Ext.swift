@@ -16,4 +16,10 @@ extension Date {
     let state = today == getDate ? true : false
     return state
   }
+  
+  func dateToString() -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter.string(from: self)
+  }
 }

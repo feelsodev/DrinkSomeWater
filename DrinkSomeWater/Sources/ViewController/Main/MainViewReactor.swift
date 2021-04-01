@@ -90,7 +90,11 @@ final class MainViewReactor: Reactor {
     return DrinkViewReactor(provider: self.provider)
   }
   
-  func refactorForCreactingSetting() -> SettingViewReactor {
+  func reactorForCreactingSetting() -> SettingViewReactor {
     return SettingViewReactor(provider: self.provider)
+  }
+  
+  func reactorForCreatingCalendar() -> CalendarViewReactor {
+    return CalendarViewReactor()
   }
 }

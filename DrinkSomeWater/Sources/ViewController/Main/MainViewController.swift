@@ -118,7 +118,7 @@ final class MainViewController: BaseViewController, View {
       .disposed(by: self.disposeBag)
     
     self.setView.rx.tap
-      .map(reactor.refactorForCreactingSetting)
+      .map(reactor.reactorForCreactingSetting)
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = SettingViewController(reactor: reactor)
@@ -131,6 +131,15 @@ final class MainViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = DrinkViewController(reactor: reactor)
+        self.present(vc, animated: true, completion: nil)
+      })
+      .disposed(by: self.disposeBag)
+    
+    self.calendarView.rx.tap
+      .map(reactor.reactorForCreatingCalendar)
+      .subscribe(onNext: { [weak self] reactor in
+        guard let `self` = self else { return }
+        let vc = CalendarViewController(reactor: reactor)
         self.present(vc, animated: true, completion: nil)
       })
       .disposed(by: self.disposeBag)
