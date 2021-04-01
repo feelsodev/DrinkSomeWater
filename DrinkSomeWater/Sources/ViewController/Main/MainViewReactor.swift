@@ -95,6 +95,6 @@ final class MainViewReactor: Reactor {
   }
   
   func reactorForCreatingCalendar() -> CalendarViewReactor {
-    return CalendarViewReactor()
+    return CalendarViewReactor(provider: self.provider)
   }
 }
