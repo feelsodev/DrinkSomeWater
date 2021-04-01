@@ -16,7 +16,7 @@ final class MainViewReactor: Reactor {
   }
   
   enum Mutation {
-    case updateWater(Float)
+    case updateWater([WaterRecord])
     case updateGoal(Float)
   }
   
@@ -38,8 +38,8 @@ final class MainViewReactor: Reactor {
     switch action {
     case .refresh:
       return self.provider.warterService.fetchWater()
-        .map { ml in
-          return .updateWater(ml)
+        .map { water in
+          return .updateWater(water)
         }
     case .refreshGoal:
       return self.provider.warterService.fetchGoal()
@@ -69,9 +69,15 @@ final class MainViewReactor: Reactor {
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {
-    case let .updateWater(ml):
-      newState.ml = ml
-      newState.progress = Float(ml / newState.total)
+    case let .updateWater(waterRecordList):
+      waterRecordList.forEach { waterRecord in
+        if waterRecord.date.checkToday() {
+          newState.ml =
+            waterRecord.value == 0
+            ? 0
+            : Float(waterRecord.value)
+        }
+      }
     case let .updateGoal(total):
       newState.total = total
       newState.progress = Float(newState.ml / total)
