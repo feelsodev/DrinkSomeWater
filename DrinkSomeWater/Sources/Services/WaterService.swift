@@ -30,18 +30,24 @@ protocol WaterServiceProtocol {
 
 final class WaterService: BaseService, WaterServiceProtocol {
   let event = PublishSubject<WaterEvent>()
-  
+    
   func fetchWater() -> Observable<[WaterRecord]> {
     if let currentValue = self.provider.userDefaultsService.value(forkey: .current) {
       var water = currentValue.compactMap(WaterRecord.init)
       if !water.contains(where: { $0.date.checkToday() }) {
-        water.append(WaterRecord(date: Date(), value: 0))
+        guard let goalWater = self.provider.userDefaultsService.value(forkey: .goal) else {
+          return .empty()
+        }
+        water.append(WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater))
       }
       return .just(water)
     }
     
     // 값이 존재하지 않을경우 즉, 제일 초기 앱 실행시
-    let waterRecord = WaterRecord(date: Date(), value: 0)
+    guard let goalWater = self.provider.userDefaultsService.value(forkey: .goal) else {
+      return .empty()
+    }
+    let waterRecord = WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater)
     let value = waterRecord.asDictionary()
     self.provider.userDefaultsService.set(value: [value], forkey: .current)
     return .just([waterRecord])
@@ -72,6 +78,9 @@ final class WaterService: BaseService, WaterServiceProtocol {
         let newRecord = waterRecord[index].with {
           $0.value += Int(ml)
           $0.date = Date()
+          if $0.value >= $0.goal {
+            $0.isSuccess = true
+          }
         }
         waterRecord[index] = newRecord
         return self.saveWater(waterRecord)

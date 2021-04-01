@@ -110,13 +110,6 @@
 			path = Types;
 			sourceTree = "<group>";
 		};
-		A52B5F7F26123732003D7AFF /* Component */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Component;
-			sourceTree = "<group>";
-		};
 		A52B5FAB26137122003D7AFF /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,7 +207,6 @@
 			children = (
 				A565861C2614A62600BAA9AC /* Extensions-Utillities */,
 				A52B5FB926138BC8003D7AFF /* Models */,
-				A52B5F7F26123732003D7AFF /* Component */,
 				A52B5F6F261230C4003D7AFF /* Types */,
 				A58351492601CA28001AA609 /* ViewController */,
 				A515812A26033E3700127C98 /* Services */,
