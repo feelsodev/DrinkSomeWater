@@ -13,6 +13,9 @@ import RxSwift
 import WaveAnimationView
 
 final class CalendarViewController: BaseViewController, View {
+  var date: [String] = []
+  
+  // MARK: - UI
   
   lazy var calendar = FSCalendar().then {
     $0.delegate = self
@@ -46,6 +49,24 @@ final class CalendarViewController: BaseViewController, View {
   
   func bind(reactor: CalendarViewReactor) {
     
+    // Action
+    self.rx.viewDidLoad
+      .map { Reactor.Action.viewDidload }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
+    
+    // State
+    reactor.state.asObservable()
+      .map { $0.waterRecordList }
+      .subscribe(onNext: { [weak self] waterRecordList in
+        waterRecordList.forEach {
+          if $0.isSuccess == true {
+            self?.date.append($0.date.dateToString())
+          }
+        }
+      })
+      .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
@@ -63,6 +84,12 @@ final class CalendarViewController: BaseViewController, View {
   }
 }
 
-extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate  {
-  
+extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
+  func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+    if self.date.contains(date.dateToString()) {
+      return .lightGray
+    } else {
+      return nil
+    }
+  }
 }
