@@ -78,9 +78,10 @@ final class WaterService: BaseService, WaterServiceProtocol {
         let newRecord = waterRecord[index].with {
           $0.value += Int(ml)
           $0.date = Date()
-          if $0.value >= $0.goal {
-            $0.isSuccess = true
-          }
+          $0.isSuccess =
+            $0.value >= $0.goal
+            ? true
+            : false
         }
         waterRecord[index] = newRecord
         return self.saveWater(waterRecord)
@@ -93,6 +94,22 @@ final class WaterService: BaseService, WaterServiceProtocol {
   
   @discardableResult
   func updateGoal(to ml: Int) -> Observable<Int> {
+    if let currentValue = self.provider.userDefaultsService.value(forkey: .current) {
+      let waterRecord = currentValue.compactMap(WaterRecord.init)
+      guard let index = waterRecord.firstIndex(where: { $0.date.checkToday() }) else {
+        return .empty()
+      }
+      var tempWaterRecord = waterRecord
+      let newRecord = tempWaterRecord[index].with {
+        $0.goal = ml
+        $0.isSuccess =
+          $0.value >= $0.goal
+          ? true
+          : false
+      }
+      tempWaterRecord[index] = newRecord
+      _ = self.saveWater(tempWaterRecord)
+    }
     self.provider.userDefaultsService.set(value: ml, forkey: .goal)
     self.event.onNext(.updateGoal(ml))
     return .just(ml)
