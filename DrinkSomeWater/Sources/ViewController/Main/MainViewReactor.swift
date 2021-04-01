@@ -78,6 +78,7 @@ final class MainViewReactor: Reactor {
             : Float(waterRecord.value)
         }
       }
+      newState.progress = newState.ml / newState.total
     case let .updateGoal(total):
       newState.total = total
       newState.progress = Float(newState.ml / total)
