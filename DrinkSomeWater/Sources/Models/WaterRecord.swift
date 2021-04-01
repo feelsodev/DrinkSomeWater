@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WaterRecord {
+struct WaterRecord: ModelType, Identifiable {
   var date: Date
   var value: Int
   
