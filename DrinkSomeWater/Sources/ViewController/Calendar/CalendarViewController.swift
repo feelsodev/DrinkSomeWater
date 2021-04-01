@@ -77,8 +77,9 @@ final class CalendarViewController: BaseViewController, View {
       $0.edges.equalToSuperview()
     }
     self.calendar.snp.makeConstraints {
-      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
-      $0.width.equalToSuperview()
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+      $0.leading.equalToSuperview().offset(20)
+      $0.trailing.equalToSuperview().offset(-20)
       $0.height.equalTo(300)
     }
   }
