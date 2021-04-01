@@ -9,7 +9,7 @@ import Foundation
 
 extension UserDefaultsKey {
   static var goal: Key<Int> { return "goal" }
-  static var current: Key<Int> { return "current" }
+  static var current: Key<[[String: Any]]> { return "current" }
 }
 
 protocol UserDefaultsServiceProtocol {

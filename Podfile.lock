@@ -1,4 +1,5 @@
 PODS:
+  - FSCalendar (2.8.2)
   - ReactorKit (3.0.0):
     - RxSwift (~> 6.0)
     - WeakMapTable (~> 1.1)
@@ -20,6 +21,7 @@ PODS:
   - WeakMapTable (1.2.0)
 
 DEPENDENCIES:
+  - FSCalendar
   - ReactorKit
   - RxCocoa
   - RxOptional
@@ -31,6 +33,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - FSCalendar
     - ReactorKit
     - RxCocoa
     - RxOptional
@@ -43,6 +46,7 @@ SPEC REPOS:
     - WeakMapTable
 
 SPEC CHECKSUMS:
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   ReactorKit: 5348c9881dcb546605b451e32759dccc9937d36e
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
   RxOptional: e0b39f0863c25c4bfeea83cb35102a5244d048b3
@@ -54,6 +58,6 @@ SPEC CHECKSUMS:
   WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: fd0ff5ccaf8a4b172202108c9fecdcf3ce41f0fe
+PODFILE CHECKSUM: b6e412df3d6db30e1a0ca27cabe7a14bd23e7506
 
 COCOAPODS: 1.10.1
