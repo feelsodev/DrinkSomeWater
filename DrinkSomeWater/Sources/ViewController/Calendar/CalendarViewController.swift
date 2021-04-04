@@ -17,10 +17,18 @@ final class CalendarViewController: BaseViewController, View {
   
   // MARK: - UI
   
+  let sun = UIImageView(image: UIImage(named: "sun"))
+  let tube = UIImageView(image: UIImage(named: "tube"))
+  let titleLabel = UILabel().then {
+    $0.text = "이달의 목표 달성"
+    $0.textColor = .lightGray
+    $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+    $0.textAlignment = .center
+  }
   lazy var calendar = FSCalendar().then {
     $0.delegate = self
     $0.dataSource = self
-    $0.backgroundColor = .white
+    $0.backgroundColor = .clear
     $0.appearance.headerMinimumDissolvedAlpha = 0.0
   }
   lazy var waveBackground = WaveAnimationView(
@@ -55,7 +63,6 @@ final class CalendarViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
     
-    
     // State
     reactor.state.asObservable()
       .map { $0.waterRecordList }
@@ -71,13 +78,27 @@ final class CalendarViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    self.waveBackground.addSubview(self.calendar)
+    [self.sun, self.tube, self.titleLabel, self.calendar].forEach { self.waveBackground.addSubview($0) }
     
     self.waveBackground.snp.makeConstraints {
       $0.edges.equalToSuperview()
     }
+    self.sun.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
+      $0.leading.equalToSuperview().offset(30)
+      $0.height.width.equalTo(40)
+    }
+    self.tube.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
+      $0.trailing.equalToSuperview().offset(-30)
+      $0.height.width.equalTo(40)
+    }
+    self.titleLabel.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
+      $0.centerX.equalToSuperview()
+    }
     self.calendar.snp.makeConstraints {
-      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+      $0.top.equalTo(self.titleLabel.snp.bottom).offset(20)
       $0.leading.equalToSuperview().offset(20)
       $0.trailing.equalToSuperview().offset(-20)
       $0.height.equalTo(300)
