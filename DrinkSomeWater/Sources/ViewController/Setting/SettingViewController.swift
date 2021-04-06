@@ -12,6 +12,7 @@ import RxSwift
 import WaveAnimationView
 
 final class SettingViewController: BaseViewController, View {
+  deinit { self.waveBackground.stopAnimation() }
   
   let goalWater = UILabel().then {
     $0.font = .systemFont(ofSize: 40, weight: .medium)
@@ -29,19 +30,18 @@ final class SettingViewController: BaseViewController, View {
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
   }
-  lazy var waveBackground = WaveAnimationView(
-    frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
+  let waveBackground = WaveAnimationView(
+    frame: CGRect(
+      x: 0,
+      y: 0,
+      width: UIScreen.main.bounds.width,
+      height: UIScreen.main.bounds.height
+    ),
     frontColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1),
     backColor: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
     $0.backgroundColor = .white
-    $0.setProgress(0.5)
     $0.startAnimation()
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.view.backgroundColor = .white
   }
   
   init(reactor: SettingViewReactor) {
@@ -80,6 +80,12 @@ final class SettingViewController: BaseViewController, View {
       .disposed(by: self.disposeBag)
     
     reactor.state.asObservable()
+      .map { $0.progress }
+      .distinctUntilChanged()
+      .bind(to: self.waveBackground.rx.setProgress)
+      .disposed(by: self.disposeBag)
+    
+    reactor.state.asObservable()
       .map { Float($0.value) }
       .distinctUntilChanged()
       .subscribe(onNext: { [weak self] value in
@@ -102,9 +108,6 @@ final class SettingViewController: BaseViewController, View {
     self.view.addSubview(self.waveBackground)
     [self.goalWater, self.slider, self.setButton].forEach { self.waveBackground.addSubview($0) }
     
-    self.waveBackground.snp.makeConstraints {
-      $0.edges.equalToSuperview()
-    }
     self.goalWater.snp.makeConstraints {
       $0.top.equalToSuperview().offset(100)
       $0.centerX.equalToSuperview()

@@ -24,6 +24,7 @@ final class SettingViewReactor: Reactor {
   struct State {
     var value: Int = 0
     var shouldDismissed: Bool = false
+    var progress: Float = 0
   }
   
   var initialState: State
@@ -55,8 +56,10 @@ final class SettingViewReactor: Reactor {
     switch mutation {
     case let .changeGoalWaterValue(ml):
       let value = ml - ml % 100
+      let progress = (Float(value) - 1500) / 3000
       self.initialState.value = value
       newState.value = value
+      newState.progress = progress
     case .dismiss:
       newState.shouldDismissed = true
     }
