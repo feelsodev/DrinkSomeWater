@@ -18,11 +18,13 @@ final class SettingViewController: BaseViewController, View {
     $0.font = .systemFont(ofSize: 40, weight: .medium)
     $0.textColor = .darkGray
   }
+  
   let slider = UISlider().then {
     $0.maximumValue = 3000
     $0.minimumValue = 1500
     $0.tintColor = .darkGray
   }
+  
   let setButton = UIButton().then {
     $0.setTitle("Set", for: .normal)
     $0.setTitleColor(.white, for: .normal)
@@ -30,6 +32,7 @@ final class SettingViewController: BaseViewController, View {
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
   }
+  
   let waveBackground = WaveAnimationView(
     frame: CGRect(
       x: 0,

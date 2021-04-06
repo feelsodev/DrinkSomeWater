@@ -13,6 +13,7 @@ import RxSwift
 import WaveAnimationView
 
 final class CalendarViewController: BaseViewController, View {
+  deinit { self.waveBackground.stopAnimation() }
   var date: [String] = []
   
   // MARK: - UI
@@ -25,12 +26,14 @@ final class CalendarViewController: BaseViewController, View {
     $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     $0.textAlignment = .center
   }
+  
   lazy var calendar = FSCalendar().then {
     $0.delegate = self
     $0.dataSource = self
     $0.backgroundColor = .clear
     $0.appearance.headerMinimumDissolvedAlpha = 0.0
   }
+  
   lazy var waveBackground = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
     frontColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1),
@@ -39,11 +42,6 @@ final class CalendarViewController: BaseViewController, View {
     $0.backgroundColor = .white
     $0.setProgress(0.5)
     $0.startAnimation()
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.view.backgroundColor = .white
   }
   
   init(reactor: CalendarViewReactor) {
@@ -106,10 +104,12 @@ final class CalendarViewController: BaseViewController, View {
   }
 }
 
-extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
+extension CalendarViewController: FSCalendarDataSource,
+                                  FSCalendarDelegate,
+                                  FSCalendarDelegateAppearance {
   func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
     if self.date.contains(date.dateToString()) {
-      return .lightGray
+      return #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     } else {
       return nil
     }

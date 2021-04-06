@@ -20,10 +20,12 @@ final class MainViewController: BaseViewController, View {
     $0.textColor = .darkGray
     $0.numberOfLines = 0
   }
+  
   let goal = UILabel().then {
     $0.textAlignment = .center
     $0.textColor = .black
   }
+  
   let lid = UIView().then {
     $0.layer.borderWidth = 0.1
     $0.layer.cornerRadius = 5
@@ -31,12 +33,14 @@ final class MainViewController: BaseViewController, View {
     $0.layer.masksToBounds = true
     $0.backgroundColor = #colorLiteral(red: 0.07843137255, green: 0.5605390058, blue: 1, alpha: 1)
   }
+  
   let lidNeck = UIView().then {
     $0.layer.borderWidth = 0.1
     $0.layer.borderColor = UIColor.lightGray.cgColor
     $0.layer.masksToBounds = true
     $0.backgroundColor = .white
   }
+  
   let bottle = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: 200, height: 400),
     frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
@@ -49,6 +53,7 @@ final class MainViewController: BaseViewController, View {
     $0.startAnimation()
     $0.backgroundColor = .white
   }
+  
   lazy var waveBackground = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
     frontColor: .clear,
@@ -58,9 +63,11 @@ final class MainViewController: BaseViewController, View {
     $0.setProgress(0.5)
     $0.startAnimation()
   }
+  
   let addWarter = UIButton().then {
     $0.setImage(UIImage(named: "bulkuk"), for: .normal)
   }
+  
   let setView = UIButton().then {
     $0.setImage(UIImage(systemName: "gear")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
@@ -75,6 +82,7 @@ final class MainViewController: BaseViewController, View {
     $0.layer.masksToBounds = false
     $0.layer.cornerRadius = 4.0
   }
+  
   let calendarView = UIButton().then {
     $0.setImage(UIImage(systemName: "calendar")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .light)), for: .normal)
@@ -151,7 +159,7 @@ final class MainViewController: BaseViewController, View {
       .disposed(by: self.disposeBag)
     
     reactor.state.asObservable()
-      .map { "Today's intake \($0.ml)\n of your goal : \($0.total)" }
+      .map { $0.progress.setPercentage() }
       .bind(to: self.descript.rx.text)
       .disposed(by: self.disposeBag)
   }
@@ -203,9 +211,9 @@ final class MainViewController: BaseViewController, View {
       $0.height.equalTo(400)
     }
     self.addWarter.snp.makeConstraints {
-      $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(20)
+      $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(30)
       $0.centerX.equalToSuperview()
-      $0.width.height.equalTo(80)
+      $0.width.height.equalTo(100)
     }
   }
 }

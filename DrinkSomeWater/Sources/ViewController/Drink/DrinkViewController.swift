@@ -12,6 +12,8 @@ import RxSwift
 import WaveAnimationView
 
 final class DrinkViewController: BaseViewController, View {
+  deinit { self.cup.stopAnimation() }
+  
   let addWater = UIButton().then {
     $0.tintColor = .blue
     $0.setImage(UIImage(systemName: "plus.circle")?
@@ -33,7 +35,7 @@ final class DrinkViewController: BaseViewController, View {
   }
   
   let cup = WaveAnimationView(
-    frame: CGRect(x: 0, y: 0, width: 150, height: 220),
+    frame: CGRect(x: 0, y: 0, width: 200, height: 300),
     frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
     backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
@@ -51,16 +53,12 @@ final class DrinkViewController: BaseViewController, View {
   }
   
   let completeButton = UIButton().then {
-    $0.setTitle("DRINK UP!", for: .normal)
+    $0.setTitle("벌컥벌컥", for: .normal)
+    $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     $0.setTitleColor(.white, for: .normal)
     $0.backgroundColor = .black
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.view.backgroundColor = .white
   }
   
   init(reactor: DrinkViewReactor) {
@@ -78,12 +76,12 @@ final class DrinkViewController: BaseViewController, View {
     self.addWater.rx.tap
       .map { Reactor.Action.increseWater }
       .bind(to: reactor.action)
-      .disposed(by: disposeBag)
+      .disposed(by: self.disposeBag)
     
     self.subWater.rx.tap
       .map { Reactor.Action.decreseWater }
       .bind(to: reactor.action)
-      .disposed(by: disposeBag)
+      .disposed(by: self.disposeBag)
     
     self.completeButton.rx.tap
       .map { Reactor.Action.addWater }
@@ -96,13 +94,13 @@ final class DrinkViewController: BaseViewController, View {
       .distinctUntilChanged()
       .map { "\(Int($0))ml" }
       .bind(to: self.ml.rx.text)
-      .disposed(by: disposeBag)
+      .disposed(by: self.disposeBag)
     
     reactor.state.asObservable()
       .map { $0.current / $0.total }
       .map { Float($0) }
       .bind(to: self.cup.rx.setProgress)
-      .disposed(by: disposeBag)
+      .disposed(by: self.disposeBag)
     
     reactor.state.asObservable()
       .map { $0.shouldDismissed }
@@ -123,17 +121,17 @@ final class DrinkViewController: BaseViewController, View {
       $0.height.equalTo(220)
     }
     self.addWater.snp.makeConstraints {
-      $0.top.equalTo(self.cup.snp.top).offset(10)
-      $0.leading.equalTo(self.cup.snp.trailing).offset(10)
+      $0.top.equalTo(self.cup.snp.bottom).offset(10)
+      $0.leading.equalTo(self.cup.snp.leading)
       $0.width.height.equalTo(70)
     }
     self.subWater.snp.makeConstraints {
-      $0.bottom.equalTo(self.cup.snp.bottom).offset(-10)
-      $0.leading.equalTo(self.cup.snp.trailing).offset(10)
+      $0.top.equalTo(self.cup.snp.bottom).offset(10)
+      $0.trailing.equalTo(self.cup.snp.trailing)
       $0.width.height.equalTo(70)
     }
     self.ml.snp.makeConstraints {
-      $0.top.equalTo(self.cup.snp.bottom).offset(30)
+      $0.bottom.equalTo(self.cup.snp.top).offset(-30)
       $0.centerX.equalToSuperview()
     }
     self.completeButton.snp.makeConstraints {
