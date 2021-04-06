@@ -14,6 +14,15 @@ import WaveAnimationView
 final class SettingViewController: BaseViewController, View {
   deinit { self.waveBackground.stopAnimation() }
   
+  let viewHeight = UIScreen.main.bounds.height
+  
+  let firstBeakerLine = Beaker(ml: "2000")
+  let secondBeakerLine = Beaker(ml: "2500")
+  let thirdBeakerLine = Beaker(ml: "3000")
+  let lineView = UIView().then {
+    $0.backgroundColor = .black
+  }
+  
   let goalWater = UILabel().then {
     $0.font = .systemFont(ofSize: 40, weight: .medium)
     $0.textColor = .darkGray
@@ -109,7 +118,7 @@ final class SettingViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.goalWater, self.slider, self.setButton].forEach { self.waveBackground.addSubview($0) }
+    [self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine, self.lineView, self.goalWater, self.slider, self.setButton].forEach { self.waveBackground.addSubview($0) }
     
     self.goalWater.snp.makeConstraints {
       $0.top.equalToSuperview().offset(100)
@@ -126,6 +135,30 @@ final class SettingViewController: BaseViewController, View {
       $0.centerX.equalToSuperview()
       $0.width.equalTo(100)
       $0.height.equalTo(40)
+    }
+    self.firstBeakerLine.snp.makeConstraints {
+      $0.bottom.equalTo(self.view.snp.bottom).offset(-(self.viewHeight / 6))
+      $0.trailing.equalToSuperview().offset(-20)
+      $0.height.equalTo(5)
+      $0.width.equalTo(80)
+    }
+    self.secondBeakerLine.snp.makeConstraints {
+      $0.bottom.equalTo(self.view.snp.bottom).offset(-(self.viewHeight / 3))
+      $0.trailing.equalToSuperview().offset(-20)
+      $0.height.equalTo(5)
+      $0.width.equalTo(80)
+    }
+    self.thirdBeakerLine.snp.makeConstraints {
+      $0.bottom.equalTo(self.view.snp.bottom).offset(-(self.viewHeight / 2))
+      $0.trailing.equalToSuperview().offset(-20)
+      $0.height.equalTo(5)
+      $0.width.equalTo(80)
+    }
+    self.lineView.snp.makeConstraints {
+      $0.bottom.equalTo(self.view.snp.bottom).offset(-(self.viewHeight / 6))
+      $0.trailing.equalToSuperview().offset(-20)
+      $0.width.equalTo(5)
+      $0.height.equalTo(self.viewHeight / 3)
     }
   }
 }
