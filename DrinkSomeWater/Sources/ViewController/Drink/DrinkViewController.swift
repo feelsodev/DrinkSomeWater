@@ -14,6 +14,8 @@ import WaveAnimationView
 final class DrinkViewController: BaseViewController, View {
   deinit { self.cup.stopAnimation() }
   
+  // MARK: - UI
+  
   let addWater = UIButton().then {
     $0.tintColor = .blue
     $0.setImage(UIImage(systemName: "plus.circle")?

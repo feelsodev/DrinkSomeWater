@@ -14,7 +14,12 @@ import WaveAnimationView
 final class SettingViewController: BaseViewController, View {
   deinit { self.waveBackground.stopAnimation() }
   
+  // MARK: - Property
+  
   let viewHeight = UIScreen.main.bounds.height
+  
+  
+  // MARK: - UI
   
   let firstBeakerLine = Beaker(ml: "2000")
   let secondBeakerLine = Beaker(ml: "2500")
@@ -35,7 +40,7 @@ final class SettingViewController: BaseViewController, View {
   }
   
   let setButton = UIButton().then {
-    $0.setTitle("Set", for: .normal)
+    $0.setTitle("SET", for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.backgroundColor = .black
     $0.layer.cornerRadius = 10

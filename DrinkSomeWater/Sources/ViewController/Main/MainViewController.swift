@@ -13,7 +13,7 @@ import WaveAnimationView
 
 final class MainViewController: BaseViewController, View {
   
-  // MARK: UI
+  // MARK: - UI
   
   let descript = UILabel().then {
     $0.font = .systemFont(ofSize: 20, weight: .medium)
@@ -130,6 +130,7 @@ final class MainViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = SettingViewController(reactor: reactor)
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
       })
       .disposed(by: self.disposeBag)

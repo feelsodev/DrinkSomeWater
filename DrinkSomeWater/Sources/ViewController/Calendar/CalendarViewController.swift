@@ -14,7 +14,11 @@ import WaveAnimationView
 
 final class CalendarViewController: BaseViewController, View {
   deinit { self.waveBackground.stopAnimation() }
+  
+  // MARK: - Property
+  
   var date: [String] = []
+  
   
   // MARK: - UI
   
