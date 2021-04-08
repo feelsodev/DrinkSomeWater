@@ -26,8 +26,8 @@ final class CalendarViewController: BaseViewController, View {
   let tube = UIImageView(image: UIImage(named: "tube"))
   let titleLabel = UILabel().then {
     $0.text = "이달의 목표 달성"
-    $0.textColor = .lightGray
-    $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+    $0.textColor = .black
+    $0.font = .systemFont(ofSize: 20, weight: .medium)
     $0.textAlignment = .center
   }
   
@@ -44,7 +44,7 @@ final class CalendarViewController: BaseViewController, View {
     backColor: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
     $0.backgroundColor = .white
-    $0.setProgress(0.5)
+    $0.setProgress(0.4)
     $0.startAnimation()
   }
   
@@ -69,9 +69,10 @@ final class CalendarViewController: BaseViewController, View {
     reactor.state.asObservable()
       .map { $0.waterRecordList }
       .subscribe(onNext: { [weak self] waterRecordList in
+        guard let `self` = self else { return }
         waterRecordList.forEach {
-          if $0.isSuccess == true {
-            self?.date.append($0.date.dateToString())
+          if $0.isSuccess {
+            self.date.append($0.date.dateToString())
           }
         }
       })
@@ -114,6 +115,14 @@ extension CalendarViewController: FSCalendarDataSource,
   func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
     if self.date.contains(date.dateToString()) {
       return #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    } else {
+      return nil
+    }
+  }
+  
+  func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+    if self.date.contains(date.dateToString()) {
+      return .white
     } else {
       return nil
     }
