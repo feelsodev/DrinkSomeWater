@@ -18,6 +18,8 @@
 		A52B5FAD2613714B003D7AFF /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5FAC2613714B003D7AFF /* CalendarViewController.swift */; };
 		A52B5FB026137158003D7AFF /* CalendarViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5FAF26137158003D7AFF /* CalendarViewReactor.swift */; };
 		A52B5FBB26138C32003D7AFF /* WaterRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5FBA26138C32003D7AFF /* WaterRecord.swift */; };
+		A56238CE261F5DAB00A81F99 /* WaterRecordResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56238CD261F5DAB00A81F99 /* WaterRecordResultView.swift */; };
+		A56238D1261F7A3500A81F99 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56238D0261F7A3500A81F99 /* UIView+Ext.swift */; };
 		A565861E2614A65300BAA9AC /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565861D2614A65300BAA9AC /* Date+Ext.swift */; };
 		A56586212614B71B00BAA9AC /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56586202614B71B00BAA9AC /* ModelType.swift */; };
 		A5694529261A1B6100E6E751 /* Float+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5694528261A1B6100E6E751 /* Float+Ext.swift */; };
@@ -48,6 +50,8 @@
 		A52B5FAC2613714B003D7AFF /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A52B5FAF26137158003D7AFF /* CalendarViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewReactor.swift; sourceTree = "<group>"; };
 		A52B5FBA26138C32003D7AFF /* WaterRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterRecord.swift; sourceTree = "<group>"; };
+		A56238CD261F5DAB00A81F99 /* WaterRecordResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterRecordResultView.swift; sourceTree = "<group>"; };
+		A56238D0261F7A3500A81F99 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		A565861D2614A65300BAA9AC /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		A56586202614B71B00BAA9AC /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		A5694528261A1B6100E6E751 /* Float+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Ext.swift"; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 			children = (
 				A565861D2614A65300BAA9AC /* Date+Ext.swift */,
 				A5694528261A1B6100E6E751 /* Float+Ext.swift */,
+				A56238D0261F7A3500A81F99 /* UIView+Ext.swift */,
 			);
 			path = "Extensions-Utillities";
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				A5694530261B59AF00E6E751 /* Beaker.swift */,
+				A56238CD261F5DAB00A81F99 /* WaterRecordResultView.swift */,
 			);
 			path = ViewComponent;
 			sourceTree = "<group>";
@@ -369,6 +375,7 @@
 			files = (
 				A52B5FAD2613714B003D7AFF /* CalendarViewController.swift in Sources */,
 				A56586212614B71B00BAA9AC /* ModelType.swift in Sources */,
+				A56238CE261F5DAB00A81F99 /* WaterRecordResultView.swift in Sources */,
 				A51581A22603BA0900127C98 /* WaterService.swift in Sources */,
 				A5694531261B59AF00E6E751 /* Beaker.swift in Sources */,
 				A52B5F6626122C55003D7AFF /* SettingViewController.swift in Sources */,
@@ -378,6 +385,7 @@
 				A52B5FBB26138C32003D7AFF /* WaterRecord.swift in Sources */,
 				A583512325FFD1B2001AA609 /* DrinkViewController.swift in Sources */,
 				A515819E2603B9CA00127C98 /* ServiceProvider.swift in Sources */,
+				A56238D1261F7A3500A81F99 /* UIView+Ext.swift in Sources */,
 				A565861E2614A65300BAA9AC /* Date+Ext.swift in Sources */,
 				A583512A25FFD2C1001AA609 /* BaseViewController.swift in Sources */,
 				A52B5FB026137158003D7AFF /* CalendarViewReactor.swift in Sources */,

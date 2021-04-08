@@ -175,6 +175,7 @@ final class MainViewController: BaseViewController, View {
     
     reactor.state.asObservable()
       .map { $0.progress.setPercentage() }
+      .map { "오늘은 " + $0 + " 달성하셨어요!!" }
       .bind(to: self.descript.rx.text)
       .disposed(by: self.disposeBag)
   }
