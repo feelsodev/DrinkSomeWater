@@ -14,6 +14,7 @@ final class SettingViewReactor: Reactor {
     case loadGoal
     case changeGoalWater(Int)
     case setGoal
+    case cancel
   }
   
   enum Mutation {
@@ -48,6 +49,12 @@ final class SettingViewReactor: Reactor {
       let currentValue = self.initialState.value
       return self.provider.warterService.updateGoal(to: currentValue)
         .map { _ in .dismiss }
+    case .cancel:
+      if !self.currentState.shouldDismissed {
+        return .just(.dismiss)
+      } else {
+        return .empty()
+      }
     }
   }
   

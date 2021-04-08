@@ -99,6 +99,11 @@ final class SettingViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
     
+    self.backButton.rx.tap
+      .map { Reactor.Action.cancel }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     self.setButton.rx.tap
       .map { Reactor.Action.setGoal }
       .bind(to: reactor.action)
