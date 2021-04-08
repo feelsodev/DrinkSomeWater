@@ -32,6 +32,7 @@
 		A583512325FFD1B2001AA609 /* DrinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583512225FFD1B2001AA609 /* DrinkViewController.swift */; };
 		A583512625FFD1BE001AA609 /* DrinkViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583512525FFD1BE001AA609 /* DrinkViewReactor.swift */; };
 		A583512A25FFD2C1001AA609 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583512925FFD2C1001AA609 /* BaseViewController.swift */; };
+		A5D4AA7F261D7C8600CF9E91 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		A583512225FFD1B2001AA609 /* DrinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewController.swift; sourceTree = "<group>"; };
 		A583512525FFD1BE001AA609 /* DrinkViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewReactor.swift; sourceTree = "<group>"; };
 		A583512925FFD2C1001AA609 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D4AA7F261D7C8600CF9E91 /* UserNotifications.framework in Frameworks */,
 				7C3B6142E6A612229B89FD20 /* Pods_DrinkSomeWater.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +84,7 @@
 		71BBE197FBE07A1781C819D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */,
 				8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */,
 			);
 			name = Frameworks;

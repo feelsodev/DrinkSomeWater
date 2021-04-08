@@ -10,8 +10,14 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 import WaveAnimationView
+import UserNotifications
 
 final class MainViewController: BaseViewController, View {
+  
+  // MARK: - Property
+  
+  
+  
   
   // MARK: - UI
   
@@ -54,12 +60,16 @@ final class MainViewController: BaseViewController, View {
     $0.backgroundColor = .white
   }
   
-  lazy var waveBackground = WaveAnimationView(
-    frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
+  let waveBackground = WaveAnimationView(
+    frame: CGRect(
+      x: 0,
+      y: 0,
+      width: UIScreen.main.bounds.width,
+      height: UIScreen.main.bounds.height),
     frontColor: .clear,
     backColor: #colorLiteral(red: 0.6, green: 0.8352941176, blue: 0.9019607843, alpha: 1)
   ).then {
-    $0.backgroundColor = #colorLiteral(red: 0.8339943543, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    $0.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     $0.setProgress(0.5)
     $0.startAnimation()
   }
@@ -109,7 +119,7 @@ final class MainViewController: BaseViewController, View {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = #colorLiteral(red: 0.6, green: 0.8352941176, blue: 0.9019607843, alpha: 1)
+    self.setNotification()
   }
   
   func bind(reactor: MainViewReactor) {
@@ -130,7 +140,7 @@ final class MainViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = SettingViewController(reactor: reactor)
-        vc.modalPresentationStyle = .fullScreen
+//        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
       })
       .disposed(by: self.disposeBag)
@@ -215,6 +225,34 @@ final class MainViewController: BaseViewController, View {
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(30)
       $0.centerX.equalToSuperview()
       $0.width.height.equalTo(100)
+    }
+  }
+}
+
+extension MainViewController {
+  func setNotification() {
+    let userNotificationCenter = UNUserNotificationCenter.current()
+    let notificationContent = UNMutableNotificationContent()
+    
+    notificationContent.title = ""
+    notificationContent.body = "오늘 하루 물 마시면서 건강을 찾아봐요!"
+        
+    var dateComponents = DateComponents()
+    dateComponents.calendar = Calendar.current
+    dateComponents.hour = 15
+    dateComponents.minute = 30
+    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
+                                                repeats: true)
+    
+    let uuid = UUID().uuidString
+    let request = UNNotificationRequest(identifier: uuid,
+                                        content: notificationContent,
+                                        trigger: trigger)
+
+    userNotificationCenter.add(request) { error in
+      if let error = error {
+        print("Notification Error: ", error)
+      }
     }
   }
 }

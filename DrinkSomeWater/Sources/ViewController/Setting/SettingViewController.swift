@@ -57,7 +57,7 @@ final class SettingViewController: BaseViewController, View {
     frontColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1),
     backColor: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
-    $0.backgroundColor = .white
+    $0.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     $0.startAnimation()
   }
   

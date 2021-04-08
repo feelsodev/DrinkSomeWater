@@ -12,7 +12,10 @@ import RxSwift
 import WaveAnimationView
 
 final class DrinkViewController: BaseViewController, View {
-  deinit { self.cup.stopAnimation() }
+  deinit {
+    self.cup.stopAnimation()
+    self.waveBackground.stopAnimation()
+  }
   
   // MARK: - UI
   
@@ -41,26 +44,39 @@ final class DrinkViewController: BaseViewController, View {
     frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
     backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
-    $0.layer.borderWidth = 2
-    $0.layer.borderColor = UIColor.lightGray.cgColor
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
-    $0.setProgress(0.5)
     $0.startAnimation()
     $0.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
   }
   
   let ml = UILabel().then {
-    $0.textColor = .black
+    $0.font = .systemFont(ofSize: 40, weight: .medium)
+    $0.textColor = .darkGray
+    $0.numberOfLines = 0
   }
   
   let completeButton = UIButton().then {
-    $0.setTitle("벌컥벌컥", for: .normal)
-    $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+    $0.setTitle("DRINK", for: .normal)
+    $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
     $0.setTitleColor(.white, for: .normal)
     $0.backgroundColor = .black
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
+  }
+  
+  let waveBackground = WaveAnimationView(
+    frame: CGRect(
+      x: 0,
+      y: 0,
+      width: UIScreen.main.bounds.width,
+      height: UIScreen.main.bounds.height
+    ),
+    frontColor: .clear,
+    backColor: #colorLiteral(red: 0.6, green: 0.8352941176, blue: 0.9019607843, alpha: 1)
+  ).then {
+    $0.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    $0.startAnimation()
   }
   
   init(reactor: DrinkViewReactor) {
@@ -115,8 +131,10 @@ final class DrinkViewController: BaseViewController, View {
   }
   
   override func setupConstraints() {
+    self.view.addSubview(self.waveBackground)
     [self.cup, self.addWater, self.subWater, self.ml, self.completeButton]
-      .forEach { self.view.addSubview($0) }
+      .forEach { self.waveBackground.addSubview($0) }
+    
     self.cup.snp.makeConstraints {
       $0.centerX.centerY.equalToSuperview()
       $0.width.equalTo(150)
@@ -140,7 +158,7 @@ final class DrinkViewController: BaseViewController, View {
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
       $0.centerX.equalToSuperview()
       $0.width.equalTo(100)
-      $0.height.equalTo(30)
+      $0.height.equalTo(40)
     }
   }
 }
