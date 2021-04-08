@@ -12,7 +12,6 @@ extension Float {
     let numberFormatter = NumberFormatter()
     numberFormatter.numberStyle = .percent
     guard let precentage = numberFormatter.string(for: self) else { return "" }
-    let result = "오늘은 " + precentage + " 달성하셨어요!!"
-    return result
+    return precentage
   }
 }
