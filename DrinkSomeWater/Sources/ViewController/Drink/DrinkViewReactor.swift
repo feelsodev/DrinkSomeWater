@@ -14,6 +14,7 @@ final class DrinkViewReactor: Reactor {
     case increseWater
     case decreseWater
     case addWater
+    case cancel
   }
   
   enum Mutation {
@@ -47,6 +48,12 @@ final class DrinkViewReactor: Reactor {
       let ml = self.initialState.current
       return self.provider.warterService.updateWater(to: ml)
         .map { _ in .dismiss}
+    case .cancel:
+      if !self.currentState.shouldDismissed {
+        return .just(.dismiss) // no need to confirm
+      } else {
+        return .empty()
+      }
     }
   }
   

@@ -105,6 +105,11 @@ final class DrinkViewController: BaseViewController, View {
   func bind(reactor: DrinkViewReactor) {
     
     // Action
+    self.backButton.rx.tap
+      .map { Reactor.Action.cancel }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     self.addWater.rx.tap
       .map { Reactor.Action.increseWater }
       .bind(to: reactor.action)
