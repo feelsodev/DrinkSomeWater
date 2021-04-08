@@ -18,10 +18,12 @@ final class DrinkViewController: BaseViewController, View {
   }
   
   // MARK: - UI
+  
   let backButton = UIButton().then {
-    $0.tintColor = .white
+    $0.tintColor = .black
     $0.setImage(UIImage(systemName: "arrow.left")?
-                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal
+    )
     $0.contentVerticalAlignment = .fill
     $0.contentHorizontalAlignment = .fill
     $0.imageEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
@@ -54,7 +56,11 @@ final class DrinkViewController: BaseViewController, View {
   }
   
   let cup = WaveAnimationView(
-    frame: CGRect(x: 0, y: 0, width: 200, height: 300),
+    frame: CGRect(
+      x: 0,
+      y: 0,
+      width: UIScreen.main.bounds.width * 0.5,
+      height: UIScreen.main.bounds.height * 0.37),
     frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
     backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
@@ -66,7 +72,7 @@ final class DrinkViewController: BaseViewController, View {
   
   let ml = UILabel().then {
     $0.font = .systemFont(ofSize: 40, weight: .medium)
-    $0.textColor = .darkGray
+    $0.textColor = .black
     $0.numberOfLines = 0
   }
   
@@ -161,8 +167,8 @@ final class DrinkViewController: BaseViewController, View {
     }
     self.cup.snp.makeConstraints {
       $0.centerX.centerY.equalToSuperview()
-      $0.width.equalTo(150)
-      $0.height.equalTo(220)
+      $0.width.equalTo(UIScreen.main.bounds.width * 0.5)
+      $0.height.equalTo(UIScreen.main.bounds.height * 0.37)
     }
     self.addWater.snp.makeConstraints {
       $0.top.equalTo(self.cup.snp.bottom).offset(10)
