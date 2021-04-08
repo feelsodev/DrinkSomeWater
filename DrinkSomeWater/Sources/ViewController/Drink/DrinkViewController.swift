@@ -18,6 +18,20 @@ final class DrinkViewController: BaseViewController, View {
   }
   
   // MARK: - UI
+  let backButton = UIButton().then {
+    $0.tintColor = .white
+    $0.setImage(UIImage(systemName: "arrow.left")?
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
+    $0.contentVerticalAlignment = .fill
+    $0.contentHorizontalAlignment = .fill
+    $0.imageEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+    $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+    $0.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    $0.layer.shadowOpacity = 1.0
+    $0.layer.shadowRadius = 0.0
+    $0.layer.masksToBounds = false
+    $0.layer.cornerRadius = 4.0
+  }
   
   let addWater = UIButton().then {
     $0.tintColor = .blue
@@ -132,9 +146,14 @@ final class DrinkViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.cup, self.addWater, self.subWater, self.ml, self.completeButton]
+    [self.backButton, self.cup, self.addWater, self.subWater, self.ml, self.completeButton]
       .forEach { self.waveBackground.addSubview($0) }
     
+    self.backButton.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+      $0.leading.equalToSuperview().offset(10)
+      $0.width.height.equalTo(50)
+    }
     self.cup.snp.makeConstraints {
       $0.centerX.centerY.equalToSuperview()
       $0.width.equalTo(150)
