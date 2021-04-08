@@ -24,6 +24,21 @@ final class SettingViewController: BaseViewController, View {
   let firstBeakerLine = Beaker(ml: "2000")
   let secondBeakerLine = Beaker(ml: "2500")
   let thirdBeakerLine = Beaker(ml: "3000")
+  let backButton = UIButton().then {
+    $0.tintColor = .black
+    $0.setImage(UIImage(systemName: "arrow.left")?
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
+    $0.contentVerticalAlignment = .fill
+    $0.contentHorizontalAlignment = .fill
+    $0.imageEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+    $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+    $0.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    $0.layer.shadowOpacity = 1.0
+    $0.layer.shadowRadius = 0.0
+    $0.layer.masksToBounds = false
+    $0.layer.cornerRadius = 4.0
+  }
+  
   let lineView = UIView().then {
     $0.backgroundColor = .black
   }
@@ -123,8 +138,13 @@ final class SettingViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine, self.lineView, self.goalWater, self.slider, self.setButton].forEach { self.waveBackground.addSubview($0) }
+    [self.backButton, self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine, self.lineView, self.goalWater, self.slider, self.setButton].forEach { self.waveBackground.addSubview($0) }
     
+    self.backButton.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+      $0.leading.equalToSuperview().offset(10)
+      $0.width.height.equalTo(50)
+    }
     self.goalWater.snp.makeConstraints {
       $0.top.equalToSuperview().offset(100)
       $0.centerX.equalToSuperview()
