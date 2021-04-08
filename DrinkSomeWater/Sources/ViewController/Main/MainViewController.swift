@@ -48,7 +48,10 @@ final class MainViewController: BaseViewController, View {
   }
   
   let bottle = WaveAnimationView(
-    frame: CGRect(x: 0, y: 0, width: 200, height: 400),
+    frame: CGRect(
+      x: 0,
+      y: 0,
+      width: 200, height: UIScreen.main.bounds.height / 2),
     frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
     backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
@@ -140,7 +143,7 @@ final class MainViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = SettingViewController(reactor: reactor)
-//        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
       })
       .disposed(by: self.disposeBag)
@@ -150,6 +153,7 @@ final class MainViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = DrinkViewController(reactor: reactor)
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
       })
       .disposed(by: self.disposeBag)
@@ -219,12 +223,12 @@ final class MainViewController: BaseViewController, View {
       $0.top.equalTo(self.goal.snp.bottom).offset(20)
       $0.centerX.equalToSuperview()
       $0.width.equalTo(200)
-      $0.height.equalTo(400)
+      $0.height.equalTo(self.view.frame.height / 2)
     }
     self.addWarter.snp.makeConstraints {
-      $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(30)
+      $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
       $0.centerX.equalToSuperview()
-      $0.width.height.equalTo(100)
+      $0.width.height.equalTo(self.view.frame.height / 8)
     }
   }
 }
@@ -235,7 +239,7 @@ extension MainViewController {
     let notificationContent = UNMutableNotificationContent()
     
     notificationContent.title = ""
-    notificationContent.body = "오늘 하루 물 마시면서 건강을 찾아봐요!"
+    notificationContent.body = "오늘 하루 물 마시면서 건강을 찾아봐요!!"
         
     var dateComponents = DateComponents()
     dateComponents.calendar = Calendar.current
