@@ -18,7 +18,7 @@ final class CalendarViewController: BaseViewController, View {
   // MARK: - Property
   
   var date: [String] = []
-  
+  var waterRecordList: [WaterRecord]?
   
   // MARK: - UI
   
@@ -48,6 +48,10 @@ final class CalendarViewController: BaseViewController, View {
     $0.startAnimation()
   }
   
+  let record = WaterRecordResultView().then {
+    $0.isHidden = true
+  }
+  
   init(reactor: CalendarViewReactor) {
     super.init()
     self.reactor = reactor
@@ -70,6 +74,7 @@ final class CalendarViewController: BaseViewController, View {
       .map { $0.waterRecordList }
       .subscribe(onNext: { [weak self] waterRecordList in
         guard let `self` = self else { return }
+        self.waterRecordList = waterRecordList
         waterRecordList.forEach {
           if $0.isSuccess {
             self.date.append($0.date.dateToString())
@@ -81,7 +86,7 @@ final class CalendarViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.sun, self.tube, self.titleLabel, self.calendar].forEach { self.waveBackground.addSubview($0) }
+    [self.sun, self.tube, self.titleLabel, self.calendar, self.record].forEach { self.waveBackground.addSubview($0) }
     
     self.waveBackground.snp.makeConstraints {
       $0.edges.equalToSuperview()
@@ -106,13 +111,21 @@ final class CalendarViewController: BaseViewController, View {
       $0.trailing.equalToSuperview().offset(-20)
       $0.height.equalTo(300)
     }
+    self.record.snp.makeConstraints {
+      $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+      $0.leading.equalToSuperview().offset(20)
+      $0.trailing.equalToSuperview().offset(-20)
+      $0.height.equalTo(UIScreen.main.bounds.height * 0.20)
+    }
   }
 }
 
 extension CalendarViewController: FSCalendarDataSource,
                                   FSCalendarDelegate,
                                   FSCalendarDelegateAppearance {
-  func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+  func calendar(_ calendar: FSCalendar,
+                appearance: FSCalendarAppearance,
+                fillDefaultColorFor date: Date) -> UIColor? {
     if self.date.contains(date.dateToString()) {
       return #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     } else {
@@ -120,11 +133,33 @@ extension CalendarViewController: FSCalendarDataSource,
     }
   }
   
-  func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+  func calendar(_ calendar: FSCalendar,
+                appearance: FSCalendarAppearance,
+                titleDefaultColorFor date: Date) -> UIColor? {
     if self.date.contains(date.dateToString()) {
       return .white
     } else {
       return nil
+    }
+  }
+  
+  func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    let selectedDate = date.dateToString()
+    if self.date.contains(selectedDate) {
+      guard let waterRecordList = self.waterRecordList else { return }
+      waterRecordList.forEach { waterRecord in
+        if waterRecord.date.dateToString() == selectedDate {
+          self.record.fadeIn()
+          self.record.do {
+            $0.goal.text = "📌 목표량 : \(waterRecord.goal)"
+            $0.capacity.text = "🥛 섭취량 : \(waterRecord.value)"
+            let precetage = (Float(waterRecord.value) / Float(waterRecord.goal)).setPercentage()
+            $0.percentage.text = "📝 달성률 : " + precetage
+          }
+        }
+      }
+    } else {
+      self.record.fadeOut()
     }
   }
 }
