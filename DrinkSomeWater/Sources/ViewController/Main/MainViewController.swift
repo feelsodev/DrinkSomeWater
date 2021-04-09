@@ -14,10 +14,6 @@ import UserNotifications
 
 final class MainViewController: BaseViewController, View {
   
-  // MARK: - Property
-  
-  
-  
   
   // MARK: - UI
   
@@ -235,7 +231,7 @@ final class MainViewController: BaseViewController, View {
 }
 
 extension MainViewController {
-  func setNotification() {
+  private func setNotification() {
     let userNotificationCenter = UNUserNotificationCenter.current()
     let notificationContent = UNMutableNotificationContent()
     
@@ -244,7 +240,7 @@ extension MainViewController {
         
     var dateComponents = DateComponents()
     dateComponents.calendar = Calendar.current
-    dateComponents.hour = 15
+    dateComponents.hour = 9
     dateComponents.minute = 30
     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                 repeats: true)

@@ -20,6 +20,7 @@
 		A52B5FBB26138C32003D7AFF /* WaterRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5FBA26138C32003D7AFF /* WaterRecord.swift */; };
 		A56238CE261F5DAB00A81F99 /* WaterRecordResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56238CD261F5DAB00A81F99 /* WaterRecordResultView.swift */; };
 		A56238D1261F7A3500A81F99 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56238D0261F7A3500A81F99 /* UIView+Ext.swift */; };
+		A56238D4261F7DFF00A81F99 /* CalendarDescriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56238D3261F7DFF00A81F99 /* CalendarDescriptView.swift */; };
 		A565861E2614A65300BAA9AC /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565861D2614A65300BAA9AC /* Date+Ext.swift */; };
 		A56586212614B71B00BAA9AC /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56586202614B71B00BAA9AC /* ModelType.swift */; };
 		A5694529261A1B6100E6E751 /* Float+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5694528261A1B6100E6E751 /* Float+Ext.swift */; };
@@ -52,6 +53,7 @@
 		A52B5FBA26138C32003D7AFF /* WaterRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterRecord.swift; sourceTree = "<group>"; };
 		A56238CD261F5DAB00A81F99 /* WaterRecordResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterRecordResultView.swift; sourceTree = "<group>"; };
 		A56238D0261F7A3500A81F99 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		A56238D3261F7DFF00A81F99 /* CalendarDescriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDescriptView.swift; sourceTree = "<group>"; };
 		A565861D2614A65300BAA9AC /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		A56586202614B71B00BAA9AC /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		A5694528261A1B6100E6E751 /* Float+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Ext.swift"; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				A5694530261B59AF00E6E751 /* Beaker.swift */,
 				A56238CD261F5DAB00A81F99 /* WaterRecordResultView.swift */,
+				A56238D3261F7DFF00A81F99 /* CalendarDescriptView.swift */,
 			);
 			path = ViewComponent;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				A565861E2614A65300BAA9AC /* Date+Ext.swift in Sources */,
 				A583512A25FFD2C1001AA609 /* BaseViewController.swift in Sources */,
 				A52B5FB026137158003D7AFF /* CalendarViewReactor.swift in Sources */,
+				A56238D4261F7DFF00A81F99 /* CalendarDescriptView.swift in Sources */,
 				A52B5F6A26122C66003D7AFF /* SettingViewReactor.swift in Sources */,
 				A58350EF25FFCD09001AA609 /* SceneDelegate.swift in Sources */,
 				A52B5F71261230D7003D7AFF /* UserDefaultsKey.swift in Sources */,

@@ -20,24 +20,40 @@ final class CalendarViewController: BaseViewController, View {
   var date: [String] = []
   var waterRecordList: [WaterRecord]?
   
+  
   // MARK: - UI
   
+  let first = CalendarDescriptView(color: #colorLiteral(red: 0.7764705882, green: 0.2, blue: 0.1647058824, alpha: 1), descript: "오늘")
+  let second = CalendarDescriptView(color: #colorLiteral(red: 0.1254901961, green: 0.4666666667, blue: 0.8588235294, alpha: 1), descript: "선택")
+  let third = CalendarDescriptView(color: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1), descript: "성공")
   let sun = UIImageView(image: UIImage(named: "sun"))
   let tube = UIImageView(image: UIImage(named: "tube"))
+  let calendarDescript = UILabel().then {
+    $0.text = "☝️ 성공 날짜를 선택시 기록 확인이 가능합니다."
+    $0.textColor = .darkGray
+    $0.textAlignment = .center
+    $0.font = .systemFont(ofSize: 17, weight: .semibold)
+  }
+  lazy var stackView = UIStackView().then {
+    $0.axis = .horizontal
+    $0.distribution = .fillEqually
+    $0.spacing = 5
+    $0.addArrangedSubview(self.first)
+    $0.addArrangedSubview(self.second)
+    $0.addArrangedSubview(self.third)
+  }
   let titleLabel = UILabel().then {
     $0.text = "이달의 목표 달성"
     $0.textColor = .black
     $0.font = .systemFont(ofSize: 20, weight: .medium)
     $0.textAlignment = .center
   }
-  
   lazy var calendar = FSCalendar().then {
     $0.delegate = self
     $0.dataSource = self
     $0.backgroundColor = .clear
     $0.appearance.headerMinimumDissolvedAlpha = 0.0
   }
-  
   lazy var waveBackground = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
     frontColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1),
@@ -47,7 +63,6 @@ final class CalendarViewController: BaseViewController, View {
     $0.setProgress(0.4)
     $0.startAnimation()
   }
-  
   let record = WaterRecordResultView().then {
     $0.isHidden = true
   }
@@ -86,19 +101,20 @@ final class CalendarViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.sun, self.tube, self.titleLabel, self.calendar, self.record].forEach { self.waveBackground.addSubview($0) }
+    [self.sun, self.tube, self.stackView,
+     self.titleLabel, self.calendar, self.calendarDescript, self.record].forEach { self.waveBackground.addSubview($0) }
     
     self.waveBackground.snp.makeConstraints {
       $0.edges.equalToSuperview()
     }
     self.sun.snp.makeConstraints {
-      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
-      $0.leading.equalToSuperview().offset(30)
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
+      $0.trailing.equalTo(self.tube.snp.leading)
       $0.height.width.equalTo(40)
     }
     self.tube.snp.makeConstraints {
-      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
-      $0.trailing.equalToSuperview().offset(-30)
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(60)
+      $0.trailing.equalToSuperview().offset(-20)
       $0.height.width.equalTo(40)
     }
     self.titleLabel.snp.makeConstraints {
@@ -106,16 +122,26 @@ final class CalendarViewController: BaseViewController, View {
       $0.centerX.equalToSuperview()
     }
     self.calendar.snp.makeConstraints {
-      $0.top.equalTo(self.titleLabel.snp.bottom).offset(20)
+      $0.top.equalTo(self.titleLabel.snp.bottom).offset(10)
       $0.leading.equalToSuperview().offset(20)
       $0.trailing.equalToSuperview().offset(-20)
-      $0.height.equalTo(300)
+      $0.height.equalTo(self.viewHeight * 0.35)
+    }
+    self.calendarDescript.snp.makeConstraints {
+      $0.top.equalTo(self.calendar.snp.bottom).offset(5)
+      $0.leading.equalToSuperview().offset(20)
+    }
+    self.stackView.snp.makeConstraints {
+      $0.top.equalTo(self.calendarDescript.snp.bottom).offset(10)
+      $0.leading.equalToSuperview().offset(20)
+      $0.trailing.equalToSuperview().offset(-20)
+      $0.height.equalTo(25)
     }
     self.record.snp.makeConstraints {
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
       $0.leading.equalToSuperview().offset(20)
       $0.trailing.equalToSuperview().offset(-20)
-      $0.height.equalTo(UIScreen.main.bounds.height * 0.20)
+      $0.height.equalTo(self.viewHeight * 0.20)
     }
   }
 }
@@ -143,7 +169,9 @@ extension CalendarViewController: FSCalendarDataSource,
     }
   }
   
-  func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+  func calendar(_ calendar: FSCalendar,
+                didSelect date: Date,
+                at monthPosition: FSCalendarMonthPosition) {
     let selectedDate = date.dateToString()
     if self.date.contains(selectedDate) {
       guard let waterRecordList = self.waterRecordList else { return }
@@ -151,8 +179,8 @@ extension CalendarViewController: FSCalendarDataSource,
         if waterRecord.date.dateToString() == selectedDate {
           self.record.fadeIn()
           self.record.do {
-            $0.goal.text = "📌 목표량 : \(waterRecord.goal)"
-            $0.capacity.text = "🥛 섭취량 : \(waterRecord.value)"
+            $0.goal.text = "📌 목표량 : \(waterRecord.goal) ml"
+            $0.capacity.text = "🥛 섭취량 : \(waterRecord.value) ml"
             let precetage = (Float(waterRecord.value) / Float(waterRecord.goal)).setPercentage()
             $0.percentage.text = "📝 달성률 : " + precetage
           }
