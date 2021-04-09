@@ -11,7 +11,14 @@ import RxSwift
 import Then
 
 class BaseViewController: UIViewController {
+  
+  // MARK: - Property
+  
   var disposeBag = DisposeBag()
+  let viewHeight = UIScreen.main.bounds.height
+  
+  
+  // MARK: - Init
   
   init() {
     super.init(nibName: nil, bundle: nil)
