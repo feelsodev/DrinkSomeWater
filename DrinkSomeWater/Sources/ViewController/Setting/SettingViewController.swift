@@ -14,10 +14,6 @@ import WaveAnimationView
 final class SettingViewController: BaseViewController, View {
   deinit { self.waveBackground.stopAnimation() }
   
-  // MARK: - Property
-  
-  let viewHeight = UIScreen.main.bounds.height
-  
   
   // MARK: - UI
   
@@ -136,14 +132,17 @@ final class SettingViewController: BaseViewController, View {
       .distinctUntilChanged()
       .filter { $0 }
       .subscribe { [weak self] _ in
-        self?.dismiss(animated: true, completion: nil)
+        guard let `self` = self else { return }
+        self.dismiss(animated: true, completion: nil)
       }
       .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.backButton, self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine, self.lineView, self.goalWater, self.slider, self.setButton].forEach { self.waveBackground.addSubview($0) }
+    [self.backButton, self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine,
+     self.lineView, self.goalWater, self.slider, self.setButton]
+      .forEach { self.waveBackground.addSubview($0) }
     
     self.backButton.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)

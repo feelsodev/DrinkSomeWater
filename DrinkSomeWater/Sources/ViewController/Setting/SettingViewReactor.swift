@@ -39,16 +39,18 @@ final class SettingViewReactor: Reactor {
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .loadGoal:
-      return self.provider.warterService.fetchGoal()
+      return self.provider.warterService
+        .fetchGoal()
         .map { ml in
           return .changeGoalWaterValue(ml)
         }
     case let .changeGoalWater(ml):
       return .just(.changeGoalWaterValue(ml))
     case .setGoal:
-      let currentValue = self.initialState.value
-      return self.provider.warterService.updateGoal(to: currentValue)
-        .map { _ in .dismiss }
+      let currentValue = self.currentState.value
+      return self.provider.warterService
+        .updateGoal(to: currentValue)
+        .map { _ in .dismiss}
     case .cancel:
       if !self.currentState.shouldDismissed {
         return .just(.dismiss)
