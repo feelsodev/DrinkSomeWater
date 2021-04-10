@@ -231,11 +231,11 @@
 		A58351CF26026740001AA609 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A52B5FB926138BC8003D7AFF /* Models */,
 				A569452B261B596300E6E751 /* ViewComponent */,
 				A565861C2614A62600BAA9AC /* Extensions-Utillities */,
-				A52B5FB926138BC8003D7AFF /* Models */,
-				A52B5F6F261230C4003D7AFF /* Types */,
 				A58351492601CA28001AA609 /* ViewController */,
+				A52B5F6F261230C4003D7AFF /* Types */,
 				A515812A26033E3700127C98 /* Services */,
 				A58350EC25FFCD09001AA609 /* AppDelegate.swift */,
 				A58350EE25FFCD09001AA609 /* SceneDelegate.swift */,

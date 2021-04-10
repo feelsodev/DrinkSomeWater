@@ -13,6 +13,8 @@ final class DrinkViewReactor: Reactor {
   enum Action {
     case increseWater
     case decreseWater
+    case set500
+    case set300
     case addWater
     case cancel
   }
@@ -20,6 +22,8 @@ final class DrinkViewReactor: Reactor {
   enum Mutation {
     case increseWaterValue
     case decreseWaterValue
+    case set500Value
+    case set300Value
     case dismiss
   }
   
@@ -44,6 +48,10 @@ final class DrinkViewReactor: Reactor {
       return .just(.increseWaterValue)
     case .decreseWater:
       return .just(.decreseWaterValue)
+    case .set500:
+      return .just(.set500Value)
+    case .set300:
+      return .just(.set300Value)
     case .addWater:
       let ml = self.initialState.current
       return self.provider.warterService.updateWater(to: ml)
@@ -80,6 +88,10 @@ final class DrinkViewReactor: Reactor {
         self.initialState.current -= 50
       }
       newState.progress = progress
+    case .set500Value:
+      newState.current = 500
+    case .set300Value:
+      newState.current = 300
     case .dismiss:
       newState.shouldDismissed = true
     }
