@@ -24,7 +24,7 @@ final class CalendarViewController: BaseViewController, View {
   // MARK: - UI
   
   let first = CalendarDescriptView(color: #colorLiteral(red: 0.7764705882, green: 0.2, blue: 0.1647058824, alpha: 1), descript: "오늘")
-  let second = CalendarDescriptView(color: #colorLiteral(red: 0.1254901961, green: 0.4666666667, blue: 0.8588235294, alpha: 1), descript: "선택")
+  let second = CalendarDescriptView(color: .darkGray, descript: "선택")
   let third = CalendarDescriptView(color: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1), descript: "성공")
   let sun = UIImageView(image: UIImage(named: "sun"))
   let tube = UIImageView(image: UIImage(named: "tube"))
@@ -53,6 +53,7 @@ final class CalendarViewController: BaseViewController, View {
     $0.dataSource = self
     $0.backgroundColor = .clear
     $0.appearance.headerMinimumDissolvedAlpha = 0.0
+    $0.appearance.selectionColor = .darkGray
   }
   lazy var waveBackground = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
