@@ -35,6 +35,21 @@ final class SettingViewController: BaseViewController, View {
     $0.layer.cornerRadius = 4.0
   }
   
+  let moreButton = UIButton().then {
+    $0.tintColor = .white
+    $0.setImage(UIImage(systemName: "exclamationmark.circle.fill")?
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
+    $0.contentVerticalAlignment = .fill
+    $0.contentHorizontalAlignment = .fill
+    $0.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+    $0.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    $0.layer.shadowOpacity = 1.0
+    $0.layer.shadowRadius = 0.0
+    $0.layer.masksToBounds = false
+    $0.layer.cornerRadius = 4.0
+  }
+  
   let lineView = UIView().then {
     $0.backgroundColor = .black
   }
@@ -140,13 +155,18 @@ final class SettingViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.backButton, self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine,
+    [self.backButton, self.moreButton, self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine,
      self.lineView, self.goalWater, self.slider, self.setButton]
       .forEach { self.waveBackground.addSubview($0) }
     
     self.backButton.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
       $0.leading.equalToSuperview().offset(10)
+      $0.width.height.equalTo(50)
+    }
+    self.moreButton.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+      $0.trailing.equalToSuperview().offset(-10)
       $0.width.height.equalTo(50)
     }
     self.goalWater.snp.makeConstraints {
