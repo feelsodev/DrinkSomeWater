@@ -12,14 +12,17 @@ import RxSwift
 final class CalendarViewReactor: Reactor {
   enum Action {
     case viewDidload
+    case cancel
   }
   
   enum Mutation {
     case returnData([WaterRecord])
+    case dismiss
   }
   
   struct State {
     var waterRecordList: [WaterRecord] = []
+    var shouldDismissed: Bool = false
   }
   
   var initialState: State
@@ -37,6 +40,8 @@ final class CalendarViewReactor: Reactor {
         .map { waterRecordList in
           .returnData(waterRecordList)
         }
+    case .cancel:
+      return .just(.dismiss)
     }
   }
   
@@ -62,6 +67,8 @@ final class CalendarViewReactor: Reactor {
     switch mutation {
     case let .returnData(waterRecordList):
       newState.waterRecordList = waterRecordList
+    case .dismiss:
+      newState.shouldDismissed = true
     }
     return newState
   }
