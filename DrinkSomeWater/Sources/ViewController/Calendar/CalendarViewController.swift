@@ -100,6 +100,11 @@ final class CalendarViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
     
+    self.dismissButton.rx.tap
+      .map { Reactor.Action.cancel }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     // State
     reactor.state.asObservable()
       .map { $0.waterRecordList }
@@ -112,6 +117,16 @@ final class CalendarViewController: BaseViewController, View {
           }
         }
       })
+      .disposed(by: self.disposeBag)
+    
+    reactor.state.asObservable()
+      .map { $0.shouldDismissed }
+      .distinctUntilChanged()
+      .filter { $0 }
+      .subscribe { [weak self] _ in
+        guard let `self` = self else { return }
+        self.dismiss(animated: true, completion: nil)
+      }
       .disposed(by: self.disposeBag)
   }
   
