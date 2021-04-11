@@ -116,11 +116,6 @@ final class MainViewController: BaseViewController, View {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.setNotification()
-  }
-  
   func bind(reactor: MainViewReactor) {
     
     // Action
@@ -226,34 +221,6 @@ final class MainViewController: BaseViewController, View {
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
       $0.centerX.equalToSuperview()
       $0.width.height.equalTo(self.view.frame.height / 8)
-    }
-  }
-}
-
-extension MainViewController {
-  private func setNotification() {
-    let userNotificationCenter = UNUserNotificationCenter.current()
-    let notificationContent = UNMutableNotificationContent()
-    
-    notificationContent.title = ""
-    notificationContent.body = "오늘 하루 물 마시면서 건강을 찾아봐요!!"
-        
-    var dateComponents = DateComponents()
-    dateComponents.calendar = Calendar.current
-    dateComponents.hour = 9
-    dateComponents.minute = 30
-    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
-                                                repeats: true)
-    
-    let uuid = UUID().uuidString
-    let request = UNNotificationRequest(identifier: uuid,
-                                        content: notificationContent,
-                                        trigger: trigger)
-
-    userNotificationCenter.add(request) { error in
-      if let error = error {
-        print("Notification Error: ", error)
-      }
     }
   }
 }
