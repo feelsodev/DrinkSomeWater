@@ -28,6 +28,21 @@ final class CalendarViewController: BaseViewController, View {
   let third = CalendarDescriptView(color: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1), descript: "성공")
   let sun = UIImageView(image: UIImage(named: "sun"))
   let tube = UIImageView(image: UIImage(named: "tube"))
+  
+  let dismissButton = UIButton().then {
+    $0.setImage(UIImage(systemName: "xmark")?
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
+    $0.tintColor = .black
+    $0.contentVerticalAlignment = .fill
+    $0.contentHorizontalAlignment = .fill
+    $0.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+    $0.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    $0.layer.shadowOpacity = 1.0
+    $0.layer.shadowRadius = 0.0
+    $0.layer.masksToBounds = false
+    $0.layer.cornerRadius = 4.0
+  }
   let calendarDescript = UILabel().then {
     $0.text = "☝️ 성공 날짜를 선택시 기록 확인이 가능합니다."
     $0.textColor = .darkGray
@@ -102,11 +117,16 @@ final class CalendarViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.sun, self.tube, self.stackView,
+    [self.dismissButton, self.sun, self.tube, self.stackView,
      self.titleLabel, self.calendar, self.calendarDescript, self.record].forEach { self.waveBackground.addSubview($0) }
     
     self.waveBackground.snp.makeConstraints {
       $0.edges.equalToSuperview()
+    }
+    self.dismissButton.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+      $0.leading.equalToSuperview().offset(10)
+      $0.width.height.equalTo(35)
     }
     self.sun.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
