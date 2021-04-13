@@ -5,4 +5,16 @@
 //  Created by once on 2021/04/14.
 //
 
-import Foundation
+import ReactorKit
+import RxCocoa
+import RxSwift
+
+class InfoCellReactor: Reactor {
+  typealias Action = NoAction
+
+  let initialState: Info
+
+  init(info: Info) {
+    self.initialState = info
+  }
+}
