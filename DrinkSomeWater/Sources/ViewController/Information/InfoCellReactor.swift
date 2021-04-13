@@ -9,7 +9,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-class InfoCellReactor: Reactor {
+final class InfoCellReactor: Reactor {
   typealias Action = NoAction
 
   let initialState: Info
