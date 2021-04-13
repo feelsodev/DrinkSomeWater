@@ -9,5 +9,4 @@ import Foundation
 
 struct Info {
   var title: String
-  var contents: String
 }
