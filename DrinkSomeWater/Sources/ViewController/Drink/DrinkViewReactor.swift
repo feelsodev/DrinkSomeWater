@@ -37,6 +37,9 @@ final class DrinkViewReactor: Reactor {
   var initialState: State
   let provider: ServiceProviderProtocol
   
+  
+  // MARK: - Initialize
+  
   init(provider: ServiceProviderProtocol) {
     self.initialState = State()
     self.provider = provider

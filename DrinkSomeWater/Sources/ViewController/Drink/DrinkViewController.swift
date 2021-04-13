@@ -111,6 +111,9 @@ final class DrinkViewController: BaseViewController, View {
     $0.setImage(UIImage(named: "cup300"), for: .normal)
   }
   
+  
+  // MARK: - Initialize
+  
   init(reactor: DrinkViewReactor) {
     super.init()
     self.reactor = reactor
@@ -119,6 +122,9 @@ final class DrinkViewController: BaseViewController, View {
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  
+  // MARK: Binding
   
   func bind(reactor: DrinkViewReactor) {
     

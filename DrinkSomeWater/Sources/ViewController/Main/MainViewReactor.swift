@@ -29,6 +29,9 @@ final class MainViewReactor: Reactor {
   var initialState: State
   let provider: ServiceProviderProtocol
   
+  
+  // MARK: - Initialize
+  
   init(provider: ServiceProviderProtocol) {
     self.initialState = State()
     self.provider = provider

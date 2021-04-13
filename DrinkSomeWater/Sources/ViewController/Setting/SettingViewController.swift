@@ -99,6 +99,9 @@ final class SettingViewController: BaseViewController, View {
     fatalError("init(coder:) has not been implemented")
   }
   
+  
+  // MARK: Binding
+  
   func bind(reactor: SettingViewReactor) {
     
     // Action

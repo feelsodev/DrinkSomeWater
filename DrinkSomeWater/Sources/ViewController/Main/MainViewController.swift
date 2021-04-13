@@ -107,6 +107,9 @@ final class MainViewController: BaseViewController, View {
     $0.layer.cornerRadius = 4.0
   }
   
+  
+  // MARK: - Initialize
+  
   init(reactor: MainViewReactor) {
     super.init()
     self.reactor = reactor
@@ -115,6 +118,9 @@ final class MainViewController: BaseViewController, View {
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  
+  // MARK: Binding
   
   func bind(reactor: MainViewReactor) {
     
