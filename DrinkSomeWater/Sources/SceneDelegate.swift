@@ -69,8 +69,8 @@ extension SceneDelegate {
         
     var dateComponents = DateComponents()
     dateComponents.calendar = Calendar.current
-    dateComponents.hour = 21
-    dateComponents.minute = 53
+    dateComponents.hour = 9
+    dateComponents.minute = 30
     
     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                 repeats: true)
