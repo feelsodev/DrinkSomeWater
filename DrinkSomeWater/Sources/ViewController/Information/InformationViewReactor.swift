@@ -15,13 +15,16 @@ typealias InfoSection = SectionModel<Void, InfoCellReactor>
 final class InformationViewReactor: Reactor {
   enum Action {
     case viewDidload
+    case cancel
   }
   
   enum Mutation {
     case returnInfo([InfoSection])
+    case dismiss
   }
   
   struct State {
+    var shouldDismissed: Bool = false
     var sections: [InfoSection]
   }
   
@@ -43,6 +46,12 @@ final class InformationViewReactor: Reactor {
       let sectionItems = info.map(InfoCellReactor.init)
       let section = InfoSection(model: Void(), items: sectionItems)
       return .just(.returnInfo([section]))
+    case .cancel:
+      if !self.currentState.shouldDismissed {
+        return .just(.dismiss)
+      } else {
+        return .empty()
+      }
     }
   }
   
@@ -51,6 +60,8 @@ final class InformationViewReactor: Reactor {
     switch mutation {
     case let .returnInfo(sections):
       state.sections = sections
+    case .dismiss:
+      state.shouldDismissed = true
     }
     return state
   }
