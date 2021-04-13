@@ -73,9 +73,23 @@ final class InformationViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
     
+    self.backButton.rx.tap
+      .map { Reactor.Action.cancel }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     // State
     reactor.state.map { $0.sections }
       .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
+      .disposed(by: self.disposeBag)
+    
+    reactor.state.asObservable()
+      .map { $0.shouldDismissed }
+      .distinctUntilChanged()
+      .subscribe { [weak self] _ in
+        guard let `self` = self else { return }
+        self.dismiss(animated: true, completion: nil)
+      }
       .disposed(by: self.disposeBag)
   }
   
