@@ -87,6 +87,9 @@ final class SettingViewController: BaseViewController, View {
     $0.startAnimation()
   }
   
+  
+  // MARK: - Initialize
+  
   init(reactor: SettingViewReactor) {
     super.init()
     self.reactor = reactor
@@ -118,6 +121,15 @@ final class SettingViewController: BaseViewController, View {
     self.setButton.rx.tap
       .map { Reactor.Action.setGoal }
       .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
+    self.moreButton.rx.tap
+      .map(reactor.reactorForCreatingInformation)
+      .subscribe(onNext: { [weak self] reactor in
+        guard let `self` = self else { return }
+        let vc = InformationViewController(reactor: reactor)
+        self.present(vc, animated: true, completion: nil)
+      })
       .disposed(by: self.disposeBag)
     
     // State
