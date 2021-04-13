@@ -131,7 +131,13 @@ final class SettingViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = InformationViewController(reactor: reactor)
-        self.present(vc, animated: true, completion: nil)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        self.view.window?.layer.add(transition, forKey: kCATransition)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: false, completion: nil)
       })
       .disposed(by: self.disposeBag)
     
