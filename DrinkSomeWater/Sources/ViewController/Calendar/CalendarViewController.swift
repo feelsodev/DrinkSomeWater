@@ -83,6 +83,9 @@ final class CalendarViewController: BaseViewController, View {
     $0.isHidden = true
   }
   
+  
+  // MARK: - Initialize
+  
   init(reactor: CalendarViewReactor) {
     super.init()
     self.reactor = reactor
