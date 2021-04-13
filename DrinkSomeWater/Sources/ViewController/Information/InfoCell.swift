@@ -12,6 +12,8 @@ import RxSwift
 final class InfoCell: BaseTableViewCell, View {
   typealias Reactor = InfoCellReactor
   
+  static let cellID = "InfoCell"
+  
   let icon = UIImageView().then {
     $0.backgroundColor = .white
   }
