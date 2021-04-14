@@ -40,6 +40,7 @@ final class InformationViewReactor: Reactor {
       let info: [Info] = [
         Info(title: "알람", key: .alarm),
         Info(title: "리뷰 쓰기", key: .review),
+        Info(title: "문의 하기", key: .question),
         Info(title: "앱 버전", key: .version),
         Info(title: "라이센스", key: .license)
       ]

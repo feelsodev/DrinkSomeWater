@@ -33,7 +33,7 @@ final class InfoCell: BaseTableViewCell, View {
     self.icon.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(10)
       $0.centerY.equalToSuperview()
-      $0.height.width.equalTo(40)
+      $0.height.width.equalTo(30)
     }
     self.titleLabel.snp.makeConstraints {
       $0.leading.equalTo(self.icon.snp.trailing).offset(10)

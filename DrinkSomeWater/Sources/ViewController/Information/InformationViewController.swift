@@ -37,6 +37,7 @@ final class InformationViewController: BaseViewController, View {
     $0.layer.cornerRadius = 20
     $0.layer.masksToBounds = true
     $0.separatorColor = .clear
+    $0.rowHeight = 60
   }
   
   let backButton = UIButton().then {
