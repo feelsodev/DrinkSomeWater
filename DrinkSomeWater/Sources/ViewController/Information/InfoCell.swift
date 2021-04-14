@@ -15,6 +15,7 @@ final class InfoCell: BaseTableViewCell, View {
   static let cellID = "InfoCell"
   
   let icon = UIImageView().then {
+    $0.tintColor = .black
     $0.backgroundColor = .white
   }
   let titleLabel = UILabel().then {
@@ -24,6 +25,7 @@ final class InfoCell: BaseTableViewCell, View {
   
   func bind(reactor: Reactor) {
     self.titleLabel.text = reactor.currentState.title
+    self.icon.image = reactor.currentState.key.getImage()
   }
   
   override func initialize() {
