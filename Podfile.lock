@@ -1,4 +1,5 @@
 PODS:
+  - Differentiator (5.0.0)
   - FSCalendar (2.8.2)
   - ReactorKit (3.0.0):
     - RxSwift (~> 6.0)
@@ -6,6 +7,10 @@ PODS:
   - RxCocoa (6.1.0):
     - RxRelay (= 6.1.0)
     - RxSwift (= 6.1.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxOptional (5.0.1):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
@@ -24,6 +29,7 @@ DEPENDENCIES:
   - FSCalendar
   - ReactorKit
   - RxCocoa
+  - RxDataSources
   - RxOptional
   - RxSwift
   - RxViewController
@@ -33,9 +39,11 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Differentiator
     - FSCalendar
     - ReactorKit
     - RxCocoa
+    - RxDataSources
     - RxOptional
     - RxRelay
     - RxSwift
@@ -46,9 +54,11 @@ SPEC REPOS:
     - WeakMapTable
 
 SPEC CHECKSUMS:
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   ReactorKit: 5348c9881dcb546605b451e32759dccc9937d36e
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxOptional: e0b39f0863c25c4bfeea83cb35102a5244d048b3
   RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
   RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
@@ -58,6 +68,6 @@ SPEC CHECKSUMS:
   WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: b6e412df3d6db30e1a0ca27cabe7a14bd23e7506
+PODFILE CHECKSUM: 8714869518c2c31436fd6af7391d2a31d9b8363b
 
 COCOAPODS: 1.10.1

@@ -15,7 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     guard let scene = (scene as? UIWindowScene) else { return }
     
-    window = UIWindow(frame: UIScreen.main.bounds)
+    self.window = UIWindow(frame: UIScreen.main.bounds)
+    self.setNotification()
     let serviceProvider = ServiceProvider()
     
     // 최초 앱 설치시 값이 목표 용량치가 없을 경우 1500으로 초기화
@@ -58,3 +59,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
 }
 
+extension SceneDelegate {
+  private func setNotification() {
+    let userNotificationCenter = UNUserNotificationCenter.current()
+    let notificationContent = UNMutableNotificationContent()
+    
+    notificationContent.title = "벌컥벌컥"
+    notificationContent.body = "오늘 하루 물 마시면서 건강을 찾아봐요!!"
+        
+    var dateComponents = DateComponents()
+    dateComponents.calendar = Calendar.current
+    dateComponents.hour = 9
+    dateComponents.minute = 30
+    
+    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
+                                                repeats: true)
+    
+    let request = UNNotificationRequest(identifier: "drink",
+                                        content: notificationContent,
+                                        trigger: trigger)
+
+    userNotificationCenter.add(request) { error in
+      if let error = error {
+        print("Notification Error: ", error)
+      }
+    }
+  }
+}

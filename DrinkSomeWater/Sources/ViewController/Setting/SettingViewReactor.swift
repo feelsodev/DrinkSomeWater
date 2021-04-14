@@ -74,4 +74,8 @@ final class SettingViewReactor: Reactor {
     }
     return newState
   }
+  
+  func reactorForCreatingInformation() -> InformationViewReactor {
+    return InformationViewReactor()
+  }
 }
