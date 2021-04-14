@@ -54,7 +54,11 @@ final class DrinkViewController: BaseViewController, View {
     $0.contentHorizontalAlignment = .fill
     $0.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
   }
-  
+  let lid = UIView().then {
+    $0.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+    $0.layer.cornerRadius = 10
+    $0.layer.masksToBounds = true
+  }
   let cup = WaveAnimationView(
     frame: CGRect(
       x: 0,
@@ -68,6 +72,7 @@ final class DrinkViewController: BaseViewController, View {
     $0.layer.masksToBounds = true
     $0.startAnimation()
     $0.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    $0.maskImage = UIImage(named: "cup")
   }
   
   let ml = UILabel().then {
@@ -99,6 +104,16 @@ final class DrinkViewController: BaseViewController, View {
     $0.startAnimation()
   }
   
+  let cup500 = UIButton().then {
+    $0.setImage(UIImage(named: "cup500"), for: .normal)
+  }
+  let cup300 = UIButton().then {
+    $0.setImage(UIImage(named: "cup300"), for: .normal)
+  }
+  
+  
+  // MARK: - Initialize
+  
   init(reactor: DrinkViewReactor) {
     super.init()
     self.reactor = reactor
@@ -107,6 +122,9 @@ final class DrinkViewController: BaseViewController, View {
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  
+  // MARK: Binding
   
   func bind(reactor: DrinkViewReactor) {
     
@@ -123,6 +141,16 @@ final class DrinkViewController: BaseViewController, View {
     
     self.subWater.rx.tap
       .map { Reactor.Action.decreseWater }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
+    self.cup500.rx.tap
+      .map { Reactor.Action.set500 }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
+    self.cup300.rx.tap
+      .map { Reactor.Action.set300 }
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
     
@@ -157,13 +185,20 @@ final class DrinkViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.backButton, self.cup, self.addWater, self.subWater, self.ml, self.completeButton]
+    [self.backButton, self.lid, self.cup, self.addWater, self.subWater, self.ml, self.completeButton,
+     self.cup500, self.cup300]
       .forEach { self.waveBackground.addSubview($0) }
     
     self.backButton.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
       $0.leading.equalToSuperview().offset(10)
       $0.width.height.equalTo(50)
+    }
+    self.lid.snp.makeConstraints {
+      $0.bottom.equalTo(self.cup.snp.top)
+      $0.centerX.equalToSuperview()
+      $0.width.equalTo(UIScreen.main.bounds.width * 0.55)
+      $0.height.equalTo(40)
     }
     self.cup.snp.makeConstraints {
       $0.centerX.centerY.equalToSuperview()
@@ -181,14 +216,26 @@ final class DrinkViewController: BaseViewController, View {
       $0.width.height.equalTo(70)
     }
     self.ml.snp.makeConstraints {
-      $0.bottom.equalTo(self.cup.snp.top).offset(-30)
+      $0.bottom.equalTo(self.lid.snp.top).offset(-30)
       $0.centerX.equalToSuperview()
     }
     self.completeButton.snp.makeConstraints {
-      $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+      $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-30)
       $0.centerX.equalToSuperview()
       $0.width.equalTo(100)
       $0.height.equalTo(40)
+    }
+    self.cup300.snp.makeConstraints {
+      $0.trailing.equalTo(self.completeButton.snp.leading).offset(-50)
+      $0.centerY.equalTo(self.completeButton.snp.centerY)
+      $0.width.equalTo(30)
+      $0.height.equalTo(50)
+    }
+    self.cup500.snp.makeConstraints {
+      $0.leading.equalTo(self.completeButton.snp.trailing).offset(50)
+      $0.centerY.equalTo(self.completeButton.snp.centerY)
+      $0.width.equalTo(30)
+      $0.height.equalTo(50)
     }
   }
 }

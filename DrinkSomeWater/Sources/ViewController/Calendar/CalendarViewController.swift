@@ -24,10 +24,25 @@ final class CalendarViewController: BaseViewController, View {
   // MARK: - UI
   
   let first = CalendarDescriptView(color: #colorLiteral(red: 0.7764705882, green: 0.2, blue: 0.1647058824, alpha: 1), descript: "오늘")
-  let second = CalendarDescriptView(color: #colorLiteral(red: 0.1254901961, green: 0.4666666667, blue: 0.8588235294, alpha: 1), descript: "선택")
+  let second = CalendarDescriptView(color: .darkGray, descript: "선택")
   let third = CalendarDescriptView(color: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1), descript: "성공")
   let sun = UIImageView(image: UIImage(named: "sun"))
   let tube = UIImageView(image: UIImage(named: "tube"))
+  
+  let dismissButton = UIButton().then {
+    $0.setImage(UIImage(systemName: "xmark")?
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
+    $0.tintColor = .black
+    $0.contentVerticalAlignment = .fill
+    $0.contentHorizontalAlignment = .fill
+    $0.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+    $0.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    $0.layer.shadowOpacity = 1.0
+    $0.layer.shadowRadius = 0.0
+    $0.layer.masksToBounds = false
+    $0.layer.cornerRadius = 4.0
+  }
   let calendarDescript = UILabel().then {
     $0.text = "☝️ 성공 날짜를 선택시 기록 확인이 가능합니다."
     $0.textColor = .darkGray
@@ -53,6 +68,7 @@ final class CalendarViewController: BaseViewController, View {
     $0.dataSource = self
     $0.backgroundColor = .clear
     $0.appearance.headerMinimumDissolvedAlpha = 0.0
+    $0.appearance.selectionColor = .darkGray
   }
   lazy var waveBackground = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
@@ -66,6 +82,9 @@ final class CalendarViewController: BaseViewController, View {
   let record = WaterRecordResultView().then {
     $0.isHidden = true
   }
+  
+  
+  // MARK: - Initialize
   
   init(reactor: CalendarViewReactor) {
     super.init()
@@ -84,6 +103,11 @@ final class CalendarViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
     
+    self.dismissButton.rx.tap
+      .map { Reactor.Action.cancel }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     // State
     reactor.state.asObservable()
       .map { $0.waterRecordList }
@@ -97,15 +121,30 @@ final class CalendarViewController: BaseViewController, View {
         }
       })
       .disposed(by: self.disposeBag)
+    
+    reactor.state.asObservable()
+      .map { $0.shouldDismissed }
+      .distinctUntilChanged()
+      .filter { $0 }
+      .subscribe { [weak self] _ in
+        guard let `self` = self else { return }
+        self.dismiss(animated: true, completion: nil)
+      }
+      .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.sun, self.tube, self.stackView,
+    [self.dismissButton, self.sun, self.tube, self.stackView,
      self.titleLabel, self.calendar, self.calendarDescript, self.record].forEach { self.waveBackground.addSubview($0) }
     
     self.waveBackground.snp.makeConstraints {
       $0.edges.equalToSuperview()
+    }
+    self.dismissButton.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+      $0.leading.equalToSuperview().offset(10)
+      $0.width.height.equalTo(35)
     }
     self.sun.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
