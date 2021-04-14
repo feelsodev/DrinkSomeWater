@@ -21,7 +21,6 @@ final class InformationViewController: BaseViewController, View {
     configureCell: { _, tableView, indexPath, reactor in
       let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.cellID, for: indexPath) as! InfoCell
       cell.reactor = reactor
-      cell.accessoryType = .disclosureIndicator
       return cell
     })
   
@@ -30,9 +29,11 @@ final class InformationViewController: BaseViewController, View {
   
   let backgroundView = UIView().then {
     $0.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+    $0.isUserInteractionEnabled = false
   }
   
   let containerView = UIView().then {
+    $0.backgroundColor = .red
     $0.layer.shadowColor = UIColor.black.cgColor
     $0.layer.shadowOffset = .zero
     $0.layer.shadowRadius = 10
@@ -40,10 +41,11 @@ final class InformationViewController: BaseViewController, View {
   }
   
   let tableView = IntrinsicTableView().then {
-    $0.backgroundColor = .lightGray
     $0.register(InfoCell.self, forCellReuseIdentifier: InfoCell.cellID)
     $0.layer.cornerRadius = 20
     $0.layer.masksToBounds = true
+    $0.layer.borderColor = UIColor.lightGray.cgColor
+    $0.layer.borderWidth = 0.5
     $0.separatorColor = .clear
     $0.rowHeight = 60
   }
@@ -110,8 +112,8 @@ final class InformationViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.backgroundColor = .white
-    [self.backButton, self.backgroundView, self.containerView].forEach { self.view.addSubview($0) }
-    self.containerView.addSubview(self.tableView)
+    [self.backButton, self.backgroundView, self.containerView, self.tableView]
+      .forEach { self.view.addSubview($0) }
     [self.backButton, self.tableView].forEach { self.view.bringSubviewToFront($0) }
 
     self.backgroundView.snp.makeConstraints {
@@ -123,15 +125,16 @@ final class InformationViewController: BaseViewController, View {
       $0.leading.equalToSuperview().offset(10)
       $0.width.height.equalTo(50)
     }
-    self.containerView.snp.makeConstraints {
-      $0.top.equalTo(self.view.snp.top).offset(UIScreen.main.bounds.height / 4 - 40)
-      $0.leading.equalToSuperview().offset(15)
-      $0.trailing.equalToSuperview().offset(-15)
-    }
     self.tableView.snp.makeConstraints {
       $0.top.equalTo(self.view.snp.top).offset(UIScreen.main.bounds.height / 4 - 40)
       $0.leading.equalToSuperview().offset(15)
       $0.trailing.equalToSuperview().offset(-15)
+    }
+    self.containerView.snp.makeConstraints {
+      $0.top.equalTo(self.view.snp.top).offset(UIScreen.main.bounds.height / 4 - 40)
+      $0.leading.equalToSuperview().offset(32)
+      $0.trailing.equalToSuperview().offset(-32)
+      $0.bottom.equalTo(self.tableView.snp.bottom)
     }
   } 
 }
