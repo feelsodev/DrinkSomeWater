@@ -5,6 +5,7 @@
 //  Created by once on 2021/04/14.
 //
 
+import UIKit
 import ReactorKit
 import RxCocoa
 import RxDataSources
@@ -13,9 +14,11 @@ import RxSwift
 typealias InfoSection = SectionModel<Void, InfoCellReactor>
 
 final class InformationViewReactor: Reactor {
+  
   enum Action {
     case viewDidload
     case cancel
+    case itemSelect(IndexPath)
   }
   
   enum Mutation {
@@ -28,10 +31,14 @@ final class InformationViewReactor: Reactor {
     var sections: [InfoSection]
   }
   
-  var initialState: State
+  let initialState: State
+  var provider: ServiceProviderProtocol
   
-  init() {
-    self.initialState = State(sections: [InfoSection(model: Void(), items: [])])
+  init(provider: ServiceProviderProtocol) {
+    self.initialState = State(
+      sections: [InfoSection(model: Void(), items: [])]
+    )
+    self.provider = provider
   }
   
   func mutate(action: Action) -> Observable<Mutation> {
@@ -51,6 +58,17 @@ final class InformationViewReactor: Reactor {
       if !self.currentState.shouldDismissed {
         return .just(.dismiss)
       } else {
+        return .empty()
+      }
+    case let .itemSelect(indexPath):
+      switch indexPath.row {
+      case 2:
+        return self.provider.alertService
+          .show(title: "문의", message: "히히히")
+          .flatMap { alertAction -> Observable<Mutation> in
+            return .empty()
+          }
+      default:
         return .empty()
       }
     }
