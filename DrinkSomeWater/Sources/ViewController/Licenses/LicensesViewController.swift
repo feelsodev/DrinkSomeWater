@@ -17,6 +17,12 @@ final class LicensesViewController: BaseViewController {
   
   
   // MARK: - UI
+  
+  let licenseLabel = UILabel().then {
+    $0.text = "라이센스"
+    $0.textColor = #colorLiteral(red: 0.1739570114, green: 0.1739570114, blue: 0.1739570114, alpha: 1)
+    $0.font = .systemFont(ofSize: 20, weight: .semibold)
+  }
   let backgroundView = UIView().then {
     $0.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     $0.isUserInteractionEnabled = false
@@ -84,16 +90,16 @@ final class LicensesViewController: BaseViewController {
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromLeft
         self.view.window?.layer.add(transition, forKey: nil)
-        self.dismiss(animated: true, completion: nil)
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
       })
       .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
-    [self.backButton, self.backgroundView, self.containerView, self.licenseList]
+    [self.licenseLabel, self.backButton, self.backgroundView, self.containerView, self.licenseList]
       .forEach { self.view.addSubview($0) }
-    [self.backButton, self.licenseList].forEach { self.view.bringSubviewToFront($0) }
+    [self.licenseLabel, self.backButton, self.licenseList]
+      .forEach { self.view.bringSubviewToFront($0) }
 
     self.backgroundView.snp.makeConstraints {
       $0.top.leading.trailing.equalToSuperview()
@@ -103,6 +109,10 @@ final class LicensesViewController: BaseViewController {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
       $0.leading.equalToSuperview().offset(10)
       $0.width.height.equalTo(50)
+    }
+    self.licenseLabel.snp.makeConstraints {
+      $0.bottom.equalTo(self.licenseList.snp.top).offset(-20)
+      $0.centerX.equalToSuperview()
     }
     self.licenseList.snp.makeConstraints {
       $0.top.equalTo(self.view.snp.top).offset(UIScreen.main.bounds.height / 4 - 40)
