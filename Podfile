@@ -6,6 +6,7 @@ target 'DrinkSomeWater' do
   use_frameworks!
   
   pod 'FSCalendar'
+  pod 'SwiftLint'
   pod 'Then'
   pod 'SnapKit'
   pod 'RxSwift'
