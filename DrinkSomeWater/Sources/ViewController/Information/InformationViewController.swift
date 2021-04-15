@@ -8,8 +8,8 @@
 import UIKit
 import ReactorKit
 import RxCocoa
-import RxSwift
 import RxDataSources
+import RxSwift
 import WaveAnimationView
 
 final class InformationViewController: BaseViewController, View {
@@ -88,9 +88,15 @@ final class InformationViewController: BaseViewController, View {
       .map { Reactor.Action.cancel }
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
+      
+    self.tableView.rx.itemSelected
+      .map { Reactor.Action.itemSelect($0)}
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
     
     // State
-    reactor.state.map { $0.sections }
+    reactor.state.asObservable()
+      .map { $0.sections }
       .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
       .disposed(by: self.disposeBag)
     
@@ -100,13 +106,26 @@ final class InformationViewController: BaseViewController, View {
       .subscribe { [weak self] _ in
         guard let `self` = self else { return }
         let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.duration = 0.4
+        transition.timingFunction
+          = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromLeft
         self.view.window?.layer.add(transition, forKey: nil)
         self.dismiss(animated: true, completion: nil)
       }
+      .disposed(by: self.disposeBag)
+    
+    // View
+    self.tableView.rx.itemSelected
+      .subscribe(onNext: { [weak self] indexPath in
+        guard let `self` = self else { return }
+        self.tableView.deselectRow(at: indexPath, animated: false)
+        if indexPath.row == 4 {
+          let vc = LicensesViewController()
+          self.present(vc, animated: true, completion: nil)
+        }
+      })
       .disposed(by: self.disposeBag)
   }
   
