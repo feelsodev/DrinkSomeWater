@@ -42,6 +42,11 @@
 		A583512625FFD1BE001AA609 /* DrinkViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583512525FFD1BE001AA609 /* DrinkViewReactor.swift */; };
 		A583512A25FFD2C1001AA609 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583512925FFD2C1001AA609 /* BaseViewController.swift */; };
 		A59345072626C0D8000A5047 /* IntrinsicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59345062626C0D8000A5047 /* IntrinsicTableView.swift */; };
+		A5C74DA826275B6F00B18E64 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DA726275B6F00B18E64 /* AlertService.swift */; };
+		A5C74DC62628868800B18E64 /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DC52628868800B18E64 /* LicensesViewController.swift */; };
+		A5C74DCA262886C300B18E64 /* LicenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DC9262886C300B18E64 /* LicenseCell.swift */; };
+		A5C74DCF262891CC00B18E64 /* Licenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DCE262891CC00B18E64 /* Licenses.swift */; };
+		A5C74DD72628938800B18E64 /* LicenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DD62628938800B18E64 /* LicenseDetailViewController.swift */; };
 		A5D4AA7F261D7C8600CF9E91 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +89,11 @@
 		A583512525FFD1BE001AA609 /* DrinkViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewReactor.swift; sourceTree = "<group>"; };
 		A583512925FFD2C1001AA609 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A59345062626C0D8000A5047 /* IntrinsicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrinsicTableView.swift; sourceTree = "<group>"; };
+		A5C74DA726275B6F00B18E64 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		A5C74DC52628868800B18E64 /* LicensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
+		A5C74DC9262886C300B18E64 /* LicenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseCell.swift; sourceTree = "<group>"; };
+		A5C74DCE262891CC00B18E64 /* Licenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Licenses.swift; sourceTree = "<group>"; };
+		A5C74DD62628938800B18E64 /* LicenseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseDetailViewController.swift; sourceTree = "<group>"; };
 		A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +127,7 @@
 				A51581A12603BA0900127C98 /* WaterService.swift */,
 				A51581A42603BA1300127C98 /* BaseService.swift */,
 				A52B5F6C26122FAB003D7AFF /* UserDefaultsService.swift */,
+				A5C74DA726275B6F00B18E64 /* AlertService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -150,8 +161,8 @@
 		A52B5FB926138BC8003D7AFF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A52B5FBA26138C32003D7AFF /* WaterRecord.swift */,
 				A56586202614B71B00BAA9AC /* ModelType.swift */,
+				A52B5FBA26138C32003D7AFF /* WaterRecord.swift */,
 				A5208CF32625EEF9009E28B1 /* Info.swift */,
 			);
 			path = Models;
@@ -237,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				A583512825FFD2B2001AA609 /* BaseComponent */,
+				A5C74DC42628866500B18E64 /* Licenses */,
 				A5A212A526233B9400D3DFCB /* Information */,
 				A52B5FAB26137122003D7AFF /* Calendar */,
 				A52B5F6426122C42003D7AFF /* Setting */,
@@ -249,6 +261,7 @@
 		A58351CF26026740001AA609 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A5C74DCD262891AE00B18E64 /* StaticComponent */,
 				A52B5FB926138BC8003D7AFF /* Models */,
 				A569452B261B596300E6E751 /* ViewComponent */,
 				A565861C2614A62600BAA9AC /* Extensions-Utillities */,
@@ -280,6 +293,24 @@
 				A5208CED2625EE71009E28B1 /* InfoCellReactor.swift */,
 			);
 			path = Information;
+			sourceTree = "<group>";
+		};
+		A5C74DC42628866500B18E64 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				A5C74DC52628868800B18E64 /* LicensesViewController.swift */,
+				A5C74DC9262886C300B18E64 /* LicenseCell.swift */,
+				A5C74DD62628938800B18E64 /* LicenseDetailViewController.swift */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		A5C74DCD262891AE00B18E64 /* StaticComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A5C74DCE262891CC00B18E64 /* Licenses.swift */,
+			);
+			path = StaticComponent;
 			sourceTree = "<group>";
 		};
 		AC0AF68626D5CBACF8A7DC8F /* Pods */ = {
@@ -408,6 +439,7 @@
 				A5208CEE2625EE71009E28B1 /* InfoCellReactor.swift in Sources */,
 				A52B5FAD2613714B003D7AFF /* CalendarViewController.swift in Sources */,
 				A59345072626C0D8000A5047 /* IntrinsicTableView.swift in Sources */,
+				A5C74DCF262891CC00B18E64 /* Licenses.swift in Sources */,
 				A56586212614B71B00BAA9AC /* ModelType.swift in Sources */,
 				A5208CF42625EEF9009E28B1 /* Info.swift in Sources */,
 				A5208CE82625EBF6009E28B1 /* InformationViewReactor.swift in Sources */,
@@ -416,10 +448,13 @@
 				A51581A22603BA0900127C98 /* WaterService.swift in Sources */,
 				A5694531261B59AF00E6E751 /* Beaker.swift in Sources */,
 				A52B5F6626122C55003D7AFF /* SettingViewController.swift in Sources */,
+				A5C74DCA262886C300B18E64 /* LicenseCell.swift in Sources */,
 				A58350ED25FFCD09001AA609 /* AppDelegate.swift in Sources */,
 				A583512625FFD1BE001AA609 /* DrinkViewReactor.swift in Sources */,
+				A5C74DD72628938800B18E64 /* LicenseDetailViewController.swift in Sources */,
 				A583511F25FFCFB7001AA609 /* MainViewReactor.swift in Sources */,
 				A52B5FBB26138C32003D7AFF /* WaterRecord.swift in Sources */,
+				A5C74DC62628868800B18E64 /* LicensesViewController.swift in Sources */,
 				A583512325FFD1B2001AA609 /* DrinkViewController.swift in Sources */,
 				A515819E2603B9CA00127C98 /* ServiceProvider.swift in Sources */,
 				A56238D1261F7A3500A81F99 /* UIView+Ext.swift in Sources */,
@@ -427,6 +462,7 @@
 				A565861E2614A65300BAA9AC /* Date+Ext.swift in Sources */,
 				A583512A25FFD2C1001AA609 /* BaseViewController.swift in Sources */,
 				A52B5FB026137158003D7AFF /* CalendarViewReactor.swift in Sources */,
+				A5C74DA826275B6F00B18E64 /* AlertService.swift in Sources */,
 				A56238D4261F7DFF00A81F99 /* CalendarDescriptView.swift in Sources */,
 				A52B5F6A26122C66003D7AFF /* SettingViewReactor.swift in Sources */,
 				A58350EF25FFCD09001AA609 /* SceneDelegate.swift in Sources */,

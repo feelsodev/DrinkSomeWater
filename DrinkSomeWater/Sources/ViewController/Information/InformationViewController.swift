@@ -8,8 +8,8 @@
 import UIKit
 import ReactorKit
 import RxCocoa
-import RxSwift
 import RxDataSources
+import RxSwift
 import WaveAnimationView
 
 final class InformationViewController: BaseViewController, View {
@@ -27,11 +27,15 @@ final class InformationViewController: BaseViewController, View {
   
   // MARK: - UI
   
+  let infoLabel = UILabel().then {
+    $0.text = "설정"
+    $0.textColor = #colorLiteral(red: 0.1739570114, green: 0.1739570114, blue: 0.1739570114, alpha: 1)
+    $0.font = .systemFont(ofSize: 20, weight: .semibold)
+  }
   let backgroundView = UIView().then {
     $0.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     $0.isUserInteractionEnabled = false
   }
-  
   let containerView = UIView().then {
     $0.backgroundColor = .red
     $0.layer.shadowColor = UIColor.black.cgColor
@@ -39,9 +43,9 @@ final class InformationViewController: BaseViewController, View {
     $0.layer.shadowRadius = 10
     $0.layer.shadowOpacity = 0.5
   }
-  
   let tableView = IntrinsicTableView().then {
     $0.register(InfoCell.self, forCellReuseIdentifier: InfoCell.cellID)
+    $0.isScrollEnabled = false
     $0.layer.cornerRadius = 20
     $0.layer.masksToBounds = true
     $0.layer.borderColor = UIColor.lightGray.cgColor
@@ -49,7 +53,6 @@ final class InformationViewController: BaseViewController, View {
     $0.separatorColor = .clear
     $0.rowHeight = 60
   }
-  
   let backButton = UIButton().then {
     $0.tintColor = .black
     $0.setImage(UIImage(systemName: "arrow.left")?
@@ -89,8 +92,14 @@ final class InformationViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
     
+    self.tableView.rx.itemSelected
+      .map { Reactor.Action.itemSelect($0)}
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     // State
-    reactor.state.map { $0.sections }
+    reactor.state.asObservable()
+      .map { $0.sections }
       .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
       .disposed(by: self.disposeBag)
     
@@ -100,22 +109,50 @@ final class InformationViewController: BaseViewController, View {
       .subscribe { [weak self] _ in
         guard let `self` = self else { return }
         let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.duration = 0.4
+        transition.timingFunction
+          = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromLeft
         self.view.window?.layer.add(transition, forKey: nil)
         self.dismiss(animated: true, completion: nil)
       }
       .disposed(by: self.disposeBag)
+    
+    // View
+    self.tableView.rx.itemSelected
+      .subscribe(onNext: { [weak self] indexPath in
+        guard let `self` = self else { return }
+        self.tableView.deselectRow(at: indexPath, animated: false)
+        if indexPath.row == 0 {
+          if let bundleIdentifier = Bundle.main.bundleIdentifier,
+             let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
+            if UIApplication.shared.canOpenURL(appSettings) {
+              UIApplication.shared.open(appSettings)
+            }
+          }
+        }
+        if indexPath.row == 4 {
+          let vc = LicensesViewController()
+          let transition = CATransition()
+          transition.duration = 0.4
+          transition.type = CATransitionType.push
+          transition.subtype = CATransitionSubtype.fromRight
+          self.view.window?.layer.add(transition, forKey: kCATransition)
+          vc.modalPresentationStyle = .fullScreen
+          self.present(vc, animated: false, completion: nil)
+        }
+      })
+      .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
     self.view.backgroundColor = .white
-    [self.backButton, self.backgroundView, self.containerView, self.tableView]
+    [self.infoLabel, self.backButton, self.backgroundView, self.containerView, self.tableView]
       .forEach { self.view.addSubview($0) }
-    [self.backButton, self.tableView].forEach { self.view.bringSubviewToFront($0) }
-
+    [self.infoLabel, self.backButton, self.tableView]
+      .forEach { self.view.bringSubviewToFront($0) }
+    
     self.backgroundView.snp.makeConstraints {
       $0.top.leading.trailing.equalToSuperview()
       $0.height.equalTo(UIScreen.main.bounds.height / 4)
@@ -124,6 +161,10 @@ final class InformationViewController: BaseViewController, View {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
       $0.leading.equalToSuperview().offset(10)
       $0.width.height.equalTo(50)
+    }
+    self.infoLabel.snp.makeConstraints {
+      $0.bottom.equalTo(self.tableView.snp.top).offset(-20)
+      $0.centerX.equalToSuperview()
     }
     self.tableView.snp.makeConstraints {
       $0.top.equalTo(self.view.snp.top).offset(UIScreen.main.bounds.height / 4 - 40)

@@ -15,6 +15,7 @@ target 'DrinkSomeWater' do
   pod 'RxViewController'
   pod 'ReactorKit'
   pod 'WaveAnimationView'
+  pod 'URLNavigator'
   # Pods for DrinkSomeWater
 
 end
