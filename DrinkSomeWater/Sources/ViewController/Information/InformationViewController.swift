@@ -123,7 +123,13 @@ final class InformationViewController: BaseViewController, View {
         self.tableView.deselectRow(at: indexPath, animated: false)
         if indexPath.row == 4 {
           let vc = LicensesViewController()
-          self.present(vc, animated: true, completion: nil)
+          let transition = CATransition()
+          transition.duration = 0.4
+          transition.type = CATransitionType.push
+          transition.subtype = CATransitionSubtype.fromRight
+          self.view.window?.layer.add(transition, forKey: kCATransition)
+          vc.modalPresentationStyle = .fullScreen
+          self.present(vc, animated: false, completion: nil)
         }
       })
       .disposed(by: self.disposeBag)
