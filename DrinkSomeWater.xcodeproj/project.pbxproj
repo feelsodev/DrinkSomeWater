@@ -46,6 +46,7 @@
 		A5C74DC62628868800B18E64 /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DC52628868800B18E64 /* LicensesViewController.swift */; };
 		A5C74DCA262886C300B18E64 /* LicenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DC9262886C300B18E64 /* LicenseCell.swift */; };
 		A5C74DCF262891CC00B18E64 /* Licenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DCE262891CC00B18E64 /* Licenses.swift */; };
+		A5C74DD72628938800B18E64 /* LicenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DD62628938800B18E64 /* LicenseDetailViewController.swift */; };
 		A5D4AA7F261D7C8600CF9E91 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		A5C74DC52628868800B18E64 /* LicensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
 		A5C74DC9262886C300B18E64 /* LicenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseCell.swift; sourceTree = "<group>"; };
 		A5C74DCE262891CC00B18E64 /* Licenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Licenses.swift; sourceTree = "<group>"; };
+		A5C74DD62628938800B18E64 /* LicenseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseDetailViewController.swift; sourceTree = "<group>"; };
 		A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -298,6 +300,7 @@
 			children = (
 				A5C74DC52628868800B18E64 /* LicensesViewController.swift */,
 				A5C74DC9262886C300B18E64 /* LicenseCell.swift */,
+				A5C74DD62628938800B18E64 /* LicenseDetailViewController.swift */,
 			);
 			path = Licenses;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				A5C74DCA262886C300B18E64 /* LicenseCell.swift in Sources */,
 				A58350ED25FFCD09001AA609 /* AppDelegate.swift in Sources */,
 				A583512625FFD1BE001AA609 /* DrinkViewReactor.swift in Sources */,
+				A5C74DD72628938800B18E64 /* LicenseDetailViewController.swift in Sources */,
 				A583511F25FFCFB7001AA609 /* MainViewReactor.swift in Sources */,
 				A52B5FBB26138C32003D7AFF /* WaterRecord.swift in Sources */,
 				A5C74DC62628868800B18E64 /* LicensesViewController.swift in Sources */,
