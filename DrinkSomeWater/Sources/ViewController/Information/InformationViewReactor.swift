@@ -64,7 +64,7 @@ final class InformationViewReactor: Reactor {
       switch indexPath.row {
       case 2:
         return self.provider.alertService
-          .show(title: "문의", message: "히히히")
+          .show(title: "문의", message: "swdoriz@gmail.com 으로 문의 바랍니다.")
           .flatMap { alertAction -> Observable<Mutation> in
             return .empty()
           }
