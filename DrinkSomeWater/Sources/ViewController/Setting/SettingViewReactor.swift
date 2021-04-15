@@ -76,6 +76,6 @@ final class SettingViewReactor: Reactor {
   }
   
   func reactorForCreatingInformation() -> InformationViewReactor {
-    return InformationViewReactor()
+    return InformationViewReactor(provider: self.provider)
   }
 }

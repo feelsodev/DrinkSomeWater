@@ -8,6 +8,7 @@
 import Foundation
 import ReactorKit
 import RxSwift
+import RxCocoa
 
 final class InfoCell: BaseTableViewCell, View {
   typealias Reactor = InfoCellReactor
@@ -29,11 +30,7 @@ final class InfoCell: BaseTableViewCell, View {
     
     switch reactor.currentState.key {
     case .alarm:
-      let switchView = UISwitch().then {
-        $0.isOn = true
-        $0.isUserInteractionEnabled = true
-      }
-      self.accessoryView = switchView
+      self.accessoryType = .disclosureIndicator
     case .review:
       self.accessoryType = .disclosureIndicator
     case .version:
