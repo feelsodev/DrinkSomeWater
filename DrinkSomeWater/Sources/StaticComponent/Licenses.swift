@@ -23,6 +23,8 @@ struct Liceses {
             "WaveAnimationView",
             "URLNavigator"]
   }
+}
+struct LicesesData {
   
   let snapKit = """
   Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
