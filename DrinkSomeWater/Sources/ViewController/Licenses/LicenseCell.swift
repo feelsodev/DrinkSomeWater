@@ -18,6 +18,7 @@ final class LicenseCell: BaseTableViewCell {
   
   override func initialize() {
     self.backgroundColor = .white
+    self.accessoryType = .disclosureIndicator
   }
   
   override func setupConstraints() {
