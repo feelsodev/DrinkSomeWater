@@ -36,7 +36,6 @@ final class InformationViewController: BaseViewController, View {
     $0.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     $0.isUserInteractionEnabled = false
   }
-
   let containerView = UIView().then {
     $0.backgroundColor = .red
     $0.layer.shadowColor = UIColor.black.cgColor
@@ -46,6 +45,7 @@ final class InformationViewController: BaseViewController, View {
   }
   let tableView = IntrinsicTableView().then {
     $0.register(InfoCell.self, forCellReuseIdentifier: InfoCell.cellID)
+    $0.isScrollEnabled = false
     $0.layer.cornerRadius = 20
     $0.layer.masksToBounds = true
     $0.layer.borderColor = UIColor.lightGray.cgColor
@@ -91,7 +91,7 @@ final class InformationViewController: BaseViewController, View {
       .map { Reactor.Action.cancel }
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
-      
+    
     self.tableView.rx.itemSelected
       .map { Reactor.Action.itemSelect($0)}
       .bind(to: reactor.action)
@@ -124,6 +124,14 @@ final class InformationViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] indexPath in
         guard let `self` = self else { return }
         self.tableView.deselectRow(at: indexPath, animated: false)
+        if indexPath.row == 0 {
+          if let bundleIdentifier = Bundle.main.bundleIdentifier,
+             let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
+            if UIApplication.shared.canOpenURL(appSettings) {
+              UIApplication.shared.open(appSettings)
+            }
+          }
+        }
         if indexPath.row == 4 {
           let vc = LicensesViewController()
           let transition = CATransition()
@@ -144,7 +152,7 @@ final class InformationViewController: BaseViewController, View {
       .forEach { self.view.addSubview($0) }
     [self.infoLabel, self.backButton, self.tableView]
       .forEach { self.view.bringSubviewToFront($0) }
-
+    
     self.backgroundView.snp.makeConstraints {
       $0.top.leading.trailing.equalToSuperview()
       $0.height.equalTo(UIScreen.main.bounds.height / 4)

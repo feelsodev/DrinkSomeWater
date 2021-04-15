@@ -50,6 +50,7 @@ final class LicensesViewController: BaseViewController {
   }
   let licenseList = IntrinsicTableView().then {
     $0.register(LicenseCell.self, forCellReuseIdentifier: LicenseCell.cellID)
+    $0.isScrollEnabled = false
     $0.layer.cornerRadius = 20
     $0.layer.masksToBounds = true
     $0.layer.borderColor = UIColor.lightGray.cgColor
