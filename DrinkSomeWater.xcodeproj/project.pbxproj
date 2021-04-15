@@ -47,6 +47,7 @@
 		A5C74DCA262886C300B18E64 /* LicenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DC9262886C300B18E64 /* LicenseCell.swift */; };
 		A5C74DCF262891CC00B18E64 /* Licenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DCE262891CC00B18E64 /* Licenses.swift */; };
 		A5C74DD72628938800B18E64 /* LicenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C74DD62628938800B18E64 /* LicenseDetailViewController.swift */; };
+		A5C74DF12628B14B00B18E64 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A5C74DF02628B14B00B18E64 /* .swiftlint.yml */; };
 		A5D4AA7F261D7C8600CF9E91 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		A5C74DC9262886C300B18E64 /* LicenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseCell.swift; sourceTree = "<group>"; };
 		A5C74DCE262891CC00B18E64 /* Licenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Licenses.swift; sourceTree = "<group>"; };
 		A5C74DD62628938800B18E64 /* LicenseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseDetailViewController.swift; sourceTree = "<group>"; };
+		A5C74DF02628B14B00B18E64 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,6 +194,7 @@
 		A58350E025FFCD09001AA609 = {
 			isa = PBXGroup;
 			children = (
+				A5C74DF02628B14B00B18E64 /* .swiftlint.yml */,
 				A58350EB25FFCD09001AA609 /* DrinkSomeWater */,
 				A58350EA25FFCD09001AA609 /* Products */,
 				AC0AF68626D5CBACF8A7DC8F /* Pods */,
@@ -334,6 +337,7 @@
 				A58350E625FFCD09001AA609 /* Frameworks */,
 				A58350E725FFCD09001AA609 /* Resources */,
 				50E6DD340218BABF9B2F1A1F /* [CP] Embed Pods Frameworks */,
+				A5C74DEE2628B0F700B18E64 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -381,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5C74DF12628B14B00B18E64 /* .swiftlint.yml in Resources */,
 				A58350F925FFCD0B001AA609 /* LaunchScreen.storyboard in Resources */,
 				A58350F625FFCD0B001AA609 /* Assets.xcassets in Resources */,
 				A58350F425FFCD09001AA609 /* Main.storyboard in Resources */,
@@ -428,6 +433,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A5C74DEE2628B0F700B18E64 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
