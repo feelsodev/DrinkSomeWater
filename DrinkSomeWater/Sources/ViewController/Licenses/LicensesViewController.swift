@@ -68,8 +68,9 @@ final class LicensesViewController: BaseViewController {
   
   private func bind() {
     self.libraryOb
-      .bind(to: licenseList.rx.items(cellIdentifier: LicenseCell.cellID)) {
-        (_: Int, library: String, cell: LicenseCell) in
+      .bind(to: licenseList.rx.items(cellIdentifier: LicenseCell.cellID,
+                                     cellType: LicenseCell.self)) {
+        _, library, cell in
         cell.library.text = library
       }
       .disposed(by: self.disposeBag)
