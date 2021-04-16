@@ -21,7 +21,6 @@ final class MainViewController: BaseViewController, View {
     $0.font = .systemFont(ofSize: 40, weight: .bold)
     $0.textColor = .darkGray
     $0.numberOfLines = 0
-    $0.text = "150ml"
   }
   let descript = UILabel().then {
     $0.font = .systemFont(ofSize: 20, weight: .medium)
