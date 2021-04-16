@@ -65,8 +65,7 @@ final class DrinkViewController: BaseViewController, View {
       y: 0,
       width: UIScreen.main.bounds.width * 0.5,
       height: UIScreen.main.bounds.height * 0.37),
-    frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
-    backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    color: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
@@ -74,13 +73,11 @@ final class DrinkViewController: BaseViewController, View {
     $0.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     $0.maskImage = UIImage(named: "cup")
   }
-  
   let ml = UILabel().then {
     $0.font = .systemFont(ofSize: 40, weight: .medium)
     $0.textColor = .black
     $0.numberOfLines = 0
   }
-  
   let completeButton = UIButton().then {
     $0.setTitle("DRINK", for: .normal)
     $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
@@ -89,7 +86,6 @@ final class DrinkViewController: BaseViewController, View {
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
   }
-  
   let waveBackground = WaveAnimationView(
     frame: CGRect(
       x: 0,
@@ -103,7 +99,6 @@ final class DrinkViewController: BaseViewController, View {
     $0.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     $0.startAnimation()
   }
-  
   let cup500 = UIButton().then {
     $0.setImage(UIImage(named: "cup500"), for: .normal)
   }
