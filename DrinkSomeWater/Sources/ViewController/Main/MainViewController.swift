@@ -167,6 +167,12 @@ final class MainViewController: BaseViewController, View {
       .map { "오늘은 " + $0 + " 달성하셨어요!!" }
       .bind(to: self.descript.rx.text)
       .disposed(by: self.disposeBag)
+    
+    reactor.state.asObservable()
+      .map { Int($0.ml) }
+      .map { "\($0)ml"}
+      .bind(to: self.waterCapacity.rx.text)
+      .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
