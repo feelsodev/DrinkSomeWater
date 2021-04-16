@@ -176,8 +176,7 @@ final class SettingViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.backButton, self.moreButton, self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine,
-     self.lineView, self.goalWater, self.slider, self.setButton]
+    [self.backButton, self.moreButton, self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine, self.lineView, self.goalWater, self.slider, self.setButton]
       .forEach { self.waveBackground.addSubview($0) }
     
     self.backButton.snp.makeConstraints {
