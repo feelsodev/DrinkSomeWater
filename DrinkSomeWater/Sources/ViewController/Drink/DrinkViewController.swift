@@ -22,8 +22,7 @@ final class DrinkViewController: BaseViewController, View {
   let backButton = UIButton().then {
     $0.tintColor = .black
     $0.setImage(UIImage(systemName: "arrow.left")?
-                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal
-    )
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
     $0.contentVerticalAlignment = .fill
     $0.contentHorizontalAlignment = .fill
     $0.imageEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
@@ -34,7 +33,6 @@ final class DrinkViewController: BaseViewController, View {
     $0.layer.masksToBounds = false
     $0.layer.cornerRadius = 4.0
   }
-  
   let addWater = UIButton().then {
     $0.tintColor = .blue
     $0.setImage(UIImage(systemName: "plus.circle")?
@@ -44,7 +42,6 @@ final class DrinkViewController: BaseViewController, View {
     $0.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     $0.layer.masksToBounds = true
   }
-  
   let subWater = UIButton().then {
     $0.tintColor = .red
     $0.backgroundColor = .clear
@@ -73,9 +70,9 @@ final class DrinkViewController: BaseViewController, View {
     $0.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     $0.maskImage = UIImage(named: "cup")
   }
-  let ml = UILabel().then {
-    $0.font = .systemFont(ofSize: 40, weight: .medium)
-    $0.textColor = .black
+  let waterCapacity = UILabel().then {
+    $0.font = .systemFont(ofSize: 40, weight: .bold)
+    $0.textColor = .darkGray
     $0.numberOfLines = 0
   }
   let completeButton = UIButton().then {
@@ -159,7 +156,7 @@ final class DrinkViewController: BaseViewController, View {
       .map { $0.current }
       .distinctUntilChanged()
       .map { "\(Int($0))ml" }
-      .bind(to: self.ml.rx.text)
+      .bind(to: self.waterCapacity.rx.text)
       .disposed(by: self.disposeBag)
     
     reactor.state.asObservable()
@@ -180,7 +177,7 @@ final class DrinkViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.backButton, self.lid, self.cup, self.addWater, self.subWater, self.ml, self.completeButton,
+    [self.backButton, self.lid, self.cup, self.addWater, self.subWater, self.waterCapacity, self.completeButton,
      self.cup500, self.cup300]
       .forEach { self.waveBackground.addSubview($0) }
     
@@ -210,7 +207,7 @@ final class DrinkViewController: BaseViewController, View {
       $0.trailing.equalTo(self.cup.snp.trailing)
       $0.width.height.equalTo(70)
     }
-    self.ml.snp.makeConstraints {
+    self.waterCapacity.snp.makeConstraints {
       $0.bottom.equalTo(self.lid.snp.top).offset(-30)
       $0.centerX.equalToSuperview()
     }
