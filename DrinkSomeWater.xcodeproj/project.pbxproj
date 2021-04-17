@@ -18,6 +18,7 @@
 		A5208CF12625EE9E009E28B1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5208CF02625EE9E009E28B1 /* BaseTableViewCell.swift */; };
 		A5208CF42625EEF9009E28B1 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5208CF32625EEF9009E28B1 /* Info.swift */; };
 		A5298C0D262B496B00A32CB9 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5298C0C262B496B00A32CB9 /* IntroViewController.swift */; };
+		A5298C15262B544E00A32CB9 /* WaterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5298C14262B544E00A32CB9 /* WaterImage.swift */; };
 		A52B5F6626122C55003D7AFF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5F6526122C55003D7AFF /* SettingViewController.swift */; };
 		A52B5F6A26122C66003D7AFF /* SettingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5F6926122C65003D7AFF /* SettingViewReactor.swift */; };
 		A52B5F6D26122FAB003D7AFF /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5F6C26122FAB003D7AFF /* UserDefaultsService.swift */; };
@@ -65,6 +66,7 @@
 		A5208CF02625EE9E009E28B1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		A5208CF32625EEF9009E28B1 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		A5298C0C262B496B00A32CB9 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		A5298C14262B544E00A32CB9 /* WaterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterImage.swift; sourceTree = "<group>"; };
 		A52B5F6526122C55003D7AFF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A52B5F6926122C65003D7AFF /* SettingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewReactor.swift; sourceTree = "<group>"; };
 		A52B5F6C26122FAB003D7AFF /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				A5C74DCE262891CC00B18E64 /* Licenses.swift */,
+				A5298C14262B544E00A32CB9 /* WaterImage.swift */,
 			);
 			path = StaticComponent;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				A515819E2603B9CA00127C98 /* ServiceProvider.swift in Sources */,
 				A56238D1261F7A3500A81F99 /* UIView+Ext.swift in Sources */,
 				A5208CEB2625EE65009E28B1 /* InfoCell.swift in Sources */,
+				A5298C15262B544E00A32CB9 /* WaterImage.swift in Sources */,
 				A565861E2614A65300BAA9AC /* Date+Ext.swift in Sources */,
 				A583512A25FFD2C1001AA609 /* BaseViewController.swift in Sources */,
 				A52B5FB026137158003D7AFF /* CalendarViewReactor.swift in Sources */,
