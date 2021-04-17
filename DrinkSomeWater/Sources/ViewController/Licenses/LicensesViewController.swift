@@ -69,8 +69,8 @@ final class LicensesViewController: BaseViewController {
   private func bind() {
     self.libraryOb
       .bind(to: licenseList.rx.items(cellIdentifier: LicenseCell.cellID,
-                                     cellType: LicenseCell.self))
-      { _, library, cell in
+                                     cellType: LicenseCell.self)) {
+        _, library, cell in
         cell.library.text = library
       }
       .disposed(by: self.disposeBag)
@@ -87,7 +87,7 @@ final class LicensesViewController: BaseViewController {
       .subscribe(onNext: { [weak self] _ in
         guard let `self` = self else { return }
         let transition = CATransition()
-        transition.duration = 0.4
+        transition.duration = 0.3
         transition.timingFunction
           = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.push
