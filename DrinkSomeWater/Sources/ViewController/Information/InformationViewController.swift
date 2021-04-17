@@ -109,7 +109,7 @@ final class InformationViewController: BaseViewController, View {
       .subscribe { [weak self] _ in
         guard let `self` = self else { return }
         let transition = CATransition()
-        transition.duration = 0.4
+        transition.duration = 0.3
         transition.timingFunction
           = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.push
@@ -134,7 +134,7 @@ final class InformationViewController: BaseViewController, View {
         case 4:
           let vc = LicensesViewController()
           let transition = CATransition()
-          transition.duration = 0.4
+          transition.duration = 0.3
           transition.type = CATransitionType.push
           transition.subtype = CATransitionSubtype.fromRight
           self.view.window?.layer.add(transition, forKey: kCATransition)

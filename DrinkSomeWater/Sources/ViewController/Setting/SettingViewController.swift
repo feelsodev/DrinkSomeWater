@@ -132,7 +132,7 @@ final class SettingViewController: BaseViewController, View {
         guard let `self` = self else { return }
         let vc = InformationViewController(reactor: reactor)
         let transition = CATransition()
-        transition.duration = 0.4
+        transition.duration = 0.3
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromRight
         self.view.window?.layer.add(transition, forKey: kCATransition)

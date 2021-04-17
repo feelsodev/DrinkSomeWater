@@ -70,7 +70,7 @@ final class MainViewController: BaseViewController, View {
     $0.setImage(UIImage(named: "bulkuk"), for: .normal)
   }
   let setView = UIButton().then {
-    $0.setImage(UIImage(systemName: "gear")?
+    $0.setImage(UIImage(systemName: "slider.horizontal.3")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
     $0.tintColor = .white
     $0.contentVerticalAlignment = .fill
@@ -191,7 +191,8 @@ final class MainViewController: BaseViewController, View {
     self.setView.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
       $0.trailing.equalToSuperview().offset(-10)
-      $0.width.height.equalTo(50)
+      $0.width.equalTo(60)
+      $0.height.equalTo(50)
     }
     self.waterCapacity.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
