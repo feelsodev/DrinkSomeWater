@@ -250,14 +250,6 @@ final class DrinkViewController: BaseViewController, View {
   }
 }
 
-extension Reactive where Base: UIView {
-  var backgroundColor: Binder<UIColor> {
-    return Binder(self.base) { view, color in
-      view.backgroundColor = color
-    }
-  }
-}
-
 extension Reactive where Base: WaveAnimationView {
   var setProgress: Binder<Float> {
     return Binder(self.base) { view, progress in
