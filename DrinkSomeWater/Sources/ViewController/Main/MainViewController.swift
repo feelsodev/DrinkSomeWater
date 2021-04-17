@@ -67,7 +67,9 @@ final class MainViewController: BaseViewController, View {
     $0.startAnimation()
   }
   let addWarter = UIButton().then {
-    $0.setImage(UIImage(named: "bulkuk"), for: .normal)
+    $0.setImage(UIImage(named: "bang"), for: .normal)
+    $0.contentMode = .scaleAspectFill
+    $0.tintColor = .none
   }
   let setView = UIButton().then {
     $0.setImage(UIImage(systemName: "slider.horizontal.3")?
