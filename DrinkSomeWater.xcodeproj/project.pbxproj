@@ -17,6 +17,7 @@
 		A5208CEE2625EE71009E28B1 /* InfoCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5208CED2625EE71009E28B1 /* InfoCellReactor.swift */; };
 		A5208CF12625EE9E009E28B1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5208CF02625EE9E009E28B1 /* BaseTableViewCell.swift */; };
 		A5208CF42625EEF9009E28B1 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5208CF32625EEF9009E28B1 /* Info.swift */; };
+		A5298C0D262B496B00A32CB9 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5298C0C262B496B00A32CB9 /* IntroViewController.swift */; };
 		A52B5F6626122C55003D7AFF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5F6526122C55003D7AFF /* SettingViewController.swift */; };
 		A52B5F6A26122C66003D7AFF /* SettingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5F6926122C65003D7AFF /* SettingViewReactor.swift */; };
 		A52B5F6D26122FAB003D7AFF /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5F6C26122FAB003D7AFF /* UserDefaultsService.swift */; };
@@ -63,6 +64,7 @@
 		A5208CED2625EE71009E28B1 /* InfoCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCellReactor.swift; sourceTree = "<group>"; };
 		A5208CF02625EE9E009E28B1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		A5208CF32625EEF9009E28B1 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		A5298C0C262B496B00A32CB9 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		A52B5F6526122C55003D7AFF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A52B5F6926122C65003D7AFF /* SettingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewReactor.swift; sourceTree = "<group>"; };
 		A52B5F6C26122FAB003D7AFF /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
@@ -83,7 +85,7 @@
 		A58350F325FFCD09001AA609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A58350F525FFCD0B001AA609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A58350F825FFCD0B001AA609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A58350FA25FFCD0B001AA609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A58350FA25FFCD0B001AA609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = DrinkSomeWater/Support/Info.plist; sourceTree = SOURCE_ROOT; };
 		A583511625FFCF7E001AA609 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A583511E25FFCFB7001AA609 /* MainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewReactor.swift; sourceTree = "<group>"; };
 		A583512225FFD1B2001AA609 /* DrinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,14 @@
 				A5C74DA726275B6F00B18E64 /* AlertService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		A5298BE6262B42D000A32CB9 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A58350FA25FFCD0B001AA609 /* Info.plist */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		A52B5F6426122C42003D7AFF /* Setting */ = {
@@ -213,9 +223,9 @@
 		A58350EB25FFCD09001AA609 /* DrinkSomeWater */ = {
 			isa = PBXGroup;
 			children = (
+				A5298BE6262B42D000A32CB9 /* Support */,
 				A58351D026026746001AA609 /* Resources */,
 				A58351CF26026740001AA609 /* Sources */,
-				A58350FA25FFCD0B001AA609 /* Info.plist */,
 			);
 			path = DrinkSomeWater;
 			sourceTree = "<group>";
@@ -273,6 +283,7 @@
 				A515812A26033E3700127C98 /* Services */,
 				A58350EC25FFCD09001AA609 /* AppDelegate.swift */,
 				A58350EE25FFCD09001AA609 /* SceneDelegate.swift */,
+				A5298C0C262B496B00A32CB9 /* IntroViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -462,6 +473,7 @@
 				A52B5FAD2613714B003D7AFF /* CalendarViewController.swift in Sources */,
 				A59345072626C0D8000A5047 /* IntrinsicTableView.swift in Sources */,
 				A5C74DCF262891CC00B18E64 /* Licenses.swift in Sources */,
+				A5298C0D262B496B00A32CB9 /* IntroViewController.swift in Sources */,
 				A56586212614B71B00BAA9AC /* ModelType.swift in Sources */,
 				A5208CF42625EEF9009E28B1 /* Info.swift in Sources */,
 				A5208CE82625EBF6009E28B1 /* InformationViewReactor.swift in Sources */,
@@ -643,7 +655,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TG4L9MF5FD;
-				INFOPLIST_FILE = DrinkSomeWater/Info.plist;
+				INFOPLIST_FILE = DrinkSomeWater/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -663,7 +675,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TG4L9MF5FD;
-				INFOPLIST_FILE = DrinkSomeWater/Info.plist;
+				INFOPLIST_FILE = DrinkSomeWater/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -31,6 +31,7 @@ class CalendarDescriptView: UIView {
       $0.text = self.descript
       $0.font = .systemFont(ofSize: 15, weight: .semibold)
       $0.textAlignment = .center
+      $0.textColor = .black
     }
   }
   
