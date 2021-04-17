@@ -13,7 +13,20 @@ import RxCocoa
 final class InfoCell: BaseTableViewCell, View {
   typealias Reactor = InfoCellReactor
   
+  
+  // MARK: - Property
+  
   static let cellID = "InfoCell"
+  
+  
+  // MARK: - Constants
+  
+  struct Constant {
+    static let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+  }
+  
+  
+  // MARK: - UI
   
   let icon = UIImageView().then {
     $0.tintColor = .black
@@ -24,26 +37,24 @@ final class InfoCell: BaseTableViewCell, View {
     $0.numberOfLines = 0
   }
   
+  
+  // MARK: - Bind
+  
   func bind(reactor: Reactor) {
     self.titleLabel.text = reactor.currentState.title
     self.icon.image = reactor.currentState.key.getImage()
     
     switch reactor.currentState.key {
-    case .alarm:
-      self.accessoryType = .disclosureIndicator
-    case .review:
-      self.accessoryType = .disclosureIndicator
     case .version:
       let versionLabel = UILabel(
-        frame: CGRect(x: 0, y: 0, width: 42, height: 21)
+        frame: CGRect(x: 0, y: 0, width: 40, height: 20)
       ).then {
-        $0.text = "1.2.1"
+        $0.text = Constant.version
         $0.textColor = .black
+        $0.textAlignment = .right
       }
       self.accessoryView = versionLabel
-    case .question:
-      self.accessoryType = .disclosureIndicator
-    case .license:
+    default:
       self.accessoryType = .disclosureIndicator
     }
   }
