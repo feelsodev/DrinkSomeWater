@@ -14,23 +14,6 @@ import UserNotifications
 
 final class MainViewController: BaseViewController, View {
   
-  // MARK: - Property
-  var progress: Float = 0 {
-    didSet {
-      switch self.progress {
-      case 0..<0.3:
-        self.addWarter.setImage(UIImage(named: "bang3"), for: .normal)
-      case 0.3..<0.6:
-        self.addWarter.setImage(UIImage(named: "bang2"), for: .normal)
-      case 0.6...1.0:
-        self.addWarter.setImage(UIImage(named: "bang"), for: .normal)
-      default:
-        break
-      }
-    }
-  }
-  
-  
   // MARK: - UI
   
   let waterCapacity = UILabel().then {
@@ -177,7 +160,8 @@ final class MainViewController: BaseViewController, View {
       .map { $0.progress }
       .subscribe(onNext: { [weak self] progress in
         guard let `self` = self else { return }
-        self.progress = progress
+        let image = WaterImage.waterImage(progress: progress)
+        self.addWarter.setImage(image, for: .normal)
         self.bottle.setProgress(progress)
       })
       .disposed(by: self.disposeBag)
