@@ -41,11 +41,13 @@ class IntroViewController: UIViewController {
       self.view.layoutIfNeeded()
     } completion: { done in
       if done {
-        let serviceProvider = ServiceProvider()
-        let mainReactor = MainViewReactor(provider: serviceProvider)
-        let mainView = MainViewController(reactor: mainReactor)
-        mainView.modalPresentationStyle = .fullScreen
-        self.present(mainView, animated: false, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+          let serviceProvider = ServiceProvider()
+          let mainReactor = MainViewReactor(provider: serviceProvider)
+          let mainView = MainViewController(reactor: mainReactor)
+          mainView.modalPresentationStyle = .fullScreen
+          self.present(mainView, animated: false, completion: nil)
+        }
       }
     }
   }
