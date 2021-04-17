@@ -17,17 +17,16 @@ final class MainViewController: BaseViewController, View {
   
   // MARK: - UI
   
+  let waterCapacity = UILabel().then {
+    $0.font = .systemFont(ofSize: 40, weight: .bold)
+    $0.textColor = .darkGray
+    $0.numberOfLines = 0
+  }
   let descript = UILabel().then {
     $0.font = .systemFont(ofSize: 20, weight: .medium)
     $0.textColor = .darkGray
     $0.numberOfLines = 0
   }
-  
-  let goal = UILabel().then {
-    $0.textAlignment = .center
-    $0.textColor = .black
-  }
-  
   let lid = UIView().then {
     $0.layer.borderWidth = 0.1
     $0.layer.cornerRadius = 5
@@ -35,21 +34,18 @@ final class MainViewController: BaseViewController, View {
     $0.layer.masksToBounds = true
     $0.backgroundColor = #colorLiteral(red: 0.07843137255, green: 0.5605390058, blue: 1, alpha: 1)
   }
-  
   let lidNeck = UIView().then {
     $0.layer.borderWidth = 0.1
     $0.layer.borderColor = UIColor.lightGray.cgColor
     $0.layer.masksToBounds = true
     $0.backgroundColor = .white
   }
-  
   let bottle = WaveAnimationView(
     frame: CGRect(
       x: 0,
       y: 0,
       width: 200, height: UIScreen.main.bounds.height / 2),
-    frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
-    backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    color: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
     $0.layer.borderWidth = 0.1
     $0.layer.cornerRadius = 15
@@ -58,27 +54,23 @@ final class MainViewController: BaseViewController, View {
     $0.startAnimation()
     $0.backgroundColor = .white
   }
-  
   let waveBackground = WaveAnimationView(
     frame: CGRect(
       x: 0,
       y: 0,
       width: UIScreen.main.bounds.width,
       height: UIScreen.main.bounds.height),
-    frontColor: .clear,
-    backColor: #colorLiteral(red: 0.6, green: 0.8352941176, blue: 0.9019607843, alpha: 1)
+    color: #colorLiteral(red: 0.6, green: 0.8352941176, blue: 0.9019607843, alpha: 1)
   ).then {
     $0.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     $0.setProgress(0.5)
     $0.startAnimation()
   }
-  
   let addWarter = UIButton().then {
     $0.setImage(UIImage(named: "bulkuk"), for: .normal)
   }
-  
   let setView = UIButton().then {
-    $0.setImage(UIImage(systemName: "gear")?
+    $0.setImage(UIImage(systemName: "slider.horizontal.3")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
     $0.tintColor = .white
     $0.contentVerticalAlignment = .fill
@@ -91,7 +83,6 @@ final class MainViewController: BaseViewController, View {
     $0.layer.masksToBounds = false
     $0.layer.cornerRadius = 4.0
   }
-  
   let calendarView = UIButton().then {
     $0.setImage(UIImage(systemName: "calendar")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .light)), for: .normal)
@@ -175,11 +166,17 @@ final class MainViewController: BaseViewController, View {
       .map { "오늘은 " + $0 + " 달성하셨어요!!" }
       .bind(to: self.descript.rx.text)
       .disposed(by: self.disposeBag)
+    
+    reactor.state.asObservable()
+      .map { Int($0.ml) }
+      .map { "\($0)ml"}
+      .bind(to: self.waterCapacity.rx.text)
+      .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.calendarView, self.setView, self.descript, self.goal, self.lid, self.lidNeck, self.bottle, self.addWarter]
+    [self.calendarView, self.setView, self.waterCapacity, self.descript, self.lid, self.lidNeck, self.bottle, self.addWarter]
       .forEach { self.waveBackground.addSubview($0) }
     
     self.waveBackground.snp.makeConstraints {
@@ -194,31 +191,31 @@ final class MainViewController: BaseViewController, View {
     self.setView.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
       $0.trailing.equalToSuperview().offset(-10)
-      $0.width.height.equalTo(50)
+      $0.width.equalTo(60)
+      $0.height.equalTo(50)
+    }
+    self.waterCapacity.snp.makeConstraints {
+      $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
+      $0.centerX.equalToSuperview()
     }
     self.descript.snp.makeConstraints {
-      $0.top.equalToSuperview().offset(100)
+      $0.top.equalTo(self.waterCapacity.snp.bottom).offset(5)
       $0.centerX.equalToSuperview()
-    }
-    self.goal.snp.makeConstraints {
-      $0.top.equalTo(self.descript.snp.bottom).offset(20)
-      $0.centerX.equalToSuperview()
-      $0.width.height.equalTo(50)
     }
     self.lid.snp.makeConstraints {
-      $0.bottom.equalTo(self.lidNeck.snp.top)
+      $0.top.equalTo(self.descript.snp.bottom).offset(30)
       $0.centerX.equalToSuperview()
       $0.width.equalTo(100)
       $0.height.equalTo(30)
     }
     self.lidNeck.snp.makeConstraints {
-      $0.bottom.equalTo(self.bottle.snp.top)
+      $0.top.equalTo(self.lid.snp.bottom)
       $0.centerX.equalToSuperview()
       $0.width.equalTo(50)
       $0.height.equalTo(20)
     }
     self.bottle.snp.makeConstraints {
-      $0.top.equalTo(self.goal.snp.bottom).offset(20)
+      $0.top.equalTo(self.lidNeck.snp.bottom)
       $0.centerX.equalToSuperview()
       $0.width.equalTo(200)
       $0.height.equalTo(self.view.frame.height / 2)

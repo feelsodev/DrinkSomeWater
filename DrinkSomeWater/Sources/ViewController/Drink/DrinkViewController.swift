@@ -22,8 +22,7 @@ final class DrinkViewController: BaseViewController, View {
   let backButton = UIButton().then {
     $0.tintColor = .black
     $0.setImage(UIImage(systemName: "arrow.left")?
-                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal
-    )
+                  .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
     $0.contentVerticalAlignment = .fill
     $0.contentHorizontalAlignment = .fill
     $0.imageEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
@@ -34,7 +33,6 @@ final class DrinkViewController: BaseViewController, View {
     $0.layer.masksToBounds = false
     $0.layer.cornerRadius = 4.0
   }
-  
   let addWater = UIButton().then {
     $0.tintColor = .blue
     $0.setImage(UIImage(systemName: "plus.circle")?
@@ -44,7 +42,6 @@ final class DrinkViewController: BaseViewController, View {
     $0.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     $0.layer.masksToBounds = true
   }
-  
   let subWater = UIButton().then {
     $0.tintColor = .red
     $0.backgroundColor = .clear
@@ -65,8 +62,7 @@ final class DrinkViewController: BaseViewController, View {
       y: 0,
       width: UIScreen.main.bounds.width * 0.5,
       height: UIScreen.main.bounds.height * 0.37),
-    frontColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
-    backColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    color: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
@@ -74,13 +70,11 @@ final class DrinkViewController: BaseViewController, View {
     $0.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     $0.maskImage = UIImage(named: "cup")
   }
-  
-  let ml = UILabel().then {
-    $0.font = .systemFont(ofSize: 40, weight: .medium)
-    $0.textColor = .black
+  let waterCapacity = UILabel().then {
+    $0.font = .systemFont(ofSize: 40, weight: .bold)
+    $0.textColor = .darkGray
     $0.numberOfLines = 0
   }
-  
   let completeButton = UIButton().then {
     $0.setTitle("DRINK", for: .normal)
     $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
@@ -89,7 +83,6 @@ final class DrinkViewController: BaseViewController, View {
     $0.layer.cornerRadius = 10
     $0.layer.masksToBounds = true
   }
-  
   let waveBackground = WaveAnimationView(
     frame: CGRect(
       x: 0,
@@ -103,14 +96,24 @@ final class DrinkViewController: BaseViewController, View {
     $0.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     $0.startAnimation()
   }
-  
   let cup500 = UIButton().then {
     $0.setImage(UIImage(named: "cup500"), for: .normal)
   }
   let cup300 = UIButton().then {
     $0.setImage(UIImage(named: "cup300"), for: .normal)
   }
-  
+  let capacity500 = UILabel().then {
+    $0.text = "500ml"
+    $0.textColor = .black
+    $0.textAlignment = .center
+    $0.font = .systemFont(ofSize: 14, weight: .bold)
+  }
+  let capacity300 = UILabel().then {
+    $0.text = "300ml"
+    $0.textColor = .black
+    $0.textAlignment = .center
+    $0.font = .systemFont(ofSize: 14, weight: .bold)
+  }
   
   // MARK: - Initialize
   
@@ -164,7 +167,7 @@ final class DrinkViewController: BaseViewController, View {
       .map { $0.current }
       .distinctUntilChanged()
       .map { "\(Int($0))ml" }
-      .bind(to: self.ml.rx.text)
+      .bind(to: self.waterCapacity.rx.text)
       .disposed(by: self.disposeBag)
     
     reactor.state.asObservable()
@@ -185,8 +188,7 @@ final class DrinkViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.backButton, self.lid, self.cup, self.addWater, self.subWater, self.ml, self.completeButton,
-     self.cup500, self.cup300]
+    [self.backButton, self.lid, self.cup, self.addWater, self.subWater, self.waterCapacity, self.completeButton, self.cup500, self.cup300, self.capacity500, self.capacity300]
       .forEach { self.waveBackground.addSubview($0) }
     
     self.backButton.snp.makeConstraints {
@@ -215,7 +217,7 @@ final class DrinkViewController: BaseViewController, View {
       $0.trailing.equalTo(self.cup.snp.trailing)
       $0.width.height.equalTo(70)
     }
-    self.ml.snp.makeConstraints {
+    self.waterCapacity.snp.makeConstraints {
       $0.bottom.equalTo(self.lid.snp.top).offset(-30)
       $0.centerX.equalToSuperview()
     }
@@ -225,25 +227,25 @@ final class DrinkViewController: BaseViewController, View {
       $0.width.equalTo(100)
       $0.height.equalTo(40)
     }
-    self.cup300.snp.makeConstraints {
-      $0.trailing.equalTo(self.completeButton.snp.leading).offset(-50)
-      $0.centerY.equalTo(self.completeButton.snp.centerY)
-      $0.width.equalTo(30)
-      $0.height.equalTo(50)
-    }
     self.cup500.snp.makeConstraints {
       $0.leading.equalTo(self.completeButton.snp.trailing).offset(50)
       $0.centerY.equalTo(self.completeButton.snp.centerY)
       $0.width.equalTo(30)
       $0.height.equalTo(50)
     }
-  }
-}
-
-extension Reactive where Base: UIView {
-  var backgroundColor: Binder<UIColor> {
-    return Binder(self.base) { view, color in
-      view.backgroundColor = color
+    self.cup300.snp.makeConstraints {
+      $0.trailing.equalTo(self.completeButton.snp.leading).offset(-50)
+      $0.centerY.equalTo(self.completeButton.snp.centerY)
+      $0.width.equalTo(30)
+      $0.height.equalTo(50)
+    }
+    self.capacity500.snp.makeConstraints {
+      $0.top.equalTo(self.cup500.snp.bottom).offset(5)
+      $0.centerX.equalTo(self.cup500.snp.centerX)
+    }
+    self.capacity300.snp.makeConstraints {
+      $0.top.equalTo(self.cup300.snp.bottom).offset(5)
+      $0.centerX.equalTo(self.cup300.snp.centerX)
     }
   }
 }

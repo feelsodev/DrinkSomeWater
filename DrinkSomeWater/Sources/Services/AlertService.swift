@@ -33,7 +33,7 @@ final class AlertService: BaseService, AlertServiceProtocol {
     title: String?,
     message: String?
   ) -> Observable<Void> {
-    return Observable.create { observer in
+    return Observable.create { _ in
       let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
       let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
       alert.addAction(alertAction)
