@@ -24,7 +24,7 @@ final class LicenseCell: BaseTableViewCell {
   override func setupConstraints() {
     self.contentView.addSubview(library)
     self.library.snp.makeConstraints {
-      $0.leading.equalToSuperview().offset(10)
+      $0.leading.equalToSuperview().offset(20)
       $0.centerY.equalToSuperview()
     }
   }

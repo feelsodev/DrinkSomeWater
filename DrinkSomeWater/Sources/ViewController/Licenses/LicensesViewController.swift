@@ -69,16 +69,17 @@ final class LicensesViewController: BaseViewController {
   private func bind() {
     self.libraryOb
       .bind(to: licenseList.rx.items(cellIdentifier: LicenseCell.cellID,
-                                     cellType: LicenseCell.self)) {
-        _, library, cell in
+                                     cellType: LicenseCell.self))
+      { _, library, cell in
         cell.library.text = library
       }
       .disposed(by: self.disposeBag)
     
     self.licenseList.rx.modelSelected(String.self)
-      .subscribe(onNext: { library in
+      .subscribe(onNext: { [weak self] library in
+        guard let `self` = self else { return }
         let vc = LicenseDetailViewController(library: library)
-        self.present(vc, animated: true, completion: nil)
+        self.present(vc, animated: true)
       })
       .disposed(by: self.disposeBag)
     
@@ -92,7 +93,7 @@ final class LicensesViewController: BaseViewController {
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromLeft
         self.view.window?.layer.add(transition, forKey: nil)
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: false)
       })
       .disposed(by: self.disposeBag)
   }
