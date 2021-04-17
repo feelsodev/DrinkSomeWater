@@ -102,7 +102,18 @@ final class DrinkViewController: BaseViewController, View {
   let cup300 = UIButton().then {
     $0.setImage(UIImage(named: "cup300"), for: .normal)
   }
-  
+  let capacity500 = UILabel().then {
+    $0.text = "500ml"
+    $0.textColor = .black
+    $0.textAlignment = .center
+    $0.font = .systemFont(ofSize: 14, weight: .bold)
+  }
+  let capacity300 = UILabel().then {
+    $0.text = "300ml"
+    $0.textColor = .black
+    $0.textAlignment = .center
+    $0.font = .systemFont(ofSize: 14, weight: .bold)
+  }
   
   // MARK: - Initialize
   
@@ -177,8 +188,7 @@ final class DrinkViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.backButton, self.lid, self.cup, self.addWater, self.subWater, self.waterCapacity, self.completeButton,
-     self.cup500, self.cup300]
+    [self.backButton, self.lid, self.cup, self.addWater, self.subWater, self.waterCapacity, self.completeButton, self.cup500, self.cup300, self.capacity500, self.capacity300]
       .forEach { self.waveBackground.addSubview($0) }
     
     self.backButton.snp.makeConstraints {
@@ -217,17 +227,25 @@ final class DrinkViewController: BaseViewController, View {
       $0.width.equalTo(100)
       $0.height.equalTo(40)
     }
+    self.cup500.snp.makeConstraints {
+      $0.leading.equalTo(self.completeButton.snp.trailing).offset(50)
+      $0.centerY.equalTo(self.completeButton.snp.centerY)
+      $0.width.equalTo(30)
+      $0.height.equalTo(50)
+    }
     self.cup300.snp.makeConstraints {
       $0.trailing.equalTo(self.completeButton.snp.leading).offset(-50)
       $0.centerY.equalTo(self.completeButton.snp.centerY)
       $0.width.equalTo(30)
       $0.height.equalTo(50)
     }
-    self.cup500.snp.makeConstraints {
-      $0.leading.equalTo(self.completeButton.snp.trailing).offset(50)
-      $0.centerY.equalTo(self.completeButton.snp.centerY)
-      $0.width.equalTo(30)
-      $0.height.equalTo(50)
+    self.capacity500.snp.makeConstraints {
+      $0.top.equalTo(self.cup500.snp.bottom).offset(5)
+      $0.centerX.equalTo(self.cup500.snp.centerX)
+    }
+    self.capacity300.snp.makeConstraints {
+      $0.top.equalTo(self.cup300.snp.bottom).offset(5)
+      $0.centerX.equalTo(self.cup300.snp.centerX)
     }
   }
 }
