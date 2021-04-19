@@ -37,7 +37,11 @@ class IntroViewController: UIViewController {
       $0.width.height.equalTo(self.view.frame.height / 8)
     }
     
+<<<<<<< HEAD
+    UIView.animate(withDuration: 1.2, delay: 0.3, options: .curveEaseInOut) {
+=======
     UIView.animate(withDuration: 1.5, delay: 0.3, options: .curveEaseInOut) {
+>>>>>>> master
       self.view.layoutIfNeeded()
     } completion: { done in
       if done {
