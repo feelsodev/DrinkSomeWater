@@ -45,11 +45,11 @@ final class InformationViewReactor: Reactor {
     switch action {
     case .viewDidload:
       let info: [Info] = [
-        Info(title: "알람", key: .alarm),
-        Info(title: "리뷰 쓰기", key: .review),
-        Info(title: "문의 하기", key: .question),
-        Info(title: "앱 버전", key: .version),
-        Info(title: "라이센스", key: .license)
+        Info(title: "Alarm".localized, key: .alarm),
+        Info(title: "Review".localized, key: .review),
+        Info(title: "Contact Us".localized, key: .question),
+        Info(title: "Version".localized, key: .version),
+        Info(title: "License".localized, key: .license)
       ]
       let sectionItems = info.map(InfoCellReactor.init)
       let section = InfoSection(model: Void(), items: sectionItems)
