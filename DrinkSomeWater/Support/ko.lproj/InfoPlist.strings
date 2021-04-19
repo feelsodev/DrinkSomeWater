@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  DrinkSomeWater
+
+  Created by once on 2021/04/19.
+  
+*/
+
+// App name
+"CFBundleDisplayName" = "벌컥벌컥";
+"CFBundleName" = "벌컥벌컥";

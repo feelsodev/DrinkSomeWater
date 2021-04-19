@@ -23,9 +23,9 @@ final class CalendarViewController: BaseViewController, View {
   
   // MARK: - UI
   
-  let first = CalendarDescriptView(color: #colorLiteral(red: 0.7764705882, green: 0.2, blue: 0.1647058824, alpha: 1), descript: "오늘")
-  let second = CalendarDescriptView(color: .darkGray, descript: "선택")
-  let third = CalendarDescriptView(color: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1), descript: "성공")
+  let first = CalendarDescriptView(color: #colorLiteral(red: 0.7764705882, green: 0.2, blue: 0.1647058824, alpha: 1), descript: "Today".localized)
+  let second = CalendarDescriptView(color: .darkGray, descript: "Selected".localized)
+  let third = CalendarDescriptView(color: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1), descript: "Success".localized)
   let sun = UIImageView(image: UIImage(named: "sun"))
   let tube = UIImageView(image: UIImage(named: "tube"))
   
@@ -44,7 +44,8 @@ final class CalendarViewController: BaseViewController, View {
     $0.layer.cornerRadius = 4.0
   }
   let calendarDescript = UILabel().then {
-    $0.text = "☝️ 성공 날짜를 선택시 기록 확인이 가능합니다."
+    $0.text = "☝️ " + "You can check the history when you select a success date.".localized
+    $0.numberOfLines = 2
     $0.textColor = .darkGray
     $0.textAlignment = .center
     $0.font = .systemFont(ofSize: 17, weight: .semibold)
@@ -58,7 +59,7 @@ final class CalendarViewController: BaseViewController, View {
     $0.addArrangedSubview(self.third)
   }
   let titleLabel = UILabel().then {
-    $0.text = "이달의 목표 달성"
+    $0.text = "Goal of this month".localized
     $0.textColor = .black
     $0.font = .systemFont(ofSize: 20, weight: .medium)
     $0.textAlignment = .center
@@ -169,6 +170,7 @@ final class CalendarViewController: BaseViewController, View {
     self.calendarDescript.snp.makeConstraints {
       $0.top.equalTo(self.calendar.snp.bottom).offset(5)
       $0.leading.equalToSuperview().offset(20)
+      $0.trailing.equalToSuperview().offset(-10)
     }
     self.stackView.snp.makeConstraints {
       $0.top.equalTo(self.calendarDescript.snp.bottom).offset(10)
