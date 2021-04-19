@@ -19,7 +19,7 @@ final class LicensesViewController: BaseViewController {
   // MARK: - UI
   
   let licenseLabel = UILabel().then {
-    $0.text = "라이센스"
+    $0.text = "License".localized
     $0.textColor = #colorLiteral(red: 0.1739570114, green: 0.1739570114, blue: 0.1739570114, alpha: 1)
     $0.font = .systemFont(ofSize: 20, weight: .semibold)
   }
