@@ -28,7 +28,7 @@ final class InformationViewController: BaseViewController, View {
   // MARK: - UI
   
   let infoLabel = UILabel().then {
-    $0.text = "설정"
+    $0.text = "Set".localized
     $0.textColor = #colorLiteral(red: 0.1739570114, green: 0.1739570114, blue: 0.1739570114, alpha: 1)
     $0.font = .systemFont(ofSize: 20, weight: .semibold)
   }
