@@ -131,6 +131,15 @@ final class InformationViewController: BaseViewController, View {
               UIApplication.shared.open(appSettings)
             }
           }
+        case 1:
+          let url = "itms-apps://itunes.apple.com/app/id1563673158"
+          if let url = URL(string: url), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10.0, *) {
+              UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+              UIApplication.shared.openURL(url)
+            }
+          }
         case 4:
           let vc = LicensesViewController()
           let transition = CATransition()
