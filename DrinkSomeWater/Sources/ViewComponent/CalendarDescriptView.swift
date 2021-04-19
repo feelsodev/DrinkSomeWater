@@ -30,7 +30,6 @@ class CalendarDescriptView: UIView {
     self.descriptLabel.do {
       $0.text = self.descript
       $0.font = .systemFont(ofSize: 15, weight: .semibold)
-      $0.textAlignment = .center
       $0.textColor = .black
     }
   }
@@ -44,7 +43,7 @@ class CalendarDescriptView: UIView {
       $0.width.height.equalTo(25)
     }
     self.descriptLabel.snp.makeConstraints {
-      $0.leading.equalTo(self.circle.snp.trailing).offset(20)
+      $0.leading.equalTo(self.circle.snp.trailing).offset(10)
       $0.centerY.equalToSuperview()
     }
   }
