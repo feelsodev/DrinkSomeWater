@@ -52,6 +52,7 @@
 		A5C74DF12628B14B00B18E64 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A5C74DF02628B14B00B18E64 /* .swiftlint.yml */; };
 		A5D0F700262D521B0077B305 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D0F702262D521B0077B305 /* Localizable.strings */; };
 		A5D0F707262D54ED0077B305 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D0F706262D54ED0077B305 /* String+Ext.swift */; };
+		A5D0F71F262D5F230077B305 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D0F721262D5F230077B305 /* InfoPlist.strings */; };
 		A5D4AA7F261D7C8600CF9E91 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,8 @@
 		A5D0F701262D521B0077B305 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5D0F704262D52320077B305 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5D0F706262D54ED0077B305 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		A5D0F720262D5F230077B305 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A5D0F723262D5F260077B305 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +151,7 @@
 			children = (
 				A5D0F702262D521B0077B305 /* Localizable.strings */,
 				A58350FA25FFCD0B001AA609 /* Info.plist */,
+				A5D0F721262D5F230077B305 /* InfoPlist.strings */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -408,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D0F700262D521B0077B305 /* Localizable.strings in Resources */,
+				A5D0F71F262D5F230077B305 /* InfoPlist.strings in Resources */,
 				A5C74DF12628B14B00B18E64 /* .swiftlint.yml in Resources */,
 				A58350F925FFCD0B001AA609 /* LaunchScreen.storyboard in Resources */,
 				A58350F625FFCD0B001AA609 /* Assets.xcassets in Resources */,
@@ -549,6 +554,15 @@
 				A5D0F704262D52320077B305 /* ko */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A5D0F721262D5F230077B305 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5D0F720262D5F230077B305 /* en */,
+				A5D0F723262D5F260077B305 /* ko */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
