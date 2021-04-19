@@ -165,10 +165,10 @@ final class MainViewController: BaseViewController, View {
         self.bottle.setProgress(progress)
       })
       .disposed(by: self.disposeBag)
-    
+
     reactor.state.asObservable()
       .map { $0.progress.setPercentage() }
-      .map { "오늘은 " + $0 + " 달성하셨어요!!" }
+      .map { "You achieved ".localized + $0 + " Today!!".localized }
       .bind(to: self.descript.rx.text)
       .disposed(by: self.disposeBag)
     
