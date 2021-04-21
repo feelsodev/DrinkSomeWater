@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-  func checkToday() -> Bool {
+  var checkToday: Bool {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let today = dateFormatter.string(from: Date())
@@ -17,7 +17,7 @@ extension Date {
     return state
   }
   
-  func dateToString() -> String {
+  var dateToString: String {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
     return formatter.string(from: self)
