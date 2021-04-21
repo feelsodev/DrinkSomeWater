@@ -34,7 +34,7 @@ final class WaterService: BaseService, WaterServiceProtocol {
   func fetchWater() -> Observable<[WaterRecord]> {
     if let currentValue = self.provider.userDefaultsService.value(forkey: .current) {
       var water = currentValue.compactMap(WaterRecord.init)
-      if !water.contains(where: { $0.date.checkToday() }) {
+      if !water.contains(where: { $0.date.checkToday }) {
         guard let goalWater = self.provider.userDefaultsService.value(forkey: .goal) else {
           return .empty()
         }
@@ -72,7 +72,7 @@ final class WaterService: BaseService, WaterServiceProtocol {
     return self.fetchWater()
       .flatMap { [weak self] waterRecord -> Observable<[WaterRecord]> in
         guard let `self` = self else { return .empty() }
-        guard let index = waterRecord.firstIndex(where: { $0.date.checkToday() }) else {
+        guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
           return .empty()
         }
         var waterRecord = waterRecord
@@ -97,7 +97,7 @@ final class WaterService: BaseService, WaterServiceProtocol {
   func updateGoal(to ml: Int) -> Observable<Int> {
     if let currentValue = self.provider.userDefaultsService.value(forkey: .current) {
       let waterRecord = currentValue.compactMap(WaterRecord.init)
-      guard let index = waterRecord.firstIndex(where: { $0.date.checkToday() }) else {
+      guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
         return .empty()
       }
       var tempWaterRecord = waterRecord

@@ -74,7 +74,7 @@ final class MainViewReactor: Reactor {
     switch mutation {
     case let .updateWater(waterRecordList):
       waterRecordList.forEach { waterRecord in
-        if waterRecord.date.checkToday() {
+        if waterRecord.date.checkToday {
           newState.ml =
             waterRecord.value == 0
             ? 0
