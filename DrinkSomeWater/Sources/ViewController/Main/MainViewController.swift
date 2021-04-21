@@ -160,14 +160,14 @@ final class MainViewController: BaseViewController, View {
       .map { $0.progress }
       .subscribe(onNext: { [weak self] progress in
         guard let `self` = self else { return }
-        let image = WaterImage.waterImage(progress: progress)
+        let image = progress.waterImage
         self.addWarter.setImage(image, for: .normal)
         self.bottle.setProgress(progress)
       })
       .disposed(by: self.disposeBag)
 
     reactor.state.asObservable()
-      .map { $0.progress.setPercentage() }
+      .map { $0.progress.setPercentage }
       .map { "You achieved ".localized + $0 + " Today!!".localized }
       .bind(to: self.descript.rx.text)
       .disposed(by: self.disposeBag)
