@@ -165,7 +165,7 @@ final class InformationViewController: BaseViewController, View {
     
     self.backgroundView.snp.makeConstraints {
       $0.top.leading.trailing.equalToSuperview()
-      $0.height.equalTo(UIScreen.main.bounds.height / 4)
+      $0.height.equalTo(self.viewHeight / 4)
     }
     self.backButton.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
@@ -177,12 +177,12 @@ final class InformationViewController: BaseViewController, View {
       $0.centerX.equalToSuperview()
     }
     self.tableView.snp.makeConstraints {
-      $0.top.equalTo(self.view.snp.top).offset(UIScreen.main.bounds.height / 4 - 40)
+      $0.top.equalTo(self.view.snp.top).offset(self.viewHeight / 4 - 40)
       $0.leading.equalToSuperview().offset(15)
       $0.trailing.equalToSuperview().offset(-15)
     }
     self.containerView.snp.makeConstraints {
-      $0.top.equalTo(self.view.snp.top).offset(UIScreen.main.bounds.height / 4 - 40)
+      $0.top.equalTo(self.view.snp.top).offset(self.viewHeight / 4 - 40)
       $0.leading.equalToSuperview().offset(32)
       $0.trailing.equalToSuperview().offset(-32)
       $0.bottom.equalTo(self.tableView.snp.bottom)

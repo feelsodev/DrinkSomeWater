@@ -199,13 +199,13 @@ final class DrinkViewController: BaseViewController, View {
     self.lid.snp.makeConstraints {
       $0.bottom.equalTo(self.cup.snp.top)
       $0.centerX.equalToSuperview()
-      $0.width.equalTo(UIScreen.main.bounds.width * 0.55)
+      $0.width.equalTo(self.viewWidth * 0.55)
       $0.height.equalTo(40)
     }
     self.cup.snp.makeConstraints {
       $0.centerX.centerY.equalToSuperview()
-      $0.width.equalTo(UIScreen.main.bounds.width * 0.5)
-      $0.height.equalTo(UIScreen.main.bounds.height * 0.37)
+      $0.width.equalTo(self.viewWidth * 0.5)
+      $0.height.equalTo(self.viewHeight * 0.37)
     }
     self.addWater.snp.makeConstraints {
       $0.top.equalTo(self.cup.snp.bottom).offset(10)

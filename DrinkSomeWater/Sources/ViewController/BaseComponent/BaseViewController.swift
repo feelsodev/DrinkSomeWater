@@ -15,6 +15,7 @@ class BaseViewController: UIViewController {
   // MARK: - Property
   
   var disposeBag = DisposeBag()
+  let viewWidth = UIScreen.main.bounds.width
   let viewHeight = UIScreen.main.bounds.height
   
   
