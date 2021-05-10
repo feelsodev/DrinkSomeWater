@@ -17,6 +17,7 @@ target 'DrinkSomeWater' do
   pod 'ReactorKit'
   pod 'WaveAnimationView'
   pod 'URLNavigator'
+  pod 'Firebase/Analytics'
   # Pods for DrinkSomeWater
 
 end
