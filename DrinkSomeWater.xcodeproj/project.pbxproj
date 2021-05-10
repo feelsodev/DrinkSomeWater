@@ -26,7 +26,6 @@
 		A52B5FAD2613714B003D7AFF /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5FAC2613714B003D7AFF /* CalendarViewController.swift */; };
 		A52B5FB026137158003D7AFF /* CalendarViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5FAF26137158003D7AFF /* CalendarViewReactor.swift */; };
 		A52B5FBB26138C32003D7AFF /* WaterRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B5FBA26138C32003D7AFF /* WaterRecord.swift */; };
-		A5455E072649920C00BDD133 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5455E062649920C00BDD133 /* GoogleService-Info.plist */; };
 		A56238CE261F5DAB00A81F99 /* WaterRecordResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56238CD261F5DAB00A81F99 /* WaterRecordResultView.swift */; };
 		A56238D1261F7A3500A81F99 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56238D0261F7A3500A81F99 /* UIView+Ext.swift */; };
 		A56238D4261F7DFF00A81F99 /* CalendarDescriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56238D3261F7DFF00A81F99 /* CalendarDescriptView.swift */; };
@@ -78,7 +77,6 @@
 		A52B5FAC2613714B003D7AFF /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A52B5FAF26137158003D7AFF /* CalendarViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewReactor.swift; sourceTree = "<group>"; };
 		A52B5FBA26138C32003D7AFF /* WaterRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterRecord.swift; sourceTree = "<group>"; };
-		A5455E062649920C00BDD133 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A56238CD261F5DAB00A81F99 /* WaterRecordResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterRecordResultView.swift; sourceTree = "<group>"; };
 		A56238D0261F7A3500A81F99 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		A56238D3261F7DFF00A81F99 /* CalendarDescriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDescriptView.swift; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 		A58350EB25FFCD09001AA609 /* DrinkSomeWater */ = {
 			isa = PBXGroup;
 			children = (
-				A5455E062649920C00BDD133 /* GoogleService-Info.plist */,
 				A5298BE6262B42D000A32CB9 /* Support */,
 				A58351D026026746001AA609 /* Resources */,
 				A58351CF26026740001AA609 /* Sources */,
@@ -420,7 +417,6 @@
 				A58350F925FFCD0B001AA609 /* LaunchScreen.storyboard in Resources */,
 				A58350F625FFCD0B001AA609 /* Assets.xcassets in Resources */,
 				A58350F425FFCD09001AA609 /* Main.storyboard in Resources */,
-				A5455E072649920C00BDD133 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
