@@ -18,6 +18,7 @@ target 'DrinkSomeWater' do
   pod 'WaveAnimationView'
   pod 'URLNavigator'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
   # Pods for DrinkSomeWater
 
 end
