@@ -35,6 +35,7 @@
 		A5694529261A1B6100E6E751 /* Float+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5694528261A1B6100E6E751 /* Float+Ext.swift */; };
 		A5694531261B59AF00E6E751 /* Beaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5694530261B59AF00E6E751 /* Beaker.swift */; };
 		A571764E264C079C00DF0BFF /* DrinkSomeWaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A571764D264C079C00DF0BFF /* DrinkSomeWaterTests.swift */; };
+		A5717669264C2E5800DF0BFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5717668264C2E5800DF0BFF /* GoogleService-Info.plist */; };
 		A58350ED25FFCD09001AA609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58350EC25FFCD09001AA609 /* AppDelegate.swift */; };
 		A58350EF25FFCD09001AA609 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58350EE25FFCD09001AA609 /* SceneDelegate.swift */; };
 		A58350F425FFCD09001AA609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58350F225FFCD09001AA609 /* Main.storyboard */; };
@@ -101,6 +102,7 @@
 		A571764B264C079C00DF0BFF /* DrinkSomeWaterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrinkSomeWaterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A571764D264C079C00DF0BFF /* DrinkSomeWaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkSomeWaterTests.swift; sourceTree = "<group>"; };
 		A571764F264C079C00DF0BFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5717668264C2E5800DF0BFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A58350E925FFCD09001AA609 /* DrinkSomeWater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrinkSomeWater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58350EC25FFCD09001AA609 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A58350EE25FFCD09001AA609 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		A58350EB25FFCD09001AA609 /* DrinkSomeWater */ = {
 			isa = PBXGroup;
 			children = (
+				A5717668264C2E5800DF0BFF /* GoogleService-Info.plist */,
 				A5298BE6262B42D000A32CB9 /* Support */,
 				A58351D026026746001AA609 /* Resources */,
 				A58351CF26026740001AA609 /* Sources */,
@@ -489,6 +492,7 @@
 				A58350F925FFCD0B001AA609 /* LaunchScreen.storyboard in Resources */,
 				A58350F625FFCD0B001AA609 /* Assets.xcassets in Resources */,
 				A58350F425FFCD09001AA609 /* Main.storyboard in Resources */,
+				A5717669264C2E5800DF0BFF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
