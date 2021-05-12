@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C3B6142E6A612229B89FD20 /* Pods_DrinkSomeWater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */; };
+		99101C5D3D8EBF4FC3B09103 /* Pods_DrinkSomeWater_DrinkSomeWaterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28D5AE584BA2322DB7C19C7 /* Pods_DrinkSomeWater_DrinkSomeWaterTests.framework */; };
 		A515819E2603B9CA00127C98 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515819D2603B9CA00127C98 /* ServiceProvider.swift */; };
 		A51581A22603BA0900127C98 /* WaterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51581A12603BA0900127C98 /* WaterService.swift */; };
 		A51581A52603BA1300127C98 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51581A42603BA1300127C98 /* BaseService.swift */; };
@@ -68,7 +69,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AC6DAFCCD111BC4FCD2262A /* Pods-DrinkSomeWater-DrinkSomeWaterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater-DrinkSomeWaterTests.debug.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater-DrinkSomeWaterTests/Pods-DrinkSomeWater-DrinkSomeWaterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3FBBD24534AEAB0D6C58FD1B /* Pods-DrinkSomeWater.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.debug.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.debug.xcconfig"; sourceTree = "<group>"; };
+		8130EE5BDBECBF2B08228C54 /* Pods-DrinkSomeWater-DrinkSomeWaterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater-DrinkSomeWaterTests.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater-DrinkSomeWaterTests/Pods-DrinkSomeWater-DrinkSomeWaterTests.release.xcconfig"; sourceTree = "<group>"; };
 		8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrinkSomeWater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A515819D2603B9CA00127C98 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		A51581A12603BA0900127C98 /* WaterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterService.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 		A5D0F723262D5F260077B305 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.release.xcconfig"; sourceTree = "<group>"; };
+		F28D5AE584BA2322DB7C19C7 /* Pods_DrinkSomeWater_DrinkSomeWaterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrinkSomeWater_DrinkSomeWaterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99101C5D3D8EBF4FC3B09103 /* Pods_DrinkSomeWater_DrinkSomeWaterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +156,7 @@
 			children = (
 				A5D4AA7E261D7C8600CF9E91 /* UserNotifications.framework */,
 				8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */,
+				F28D5AE584BA2322DB7C19C7 /* Pods_DrinkSomeWater_DrinkSomeWaterTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -378,6 +384,8 @@
 			children = (
 				3FBBD24534AEAB0D6C58FD1B /* Pods-DrinkSomeWater.debug.xcconfig */,
 				CA841476C35A00EFF94D63E1 /* Pods-DrinkSomeWater.release.xcconfig */,
+				0AC6DAFCCD111BC4FCD2262A /* Pods-DrinkSomeWater-DrinkSomeWaterTests.debug.xcconfig */,
+				8130EE5BDBECBF2B08228C54 /* Pods-DrinkSomeWater-DrinkSomeWaterTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -389,9 +397,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5717654264C079C00DF0BFF /* Build configuration list for PBXNativeTarget "DrinkSomeWaterTests" */;
 			buildPhases = (
+				250B2A5E554ED17667BDA54A /* [CP] Check Pods Manifest.lock */,
 				A5717647264C079C00DF0BFF /* Sources */,
 				A5717648264C079C00DF0BFF /* Frameworks */,
 				A5717649264C079C00DF0BFF /* Resources */,
+				B8DC8F02F10B92E5387B9E37 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -485,6 +495,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		250B2A5E554ED17667BDA54A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DrinkSomeWater-DrinkSomeWaterTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		50E6DD340218BABF9B2F1A1F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -540,6 +572,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+		B8DC8F02F10B92E5387B9E37 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrinkSomeWater-DrinkSomeWaterTests/Pods-DrinkSomeWater-DrinkSomeWaterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrinkSomeWater-DrinkSomeWaterTests/Pods-DrinkSomeWater-DrinkSomeWaterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DrinkSomeWater-DrinkSomeWaterTests/Pods-DrinkSomeWater-DrinkSomeWaterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -648,6 +697,7 @@
 /* Begin XCBuildConfiguration section */
 		A5717652264C079C00DF0BFF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AC6DAFCCD111BC4FCD2262A /* Pods-DrinkSomeWater-DrinkSomeWaterTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -669,6 +719,7 @@
 		};
 		A5717653264C079C00DF0BFF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8130EE5BDBECBF2B08228C54 /* Pods-DrinkSomeWater-DrinkSomeWaterTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
