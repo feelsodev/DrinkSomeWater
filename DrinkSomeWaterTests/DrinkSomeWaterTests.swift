@@ -41,4 +41,20 @@ class DrinkSomeWaterTests: XCTestCase {
     reactor.action.onNext(.decreseWater)
     XCTAssertEqual(reactor.currentState.current, 50)
   }
+  
+  func testDrinkWaterSet500() {
+    let provider = ServiceProvider()
+    let reactor = DrinkViewReactor(provider: provider)
+
+    reactor.action.onNext(.set500)
+    XCTAssertEqual(reactor.currentState.current, 500)
+  }
+  
+  func testDrinkWaterSet300() {
+    let provider = ServiceProvider()
+    let reactor = DrinkViewReactor(provider: provider)
+
+    reactor.action.onNext(.set300)
+    XCTAssertEqual(reactor.currentState.current, 300)
+  }
 }
