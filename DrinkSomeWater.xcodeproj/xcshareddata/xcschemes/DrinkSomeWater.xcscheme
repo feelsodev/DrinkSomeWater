@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A571764A264C079C00DF0BFF"
+               BuildableName = "DrinkSomeWaterTests.xctest"
+               BlueprintName = "DrinkSomeWaterTests"
+               ReferencedContainer = "container:DrinkSomeWater.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
