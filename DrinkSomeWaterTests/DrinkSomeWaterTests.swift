@@ -78,6 +78,7 @@ class DrinkSomeWaterTests: XCTestCase {
   }
   
   func testDrinkWaterDismiss() {
+    // it should dismiss on cancel
     let provider = ServiceProvider()
     let reactor = DrinkViewReactor(provider: provider)
     
@@ -86,5 +87,32 @@ class DrinkSomeWaterTests: XCTestCase {
     
     // assert
     XCTAssertEqual(reactor.currentState.shouldDismissed, true)
+    
+    
+    let reactorCalendar = CalendarViewReactor(provider: provider)
+    
+    // input
+    reactorCalendar.action.onNext(.cancel)
+    
+    // assert
+    XCTAssertEqual(reactorCalendar.currentState.shouldDismissed, true)
+    
+    
+    let reactorInfomation = InformationViewReactor(provider: provider)
+    
+    // input
+    reactorInfomation.action.onNext(.cancel)
+    
+    // assert
+    XCTAssertEqual(reactorInfomation.currentState.shouldDismissed, true)
+    
+    
+    let reactorSetting = SettingViewReactor(provider: provider)
+    
+    // input
+    reactorSetting.action.onNext(.cancel)
+    
+    // assert
+    XCTAssertEqual(reactorSetting.currentState.shouldDismissed, true)
   }
 }
