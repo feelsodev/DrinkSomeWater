@@ -5,12 +5,13 @@
 //  Created by once on 2021/03/16.
 //
 
-import Foundation
+import UIKit
 import ReactorKit
 import RxSwift
 
 final class DrinkViewReactor: Reactor {
   enum Action {
+    case tapCup(CGFloat)
     case increseWater
     case decreseWater
     case set500
@@ -20,6 +21,7 @@ final class DrinkViewReactor: Reactor {
   }
   
   enum Mutation {
+    case chageCupState(CGFloat)
     case increseWaterValue
     case decreseWaterValue
     case set500Value
@@ -47,6 +49,8 @@ final class DrinkViewReactor: Reactor {
   
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
+    case let .tapCup(progress):
+      return .just(.chageCupState(progress))
     case .increseWater:
       return .just(.increseWaterValue)
     case .decreseWater:
@@ -71,6 +75,11 @@ final class DrinkViewReactor: Reactor {
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {
+    case let .chageCupState(progress):
+      let currentValue = Int(progress * 500)
+      let current = currentValue - currentValue % 10
+      newState.current = Float(current)
+      newState.progress = Float(progress)
     case .increseWaterValue:
       let total = newState.total
       let current = newState.current
