@@ -17,6 +17,12 @@ final class DrinkViewController: BaseViewController, View {
     self.waveBackground.stopAnimation()
   }
   
+  // MARK: Constants
+  
+  struct Metric {
+    static let height = UIScreen.main.bounds.height * 0.37
+  }
+  
   // MARK: - UI
   
   let backButton = UIButton().then {

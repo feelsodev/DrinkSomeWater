@@ -12,6 +12,7 @@ target 'DrinkSomeWater' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
+  pod 'RxGesture'
   pod 'RxOptional'
   pod 'RxViewController'
   pod 'ReactorKit'
