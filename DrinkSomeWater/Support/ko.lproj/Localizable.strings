@@ -17,6 +17,7 @@
 "You can check the history when you select a success date."
 = "성공 날짜를 선택 시 기록 확인이 가능합니다.";
 "Goal of this month" = "이달의 목표 달성";
+"MMMM, YYYY" = "YYYY년 M월";
 
 // Infomation
 "Alarm" = "알람";
