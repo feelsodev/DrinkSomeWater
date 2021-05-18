@@ -9,6 +9,7 @@ import UIKit
 import ReactorKit
 import RxCocoa
 import RxSwift
+import RxGesture
 import WaveAnimationView
 
 final class DrinkViewController: BaseViewController, View {
@@ -138,6 +139,18 @@ final class DrinkViewController: BaseViewController, View {
   func bind(reactor: DrinkViewReactor) {
     
     // Action
+    self.cup.rx.tapGesture()
+      .when(.recognized)
+      .map { [weak self] sender in
+        let point = sender.location(in: self?.cup)
+        let height = Metric.height - point.y
+        let progress = height / Metric.height
+        return progress
+      }
+      .map { Reactor.Action.tapCup($0) }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     self.backButton.rx.tap
       .map { Reactor.Action.cancel }
       .bind(to: reactor.action)
