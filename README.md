@@ -6,7 +6,7 @@
 <p align="center">
   <img alt="Swift" src="https://img.shields.io/badge/Swift-5.2-orange.svg">
   <img alt="platform" src="https://img.shields.io/badge/platform-iOS-lightgrey">
-  <img alt="iOS" src="https://img.shields.io/badge/iOS-13%2B-yellow">
+  <img alt="iOS" src="https://img.shields.io/badge/iOS-14%2B-yellow">
   <img alt="Xcode" src="https://img.shields.io/badge/xcode-12.4-blue">
 </p>
 
