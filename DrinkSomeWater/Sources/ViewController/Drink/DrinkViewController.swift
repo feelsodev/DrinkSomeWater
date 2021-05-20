@@ -139,15 +139,35 @@ final class DrinkViewController: BaseViewController, View {
   func bind(reactor: DrinkViewReactor) {
     
     // Action
-    self.cup.rx.tapGesture()
-      .when(.recognized)
-      .map { [weak self] sender in
-        let point = sender.location(in: self?.cup)
+    let gesture = self.cup.rx
+      .anyGesture(
+        (.tap(), when: .ended),
+        (.pan(), when: .began),
+        (.pan(), when: .ended),
+        (.pan(), when: .changed)
+        )
+
+    gesture
+      .filter { $0.state == .ended }
+      .map { [weak self] tapped in
+        let point = tapped.location(in: self?.cup)
         let height = Metric.height - point.y
         let progress = height / Metric.height
         return progress
       }
+      .filter { $0 >= 0 && $0 <= 1 }
       .map { Reactor.Action.tapCup($0) }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
+    gesture
+      .filter { $0.state != .ended }
+      .map { [weak self] swipe in
+        swipe.location(in: self?.cup).y
+      }
+      .filter { $0 >= 0 && $0 <= Metric.height }
+      .map { $0 * 500 / Metric.height }
+      .map { Reactor.Action.didScroll($0) }
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
     
@@ -183,14 +203,15 @@ final class DrinkViewController: BaseViewController, View {
     
     // State
     reactor.state.asObservable()
-      .map { $0.current }
+      .map { $0.currentValue }
       .distinctUntilChanged()
       .map { "\(Int($0))ml" }
       .bind(to: self.waterCapacity.rx.text)
       .disposed(by: self.disposeBag)
     
     reactor.state.asObservable()
-      .map { $0.current / $0.total }
+      .map { $0.currentValue / $0.maxValue }
+      .distinctUntilChanged()
       .map { Float($0) }
       .bind(to: self.cup.rx.setProgress)
       .disposed(by: self.disposeBag)
