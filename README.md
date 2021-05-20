@@ -18,7 +18,7 @@
 <img src="https://user-images.githubusercontent.com/59601439/115507144-b3401100-a2b6-11eb-851f-004131149e61.png">
 
 ## 구조
-- ReactorKit
+- [ReactorKit](https://github.com/ReactorKit/ReactorKit)
 
 ## 📕 의존성
 > Third party framewok 및 Library는 Cocoapods를 사용하여 관리됩니다.
