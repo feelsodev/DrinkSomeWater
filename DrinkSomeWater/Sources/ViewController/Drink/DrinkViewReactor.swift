@@ -84,8 +84,8 @@ final class DrinkViewReactor: Reactor {
       let currentValue = tempValue - tempValue % 10
       if currentValue >= 500 {
         newState.currentValue = 500
-      } else if currentValue < 20 {
-        newState.currentValue = 20
+      } else if currentValue < 30 {
+        newState.currentValue = 30
       } else {
         newState.currentValue = Float(currentValue)
       }
@@ -96,30 +96,32 @@ final class DrinkViewReactor: Reactor {
       let progress = currentValue / self.currentState.maxValue
       if currentValue >= 495 {
         newState.currentValue = 500
-      } else if currentValue <= 25 {
-        newState.currentValue = 20
+      } else if currentValue <= 35 {
+        newState.currentValue = 30
       } else {
         let tempValue = Int(currentValue) - Int(currentValue) % 10
         newState.currentValue = Float(tempValue)
       }
       newState.progress = progress
     case .increseWaterValue:
-      let maxValue = self.currentState.maxValue
-      let current = newState.currentValue
-      let progress = current / maxValue
+      newState.currentValue =
+        newState.currentValue + 50 > 500
+        ? 500
+        : self.currentState.currentValue + 50
       
-      if maxValue >= current + 50 {
-        newState.currentValue += 50
-      }
+      let maxValue = self.currentState.maxValue
+      let currentValue = newState.currentValue
+      let progress = currentValue / maxValue
       newState.progress = progress
     case .decreseWaterValue:
-      let maxValue = self.currentState.maxValue
-      let current = newState.currentValue
-      let progress = current / maxValue
+      newState.currentValue =
+        newState.currentValue - 50 < 30
+        ? 30
+        : self.currentState.currentValue - 50
       
-      if 0 <= current - 50 {
-        newState.currentValue -= 50
-      }
+      let maxValue = self.currentState.maxValue
+      let currentValue = newState.currentValue
+      let progress = currentValue / maxValue
       newState.progress = progress
     case .set500Value:
       newState.currentValue = 500
