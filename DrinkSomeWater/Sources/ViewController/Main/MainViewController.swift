@@ -43,7 +43,8 @@ final class MainViewController: BaseViewController, View {
     frame: CGRect(
       x: 0,
       y: 0,
-      width: 200, height: UIScreen.main.bounds.height / 2),
+      width: 200,
+      height: UIScreen.main.bounds.height / 2),
     color: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
   ).then {
     $0.layer.borderWidth = 0.1
@@ -160,14 +161,14 @@ final class MainViewController: BaseViewController, View {
       .map { $0.progress }
       .subscribe(onNext: { [weak self] progress in
         guard let `self` = self else { return }
-        let image = WaterImage.waterImage(progress: progress)
+        let image = progress.waterImage
         self.addWarter.setImage(image, for: .normal)
         self.bottle.setProgress(progress)
       })
       .disposed(by: self.disposeBag)
 
     reactor.state.asObservable()
-      .map { $0.progress.setPercentage() }
+      .map { $0.progress.setPercentage }
       .map { "You achieved ".localized + $0 + " Today!!".localized }
       .bind(to: self.descript.rx.text)
       .disposed(by: self.disposeBag)

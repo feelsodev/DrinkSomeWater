@@ -9,12 +9,19 @@ import UIKit
 import ReactorKit
 import RxCocoa
 import RxSwift
+import RxGesture
 import WaveAnimationView
 
 final class DrinkViewController: BaseViewController, View {
   deinit {
     self.cup.stopAnimation()
     self.waveBackground.stopAnimation()
+  }
+  
+  // MARK: Constants
+  
+  struct Metric {
+    static let height = UIScreen.main.bounds.height * 0.37
   }
   
   // MARK: - UI
@@ -132,6 +139,38 @@ final class DrinkViewController: BaseViewController, View {
   func bind(reactor: DrinkViewReactor) {
     
     // Action
+    let gesture = self.cup.rx
+      .anyGesture(
+        (.tap(), when: .ended),
+        (.pan(), when: .began),
+        (.pan(), when: .ended),
+        (.pan(), when: .changed)
+        )
+
+    gesture
+      .filter { $0.state == .ended }
+      .map { [weak self] tapped in
+        let point = tapped.location(in: self?.cup)
+        let height = Metric.height - point.y
+        let progress = height / Metric.height
+        return progress
+      }
+      .filter { $0 >= 0 && $0 <= 1 }
+      .map { Reactor.Action.tapCup($0) }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
+    gesture
+      .filter { $0.state != .ended }
+      .map { [weak self] swipe in
+        swipe.location(in: self?.cup).y
+      }
+      .filter { $0 >= 0 && $0 <= Metric.height }
+      .map { $0 * 500 / Metric.height }
+      .map { Reactor.Action.didScroll($0) }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+    
     self.backButton.rx.tap
       .map { Reactor.Action.cancel }
       .bind(to: reactor.action)
@@ -164,14 +203,15 @@ final class DrinkViewController: BaseViewController, View {
     
     // State
     reactor.state.asObservable()
-      .map { $0.current }
+      .map { $0.currentValue }
       .distinctUntilChanged()
       .map { "\(Int($0))ml" }
       .bind(to: self.waterCapacity.rx.text)
       .disposed(by: self.disposeBag)
     
     reactor.state.asObservable()
-      .map { $0.current / $0.total }
+      .map { $0.currentValue / $0.maxValue }
+      .distinctUntilChanged()
       .map { Float($0) }
       .bind(to: self.cup.rx.setProgress)
       .disposed(by: self.disposeBag)
@@ -199,13 +239,13 @@ final class DrinkViewController: BaseViewController, View {
     self.lid.snp.makeConstraints {
       $0.bottom.equalTo(self.cup.snp.top)
       $0.centerX.equalToSuperview()
-      $0.width.equalTo(UIScreen.main.bounds.width * 0.55)
+      $0.width.equalTo(self.viewWidth * 0.55)
       $0.height.equalTo(40)
     }
     self.cup.snp.makeConstraints {
       $0.centerX.centerY.equalToSuperview()
-      $0.width.equalTo(UIScreen.main.bounds.width * 0.5)
-      $0.height.equalTo(UIScreen.main.bounds.height * 0.37)
+      $0.width.equalTo(self.viewWidth * 0.5)
+      $0.height.equalTo(self.viewHeight * 0.37)
     }
     self.addWater.snp.makeConstraints {
       $0.top.equalTo(self.cup.snp.bottom).offset(10)
