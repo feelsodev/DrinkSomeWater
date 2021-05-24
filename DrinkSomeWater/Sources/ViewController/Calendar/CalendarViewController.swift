@@ -68,8 +68,15 @@ final class CalendarViewController: BaseViewController, View {
     $0.delegate = self
     $0.dataSource = self
     $0.backgroundColor = .clear
-    $0.appearance.headerMinimumDissolvedAlpha = 0.0
-    $0.appearance.selectionColor = .darkGray
+    $0.appearance.do {
+      $0.selectionColor = .darkGray
+      $0.headerMinimumDissolvedAlpha = 0.0
+      $0.headerDateFormat = "MMMM, YYYY".localized
+      $0.headerTitleColor = .black
+      $0.weekdayTextColor = .black
+      $0.headerTitleFont = .systemFont(ofSize: 18, weight: .semibold)
+      $0.weekdayFont = .systemFont(ofSize: 14, weight: .bold)
+    }
   }
   lazy var waveBackground = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
@@ -117,7 +124,7 @@ final class CalendarViewController: BaseViewController, View {
         self.waterRecordList = waterRecordList
         waterRecordList.forEach {
           if $0.isSuccess {
-            self.date.append($0.date.dateToString())
+            self.date.append($0.date.dateToString)
           }
         }
       })
@@ -193,7 +200,7 @@ extension CalendarViewController: FSCalendarDataSource,
   func calendar(_ calendar: FSCalendar,
                 appearance: FSCalendarAppearance,
                 fillDefaultColorFor date: Date) -> UIColor? {
-    if self.date.contains(date.dateToString()) {
+    if self.date.contains(date.dateToString) {
       return #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     } else {
       return nil
@@ -203,7 +210,7 @@ extension CalendarViewController: FSCalendarDataSource,
   func calendar(_ calendar: FSCalendar,
                 appearance: FSCalendarAppearance,
                 titleDefaultColorFor date: Date) -> UIColor? {
-    if self.date.contains(date.dateToString()) {
+    if self.date.contains(date.dateToString) {
       return .white
     } else {
       return nil
@@ -213,16 +220,16 @@ extension CalendarViewController: FSCalendarDataSource,
   func calendar(_ calendar: FSCalendar,
                 didSelect date: Date,
                 at monthPosition: FSCalendarMonthPosition) {
-    let selectedDate = date.dateToString()
+    let selectedDate = date.dateToString
     if self.date.contains(selectedDate) {
       guard let waterRecordList = self.waterRecordList else { return }
       waterRecordList.forEach { waterRecord in
-        if waterRecord.date.dateToString() == selectedDate {
+        if waterRecord.date.dateToString == selectedDate {
           self.record.fadeIn()
           self.record.do {
             $0.goal.text = "📌 목표량 : \(waterRecord.goal) ml"
             $0.capacity.text = "🥛 섭취량 : \(waterRecord.value) ml"
-            let precetage = (Float(waterRecord.value) / Float(waterRecord.goal)).setPercentage()
+            let precetage = (Float(waterRecord.value) / Float(waterRecord.goal)).setPercentage
             $0.percentage.text = "📝 달성률 : " + precetage
           }
         }

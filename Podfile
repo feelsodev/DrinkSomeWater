@@ -12,11 +12,19 @@ target 'DrinkSomeWater' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
+  pod 'RxGesture'
   pod 'RxOptional'
   pod 'RxViewController'
   pod 'ReactorKit'
   pod 'WaveAnimationView'
   pod 'URLNavigator'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
   # Pods for DrinkSomeWater
 
+  target 'DrinkSomeWaterTests' do
+    pod 'Firebase/Analytics'
+    pod 'Firebase/Crashlytics'
+  end
+  
 end
