@@ -5,12 +5,14 @@
 //  Created by once on 2021/03/16.
 //
 
-import Foundation
+import UIKit
 import ReactorKit
 import RxSwift
 
 final class DrinkViewReactor: Reactor {
   enum Action {
+    case tapCup(CGFloat)
+    case didScroll(CGFloat)
     case increseWater
     case decreseWater
     case set500
@@ -20,6 +22,8 @@ final class DrinkViewReactor: Reactor {
   }
   
   enum Mutation {
+    case didTapChangeWater(CGFloat)
+    case didScrollChangeWater(CGFloat)
     case increseWaterValue
     case decreseWaterValue
     case set500Value
@@ -28,8 +32,8 @@ final class DrinkViewReactor: Reactor {
   }
   
   struct State {
-    var total: Float = 500
-    var current: Float = 150
+    var maxValue: Float = 530
+    var currentValue: Float = 150
     var progress: Float = 0
     var shouldDismissed: Bool = false
   }
@@ -47,6 +51,8 @@ final class DrinkViewReactor: Reactor {
   
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
+    case let .tapCup(progress):
+      return .just(.didTapChangeWater(progress))
     case .increseWater:
       return .just(.increseWaterValue)
     case .decreseWater:
@@ -56,7 +62,7 @@ final class DrinkViewReactor: Reactor {
     case .set300:
       return .just(.set300Value)
     case .addWater:
-      let ml = self.currentState.current
+      let ml = self.currentState.currentValue
       return self.provider.warterService.updateWater(to: ml)
         .map { _ in .dismiss}
     case .cancel:
@@ -65,38 +71,64 @@ final class DrinkViewReactor: Reactor {
       } else {
         return .empty()
       }
+    case let .didScroll(value):
+      return .just(.didScrollChangeWater(value))
     }
   }
   
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {
-    case .increseWaterValue:
-      let total = newState.total
-      let current = newState.current
-      let progress = current / total
-      
-      if total >= current + 50 {
-        newState.current += 50
-        self.initialState.current += 50
+    case let .didTapChangeWater(progress):
+      let tempValue = Int(progress * 530)
+      let currentValue = tempValue - tempValue % 10
+      if currentValue >= 500 {
+        newState.currentValue = 500
+      } else if currentValue < 30 {
+        newState.currentValue = 30
+      } else {
+        newState.currentValue = Float(currentValue)
       }
+      
+      newState.progress = Float(progress)
+    case let .didScrollChangeWater(value):
+      let currentValue = self.currentState.maxValue - Float(value)
+      let progress = currentValue / self.currentState.maxValue
+      if currentValue >= 495 {
+        newState.currentValue = 500
+      } else if currentValue <= 35 {
+        newState.currentValue = 30
+      } else {
+        let tempValue = Int(currentValue) - Int(currentValue) % 10
+        newState.currentValue = Float(tempValue)
+      }
+      newState.progress = progress
+    case .increseWaterValue:
+      newState.currentValue =
+        newState.currentValue + 50 > 500
+        ? 500
+        : self.currentState.currentValue + 50
+      
+      let maxValue = self.currentState.maxValue
+      let currentValue = newState.currentValue
+      let progress = currentValue / maxValue
       newState.progress = progress
     case .decreseWaterValue:
-      let total = newState.total
-      let current = newState.current
-      let progress = current / total
+      newState.currentValue =
+        newState.currentValue - 50 < 30
+        ? 30
+        : self.currentState.currentValue - 50
       
-      if 0 <= current - 50 {
-        newState.current -= 50
-        self.initialState.current -= 50
-      }
+      let maxValue = self.currentState.maxValue
+      let currentValue = newState.currentValue
+      let progress = currentValue / maxValue
       newState.progress = progress
     case .set500Value:
-      newState.current = 500
-      self.initialState.current = 500
+      newState.currentValue = 500
+      self.initialState.currentValue = 500
     case .set300Value:
-      newState.current = 300
-      self.initialState.current = 300
+      newState.currentValue = 300
+      self.initialState.currentValue = 300
     case .dismiss:
       newState.shouldDismissed = true
     }

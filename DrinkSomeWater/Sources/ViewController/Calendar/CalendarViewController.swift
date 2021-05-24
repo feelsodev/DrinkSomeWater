@@ -68,8 +68,15 @@ final class CalendarViewController: BaseViewController, View {
     $0.delegate = self
     $0.dataSource = self
     $0.backgroundColor = .clear
-    $0.appearance.headerMinimumDissolvedAlpha = 0.0
-    $0.appearance.selectionColor = .darkGray
+    $0.appearance.do {
+      $0.selectionColor = .darkGray
+      $0.headerMinimumDissolvedAlpha = 0.0
+      $0.headerDateFormat = "MMMM, YYYY".localized
+      $0.headerTitleColor = .black
+      $0.weekdayTextColor = .black
+      $0.headerTitleFont = .systemFont(ofSize: 18, weight: .semibold)
+      $0.weekdayFont = .systemFont(ofSize: 14, weight: .bold)
+    }
   }
   lazy var waveBackground = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
