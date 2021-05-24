@@ -32,7 +32,7 @@ final class DrinkViewReactor: Reactor {
   }
   
   struct State {
-    var maxValue: Float = 500
+    var maxValue: Float = 530
     var currentValue: Float = 150
     var progress: Float = 0
     var shouldDismissed: Bool = false
@@ -80,14 +80,28 @@ final class DrinkViewReactor: Reactor {
     var newState = state
     switch mutation {
     case let .didTapChangeWater(progress):
-      let tempValue = Int(progress * 500)
+      let tempValue = Int(progress * 530)
       let currentValue = tempValue - tempValue % 10
-      newState.currentValue = Float(currentValue)
+      if currentValue >= 500 {
+        newState.currentValue = 500
+      } else if currentValue < 20 {
+        newState.currentValue = 20
+      } else {
+        newState.currentValue = Float(currentValue)
+      }
+      
       newState.progress = Float(progress)
     case let .didScrollChangeWater(value):
-      let valueReverse = self.currentState.maxValue - Float(value)
-      let progress = valueReverse / self.currentState.maxValue
-      newState.currentValue = Float(valueReverse)
+      let currentValue = self.currentState.maxValue - Float(value)
+      let progress = currentValue / self.currentState.maxValue
+      if currentValue >= 495 {
+        newState.currentValue = 500
+      } else if currentValue <= 25 {
+        newState.currentValue = 20
+      } else {
+        let tempValue = Int(currentValue) - Int(currentValue) % 10
+        newState.currentValue = Float(tempValue)
+      }
       newState.progress = progress
     case .increseWaterValue:
       let maxValue = self.currentState.maxValue
@@ -96,7 +110,6 @@ final class DrinkViewReactor: Reactor {
       
       if maxValue >= current + 50 {
         newState.currentValue += 50
-        self.initialState.currentValue += 50
       }
       newState.progress = progress
     case .decreseWaterValue:
@@ -106,7 +119,6 @@ final class DrinkViewReactor: Reactor {
       
       if 0 <= current - 50 {
         newState.currentValue -= 50
-        self.initialState.currentValue -= 50
       }
       newState.progress = progress
     case .set500Value:
