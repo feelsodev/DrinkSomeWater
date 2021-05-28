@@ -14,9 +14,11 @@ class DrinkSomeWaterTests: XCTestCase {
   
   func testDrinkWaterFetch() {
     let provider = ServiceProvider()
+    
+    // when
     let reactor = DrinkViewReactor(provider: provider)
     
-    // assert
+    // then
     XCTAssertEqual(reactor.currentState.progress, 0, "failed progress data check")
     XCTAssertEqual(reactor.currentState.current, 150, "failed current data check")
     XCTAssertEqual(reactor.currentState.total, 500, "failed total data check")
@@ -24,95 +26,88 @@ class DrinkSomeWaterTests: XCTestCase {
   
   func testDrinkWaterIncerese() {
     let provider = ServiceProvider()
+    
+    // given
     let reactor = DrinkViewReactor(provider: provider)
 
-    // input
+    // when
     reactor.action.onNext(.increseWater)
     
-    // assert
+    // then
     XCTAssertEqual(reactor.currentState.current, 200)
 
-    // input
+    // when
     reactor.action.onNext(.increseWater)
     
-    // assert
+    // then
     XCTAssertEqual(reactor.currentState.current, 250)
   }
   
   func testDrinkWaterDecerese() {
     let provider = ServiceProvider()
+    
+    // given
     let reactor = DrinkViewReactor(provider: provider)
 
-    // input
+    // when
     reactor.action.onNext(.decreseWater)
     
-    // assert
+    // then
     XCTAssertEqual(reactor.currentState.current, 100)
 
-    // input
+    // when
     reactor.action.onNext(.decreseWater)
     
-    // assert
+    // then
     XCTAssertEqual(reactor.currentState.current, 50)
   }
   
   func testDrinkWaterSet500() {
     let provider = ServiceProvider()
+    
+    // given
     let reactor = DrinkViewReactor(provider: provider)
 
+    // when
     reactor.action.onNext(.set500)
     
-    // assert
+    // then
     XCTAssertEqual(reactor.currentState.current, 500)
   }
   
   func testDrinkWaterSet300() {
     let provider = ServiceProvider()
+    
+    // given
     let reactor = DrinkViewReactor(provider: provider)
 
-    // input
+    // when
     reactor.action.onNext(.set300)
     
-    // assert
+    // when
     XCTAssertEqual(reactor.currentState.current, 300)
   }
   
   func testDrinkWaterDismiss() {
     // it should dismiss on cancel
     let provider = ServiceProvider()
-    let reactor = DrinkViewReactor(provider: provider)
     
-    // input
-    reactor.action.onNext(.cancel)
-    
-    // assert
-    XCTAssertEqual(reactor.currentState.shouldDismissed, true)
-    
-    
+    // given
+    let reactorDrink = DrinkViewReactor(provider: provider)
     let reactorCalendar = CalendarViewReactor(provider: provider)
-    
-    // input
-    reactorCalendar.action.onNext(.cancel)
-    
-    // assert
-    XCTAssertEqual(reactorCalendar.currentState.shouldDismissed, true)
-    
-    
     let reactorInfomation = InformationViewReactor(provider: provider)
-    
-    // input
-    reactorInfomation.action.onNext(.cancel)
-    
-    // assert
-    XCTAssertEqual(reactorInfomation.currentState.shouldDismissed, true)
-    
-    
     let reactorSetting = SettingViewReactor(provider: provider)
     
-    // input
+    // when
+    reactorDrink.action.onNext(.cancel)
+    reactorCalendar.action.onNext(.cancel)
+    reactorInfomation.action.onNext(.cancel)
     reactorSetting.action.onNext(.cancel)
     
-    // assert
+    // then
+    XCTAssertEqual(reactorDrink.currentState.shouldDismissed, true)
+    XCTAssertEqual(reactorCalendar.currentState.shouldDismissed, true)
+    XCTAssertEqual(reactorInfomation.currentState.shouldDismissed, true)
     XCTAssertEqual(reactorSetting.currentState.shouldDismissed, true)
   }
 }
