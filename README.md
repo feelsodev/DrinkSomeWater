@@ -44,21 +44,21 @@
 ## 🔫 기능 설명
 ### 물마시기 기능
 - 슬라이드, + - 버튼, 물컵을 클릭하여 내가 마시는 용량을 편리하게 조절 가능합니다.
-<p align="center">
+<p align="left">
 <img src="https://user-images.githubusercontent.com/59601439/119791869-2d942e80-bf10-11eb-86a8-93b1774e49a0.GIF" width="300" /> 
 </p>
 <br>
 
 ### 목표량 조절하기 기능
 - 슬라이드를 통해서 자신의 목표량을 조절 가능합니다.
-<p align="center">
+<p align="left">
 <img src="https://user-images.githubusercontent.com/59601439/119791864-2c630180-bf10-11eb-8e2a-db2b42b6dfb1.GIF" width="300" />
 </p>
 <br>
 
 ### 달력을 통해 달성량 확인
 - 달력에 표시된 날짜를 통해서 자신이 달성한 데이터를 확인 가능합니다.
-<p align="center">
+<p align="left">
 <img src="https://user-images.githubusercontent.com/59601439/119792036-55839200-bf10-11eb-94e5-f9f41d41e939.PNG" width="300" />
 </p>
 
