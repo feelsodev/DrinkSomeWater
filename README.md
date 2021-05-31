@@ -3,6 +3,12 @@
 
 <img src="https://user-images.githubusercontent.com/59601439/115199996-bd370800-a12e-11eb-8f70-bc1ab0a0c97d.PNG">
 
+<p align=center>
+<a href="https://apps.apple.com/kr/app/%EB%B2%8C%EC%BB%A5%EB%B2%8C%EC%BB%A5/id1563673158">
+<img src="https://user-images.githubusercontent.com/59601439/120217924-fefdb700-c273-11eb-9425-63860bf2c9a3.png">
+</a>
+<p>
+
 <p align="center">
   <img alt="Swift" src="https://img.shields.io/badge/Swift-5.2-orange.svg">
   <img alt="platform" src="https://img.shields.io/badge/platform-iOS-lightgrey">
