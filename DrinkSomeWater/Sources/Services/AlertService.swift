@@ -20,7 +20,7 @@ extension AlertActionType {
   }
 }
 
-protocol AlertServiceProtocol: class {
+protocol AlertServiceProtocol: AnyObject {
   func show(
     title: String?,
     message: String?
