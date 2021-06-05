@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ServiceProviderProtocol: class {
+protocol ServiceProviderProtocol: AnyObject {
   var userDefaultsService: UserDefaultsServiceProtocol { get }
   var warterService: WaterServiceProtocol { get }
   var alertService: AlertServiceProtocol { get }
