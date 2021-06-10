@@ -24,6 +24,39 @@ class DrinkSomeWaterTests: XCTestCase {
     XCTAssertEqual(reactor.currentState.maxValue, 530, "failed total data check")
   }
   
+  func testDrinkWaterTap() {
+    let provider = ServiceProvider()
+    
+    // given
+    let reactor = DrinkViewReactor(provider: provider)
+
+    // when
+    reactor.action.onNext(.tapCup(0.5))
+    let firstTestValue = Int(0.5 * 530) - Int(0.5 * 530) % 10
+    
+    // then
+    XCTAssertEqual(reactor.currentState.currentValue, Float(firstTestValue))
+    
+    // when
+    reactor.action.onNext(.tapCup(0.9))
+    let secondTestValue = Int(0.9 * 530) - Int(0.9 * 530) % 10
+    
+    // then
+    XCTAssertEqual(reactor.currentState.currentValue, Float(secondTestValue))
+    
+    // when
+    reactor.action.onNext(.tapCup(1))
+    
+    // then
+    XCTAssertEqual(reactor.currentState.currentValue, 500)
+    
+    // when
+    reactor.action.onNext(.tapCup(0))
+    
+    // then
+    XCTAssertEqual(reactor.currentState.currentValue, 30)
+  }
+  
   func testDrinkWaterIncerese() {
     let provider = ServiceProvider()
     
