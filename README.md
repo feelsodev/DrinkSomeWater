@@ -68,3 +68,6 @@
 <img src="https://user-images.githubusercontent.com/59601439/119792036-55839200-bf10-11eb-94e5-f9f41d41e939.PNG" width="300" />
 </p>
 
+
+## License
+- 벌컥벌컥은 프로젝트는 MIT license 아래 관리됩니다. 자세한 사항은 [LICENSE](https://github.com/feelsodev/DrinkSomeWater/blob/master/LICENSE) 에서 확인 가능합니다.
