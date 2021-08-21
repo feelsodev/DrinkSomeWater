@@ -131,13 +131,7 @@ final class SettingViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = InformationViewController(reactor: reactor)
-        let transition = CATransition()
-        transition.duration = 0.3
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        self.view.window?.layer.add(transition, forKey: kCATransition)
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: false, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
       })
       .disposed(by: self.disposeBag)
     
@@ -169,7 +163,7 @@ final class SettingViewController: BaseViewController, View {
       .filter { $0 }
       .subscribe { [weak self] _ in
         guard let `self` = self else { return }
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
       }
       .disposed(by: self.disposeBag)
   }
