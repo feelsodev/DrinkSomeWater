@@ -23,8 +23,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     if serviceProvider.userDefaultsService.value(forkey: .goal) == nil {
       serviceProvider.userDefaultsService.set(value: 1500, forkey: .goal)
     }
+    
     let intro = IntroViewController()
-    window?.rootViewController = intro
+    let navIntro = UINavigationController(rootViewController: intro)
+    window?.rootViewController = navIntro
     window?.windowScene = scene
     window?.makeKeyAndVisible()
   }
