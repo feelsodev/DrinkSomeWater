@@ -5,18 +5,23 @@ target 'DrinkSomeWater' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
+  # UI
   pod 'FSCalendar'
-  pod 'SwiftLint'
-  pod 'Then'
   pod 'SnapKit'
+  pod 'WaveAnimationView'
+  
+  # Rx
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
   pod 'RxGesture'
   pod 'RxOptional'
   pod 'RxViewController'
+  
+  # Etc
+  pod 'SwiftLint'
+  pod 'Then'
   pod 'ReactorKit'
-  pod 'WaveAnimationView'
   pod 'URLNavigator'
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'

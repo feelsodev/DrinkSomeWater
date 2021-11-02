@@ -68,8 +68,10 @@ final class LicensesViewController: BaseViewController {
   
   private func bind() {
     self.libraryOb
-      .bind(to: licenseList.rx.items(cellIdentifier: LicenseCell.cellID,
-                                     cellType: LicenseCell.self)) {
+      .bind(to: licenseList.rx.items(
+        cellIdentifier: LicenseCell.cellID,
+        cellType: LicenseCell.self
+      )) {
         _, library, cell in
         cell.library.text = library
       }
@@ -77,7 +79,7 @@ final class LicensesViewController: BaseViewController {
     
     self.licenseList.rx.modelSelected(String.self)
       .subscribe(onNext: { [weak self] library in
-        guard let `self` = self else { return }
+        guard let self = self else { return }
         let vc = LicenseDetailViewController(library: library)
         self.present(vc, animated: true)
       })
@@ -85,24 +87,20 @@ final class LicensesViewController: BaseViewController {
     
     self.backButton.rx.tap
       .subscribe(onNext: { [weak self] _ in
-        guard let `self` = self else { return }
-        let transition = CATransition()
-        transition.duration = 0.3
-        transition.timingFunction
-          = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromLeft
-        self.view.window?.layer.add(transition, forKey: nil)
-        self.dismiss(animated: false)
+        guard let self = self else { return }
+        self.navigationController?.popViewController(animated: true)
       })
       .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
-    [self.licenseLabel, self.backButton, self.backgroundView, self.containerView, self.licenseList]
-      .forEach { self.view.addSubview($0) }
-    [self.licenseLabel, self.backButton, self.licenseList]
-      .forEach { self.view.bringSubviewToFront($0) }
+    self.view.addSubviews([
+      self.licenseLabel, self.backButton, self.backgroundView, self.containerView, self.licenseList
+    ])
+    
+    self.view.bringSubviewsToFront([
+      self.licenseLabel, self.backButton, self.licenseList
+    ])
 
     self.backgroundView.snp.makeConstraints {
       $0.top.leading.trailing.equalToSuperview()

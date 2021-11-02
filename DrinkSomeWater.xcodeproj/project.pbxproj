@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		204892DA26D10FC000DA0E07 /* WaveAnimationView+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204892D926D10FC000DA0E07 /* WaveAnimationView+Reactive.swift */; };
 		7C3B6142E6A612229B89FD20 /* Pods_DrinkSomeWater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */; };
 		99101C5D3D8EBF4FC3B09103 /* Pods_DrinkSomeWater_DrinkSomeWaterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28D5AE584BA2322DB7C19C7 /* Pods_DrinkSomeWater_DrinkSomeWaterTests.framework */; };
 		A515819E2603B9CA00127C98 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515819D2603B9CA00127C98 /* ServiceProvider.swift */; };
@@ -71,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		0AC6DAFCCD111BC4FCD2262A /* Pods-DrinkSomeWater-DrinkSomeWaterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater-DrinkSomeWaterTests.debug.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater-DrinkSomeWaterTests/Pods-DrinkSomeWater-DrinkSomeWaterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		204892D926D10FC000DA0E07 /* WaveAnimationView+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaveAnimationView+Reactive.swift"; sourceTree = "<group>"; };
 		3FBBD24534AEAB0D6C58FD1B /* Pods-DrinkSomeWater.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater.debug.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater/Pods-DrinkSomeWater.debug.xcconfig"; sourceTree = "<group>"; };
 		8130EE5BDBECBF2B08228C54 /* Pods-DrinkSomeWater-DrinkSomeWaterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkSomeWater-DrinkSomeWaterTests.release.xcconfig"; path = "Target Support Files/Pods-DrinkSomeWater-DrinkSomeWaterTests/Pods-DrinkSomeWater-DrinkSomeWaterTests.release.xcconfig"; sourceTree = "<group>"; };
 		8D2822984807841FED2DF729 /* Pods_DrinkSomeWater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrinkSomeWater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +155,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		204892DB26D117BA00DA0E07 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		71BBE197FBE07A1781C819D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +237,7 @@
 				A5694528261A1B6100E6E751 /* Float+Ext.swift */,
 				A56238D0261F7A3500A81F99 /* UIView+Ext.swift */,
 				A5D0F706262D54ED0077B305 /* String+Ext.swift */,
+				204892D926D10FC000DA0E07 /* WaveAnimationView+Reactive.swift */,
 			);
 			path = "Extensions-Utillities";
 			sourceTree = "<group>";
@@ -328,6 +338,7 @@
 		A58351CF26026740001AA609 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				204892DB26D117BA00DA0E07 /* Constants */,
 				A5C74DCD262891AE00B18E64 /* StaticComponent */,
 				A52B5FB926138BC8003D7AFF /* Models */,
 				A569452B261B596300E6E751 /* ViewComponent */,
@@ -615,6 +626,7 @@
 				A5D0F707262D54ED0077B305 /* String+Ext.swift in Sources */,
 				A5C74DCF262891CC00B18E64 /* Licenses.swift in Sources */,
 				A5298C0D262B496B00A32CB9 /* IntroViewController.swift in Sources */,
+				204892DA26D10FC000DA0E07 /* WaveAnimationView+Reactive.swift in Sources */,
 				A56586212614B71B00BAA9AC /* ModelType.swift in Sources */,
 				A5208CF42625EEF9009E28B1 /* Info.swift in Sources */,
 				A5208CE82625EBF6009E28B1 /* InformationViewReactor.swift in Sources */,

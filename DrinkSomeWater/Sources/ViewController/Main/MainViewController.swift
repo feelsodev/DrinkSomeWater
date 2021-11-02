@@ -16,30 +16,34 @@ final class MainViewController: BaseViewController, View {
   
   // MARK: - UI
   
-  let waterCapacity = UILabel().then {
+  private let waterCapacity = UILabel().then {
     $0.font = .systemFont(ofSize: 40, weight: .bold)
     $0.textColor = .darkGray
     $0.numberOfLines = 0
   }
-  let descript = UILabel().then {
+  
+  private let descript = UILabel().then {
     $0.font = .systemFont(ofSize: 20, weight: .medium)
     $0.textColor = .darkGray
     $0.numberOfLines = 0
   }
-  let lid = UIView().then {
+  
+  private let lid = UIView().then {
     $0.layer.borderWidth = 0.1
     $0.layer.cornerRadius = 5
     $0.layer.borderColor = UIColor.lightGray.cgColor
     $0.layer.masksToBounds = true
     $0.backgroundColor = #colorLiteral(red: 0.07843137255, green: 0.5605390058, blue: 1, alpha: 1)
   }
-  let lidNeck = UIView().then {
+  
+  private let lidNeck = UIView().then {
     $0.layer.borderWidth = 0.1
     $0.layer.borderColor = UIColor.lightGray.cgColor
     $0.layer.masksToBounds = true
     $0.backgroundColor = .white
   }
-  let bottle = WaveAnimationView(
+  
+  private let bottle = WaveAnimationView(
     frame: CGRect(
       x: 0,
       y: 0,
@@ -54,7 +58,8 @@ final class MainViewController: BaseViewController, View {
     $0.startAnimation()
     $0.backgroundColor = .white
   }
-  let waveBackground = WaveAnimationView(
+  
+  private let waveBackground = WaveAnimationView(
     frame: CGRect(
       x: 0,
       y: 0,
@@ -66,11 +71,13 @@ final class MainViewController: BaseViewController, View {
     $0.setProgress(0.5)
     $0.startAnimation()
   }
-  let addWarter = UIButton().then {
+  
+  private let addWarter = UIButton().then {
     $0.contentMode = .scaleAspectFill
     $0.tintColor = .none
   }
-  let setView = UIButton().then {
+  
+  private let setView = UIButton().then {
     $0.setImage(UIImage(systemName: "slider.horizontal.3")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
     $0.tintColor = .white
@@ -84,7 +91,8 @@ final class MainViewController: BaseViewController, View {
     $0.layer.masksToBounds = false
     $0.layer.cornerRadius = 4.0
   }
-  let calendarView = UIButton().then {
+  
+  private let calendarView = UIButton().then {
     $0.setImage(UIImage(systemName: "calendar")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .light)), for: .normal)
     $0.tintColor = .white
@@ -112,7 +120,7 @@ final class MainViewController: BaseViewController, View {
   }
   
   
-  // MARK: Binding
+  // MARK: - Bind
   
   func bind(reactor: MainViewReactor) {
     
@@ -133,7 +141,7 @@ final class MainViewController: BaseViewController, View {
         guard let `self` = self else { return }
         let vc = SettingViewController(reactor: reactor)
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
       })
       .disposed(by: self.disposeBag)
     
@@ -142,8 +150,7 @@ final class MainViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = DrinkViewController(reactor: reactor)
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
       })
       .disposed(by: self.disposeBag)
     
@@ -182,8 +189,10 @@ final class MainViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.calendarView, self.setView, self.waterCapacity, self.descript, self.lid, self.lidNeck, self.bottle, self.addWarter]
-      .forEach { self.waveBackground.addSubview($0) }
+    self.waveBackground.addSubviews([
+      self.calendarView, self.setView, self.waterCapacity, self.descript,
+      self.lid, self.lidNeck, self.bottle, self.addWarter
+    ])
     
     self.waveBackground.snp.makeConstraints {
       $0.edges.equalToSuperview()
