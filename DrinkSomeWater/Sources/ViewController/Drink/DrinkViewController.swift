@@ -147,7 +147,7 @@ final class DrinkViewController: BaseViewController, View {
   }
   
   
-  // MARK: Binding
+  // MARK: - Bind
   
   func bind(reactor: DrinkViewReactor) {
     
@@ -242,8 +242,10 @@ final class DrinkViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.backButton, self.lid, self.cup, self.addWater, self.subWater, self.waterCapacity, self.completeButton, self.cup500, self.cup300, self.capacity500, self.capacity300]
-      .forEach { self.waveBackground.addSubview($0) }
+    self.waveBackground.addSubviews([
+      self.backButton, self.lid, self.cup, self.addWater, self.subWater, self.waterCapacity,
+      self.completeButton, self.cup500, self.cup300, self.capacity500, self.capacity300
+    ])
     
     self.backButton.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
