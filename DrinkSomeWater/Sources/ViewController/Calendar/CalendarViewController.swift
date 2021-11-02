@@ -23,13 +23,13 @@ final class CalendarViewController: BaseViewController, View {
   
   // MARK: - UI
   
-  let first = CalendarDescriptView(color: #colorLiteral(red: 0.7764705882, green: 0.2, blue: 0.1647058824, alpha: 1), descript: "Today".localized)
-  let second = CalendarDescriptView(color: .darkGray, descript: "Selected".localized)
-  let third = CalendarDescriptView(color: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1), descript: "Success".localized)
-  let sun = UIImageView(image: UIImage(named: "sun"))
-  let tube = UIImageView(image: UIImage(named: "tube"))
+  private let first = CalendarDescriptView(color: #colorLiteral(red: 0.7764705882, green: 0.2, blue: 0.1647058824, alpha: 1), descript: "Today".localized)
+  private let second = CalendarDescriptView(color: .darkGray, descript: "Selected".localized)
+  private let third = CalendarDescriptView(color: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1), descript: "Success".localized)
+  private let sun = UIImageView(image: UIImage(named: "sun"))
+  private let tube = UIImageView(image: UIImage(named: "tube"))
   
-  let dismissButton = UIButton().then {
+  private let dismissButton = UIButton().then {
     $0.setImage(UIImage(systemName: "xmark")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
     $0.tintColor = .black
@@ -43,14 +43,16 @@ final class CalendarViewController: BaseViewController, View {
     $0.layer.masksToBounds = false
     $0.layer.cornerRadius = 4.0
   }
-  let calendarDescript = UILabel().then {
+  
+  private let calendarDescript = UILabel().then {
     $0.text = "☝️ " + "You can check the history when you select a success date.".localized
     $0.numberOfLines = 2
     $0.textColor = .darkGray
     $0.textAlignment = .center
     $0.font = .systemFont(ofSize: 17, weight: .semibold)
   }
-  lazy var stackView = UIStackView().then {
+  
+  private lazy var stackView = UIStackView().then {
     $0.axis = .horizontal
     $0.distribution = .fillEqually
     $0.spacing = 5
@@ -58,13 +60,15 @@ final class CalendarViewController: BaseViewController, View {
     $0.addArrangedSubview(self.second)
     $0.addArrangedSubview(self.third)
   }
-  let titleLabel = UILabel().then {
+  
+  private let titleLabel = UILabel().then {
     $0.text = "Goal of this month".localized
     $0.textColor = .black
     $0.font = .systemFont(ofSize: 20, weight: .medium)
     $0.textAlignment = .center
   }
-  lazy var calendar = FSCalendar().then {
+  
+  private lazy var calendar = FSCalendar().then {
     $0.delegate = self
     $0.dataSource = self
     $0.backgroundColor = .clear
@@ -78,7 +82,8 @@ final class CalendarViewController: BaseViewController, View {
       $0.weekdayFont = .systemFont(ofSize: 14, weight: .bold)
     }
   }
-  lazy var waveBackground = WaveAnimationView(
+  
+  private lazy var waveBackground = WaveAnimationView(
     frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height),
     frontColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1),
     backColor: #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
@@ -87,7 +92,8 @@ final class CalendarViewController: BaseViewController, View {
     $0.setProgress(0.4)
     $0.startAnimation()
   }
-  let record = WaterRecordResultView().then {
+  
+  private let record = WaterRecordResultView().then {
     $0.isHidden = true
   }
   
@@ -102,6 +108,9 @@ final class CalendarViewController: BaseViewController, View {
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  
+  // MARK: - Bind
   
   func bind(reactor: CalendarViewReactor) {
     
@@ -143,8 +152,10 @@ final class CalendarViewController: BaseViewController, View {
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.dismissButton, self.sun, self.tube, self.stackView,
-     self.titleLabel, self.calendar, self.calendarDescript, self.record].forEach { self.waveBackground.addSubview($0) }
+    self.waveBackground.addSubviews([
+      self.dismissButton, self.sun, self.tube, self.stackView,
+      self.titleLabel, self.calendar, self.calendarDescript, self.record
+    ])
     
     self.waveBackground.snp.makeConstraints {
       $0.edges.equalToSuperview()
@@ -197,9 +208,11 @@ final class CalendarViewController: BaseViewController, View {
 extension CalendarViewController: FSCalendarDataSource,
                                   FSCalendarDelegate,
                                   FSCalendarDelegateAppearance {
-  func calendar(_ calendar: FSCalendar,
-                appearance: FSCalendarAppearance,
-                fillDefaultColorFor date: Date) -> UIColor? {
+  func calendar(
+    _ calendar: FSCalendar,
+    appearance: FSCalendarAppearance,
+    fillDefaultColorFor date: Date
+  ) -> UIColor? {
     if self.date.contains(date.dateToString) {
       return #colorLiteral(red: 0.2487368572, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     } else {
@@ -207,9 +220,11 @@ extension CalendarViewController: FSCalendarDataSource,
     }
   }
   
-  func calendar(_ calendar: FSCalendar,
-                appearance: FSCalendarAppearance,
-                titleDefaultColorFor date: Date) -> UIColor? {
+  func calendar(
+    _ calendar: FSCalendar,
+    appearance: FSCalendarAppearance,
+    titleDefaultColorFor date: Date
+  ) -> UIColor? {
     if self.date.contains(date.dateToString) {
       return .white
     } else {
@@ -217,9 +232,11 @@ extension CalendarViewController: FSCalendarDataSource,
     }
   }
   
-  func calendar(_ calendar: FSCalendar,
-                didSelect date: Date,
-                at monthPosition: FSCalendarMonthPosition) {
+  func calendar(
+    _ calendar: FSCalendar,
+    didSelect date: Date,
+    at monthPosition: FSCalendarMonthPosition
+  ) {
     let selectedDate = date.dateToString
     if self.date.contains(selectedDate) {
       guard let waterRecordList = self.waterRecordList else { return }
