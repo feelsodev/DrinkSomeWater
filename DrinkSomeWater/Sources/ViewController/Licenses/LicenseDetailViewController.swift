@@ -25,7 +25,6 @@ final class LicenseDetailViewController: UIViewController {
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .medium)), for: .normal)
     $0.contentVerticalAlignment = .fill
     $0.contentHorizontalAlignment = .fill
-//    $0.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
     $0.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
     $0.layer.shadowOpacity = 1.0

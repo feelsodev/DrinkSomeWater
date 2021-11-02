@@ -27,23 +27,26 @@ final class InformationViewController: BaseViewController, View {
   
   // MARK: - UI
   
-  let infoLabel = UILabel().then {
+  private let infoLabel = UILabel().then {
     $0.text = "Set".localized
     $0.textColor = #colorLiteral(red: 0.1739570114, green: 0.1739570114, blue: 0.1739570114, alpha: 1)
     $0.font = .systemFont(ofSize: 20, weight: .semibold)
   }
-  let backgroundView = UIView().then {
+  
+  private let backgroundView = UIView().then {
     $0.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     $0.isUserInteractionEnabled = false
   }
-  let containerView = UIView().then {
+  
+  private let containerView = UIView().then {
     $0.backgroundColor = .red
     $0.layer.shadowColor = UIColor.black.cgColor
     $0.layer.shadowOffset = .zero
     $0.layer.shadowRadius = 10
     $0.layer.shadowOpacity = 0.5
   }
-  let tableView = IntrinsicTableView().then {
+  
+  private let tableView = IntrinsicTableView().then {
     $0.register(InfoCell.self, forCellReuseIdentifier: InfoCell.cellID)
     $0.isScrollEnabled = false
     $0.layer.cornerRadius = 20
@@ -53,7 +56,8 @@ final class InformationViewController: BaseViewController, View {
     $0.separatorColor = .clear
     $0.rowHeight = 60
   }
-  let backButton = UIButton().then {
+  
+  private let backButton = UIButton().then {
     $0.tintColor = .black
     $0.setImage(UIImage(systemName: "arrow.left")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
@@ -68,16 +72,21 @@ final class InformationViewController: BaseViewController, View {
     $0.layer.cornerRadius = 4.0
   }
   
+  
   // MARK: - Initialize
   
   init(reactor: InformationViewReactor) {
     super.init()
+//    self.view.backgroundColor = .white
     self.reactor = reactor
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  
+  // MARK: - Bind
   
   func bind(reactor: InformationViewReactor) {
     
@@ -107,22 +116,15 @@ final class InformationViewController: BaseViewController, View {
       .map { $0.shouldDismissed }
       .distinctUntilChanged()
       .subscribe { [weak self] _ in
-        guard let `self` = self else { return }
-        let transition = CATransition()
-        transition.duration = 0.3
-        transition.timingFunction
-          = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromLeft
-        self.view.window?.layer.add(transition, forKey: nil)
-        self.dismiss(animated: true, completion: nil)
+        guard let self = self else { return }
+        self.navigationController?.popViewController(animated: true)
       }
       .disposed(by: self.disposeBag)
     
     // View
     self.tableView.rx.itemSelected
       .subscribe(onNext: { [weak self] indexPath in
-        guard let `self` = self else { return }
+        guard let self = self else { return }
         switch indexPath.row {
         case 0:
           if let bundleIdentifier = Bundle.main.bundleIdentifier,
@@ -142,13 +144,7 @@ final class InformationViewController: BaseViewController, View {
           }
         case 4:
           let vc = LicensesViewController()
-          let transition = CATransition()
-          transition.duration = 0.3
-          transition.type = CATransitionType.push
-          transition.subtype = CATransitionSubtype.fromRight
-          self.view.window?.layer.add(transition, forKey: kCATransition)
-          vc.modalPresentationStyle = .fullScreen
-          self.present(vc, animated: false, completion: nil)
+          self.navigationController?.pushViewController(vc, animated: true)
         default:
           break
         }
@@ -157,11 +153,12 @@ final class InformationViewController: BaseViewController, View {
   }
   
   override func setupConstraints() {
-    self.view.backgroundColor = .white
-    [self.infoLabel, self.backButton, self.backgroundView, self.containerView, self.tableView]
-      .forEach { self.view.addSubview($0) }
-    [self.infoLabel, self.backButton, self.tableView]
-      .forEach { self.view.bringSubviewToFront($0) }
+    self.view.addSubviews([
+      self.infoLabel, self.backButton, self.backgroundView, self.containerView, self.tableView
+    ])
+    self.view.bringSubviewsToFront([
+      self.infoLabel, self.backButton, self.tableView
+    ])
     
     self.backgroundView.snp.makeConstraints {
       $0.top.leading.trailing.equalToSuperview()

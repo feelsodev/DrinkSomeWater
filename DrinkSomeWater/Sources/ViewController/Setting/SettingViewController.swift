@@ -17,10 +17,10 @@ final class SettingViewController: BaseViewController, View {
   
   // MARK: - UI
   
-  let firstBeakerLine = Beaker(ml: "2000")
-  let secondBeakerLine = Beaker(ml: "2500")
-  let thirdBeakerLine = Beaker(ml: "3000")
-  let backButton = UIButton().then {
+  private let firstBeakerLine = Beaker(ml: "2000")
+  private let secondBeakerLine = Beaker(ml: "2500")
+  private let thirdBeakerLine = Beaker(ml: "3000")
+  private let backButton = UIButton().then {
     $0.tintColor = .black
     $0.setImage(UIImage(systemName: "arrow.left")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
@@ -35,7 +35,7 @@ final class SettingViewController: BaseViewController, View {
     $0.layer.cornerRadius = 4.0
   }
   
-  let moreButton = UIButton().then {
+  private let moreButton = UIButton().then {
     $0.tintColor = .white
     $0.setImage(UIImage(systemName: "exclamationmark.circle.fill")?
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .regular)), for: .normal)
@@ -50,22 +50,22 @@ final class SettingViewController: BaseViewController, View {
     $0.layer.cornerRadius = 4.0
   }
   
-  let lineView = UIView().then {
+  private let lineView = UIView().then {
     $0.backgroundColor = .black
   }
   
-  let goalWater = UILabel().then {
+  private let goalWater = UILabel().then {
     $0.font = .systemFont(ofSize: 40, weight: .medium)
     $0.textColor = .darkGray
   }
   
-  let slider = UISlider().then {
+  private let slider = UISlider().then {
     $0.maximumValue = 3000
     $0.minimumValue = 1500
     $0.tintColor = .darkGray
   }
   
-  let setButton = UIButton().then {
+  private let setButton = UIButton().then {
     $0.setTitle("SET", for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.backgroundColor = .black
@@ -73,7 +73,7 @@ final class SettingViewController: BaseViewController, View {
     $0.layer.masksToBounds = true
   }
   
-  let waveBackground = WaveAnimationView(
+  private let waveBackground = WaveAnimationView(
     frame: CGRect(
       x: 0,
       y: 0,
@@ -131,13 +131,7 @@ final class SettingViewController: BaseViewController, View {
       .subscribe(onNext: { [weak self] reactor in
         guard let `self` = self else { return }
         let vc = InformationViewController(reactor: reactor)
-        let transition = CATransition()
-        transition.duration = 0.3
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        self.view.window?.layer.add(transition, forKey: kCATransition)
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: false, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
       })
       .disposed(by: self.disposeBag)
     
@@ -169,15 +163,17 @@ final class SettingViewController: BaseViewController, View {
       .filter { $0 }
       .subscribe { [weak self] _ in
         guard let `self` = self else { return }
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
       }
       .disposed(by: self.disposeBag)
   }
   
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
-    [self.backButton, self.moreButton, self.firstBeakerLine, self.secondBeakerLine, self.thirdBeakerLine, self.lineView, self.goalWater, self.slider, self.setButton]
-      .forEach { self.waveBackground.addSubview($0) }
+    self.waveBackground.addSubviews([
+      self.backButton, self.moreButton, self.firstBeakerLine, self.secondBeakerLine,
+      self.thirdBeakerLine, self.lineView, self.goalWater, self.slider, self.setButton
+    ])
     
     self.backButton.snp.makeConstraints {
       $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)

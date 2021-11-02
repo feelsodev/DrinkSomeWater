@@ -64,7 +64,10 @@ final class InfoCell: BaseTableViewCell, View {
   }
   
   override func setupConstraints() {
-    [self.icon, self.titleLabel].forEach { self.contentView.addSubview($0) }
+    self.contentView.addSubviews([
+      self.icon, self.titleLabel
+    ])
+    
     self.icon.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(10)
       $0.centerY.equalToSuperview()
