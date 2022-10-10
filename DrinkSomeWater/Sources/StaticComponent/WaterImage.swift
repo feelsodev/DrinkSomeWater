@@ -20,6 +20,7 @@ struct WaterImage {
     default:
       image = UIImage(named: "bang")
     }
+    ///
     return image ?? UIImage()
   }
 }
