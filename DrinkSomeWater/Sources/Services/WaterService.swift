@@ -41,6 +41,7 @@ final class WaterService: BaseService, WaterServiceProtocol {
         water.append(WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater))
       }
       _ = self.saveWater(water)
+      print("하하하")
       return .just(water)
     }
     
