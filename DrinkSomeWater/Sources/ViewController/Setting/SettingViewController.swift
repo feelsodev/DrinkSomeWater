@@ -14,12 +14,8 @@ import WaveAnimationView
 final class SettingViewController: BaseViewController, View {
   deinit { self.waveBackground.stopAnimation() }
   
-  
   // MARK: - UI
   
-  private let firstBeakerLine = Beaker(ml: "2000")
-  private let secondBeakerLine = Beaker(ml: "2500")
-  private let thirdBeakerLine = Beaker(ml: "3000")
   private let backButton = UIButton().then {
     $0.tintColor = .black
     $0.setImage(UIImage(systemName: "arrow.left")?
@@ -50,17 +46,13 @@ final class SettingViewController: BaseViewController, View {
     $0.layer.cornerRadius = 4.0
   }
   
-  private let lineView = UIView().then {
-    $0.backgroundColor = .black
-  }
-  
   private let goalWater = UILabel().then {
     $0.font = .systemFont(ofSize: 40, weight: .medium)
     $0.textColor = .darkGray
   }
   
   private let slider = UISlider().then {
-    $0.maximumValue = 3000
+    $0.maximumValue = 8000
     $0.minimumValue = 1500
     $0.tintColor = .darkGray
   }
@@ -98,7 +90,6 @@ final class SettingViewController: BaseViewController, View {
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
   
   // MARK: Binding
   
@@ -171,8 +162,7 @@ final class SettingViewController: BaseViewController, View {
   override func setupConstraints() {
     self.view.addSubview(self.waveBackground)
     self.waveBackground.addSubviews([
-      self.backButton, self.moreButton, self.firstBeakerLine, self.secondBeakerLine,
-      self.thirdBeakerLine, self.lineView, self.goalWater, self.slider, self.setButton
+      self.backButton, self.moreButton, self.goalWater, self.slider, self.setButton
     ])
     
     self.backButton.snp.makeConstraints {
@@ -200,30 +190,6 @@ final class SettingViewController: BaseViewController, View {
       $0.centerX.equalToSuperview()
       $0.width.equalTo(100)
       $0.height.equalTo(40)
-    }
-    self.firstBeakerLine.snp.makeConstraints {
-      $0.bottom.equalTo(self.view.snp.bottom).offset(-(self.viewHeight / 6))
-      $0.trailing.equalToSuperview().offset(-20)
-      $0.height.equalTo(5)
-      $0.width.equalTo(80)
-    }
-    self.secondBeakerLine.snp.makeConstraints {
-      $0.bottom.equalTo(self.view.snp.bottom).offset(-(self.viewHeight / 3))
-      $0.trailing.equalToSuperview().offset(-20)
-      $0.height.equalTo(5)
-      $0.width.equalTo(80)
-    }
-    self.thirdBeakerLine.snp.makeConstraints {
-      $0.bottom.equalTo(self.view.snp.bottom).offset(-(self.viewHeight / 2))
-      $0.trailing.equalToSuperview().offset(-20)
-      $0.height.equalTo(5)
-      $0.width.equalTo(80)
-    }
-    self.lineView.snp.makeConstraints {
-      $0.bottom.equalTo(self.view.snp.bottom).offset(-(self.viewHeight / 6))
-      $0.trailing.equalToSuperview().offset(-20)
-      $0.width.equalTo(5)
-      $0.height.equalTo(self.viewHeight / 3)
     }
   }
 }

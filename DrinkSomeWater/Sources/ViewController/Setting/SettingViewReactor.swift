@@ -10,6 +10,7 @@ import ReactorKit
 import RxSwift
 
 final class SettingViewReactor: Reactor {
+  
   enum Action {
     case loadGoal
     case changeGoalWater(Int)
@@ -44,13 +45,16 @@ final class SettingViewReactor: Reactor {
         .map { ml in
           return .changeGoalWaterValue(ml)
         }
+      
     case let .changeGoalWater(ml):
       return .just(.changeGoalWaterValue(ml))
+      
     case .setGoal:
       let currentValue = self.currentState.value
       return self.provider.warterService
         .updateGoal(to: currentValue)
-        .map { _ in .dismiss}
+        .map { _ in .dismiss }
+      
     case .cancel:
       if !self.currentState.shouldDismissed {
         return .just(.dismiss)
@@ -62,16 +66,20 @@ final class SettingViewReactor: Reactor {
   
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
+    
     switch mutation {
     case let .changeGoalWaterValue(ml):
+      print("ml :\(ml)")
       let value = ml - ml % 100
-      let progress = (Float(value) - 1500) / 3000
+      let progress = (Float(value) - 1500) / 8000
       self.initialState.value = value
       newState.value = value
       newState.progress = progress
+      
     case .dismiss:
       newState.shouldDismissed = true
     }
+    
     return newState
   }
   

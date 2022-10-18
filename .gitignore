@@ -130,7 +130,6 @@ iOSInjectionProject/
 
 ## Gcc Patch
 /*.gcno
-
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
