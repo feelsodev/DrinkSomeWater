@@ -1,0 +1,25 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: Swift
+
+on:
+  push:
+    branches: [ "cicd_test" ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Cocoapods Install 
+      run: pod install --repo-update
+    - name: Build
+      run: xcodebuild build \
+        -workspace DrinkSomeWater.xcworkspace \
+        -scheme DrinkSomeWater \
+        -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
+    - name: Run tests
+      run: echo Hello!!!!
