@@ -67,7 +67,7 @@ jobs:
           
     - name: Archive
       run: |
-        cd ios
+        cd ios \
         pod install --repo-update --clean-install --project-directory="$PROJECT_ROOT_PATH"/
         xcodebuild clean archive -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE"
         
