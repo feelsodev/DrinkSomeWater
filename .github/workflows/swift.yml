@@ -12,7 +12,7 @@ jobs:
 
     runs-on: macos-latest
     env:
-      XC_VERSION: ${{ '13.4.1' }}
+      XC_VERSION: ${{ '13.1' }}
       XC_WORKSPACE: ${{ 'DrinkSomeWater.xcworkspace' }}
       XC_SCHEME: ${{ 'DrinkSomeWater' }}
       
