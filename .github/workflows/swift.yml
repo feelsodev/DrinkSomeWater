@@ -17,6 +17,8 @@ jobs:
       XC_SCHEME: ${{ 'DrinkSomeWater' }}
     steps:
     - uses: actions/checkout@v2
+    - name: Xcode Version
+      run: Run ls -n /Applications/ | grep Xcode*
     - name: cocoapods install
       run: pod install
     - name: Build
