@@ -20,6 +20,6 @@ jobs:
     - name: cocoapods install
       run: pod install
     - name: Build
-      run: echo Build!! DrinkSomeWater
+      run: Run ls -n /Applications/ | grep Xcode*
     - name: Run tests
       run: xcodebuild clean test -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -destination "platform=iOS Simulator,name=iPhone 11"
