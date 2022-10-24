@@ -19,4 +19,4 @@ jobs:
     - name: Build
       run: echo Hello!!!!
     - name: Run tests
-      run: xcodebuild clean test -workspace DrinkSomeWater.xcworkspace -scheme DrinkSomeWater -destination "platform=iOS Simulator,name=iPhone 11"
+      run: xcodebuild clean test -workspace DrinkSomeWater.xcworkspace -scheme DrinkSomeWater -destination "platform=iOS Simulator,name=iPhone 14 Pro"
