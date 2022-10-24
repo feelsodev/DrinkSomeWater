@@ -11,10 +11,15 @@ jobs:
   build:
 
     runs-on: macos-latest
-
+    env:
+      XC_VERSION: ${{ '14.0.1' }}
+      XC_WORKSPACE: ${{ 'DrinkSomeWater.xcworkspace' }}
+      XC_SCHEME: ${{ 'DrinkSomeWater' }}
     steps:
     - uses: actions/checkout@v3
+    - name: cocoapods install
+      run: pod install
     - name: Build
-      run: swift build
+      run: echo Build!! DrinkSomeWater
     - name: Run tests
       run: xcodebuild clean test -workspace DrinkSomeWater.xcworkspace -scheme DrinkSomeWater -destination "platform=iOS Simulator,name=iPhone 14 Pro"
