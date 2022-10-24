@@ -14,9 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Cocoapods Install 
-      run: pod install --repo-update
     - name: Build
-      run: echo Hello!!!!
+      run: swift build
     - name: Run tests
-      run: xcodebuild clean test -workspace DrinkSomeWater.xcworkspace -scheme DrinkSomeWater -destination "platform=iOS Simulator,name=iPhone 11"
+      run: swift test
