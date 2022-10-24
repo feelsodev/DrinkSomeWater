@@ -16,12 +16,10 @@ jobs:
       XC_WORKSPACE: ${{ 'DrinkSomeWater.xcworkspace' }}
       XC_SCHEME: ${{ 'DrinkSomeWater' }}
     steps:
-    - uses: actions/checkout@v3
-    - name: Select Xcode
-      run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
+    - uses: actions/checkout@v2
     - name: cocoapods install
       run: pod install
     - name: Build
       run: echo Build!! DrinkSomeWater
     - name: Run tests
-      run: xcodebuild clean test -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -destination "platform=iOS Simulator,name=iPhone 13 Pro"
+      run: xcodebuild clean test -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -destination "platform=iOS Simulator,name=iPhone 11"
