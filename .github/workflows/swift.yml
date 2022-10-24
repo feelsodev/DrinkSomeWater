@@ -53,7 +53,7 @@ jobs:
     - name : Configure Code Signing
       run: | 
         gpg -d -o "$DECRYPTED_CERTS_FILE_PATH" --pinentry-mode=loopback --passphrase "$CERTS_ENCRYPTION_PWD" "$ENCRYPTED_CERTS_FILE_PATH"
-        gpg -d -o "$DECRYPTED_PROVISION_FILE_PATH" --pinentry-mode=loopback --passphrase "$PROFILES_ENCRYPTO_PWD" "$ENCRYPTED_PROVISION_FILE_PATH"
+        gpg -d -o "$DECRYPTED_PROVISION_FILE_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENCRYPTION_PWD" "$ENCRYPTED_PROVISION_FILE_PATH"
         security import "$DECRYPTED_CERTS_FILE_PATH" -k "$KEYCHAIN" -P "$CERTS_EXPORT_PWD" -A
         security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KEYCHAIN"
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
