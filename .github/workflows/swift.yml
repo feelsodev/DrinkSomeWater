@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Xcode Version
-      run: Run ls -n /Applications/ | grep Xcode
+      run: ls -n /Applications/ | grep Xcode
     - name: cocoapods install
       run: pod install
     - name: Build
