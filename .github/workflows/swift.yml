@@ -70,7 +70,7 @@ jobs:
     - name: Archive
       run: |
         pod install --repo-update --clean-install --project-directory="$PROJECT_ROOT_PATH"/
-        xcodebuild clean archive -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE"
+        xcodebuild clean archive -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE_PATH"
         
     - name: Run tests
       run: xcodebuild clean test -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -destination "platform=iOS Simulator,name=iPhone 11"
