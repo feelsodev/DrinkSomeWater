@@ -68,6 +68,7 @@ jobs:
     - name: Archive
       run: |
         pod install --repo-update --clean-install
+        mkdir artifacts
         xcodebuild clean archive -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE"
         
     - name: Run tests
