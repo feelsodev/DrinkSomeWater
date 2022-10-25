@@ -16,7 +16,7 @@ jobs:
       XC_WORKSPACE: ${{ 'DrinkSomeWater.xcworkspace' }}
       XC_SCHEME: ${{ 'DrinkSomeWater' }}
       
-      XC_ARCHIVE_PATH:  ${{ './DrinkSomeWater.xcarichive' }}
+      XC_ARCHIVE_PATH:  ${{ 'DrinkSomeWater.xcarichive' }}
       XC_EXPORT_PATH: ${{ './artifacts' }}
       PROJECT_ROOT_PATH: ${{ 'DrinkSomeWater' }}
       
