@@ -16,7 +16,7 @@ jobs:
       XC_WORKSPACE: ${{ 'DrinkSomeWater.xcworkspace' }}
       XC_SCHEME: ${{ 'DrinkSomeWater' }}
       
-      XC_ARCHIVE_PATH:  ${{ 'DrinkSomeWater.xcarichive' }}
+      XC_ARCHIVE_PATH:  ${{ 'DrinkSomeWater.xcarchive' }}
       XC_EXPORT_PATH: ${{ './artifacts' }}
       PROJECT_ROOT_PATH: ${{ 'DrinkSomeWater' }}
       
@@ -69,7 +69,7 @@ jobs:
           
     - name: Archive
       run: |
-        pod install --repo-update --clean-install --project-directory="$PROJECT_ROOT_PATH" \
+        pod install --repo-update --clean-install
         xcodebuild clean archive -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE_PATH"
         
     - name: Run tests
