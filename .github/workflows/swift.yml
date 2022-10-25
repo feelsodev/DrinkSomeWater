@@ -18,6 +18,8 @@ jobs:
       
       XC_ARCHIVE_PATH:  ${{ './DrinkSomeWater.xcarichive' }}
       XC_EXPORT_PATH: ${{ './artifacts' }}
+      PROJECT_ROOT_PATH: ${{ 'ExGithubAction' }}
+      
       KEYCHAIN: ${{ 'test.keychain' }}
       
       DECRYPTED_CERTS_FILE_PATH: ${{ '.github/secrets/once.p12' }}
