@@ -8,7 +8,7 @@ on:
     branches: [ "cicd_test" ]
 
 jobs:
-  build:
+  build-ios:
 
     runs-on: macos-latest
     env:
@@ -85,3 +85,22 @@ jobs:
       with:
         name: Artifacts
         path: ./artifacts
+        
+  distribute-ios:
+    needs: build-ios
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: DrinkSomeWater.ipa
+
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_IOS_APP_ID}}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          groups: tester
+          file: Artifacts/DrinkSomeWater.ipa
+  
