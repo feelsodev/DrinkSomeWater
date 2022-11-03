@@ -10,7 +10,7 @@ on:
 jobs:
   build-ios:
 
-    runs-on: onceui-MacBookAir
+    runs-on: self-hosted
     env:
       XC_VERSION: ${{ '13.1' }}
       XC_WORKSPACE: ${{ 'DrinkSomeWater.xcworkspace' }}
