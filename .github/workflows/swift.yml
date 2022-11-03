@@ -12,7 +12,7 @@ jobs:
 
     runs-on: self-hosted
     env:
-      XC_VERSION: ${{ '13.1' }}
+      XC_VERSION: ${{ '14.0.1' }}
       XC_WORKSPACE: ${{ 'DrinkSomeWater.xcworkspace' }}
       XC_SCHEME: ${{ 'DrinkSomeWater' }}
       
