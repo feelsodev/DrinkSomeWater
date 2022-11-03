@@ -33,74 +33,17 @@ jobs:
       CERTS_EXPORT_PWD: ${{ secrets.CERTS_EXPORT_PWD }}
 
     steps:
-    - name: Select latest Xcode
-      run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
-      
     - uses: actions/checkout@v3
     
     - name: Xcode Version
       run: ls -n /Applications/ | grep Xcode
+    
+    - name: Cocoapod # 프로젝트에서 Cocoapod을 사용하지 않는다면 빼도 됩니다.
+      run: pod install
       
     - name: Build
       run: echo Build!! DrinkSomeWater
 
-    - name: Configure Keychain
-      run: |
-        security create-keychain -p "" "$KEYCHAIN" 
-        security list-keychains -s "$KEYCHAIN" 
-        security default-keychain -s "$KEYCHAIN" 
-        security unlock-keychain -p "" "$KEYCHAIN"
-        security set-keychain-settings
-        
-    - name : Configure Code Signing
-      run: | 
-        gpg -d -o "$DECRYPTED_CERTS_FILE_PATH" --pinentry-mode=loopback --passphrase "$CERTS_ENCRYPTION_PWD" "$ENCRYPTED_CERTS_FILE_PATH"
-        gpg -d -o "$DECRYPTED_PROVISION_FILE_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENCRYPTION_PWD" "$ENCRYPTED_PROVISION_FILE_PATH"
-        security import "$DECRYPTED_CERTS_FILE_PATH" -k "$KEYCHAIN" -P "$CERTS_EXPORT_PWD" -A
-        security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KEYCHAIN"
-        mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
-        echo `ls .github/secrets/*.mobileprovision`
-        # 프로파일들을 rename하고 새로만든 디렉토리에 복사
-        for PROVISION in `ls .github/secrets/*.mobileprovision`
-          do
-            UUID=`/usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i ./$PROVISION)`
-          cp "./$PROVISION" "$HOME/Library/MobileDevice/Provisioning Profiles/$UUID.mobileprovision"
-          done
-          
-    - name: Archive
-      run: |
-        mkdir artifacts
-        pod install --repo-update --clean-install
-        xcodebuild clean archive -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE_PATH"
-        
     - name: Run tests
       run: xcodebuild clean test -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -destination "platform=iOS Simulator,name=iPhone 11"
       
-    - name: Export for App Store
-      run: | 
-        xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist ExportOptions.plist -exportPath "$XC_EXPORT_PATH"
-        
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: Artifacts
-        path: ./artifacts
-        
-  distribute-ios:
-    needs: build-ios
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: Artifacts
-
-      - name: Upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{secrets.FIREBASE_IOS_APP_ID}}
-          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-          groups: tester
-          file: Artifacts/DrinkSomeWater.ipa
-  
