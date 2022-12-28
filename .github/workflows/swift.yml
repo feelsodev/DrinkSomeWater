@@ -23,11 +23,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       
-      - uses: EndBug/add-and-commit@v9
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          message: Show GitHub Actions logo
-          committer_name: feelsodev
-          committer_email: swdoriz@gmail.com
-          new_branch: testbranch
+          commit_message: 테스트 커밋입니다
+          commit_user_name: feelsodev <swdoriz@gmail.com>
+          commit_author: "feelsodev <swdoriz@gmail.com>"
           
           
