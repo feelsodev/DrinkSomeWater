@@ -17,7 +17,9 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Test
-        run: echo "123"
+        run: |
+          echo ${{ github.head_ref }}
+          echo ${{ github.base_ref }}
       
       - uses: EndBug/add-and-commit@v9
         with:
