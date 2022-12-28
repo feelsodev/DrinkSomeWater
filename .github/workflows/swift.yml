@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repo
+      - uses: actions/checkout@v3
+        
       - uses: EndBug/add-and-commit@v9
         with:
           message: Show GitHub Actions logo
