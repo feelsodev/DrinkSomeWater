@@ -14,5 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say hello
-        run: echo Hello
+      - uses: EndBug/add-and-commit@v9
+        with:
+          author_name: 'feelsodev'
+          author_email: 'swdoriz@gmail.com'
+          message: 'sangwon test'
+          new_branch: 'cicd_new_branch'
+          
