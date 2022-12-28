@@ -14,9 +14,10 @@ jobs:
 
     steps:
       - name: Checkout repo
-      - uses: actions/checkout@v3
-          
-      - run: echo "123"
+        uses: actions/checkout@v3
+        
+      - name: Test
+        run: echo "123"
       
       - uses: EndBug/add-and-commit@v9
         with:
