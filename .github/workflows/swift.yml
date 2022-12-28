@@ -13,15 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test
-        run: |
-          echo "${{ github.head_ref }}"
-          echo "${{ github.base_ref }}"
-          
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
+          
+      - name: Test
+        run: |
+          echo "${{ github.head_ref }}"
+          echo "${{ github.base_ref }}"
+          ls -al
+          
+          
       
       - name: overlap commit
         uses: stefanzweifel/git-auto-commit-action@v4
