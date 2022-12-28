@@ -30,4 +30,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 테스트 커밋입니다
-          brach: release
+          branch: release
