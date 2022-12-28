@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: set Today Date
-          run: echo "10"
+        run: echo TODAY_DATE=$(date +%Y년\ %m월\ %d일) >> $GITHUB_ENV
           
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -27,6 +27,7 @@ jobs:
           echo "${{ github.base_ref }}"
           ls -al
           echo -e "tetst" > test2.text
+          echo ${{ env.TODAY_DATE }} 문제 풀이 기록
           
       
       - name: overlap commit
