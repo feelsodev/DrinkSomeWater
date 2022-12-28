@@ -23,7 +23,7 @@ jobs:
           echo "${{ github.head_ref }}"
           echo "${{ github.base_ref }}"
           ls -al
-          echo -e "tetst" > test.text
+          echo -e "tetst" > test2.text
           
       
       - name: overlap commit
