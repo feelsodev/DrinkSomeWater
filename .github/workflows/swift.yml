@@ -15,9 +15,8 @@ jobs:
     steps:
       - name: Checkout repo
       - uses: actions/checkout@v3
-          path: './pathToRepo/'
           
-      - run: echo "123" > ./pathToRepo/file.txt
+      - run: echo "123"
       
       - uses: EndBug/add-and-commit@v9
         with:
