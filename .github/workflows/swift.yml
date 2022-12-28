@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: set Today Date
-        run: echo TODAY_DATE=$(date +%Y년\ %m월\ %d일) >> $GITHUB_ENV
+        run: echo TODAY_DATE=$(date +%Y+1년\ %m월\ %d일) >> $GITHUB_ENV
           
       - name: Checkout repo
         uses: actions/checkout@v2
