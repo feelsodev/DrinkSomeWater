@@ -24,4 +24,6 @@ jobs:
           message: Show GitHub Actions logo
           committer_name: feelsodev
           committer_email: swdoriz@gmail.com
+          new_branch: testbranch
+          
           
