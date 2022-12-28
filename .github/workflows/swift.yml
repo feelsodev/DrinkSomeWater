@@ -23,10 +23,11 @@ jobs:
           echo "${{ github.head_ref }}"
           echo "${{ github.base_ref }}"
           ls -al
-          echo -e "test" > test.text
+          echo -e "tetst" > test.text
           
       
       - name: overlap commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 테스트 커밋입니다        
+          commit_message: 테스트 커밋입니다
+          brach: release
