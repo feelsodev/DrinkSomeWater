@@ -8,25 +8,28 @@ on:
     branches: [ develop ]
 
 jobs:
-  run:
-    name: Run check
-    runs-on: ubuntu-latest
+  Create-PS-Record:
+    run:
+      name: Run check
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Test
-        run: |
-          echo "${{ github.head_ref }}"
-          echo "${{ github.base_ref }}"
+      steps:
+        - name: Test
+          run: |
+            echo "${{ github.head_ref }}"
+            echo "${{ github.base_ref }}"
           
-      - name: Checkout repo
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
+        - name: Checkout repo
+          uses: actions/checkout@v2
+          with:
+            ref: ${{ github.head_ref }}
       
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: 테스트 커밋입니다
-          commit_user_name: feelsodev <swdoriz@gmail.com>
-          commit_author: "feelsodev <swdoriz@gmail.com>"
+       - name: overlap commit
+          uses: stefanzweifel/git-auto-commit-action@v4
+          with:
+            commit_message: 테스트 커밋입니다
+            commit_user_name: feelsodev
+            commit_user_email: swdoriz@gmail.com
+            commit_author: feelsodev <swdoriz@gmail.com>
           
           
