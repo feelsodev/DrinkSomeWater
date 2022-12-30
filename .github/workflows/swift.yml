@@ -4,8 +4,9 @@
 name: Configuration Check
 
 on:
-  push: 
-    branches: [ develop ]
+  repository_dispatch:
+    types:
+      - configuration-check
 
 jobs:
   run:
