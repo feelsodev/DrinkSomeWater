@@ -1,39 +1,14 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
-
 name: Configuration Check
-
 on:
   repository_dispatch:
     types:
       - configuration-check
-
 jobs:
-  run:
+  check:
     name: Run check
     runs-on: ubuntu-latest
-
     steps:
-      - name: set Today Date
-        run: echo TODAY_DATE=$(date +%Y년\ %m월\ %d일\ %H시\ %M분\ %s초) >> $GITHUB_ENV
-          
-      - name: Checkout repo
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-          
-      - name: Test
-        run: |
-          echo "${{ github.head_ref }}"
-          echo "${{ github.base_ref }}"
-          ls -al
-          echo -e "tetst" > test2.text
-          echo ${{ env.TODAY_DATE }} 문제 풀이 기록
-          
-      
-      - name: overlap commit
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: 테스트 커밋입니다
-          create_branch: true
-          branch: release
+      - name: Say hello
+        run: echo Hello
