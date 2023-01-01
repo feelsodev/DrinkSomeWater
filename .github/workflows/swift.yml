@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Say hello
-        run: echo Hello
+        run: echo "hhahaha '${{ github.event.client_payload.repository }}'"
