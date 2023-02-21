@@ -1,18 +1,34 @@
 name: Create new branch
 
 on:
-  push:
-    branches:
-      - citest 
+  repository_dispatch:
+    types:
+      - feature_create
 
 jobs:
-  create_branch:
+  run:
+    name: Run check
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Create new branch
-      run: git checkout -b new_branch_name
-    - name: Push branch
-      uses: ad-m/github-push-action@master
-      with:
-        branch: new_branch_name
+      - name: set Today Date
+        run: |
+          echo TODAY_DATE=$(date +%Y년\ %m월\ %d일\ %H시\ %M분\ %s초) >> $GITHUB_ENV
+          echo FEATURE_BRANCH="feature/${{ github.event.client_payload.jiranumber }}/base" >> $GITHUB_ENV
+          
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          
+      - name: Version Update
+        run: |
+          echo "AMONDZ_APP_VERSION = ${{ github.event.client_payload.version }}" > ./Config/Version.xcconfig
+      
+      - name: new commit actions
+        uses: stefanzweifel/git-auto-commit-action@v4.16.0
+        with:
+          commit_message: release note update
+          create_branch: true
+          push_options: --force
+          branch: ${{ env.FEATURE_BRANCH }}
