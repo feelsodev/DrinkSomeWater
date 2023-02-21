@@ -29,7 +29,6 @@ jobs:
       - name: new commit actions
         uses: stefanzweifel/git-auto-commit-action@v4.16.0
         with:
-          commit_message: release note update
+          commit_message: 
           create_branch: true
-          push_options: --force
           branch: "feature/${{ github.event.client_payload.jiranumber }}/base"
