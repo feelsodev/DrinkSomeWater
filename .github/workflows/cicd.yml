@@ -28,8 +28,8 @@ jobs:
       
       - name: Create new branch
         run: |
-          git checkout -b "feature/AMZUIOS-${{ github.event.client_payload.jiranumber }}/base"
+          git checkout -b "feature/AMZUIOS-${{ github.event.client_payload.jira_number }}/base"
       - name: Push branch
         uses: ad-m/github-push-action@master
         with:
-          branch: "feature/AMZUIOS-${{ github.event.client_payload.jiranumber }}/base"
+          branch: "feature/AMZUIOS-${{ github.event.client_payload.jira_number }}/base"
