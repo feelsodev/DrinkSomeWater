@@ -23,7 +23,7 @@ jobs:
           
       - name: Version Update
         run: |
-          echo "AMONDZ_APP_VERSION = ${{ github.event.client_payload.version }}" > ./Config/Version.xcconfig
+          echo "AMONDZ_APP_VERSION = ${{ github.event.client_payload.version }}"
       
       - name: new commit actions
         uses: stefanzweifel/git-auto-commit-action@v4.16.0
