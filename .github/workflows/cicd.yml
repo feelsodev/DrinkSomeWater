@@ -32,4 +32,4 @@ jobs:
           commit_message: release note update
           create_branch: true
           push_options: --force
-          branch: ${{ env.FEATURE_BRANCH }}
+          branch: "feature/${{ github.event.client_payload.jiranumber }}/base"
