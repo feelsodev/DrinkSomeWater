@@ -15,6 +15,7 @@ jobs:
         run: |
           echo TODAY_DATE=$(date +%Y년\ %m월\ %d일\ %H시\ %M분\ %s초) >> $GITHUB_ENV
           echo FEATURE_BRANCH="feature/${{ github.event.client_payload.jiranumber }}/base" >> $GITHUB_ENV
+          echo ${{ env.FEATURE_BRANCH }}
           
       - name: Checkout Repo
         uses: actions/checkout@v3
