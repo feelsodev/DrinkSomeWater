@@ -1,0 +1,18 @@
+name: Create new branch
+
+on:
+  push:
+    branches:
+      - citest 
+
+jobs:
+  create_branch:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create new branch
+      run: git checkout -b new_branch_name
+    - name: Push branch
+      uses: ad-m/github-push-action@master
+      with:
+        branch: new_branch_name
