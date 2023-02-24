@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-    - update/*
+    - update/**
 
 jobs:
   pull-request:
