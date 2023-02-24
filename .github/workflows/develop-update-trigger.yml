@@ -16,6 +16,7 @@ jobs:
       - name: Create local branch
         run: |
           git checkout -b "update/${{ steps.vars.outputs.tag }}"
+          
       - name: Push branch
         uses: ad-m/github-push-action@master
         with:
