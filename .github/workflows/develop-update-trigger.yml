@@ -1,4 +1,10 @@
 name: Generate
+
+on:
+  push:
+    branches:
+    - citest
+
 jobs:
   generate:
     steps:
