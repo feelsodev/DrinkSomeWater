@@ -3,30 +3,20 @@ on:
     tags:
       - 'v*.*.*'
 jobs:
-  test:
+  run:
+    name: Run check
     runs-on: ubuntu-latest
-    steps:
+    
+    steps:       
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
           ref: master
-          
-      #- name: Set output
-      #  id: vars
-      #  run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-        
-      #- name: Check output
-      #  env:
-      #    RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-      #  run: |
-      #    echo $RELEASE_VERSION
-      #    echo ${{ steps.vars.outputs.tag }}
-
+      
       - name: Create local branch
         run: |
-          git checkout -b "update/v${{ steps.vars.outputs.tag }}"
-          
+          git checkout -b "update/${{ steps.vars.outputs.tag }}"
       - name: Push branch
         uses: ad-m/github-push-action@master
         with:
-          branch: "update/v${{ steps.vars.outputs.tag }}"
+          branch: "update/${{ steps.vars.outputs.tag }}"
