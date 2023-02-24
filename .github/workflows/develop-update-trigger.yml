@@ -6,22 +6,13 @@ on:
     - citest
   
 jobs:
-  run:
-   name: tagTest
-   runs-on: ubuntu-latest
-    
-  steps:
-    - uses: actions/checkout@v1
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-      if: runner.os != 'Windows'
-    - name: Show GitHub ref
-      run: echo "$GITHUB_REF"
-      if: runner.os != 'Windows'
-    - name: Dump event JSON
-      env:
-        EVENT_JSON_FILENAME: ${{ github.event_path }}
-      run: cat "$EVENT_JSON_FILENAME"
-      if: runner.os != 'Windows'
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Test
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
