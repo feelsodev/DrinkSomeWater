@@ -10,14 +10,17 @@ jobs:
       - name: Set output
         id: vars
         run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+        
       - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
         run: |
           echo $RELEASE_VERSION
           echo ${{ steps.vars.outputs.tag }}
+
+      - name: Create local branch
           git checkout master
-          git checkout -b update-branch
+          git checkout -b update/v${{ steps.vars.outputs.tag }}
           
       - name: push branch
         uses: ad-m/github-push-action@master
