@@ -5,10 +5,18 @@ on:
     branches:
     - citest
     
-jobs:
-  github-example-tags:
-    steps:
-     - name: GitHub Tag Name example
-       run: |
-         echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-         echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+steps:
+- uses: actions/checkout@v1
+- name: Dump GitHub context
+  env:
+    GITHUB_CONTEXT: ${{ toJson(github) }}
+  run: echo "$GITHUB_CONTEXT"
+  if: runner.os != 'Windows'
+- name: Show GitHub ref
+  run: echo "$GITHUB_REF"
+  if: runner.os != 'Windows'
+- name: Dump event JSON
+  env:
+    EVENT_JSON_FILENAME: ${{ github.event_path }}
+  run: cat "$EVENT_JSON_FILENAME"
+  if: runner.os != 'Windows'
