@@ -4,18 +4,17 @@ on:
   push:
     branches:
     - citest
+    
+steps:
+  - uses: oprypin/find-latest-tag@v1
+    with:
+      repository: octokit/rest.js  # The repository to scan.
+      releases-only: true  # We know that all relevant tags have a GitHub release for them.
+    id: octokit  # The step ID to refer to later.
 
-jobs:
-  get_latest_tag:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: cicd_test
-        
-      - name: Get latest tag
-        id: latest_tag
-        run: echo ::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)
-      - name: Use latest tag
-        run: echo "Latest tag is ${{ steps.latest_tag.outputs.tag }}"
+  - run: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
+
+  - uses: actions/checkout@v3
+    with:
+      repository: octokit/rest.js  # Download that repository.
+      ref: ${{ steps.octokit.outputs.tag }}
