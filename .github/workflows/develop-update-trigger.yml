@@ -6,7 +6,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          
       - name: Set output
         id: vars
         run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
@@ -20,7 +24,6 @@ jobs:
 
       - name: Create local branch
         run: |
-          git checkout master
           git checkout -b update/v${{ steps.vars.outputs.tag }}
           
       - name: Push branch
