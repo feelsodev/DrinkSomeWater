@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-    - citest
+    - update/*
 
 jobs:
   pull-request:
