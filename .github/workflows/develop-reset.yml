@@ -15,7 +15,7 @@ jobs:
 
       - name: Reset config environment
         run: |
-          echo "hi" > test.text
+          echo "hi2" > test.text
 
 
       - name: Create branch
@@ -27,6 +27,17 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: "update/confing/develop-enviroment"
+
+      - name: Sleep for 10 seconds
+        run: sleep 10s
+        shell: bash
+
+      - name: Develop pull request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "update/confing/develop-enviroment"
+          destination_branch: "develop"
+          pr_title: "Update develop 최신화"
 
       # - name: Create branch
       #   run: |
