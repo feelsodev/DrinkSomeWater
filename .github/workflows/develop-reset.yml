@@ -15,7 +15,7 @@ jobs:
 
       - name: Reset config environment
         run: |
-          echo "hi2" > test.text
+          echo "hi3" > test.text
 
       - name: overlap commit
         uses: stefanzweifel/git-auto-commit-action@v4
