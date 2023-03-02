@@ -17,12 +17,12 @@ jobs:
         run: |
           echo "hi2" > test.text
 
-       - name: overlap commit
-         uses: stefanzweifel/git-auto-commit-action@v4
-         with:
-           commit_message: 테스트 커밋입니다
-           branch: update/confing/develop-enviroment
-           create_branch: true
+      - name: overlap commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 테스트 커밋입니다
+          branch: update/confing/develop-enviroment
+          create_branch: true
 
       # - name: Create branch
       #   run: |
