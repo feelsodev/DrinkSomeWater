@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+    - citest
+
+permissions: write-all
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: config_reset_test
+
+      - name: Reset config environment
+        run: |
+          cat "test" > ./test.textC
+
+      # - name: Create branch
+      #   run: |
+      #     git checkout -b "update/confing/develop-enviroment"
+
+      - name: overlap commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 테스트 커밋입니다
+          branch: update/confing/develop-enviroment
+          create_branch: true
+
+      # - name: Push branch
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: "update/confing/develop-enviroment"
