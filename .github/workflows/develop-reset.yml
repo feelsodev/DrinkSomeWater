@@ -42,7 +42,7 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           source_branch: "update/confing/develop-enviroment"
-          destination_branch: "develop"
+          destination_branch: "citest_second"
           pr_title: "Update develop 최신화"
 
       # - name: Create branch
