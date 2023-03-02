@@ -44,6 +44,9 @@ jobs:
           source_branch: "update/confing/develop-enviroment"
           destination_branch: "citest_second"
           pr_title: "Update develop 최신화"
+          pr_body: |
+            ### What is this PR?
+            - develop 환경변수 초기화
 
       # - name: Create branch
       #   run: |
