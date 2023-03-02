@@ -15,7 +15,7 @@ jobs:
 
       - name: Reset config environment
         run: |
-          cat "test" > test.text
+          echo "hi" > test.text
 
       # - name: Create branch
       #   run: |
