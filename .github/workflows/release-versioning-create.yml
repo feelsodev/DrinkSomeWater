@@ -20,5 +20,3 @@ jobs:
           result=$(curl -s "https://new-version-evht3pdjia-uc.a.run.app/?version=2.23.010")
           echo "::set-output name=result::$result"
           
-      - name: Display Result
-        run: echo "Fetched Result: ${{ steps.fetch.outputs.result }}"
