@@ -1,0 +1,24 @@
+name: Fetch and Display Result
+
+on:
+  push:
+    branches:
+      - citest
+
+jobs:
+  fetch_and_display:
+    name: Fetch and Display Result
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
+      - name: Fetch Result
+        id: fetch
+        run: |
+          result=$(curl -s "https://new-version-evht3pdjia-uc.a.run.app/?version=2.23.010")
+          echo "::set-output name=result::$result"
+          
+      - name: Display Result
+        run: echo "Fetched Result: ${{ steps.fetch.outputs.result }}"
