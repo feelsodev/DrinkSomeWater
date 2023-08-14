@@ -17,6 +17,6 @@ jobs:
       - name: Fetch Result
         id: fetch
         run: |
-          result=$(curl -s "https://new-version-evht3pdjia-uc.a.run.app/?version=2.23.010")
-          echo "::set-output name=result::$result"
+          result=$(curl https://new-version-evht3pdjia-uc.a.run.app/?version=2.23.010)
+          echo "response from curl=$result"
           
