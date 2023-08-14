@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-    - citest
+    - citest2
 
 permissions: write-all
 
