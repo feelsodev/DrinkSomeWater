@@ -17,6 +17,10 @@ jobs:
       - name: Fetch Result
         id: fetch
         run: |
-          result=$(curl https://new-version-evht3pdjia-uc.a.run.app/?version=2.23.010)
-          cat "response from curl=$result"
+          git fetch origin feature/base || true
+          if [ -z "$(git show-ref refs/remotes/origin/feature/base)" ]; then
+            echo "feature/base does not exist"
+            git checkout -b feature/base
+            git push origin feature/base
+          fi
           
