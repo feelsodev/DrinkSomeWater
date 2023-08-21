@@ -1,0 +1,34 @@
+name: Fetch and Display Result
+
+on:
+  push:
+    branches:
+      - update/**
+
+jobs:
+  fetch_and_display:
+    name: Fetch and Display Result
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        
+      - name: Fetch Result
+        id: fetch
+        run: |
+          git fetch origin feature/abc/base || true
+          if [ -z "$(git show-ref refs/remotes/origin/feature/abc/base)" ]; then
+            echo "feature/base does not exist"
+            git checkout -b feature/abc/base
+            git push origin feature/abc/base
+          fi
+
+      - name: Checkout feature/abc/base again
+        run: |
+          git checkout -b feature/abc/test
+
+      - name: Push branch
+        uses: ad-m/github-push-action@master
+        with:
+          branch: "feature/abc/test"
