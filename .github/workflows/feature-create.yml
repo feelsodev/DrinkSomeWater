@@ -26,9 +26,9 @@ jobs:
 
       - name: Checkout feature/abc/base again
         run: |
-          git checkout -b feature/abc/test
+          git checkout -b feature/abc/test2
 
       - name: Push branch
         uses: ad-m/github-push-action@master
         with:
-          branch: "feature/abc/test"
+          branch: "feature/abc/test2"
