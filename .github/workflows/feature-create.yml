@@ -15,8 +15,9 @@ jobs:
       - name: List Branches
         id: list_branches
         run: |
-          echo "BRANCHES=$(git ls-remote --heads origin | awk -F/ '$3 ~ /^feature/ && $4 == "base" {print $3 "/" $4}' | tr '\n' ',')"
+          echo "BRANCHES=$(git ls-remote --heads origin | awk -F/ '$3 == "feature" && $5 == "base" {print $3 "/" $4 "/" $5}' | tr '\n' ',')" >> $GITHUB_ENV
 
       - name: Display Branches
         run: |
           echo "Branches: ${{ env.BRANCHS }}"
+
