@@ -1,0 +1,57 @@
+name: feature update
+
+on:
+  repository_dispatch:
+    types:
+      - feature-update
+    
+permissions: write-all
+
+jobs:
+  feature-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: update/test
+      
+      - name: Get current time
+        uses: josStorer/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYYMMDDHHmmss
+          utcOffset: "+09:00" #GMT +9
+
+      - name: Set environment current time
+        env:
+          TODAY_DATE: "${{ steps.current-time.outputs.formattedTime }}"
+        run: echo "TODAY_DATE=${TODAY_DATE}" >> $GITHUB_ENV
+        
+      - name: Set variables
+        run: |
+          echo "SOURCE_BRANCH=update/AAA-${{ github.event.client_payload.jira_number }}/${{ env.TODAY_DATE }}" >> $GITHUB_ENV
+          echo "DESTINATION_BRANCH=feature/AAA-${{ github.event.client_payload.jira_number }}/base" >> $GITHUB_ENV
+          
+      - name: Create branch
+        run: |
+          git checkout -b "${{ env.SOURCE_BRANCH }}"
+          
+      - name: Push branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "${{ env.SOURCE_BRANCH }}"
+
+      - name: Sleep for 10 seconds
+        run: sleep 10s
+        shell: bash
+
+      - name: Feature base pull request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "${{ env.SOURCE_BRANCH }}"
+          destination_branch: "${{ env.DESTINATION_BRANCH }}"
+          pr_title: "AMZUIOS-${{ github.event.client_payload.jira_number }} < develop 최신화"
+          pr_assignee: "feelsodev"
+          pr_label: "bug"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
