@@ -15,8 +15,8 @@ jobs:
       - name: List Branches
         id: list_branches
         run: |
-          echo "::set-output name=branches::$(git ls-remote --heads origin | awk -F/ '{print substr($0, index($0,$3))}' | tr '\n' ',')"
+          echo "BRANCHES=$(git ls-remote --heads origin | awk -F/ '{print substr($0, index($0,$3))}' | tr '\n' ',')" >> $GITHUB_ENV
 
       - name: Display Branches
         run: |
-          echo "Branches: ${{ steps.list_branches.outputs.branches }}"
+          echo "Branches: ${{ env.BRANCHS }}"
