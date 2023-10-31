@@ -14,8 +14,9 @@ jobs:
 
       - name: List Branches
         run: |
-          git ls-remote --heads origin | awk -F/ '{print $3}'
-          echo "test 문구"
+          git ls-remote --heads origin | awk -F/ '{print substr($0, index($0,$3))}'
+          echo "===================="
+          git ls-remote --heads origin | awk -F/ '{print $4}'
 
 # jobs:
 #   get-feature-branches:
