@@ -16,4 +16,4 @@ jobs:
     - name: List Branches
       run: |
         BRANCH_LIST=$(git branch -r --format '%(refname:short)' | sed 's/^origin\///' | grep -E '^feature/.+/base$')
-        echo "$BRANCH_LIST 하하하하하하하"
+        echo "{{$BRANCH_LIST}} 하하하하하하하"
