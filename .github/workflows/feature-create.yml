@@ -17,7 +17,13 @@ jobs:
         run: |
           echo "BRANCHES=$( git ls-remote --heads origin | awk -F/ '$3 == "feature" && $5 == "base" {print $4}' | grep -E '^AAA-[0-9]+$' | tr '\n' ',')" >> $GITHUB_ENV
 
-      - name: Display Branches
+      - name: Send POST Requests
         run: |
-          echo "Branches: ${{ env.BRANCHS }}"
-
+          IFS=',' read -r -a branches <<< "$BRANCHES"
+          for branch in "${branches[@]}"
+          do
+            curl -X POST https://api.github.com/repos/:owner/:repo/dispatches \
+              -H 'Accept: application/vnd.github.v3+json' \
+              -u ${{ secrets.ACCESS_TOKEN }} \
+              -d '{"event_type": "feature-update", "client_payload": { "repository": "'"$branch"'" }}'
+          done
