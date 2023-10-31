@@ -6,18 +6,16 @@ on:
       - update/**
 
 jobs:
-  print-branches:
+  get_branches:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: List Branches
         run: |
-          echo "현재 저장소의 브랜치 목록:"
-          git branch | sed -n -e 's/^\* \(.*\)/\1/p'
-          
+          git branch -r | awk -F/ '/origin/ {print $2}'
+
 # jobs:
 #   get-feature-branches:
 #     runs-on: ubuntu-latest
