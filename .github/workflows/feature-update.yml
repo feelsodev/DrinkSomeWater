@@ -29,8 +29,8 @@ jobs:
         
       - name: Set variables
         run: |
-          echo "SOURCE_BRANCH=update/AAA-${{ github.event.client_payload.jira_number }}/${{ env.TODAY_DATE }}" >> $GITHUB_ENV
-          echo "DESTINATION_BRANCH=feature/AAA-${{ github.event.client_payload.jira_number }}/base" >> $GITHUB_ENV
+          echo "SOURCE_BRANCH=update/${{ github.event.client_payload.repository }}/${{ env.TODAY_DATE }}" >> $GITHUB_ENV
+          echo "DESTINATION_BRANCH=feature/${{ github.event.client_payload.repository }}/base" >> $GITHUB_ENV
           
       - name: Create branch
         run: |
@@ -51,7 +51,7 @@ jobs:
         with:
           source_branch: "${{ env.SOURCE_BRANCH }}"
           destination_branch: "${{ env.DESTINATION_BRANCH }}"
-          pr_title: "AMZUIOS-${{ github.event.client_payload.jira_number }} < develop 최신화"
+          pr_title: "AMZUIOS-${{ github.event.client_payload.repository }} < develop 최신화"
           pr_assignee: "feelsodev"
           pr_label: "bug"
           github_token: ${{ secrets.GITHUB_TOKEN }}

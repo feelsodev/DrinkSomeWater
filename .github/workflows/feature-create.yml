@@ -19,7 +19,7 @@ jobs:
 
       - name: Send POST Requests
         run: |
-          IFS=',' read -r -a branches <<< "$BRANCHES"
+          IFS=',' read -r -a branches <<< "env.$BRANCHES"
           for branch in "${branches[@]}"
           do
             curl -X POST https://api.github.com/repos/feelsodev/DrinkSomeWater/dispatches \
