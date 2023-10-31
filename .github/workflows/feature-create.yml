@@ -27,6 +27,7 @@ jobs:
           IFS=',' read -r -a branches <<< "env.$BRANCHES"
           for branch in "${branches[@]}"
           do
+            echo "Processing branch: $branch"
             curl -L \
               -X POST \
               -H "Accept: application/vnd.github+json" \
