@@ -24,7 +24,7 @@ jobs:
 
       - name: Send POST Requests
         run: |
-          IFS=',' read -r -a branches <<< "env.$BRANCHES"
+          IFS=',' read -r -a branches <<< "$BRANCHES"
           for branch in "${branches[@]}"
           do
             echo "Processing branch: $branch"
