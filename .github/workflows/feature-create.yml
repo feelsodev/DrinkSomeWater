@@ -6,14 +6,27 @@ on:
       - update/**
 
 jobs:
-  get-feature-branches:
+  print-branches:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: List Branches
+        run: |
+          echo "현재 저장소의 브랜치 목록:"
+          git branch | sed -n -e 's/^\* \(.*\)/\1/p'
+          
+# jobs:
+#   get-feature-branches:
+#     runs-on: ubuntu-latest
+    
+#     steps:
+#     - name: Checkout Repository
+#       uses: actions/checkout@v2
       
-    - name: List Branches
-      run: |
-        BRANCH_LIST=$(git branch -r --format '%(refname:short)' | sed 's/^origin\///' | grep -E '^feature/.+/base$')
-        echo "{{$BRANCH_LIST}} 하하하하하하하"
+#     - name: List Branches
+#       run: |
+#         BRANCH_LIST=$(git branch -r --format '%(refname:short)' | sed 's/^origin\///' | grep -E '^feature/.+/base$')
+#         echo "$BRANCH_LIST"
