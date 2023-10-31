@@ -15,7 +15,7 @@ jobs:
       - name: List Branches
         id: list_branches
         run: |
-          echo "BRANCHES=$(git ls-remote --heads origin | awk -F/ '{print substr($0, index($0,$3))}' | tr '\n' ',')" >> $GITHUB_ENV
+          echo "BRANCHES=$(git ls-remote --heads origin | awk -F/ '$3 ~ /^feature/ && $4 == "base" {print $3 "/" $4}' | tr '\n' ',')"
 
       - name: Display Branches
         run: |
