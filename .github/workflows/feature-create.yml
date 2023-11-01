@@ -22,6 +22,7 @@ jobs:
         run: |
           echo "${{ env.BRANCHES }}"
 
+
       - name: Send POST Requests
         run: |
           IFS=',' read -r -a branches <<< "$BRANCHES"
