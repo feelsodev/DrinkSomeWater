@@ -63,7 +63,12 @@ let project = Project(
                 .external(name: "SnapKit"),
                 .external(name: "Then"),
                 .external(name: "FSCalendar"),
-            ]
+            ],
+            settings: .settings(
+                base: [
+                    "OTHER_LDFLAGS": ["-ObjC"]
+                ]
+            )
         ),
         .target(
             name: "DrinkSomeWaterTests",
