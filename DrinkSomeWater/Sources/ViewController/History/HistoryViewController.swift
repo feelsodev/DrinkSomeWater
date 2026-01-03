@@ -50,8 +50,8 @@ final class HistoryViewController: BaseViewController {
     
     private let legendStack = UIStackView().then {
         $0.axis = .horizontal
-        $0.distribution = .fillEqually
-        $0.spacing = 16
+        $0.distribution = .fill
+        $0.spacing = 20
     }
     
     private let recordCard = UIView().then {
@@ -123,29 +123,25 @@ final class HistoryViewController: BaseViewController {
         legendStack.addArrangedSubview(successLegend)
     }
     
-    private func createLegendItem(color: UIColor, text: String) -> UIView {
-        let container = UIView()
+    private func createLegendItem(color: UIColor, text: String) -> UIStackView {
+        let stack = UIStackView().then {
+            $0.axis = .horizontal
+            $0.alignment = .center
+            $0.spacing = 6
+        }
         let dot = UIView().then {
             $0.backgroundColor = color
             $0.layer.cornerRadius = 5
+            $0.snp.makeConstraints { $0.size.equalTo(10) }
         }
         let label = UILabel().then {
             $0.text = text
             $0.font = .systemFont(ofSize: 12, weight: .medium)
             $0.textColor = .darkGray
         }
-        container.addSubview(dot)
-        container.addSubview(label)
-        dot.snp.makeConstraints {
-            $0.leading.equalToSuperview()
-            $0.centerY.equalToSuperview()
-            $0.width.height.equalTo(10)
-        }
-        label.snp.makeConstraints {
-            $0.leading.equalTo(dot.snp.trailing).offset(6)
-            $0.centerY.equalToSuperview()
-        }
-        return container
+        stack.addArrangedSubview(dot)
+        stack.addArrangedSubview(label)
+        return stack
     }
     
     override func render() {
