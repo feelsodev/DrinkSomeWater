@@ -65,8 +65,8 @@ class IntroViewController: UIViewController {
       if done {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
           let serviceProvider = ServiceProvider()
-          let mainReactor = MainViewReactor(provider: serviceProvider)
-          let mainView = MainViewController(reactor: mainReactor)
+          let mainStore = MainStore(provider: serviceProvider)
+          let mainView = MainViewController(store: mainStore)
           self.navigationController?.pushViewController(mainView, animated: false)
         }
       }

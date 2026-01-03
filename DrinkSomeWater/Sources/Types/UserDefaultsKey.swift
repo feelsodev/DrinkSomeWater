@@ -8,9 +8,10 @@
 import Foundation
 
 struct UserDefaultsKey<T> {
-  typealias Key<T> = UserDefaultsKey<T>
   let key: String
 }
+
+typealias Key<T> = UserDefaultsKey<T>
 
 extension UserDefaultsKey: ExpressibleByStringLiteral {
   public init(unicodeScalarLiteral value: StringLiteralType) {

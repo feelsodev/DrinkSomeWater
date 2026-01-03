@@ -14,14 +14,7 @@ struct Liceses {
     return ["FSCalendar",
             "Then",
             "SnapKit",
-            "RxSwift",
-            "RxCocoa",
-            "RxDataSources",
-            "RxOptional",
-            "RxViewController",
-            "ReactorKit",
-            "WaveAnimationView",
-            "URLNavigator"]
+            "WaveAnimationView"]
   }
 }
 struct LicesesData {
