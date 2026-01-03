@@ -8,139 +8,138 @@
 import XCTest
 @testable import DrinkSomeWater
 
-import RxSwift
-
-class DrinkSomeWaterTests: XCTestCase {
+@MainActor
+final class DrinkSomeWaterTests: XCTestCase {
   
-  func testDrinkWaterFetch() {
+  func testDrinkWaterFetch() async {
     let provider = ServiceProvider()
     
     // when
-    let reactor = DrinkViewReactor(provider: provider)
+    let store = DrinkStore(provider: provider)
     
     // then
-    XCTAssertEqual(reactor.currentState.progress, 0, "failed progress data check")
-    XCTAssertEqual(reactor.currentState.currentValue, 150, "failed current data check")
-    XCTAssertEqual(reactor.currentState.maxValue, 530, "failed total data check")
+    XCTAssertEqual(store.progress, 0, "failed progress data check")
+    XCTAssertEqual(store.currentValue, 150, "failed current data check")
+    XCTAssertEqual(store.maxValue, 530, "failed total data check")
   }
   
-  func testDrinkWaterTap() {
+  func testDrinkWaterTap() async {
     let provider = ServiceProvider()
     
     // given
-    let reactor = DrinkViewReactor(provider: provider)
+    let store = DrinkStore(provider: provider)
 
     // when
-    reactor.action.onNext(.tapCup(0.5))
+    await store.send(.tapCup(0.5))
     let firstTestValue = Int(0.5 * 530) - Int(0.5 * 530) % 10
     
     // then
-    XCTAssertEqual(reactor.currentState.currentValue, Float(firstTestValue))
+    XCTAssertEqual(store.currentValue, Float(firstTestValue))
     
     // when
-    reactor.action.onNext(.tapCup(0.9))
+    await store.send(.tapCup(0.9))
     let secondTestValue = Int(0.9 * 530) - Int(0.9 * 530) % 10
     
     // then
-    XCTAssertEqual(reactor.currentState.currentValue, Float(secondTestValue))
+    XCTAssertEqual(store.currentValue, Float(secondTestValue))
     
     // when
-    reactor.action.onNext(.tapCup(1))
+    await store.send(.tapCup(1))
     
     // then
-    XCTAssertEqual(reactor.currentState.currentValue, 500)
+    XCTAssertEqual(store.currentValue, 500)
     
     // when
-    reactor.action.onNext(.tapCup(0))
+    await store.send(.tapCup(0))
     
     // then
-    XCTAssertEqual(reactor.currentState.currentValue, 30)
+    XCTAssertEqual(store.currentValue, 30)
   }
   
-  func testDrinkWaterIncerese() {
+  func testDrinkWaterIncrease() async {
     let provider = ServiceProvider()
     
     // given
-    let reactor = DrinkViewReactor(provider: provider)
+    let store = DrinkStore(provider: provider)
 
     // when
-    reactor.action.onNext(.increseWater)
+    await store.send(.increaseWater)
     
     // then
-    XCTAssertEqual(reactor.currentState.currentValue, 200)
+    XCTAssertEqual(store.currentValue, 200)
 
     // when
-    reactor.action.onNext(.increseWater)
+    await store.send(.increaseWater)
     
     // then
-    XCTAssertEqual(reactor.currentState.currentValue, 250)
+    XCTAssertEqual(store.currentValue, 250)
   }
   
-  func testDrinkWaterDecerese() {
+  func testDrinkWaterDecrease() async {
     let provider = ServiceProvider()
     
     // given
-    let reactor = DrinkViewReactor(provider: provider)
+    let store = DrinkStore(provider: provider)
 
     // when
-    reactor.action.onNext(.decreseWater)
+    await store.send(.decreaseWater)
     
     // then
-    XCTAssertEqual(reactor.currentState.currentValue, 100)
+    XCTAssertEqual(store.currentValue, 100)
 
     // when
-    reactor.action.onNext(.decreseWater)
+    await store.send(.decreaseWater)
     
     // then
-    XCTAssertEqual(reactor.currentState.currentValue, 50)
+    XCTAssertEqual(store.currentValue, 50)
   }
   
-  func testDrinkWaterSet500() {
+  func testDrinkWaterSet500() async {
     let provider = ServiceProvider()
     
     // given
-    let reactor = DrinkViewReactor(provider: provider)
+    let store = DrinkStore(provider: provider)
 
     // when
-    reactor.action.onNext(.set500)
+    await store.send(.set500)
     
     // then
-    XCTAssertEqual(reactor.currentState.currentValue, 500)
+    XCTAssertEqual(store.currentValue, 500)
   }
   
-  func testDrinkWaterSet300() {
+  func testDrinkWaterSet300() async {
     let provider = ServiceProvider()
     
     // given
-    let reactor = DrinkViewReactor(provider: provider)
+    let store = DrinkStore(provider: provider)
 
     // when
-    reactor.action.onNext(.set300)
+    await store.send(.set300)
     
-    // when
-    XCTAssertEqual(reactor.currentState.currentValue, 300)
+    // then
+    XCTAssertEqual(store.currentValue, 300)
   }
   
-  func testDrinkWaterDismiss() {
+  func testDrinkWaterDismiss() async {
     // it should dismiss on cancel
     let provider = ServiceProvider()
     
     // given
-    let reactorDrink = DrinkViewReactor(provider: provider)
-    let reactorCalendar = CalendarViewReactor(provider: provider)
-    let reactorInfomation = InformationViewReactor(provider: provider)
-    let reactorSetting = SettingViewReactor(provider: provider)
+    let storeDrink = DrinkStore(provider: provider)
+    let storeCalendar = CalendarStore(provider: provider)
+    let storeInformation = InformationStore(provider: provider)
+    let storeSetting = SettingStore(provider: provider)
     
     // when
-    reactorDrink.action.onNext(.cancel)
-    reactorCalendar.action.onNext(.cancel)
-    reactorInfomation.action.onNext(.cancel)
-    reactorSetting.action.onNext(.cancel)
+    await storeDrink.send(.cancel)
+    await storeCalendar.send(.cancel)
+    await storeInformation.send(.cancel)
+    await storeSetting.send(.cancel)
     
     // then
-    XCTAssertEqual(reactorDrink.currentState.shouldDismissed, true)
-    XCTAssertEqual(reactorCalendar.currentState.shouldDismissed, true)
-    XCTAssertEqual(reactorInfomation.currentState.shouldDismissed, true)
-    XCTAssertEqual(reactorSetting.currentState.shouldDismissed, true)
+    XCTAssertEqual(storeDrink.shouldDismiss, true)
+    XCTAssertEqual(storeCalendar.shouldDismiss, true)
+    XCTAssertEqual(storeInformation.shouldDismiss, true)
+    XCTAssertEqual(storeSetting.shouldDismiss, true)
   }
 }
