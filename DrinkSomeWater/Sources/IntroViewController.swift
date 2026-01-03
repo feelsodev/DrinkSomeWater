@@ -65,9 +65,15 @@ class IntroViewController: UIViewController {
       if done {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
           let serviceProvider = ServiceProvider()
-          let mainStore = MainStore(provider: serviceProvider)
-          let mainView = MainViewController(store: mainStore)
-          self.navigationController?.pushViewController(mainView, animated: false)
+          let tabBarController = MainTabBarController(serviceProvider: serviceProvider)
+          tabBarController.modalPresentationStyle = .fullScreen
+          
+          if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+             let window = windowScene.windows.first {
+            window.rootViewController = tabBarController
+            window.makeKeyAndVisible()
+            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
+          }
         }
       }
     }

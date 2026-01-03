@@ -3,6 +3,7 @@ import Foundation
 extension UserDefaultsKey {
     static var goal: Key<Int> { return "goal" }
     static var current: Key<[[String: Any]]> { return "current" }
+    static var customQuickButtons: Key<[Int]> { return "customQuickButtons" }
 }
 
 protocol UserDefaultsServiceProtocol {
