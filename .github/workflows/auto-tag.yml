@@ -1,0 +1,54 @@
+name: Auto Tag Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Calculate version and create tag
+        run: |
+          YEAR=$(date +%y)
+          WEEK=$(date +%V | sed 's/^0*//')
+          
+          TAG_PREFIX="${YEAR}.${WEEK}."
+          
+          LATEST_N=$(git tag -l "${TAG_PREFIX}*" | sed "s/${TAG_PREFIX}//" | sort -n | tail -1)
+          
+          if [ -z "$LATEST_N" ]; then
+            NEW_N=1
+          else
+            NEW_N=$((LATEST_N + 1))
+          fi
+          
+          NEW_TAG="${TAG_PREFIX}${NEW_N}"
+          
+          echo "Creating tag: $NEW_TAG"
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
+          git push origin "$NEW_TAG"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.NEW_TAG }}
+          name: Release ${{ env.NEW_TAG }}
+          generate_release_notes: true
