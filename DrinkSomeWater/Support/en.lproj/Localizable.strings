@@ -9,7 +9,7 @@
 
 // Main
 "You achieved " = "You achieved ";
-" Today!!" = " Today!!";
+"TodaySuffix" = " Today!!";
 
 // Calendar
 "Today" = "Today";

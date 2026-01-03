@@ -8,7 +8,7 @@
 
 // Main
 "You achieved " = "오늘은 ";
-" Today!!" = " 달성하셨어요!!";
+"TodaySuffix" = " 달성하셨어요!!";
 
 // Calendar
 "Today" = "오늘";
