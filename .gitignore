@@ -1,13 +1,22 @@
-# Created by https://www.toptal.com/developers/gitignore/api/xcode,cocoapods,swift,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,cocoapods,swift,macos
+# Created by https://www.toptal.com/developers/gitignore/api/xcode,swift,macos,tuist
+# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swift,macos,tuist
 
-### CocoaPods ###
-## CocoaPods GitIgnore Template
+### Tuist ###
+# Tuist managed files (regenerated via `tuist generate`)
+Derived/
+*.xcodeproj
+*.xcworkspace
+graph.dot
+Tuist/.build
 
-# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
-#           - Also handy if you have a large number of dependant pods
-#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
+# Tuist cache
+.tuist-bin
+.tuist-cache
+
+### CocoaPods (Legacy - to be removed) ###
 Pods/
+Podfile
+Podfile.lock
 
 ### macOS ###
 # General
