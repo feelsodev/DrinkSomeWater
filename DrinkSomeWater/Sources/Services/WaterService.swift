@@ -1,118 +1,83 @@
-//
-//  WarterService.swift
-//  DrinkSomeWater
-//
-//  Created by once on 2021/03/19.
-//
-
 import Foundation
-import RxSwift
-
-enum WaterEvent {
-  case updateWater([WaterRecord])
-  case updateGoal(Int)
-}
 
 protocol WaterServiceProtocol {
-  var event: PublishSubject<WaterEvent> { get }
-  func fetchWater() -> Observable<[WaterRecord]>
-  func fetchGoal() -> Observable<Int>
-  
-  @discardableResult
-  func saveWater(_ waterRecord: [WaterRecord]) -> Observable<Void>
-  
-  @discardableResult
-  func updateWater(to ml: Float) -> Observable<[WaterRecord]>
-
-  @discardableResult
-  func updateGoal(to ml: Int) -> Observable<Int>
+    func fetchWater() async -> [WaterRecord]
+    func fetchGoal() async -> Int
+    func saveWater(_ waterRecord: [WaterRecord]) async
+    func updateWater(by ml: Float) async -> [WaterRecord]
+    func updateGoal(to ml: Int) async -> Int
 }
 
 final class WaterService: BaseService, WaterServiceProtocol {
-  let event = PublishSubject<WaterEvent>()
     
-  func fetchWater() -> Observable<[WaterRecord]> {
-    if let currentValue = self.provider.userDefaultsService.value(forkey: .current) {
-      var water = currentValue.compactMap(WaterRecord.init)
-      if !water.contains(where: { $0.date.checkToday }) {
-        guard let goalWater = self.provider.userDefaultsService.value(forkey: .goal) else {
-          return .empty()
+    func fetchWater() async -> [WaterRecord] {
+        if let currentValue = provider.userDefaultsService.value(forkey: .current) {
+            var water = currentValue.compactMap(WaterRecord.init)
+            if !water.contains(where: { $0.date.checkToday }) {
+                guard let goalWater = provider.userDefaultsService.value(forkey: .goal) else {
+                    return []
+                }
+                water.append(WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater))
+            }
+            await saveWater(water)
+            return water
         }
-        water.append(WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater))
-      }
-      _ = self.saveWater(water)
-      return .just(water)
+        
+        guard let goalWater = provider.userDefaultsService.value(forkey: .goal) else {
+            return []
+        }
+        let waterRecord = WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater)
+        let value = waterRecord.asDictionary()
+        provider.userDefaultsService.set(value: [value], forkey: .current)
+        return [waterRecord]
     }
     
-    // 값이 존재하지 않을경우 즉, 제일 초기 앱 실행시
-    guard let goalWater = self.provider.userDefaultsService.value(forkey: .goal) else {
-      return .empty()
+    func fetchGoal() async -> Int {
+        guard let goalWater = provider.userDefaultsService.value(forkey: .goal) else {
+            return 2000
+        }
+        return goalWater
     }
-    let waterRecord = WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater)
-    let value = waterRecord.asDictionary()
-    self.provider.userDefaultsService.set(value: [value], forkey: .current)
-    return .just([waterRecord])
-  }
-  
-  func fetchGoal() -> Observable<Int> {
-    guard let goalWater = self.provider.userDefaultsService.value(forkey: .goal) else {
-      return .empty()
+    
+    func saveWater(_ waterRecord: [WaterRecord]) async {
+        let dicts = waterRecord.map { $0.asDictionary() }
+        provider.userDefaultsService.set(value: dicts, forkey: .current)
     }
-    return .just(goalWater)
-  }
-  
-  func saveWater(_ waterRecord: [WaterRecord]) -> Observable<Void> {
-    let dicts = waterRecord.map { $0.asDictionary() }
-    self.provider.userDefaultsService.set(value: dicts, forkey: .current)
-    return .just(Void())
-  }
-  
-  @discardableResult
-  func updateWater(to ml: Float) -> Observable<[WaterRecord]> {
-    return self.fetchWater()
-      .flatMap { [weak self] waterRecord -> Observable<[WaterRecord]> in
-        guard let `self` = self else { return .empty() }
+    
+    @discardableResult
+    func updateWater(by ml: Float) async -> [WaterRecord] {
+        var waterRecord = await fetchWater()
         guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
-          return .empty()
+            return []
         }
-        var waterRecord = waterRecord
-        let newRecord = waterRecord[index].with {
-          $0.value += Int(ml)
-          $0.date = Date()
-          $0.isSuccess =
-            $0.value >= $0.goal
-            ? true
-            : false
-        }
+        
+        var newRecord = waterRecord[index]
+        newRecord.value += Int(ml)
+        newRecord.date = Date()
+        newRecord.isSuccess = newRecord.value >= newRecord.goal
         waterRecord[index] = newRecord
-        return self.saveWater(waterRecord)
-          .map { waterRecord }
-          .do { waterRecordList in
-            self.event.onNext(.updateWater(waterRecordList))
-          }
-      }
-  }
-  
-  @discardableResult
-  func updateGoal(to ml: Int) -> Observable<Int> {
-    if let currentValue = self.provider.userDefaultsService.value(forkey: .current) {
-      let waterRecord = currentValue.compactMap(WaterRecord.init)
-      guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
-        return .empty()
-      }
-      var tempWaterRecord = waterRecord
-      let newRecord = tempWaterRecord[index].with {
-        $0.goal = ml
-        $0.isSuccess =
-          $0.value >= $0.goal
-          ? true
-          : false
-      }
-      tempWaterRecord[index] = newRecord
-      _ = self.saveWater(tempWaterRecord)
+        
+        await saveWater(waterRecord)
+        return waterRecord
     }
-    self.provider.userDefaultsService.set(value: ml, forkey: .goal)
-    self.event.onNext(.updateGoal(ml))
-    return .just(ml)
-  }
+    
+    @discardableResult
+    func updateGoal(to ml: Int) async -> Int {
+        if let currentValue = provider.userDefaultsService.value(forkey: .current) {
+            var waterRecord = currentValue.compactMap(WaterRecord.init)
+            guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
+                provider.userDefaultsService.set(value: ml, forkey: .goal)
+                return ml
+            }
+            
+            var newRecord = waterRecord[index]
+            newRecord.goal = ml
+            newRecord.isSuccess = newRecord.value >= newRecord.goal
+            waterRecord[index] = newRecord
+            
+            await saveWater(waterRecord)
+        }
+        provider.userDefaultsService.set(value: ml, forkey: .goal)
+        return ml
+    }
 }
