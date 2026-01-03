@@ -1,107 +1,122 @@
 # DrinkSomeWater Technical Specification
 
-> ReactorKit/RxSwift → @Observable/async-await 마이그레이션 기술 문서
+> UIKit + @Observable + async/await 아키텍처
 
 ## 1. Overview
 
 ### 1.1 Project Summary
 - **App Name**: 벌컥벌컥 (Gulp) - 물 섭취 추적 iOS 앱
-- **Current State**: ReactorKit + RxSwift (archive/250617 브랜치)
-- **Target State**: UIKit + @Observable + async/await
+- **Architecture**: UIKit + @Observable Store + async/await
+- **Min iOS**: iOS 26+
+- **Swift**: Swift 6
 
-### 1.2 Migration Goals
-| Goal | Description |
-|------|-------------|
-| Remove ReactorKit | Reactor → @Observable Store 패턴 전환 |
-| Remove RxSwift ecosystem | RxSwift, RxCocoa, RxDataSources, RxGesture, RxOptional, RxViewController 제거 |
-| Modern Swift | async/await, @Observable (iOS 17+) |
-| iOS 26+ | 최소 지원 버전 iOS 26 |
-| Tuist | 프로젝트 관리 (이미 설정됨) |
+### 1.2 Core Features
+| Feature | Description |
+|---------|-------------|
+| 물 섭취 기록 | 퀵버튼으로 간편하게 물 섭취량 기록 |
+| 목표량 설정 | 일일 목표량 커스텀 설정 |
+| 기록 조회 | 캘린더로 달성 이력 확인 |
+| 퀵버튼 커스텀 | 자주 마시는 용량 설정 |
 
 ---
 
 ## 2. Architecture
 
-### 2.1 Before (ReactorKit)
+### 2.1 App Flow
+
 ```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│  ViewController │────▶│     Reactor     │────▶│    Service      │
-│                 │◀────│                 │◀────│                 │
-│  - bind()       │     │  - Action       │     │  - RxSwift      │
-│  - disposeBag   │     │  - Mutation     │     │  - PublishSubject│
-│                 │     │  - State        │     │                 │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
-         │                      │
-         └──────────────────────┘
-              RxSwift Binding
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   Intro (스플래시)                                          │
+│         │                                                   │
+│         ▼                                                   │
+│   ┌─────────────────────────────────────────────────────┐   │
+│   │                                                     │   │
+│   │              [ 메인 컨텐츠 ]                        │   │
+│   │                                                     │   │
+│   └─────────────────────────────────────────────────────┘   │
+│                                                             │
+│   ┌─────────────┬─────────────┬─────────────┐               │
+│   │     💧      │     📅      │     ⚙️      │               │
+│   │    오늘     │    기록     │    설정     │               │
+│   └─────────────┴─────────────┴─────────────┘               │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-### 2.2 After (@Observable Store)
+### 2.2 @Observable Store Pattern
+
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
 │  ViewController │────▶│      Store      │────▶│    Service      │
 │                 │◀────│   @Observable   │◀────│                 │
 │  - render()     │     │  - send(Action) │     │  - async/await  │
-│  - observation  │     │  - @MainActor   │     │  - Actor        │
+│  - observation  │     │  - @MainActor   │     │                 │
 └─────────────────┘     └─────────────────┘     └─────────────────┘
          │                      │
          └──────────────────────┘
          withObservationTracking
 ```
 
-### 2.3 Key Pattern Changes
+### 2.3 Store Example
 
-#### Reactor → Store
 ```swift
-// BEFORE: ReactorKit
-final class MainViewReactor: Reactor {
-    enum Action { case refresh }
-    enum Mutation { case updateWater([WaterRecord]) }
-    struct State { var ml: Float = 0 }
-    
-    func mutate(action: Action) -> Observable<Mutation> { ... }
-    func reduce(state: State, mutation: Mutation) -> State { ... }
-}
-
-// AFTER: @Observable Store
 @MainActor
 @Observable
-final class MainStore {
-    enum Action { case refresh }
+final class HomeStore {
+    enum Action {
+        case refresh
+        case refreshGoal
+        case addWater(Int)
+    }
     
-    private let provider: ServiceProviderProtocol
+    let provider: ServiceProviderProtocol
+    
+    var total: Float = 0
     var ml: Float = 0
+    var progress: Float { total == 0 ? 0 : ml / total }
     
     func send(_ action: Action) async {
         switch action {
         case .refresh:
             let records = await provider.waterService.fetchWater()
-            ml = Float(records.first(where: { $0.date.checkToday })?.value ?? 0)
+            if let todayRecord = records.first(where: { $0.date.checkToday }) {
+                ml = Float(todayRecord.value)
+            }
+            
+        case .refreshGoal:
+            let goal = await provider.waterService.fetchGoal()
+            total = Float(goal)
+            
+        case .addWater(let amount):
+            _ = await provider.waterService.updateWater(by: Float(amount))
+            await send(.refresh)
         }
     }
 }
 ```
 
-#### ViewController Binding
+### 2.4 ViewController Binding
+
 ```swift
-// BEFORE: RxSwift binding
-func bind(reactor: MainViewReactor) {
-    reactor.state.asObservable()
-        .map { $0.ml }
-        .bind(to: label.rx.text)
-        .disposed(by: disposeBag)
-}
-
-// AFTER: Observation render loop
-private var observation: ObservationToken?
-
-override func viewDidLoad() {
-    super.viewDidLoad()
-    observation = observe { [weak self] in self?.render() }
-}
-
-@MainActor private func render() {
-    label.text = "\(Int(store.ml))ml"
+final class HomeViewController: BaseViewController {
+    private let store: HomeStore
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        observation = startObservation { [weak self] in self?.render() }
+        
+        Task {
+            await store.send(.refreshGoal)
+            await store.send(.refresh)
+        }
+    }
+    
+    override func render() {
+        let progress = store.progress
+        bottle.setProgress(progress)
+        waterCapacity.text = "\(Int(store.ml))ml"
+    }
 }
 ```
 
@@ -109,7 +124,6 @@ override func viewDidLoad() {
 
 ## 3. File Structure
 
-### 3.1 Source Files (from archive/250617)
 ```
 DrinkSomeWater/Sources/
 ├── AppDelegate.swift
@@ -120,8 +134,7 @@ DrinkSomeWater/Sources/
 │   ├── Date+Ext.swift
 │   ├── Float+Ext.swift
 │   ├── String+Ext.swift
-│   ├── UIView+Ext.swift
-│   └── WaveAnimationView+Reactive.swift  # DELETE (Rx extension)
+│   └── UIView+Ext.swift
 │
 ├── Models/
 │   ├── Info.swift
@@ -133,14 +146,28 @@ DrinkSomeWater/Sources/
 │   ├── BaseService.swift
 │   ├── ServiceProvider.swift
 │   ├── UserDefaultsService.swift
-│   └── WaterService.swift               # REFACTOR (Rx → async/await)
+│   └── WaterService.swift
 │
 ├── StaticComponent/
 │   ├── Licenses.swift
 │   └── WaterImage.swift
 │
+├── Stores/
+│   ├── ObservationToken.swift
+│   ├── HomeStore.swift
+│   ├── HistoryStore.swift
+│   ├── SettingsStore.swift
+│   ├── DrinkStore.swift (legacy)
+│   ├── CalendarStore.swift (legacy)
+│   ├── MainStore.swift (legacy)
+│   ├── SettingStore.swift (legacy)
+│   └── InformationStore.swift (legacy)
+│
 ├── Types/
 │   └── UserDefaultsKey.swift
+│
+├── Vendor/
+│   └── WaveAnimationView.swift
 │
 ├── ViewComponent/
 │   ├── Beaker.swift
@@ -148,288 +175,292 @@ DrinkSomeWater/Sources/
 │   ├── IntrinsicTableView.swift
 │   └── WaterRecordResultView.swift
 │
-├── ViewController/
-│   ├── BaseComponent/
-│   │   ├── BaseTableViewCell.swift
-│   │   └── BaseViewController.swift     # REFACTOR (remove disposeBag)
-│   │
-│   ├── Main/
-│   │   ├── MainViewController.swift     # REFACTOR
-│   │   └── MainViewReactor.swift        # → MainStore.swift
-│   │
-│   ├── Drink/
-│   │   ├── DrinkViewController.swift    # REFACTOR
-│   │   └── DrinkViewReactor.swift       # → DrinkStore.swift
-│   │
-│   ├── Calendar/
-│   │   ├── CalendarViewController.swift # REFACTOR
-│   │   └── CalendarViewReactor.swift    # → CalendarStore.swift
-│   │
-│   ├── Setting/
-│   │   ├── SettingViewController.swift  # REFACTOR
-│   │   └── SettingViewReactor.swift     # → SettingStore.swift
-│   │
-│   ├── Information/
-│   │   ├── InformationViewController.swift # REFACTOR
-│   │   ├── InformationViewReactor.swift    # → InformationStore.swift
-│   │   ├── InfoCell.swift                  # REFACTOR
-│   │   └── InfoCellReactor.swift           # DELETE (inline)
-│   │
-│   └── Licenses/
-│       ├── LicenseCell.swift
-│       ├── LicenseDetailViewController.swift
-│       └── LicensesViewController.swift
-│
-└── Stores/                              # NEW directory
-    ├── ObservationToken.swift           # NEW (UIKit observation helper)
-    ├── MainStore.swift
-    ├── DrinkStore.swift
-    ├── CalendarStore.swift
-    ├── SettingStore.swift
-    └── InformationStore.swift
-```
-
-### 3.2 Tuist Structure
-```
-DrinkSomeWater/
-├── Project.swift                        # UPDATE (iOS 26+)
-├── Tuist.swift
-├── Tuist/
-│   └── Package.swift                    # UPDATE (dependencies)
-└── DrinkSomeWater/
-    ├── Sources/
-    ├── Resources/
-    └── Tests/
+└── ViewController/
+    ├── BaseComponent/
+    │   ├── BaseTableViewCell.swift
+    │   └── BaseViewController.swift
+    │
+    ├── TabBar/
+    │   └── MainTabBarController.swift
+    │
+    ├── Home/
+    │   └── HomeViewController.swift
+    │
+    ├── History/
+    │   └── HistoryViewController.swift
+    │
+    ├── Settings/
+    │   ├── SettingsViewController.swift
+    │   └── SettingsCell.swift
+    │
+    ├── Common/
+    │   ├── GoalSettingViewController.swift
+    │   ├── DrinkInputViewController.swift
+    │   └── QuickButtonSettingViewController.swift
+    │
+    └── Licenses/
+        ├── LicensesViewController.swift
+        ├── LicenseCell.swift
+        └── LicenseDetailViewController.swift
 ```
 
 ---
 
-## 4. Dependencies
+## 4. Screen Specifications
 
-### 4.1 Before (CocoaPods)
-```ruby
-# Podfile (to be removed)
-pod 'FSCalendar'
-pod 'SnapKit'
-pod 'WaveAnimationView'
-pod 'RxSwift'           # REMOVE
-pod 'RxCocoa'           # REMOVE
-pod 'RxDataSources'     # REMOVE
-pod 'RxGesture'         # REMOVE
-pod 'RxOptional'        # REMOVE
-pod 'RxViewController'  # REMOVE
-pod 'SwiftLint'
-pod 'Then'
-pod 'ReactorKit'        # REMOVE
-pod 'URLNavigator'      # REMOVE (unused)
-pod 'Firebase/Analytics'
-pod 'Firebase/Crashlytics'
+### 4.1 Home (오늘)
+
+```
+┌────────────────────────────────────────┐
+│                            ┌────┐      │
+│   오늘의 물 섭취           │ 🎯 │      │ ← 목표량 퀵 설정
+│                            └────┘      │
+│                                        │
+│         ┌──────────────┐               │
+│         │    물병      │               │
+│         │  Wave 애니   │  60%          │
+│         └──────────────┘               │
+│                                        │
+│      1,200ml / 2,000ml                 │
+│                                        │
+│   ┌────────────────────────────────┐   │
+│   │  ☀️ 2잔 더 마시면 목표 달성!   │   │
+│   └────────────────────────────────┘   │
+│                                        │
+│   ┌────────┐ ┌────────┐ ┌────────┐     │
+│   │  +150  │ │  +300  │ │  +500  │     │ ← 기본 퀵버튼
+│   └────────┘ └────────┘ └────────┘     │
+│                                        │
+│   ┌────────┐ ┌────────┐ ┌──────────┐   │
+│   │  +250  │ │  +400  │ │ 직접입력 │   │ ← 커스텀 버튼
+│   └────────┘ └────────┘ └──────────┘   │
+│                                        │
+└────────────────────────────────────────┘
 ```
 
-### 4.2 After (Tuist SPM)
+**Store**: `HomeStore`
+**Actions**: `refresh`, `refreshGoal`, `addWater(Int)`
+
+### 4.2 History (기록)
+
+```
+┌────────────────────────────────────────┐
+│   📅 기록              📊 12일 달성   │
+│                                        │
+│   ┌────────────────────────────────┐   │
+│   │        FSCalendar              │   │
+│   │    (달성일 하이라이트)         │   │
+│   └────────────────────────────────┘   │
+│                                        │
+│   ┌────────────────────────────────┐   │
+│   │  📌 1월 15일 (수)              │   │
+│   │  목표: 2,000ml  섭취: 2,150ml  │   │
+│   │  달성률: 107% ✅               │   │
+│   └────────────────────────────────┘   │
+│                                        │
+└────────────────────────────────────────┘
+```
+
+**Store**: `HistoryStore`
+**Actions**: `viewDidLoad`, `selectDate(Date)`
+
+### 4.3 Settings (설정)
+
+```
+┌────────────────────────────────────────┐
+│   ⚙️ 설정                              │
+│                                        │
+│   ─────────── 목표 ───────────         │
+│   │ 🎯 일일 목표량         2,000ml >│   │
+│                                        │
+│   ─────────── 퀵버튼 ───────────       │
+│   │ ⚡ 퀵버튼 설정       250, 400ml >│   │
+│                                        │
+│   ─────────── 알림 ───────────         │
+│   │ 🔔 물 마시기 알림              >│   │
+│                                        │
+│   ─────────── 지원 ───────────         │
+│   │ ⭐ 앱 리뷰 남기기               │   │
+│   │ 💬 문의하기                     │   │
+│   │ 📄 오픈소스 라이선스           >│   │
+│                                        │
+│   ─────────── 정보 ───────────         │
+│   │ 버전                    25.1.1  │   │
+│                                        │
+└────────────────────────────────────────┘
+```
+
+**Store**: `SettingsStore`
+**Actions**: `loadGoal`, `updateGoal(Int)`, `loadCustomButtons`, `updateCustomButtons([Int])`
+
+### 4.4 Bottom Sheets
+
+| Sheet | Purpose | Trigger |
+|-------|---------|---------|
+| GoalSettingVC | 목표량 설정 (1,500-4,500ml) | Home 🎯 / Settings |
+| DrinkInputVC | 직접 입력 (30-500ml) | Home 직접입력 버튼 |
+| QuickButtonSettingVC | 퀵버튼 커스텀 | Settings |
+
+---
+
+## 5. Dependencies
+
+### 5.1 Tuist SPM
+
 ```swift
 // Tuist/Package.swift
 let package = Package(
     name: "DrinkSomeWater",
     dependencies: [
-        // UI
         .package(url: "https://github.com/SnapKit/SnapKit", from: "5.7.0"),
-        .package(url: "https://github.com/nicklockwood/WaveAnimationView", from: "1.0.0"), // TODO: verify SPM support
-        
-        // Calendar - evaluate alternatives for iOS 26+
-        // FSCalendar may not be needed (native calendar improvements)
-        
-        // Utilities
         .package(url: "https://github.com/devxoul/Then", from: "3.0.0"),
-        
-        // Firebase (optional)
-        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "11.0.0"),
+        .package(url: "https://github.com/WenchaoD/FSCalendar", from: "2.8.0"),
     ]
 )
 ```
 
+### 5.2 Local Vendor
+
+- `WaveAnimationView.swift` - 물결 애니메이션 (SPM 미지원으로 로컬 포함)
+
 ---
 
-## 5. Core Components
+## 6. Data Flow
 
-### 5.1 ObservationToken (UIKit Helper)
-```swift
-// Sources/Stores/ObservationToken.swift
-import Observation
+### 6.1 Water Recording
 
-@MainActor
-final class ObservationToken {
-    private var cancelled = false
-    
-    func cancel() { cancelled = true }
-    var isCancelled: Bool { cancelled }
-}
-
-@MainActor
-func observe(_ render: @escaping @MainActor () -> Void) -> ObservationToken {
-    let token = ObservationToken()
-    
-    func run() {
-        guard !token.isCancelled else { return }
-        withObservationTracking {
-            render()
-        } onChange: {
-            Task { @MainActor in run() }
-        }
-    }
-    
-    run()
-    return token
-}
+```
+User taps Quick Button
+        │
+        ▼
+HomeViewController.addWater(amount)
+        │
+        ▼
+HomeStore.send(.addWater(amount))
+        │
+        ▼
+WaterService.updateWater(by: amount)
+        │
+        ▼
+UserDefaults 저장
+        │
+        ▼
+HomeStore.send(.refresh)
+        │
+        ▼
+UI 자동 업데이트 (Observation)
 ```
 
-### 5.2 Service Protocol (async/await)
-```swift
-// Sources/Services/WaterService.swift
-protocol WaterServiceProtocol: Sendable {
-    func fetchWater() async -> [WaterRecord]
-    func fetchGoal() async -> Int
-    func updateWater(by ml: Float) async -> [WaterRecord]
-    func updateGoal(to ml: Int) async -> Int
-}
+### 6.2 Goal Setting
+
+```
+User opens Goal Sheet
+        │
+        ▼
+GoalSettingViewController
+        │
+        ▼
+Slider changed → currentGoal 업데이트
+        │
+        ▼
+Save tapped
+        │
+        ▼
+WaterService.updateGoal(to: value)
+        │
+        ▼
+dismiss → onSave callback
+        │
+        ▼
+HomeStore.send(.refreshGoal)
 ```
 
-### 5.3 Store Base Pattern
+---
+
+## 7. Swift Concurrency
+
+### 7.1 Isolation Model
+
+```
+┌─────────────────────────────────────────────────────┐
+│                    MainActor                        │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  │
+│  │ HomeStore   │  │HistoryStore│  │SettingsStore│  │
+│  │ @Observable │  │ @Observable │  │ @Observable │  │
+│  └─────────────┘  └─────────────┘  └─────────────┘  │
+│                                                     │
+│  ┌─────────────────────────────────────────────┐    │
+│  │           ViewControllers                   │    │
+│  └─────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────┘
+                        │
+                        ▼ async/await
+┌─────────────────────────────────────────────────────┐
+│                    Services                         │
+│  ┌─────────────────────────────────────────────┐    │
+│  │  WaterService, UserDefaultsService          │    │
+│  │  (UserDefaults 동기 접근 - 실제 I/O 없음)   │    │
+│  └─────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────┘
+```
+
+### 7.2 Key Patterns
+
 ```swift
+// Store: @MainActor로 UI 스레드에서 실행
 @MainActor
 @Observable
-final class SomeStore {
-    enum Action {
-        case someAction
-    }
-    
-    // State properties (observable)
-    var someValue: Int = 0
-    
-    // Dependencies
-    private let provider: ServiceProviderProtocol
-    
-    init(provider: ServiceProviderProtocol) {
-        self.provider = provider
-    }
-    
+final class HomeStore {
     func send(_ action: Action) async {
-        switch action {
-        case .someAction:
-            // async work
-            break
-        }
+        // async 작업 가능, UI 업데이트 안전
+    }
+}
+
+// ViewController: Task로 async 호출
+override func viewDidLoad() {
+    super.viewDidLoad()
+    Task {
+        await store.send(.refresh)
+    }
+}
+
+// FSCalendar delegate: nonisolated + Task
+nonisolated func calendar(_ calendar: FSCalendar, didSelect date: Date, ...) {
+    Task { @MainActor in
+        await store.send(.selectDate(date))
     }
 }
 ```
 
 ---
 
-## 6. Screen Specifications
+## 8. Build & Run
 
-### 6.1 Main Screen
-| Component | Current | Target |
-|-----------|---------|--------|
-| Reactor | MainViewReactor | MainStore |
-| State | total, ml, progress | same |
-| Actions | refresh, refreshGoal | same |
-| UI | WaveAnimationView bottle | same |
+```bash
+# Tuist 설치
+mise install tuist
 
-### 6.2 Drink Screen
-| Component | Current | Target |
-|-----------|---------|--------|
-| Reactor | DrinkViewReactor | DrinkStore |
-| State | ml (slider value) | same |
-| Actions | updateMl, drink | same |
-| UI | Slider, +/- buttons, cup images | same |
+# 의존성 설치
+tuist install
 
-### 6.3 Setting Screen
-| Component | Current | Target |
-|-----------|---------|--------|
-| Reactor | SettingViewReactor | SettingStore |
-| State | goal, sections | same |
-| Actions | updateGoal, viewDidLoad | same |
+# 프로젝트 생성
+tuist generate
 
-### 6.4 Calendar Screen
-| Component | Current | Target |
-|-----------|---------|--------|
-| Reactor | CalendarViewReactor | CalendarStore |
-| State | waterRecordList | same |
-| Actions | refresh | same |
-| UI | FSCalendar → evaluate native | TBD |
+# 빌드
+tuist build
 
-### 6.5 Information Screen
-| Component | Current | Target |
-|-----------|---------|--------|
-| Reactor | InformationViewReactor | InformationStore |
-| State | list, license, infoData | same |
-| Actions | viewDidLoad, goDetail, cancel | same |
+# 테스트
+tuist test
+
+# Xcode 열기
+open DrinkSomeWater.xcworkspace
+```
 
 ---
 
-## 7. Migration Order
+## 9. Version History
 
-### Phase 1: Infrastructure
-1. ✅ .gitignore 업데이트
-2. ⬜ archive/250617에서 소스 복원
-3. ⬜ Project.swift iOS 26+ 설정
-4. ⬜ Tuist/Package.swift 의존성 추가
-5. ⬜ ObservationToken.swift 생성
-
-### Phase 2: Services
-6. ⬜ WaterService async/await 전환
-7. ⬜ UserDefaultsService 정리
-8. ⬜ ServiceProvider 업데이트
-9. ⬜ WaveAnimationView+Reactive.swift 삭제
-
-### Phase 3: Stores (Reactor 대체)
-10. ⬜ MainStore 생성
-11. ⬜ DrinkStore 생성
-12. ⬜ SettingStore 생성
-13. ⬜ CalendarStore 생성
-14. ⬜ InformationStore 생성
-15. ⬜ InfoCellReactor 삭제
-
-### Phase 4: ViewControllers
-16. ⬜ BaseViewController 리팩토링
-17. ⬜ MainViewController 리팩토링
-18. ⬜ DrinkViewController 리팩토링
-19. ⬜ SettingViewController 리팩토링
-20. ⬜ CalendarViewController 리팩토링
-21. ⬜ InformationViewController 리팩토링
-22. ⬜ InfoCell 리팩토링
-
-### Phase 5: Cleanup
-23. ⬜ RxSwift imports 제거
-24. ⬜ 빌드 검증
-25. ⬜ 테스트 업데이트
-
----
-
-## 8. Risk & Considerations
-
-### 8.1 Third-party Dependencies
-| Dependency | Risk | Mitigation |
-|------------|------|------------|
-| WaveAnimationView | SPM 지원 확인 필요 | Fork or inline |
-| FSCalendar | iOS 26 native calendar 고려 | Evaluate replacement |
-| Firebase | SPM 지원됨 | OK |
-
-### 8.2 Breaking Changes
-- iOS 26+ 전용 (이전 버전 미지원)
-- CocoaPods → SPM 전환
-- API 호환성 없음 (완전 리팩토링)
-
-### 8.3 Testing Strategy
-- Store 단위 테스트 (async/await)
-- ViewController snapshot 테스트 고려
-- 수동 UI 테스트 필수
-
----
-
-## 9. References
-
-- [Observation Framework](https://developer.apple.com/documentation/observation)
-- [Swift Concurrency](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html)
-- [Tuist Documentation](https://docs.tuist.io)
-- [ReactorKit](https://github.com/ReactorKit/ReactorKit) (기존 아키텍처 참조)
+| Version | Date | Changes |
+|---------|------|---------|
+| 25.1.x | 2025-01 | 3탭 구조 리팩토링, @Observable 마이그레이션 |
+| 1.x | 2021 | 초기 ReactorKit + RxSwift 버전 |
