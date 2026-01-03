@@ -10,10 +10,10 @@
 <p>
 
 <p align="center">
-  <img alt="Swift" src="https://img.shields.io/badge/Swift-5.2-orange.svg">
+  <img alt="Swift" src="https://img.shields.io/badge/Swift-6-orange.svg">
   <img alt="platform" src="https://img.shields.io/badge/platform-iOS-lightgrey">
-  <img alt="iOS" src="https://img.shields.io/badge/iOS-14.1%2B-yellow">
-  <img alt="Xcode" src="https://img.shields.io/badge/xcode-12.5-blue">
+  <img alt="iOS" src="https://img.shields.io/badge/iOS-26%2B-yellow">
+  <img alt="Xcode" src="https://img.shields.io/badge/xcode-26-blue">
 </p>
 
 ## 📝소개
@@ -24,27 +24,19 @@
 <img src="https://user-images.githubusercontent.com/59601439/115507144-b3401100-a2b6-11eb-851f-004131149e61.png">
 
 ## 구조
-- [ReactorKit](https://github.com/ReactorKit/ReactorKit)
+- UIKit + @Observable Store Pattern
+- async/await Concurrency
 
 ## 📕 의존성
-> Third party framewok 및 Library는 Cocoapods를 사용하여 관리됩니다.
+> Tuist SPM을 사용하여 관리됩니다.
 
 - FSCalendar
-- SwiftLint
-- Then
 - SnapKit
-- RxSwift
-- RxCocoa
-- RxDataSources
-- RxOptional
-- RxViewController
-- ReactorKit
-- WaveAnimationView
-- URLNavigator
+- Then
 
 ## 🏃 개발 목적
 - 최근 건강에 관심이 생기면서 가족들과 함께 물의 목표량을 설정 후 열심히 마시기로 결심했다. 하지만 하루 동안 자신이 마신 물의 양을 기억하는 것은 생각보다 힘든 일이었고, 간단하게 기록할 수 있는 앱이 있으면 좋겠다는 생각에 앱을 만들게 되었다.
-- RxSwift 관심을 가지는 동시에 평소에 관심이 있었던 단방향 프레임워크인 ReactorKit 을 적용해보고 싶어 개인 프로젝트에 적용하게 되었다.
+- Swift 최신 기능(Observation, async/await)을 활용한 현대적인 iOS 앱 아키텍처를 적용해보고 싶었다.
 - 개인 앱을 출시하여 유저와 소통, 서비스를 보완 및 확장, 관리를 해보는 경험을 하고 싶었다.
 
 ## 🔫 기능 설명
@@ -68,6 +60,22 @@
 <img src="https://user-images.githubusercontent.com/59601439/119792036-55839200-bf10-11eb-94e5-f9f41d41e939.PNG" width="300" />
 </p>
 
+## 🛠 빌드 방법
+
+```bash
+# Tuist 설치 (mise 사용)
+mise install tuist
+
+# 의존성 설치 및 프로젝트 생성
+tuist install
+tuist generate
+
+# 빌드
+tuist build
+
+# 테스트
+tuist test
+```
 
 ## License
 - 벌컥벌컥은 프로젝트는 MIT license 아래 관리됩니다. 자세한 사항은 [LICENSE](https://github.com/feelsodev/DrinkSomeWater/blob/master/LICENSE) 에서 확인 가능합니다.
