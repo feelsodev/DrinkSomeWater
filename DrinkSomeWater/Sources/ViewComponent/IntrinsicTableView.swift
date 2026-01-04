@@ -8,22 +8,22 @@
 import UIKit
 
 class IntrinsicTableView: UITableView {
-  var maxHeight: CGFloat = 2000
-  
-  override var contentSize: CGSize {
-    didSet {
-      self.invalidateIntrinsicContentSize()
-    }
+ var maxHeight: CGFloat = 2000
+ 
+ override var contentSize: CGSize {
+  didSet {
+   self.invalidateIntrinsicContentSize()
   }
-  
-  override func reloadData() {
-    super.reloadData()
-    self.invalidateIntrinsicContentSize()
-    self.layoutIfNeeded()
-  }
-  
-  override var intrinsicContentSize: CGSize {
-    let height = min(contentSize.height, maxHeight)
-    return CGSize(width: contentSize.width, height: height)
-  }
+ }
+ 
+ override func reloadData() {
+  super.reloadData()
+  self.invalidateIntrinsicContentSize()
+  self.layoutIfNeeded()
+ }
+ 
+ override var intrinsicContentSize: CGSize {
+  let height = min(contentSize.height, maxHeight)
+  return CGSize(width: contentSize.width, height: height)
+ }
 }
