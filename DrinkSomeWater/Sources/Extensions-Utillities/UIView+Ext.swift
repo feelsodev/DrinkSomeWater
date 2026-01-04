@@ -8,47 +8,47 @@
 import UIKit
 
 extension UIView {
-  func fadeIn(_ duration: TimeInterval? = 0.2, onCompletion: (() -> Void)? = nil) {
-    self.alpha = 0
-    self.isHidden = false
-    UIView.animate(
-      withDuration: duration!,
-      animations: { self.alpha = 1 },
-      completion: { _ in
-        if let complete = onCompletion { complete() }
-      }
-    )
+ func fadeIn(_ duration: TimeInterval? = 0.2, onCompletion: (() -> Void)? = nil) {
+  self.alpha = 0
+  self.isHidden = false
+  UIView.animate(
+   withDuration: duration!,
+   animations: { self.alpha = 1 },
+   completion: { _ in
+    if let complete = onCompletion { complete() }
+   }
+  )
+ }
+ 
+ func fadeOut(_ duration: TimeInterval? = 0.2, onCompletion: (() -> Void)? = nil) {
+  UIView.animate(
+   withDuration: duration!,
+   animations: { self.alpha = 0 },
+   completion: { _ in
+    self.isHidden = true
+    if let complete = onCompletion { complete() }
+   }
+  )
+ }
+ 
+ func addSubviews(_ views: [UIView]) {
+  for view in views {
+   self.addSubview(view)
   }
-  
-  func fadeOut(_ duration: TimeInterval? = 0.2, onCompletion: (() -> Void)? = nil) {
-    UIView.animate(
-      withDuration: duration!,
-      animations: { self.alpha = 0 },
-      completion: { _ in
-        self.isHidden = true
-        if let complete = onCompletion { complete() }
-      }
-    )
+ }
+ 
+ func bringSubviewsToFront(_ views: [UIView]) {
+  for view in views {
+   self.bringSubviewToFront(view)
   }
-  
-  func addSubviews(_ views: [UIView]) {
-    for view in views {
-      self.addSubview(view)
-    }
-  }
-  
-  func bringSubviewsToFront(_ views: [UIView]) {
-    for view in views {
-      self.bringSubviewToFront(view)
-    }
-  }
+ }
 }
 
 extension UILabel {
-    func addCharacterSpacing(kernValue: Double = 1.0) {
-        guard let text = self.text, !text.isEmpty else { return }
-        let attributedString = NSMutableAttributedString(string: text)
-        attributedString.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
-        self.attributedText = attributedString
-    }
+  func addCharacterSpacing(kernValue: Double = 1.0) {
+    guard let text = self.text, !text.isEmpty else { return }
+    let attributedString = NSMutableAttributedString(string: text)
+    attributedString.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
+    self.attributedText = attributedString
+  }
 }

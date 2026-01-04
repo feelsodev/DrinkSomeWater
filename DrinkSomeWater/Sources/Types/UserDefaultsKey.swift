@@ -8,21 +8,21 @@
 import Foundation
 
 struct UserDefaultsKey<T> {
-  let key: String
+ let key: String
 }
 
 typealias Key<T> = UserDefaultsKey<T>
 
 extension UserDefaultsKey: ExpressibleByStringLiteral {
-  public init(unicodeScalarLiteral value: StringLiteralType) {
-    self.init(key: value)
-  }
+ public init(unicodeScalarLiteral value: StringLiteralType) {
+  self.init(key: value)
+ }
 
-  public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
-    self.init(key: value)
-  }
+ public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
+  self.init(key: value)
+ }
 
-  public init(stringLiteral value: StringLiteralType) {
-    self.init(key: value)
-  }
+ public init(stringLiteral value: StringLiteralType) {
+  self.init(key: value)
+ }
 }
