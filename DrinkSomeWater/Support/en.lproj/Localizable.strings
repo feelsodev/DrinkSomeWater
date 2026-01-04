@@ -6,7 +6,6 @@
   
 */
 
-
 // Main
 "You achieved " = "You achieved ";
 "TodaySuffix" = " Today!!";
@@ -20,10 +19,86 @@
 "Goal of this month" = "Goal of this month";
 "MMMM, YYYY" = "MMMM, YYYY";
 
-// Infomation
+// Information
 "Alarm" = "Alarm";
 "Review" = "Review";
 "Contact Us" = "Contact Us";
 "Version" = "Version";
 "License" = "License";
 "Set" = "Set";
+
+// Onboarding
+"onboarding.skip" = "Skip";
+"onboarding.start" = "Get Started";
+"onboarding.intro.title" = "Welcome to Gulp";
+"onboarding.intro.description" = "Track your daily water intake and stay hydrated.\n\nWater is essential for your health - it helps maintain energy, improve focus, and keep your body functioning at its best.";
+"onboarding.goal.title" = "Set Your Goal";
+"onboarding.goal.description" = "How much water do you want to drink daily?\nAdjust the slider to set your goal.";
+"onboarding.healthkit.title" = "Connect Health";
+"onboarding.healthkit.description" = "Sync with Apple Health to:\n\n• Calculate personalized water intake based on your weight\n• Save water records to Health app\n• Track your progress alongside other health data";
+"onboarding.healthkit.button" = "Connect Apple Health";
+"onboarding.healthkit.connected" = "Connected";
+"onboarding.notification.title" = "Stay Reminded";
+"onboarding.notification.description" = "Enable notifications to receive friendly reminders throughout the day.\n\nWe'll send you motivating messages to help you stay on track with your hydration goals.";
+"onboarding.notification.button" = "Enable Notifications";
+"onboarding.notification.enabled" = "Enabled";
+"onboarding.widget.title" = "Add Widget";
+"onboarding.widget.description" = "Add our widget to your Home Screen for quick access:\n\n1. Long press on Home Screen\n2. Tap the + button\n3. Search for 'Gulp'\n4. Choose your preferred widget size";
+"onboarding.widget.button" = "Get Started";
+
+// Widget
+"widget.today" = "Today";
+"widget.guide.title" = "Widget Setup Guide";
+
+// Settings
+"settings.title" = "Settings";
+"settings.subtitle" = "Customize your experience";
+"settings.section.profile" = "Profile";
+"settings.section.goal" = "Goal";
+"settings.section.quickbuttons" = "Quick Buttons";
+"settings.section.notification" = "Notifications";
+"settings.section.help" = "Help";
+"settings.section.support" = "Support";
+"settings.section.info" = "Info";
+"settings.profile" = "Profile Settings";
+"settings.goal" = "Daily Goal";
+"settings.quickbuttons" = "Quick Button Settings";
+"settings.notification" = "Water Reminder";
+"settings.widget.guide" = "Widget Setup Guide";
+"settings.review" = "Leave a Review";
+"settings.contact" = "Contact Us";
+"settings.version" = "Version";
+
+// Profile
+"profile.title" = "Profile Settings";
+"profile.healthkit.title" = "Apple Health Sync";
+"profile.healthkit.description" = "Automatically fetch weight from Health app";
+"profile.weight" = "Weight";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Daily Recommended Intake";
+"profile.recommended.description" = "Weight × 33ml formula";
+"profile.apply.button" = "Apply as Daily Goal";
+"profile.apply.success.title" = "Goal Updated";
+"profile.apply.success.message" = "Daily goal set to %@ml.";
+
+// Notification Settings
+"notification.title" = "Notification Settings";
+"notification.enable" = "Enable Notifications";
+"notification.time.start" = "Start Time";
+"notification.time.end" = "End Time";
+"notification.interval" = "Interval";
+"notification.weekdays" = "Days";
+"notification.custom.times" = "Custom Times";
+"notification.custom.add" = "Add Time";
+"notification.message.info" = "Notifications will be sent with various messages";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Cancel";
+"common.save" = "Save";
+"common.delete" = "Delete";
+"common.done" = "Done";
+
+// Contact
+"contact.title" = "Contact";
+"contact.message" = "Please contact us at feelsodev@gmail.com";

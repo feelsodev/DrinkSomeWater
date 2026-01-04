@@ -19,10 +19,86 @@
 "Goal of this month" = "이달의 목표 달성";
 "MMMM, YYYY" = "YYYY년 M월";
 
-// Infomation
+// Information
 "Alarm" = "알람";
 "Review" = "리뷰 쓰기";
 "Contact Us" = "문의 하기";
 "Version" = "앱 버전";
 "License" = "라이센스";
 "Set" = "설정";
+
+// Onboarding
+"onboarding.skip" = "건너뛰기";
+"onboarding.start" = "시작하기";
+"onboarding.intro.title" = "벌컥벌컥에 오신 것을 환영합니다";
+"onboarding.intro.description" = "매일 물 섭취량을 기록하고 건강하게 수분을 유지하세요.\n\n물은 에너지 유지, 집중력 향상, 신체 기능 최적화에 필수적입니다.";
+"onboarding.goal.title" = "목표 설정";
+"onboarding.goal.description" = "하루에 얼마나 마실 건가요?\n슬라이더를 조절하여 목표를 설정하세요.";
+"onboarding.healthkit.title" = "건강 앱 연동";
+"onboarding.healthkit.description" = "Apple 건강 앱과 연동하여:\n\n• 체중 기반 맞춤 권장량 자동 계산\n• 물 섭취 기록 건강 앱에 저장\n• 다른 건강 데이터와 함께 추적";
+"onboarding.healthkit.button" = "Apple Health 연동";
+"onboarding.healthkit.connected" = "연동됨";
+"onboarding.notification.title" = "알림 설정";
+"onboarding.notification.description" = "하루 종일 친근한 알림을 받아보세요.\n\n동기부여 메시지로 수분 섭취 목표 달성을 도와드립니다.";
+"onboarding.notification.button" = "알림 허용";
+"onboarding.notification.enabled" = "허용됨";
+"onboarding.widget.title" = "위젯 추가";
+"onboarding.widget.description" = "홈 화면에 위젯을 추가하세요:\n\n1. 홈 화면을 길게 누르기\n2. + 버튼 탭\n3. '벌컥벌컥' 검색\n4. 원하는 크기 선택";
+"onboarding.widget.button" = "시작하기";
+
+// Widget
+"widget.today" = "오늘";
+"widget.guide.title" = "위젯 설정 가이드";
+
+// Settings
+"settings.title" = "설정";
+"settings.subtitle" = "앱을 나만의 스타일로";
+"settings.section.profile" = "내 정보";
+"settings.section.goal" = "목표";
+"settings.section.quickbuttons" = "퀵버튼";
+"settings.section.notification" = "알림";
+"settings.section.help" = "도움말";
+"settings.section.support" = "지원";
+"settings.section.info" = "정보";
+"settings.profile" = "프로필 설정";
+"settings.goal" = "일일 목표량";
+"settings.quickbuttons" = "퀵버튼 설정";
+"settings.notification" = "물 마시기 알림";
+"settings.widget.guide" = "위젯 설정 가이드";
+"settings.review" = "앱 리뷰 남기기";
+"settings.contact" = "문의하기";
+"settings.version" = "버전";
+
+// Profile
+"profile.title" = "프로필 설정";
+"profile.healthkit.title" = "Apple Health 연동";
+"profile.healthkit.description" = "건강 앱에서 체중을 자동으로 가져옵니다";
+"profile.weight" = "체중";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "일일 권장 섭취량";
+"profile.recommended.description" = "체중 × 33ml 기준";
+"profile.apply.button" = "이 권장량으로 목표 설정하기";
+"profile.apply.success.title" = "목표 설정 완료";
+"profile.apply.success.message" = "일일 목표량이 %@ml로 설정되었습니다.";
+
+// Notification Settings
+"notification.title" = "알림 설정";
+"notification.enable" = "알림 활성화";
+"notification.time.start" = "시작 시간";
+"notification.time.end" = "종료 시간";
+"notification.interval" = "알림 간격";
+"notification.weekdays" = "알림 요일";
+"notification.custom.times" = "커스텀 시간";
+"notification.custom.add" = "시간 추가";
+"notification.message.info" = "다양한 문구로 알림이 발송됩니다";
+
+// Common
+"common.confirm" = "확인";
+"common.cancel" = "취소";
+"common.save" = "저장";
+"common.delete" = "삭제";
+"common.done" = "완료";
+
+// Contact
+"contact.title" = "문의";
+"contact.message" = "feelsodev@gmail.com 으로 문의 바랍니다.";
