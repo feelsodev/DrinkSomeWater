@@ -35,25 +35,19 @@ final class SettingsViewController: BaseViewController {
     $0.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellID)
     $0.separatorStyle = .none
     $0.showsVerticalScrollIndicator = false
-    $0.contentInset = UIEdgeInsets(top: DS.Spacing.xs, left: 0, bottom: DS.Spacing.lg, right: 0)
+    $0.contentInset = UIEdgeInsets(top: DS.Spacing.sm, left: 0, bottom: DS.Spacing.xxl, right: 0)
     $0.sectionHeaderTopPadding = 0
   }
   
   private var sections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] {
     [
-      (NSLocalizedString("settings.section.profile", comment: ""), [
-        ("person.fill", NSLocalizedString("settings.profile", comment: ""), nil, .profile)
-      ]),
-      (NSLocalizedString("settings.section.goal", comment: ""), [
-        ("target", NSLocalizedString("settings.goal", comment: ""), nil, .goal)
-      ]),
-      (NSLocalizedString("settings.section.quickbuttons", comment: ""), [
+      (NSLocalizedString("settings.section.personal", comment: "개인 설정"), [
+        ("person.fill", NSLocalizedString("settings.profile", comment: ""), nil, .profile),
+        ("target", NSLocalizedString("settings.goal", comment: ""), nil, .goal),
         ("bolt.fill", NSLocalizedString("settings.quickbuttons", comment: ""), nil, .quickButtons)
       ]),
-      (NSLocalizedString("settings.section.notification", comment: ""), [
-        ("bell.fill", NSLocalizedString("settings.notification", comment: ""), nil, .notification)
-      ]),
-      (NSLocalizedString("settings.section.help", comment: ""), [
+      (NSLocalizedString("settings.section.app", comment: "앱 설정"), [
+        ("bell.fill", NSLocalizedString("settings.notification", comment: ""), nil, .notification),
         ("apps.iphone", NSLocalizedString("settings.widget.guide", comment: ""), nil, .widgetGuide)
       ]),
       (NSLocalizedString("settings.section.support", comment: ""), [
@@ -126,7 +120,7 @@ final class SettingsViewController: BaseViewController {
     
     headerView.snp.makeConstraints {
       $0.top.leading.trailing.equalToSuperview()
-      $0.height.equalTo(180)
+      $0.height.equalTo(140)
     }
     
     headerIconView.snp.makeConstraints {
@@ -291,7 +285,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    section == 0 ? DS.Spacing.xxl : DS.Spacing.xxxl
+    section == 0 ? DS.Spacing.lg : DS.Spacing.xxl
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
