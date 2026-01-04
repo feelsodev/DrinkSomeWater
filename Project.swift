@@ -11,7 +11,7 @@ let project = Project(
             "SWIFT_VERSION": "6.0",
             "IPHONEOS_DEPLOYMENT_TARGET": "26.0",
             "TARGETED_DEVICE_FAMILY": "1,2",
-            "DEVELOPMENT_TEAM": "",
+            "DEVELOPMENT_TEAM": "TG4L9MF5FD",
             "CODE_SIGN_STYLE": "Automatic",
         ],
         configurations: [
