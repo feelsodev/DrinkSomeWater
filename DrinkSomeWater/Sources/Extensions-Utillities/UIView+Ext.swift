@@ -43,3 +43,12 @@ extension UIView {
     }
   }
 }
+
+extension UILabel {
+    func addCharacterSpacing(kernValue: Double = 1.0) {
+        guard let text = self.text, !text.isEmpty else { return }
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
+        self.attributedText = attributedString
+    }
+}
