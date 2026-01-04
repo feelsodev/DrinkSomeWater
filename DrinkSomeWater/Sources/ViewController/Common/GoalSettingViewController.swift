@@ -20,23 +20,37 @@ final class GoalSettingViewController: UIViewController {
     }
     
     private lazy var slider = UISlider().then {
-        $0.minimumValue = 1500
-        $0.maximumValue = 4500
+        $0.minimumValue = 1000
+        $0.maximumValue = 5000
         $0.value = Float(currentGoal)
         $0.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         $0.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
     }
     
     private let minLabel = UILabel().then {
-        $0.text = "1,500ml"
+        $0.text = "1,000ml"
         $0.font = .systemFont(ofSize: 12, weight: .medium)
         $0.textColor = .gray
     }
     
     private let maxLabel = UILabel().then {
-        $0.text = "4,500ml"
+        $0.text = "5,000ml"
         $0.font = .systemFont(ofSize: 12, weight: .medium)
         $0.textColor = .gray
+    }
+    
+    private let directInputButton = UIButton().then {
+        var config = UIButton.Configuration.plain()
+        config.title = "직접 입력"
+        config.image = UIImage(systemName: "keyboard")
+        config.imagePadding = 6
+        config.baseForegroundColor = .gray
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attr in
+            var attr = attr
+            attr.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            return attr
+        }
+        $0.configuration = config
     }
     
     private let saveButton = UIButton().then {
@@ -73,7 +87,7 @@ final class GoalSettingViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        view.addSubviews([titleLabel, valueLabel, slider, minLabel, maxLabel, saveButton])
+        view.addSubviews([titleLabel, valueLabel, slider, minLabel, maxLabel, directInputButton, saveButton])
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(32)
@@ -101,6 +115,11 @@ final class GoalSettingViewController: UIViewController {
             $0.trailing.equalTo(slider)
         }
         
+        directInputButton.snp.makeConstraints {
+            $0.top.equalTo(minLabel.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview()
+        }
+        
         saveButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-32)
             $0.leading.equalToSuperview().offset(32)
@@ -113,6 +132,40 @@ final class GoalSettingViewController: UIViewController {
         saveButton.addAction(UIAction { [weak self] _ in
             self?.saveGoal()
         }, for: .touchUpInside)
+        
+        directInputButton.addAction(UIAction { [weak self] _ in
+            self?.showDirectInputAlert()
+        }, for: .touchUpInside)
+    }
+    
+    private func showDirectInputAlert() {
+        let alert = UIAlertController(
+            title: "목표량 직접 입력",
+            message: "ml 단위로 입력하세요 (1000~5000)",
+            preferredStyle: .alert
+        )
+        
+        alert.addTextField { [weak self] textField in
+            textField.placeholder = "예: 2000"
+            textField.keyboardType = .numberPad
+            textField.text = self.map { "\($0.currentGoal)" }
+        }
+        
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+            guard let self = self,
+                  let text = alert.textFields?.first?.text,
+                  let value = Int(text) else { return }
+            
+            let clampedValue = min(max(value, 1000), 5000)
+            let roundedValue = clampedValue - clampedValue % 100
+            
+            self.currentGoal = roundedValue
+            self.slider.value = Float(roundedValue)
+            self.updateValueLabel()
+        })
+        
+        present(alert, animated: true)
     }
     
     @objc private func sliderChanged() {

@@ -16,8 +16,8 @@ final class HomeViewController: BaseViewController {
     
     private let goalButton = UIButton().then {
         var config = UIButton.Configuration.plain()
-        config.image = UIImage(systemName: "target")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 24, weight: .medium))
+        config.image = UIImage(systemName: "flag.fill")?
+            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 22, weight: .medium))
         config.baseForegroundColor = .white
         $0.configuration = config
     }
@@ -77,6 +77,18 @@ final class HomeViewController: BaseViewController {
         $0.textColor = .gray
     }
     
+    private let editQuickButtonsButton = UIButton().then {
+        var config = UIButton.Configuration.plain()
+        config.title = "편집"
+        config.baseForegroundColor = .darkGray
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attr in
+            var attr = attr
+            attr.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            return attr
+        }
+        $0.configuration = config
+    }
+    
     private lazy var defaultButtonStack = UIStackView().then {
         $0.axis = .horizontal
         $0.distribution = .fillEqually
@@ -89,20 +101,7 @@ final class HomeViewController: BaseViewController {
         $0.spacing = 12
     }
     
-    private let customInputButton = UIButton().then {
-        var config = UIButton.Configuration.filled()
-        config.title = "직접 입력"
-        config.image = UIImage(systemName: "pencil")
-        config.imagePadding = 8
-        config.baseBackgroundColor = .white
-        config.baseForegroundColor = .darkGray
-        config.cornerStyle = .large
-        $0.configuration = config
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 2)
-        $0.layer.shadowOpacity = 0.1
-        $0.layer.shadowRadius = 4
-    }
+
     
     init(store: HomeStore) {
         self.store = store
@@ -132,7 +131,9 @@ final class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         Task {
             await store.send(.refreshGoal)
+            await store.send(.refreshQuickButtons)
             await store.send(.refresh)
+            setupQuickButtons()
         }
     }
     
@@ -140,29 +141,31 @@ final class HomeViewController: BaseViewController {
         defaultButtonStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         customButtonStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
-        for amount in store.quickButtons {
+        let buttons = store.quickButtons
+        let midPoint = (buttons.count + 1) / 2
+        
+        for (index, amount) in buttons.enumerated() {
             let button = createQuickButton(amount: amount)
-            defaultButtonStack.addArrangedSubview(button)
+            if index < midPoint {
+                defaultButtonStack.addArrangedSubview(button)
+            } else {
+                customButtonStack.addArrangedSubview(button)
+            }
         }
         
-        for amount in store.customButtons {
-            let button = createQuickButton(amount: amount, isCustom: true)
-            customButtonStack.addArrangedSubview(button)
-        }
-        
-        customButtonStack.addArrangedSubview(customInputButton)
     }
     
-    private func createQuickButton(amount: Int, isCustom: Bool = false) -> UIButton {
+    private func createQuickButton(amount: Int) -> UIButton {
         let button = UIButton()
         var config = UIButton.Configuration.filled()
         config.title = "+\(amount)ml"
-        config.baseBackgroundColor = isCustom ? #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1) : #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        config.baseBackgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         config.baseForegroundColor = .white
         config.cornerStyle = .large
+        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 4, bottom: 8, trailing: 4)
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attr in
             var attr = attr
-            attr.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+            attr.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
             return attr
         }
         button.configuration = config
@@ -182,9 +185,27 @@ final class HomeViewController: BaseViewController {
             self?.presentGoalSetting()
         }, for: .touchUpInside)
         
-        customInputButton.addAction(UIAction { [weak self] _ in
-            self?.presentCustomInput()
+        editQuickButtonsButton.addAction(UIAction { [weak self] _ in
+            self?.presentQuickButtonSetting()
         }, for: .touchUpInside)
+    }
+    
+    private func presentQuickButtonSetting() {
+        let vc = QuickButtonSettingViewController(
+            currentButtons: store.quickButtons,
+            onSave: { [weak self] buttons in
+                Task {
+                    self?.store.provider.userDefaultsService.set(value: buttons, forkey: .quickButtons)
+                    await self?.store.send(.refreshQuickButtons)
+                    self?.setupQuickButtons()
+                }
+            }
+        )
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(vc, animated: true)
     }
     
     override func render() {
@@ -219,25 +240,12 @@ final class HomeViewController: BaseViewController {
         present(vc, animated: true)
     }
     
-    private func presentCustomInput() {
-        let vc = DrinkInputViewController(
-            onDrink: { [weak self] amount in
-                Task { await self?.store.send(.addWater(amount)) }
-            }
-        )
-        if let sheet = vc.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.prefersGrabberVisible = true
-        }
-        present(vc, animated: true)
-    }
-    
     override func setupConstraints() {
         view.addSubview(waveBackground)
         waveBackground.addSubviews([
             goalButton, waterCapacity, goalLabel, messageLabel,
             lid, lidNeck, bottle,
-            quickButtonsLabel, defaultButtonStack, customButtonStack
+            quickButtonsLabel, editQuickButtonsButton, defaultButtonStack, customButtonStack
         ])
         
         waveBackground.snp.makeConstraints {
@@ -290,6 +298,11 @@ final class HomeViewController: BaseViewController {
         quickButtonsLabel.snp.makeConstraints {
             $0.top.equalTo(bottle.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(20)
+        }
+        
+        editQuickButtonsButton.snp.makeConstraints {
+            $0.centerY.equalTo(quickButtonsLabel)
+            $0.trailing.equalToSuperview().offset(-20)
         }
         
         defaultButtonStack.snp.makeConstraints {
