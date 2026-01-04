@@ -7,6 +7,7 @@ final class HomeStore {
     enum Action {
         case refresh
         case refreshGoal
+        case refreshQuickButtons
         case addWater(Int)
     }
     
@@ -18,12 +19,12 @@ final class HomeStore {
     var remainingMl: Int { max(0, Int(total - ml)) }
     var remainingCups: Int { remainingMl / 250 }
     
-    var quickButtons: [Int] = [150, 300, 500]
-    var customButtons: [Int] = [250, 400]
+    static let defaultQuickButtons = [100, 200, 300, 500]
+    var quickButtons: [Int] = HomeStore.defaultQuickButtons
     
     init(provider: ServiceProviderProtocol) {
         self.provider = provider
-        loadCustomButtons()
+        loadQuickButtons()
     }
     
     func send(_ action: Action) async {
@@ -38,15 +39,18 @@ final class HomeStore {
             let goal = await provider.waterService.fetchGoal()
             total = Float(goal)
             
+        case .refreshQuickButtons:
+            loadQuickButtons()
+            
         case .addWater(let amount):
             _ = await provider.waterService.updateWater(by: Float(amount))
             await send(.refresh)
         }
     }
     
-    private func loadCustomButtons() {
-        if let buttons = provider.userDefaultsService.value(forkey: .customQuickButtons), !buttons.isEmpty {
-            customButtons = buttons
+    private func loadQuickButtons() {
+        if let buttons = provider.userDefaultsService.value(forkey: .quickButtons), !buttons.isEmpty {
+            quickButtons = buttons
         }
     }
 }

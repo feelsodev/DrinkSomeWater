@@ -7,14 +7,14 @@ final class SettingsStore {
     enum Action {
         case loadGoal
         case updateGoal(Int)
-        case loadCustomButtons
-        case updateCustomButtons([Int])
+        case loadQuickButtons
+        case updateQuickButtons([Int])
     }
     
     let provider: ServiceProviderProtocol
     
     var goalValue: Int = 2000
-    var customQuickButtons: [Int] = [250, 400]
+    var quickButtons: [Int] = [100, 200, 300, 500]
     
     var appVersion: String {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
@@ -22,6 +22,13 @@ final class SettingsStore {
     
     init(provider: ServiceProviderProtocol) {
         self.provider = provider
+        loadQuickButtonsSync()
+    }
+    
+    private func loadQuickButtonsSync() {
+        if let buttons = provider.userDefaultsService.value(forkey: .quickButtons), !buttons.isEmpty {
+            quickButtons = buttons
+        }
     }
     
     func send(_ action: Action) async {
@@ -35,14 +42,14 @@ final class SettingsStore {
             goalValue = roundedValue
             _ = await provider.waterService.updateGoal(to: roundedValue)
             
-        case .loadCustomButtons:
-            if let buttons = provider.userDefaultsService.value(forkey: .customQuickButtons), !buttons.isEmpty {
-                customQuickButtons = buttons
+        case .loadQuickButtons:
+            if let buttons = provider.userDefaultsService.value(forkey: .quickButtons), !buttons.isEmpty {
+                quickButtons = buttons
             }
             
-        case .updateCustomButtons(let buttons):
-            customQuickButtons = buttons
-            provider.userDefaultsService.set(value: buttons, forkey: .customQuickButtons)
+        case .updateQuickButtons(let buttons):
+            quickButtons = buttons
+            provider.userDefaultsService.set(value: buttons, forkey: .quickButtons)
         }
     }
 }
