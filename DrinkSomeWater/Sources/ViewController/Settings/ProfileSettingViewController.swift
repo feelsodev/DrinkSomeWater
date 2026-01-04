@@ -7,9 +7,9 @@ final class ProfileSettingViewController: BaseViewController {
     private let store: ProfileStore
     
     private let titleLabel = UILabel().then {
-        $0.text = "프로필 설정"
-        $0.font = .systemFont(ofSize: 24, weight: .bold)
-        $0.textColor = .darkGray
+        $0.text = NSLocalizedString("profile.title", comment: "")
+        $0.font = DS.Font.title1
+        $0.textColor = DS.Color.textPrimary
     }
     
     private let healthKitSection = UIView().then {
@@ -24,9 +24,9 @@ final class ProfileSettingViewController: BaseViewController {
     }
     
     private let healthKitLabel = UILabel().then {
-        $0.text = "Apple Health 연동"
-        $0.font = .systemFont(ofSize: 17, weight: .medium)
-        $0.textColor = .darkGray
+        $0.text = NSLocalizedString("profile.healthkit.title", comment: "")
+        $0.font = DS.Font.headline
+        $0.textColor = DS.Color.textPrimary
     }
     
     private let healthKitSwitch = UISwitch().then {
@@ -34,9 +34,9 @@ final class ProfileSettingViewController: BaseViewController {
     }
     
     private let healthKitDescription = UILabel().then {
-        $0.text = "건강 앱에서 체중을 자동으로 가져옵니다"
-        $0.font = .systemFont(ofSize: 13, weight: .regular)
-        $0.textColor = .gray
+        $0.text = NSLocalizedString("profile.healthkit.description", comment: "")
+        $0.font = DS.Font.footnote
+        $0.textColor = DS.Color.textSecondary
     }
     
     private let weightSection = UIView().then {
@@ -45,9 +45,9 @@ final class ProfileSettingViewController: BaseViewController {
     }
     
     private let weightLabel = UILabel().then {
-        $0.text = "체중"
-        $0.font = .systemFont(ofSize: 14, weight: .semibold)
-        $0.textColor = .gray
+        $0.text = NSLocalizedString("profile.weight", comment: "")
+        $0.font = DS.Font.subheadSemibold
+        $0.textColor = DS.Color.textSecondary
     }
     
     private let weightValueLabel = UILabel().then {
@@ -65,9 +65,9 @@ final class ProfileSettingViewController: BaseViewController {
     }
     
     private let weightRangeLabel = UILabel().then {
-        $0.text = "30kg ~ 150kg"
-        $0.font = .systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = .lightGray
+        $0.text = NSLocalizedString("profile.weight.range", comment: "")
+        $0.font = DS.Font.caption
+        $0.textColor = DS.Color.textTertiary
         $0.textAlignment = .center
     }
     
@@ -82,9 +82,9 @@ final class ProfileSettingViewController: BaseViewController {
     }
     
     private let recommendTitleLabel = UILabel().then {
-        $0.text = "일일 권장 섭취량"
-        $0.font = .systemFont(ofSize: 14, weight: .medium)
-        $0.textColor = .darkGray
+        $0.text = NSLocalizedString("profile.recommended.title", comment: "")
+        $0.font = DS.Font.subheadMedium
+        $0.textColor = DS.Color.textPrimary
     }
     
     private let recommendValueLabel = UILabel().then {
@@ -94,15 +94,15 @@ final class ProfileSettingViewController: BaseViewController {
     }
     
     private let recommendDescLabel = UILabel().then {
-        $0.text = "체중 × 33ml 기준"
-        $0.font = .systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = .gray
+        $0.text = NSLocalizedString("profile.recommended.description", comment: "")
+        $0.font = DS.Font.caption
+        $0.textColor = DS.Color.textSecondary
     }
     
     private let applyButton = UIButton().then {
         var config = UIButton.Configuration.filled()
-        config.title = "이 권장량으로 목표 설정하기"
-        config.baseBackgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        config.title = NSLocalizedString("profile.apply.button", comment: "")
+        config.baseBackgroundColor = DS.Color.primary
         config.baseForegroundColor = .white
         config.cornerStyle = .large
         $0.configuration = config
@@ -246,6 +246,7 @@ final class ProfileSettingViewController: BaseViewController {
     private func setupActions() {
         healthKitSwitch.addTarget(self, action: #selector(healthKitSwitchChanged), for: .valueChanged)
         weightSlider.addTarget(self, action: #selector(weightSliderChanged), for: .valueChanged)
+        weightSlider.addTarget(self, action: #selector(weightSliderEnded), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         applyButton.addAction(UIAction { [weak self] _ in
             self?.applyRecommendedGoal()
         }, for: .touchUpInside)
@@ -281,12 +282,13 @@ final class ProfileSettingViewController: BaseViewController {
             await store.send(.updateWeight(weight))
             await store.send(.applyRecommendedGoal)
             
+            let message = String(format: NSLocalizedString("profile.apply.success.message", comment: ""), "\(store.recommendedIntake)")
             let alert = UIAlertController(
-                title: "목표 설정 완료",
-                message: "일일 목표량이 \(store.recommendedIntake)ml로 설정되었습니다.",
+                title: NSLocalizedString("profile.apply.success.title", comment: ""),
+                message: message,
                 preferredStyle: .alert
             )
-            alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default) { [weak self] _ in
                 self?.dismiss(animated: true)
             })
             present(alert, animated: true)

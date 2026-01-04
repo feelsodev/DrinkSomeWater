@@ -7,7 +7,7 @@ final class SettingsCell: UITableViewCell {
     static let cellID = "SettingsCell"
     
     private let iconContainerView = UIView().then {
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = DS.Size.cornerRadiusSmall
         $0.clipsToBounds = true
     }
     
@@ -17,29 +17,35 @@ final class SettingsCell: UITableViewCell {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .semibold)
-        $0.textColor = UIColor(red: 0.2, green: 0.2, blue: 0.25, alpha: 1)
+        $0.font = DS.Font.bodySemibold
+        $0.textColor = DS.Color.textPrimary
     }
     
     private let detailLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .medium)
-        $0.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.55, alpha: 1)
+        $0.font = DS.Font.subheadMedium
+        $0.textColor = DS.Color.textSecondary
         $0.textAlignment = .right
     }
     
     private let arrowImageView = UIImageView().then {
         $0.image = UIImage(systemName: "chevron.right", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
-        $0.tintColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1)
+        $0.tintColor = DS.Color.textTertiary
         $0.contentMode = .scaleAspectFit
     }
     
+    private let separatorView = UIView().then {
+        $0.backgroundColor = DS.Color.separator
+    }
+    
     private let iconColors: [String: UIColor] = [
-        "target": UIColor(red: 0.35, green: 0.78, blue: 0.62, alpha: 1),
-        "bolt.fill": UIColor(red: 1.0, green: 0.76, blue: 0.28, alpha: 1),
-        "bell.fill": UIColor(red: 1.0, green: 0.42, blue: 0.42, alpha: 1),
-        "star.fill": UIColor(red: 1.0, green: 0.84, blue: 0.0, alpha: 1),
-        "envelope.fill": UIColor(red: 0.35, green: 0.68, blue: 0.95, alpha: 1),
-        "info.circle.fill": UIColor(red: 0.55, green: 0.55, blue: 0.6, alpha: 1)
+        "person.fill": DS.Color.primary,
+        "target": DS.Color.success,
+        "bolt.fill": DS.Color.warning,
+        "bell.fill": DS.Color.error,
+        "apps.iphone": DS.Color.primary,
+        "star.fill": DS.Color.iconYellow,
+        "envelope.fill": DS.Color.iconBlue,
+        "info.circle.fill": DS.Color.iconGray
     ]
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -52,39 +58,46 @@ final class SettingsCell: UITableViewCell {
     }
     
     private func setupUI() {
-        backgroundColor = .white
+        backgroundColor = DS.Color.backgroundSecondary
         selectionStyle = .none
         
-        contentView.addSubviews([iconContainerView, titleLabel, detailLabel, arrowImageView])
+        contentView.addSubviews([iconContainerView, titleLabel, detailLabel, arrowImageView, separatorView])
         iconContainerView.addSubview(iconImageView)
         
         iconContainerView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
+            $0.leading.equalToSuperview().offset(DS.Spacing.md)
             $0.centerY.equalToSuperview()
-            $0.width.height.equalTo(36)
+            $0.width.height.equalTo(DS.Size.iconContainerMedium)
         }
         
         iconImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.height.equalTo(18)
+            $0.width.height.equalTo(DS.Size.iconSmall)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.leading.equalTo(iconContainerView.snp.trailing).offset(14)
+            $0.leading.equalTo(iconContainerView.snp.trailing).offset(DS.Spacing.sm)
             $0.centerY.equalToSuperview()
         }
         
         arrowImageView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-16)
+            $0.trailing.equalToSuperview().offset(-DS.Spacing.md)
             $0.centerY.equalToSuperview()
             $0.width.equalTo(8)
             $0.height.equalTo(14)
         }
         
         detailLabel.snp.makeConstraints {
-            $0.trailing.equalTo(arrowImageView.snp.leading).offset(-10)
+            $0.trailing.equalTo(arrowImageView.snp.leading).offset(-DS.Spacing.xs)
             $0.centerY.equalToSuperview()
-            $0.leading.greaterThanOrEqualTo(titleLabel.snp.trailing).offset(12)
+            $0.leading.greaterThanOrEqualTo(titleLabel.snp.trailing).offset(DS.Spacing.sm)
+        }
+        
+        separatorView.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel.snp.leading)
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(0.5)
         }
     }
     
@@ -92,15 +105,17 @@ final class SettingsCell: UITableViewCell {
         super.setHighlighted(highlighted, animated: animated)
         UIView.animate(withDuration: 0.15) {
             self.contentView.alpha = highlighted ? 0.7 : 1.0
+            self.transform = highlighted ? CGAffineTransform(scaleX: 0.98, y: 0.98) : .identity
         }
     }
     
-    func configure(icon: String, title: String, detail: String?, showArrow: Bool) {
+    func configure(icon: String, title: String, detail: String?, showArrow: Bool, isLast: Bool = false) {
         iconImageView.image = UIImage(systemName: icon, withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
         titleLabel.text = title
         detailLabel.text = detail
         arrowImageView.isHidden = !showArrow
+        separatorView.isHidden = isLast
         
-        iconContainerView.backgroundColor = iconColors[icon] ?? #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        iconContainerView.backgroundColor = iconColors[icon] ?? DS.Color.primary
     }
 }

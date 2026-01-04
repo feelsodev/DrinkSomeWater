@@ -17,52 +17,57 @@ final class SettingsViewController: BaseViewController {
     }
     
     private let titleLabel = UILabel().then {
-        $0.text = "설정"
-        $0.font = .systemFont(ofSize: 32, weight: .bold)
+        $0.text = NSLocalizedString("settings.title", comment: "")
+        $0.font = DS.Font.largeTitle
         $0.textColor = .white
     }
     
     private let subtitleLabel = UILabel().then {
-        $0.text = "앱을 나만의 스타일로"
-        $0.font = .systemFont(ofSize: 14, weight: .medium)
+        $0.text = NSLocalizedString("settings.subtitle", comment: "")
+        $0.font = DS.Font.subheadMedium
         $0.textColor = .white.withAlphaComponent(0.8)
     }
     
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
-        $0.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.98, alpha: 1)
+        $0.backgroundColor = DS.Color.backgroundPrimary
         $0.delegate = self
         $0.dataSource = self
         $0.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellID)
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
-        $0.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 20, right: 0)
+        $0.contentInset = UIEdgeInsets(top: DS.Spacing.xs, left: 0, bottom: DS.Spacing.lg, right: 0)
         $0.sectionHeaderTopPadding = 0
     }
     
-    private let sections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] = [
-        ("내 정보", [
-            ("person.fill", "프로필 설정", nil, .profile)
-        ]),
-        ("목표", [
-            ("target", "일일 목표량", nil, .goal)
-        ]),
-        ("퀵버튼", [
-            ("bolt.fill", "퀵버튼 설정", nil, .quickButtons)
-        ]),
-        ("알림", [
-            ("bell.fill", "물 마시기 알림", nil, .notification)
-        ]),
-        ("지원", [
-            ("star.fill", "앱 리뷰 남기기", nil, .review),
-            ("envelope.fill", "문의하기", nil, .contact)
-        ]),
-        ("정보", [
-            ("info.circle.fill", "버전", nil, .version)
-        ])
-    ]
+    private var sections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] {
+        [
+            (NSLocalizedString("settings.section.profile", comment: ""), [
+                ("person.fill", NSLocalizedString("settings.profile", comment: ""), nil, .profile)
+            ]),
+            (NSLocalizedString("settings.section.goal", comment: ""), [
+                ("target", NSLocalizedString("settings.goal", comment: ""), nil, .goal)
+            ]),
+            (NSLocalizedString("settings.section.quickbuttons", comment: ""), [
+                ("bolt.fill", NSLocalizedString("settings.quickbuttons", comment: ""), nil, .quickButtons)
+            ]),
+            (NSLocalizedString("settings.section.notification", comment: ""), [
+                ("bell.fill", NSLocalizedString("settings.notification", comment: ""), nil, .notification)
+            ]),
+            (NSLocalizedString("settings.section.help", comment: ""), [
+                ("apps.iphone", NSLocalizedString("settings.widget.guide", comment: ""), nil, .widgetGuide)
+            ]),
+            (NSLocalizedString("settings.section.support", comment: ""), [
+                ("star.fill", NSLocalizedString("settings.review", comment: ""), nil, .review),
+                ("envelope.fill", NSLocalizedString("settings.contact", comment: ""), nil, .contact)
+            ]),
+            (NSLocalizedString("settings.section.info", comment: ""), [
+                ("info.circle.fill", NSLocalizedString("settings.version", comment: ""), nil, .version)
+            ])
+        ]
+    }
     
     enum SettingsAction {
-        case profile, goal, quickButtons, notification, review, contact, version
+        case profile, goal, quickButtons, notification, widgetGuide, review, contact, version
     }
     
     init(store: SettingsStore) {
@@ -76,7 +81,7 @@ final class SettingsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.98, alpha: 1)
+        view.backgroundColor = DS.Color.backgroundPrimary
         navigationController?.isNavigationBarHidden = true
         setupGradient()
         observation = startObservation { [weak self] in self?.render() }
@@ -106,8 +111,8 @@ final class SettingsViewController: BaseViewController {
     
     private func setupGradient() {
         gradientLayer.colors = [
-            UIColor(red: 0.35, green: 0.75, blue: 0.95, alpha: 1).cgColor,
-            UIColor(red: 0.25, green: 0.65, blue: 0.90, alpha: 1).cgColor
+            DS.Color.primary.cgColor,
+            DS.Color.primaryDark.cgColor
         ]
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
@@ -125,27 +130,27 @@ final class SettingsViewController: BaseViewController {
         }
         
         headerIconView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
-            $0.leading.equalToSuperview().offset(24)
-            $0.width.height.equalTo(40)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(DS.Spacing.sm)
+            $0.leading.equalToSuperview().offset(DS.Spacing.xl)
+            $0.width.height.equalTo(DS.Size.iconXLarge)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(headerIconView.snp.bottom).offset(12)
-            $0.leading.equalToSuperview().offset(24)
+            $0.top.equalTo(headerIconView.snp.bottom).offset(DS.Spacing.sm)
+            $0.leading.equalToSuperview().offset(DS.Spacing.xl)
         }
         
         subtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
-            $0.leading.equalToSuperview().offset(24)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(DS.Spacing.xxs)
+            $0.leading.equalToSuperview().offset(DS.Spacing.xl)
         }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(headerView.snp.bottom).offset(-20)
+            $0.top.equalTo(headerView.snp.bottom).offset(-DS.Spacing.lg)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        tableView.layer.cornerRadius = 20
+        tableView.layer.cornerRadius = DS.Size.cornerRadiusXLarge
         tableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         tableView.clipsToBounds = true
     }
@@ -160,6 +165,8 @@ final class SettingsViewController: BaseViewController {
             presentQuickButtonSetting()
         case .notification:
             openNotificationSettings()
+        case .widgetGuide:
+            presentWidgetGuide()
         case .review:
             openAppStoreReview()
         case .contact:
@@ -167,6 +174,15 @@ final class SettingsViewController: BaseViewController {
         case .version:
             break
         }
+    }
+    
+    private func presentWidgetGuide() {
+        let vc = WidgetGuideViewController()
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(vc, animated: true)
     }
     
     private func presentProfileSetting() {
@@ -233,11 +249,11 @@ final class SettingsViewController: BaseViewController {
     
     private func showContactAlert() {
         let alert = UIAlertController(
-            title: "문의",
-            message: "feelsodev@gmail.com 으로 문의 바랍니다.",
+            title: NSLocalizedString("contact.title", comment: ""),
+            message: NSLocalizedString("contact.message", comment: ""),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
         present(alert, animated: true)
     }
 }
@@ -253,28 +269,29 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        56
+        DS.Size.cellHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         
         let label = UILabel()
-        label.text = sections[section].title
-        label.font = .systemFont(ofSize: 13, weight: .semibold)
-        label.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.55, alpha: 1)
+        label.text = sections[section].title.uppercased()
+        label.font = DS.Font.captionSemibold
+        label.textColor = DS.Color.textSecondary
+        label.addCharacterSpacing(kernValue: 0.5)
         
         headerView.addSubview(label)
         label.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(32)
-            $0.bottom.equalToSuperview().offset(-6)
+            $0.leading.equalToSuperview().offset(DS.Spacing.xxl)
+            $0.bottom.equalToSuperview().offset(-DS.Spacing.xs)
         }
         
         return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        section == 0 ? 32 : 40
+        section == 0 ? DS.Spacing.xxl : DS.Spacing.xxxl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -293,19 +310,19 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             break
         }
         
-        cell.configure(icon: item.icon, title: item.title, detail: detail, showArrow: item.action != .version)
-        
         let isFirst = indexPath.row == 0
         let isLast = indexPath.row == sections[indexPath.section].items.count - 1
         
+        cell.configure(icon: item.icon, title: item.title, detail: detail, showArrow: item.action != .version, isLast: isLast)
+        
         if isFirst && isLast {
-            cell.layer.cornerRadius = 12
+            cell.layer.cornerRadius = DS.Size.cornerRadiusMedium
             cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         } else if isFirst {
-            cell.layer.cornerRadius = 12
+            cell.layer.cornerRadius = DS.Size.cornerRadiusMedium
             cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         } else if isLast {
-            cell.layer.cornerRadius = 12
+            cell.layer.cornerRadius = DS.Size.cornerRadiusMedium
             cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         } else {
             cell.layer.cornerRadius = 0
