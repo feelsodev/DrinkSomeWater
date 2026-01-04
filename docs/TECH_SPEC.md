@@ -17,9 +17,13 @@
 | 목표량 설정 | 일일 목표량 커스텀 설정 |
 | 기록 조회 | 캘린더로 달성 이력 확인 |
 | 퀵버튼 커스텀 | 자주 마시는 용량 설정 |
-| 🆕 HealthKit 연동 | Apple 건강앱과 물 섭취량/체중 동기화 |
-| 🆕 개인화 권장량 | 체중 기반 일일 권장 물 섭취량 계산 |
-| 🆕 랜덤 알림 문구 | 10가지 동기부여 문구 랜덤 발송 |
+| HealthKit 연동 | Apple 건강앱과 물 섭취량/체중 동기화 |
+| 개인화 권장량 | 체중 기반 일일 권장 물 섭취량 계산 |
+| 랜덤 알림 문구 | 10가지 동기부여 문구 랜덤 발송 |
+| 🆕 홈 화면 위젯 | Small/Medium 크기 위젯으로 빠른 확인 |
+| 🆕 잠금화면 위젯 | Circular/Rectangular 잠금화면 위젯 |
+| 🆕 인터랙티브 위젯 | 위젯에서 바로 물 추가 (iOS 17+) |
+| 🆕 온보딩 플로우 | 최초 실행 시 앱 소개 및 설정 가이드 |
 
 ---
 
@@ -34,6 +38,13 @@
 │         │                                                   │
 │         ▼                                                   │
 │   ┌─────────────────────────────────────────────────────┐   │
+│   │              🆕 온보딩 (최초 실행 시)                │   │
+│   │  [앱 소개] → [목표 설정] → [HealthKit] → [알림] → [위젯] │
+│   │                    (스킵 가능)                       │   │
+│   └─────────────────────────────────────────────────────┘   │
+│         │                                                   │
+│         ▼                                                   │
+│   ┌─────────────────────────────────────────────────────┐   │
 │   │                                                     │   │
 │   │              [ 메인 컨텐츠 ]                        │   │
 │   │                                                     │   │
@@ -43,6 +54,12 @@
 │   │     💧      │     📅      │     ⚙️      │               │
 │   │    오늘     │    기록     │    설정     │               │
 │   └─────────────┴─────────────┴─────────────┘               │
+│                                                             │
+│   🆕 위젯 (홈 화면 / 잠금화면)                              │
+│   ┌─────────┐ ┌─────────────────┐ ┌───┐                     │
+│   │ Small   │ │    Medium       │ │🔒 │                     │
+│   │ 60%/💧  │ │ +150ml  +300ml  │ │60%│                     │
+│   └─────────┘ └─────────────────┘ └───┘                     │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -791,9 +808,254 @@ ATTrackingManager.requestTrackingAuthorization { status in
 
 ---
 
-## 13. Version History
+## 13. Widget Extension (v2.2)
+
+### 13.1 Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     Widget Architecture                      │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   ┌─────────────┐     App Group      ┌─────────────────┐    │
+│   │ Main App    │ ◄────────────────► │ Widget Extension│    │
+│   │             │   UserDefaults     │                 │    │
+│   │ • 물 기록   │   (shared)         │ • Small Widget  │    │
+│   │ • 설정     │                    │ • Medium Widget │    │
+│   └─────────────┘                    │ • Lock Screen   │    │
+│         │                            └─────────────────┘    │
+│         │ WidgetCenter.reloadAllTimelines()                 │
+│         └──────────────────────────────────────────────────►│
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 13.2 App Group Configuration
+
+```
+App Group ID: group.com.feelso.DrinkSomeWater
+```
+
+**Entitlements** (메인앱 + 위젯 Extension)
+```xml
+<key>com.apple.security.application-groups</key>
+<array>
+    <string>group.com.feelso.DrinkSomeWater</string>
+</array>
+```
+
+### 13.3 Widget Types
+
+| Widget | Family | Description |
+|--------|--------|-------------|
+| **Small** | `systemSmall` | 오늘 마신 물/목표량 + 진행률 |
+| **Medium** | `systemMedium` | 진행바 + 인터랙티브 버튼 (+150ml, +300ml) |
+| **Lock Circular** | `accessoryCircular` | 진행률 원형 표시 |
+| **Lock Rectangular** | `accessoryRectangular` | 물 섭취량/목표량 텍스트 |
+
+### 13.4 Small Widget Design
+
+```
+┌─────────────────┐
+│    💧 1,200     │
+│    ─────────    │
+│     2,000ml     │
+│      60%        │
+└─────────────────┘
+```
+
+### 13.5 Medium Widget Design (Interactive)
+
+```
+┌──────────────────────────────────┐
+│  💧 오늘 마신 물                   │
+│  1,200 / 2,000ml     [+150] [+300]│
+│  ████████████░░░░░░░░  60%       │
+└──────────────────────────────────┘
+```
+
+- **[+150], [+300]**: 탭하면 AppIntent로 물 추가
+
+### 13.6 Lock Screen Widget Design
+
+```
+Circular:        Rectangular:
+  ┌───┐          ┌─────────────┐
+  │60%│          │💧 1,200ml   │
+  │ 💧│          │   / 2,000   │
+  └───┘          └─────────────┘
+```
+
+### 13.7 Widget Data Flow
+
+```
+메인 앱에서 물 추가
+        │
+        ▼
+WaterService.updateWater()
+        │
+        ├── UserDefaults (standard) 저장
+        │
+        ├── App Group UserDefaults 저장
+        │
+        └── WidgetCenter.shared.reloadAllTimelines()
+                │
+                ▼
+        Widget Timeline Provider 호출
+                │
+                ▼
+        Widget UI 업데이트
+```
+
+### 13.8 Interactive Widget (AppIntent)
+
+```swift
+struct AddWaterIntent: AppIntent {
+    static var title: LocalizedStringResource = "물 추가"
+    
+    @Parameter(title: "Amount")
+    var amount: Int
+    
+    init() {
+        self.amount = 150
+    }
+    
+    init(amount: Int) {
+        self.amount = amount
+    }
+    
+    func perform() async throws -> some IntentResult {
+        // App Group UserDefaults에 물 추가
+        let manager = WidgetDataManager.shared
+        await manager.addWater(amount)
+        
+        // 위젯 타임라인 리로드
+        WidgetCenter.shared.reloadAllTimelines()
+        
+        return .result()
+    }
+}
+```
+
+### 13.9 File Structure
+
+```
+DrinkSomeWaterWidget/
+├── DrinkSomeWaterWidget.swift          # Widget Entry Point
+├── WaterEntry.swift                     # Timeline Entry
+├── WaterProvider.swift                  # Timeline Provider
+├── Views/
+│   ├── SmallWidgetView.swift           # 2x2 위젯
+│   ├── MediumWidgetView.swift          # 4x2 위젯 + 버튼
+│   └── LockScreenWidgetView.swift      # 잠금화면 위젯
+├── Intents/
+│   └── AddWaterIntent.swift            # AppIntent
+└── DrinkSomeWaterWidget.entitlements   # App Group
+
+Shared/
+└── WidgetDataManager.swift             # 메인앱 + 위젯 공유
+```
+
+---
+
+## 14. Onboarding (v2.2)
+
+### 14.1 Overview
+
+최초 실행 시 사용자에게 앱 사용법을 안내하는 5페이지 스와이프 온보딩.
+
+```
+[Page 1]        [Page 2]        [Page 3]        [Page 4]        [Page 5]
+  앱 소개    →   목표 설정    →   HealthKit   →    알림 설정   →   위젯 가이드
+                                  연동
+  
+ 💧벌컥벌컥      🎯 슬라이더     🍎 권한 요청     🔔 권한 요청    📱 설정 안내
+   소개          1500~4500ml      (선택)          (선택)
+   
+                                                              [시작하기] 버튼
+```
+
+### 14.2 Page Details
+
+| Page | Title | Content | Action |
+|------|-------|---------|--------|
+| 1 | 앱 소개 | 물 마시기의 중요성, 앱 기능 소개 | 없음 (스와이프) |
+| 2 | 목표 설정 | 슬라이더로 일일 목표량 설정 (1,500~4,500ml) | 목표량 저장 |
+| 3 | HealthKit | Apple 건강 앱 연동 안내 | 권한 요청 버튼 |
+| 4 | 알림 설정 | 물 마시기 알림 설정 안내 | 권한 요청 버튼 |
+| 5 | 위젯 가이드 | 홈 화면 위젯 추가 방법 안내 | [시작하기] 버튼 |
+
+### 14.3 Flow Logic
+
+```
+앱 실행 (SceneDelegate)
+        │
+        ▼
+UserDefaults.onboardingCompleted 확인
+        │
+        ├── false → OnboardingViewController 표시
+        │              │
+        │              ▼
+        │           페이지 스와이프 또는 [스킵] 버튼
+        │              │
+        │              ▼
+        │           [시작하기] 탭 → onboardingCompleted = true
+        │              │
+        │              └──────────────────┐
+        │                                 │
+        └── true ─────────────────────────┤
+                                          │
+                                          ▼
+                                    MainTabBarController
+```
+
+### 14.4 OnboardingStore
+
+```swift
+@MainActor
+@Observable
+final class OnboardingStore {
+    enum Action {
+        case setGoal(Int)
+        case requestHealthKitPermission
+        case requestNotificationPermission
+        case completeOnboarding
+        case skip
+    }
+    
+    var currentPage: Int = 0
+    var goal: Int = 2000
+    var isHealthKitAuthorized: Bool = false
+    var isNotificationAuthorized: Bool = false
+    
+    func send(_ action: Action) async { ... }
+}
+```
+
+### 14.5 Skip Behavior
+
+- 모든 페이지에서 우측 상단 [스킵] 버튼 표시
+- 스킵 시 기본값 적용:
+  - 목표량: 2,000ml (기본값)
+  - HealthKit: 연동 안함
+  - 알림: 기본 설정 또는 끔
+- `onboardingCompleted = true` 저장 후 메인 화면 이동
+
+### 14.6 Widget Guide (설정 화면 접근)
+
+온보딩 외에도 설정 화면에서 위젯 가이드 재확인 가능:
+
+```
+설정 > 도움말 > 위젯 설정 가이드
+```
+
+---
+
+## 15. Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 25.1.x | 2025-01 | 3탭 구조 리팩토링, @Observable 마이그레이션 |
+| 2.2.0 | 2025-01 | 홈/잠금화면 위젯, 인터랙티브 위젯, 온보딩 플로우 |
+| 2.1.0 | 2025-01 | HealthKit 연동, 체중 기반 권장량, 랜덤 알림 문구 |
+| 2.0.x | 2025-01 | 3탭 구조 리팩토링, @Observable 마이그레이션 |
 | 1.x | 2021 | 초기 ReactorKit + RxSwift 버전 |
