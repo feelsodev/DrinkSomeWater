@@ -1,4 +1,5 @@
 import Foundation
+import WidgetKit
 
 protocol WaterServiceProtocol {
     func fetchWater() async -> [WaterRecord]
@@ -58,6 +59,9 @@ final class WaterService: BaseService, WaterServiceProtocol {
         waterRecord[index] = newRecord
         
         await saveWater(waterRecord)
+        
+        WidgetDataManager.shared.syncFromMainApp(todayWater: newRecord.value, goal: newRecord.goal)
+        
         return waterRecord
     }
     
@@ -67,6 +71,8 @@ final class WaterService: BaseService, WaterServiceProtocol {
             var waterRecord = currentValue.compactMap(WaterRecord.init)
             guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
                 provider.userDefaultsService.set(value: ml, forkey: .goal)
+                WidgetDataManager.shared.updateGoal(ml)
+                WidgetDataManager.shared.reloadWidgets()
                 return ml
             }
             
@@ -76,8 +82,10 @@ final class WaterService: BaseService, WaterServiceProtocol {
             waterRecord[index] = newRecord
             
             await saveWater(waterRecord)
+            WidgetDataManager.shared.syncFromMainApp(todayWater: newRecord.value, goal: ml)
         }
         provider.userDefaultsService.set(value: ml, forkey: .goal)
+        WidgetDataManager.shared.updateGoal(ml)
         return ml
     }
 }
