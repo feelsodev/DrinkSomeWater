@@ -40,6 +40,9 @@ final class SettingsViewController: BaseViewController {
     }
     
     private let sections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] = [
+        ("내 정보", [
+            ("person.fill", "프로필 설정", nil, .profile)
+        ]),
         ("목표", [
             ("target", "일일 목표량", nil, .goal)
         ]),
@@ -59,7 +62,7 @@ final class SettingsViewController: BaseViewController {
     ]
     
     enum SettingsAction {
-        case goal, quickButtons, notification, review, contact, version
+        case profile, goal, quickButtons, notification, review, contact, version
     }
     
     init(store: SettingsStore) {
@@ -149,6 +152,8 @@ final class SettingsViewController: BaseViewController {
     
     private func handleAction(_ action: SettingsAction) {
         switch action {
+        case .profile:
+            presentProfileSetting()
         case .goal:
             presentGoalSetting()
         case .quickButtons:
@@ -162,6 +167,16 @@ final class SettingsViewController: BaseViewController {
         case .version:
             break
         }
+    }
+    
+    private func presentProfileSetting() {
+        let profileStore = ProfileStore(provider: store.provider)
+        let vc = ProfileSettingViewController(store: profileStore)
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(vc, animated: true)
     }
     
     private func presentGoalSetting() {

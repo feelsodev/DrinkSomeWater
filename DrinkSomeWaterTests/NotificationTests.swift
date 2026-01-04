@@ -90,7 +90,6 @@ struct NotificationSettingsTests {
         #expect(settings.interval == .oneHour)
         #expect(settings.enabledWeekdays.count == 7)
         #expect(settings.customTimes.isEmpty)
-        #expect(settings.customMessage == "물 마실 시간이에요! 💧")
     }
 }
 
@@ -126,6 +125,7 @@ final class MockServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
     let waterService: WaterServiceProtocol
     let alertService: AlertServiceProtocol
     let notificationService: NotificationServiceProtocol
+    let healthKitService: HealthKitServiceProtocol
     
     init(notificationService: NotificationServiceProtocol = MockNotificationService()) {
         let realProvider = ServiceProvider()
@@ -133,6 +133,7 @@ final class MockServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
         self.waterService = WaterService(provider: realProvider)
         self.alertService = AlertService(provider: realProvider)
         self.notificationService = notificationService
+        self.healthKitService = HealthKitService(provider: realProvider)
     }
 }
 
@@ -148,8 +149,7 @@ struct NotificationStoreTests {
             endTime: NotificationTime(hour: 21, minute: 0),
             interval: .twoHours,
             enabledWeekdays: Set([.monday, .tuesday, .wednesday]),
-            customTimes: [],
-            customMessage: "테스트 메시지"
+            customTimes: []
         )
         let provider = MockServiceProvider(notificationService: mockService)
         let store = NotificationStore(provider: provider)
@@ -161,7 +161,6 @@ struct NotificationStoreTests {
         #expect(store.settings.endTime.hour == 21)
         #expect(store.settings.interval == .twoHours)
         #expect(store.settings.enabledWeekdays.count == 3)
-        #expect(store.settings.customMessage == "테스트 메시지")
     }
     
     @Test func toggleEnabledUpdatesAndSaves() async {
@@ -268,17 +267,6 @@ struct NotificationStoreTests {
         await store.send(.removeCustomTime(time))
         
         #expect(store.settings.customTimes.isEmpty)
-    }
-    
-    @Test func updateMessageChangesMessage() async {
-        let mockService = MockNotificationService()
-        let provider = MockServiceProvider(notificationService: mockService)
-        let store = NotificationStore(provider: provider)
-        await store.send(.load)
-        
-        await store.send(.updateMessage("새로운 알림 메시지"))
-        
-        #expect(store.settings.customMessage == "새로운 알림 메시지")
     }
     
     @Test func changesTriggersScheduling() async throws {

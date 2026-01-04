@@ -63,7 +63,6 @@ struct NotificationSettings {
     var interval: NotificationInterval
     var enabledWeekdays: Set<Weekday>
     var customTimes: [NotificationTime]
-    var customMessage: String
     
     static var `default`: NotificationSettings {
         NotificationSettings(
@@ -72,8 +71,7 @@ struct NotificationSettings {
             endTime: NotificationTime(hour: 22, minute: 0),
             interval: .oneHour,
             enabledWeekdays: Set(Weekday.allCases),
-            customTimes: [],
-            customMessage: "물 마실 시간이에요! 💧"
+            customTimes: []
         )
     }
 }
