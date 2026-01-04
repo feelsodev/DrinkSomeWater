@@ -20,6 +20,7 @@ let project = Project(
         ]
     ),
     targets: [
+        // MARK: - Main App
         .target(
             name: "DrinkSomeWater",
             destinations: .iOS,
@@ -28,7 +29,7 @@ let project = Project(
             deploymentTargets: .iOS("26.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "$(PRODUCT_NAME)",
-                "CFBundleShortVersionString": "2.1.0",
+                "CFBundleShortVersionString": "2.2.0",
                 "CFBundleVersion": "1",
                 "UILaunchStoryboardName": "LaunchScreen",
                 "UIMainStoryboardFile": "Main",
@@ -56,7 +57,10 @@ let project = Project(
                 "NSHealthShareUsageDescription": "체중 정보를 읽어 맞춤 권장량을 계산합니다.",
                 "NSHealthUpdateUsageDescription": "물 섭취 기록을 건강 앱과 동기화합니다.",
             ]),
-            sources: ["DrinkSomeWater/Sources/**"],
+            sources: [
+                "DrinkSomeWater/Sources/**",
+                "Shared/**",
+            ],
             resources: [
                 "DrinkSomeWater/Resources/**",
                 .glob(pattern: "DrinkSomeWater/Support/**", excluding: ["DrinkSomeWater/Support/Info.plist", "DrinkSomeWater/Support/DrinkSomeWater.entitlements"])
@@ -73,6 +77,27 @@ let project = Project(
                 ]
             )
         ),
+        // MARK: - Widget Extension
+        .target(
+            name: "DrinkSomeWaterWidget",
+            destinations: .iOS,
+            product: .appExtension,
+            bundleId: "com.feelso.DrinkSomeWater.Widget",
+            deploymentTargets: .iOS("26.0"),
+            infoPlist: .extendingDefault(with: [
+                "CFBundleDisplayName": "벌컥벌컥 위젯",
+                "NSExtension": [
+                    "NSExtensionPointIdentifier": "com.apple.widgetkit-extension"
+                ]
+            ]),
+            sources: [
+                "DrinkSomeWaterWidget/**",
+                "Shared/**",
+            ],
+            entitlements: "DrinkSomeWaterWidget/DrinkSomeWaterWidget.entitlements",
+            dependencies: []
+        ),
+        // MARK: - Unit Tests
         .target(
             name: "DrinkSomeWaterTests",
             destinations: .iOS,
