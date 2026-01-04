@@ -25,7 +25,6 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
         let intervalMinutes = defaults.value(forkey: .notificationIntervalMinutes) ?? 60
         let weekdayValues = defaults.value(forkey: .notificationWeekdays) ?? Array(1...7)
         let customTimeDicts = defaults.value(forkey: .notificationCustomTimes) ?? []
-        let message = defaults.value(forkey: .notificationMessage) ?? "물 마실 시간이에요! 💧"
         
         let interval = NotificationInterval(rawValue: intervalMinutes) ?? .oneHour
         let weekdays = Set(weekdayValues.compactMap { Weekday(rawValue: $0) })
@@ -37,8 +36,7 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
             endTime: NotificationTime(hour: endHour, minute: endMinute),
             interval: interval,
             enabledWeekdays: weekdays,
-            customTimes: customTimes,
-            customMessage: message
+            customTimes: customTimes
         )
     }
     
@@ -53,7 +51,6 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
         defaults.set(value: settings.interval.rawValue, forkey: .notificationIntervalMinutes)
         defaults.set(value: settings.enabledWeekdays.map { $0.rawValue }, forkey: .notificationWeekdays)
         defaults.set(value: settings.customTimes.map { $0.toDictionary() }, forkey: .notificationCustomTimes)
-        defaults.set(value: settings.customMessage, forkey: .notificationMessage)
     }
     
     func scheduleNotifications(with settings: NotificationSettings) {
@@ -98,8 +95,7 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
                     identifier: "drink_\(weekday.rawValue)_\(notificationIndex)",
                     hour: hour,
                     minute: minute,
-                    weekday: weekday.rawValue,
-                    message: settings.customMessage
+                    weekday: weekday.rawValue
                 )
             }
             
@@ -115,17 +111,16 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
                     identifier: "drink_custom_\(weekday.rawValue)_\(index)",
                     hour: time.hour,
                     minute: time.minute,
-                    weekday: weekday.rawValue,
-                    message: settings.customMessage
+                    weekday: weekday.rawValue
                 )
             }
         }
     }
     
-    private func scheduleNotification(identifier: String, hour: Int, minute: Int, weekday: Int, message: String) {
+    private func scheduleNotification(identifier: String, hour: Int, minute: Int, weekday: Int) {
         let content = UNMutableNotificationContent()
         content.title = notificationTitle
-        content.body = message
+        content.body = NotificationMessages.random
         content.sound = .default
         
         var dateComponents = DateComponents()

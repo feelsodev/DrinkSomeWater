@@ -106,18 +106,11 @@ final class NotificationSettingViewController: BaseViewController {
         $0.configuration = config
     }
     
-    private let messageLabel = UILabel().then {
-        $0.text = "알림 메시지"
-        $0.font = .systemFont(ofSize: 14, weight: .semibold)
+    private let messageInfoLabel = UILabel().then {
+        $0.text = "💬 다양한 문구로 알림이 발송됩니다"
+        $0.font = .systemFont(ofSize: 14, weight: .medium)
         $0.textColor = .gray
-    }
-    
-    private let messageTextField = UITextField().then {
-        $0.borderStyle = .roundedRect
-        $0.font = .systemFont(ofSize: 16)
-        $0.textColor = .darkGray
-        $0.placeholder = "알림 메시지를 입력하세요"
-        $0.returnKeyType = .done
+        $0.textAlignment = .center
     }
     
     private var weekdayButtons: [UIButton] = []
@@ -160,8 +153,6 @@ final class NotificationSettingViewController: BaseViewController {
         
         updateCustomTimesUI()
         
-        messageTextField.text = store.settings.customMessage
-        
         updateUIEnabledState()
     }
     
@@ -175,7 +166,7 @@ final class NotificationSettingViewController: BaseViewController {
             intervalLabel, intervalSegment,
             weekdayLabel, weekdayStackView,
             customTimesLabel, customTimesStackView, addCustomTimeButton,
-            messageLabel, messageTextField
+            messageInfoLabel
         ])
         
         scrollView.snp.makeConstraints {
@@ -267,16 +258,10 @@ final class NotificationSettingViewController: BaseViewController {
             $0.height.equalTo(36)
         }
         
-        messageLabel.snp.makeConstraints {
+        messageInfoLabel.snp.makeConstraints {
             $0.top.equalTo(addCustomTimeButton.snp.bottom).offset(32)
             $0.leading.equalToSuperview().offset(20)
-        }
-        
-        messageTextField.snp.makeConstraints {
-            $0.top.equalTo(messageLabel.snp.bottom).offset(12)
-            $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
-            $0.height.equalTo(44)
             $0.bottom.equalToSuperview().offset(-32)
         }
     }
@@ -310,8 +295,6 @@ final class NotificationSettingViewController: BaseViewController {
         addCustomTimeButton.addAction(UIAction { [weak self] _ in
             self?.showAddCustomTimePicker()
         }, for: .touchUpInside)
-        
-        messageTextField.delegate = self
     }
     
     @objc private func enabledSwitchChanged() {
@@ -505,22 +488,6 @@ final class NotificationSettingViewController: BaseViewController {
         addCustomTimeButton.isEnabled = isEnabled
         addCustomTimeButton.alpha = alpha
         
-        messageLabel.alpha = alpha
-        messageTextField.isEnabled = isEnabled
-        messageTextField.alpha = alpha
-    }
-}
-
-extension NotificationSettingViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        let message = textField.text ?? ""
-        Task {
-            await store.send(.updateMessage(message))
-        }
+        messageInfoLabel.alpha = alpha
     }
 }

@@ -28,7 +28,7 @@ let project = Project(
             deploymentTargets: .iOS("26.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "$(PRODUCT_NAME)",
-                "CFBundleShortVersionString": "2.0.0",
+                "CFBundleShortVersionString": "2.1.0",
                 "CFBundleVersion": "1",
                 "UILaunchStoryboardName": "LaunchScreen",
                 "UIMainStoryboardFile": "Main",
@@ -53,12 +53,15 @@ let project = Project(
                         ]
                     ]
                 ],
+                "NSHealthShareUsageDescription": "체중 정보를 읽어 맞춤 권장량을 계산합니다.",
+                "NSHealthUpdateUsageDescription": "물 섭취 기록을 건강 앱과 동기화합니다.",
             ]),
             sources: ["DrinkSomeWater/Sources/**"],
             resources: [
                 "DrinkSomeWater/Resources/**",
-                .glob(pattern: "DrinkSomeWater/Support/**", excluding: ["DrinkSomeWater/Support/Info.plist"])
+                .glob(pattern: "DrinkSomeWater/Support/**", excluding: ["DrinkSomeWater/Support/Info.plist", "DrinkSomeWater/Support/DrinkSomeWater.entitlements"])
             ],
+            entitlements: "DrinkSomeWater/Support/DrinkSomeWater.entitlements",
             dependencies: [
                 .external(name: "SnapKit"),
                 .external(name: "Then"),

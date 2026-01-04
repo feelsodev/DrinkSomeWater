@@ -13,7 +13,6 @@ final class NotificationStore {
         case toggleWeekday(Weekday)
         case addCustomTime(NotificationTime)
         case removeCustomTime(NotificationTime)
-        case updateMessage(String)
         case save
     }
     
@@ -65,10 +64,6 @@ final class NotificationStore {
             
         case .removeCustomTime(let time):
             settings.customTimes.removeAll { $0 == time }
-            await applySettings()
-            
-        case .updateMessage(let message):
-            settings.customMessage = message
             await applySettings()
             
         case .save:

@@ -37,6 +37,19 @@
 - 알림 설정
 - 문의 및 리뷰
 
+### 🍎 Apple Health 연동 (v2.1 예정)
+건강 앱과 데이터를 동기화합니다.
+- 체중 정보 연동 → 맞춤 권장량 자동 계산
+- 물 섭취 기록 건강 앱에 자동 저장
+- 다른 건강 앱과 데이터 통합
+
+### 💬 스마트 알림 (v2.1 예정)
+다양한 동기부여 문구로 알림을 보냅니다.
+- 10가지 랜덤 문구로 지루하지 않은 알림
+- "물 마실 시간이에요! 💧"
+- "집중력 UP! 물 한 잔 어때요? 🧠"
+- 그 외 8가지 문구...
+
 ## 🏗 앱 구조
 
 ```
@@ -62,6 +75,8 @@
 | Concurrency | async/await, Swift 6 |
 | Animation | WaveAnimationView |
 | Calendar | FSCalendar |
+| Health | HealthKit (v2.1 예정) |
+| Ads | Google AdMob (v2.1 예정) |
 | Build | Tuist |
 
 ## 📦 의존성
@@ -71,6 +86,10 @@
 - SnapKit
 - Then
 - FSCalendar
+- Google Mobile Ads (v2.1 예정)
+
+// System Frameworks
+- HealthKit (v2.1 예정)
 ```
 
 ## 🚀 빌드 방법
@@ -136,6 +155,24 @@ observation = startObservation { [weak self] in
 - 하루 물 섭취량을 간편하게 기록하고 싶었습니다
 - Swift 최신 기능(Observation, async/await)을 실제 앱에 적용해보고 싶었습니다
 - 깔끔한 3탭 구조로 직관적인 UX를 구현하고 싶었습니다
+
+## 🗺 로드맵
+
+### v2.0 (현재)
+- ✅ 3탭 구조 리팩토링
+- ✅ @Observable 마이그레이션
+- ✅ 알림 설정 기능
+
+### v2.1 (예정)
+- 🔲 Apple Health 연동 (체중/물 섭취 동기화)
+- 🔲 체중 기반 권장량 자동 계산
+- 🔲 랜덤 알림 문구 (10가지)
+- 🔲 AdMob 광고 연동
+
+### v2.2 (예정)
+- 🔲 운동 감지 → 목표량 자동 조정
+- 🔲 주간/월간 인사이트 리포트
+- 🔲 프리미엄 ($0.99) 광고 제거 옵션
 
 ## 📄 License
 

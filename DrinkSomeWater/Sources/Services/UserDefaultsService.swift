@@ -6,7 +6,6 @@ extension UserDefaultsKey {
     static var customQuickButtons: Key<[Int]> { return "customQuickButtons" }
     static var quickButtons: Key<[Int]> { return "quickButtons" }
     
-    // MARK: - Notification Settings
     static var notificationEnabled: Key<Bool> { return "notificationEnabled" }
     static var notificationStartHour: Key<Int> { return "notificationStartHour" }
     static var notificationStartMinute: Key<Int> { return "notificationStartMinute" }
@@ -15,7 +14,9 @@ extension UserDefaultsKey {
     static var notificationIntervalMinutes: Key<Int> { return "notificationIntervalMinutes" }
     static var notificationWeekdays: Key<[Int]> { return "notificationWeekdays" }
     static var notificationCustomTimes: Key<[[String: Int]]> { return "notificationCustomTimes" }
-    static var notificationMessage: Key<String> { return "notificationMessage" }
+    
+    static var userWeight: Key<Double> { return "userWeight" }
+    static var useHealthKitWeight: Key<Bool> { return "useHealthKitWeight" }
 }
 
 protocol UserDefaultsServiceProtocol {
