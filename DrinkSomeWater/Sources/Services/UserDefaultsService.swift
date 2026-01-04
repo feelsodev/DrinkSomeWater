@@ -17,6 +17,8 @@ extension UserDefaultsKey {
     
     static var userWeight: Key<Double> { return "userWeight" }
     static var useHealthKitWeight: Key<Bool> { return "useHealthKitWeight" }
+    
+    static var onboardingCompleted: Key<Bool> { return "onboardingCompleted" }
 }
 
 protocol UserDefaultsServiceProtocol {
