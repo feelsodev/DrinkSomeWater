@@ -13,6 +13,7 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
     
     private let notificationCenter = UNUserNotificationCenter.current()
     private let notificationTitle = "벌컥벌컥"
+    private let maxPendingNotifications = 64
     
     func loadSettings() -> NotificationSettings {
         let defaults = provider.userDefaultsService
@@ -83,36 +84,68 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
         let endMinutes = settings.endTime.hour * 60 + settings.endTime.minute
         let intervalMinutes = settings.interval.rawValue
         
+        var timeSlots: [(hour: Int, minute: Int)] = []
         var currentMinutes = startMinutes
-        var notificationIndex = 0
-        
         while currentMinutes <= endMinutes {
-            let hour = currentMinutes / 60
-            let minute = currentMinutes % 60
-            
-            for weekday in settings.enabledWeekdays {
-                scheduleNotification(
-                    identifier: "drink_\(weekday.rawValue)_\(notificationIndex)",
-                    hour: hour,
-                    minute: minute,
-                    weekday: weekday.rawValue
-                )
-            }
-            
+            timeSlots.append((currentMinutes / 60, currentMinutes % 60))
             currentMinutes += intervalMinutes
-            notificationIndex += 1
+        }
+        
+        let weekdays = Array(settings.enabledWeekdays)
+        let totalRequired = timeSlots.count * weekdays.count
+        
+        var scheduledCount = 0
+        
+        if totalRequired <= maxPendingNotifications {
+            for (index, slot) in timeSlots.enumerated() {
+                for weekday in weekdays {
+                    scheduleNotification(
+                        identifier: "drink_\(weekday.rawValue)_\(index)",
+                        hour: slot.hour,
+                        minute: slot.minute,
+                        weekday: weekday.rawValue
+                    )
+                    scheduledCount += 1
+                }
+            }
+        } else {
+            let slotsPerWeekday = max(1, maxPendingNotifications / weekdays.count)
+            let stride = max(1, timeSlots.count / slotsPerWeekday)
+            
+            for weekday in weekdays {
+                var slotIndex = 0
+                var notificationIndex = 0
+                while slotIndex < timeSlots.count && scheduledCount < maxPendingNotifications {
+                    let slot = timeSlots[slotIndex]
+                    scheduleNotification(
+                        identifier: "drink_\(weekday.rawValue)_\(notificationIndex)",
+                        hour: slot.hour,
+                        minute: slot.minute,
+                        weekday: weekday.rawValue
+                    )
+                    scheduledCount += 1
+                    notificationIndex += 1
+                    slotIndex += stride
+                }
+            }
         }
     }
     
     private func scheduleCustomTimeNotifications(with settings: NotificationSettings) {
+        let weekdays = Array(settings.enabledWeekdays)
+        let totalRequired = settings.customTimes.count * weekdays.count
+        var scheduledCount = 0
+        
         for (index, time) in settings.customTimes.enumerated() {
-            for weekday in settings.enabledWeekdays {
+            for weekday in weekdays {
+                guard scheduledCount < maxPendingNotifications else { return }
                 scheduleNotification(
                     identifier: "drink_custom_\(weekday.rawValue)_\(index)",
                     hour: time.hour,
                     minute: time.minute,
                     weekday: weekday.rawValue
                 )
+                scheduledCount += 1
             }
         }
     }
