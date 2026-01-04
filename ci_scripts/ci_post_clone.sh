@@ -16,7 +16,7 @@ echo "Installing tools from .mise.toml..."
 ~/.local/bin/mise install
 
 echo "Verifying mise setup..."
-~/.local/bin/mise doctor
+~/.local/bin/mise doctor || echo "mise doctor warnings (non-blocking)"
 
 echo "Running tuist install..."
 ~/.local/bin/mise x -- tuist install
