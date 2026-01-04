@@ -6,17 +6,22 @@ echo "=== Xcode Cloud Post Clone Script ==="
 cd "$CI_PRIMARY_REPOSITORY_PATH"
 
 echo "Installing mise..."
-curl https://mise.run | sh
+curl https://mise.jdx.dev/install.sh | sh
 export PATH="$HOME/.local/bin:$PATH"
 
-echo "Installing tuist via mise..."
-mise install tuist
-eval "$(mise activate bash)"
+echo "Verifying mise installation..."
+~/.local/bin/mise --version
+
+echo "Installing tools from .mise.toml..."
+~/.local/bin/mise install
+
+echo "Verifying mise setup..."
+~/.local/bin/mise doctor
 
 echo "Running tuist install..."
-tuist install
+~/.local/bin/mise x -- tuist install
 
 echo "Running tuist generate..."
-tuist generate
+~/.local/bin/mise x -- tuist generate --no-open
 
 echo "=== Post Clone Complete ==="
