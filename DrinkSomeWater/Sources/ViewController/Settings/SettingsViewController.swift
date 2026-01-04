@@ -1,25 +1,42 @@
 import UIKit
+import SnapKit
+import Then
 
 final class SettingsViewController: BaseViewController {
     
     private let store: SettingsStore
     
-    private let backgroundView = UIView().then {
-        $0.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+    private let gradientLayer = CAGradientLayer()
+    
+    private let headerView = UIView()
+    
+    private let headerIconView = UIImageView().then {
+        $0.image = UIImage(systemName: "gearshape.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium))
+        $0.tintColor = .white.withAlphaComponent(0.9)
+        $0.contentMode = .scaleAspectFit
     }
     
     private let titleLabel = UILabel().then {
         $0.text = "설정"
-        $0.font = .systemFont(ofSize: 28, weight: .bold)
+        $0.font = .systemFont(ofSize: 32, weight: .bold)
         $0.textColor = .white
     }
     
+    private let subtitleLabel = UILabel().then {
+        $0.text = "앱을 나만의 스타일로"
+        $0.font = .systemFont(ofSize: 14, weight: .medium)
+        $0.textColor = .white.withAlphaComponent(0.8)
+    }
+    
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.98, alpha: 1)
         $0.delegate = self
         $0.dataSource = self
         $0.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellID)
-        $0.separatorStyle = .singleLine
+        $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+        $0.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 20, right: 0)
+        $0.sectionHeaderTopPadding = 0
     }
     
     private let sections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] = [
@@ -34,8 +51,7 @@ final class SettingsViewController: BaseViewController {
         ]),
         ("지원", [
             ("star.fill", "앱 리뷰 남기기", nil, .review),
-            ("envelope.fill", "문의하기", nil, .contact),
-            ("doc.text.fill", "오픈소스 라이선스", nil, .license)
+            ("envelope.fill", "문의하기", nil, .contact)
         ]),
         ("정보", [
             ("info.circle.fill", "버전", nil, .version)
@@ -43,7 +59,7 @@ final class SettingsViewController: BaseViewController {
     ]
     
     enum SettingsAction {
-        case goal, quickButtons, notification, review, contact, license, version
+        case goal, quickButtons, notification, review, contact, version
     }
     
     init(store: SettingsStore) {
@@ -57,20 +73,27 @@ final class SettingsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.98, alpha: 1)
         navigationController?.isNavigationBarHidden = true
+        setupGradient()
         observation = startObservation { [weak self] in self?.render() }
         
         Task {
             await store.send(.loadGoal)
-            await store.send(.loadCustomButtons)
+            await store.send(.loadQuickButtons)
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        gradientLayer.frame = headerView.bounds
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Task {
             await store.send(.loadGoal)
-            await store.send(.loadCustomButtons)
+            await store.send(.loadQuickButtons)
         }
     }
     
@@ -78,23 +101,50 @@ final class SettingsViewController: BaseViewController {
         tableView.reloadData()
     }
     
+    private func setupGradient() {
+        gradientLayer.colors = [
+            UIColor(red: 0.35, green: 0.75, blue: 0.95, alpha: 1).cgColor,
+            UIColor(red: 0.25, green: 0.65, blue: 0.90, alpha: 1).cgColor
+        ]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        headerView.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
     override func setupConstraints() {
-        view.addSubviews([backgroundView, titleLabel, tableView])
+        view.addSubviews([headerView, tableView])
+        headerView.addSubviews([headerIconView, titleLabel, subtitleLabel])
         
-        backgroundView.snp.makeConstraints {
+        headerView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(viewHeight / 5)
+            $0.height.equalTo(180)
+        }
+        
+        headerIconView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
+            $0.leading.equalToSuperview().offset(24)
+            $0.width.height.equalTo(40)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
-            $0.leading.equalToSuperview().offset(20)
+            $0.top.equalTo(headerIconView.snp.bottom).offset(12)
+            $0.leading.equalToSuperview().offset(24)
+        }
+        
+        subtitleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+            $0.leading.equalToSuperview().offset(24)
         }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+            $0.top.equalTo(headerView.snp.bottom).offset(-20)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+        
+        tableView.layer.cornerRadius = 20
+        tableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        tableView.clipsToBounds = true
     }
     
     private func handleAction(_ action: SettingsAction) {
@@ -109,8 +159,6 @@ final class SettingsViewController: BaseViewController {
             openAppStoreReview()
         case .contact:
             showContactAlert()
-        case .license:
-            presentLicenses()
         case .version:
             break
         }
@@ -120,7 +168,10 @@ final class SettingsViewController: BaseViewController {
         let vc = GoalSettingViewController(
             currentGoal: store.goalValue,
             onSave: { [weak self] _ in
-                Task { await self?.store.send(.loadGoal) }
+                Task {
+                    await self?.store.send(.loadGoal)
+                    self?.tableView.reloadData()
+                }
             },
             provider: store.provider
         )
@@ -133,25 +184,29 @@ final class SettingsViewController: BaseViewController {
     
     private func presentQuickButtonSetting() {
         let vc = QuickButtonSettingViewController(
-            currentButtons: store.customQuickButtons,
+            currentButtons: store.quickButtons,
             onSave: { [weak self] buttons in
-                Task { await self?.store.send(.updateCustomButtons(buttons)) }
+                Task {
+                    await self?.store.send(.updateQuickButtons(buttons))
+                    self?.tableView.reloadData()
+                }
             }
         )
         if let sheet = vc.sheetPresentationController {
-            sheet.detents = [.medium()]
+            sheet.detents = [.large()]
             sheet.prefersGrabberVisible = true
         }
         present(vc, animated: true)
     }
     
     private func openNotificationSettings() {
-        if let bundleIdentifier = Bundle.main.bundleIdentifier,
-           let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
-            if UIApplication.shared.canOpenURL(appSettings) {
-                UIApplication.shared.open(appSettings)
-            }
+        let notificationStore = NotificationStore(provider: store.provider)
+        let vc = NotificationSettingViewController(store: notificationStore)
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
         }
+        present(vc, animated: true)
     }
     
     private func openAppStoreReview() {
@@ -170,11 +225,6 @@ final class SettingsViewController: BaseViewController {
         alert.addAction(UIAlertAction(title: "확인", style: .default))
         present(alert, animated: true)
     }
-    
-    private func presentLicenses() {
-        let vc = LicensesViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
 }
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -187,8 +237,29 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         sections[section].items.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        sections[section].title
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        56
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        
+        let label = UILabel()
+        label.text = sections[section].title
+        label.font = .systemFont(ofSize: 13, weight: .semibold)
+        label.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.55, alpha: 1)
+        
+        headerView.addSubview(label)
+        label.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(32)
+            $0.bottom.equalToSuperview().offset(-6)
+        }
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 0 ? 32 : 40
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -200,7 +271,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case .goal:
             detail = "\(store.goalValue)ml"
         case .quickButtons:
-            detail = store.customQuickButtons.map { "\($0)" }.joined(separator: ", ") + "ml"
+            detail = store.quickButtons.map { "\($0)" }.joined(separator: ", ") + "ml"
         case .version:
             detail = store.appVersion
         default:
@@ -208,6 +279,24 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.configure(icon: item.icon, title: item.title, detail: detail, showArrow: item.action != .version)
+        
+        let isFirst = indexPath.row == 0
+        let isLast = indexPath.row == sections[indexPath.section].items.count - 1
+        
+        if isFirst && isLast {
+            cell.layer.cornerRadius = 12
+            cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        } else if isFirst {
+            cell.layer.cornerRadius = 12
+            cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        } else if isLast {
+            cell.layer.cornerRadius = 12
+            cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        } else {
+            cell.layer.cornerRadius = 0
+        }
+        cell.clipsToBounds = true
+        
         return cell
     }
     
@@ -217,5 +306,3 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         handleAction(action)
     }
 }
-
-
