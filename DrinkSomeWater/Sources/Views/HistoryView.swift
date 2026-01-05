@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import GoogleMobileAds
 
 enum HistoryViewMode: String, CaseIterable {
   case calendar = "캘린더"
@@ -167,6 +168,7 @@ struct HistoryCalendarTab: View {
 // MARK: - List Tab
 struct HistoryListTab: View {
   @Bindable var store: HistoryStore
+  @State private var nativeAd: GADNativeAd?
   
   private var sortedRecords: [WaterRecord] {
     store.waterRecordList.sorted { $0.date > $1.date }
@@ -175,13 +177,20 @@ struct HistoryListTab: View {
   var body: some View {
     ScrollView {
       LazyVStack(spacing: 12) {
-        ForEach(sortedRecords, id: \.id) { record in
+        ForEach(Array(sortedRecords.enumerated()), id: \.element.id) { index, record in
           ListRecordRow(record: record)
+          
+          if (index + 1) % 5 == 0, let ad = nativeAd {
+            NativeAdCard(nativeAd: ad)
+          }
         }
       }
       .padding(.horizontal, 20)
       .padding(.top, 16)
       .padding(.bottom, 100)
+    }
+    .onAppear {
+      nativeAd = AdMobService.shared.getNativeAd()
     }
   }
 }

@@ -6,6 +6,8 @@ import GoogleMobileAds
 final class SettingsViewController: BaseViewController {
   
   private let store: SettingsStore
+  private var nativeAd: GADNativeAd?
+  private let nativeAdSectionIndex = 2
   
   private lazy var waveBackground: WaveAnimationView = {
     let view = WaveAnimationView(frame: .zero, color: DS.Color.primaryLight)
@@ -36,6 +38,7 @@ final class SettingsViewController: BaseViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellID)
+    tableView.register(NativeAdTableViewCell.self, forCellReuseIdentifier: NativeAdTableViewCell.cellID)
     tableView.separatorStyle = .none
     tableView.showsVerticalScrollIndicator = false
     tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
@@ -112,6 +115,8 @@ final class SettingsViewController: BaseViewController {
       await store.send(.loadGoal)
       await store.send(.loadQuickButtons)
     }
+    
+    nativeAd = AdMobService.shared.getNativeAd()
   }
   
   override func viewDidLayoutSubviews() {
@@ -131,7 +136,7 @@ final class SettingsViewController: BaseViewController {
   }
   
   override func setupConstraints() {
-    view.addSubviews([waveBackground, tableView, bannerView])
+    view.addSubviews([waveBackground, tableView])
     
     waveBackground.snp.makeConstraints {
       $0.edges.equalToSuperview()
@@ -140,13 +145,7 @@ final class SettingsViewController: BaseViewController {
     tableView.snp.makeConstraints {
       $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
       $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalTo(bannerView.snp.top)
-    }
-    
-    bannerView.snp.makeConstraints {
-      $0.leading.trailing.equalToSuperview()
       $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-      $0.height.equalTo(50)
     }
   }
   
@@ -284,22 +283,34 @@ final class SettingsViewController: BaseViewController {
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    sections.count
+    nativeAd != nil ? sections.count + 1 : sections.count
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    sections[section].items.count
+    if nativeAd != nil && section == nativeAdSectionIndex {
+      return 1
+    }
+    let adjustedSection = nativeAd != nil && section > nativeAdSectionIndex ? section - 1 : section
+    return sections[adjustedSection].items.count
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    DS.Size.cellHeight
+    if nativeAd != nil && indexPath.section == nativeAdSectionIndex {
+      return 80
+    }
+    return DS.Size.cellHeight
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    if nativeAd != nil && section == nativeAdSectionIndex {
+      return UIView()
+    }
+    
+    let adjustedSection = nativeAd != nil && section > nativeAdSectionIndex ? section - 1 : section
     let headerView = UIView()
     
     let label = UILabel()
-    label.text = sections[section].title.uppercased()
+    label.text = sections[adjustedSection].title.uppercased()
     label.font = DS.Font.captionSemibold
     label.textColor = DS.Color.textSecondary
     label.addCharacterSpacing(kernValue: 0.5)
@@ -314,12 +325,23 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    section == 0 ? DS.Spacing.lg : DS.Spacing.xxl
+    if nativeAd != nil && section == nativeAdSectionIndex {
+      return DS.Spacing.sm
+    }
+    let adjustedSection = nativeAd != nil && section > nativeAdSectionIndex ? section - 1 : section
+    return adjustedSection == 0 ? DS.Spacing.lg : DS.Spacing.xxl
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if let ad = nativeAd, indexPath.section == nativeAdSectionIndex {
+      let cell = tableView.dequeueReusableCell(withIdentifier: NativeAdTableViewCell.cellID, for: indexPath) as! NativeAdTableViewCell
+      cell.configure(with: ad)
+      return cell
+    }
+    
+    let adjustedSection = nativeAd != nil && indexPath.section > nativeAdSectionIndex ? indexPath.section - 1 : indexPath.section
     let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.cellID, for: indexPath) as! SettingsCell
-    let item = sections[indexPath.section].items[indexPath.row]
+    let item = sections[adjustedSection].items[indexPath.row]
     
     var detail: String? = item.detail
     switch item.action {
@@ -334,7 +356,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     let isFirst = indexPath.row == 0
-    let isLast = indexPath.row == sections[indexPath.section].items.count - 1
+    let isLast = indexPath.row == sections[adjustedSection].items.count - 1
     
     cell.configure(icon: item.icon, title: item.title, detail: detail, showArrow: item.action != .version, isLast: isLast)
     
@@ -353,7 +375,11 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    let action = sections[indexPath.section].items[indexPath.row].action
+    if nativeAd != nil && indexPath.section == nativeAdSectionIndex {
+      return
+    }
+    let adjustedSection = nativeAd != nil && indexPath.section > nativeAdSectionIndex ? indexPath.section - 1 : indexPath.section
+    let action = sections[adjustedSection].items[indexPath.row].action
     handleAction(action)
   }
 }
