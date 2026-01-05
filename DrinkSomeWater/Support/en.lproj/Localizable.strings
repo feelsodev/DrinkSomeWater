@@ -53,11 +53,8 @@
 // Settings
 "settings.title" = "Settings";
 "settings.subtitle" = "Customize your experience";
-"settings.section.profile" = "Profile";
-"settings.section.goal" = "Goal";
-"settings.section.quickbuttons" = "Quick Buttons";
-"settings.section.notification" = "Notifications";
-"settings.section.help" = "Help";
+"settings.section.personal" = "Personal";
+"settings.section.app" = "App Settings";
 "settings.section.support" = "Support";
 "settings.section.info" = "Info";
 "settings.profile" = "Profile Settings";
@@ -102,3 +99,10 @@
 // Contact
 "contact.title" = "Contact";
 "contact.message" = "Please contact us at feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Support Developer";
+"ad.loading.title" = "Please Wait";
+"ad.loading.message" = "Loading ad. Please try again in a moment.";
+"ad.thanks.title" = "Thank You!";
+"ad.thanks.message" = "Thank you for supporting the developer 💙";
