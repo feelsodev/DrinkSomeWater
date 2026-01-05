@@ -30,6 +30,8 @@ struct FSCalendarRepresentable: UIViewRepresentable {
     appearance.eventDefaultColor = DS.Color.primary
     appearance.eventSelectionColor = DS.Color.primary
     
+    calendar.select(Date())
+    
     return calendar
   }
   
