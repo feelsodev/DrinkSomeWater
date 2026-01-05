@@ -95,6 +95,13 @@ public class WaveAnimationView: UIView {
     self.progress = Float(setPoint)
   }
   
+  open func updateFrame(_ newFrame: CGRect) {
+    guard newFrame.width > 0 && newFrame.height > 0 else { return }
+    self.width = newFrame.width
+    self.height = newFrame.height
+    self.xAxis = self.height - self.height * CGFloat(self.progress)
+  }
+  
   
   // Start wave Animation
   open func startAnimation() {
