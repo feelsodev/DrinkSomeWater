@@ -1,100 +1,128 @@
 import UIKit
 import SnapKit
-import Then
 
 final class NotificationSettingViewController: BaseViewController {
   
   private let store: NotificationStore
   
-  private let scrollView = UIScrollView().then {
-    $0.showsVerticalScrollIndicator = false
-  }
+  private lazy var scrollView: UIScrollView = {
+    let scrollView = UIScrollView()
+    scrollView.showsVerticalScrollIndicator = false
+    return scrollView
+  }()
   
   private let contentView = UIView()
   
-  private let titleLabel = UILabel().then {
-    $0.text = "알림 설정"
-    $0.font = .systemFont(ofSize: 24, weight: .bold)
-    $0.textColor = .darkGray
-  }
+  private lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.text = "알림 설정"
+    label.font = .systemFont(ofSize: 24, weight: .bold)
+    label.textColor = .darkGray
+    return label
+  }()
   
-  private let enabledSwitch = UISwitch().then {
-    $0.onTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-  }
+  private lazy var enabledSwitch: UISwitch = {
+    let toggle = UISwitch()
+    toggle.onTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    return toggle
+  }()
   
-  private let enabledLabel = UILabel().then {
-    $0.text = "알림 활성화"
-    $0.font = .systemFont(ofSize: 17, weight: .medium)
-    $0.textColor = .darkGray
-  }
+  private lazy var enabledLabel: UILabel = {
+    let label = UILabel()
+    label.text = "알림 활성화"
+    label.font = .systemFont(ofSize: 17, weight: .medium)
+    label.textColor = .darkGray
+    return label
+  }()
   
-  private let timeRangeLabel = UILabel().then {
-    $0.text = "알림 시간대"
-    $0.font = .systemFont(ofSize: 14, weight: .semibold)
-    $0.textColor = .gray
-  }
+  private lazy var timeRangeLabel: UILabel = {
+    let label = UILabel()
+    label.text = "알림 시간대"
+    label.font = .systemFont(ofSize: 14, weight: .semibold)
+    label.textColor = .gray
+    return label
+  }()
   
-  private let startTimeButton = UIButton().then {
+  private lazy var startTimeButton: UIButton = {
+    let button = UIButton()
     var config = UIButton.Configuration.tinted()
     config.title = "08:00"
     config.baseBackgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     config.baseForegroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     config.cornerStyle = .medium
-    $0.configuration = config
-  }
+    button.configuration = config
+    return button
+  }()
   
-  private let timeRangeDashLabel = UILabel().then {
-    $0.text = "~"
-    $0.font = .systemFont(ofSize: 18, weight: .medium)
-    $0.textColor = .gray
-  }
+  private lazy var timeRangeDashLabel: UILabel = {
+    let label = UILabel()
+    label.text = "~"
+    label.font = .systemFont(ofSize: 18, weight: .medium)
+    label.textColor = .gray
+    return label
+  }()
   
-  private let endTimeButton = UIButton().then {
+  private lazy var endTimeButton: UIButton = {
+    let button = UIButton()
     var config = UIButton.Configuration.tinted()
     config.title = "22:00"
     config.baseBackgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     config.baseForegroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     config.cornerStyle = .medium
-    $0.configuration = config
-  }
+    button.configuration = config
+    return button
+  }()
   
-  private let intervalLabel = UILabel().then {
-    $0.text = "알림 간격"
-    $0.font = .systemFont(ofSize: 14, weight: .semibold)
-    $0.textColor = .gray
-  }
+  private lazy var intervalLabel: UILabel = {
+    let label = UILabel()
+    label.text = "알림 간격"
+    label.font = .systemFont(ofSize: 14, weight: .semibold)
+    label.textColor = .gray
+    return label
+  }()
   
-  private lazy var intervalSegment = UISegmentedControl(items: NotificationInterval.allCases.map { $0.displayString }).then {
-    $0.selectedSegmentIndex = 1
-    $0.selectedSegmentTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-    $0.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-    $0.setTitleTextAttributes([.foregroundColor: UIColor.darkGray], for: .normal)
-  }
+  private lazy var intervalSegment: UISegmentedControl = {
+    let segment = UISegmentedControl(items: NotificationInterval.allCases.map { $0.displayString })
+    segment.selectedSegmentIndex = 1
+    segment.selectedSegmentTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    segment.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+    segment.setTitleTextAttributes([.foregroundColor: UIColor.darkGray], for: .normal)
+    return segment
+  }()
   
-  private let weekdayLabel = UILabel().then {
-    $0.text = "요일 선택"
-    $0.font = .systemFont(ofSize: 14, weight: .semibold)
-    $0.textColor = .gray
-  }
+  private lazy var weekdayLabel: UILabel = {
+    let label = UILabel()
+    label.text = "요일 선택"
+    label.font = .systemFont(ofSize: 14, weight: .semibold)
+    label.textColor = .gray
+    return label
+  }()
   
-  private lazy var weekdayStackView = UIStackView().then {
-    $0.axis = .horizontal
-    $0.distribution = .fillEqually
-    $0.spacing = 8
-  }
+  private lazy var weekdayStackView: UIStackView = {
+    let stackView = UIStackView()
+    stackView.axis = .horizontal
+    stackView.distribution = .fillEqually
+    stackView.spacing = 8
+    return stackView
+  }()
   
-  private let customTimesLabel = UILabel().then {
-    $0.text = "커스텀 시간 (설정 시 간격 대신 사용)"
-    $0.font = .systemFont(ofSize: 14, weight: .semibold)
-    $0.textColor = .gray
-  }
+  private lazy var customTimesLabel: UILabel = {
+    let label = UILabel()
+    label.text = "커스텀 시간 (설정 시 간격 대신 사용)"
+    label.font = .systemFont(ofSize: 14, weight: .semibold)
+    label.textColor = .gray
+    return label
+  }()
   
-  private lazy var customTimesStackView = UIStackView().then {
-    $0.axis = .vertical
-    $0.spacing = 8
-  }
+  private lazy var customTimesStackView: UIStackView = {
+    let stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.spacing = 8
+    return stackView
+  }()
   
-  private let addCustomTimeButton = UIButton().then {
+  private lazy var addCustomTimeButton: UIButton = {
+    let button = UIButton()
     var config = UIButton.Configuration.plain()
     config.title = "+ 시간 추가"
     config.baseForegroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
@@ -103,15 +131,18 @@ final class NotificationSettingViewController: BaseViewController {
       attr.font = UIFont.systemFont(ofSize: 15, weight: .medium)
       return attr
     }
-    $0.configuration = config
-  }
+    button.configuration = config
+    return button
+  }()
   
-  private let messageInfoLabel = UILabel().then {
-    $0.text = "💬 다양한 문구로 알림이 발송됩니다"
-    $0.font = .systemFont(ofSize: 14, weight: .medium)
-    $0.textColor = .gray
-    $0.textAlignment = .center
-  }
+  private lazy var messageInfoLabel: UILabel = {
+    let label = UILabel()
+    label.text = "💬 다양한 문구로 알림이 발송됩니다"
+    label.font = .systemFont(ofSize: 14, weight: .medium)
+    label.textColor = .gray
+    label.textAlignment = .center
+    return label
+  }()
   
   private var weekdayButtons: [UIButton] = []
   

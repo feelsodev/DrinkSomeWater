@@ -1,29 +1,34 @@
 import UIKit
 import SnapKit
-import Then
 
 final class WidgetGuideViewController: UIViewController {
   
   private let scrollView = UIScrollView()
   private let contentView = UIView()
   
-  private let headerImageView = UIImageView().then {
-    $0.image = UIImage(systemName: "apps.iphone")
-    $0.tintColor = UIColor(red: 0.35, green: 0.75, blue: 0.95, alpha: 1)
-    $0.contentMode = .scaleAspectFit
-  }
+  private lazy var headerImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = UIImage(systemName: "apps.iphone")
+    imageView.tintColor = UIColor(red: 0.35, green: 0.75, blue: 0.95, alpha: 1)
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
   
-  private let titleLabel = UILabel().then {
-    $0.text = "Widget Setup Guide"
-    $0.font = .systemFont(ofSize: 24, weight: .bold)
-    $0.textAlignment = .center
-  }
+  private lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Widget Setup Guide"
+    label.font = .systemFont(ofSize: 24, weight: .bold)
+    label.textAlignment = .center
+    return label
+  }()
   
-  private let stepsStackView = UIStackView().then {
-    $0.axis = .vertical
-    $0.spacing = 24
-    $0.alignment = .fill
-  }
+  private lazy var stepsStackView: UIStackView = {
+    let stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.spacing = 24
+    stackView.alignment = .fill
+    return stackView
+  }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -97,29 +102,37 @@ final class WidgetGuideViewController: UIViewController {
   private func createStepView(number: String, title: String, description: String) -> UIView {
     let container = UIView()
     
-    let numberView = UIView().then {
-      $0.backgroundColor = UIColor(red: 0.35, green: 0.75, blue: 0.95, alpha: 1)
-      $0.layer.cornerRadius = 16
-    }
+    let numberView: UIView = {
+      let view = UIView()
+      view.backgroundColor = UIColor(red: 0.35, green: 0.75, blue: 0.95, alpha: 1)
+      view.layer.cornerRadius = 16
+      return view
+    }()
     
-    let numberLabel = UILabel().then {
-      $0.text = number
-      $0.font = .systemFont(ofSize: 16, weight: .bold)
-      $0.textColor = .white
-      $0.textAlignment = .center
-    }
+    let numberLabel: UILabel = {
+      let label = UILabel()
+      label.text = number
+      label.font = .systemFont(ofSize: 16, weight: .bold)
+      label.textColor = .white
+      label.textAlignment = .center
+      return label
+    }()
     
-    let titleLabel = UILabel().then {
-      $0.text = title
-      $0.font = .systemFont(ofSize: 17, weight: .semibold)
-    }
+    let titleLabel: UILabel = {
+      let label = UILabel()
+      label.text = title
+      label.font = .systemFont(ofSize: 17, weight: .semibold)
+      return label
+    }()
     
-    let descLabel = UILabel().then {
-      $0.text = description
-      $0.font = .systemFont(ofSize: 15)
-      $0.textColor = .secondaryLabel
-      $0.numberOfLines = 0
-    }
+    let descLabel: UILabel = {
+      let label = UILabel()
+      label.text = description
+      label.font = .systemFont(ofSize: 15)
+      label.textColor = .secondaryLabel
+      label.numberOfLines = 0
+      return label
+    }()
     
     container.addSubviews([numberView, titleLabel, descLabel])
     numberView.addSubview(numberLabel)
@@ -151,15 +164,19 @@ final class WidgetGuideViewController: UIViewController {
   private func createSectionHeader(_ title: String) -> UIView {
     let container = UIView()
     
-    let label = UILabel().then {
-      $0.text = title
-      $0.font = .systemFont(ofSize: 20, weight: .bold)
-      $0.textColor = UIColor(red: 0.35, green: 0.75, blue: 0.95, alpha: 1)
-    }
+    let label: UILabel = {
+      let label = UILabel()
+      label.text = title
+      label.font = .systemFont(ofSize: 20, weight: .bold)
+      label.textColor = UIColor(red: 0.35, green: 0.75, blue: 0.95, alpha: 1)
+      return label
+    }()
     
-    let separator = UIView().then {
-      $0.backgroundColor = .separator
-    }
+    let separator: UIView = {
+      let view = UIView()
+      view.backgroundColor = .separator
+      return view
+    }()
     
     container.addSubviews([separator, label])
     

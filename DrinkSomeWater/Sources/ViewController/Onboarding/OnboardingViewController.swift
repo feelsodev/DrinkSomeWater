@@ -1,6 +1,5 @@
 import UIKit
 import SnapKit
-import Then
 
 final class OnboardingViewController: UIViewController {
   
@@ -8,16 +7,20 @@ final class OnboardingViewController: UIViewController {
   private var pageViewController: UIPageViewController!
   private var pages: [OnboardingPageViewController] = []
   
-  private let pageControl = UIPageControl().then {
-    $0.currentPageIndicatorTintColor = DS.Color.primary
-    $0.pageIndicatorTintColor = DS.Color.textTertiary
-  }
+  private lazy var pageControl: UIPageControl = {
+    let pageControl = UIPageControl()
+    pageControl.currentPageIndicatorTintColor = DS.Color.primary
+    pageControl.pageIndicatorTintColor = DS.Color.textTertiary
+    return pageControl
+  }()
   
-  private let skipButton = UIButton(type: .system).then {
-    $0.setTitle(NSLocalizedString("onboarding.skip", comment: ""), for: .normal)
-    $0.setTitleColor(DS.Color.textSecondary, for: .normal)
-    $0.titleLabel?.font = DS.Font.bodyMedium
-  }
+  private lazy var skipButton: UIButton = {
+    let button = UIButton(type: .system)
+    button.setTitle(NSLocalizedString("onboarding.skip", comment: ""), for: .normal)
+    button.setTitleColor(DS.Color.textSecondary, for: .normal)
+    button.titleLabel?.font = DS.Font.bodyMedium
+    return button
+  }()
   
   init(store: OnboardingStore) {
     self.store = store

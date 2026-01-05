@@ -22,16 +22,13 @@ class CalendarDescriptView: UIView {
  }
  
  private func setupAttribute() {
-  self.circle.do {
-   $0.backgroundColor = self.color
-   $0.layer.cornerRadius = 12.5
-   $0.layer.masksToBounds = true
-  }
-  self.descriptLabel.do {
-   $0.text = self.descript
-   $0.font = .systemFont(ofSize: 15, weight: .semibold)
-   $0.textColor = .black
-  }
+  circle.backgroundColor = self.color
+  circle.layer.cornerRadius = 12.5
+  circle.layer.masksToBounds = true
+  
+  descriptLabel.text = self.descript
+  descriptLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+  descriptLabel.textColor = .black
  }
  
  private func setupConstraints() {

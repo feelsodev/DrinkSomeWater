@@ -11,9 +11,11 @@ class IntroViewController: UIViewController {
  
  // MARK: - UI
  
- let imageView = UIImageView().then {
-  $0.image = UIImage(named: "bang")
- }
+ lazy var imageView: UIImageView = {
+  let imageView = UIImageView()
+  imageView.image = UIImage(named: "bang")
+  return imageView
+ }()
  
  
  // MARK: - LifeCycle

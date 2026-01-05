@@ -1,21 +1,14 @@
-//
-//  ModelType.swift
-//  DrinkSomeWater
-//
-//  Created by once on 2021/03/31.
-//
+import Foundation
 
-import Then
-
-protocol Identifiable {
+protocol ModelIdentifiable {
  associatedtype Identifier: Equatable
  var date: Identifier { get }
 }
 
-protocol ModelType: Then {
+protocol ModelType {
 }
 
-extension Collection where Self.Iterator.Element: Identifiable {
+extension Collection where Self.Iterator.Element: ModelIdentifiable {
  func index(of element: Self.Iterator.Element) -> Self.Index? {
   return self.firstIndex { $0.date == element.date }
  }

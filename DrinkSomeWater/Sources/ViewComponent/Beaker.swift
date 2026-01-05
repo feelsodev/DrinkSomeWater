@@ -9,9 +9,11 @@ import UIKit
 
 class Beaker: UIView {
  let label = UILabel()
- let line = UIView().then {
-  $0.backgroundColor = .black
- }
+ lazy var line: UIView = {
+  let view = UIView()
+  view.backgroundColor = .black
+  return view
+ }()
  
  init(ml: String) {
   super.init(frame: CGRect.zero)

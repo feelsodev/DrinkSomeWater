@@ -1,6 +1,5 @@
 import UIKit
 import SnapKit
-import Then
 
 final class SettingsCell: UITableViewCell {
   
@@ -13,45 +12,59 @@ final class SettingsCell: UITableViewCell {
     }
   }
   
-  private let cardView = UIView().then {
-    $0.backgroundColor = .white
-    $0.layer.shadowColor = DS.Color.primary.withAlphaComponent(0.4).cgColor
-    $0.layer.shadowOffset = CGSize(width: 0, height: 8)
-    $0.layer.shadowOpacity = 0.3
-    $0.layer.shadowRadius = 16
-    $0.layer.cornerCurve = .continuous
-  }
+  private lazy var cardView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .white
+    view.layer.shadowColor = DS.Color.primary.withAlphaComponent(0.4).cgColor
+    view.layer.shadowOffset = CGSize(width: 0, height: 8)
+    view.layer.shadowOpacity = 0.3
+    view.layer.shadowRadius = 16
+    view.layer.cornerCurve = .continuous
+    return view
+  }()
   
-  private let iconContainerView = UIView().then {
-    $0.layer.cornerRadius = DS.Size.cornerRadiusMedium
-    $0.clipsToBounds = true
-  }
+  private lazy var iconContainerView: UIView = {
+    let view = UIView()
+    view.layer.cornerRadius = DS.Size.cornerRadiusMedium
+    view.clipsToBounds = true
+    return view
+  }()
   
-  private let iconImageView = UIImageView().then {
-    $0.tintColor = .white
-    $0.contentMode = .scaleAspectFit
-  }
+  private lazy var iconImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.tintColor = .white
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
   
-  private let titleLabel = UILabel().then {
-    $0.font = DS.Font.bodySemibold
-    $0.textColor = DS.Color.textPrimary
-  }
+  private lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.font = DS.Font.bodySemibold
+    label.textColor = DS.Color.textPrimary
+    return label
+  }()
   
-  private let detailLabel = UILabel().then {
-    $0.font = DS.Font.subheadMedium
-    $0.textColor = DS.Color.textSecondary
-    $0.textAlignment = .right
-  }
+  private lazy var detailLabel: UILabel = {
+    let label = UILabel()
+    label.font = DS.Font.subheadMedium
+    label.textColor = DS.Color.textSecondary
+    label.textAlignment = .right
+    return label
+  }()
   
-  private let arrowImageView = UIImageView().then {
-    $0.image = UIImage(systemName: "chevron.right", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
-    $0.tintColor = DS.Color.textTertiary
-    $0.contentMode = .scaleAspectFit
-  }
+  private lazy var arrowImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = UIImage(systemName: "chevron.right", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
+    imageView.tintColor = DS.Color.textTertiary
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
   
-  private let separatorView = UIView().then {
-    $0.backgroundColor = DS.Color.separator
-  }
+  private lazy var separatorView: UIView = {
+    let view = UIView()
+    view.backgroundColor = DS.Color.separator
+    return view
+  }()
   
   private let iconColors: [String: UIColor] = [
     "person.fill": DS.Color.primary,
