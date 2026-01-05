@@ -8,6 +8,7 @@
 import Foundation
 
 struct WaterRecord: ModelType, Identifiable {
+ var id: String { date.dateToString }
  var date: Date
  var value: Int
  var isSuccess: Bool
