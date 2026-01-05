@@ -1,43 +1,64 @@
 import UIKit
+import SwiftUI
 import SnapKit
 import Then
+import GoogleMobileAds
 
 final class SettingsViewController: BaseViewController {
   
   private let store: SettingsStore
   
-  private let gradientLayer = CAGradientLayer()
-  
-  private let headerView = UIView()
-  
-  private let headerIconView = UIImageView().then {
-    $0.image = UIImage(systemName: "gearshape.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium))
-    $0.tintColor = .white.withAlphaComponent(0.9)
-    $0.contentMode = .scaleAspectFit
+  private let waveBackground = WaveAnimationView(
+    frame: .zero,
+    color: DS.Color.primaryLight
+  ).then {
+    $0.backgroundColor = DS.Color.backgroundPrimary
+    $0.setProgress(0.5)
   }
   
   private let titleLabel = UILabel().then {
     $0.text = NSLocalizedString("settings.title", comment: "")
-    $0.font = DS.Font.largeTitle
-    $0.textColor = .white
+    $0.font = DS.Font.display
+    $0.textColor = DS.Color.textPrimary
   }
   
   private let subtitleLabel = UILabel().then {
     $0.text = NSLocalizedString("settings.subtitle", comment: "")
-    $0.font = DS.Font.subheadMedium
-    $0.textColor = .white.withAlphaComponent(0.8)
+    $0.font = DS.Font.title3
+    $0.textColor = DS.Color.textSecondary
   }
   
-  private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
-    $0.backgroundColor = DS.Color.backgroundPrimary
+  private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
+    $0.backgroundColor = .clear
     $0.delegate = self
     $0.dataSource = self
     $0.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellID)
     $0.separatorStyle = .none
     $0.showsVerticalScrollIndicator = false
-    $0.contentInset = UIEdgeInsets(top: DS.Spacing.sm, left: 0, bottom: DS.Spacing.xxl, right: 0)
+    $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     $0.sectionHeaderTopPadding = 0
+    
+    let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120))
+    headerView.addSubviews([titleLabel, subtitleLabel])
+    
+    titleLabel.snp.makeConstraints {
+      $0.top.equalToSuperview().offset(DS.Spacing.lg)
+      $0.leading.equalToSuperview().offset(DS.Spacing.xl)
+    }
+    
+    subtitleLabel.snp.makeConstraints {
+      $0.top.equalTo(titleLabel.snp.bottom).offset(DS.Spacing.xxs)
+      $0.leading.equalToSuperview().offset(DS.Spacing.xl)
+    }
+    
+    $0.tableHeaderView = headerView
   }
+  
+  private lazy var bannerView: GADBannerView = {
+    let banner = AdMobService.shared.createBannerView(rootViewController: self)
+    banner.delegate = self
+    return banner
+  }()
   
   private var sections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] {
     [
@@ -51,6 +72,7 @@ final class SettingsViewController: BaseViewController {
         ("apps.iphone", NSLocalizedString("settings.widget.guide", comment: ""), nil, .widgetGuide)
       ]),
       (NSLocalizedString("settings.section.support", comment: ""), [
+        ("heart.fill", NSLocalizedString("settings.support.developer", comment: ""), nil, .supportDeveloper),
         ("star.fill", NSLocalizedString("settings.review", comment: ""), nil, .review),
         ("envelope.fill", NSLocalizedString("settings.contact", comment: ""), nil, .contact)
       ]),
@@ -61,7 +83,7 @@ final class SettingsViewController: BaseViewController {
   }
   
   enum SettingsAction {
-    case profile, goal, quickButtons, notification, widgetGuide, review, contact, version
+    case profile, goal, quickButtons, notification, widgetGuide, supportDeveloper, review, contact, version
   }
   
   init(store: SettingsStore) {
@@ -77,7 +99,9 @@ final class SettingsViewController: BaseViewController {
     super.viewDidLoad()
     view.backgroundColor = DS.Color.backgroundPrimary
     navigationController?.isNavigationBarHidden = true
-    setupGradient()
+    
+    waveBackground.startAnimation()
+    
     observation = startObservation { [weak self] in self?.render() }
     
     Task {
@@ -88,7 +112,6 @@ final class SettingsViewController: BaseViewController {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    gradientLayer.frame = headerView.bounds
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -103,50 +126,24 @@ final class SettingsViewController: BaseViewController {
     tableView.reloadData()
   }
   
-  private func setupGradient() {
-    gradientLayer.colors = [
-      DS.Color.primary.cgColor,
-      DS.Color.primaryDark.cgColor
-    ]
-    gradientLayer.locations = [0.0, 1.0]
-    gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-    gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-    headerView.layer.insertSublayer(gradientLayer, at: 0)
-  }
-  
   override func setupConstraints() {
-    view.addSubviews([headerView, tableView])
-    headerView.addSubviews([headerIconView, titleLabel, subtitleLabel])
+    view.addSubviews([waveBackground, tableView, bannerView])
     
-    headerView.snp.makeConstraints {
-      $0.top.leading.trailing.equalToSuperview()
-      $0.height.equalTo(140)
-    }
-    
-    headerIconView.snp.makeConstraints {
-      $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(DS.Spacing.sm)
-      $0.leading.equalToSuperview().offset(DS.Spacing.xl)
-      $0.width.height.equalTo(DS.Size.iconXLarge)
-    }
-    
-    titleLabel.snp.makeConstraints {
-      $0.top.equalTo(headerIconView.snp.bottom).offset(DS.Spacing.sm)
-      $0.leading.equalToSuperview().offset(DS.Spacing.xl)
-    }
-    
-    subtitleLabel.snp.makeConstraints {
-      $0.top.equalTo(titleLabel.snp.bottom).offset(DS.Spacing.xxs)
-      $0.leading.equalToSuperview().offset(DS.Spacing.xl)
+    waveBackground.snp.makeConstraints {
+      $0.edges.equalToSuperview()
     }
     
     tableView.snp.makeConstraints {
-      $0.top.equalTo(headerView.snp.bottom).offset(-DS.Spacing.lg)
-      $0.leading.trailing.bottom.equalToSuperview()
+      $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalTo(bannerView.snp.top)
     }
     
-    tableView.layer.cornerRadius = DS.Size.cornerRadiusXLarge
-    tableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-    tableView.clipsToBounds = true
+    bannerView.snp.makeConstraints {
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+      $0.height.equalTo(50)
+    }
   }
   
   private func handleAction(_ action: SettingsAction) {
@@ -161,6 +158,8 @@ final class SettingsViewController: BaseViewController {
       openNotificationSettings()
     case .widgetGuide:
       presentWidgetGuide()
+    case .supportDeveloper:
+      showRewardedAd()
     case .review:
       openAppStoreReview()
     case .contact:
@@ -190,16 +189,16 @@ final class SettingsViewController: BaseViewController {
   }
   
   private func presentGoalSetting() {
-    let vc = GoalSettingViewController(
+    let goalView = GoalSettingView(
       currentGoal: store.goalValue,
-      onSave: { [weak self] _ in
-        Task {
-          await self?.store.send(.loadGoal)
-          self?.tableView.reloadData()
-        }
-      },
       provider: store.provider
-    )
+    ) { [weak self] in
+      Task {
+        await self?.store.send(.loadGoal)
+        self?.tableView.reloadData()
+      }
+    }
+    let vc = UIHostingController(rootView: goalView)
     if let sheet = vc.sheetPresentationController {
       sheet.detents = [.medium()]
       sheet.prefersGrabberVisible = true
@@ -208,15 +207,16 @@ final class SettingsViewController: BaseViewController {
   }
   
   private func presentQuickButtonSetting() {
-    let vc = QuickButtonSettingViewController(
+    let quickButtonView = QuickButtonSettingView(
       currentButtons: store.quickButtons,
-      onSave: { [weak self] buttons in
-        Task {
-          await self?.store.send(.updateQuickButtons(buttons))
-          self?.tableView.reloadData()
-        }
+      provider: store.provider
+    ) { [weak self] in
+      Task {
+        await self?.store.send(.loadQuickButtons)
+        self?.tableView.reloadData()
       }
-    )
+    }
+    let vc = UIHostingController(rootView: quickButtonView)
     if let sheet = vc.sheetPresentationController {
       sheet.detents = [.large()]
       sheet.prefersGrabberVisible = true
@@ -249,6 +249,31 @@ final class SettingsViewController: BaseViewController {
     )
     alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
     present(alert, animated: true)
+  }
+  
+  private func showRewardedAd() {
+    guard AdMobService.shared.isRewardedAdReady else {
+      let alert = UIAlertController(
+        title: NSLocalizedString("ad.loading.title", comment: ""),
+        message: NSLocalizedString("ad.loading.message", comment: ""),
+        preferredStyle: .alert
+      )
+      alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+      present(alert, animated: true)
+      return
+    }
+    
+    AdMobService.shared.showRewardedAd(from: self) { [weak self] rewarded in
+      if rewarded {
+        let alert = UIAlertController(
+          title: NSLocalizedString("ad.thanks.title", comment: ""),
+          message: NSLocalizedString("ad.thanks.message", comment: ""),
+          preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+        self?.present(alert, animated: true)
+      }
+    }
   }
 }
 
@@ -310,18 +335,14 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     cell.configure(icon: item.icon, title: item.title, detail: detail, showArrow: item.action != .version, isLast: isLast)
     
     if isFirst && isLast {
-      cell.layer.cornerRadius = DS.Size.cornerRadiusMedium
-      cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+      cell.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     } else if isFirst {
-      cell.layer.cornerRadius = DS.Size.cornerRadiusMedium
-      cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+      cell.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     } else if isLast {
-      cell.layer.cornerRadius = DS.Size.cornerRadiusMedium
-      cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+      cell.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     } else {
-      cell.layer.cornerRadius = 0
+      cell.maskedCorners = []
     }
-    cell.clipsToBounds = true
     
     return cell
   }
@@ -330,5 +351,15 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     tableView.deselectRow(at: indexPath, animated: true)
     let action = sections[indexPath.section].items[indexPath.row].action
     handleAction(action)
+  }
+}
+
+extension SettingsViewController: GADBannerViewDelegate {
+  nonisolated func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+    print("[AdMob] Banner ad loaded")
+  }
+  
+  nonisolated func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+    print("[AdMob] Banner ad failed: \(error.localizedDescription)")
   }
 }

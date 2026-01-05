@@ -6,8 +6,24 @@ final class SettingsCell: UITableViewCell {
   
   static let cellID = "SettingsCell"
   
+  var maskedCorners: CACornerMask = [] {
+    didSet {
+      cardView.layer.maskedCorners = maskedCorners
+      cardView.layer.cornerRadius = maskedCorners.isEmpty ? 0 : 24
+    }
+  }
+  
+  private let cardView = UIView().then {
+    $0.backgroundColor = .white
+    $0.layer.shadowColor = DS.Color.primary.withAlphaComponent(0.4).cgColor
+    $0.layer.shadowOffset = CGSize(width: 0, height: 8)
+    $0.layer.shadowOpacity = 0.3
+    $0.layer.shadowRadius = 16
+    $0.layer.cornerCurve = .continuous
+  }
+  
   private let iconContainerView = UIView().then {
-    $0.layer.cornerRadius = DS.Size.cornerRadiusSmall
+    $0.layer.cornerRadius = DS.Size.cornerRadiusMedium
     $0.clipsToBounds = true
   }
   
@@ -43,6 +59,7 @@ final class SettingsCell: UITableViewCell {
     "bolt.fill": DS.Color.warning,
     "bell.fill": DS.Color.error,
     "apps.iphone": DS.Color.primary,
+    "heart.fill": DS.Color.iconRed,
     "star.fill": DS.Color.iconYellow,
     "envelope.fill": DS.Color.iconBlue,
     "info.circle.fill": DS.Color.iconGray
@@ -58,11 +75,17 @@ final class SettingsCell: UITableViewCell {
   }
   
   private func setupUI() {
-    backgroundColor = DS.Color.backgroundSecondary
+    backgroundColor = .clear
     selectionStyle = .none
     
-    contentView.addSubviews([iconContainerView, titleLabel, detailLabel, arrowImageView, separatorView])
+    contentView.addSubview(cardView)
+    cardView.addSubviews([iconContainerView, titleLabel, detailLabel, arrowImageView, separatorView])
     iconContainerView.addSubview(iconImageView)
+    
+    cardView.snp.makeConstraints {
+      $0.top.bottom.equalToSuperview()
+      $0.leading.trailing.equalToSuperview().inset(DS.Spacing.md)
+    }
     
     iconContainerView.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(DS.Spacing.md)
@@ -104,8 +127,8 @@ final class SettingsCell: UITableViewCell {
   override func setHighlighted(_ highlighted: Bool, animated: Bool) {
     super.setHighlighted(highlighted, animated: animated)
     UIView.animate(withDuration: 0.15) {
-      self.contentView.alpha = highlighted ? 0.7 : 1.0
-      self.transform = highlighted ? CGAffineTransform(scaleX: 0.98, y: 0.98) : .identity
+      self.cardView.transform = highlighted ? CGAffineTransform(scaleX: 0.98, y: 0.98) : .identity
+      self.cardView.backgroundColor = highlighted ? DS.Color.backgroundTertiary : .white
     }
   }
   
@@ -116,6 +139,8 @@ final class SettingsCell: UITableViewCell {
     arrowImageView.isHidden = !showArrow
     separatorView.isHidden = isLast
     
-    iconContainerView.backgroundColor = iconColors[icon] ?? DS.Color.primary
+    let color = iconColors[icon] ?? DS.Color.primary
+    iconContainerView.backgroundColor = color.withAlphaComponent(0.1)
+    iconImageView.tintColor = color
   }
 }
