@@ -53,11 +53,8 @@
 // Settings
 "settings.title" = "설정";
 "settings.subtitle" = "앱을 나만의 스타일로";
-"settings.section.profile" = "내 정보";
-"settings.section.goal" = "목표";
-"settings.section.quickbuttons" = "퀵버튼";
-"settings.section.notification" = "알림";
-"settings.section.help" = "도움말";
+"settings.section.personal" = "개인 설정";
+"settings.section.app" = "앱 설정";
 "settings.section.support" = "지원";
 "settings.section.info" = "정보";
 "settings.profile" = "프로필 설정";
@@ -102,3 +99,10 @@
 // Contact
 "contact.title" = "문의";
 "contact.message" = "feelsodev@gmail.com 으로 문의 바랍니다.";
+
+// Ad
+"settings.support.developer" = "개발자 응원하기";
+"ad.loading.title" = "잠시만요";
+"ad.loading.message" = "광고를 불러오는 중입니다. 잠시 후 다시 시도해주세요.";
+"ad.thanks.title" = "감사합니다!";
+"ad.thanks.message" = "개발자를 응원해주셔서 감사합니다 💙";
