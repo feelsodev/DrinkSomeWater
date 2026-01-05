@@ -12,14 +12,16 @@ class WaterRecordResultView: UIView {
  let goal = UILabel()
  let capacity = UILabel()
  let percentage = UILabel()
- lazy var stackView = UIStackView().then {
-  $0.axis = .vertical
-  $0.distribution = .fillEqually
-  $0.spacing = 5
-  $0.addArrangedSubview(self.goal)
-  $0.addArrangedSubview(self.capacity)
-  $0.addArrangedSubview(self.percentage)
- }
+ lazy var stackView: UIStackView = {
+  let stackView = UIStackView()
+  stackView.axis = .vertical
+  stackView.distribution = .fillEqually
+  stackView.spacing = 5
+  stackView.addArrangedSubview(self.goal)
+  stackView.addArrangedSubview(self.capacity)
+  stackView.addArrangedSubview(self.percentage)
+  return stackView
+ }()
  
  init() {
   super.init(frame: CGRect.zero)

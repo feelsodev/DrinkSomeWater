@@ -1,112 +1,145 @@
 import UIKit
 import SnapKit
-import Then
 
 final class ProfileSettingViewController: BaseViewController {
   
   private let store: ProfileStore
   
-  private let titleLabel = UILabel().then {
-    $0.text = NSLocalizedString("profile.title", comment: "")
-    $0.font = DS.Font.title1
-    $0.textColor = DS.Color.textPrimary
-  }
+  private lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.text = NSLocalizedString("profile.title", comment: "")
+    label.font = DS.Font.title1
+    label.textColor = DS.Color.textPrimary
+    return label
+  }()
   
-  private let healthKitSection = UIView().then {
-    $0.backgroundColor = .white
-    $0.layer.cornerRadius = 12
-  }
+  private lazy var healthKitSection: UIView = {
+    let view = UIView()
+    view.backgroundColor = .white
+    view.layer.cornerRadius = 12
+    return view
+  }()
   
-  private let healthKitIcon = UIImageView().then {
-    $0.image = UIImage(systemName: "heart.fill")
-    $0.tintColor = .systemRed
-    $0.contentMode = .scaleAspectFit
-  }
+  private lazy var healthKitIcon: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = UIImage(systemName: "heart.fill")
+    imageView.tintColor = .systemRed
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
   
-  private let healthKitLabel = UILabel().then {
-    $0.text = NSLocalizedString("profile.healthkit.title", comment: "")
-    $0.font = DS.Font.headline
-    $0.textColor = DS.Color.textPrimary
-  }
+  private lazy var healthKitLabel: UILabel = {
+    let label = UILabel()
+    label.text = NSLocalizedString("profile.healthkit.title", comment: "")
+    label.font = DS.Font.headline
+    label.textColor = DS.Color.textPrimary
+    return label
+  }()
   
-  private let healthKitSwitch = UISwitch().then {
-    $0.onTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-  }
+  private lazy var healthKitSwitch: UISwitch = {
+    let toggle = UISwitch()
+    toggle.onTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    return toggle
+  }()
   
-  private let healthKitDescription = UILabel().then {
-    $0.text = NSLocalizedString("profile.healthkit.description", comment: "")
-    $0.font = DS.Font.footnote
-    $0.textColor = DS.Color.textSecondary
-  }
+  private lazy var healthKitDescription: UILabel = {
+    let label = UILabel()
+    label.text = NSLocalizedString("profile.healthkit.description", comment: "")
+    label.font = DS.Font.footnote
+    label.textColor = DS.Color.textSecondary
+    return label
+  }()
   
-  private let weightSection = UIView().then {
-    $0.backgroundColor = .white
-    $0.layer.cornerRadius = 12
-  }
+  private lazy var weightSection: UIView = {
+    let view = UIView()
+    view.backgroundColor = .white
+    view.layer.cornerRadius = 12
+    return view
+  }()
   
-  private let weightLabel = UILabel().then {
-    $0.text = NSLocalizedString("profile.weight", comment: "")
-    $0.font = DS.Font.subheadSemibold
-    $0.textColor = DS.Color.textSecondary
-  }
+  private lazy var weightLabel: UILabel = {
+    let label = UILabel()
+    label.text = NSLocalizedString("profile.weight", comment: "")
+    label.font = DS.Font.subheadSemibold
+    label.textColor = DS.Color.textSecondary
+    return label
+  }()
   
-  private let weightValueLabel = UILabel().then {
-    $0.text = "65 kg"
-    $0.font = .systemFont(ofSize: 32, weight: .bold)
-    $0.textColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-    $0.textAlignment = .center
-  }
+  private lazy var weightValueLabel: UILabel = {
+    let label = UILabel()
+    label.text = "65 kg"
+    label.font = .systemFont(ofSize: 32, weight: .bold)
+    label.textColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    label.textAlignment = .center
+    return label
+  }()
   
-  private lazy var weightSlider = UISlider().then {
-    $0.minimumValue = 30
-    $0.maximumValue = 150
-    $0.value = 65
-    $0.minimumTrackTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-  }
+  private lazy var weightSlider: UISlider = {
+    let slider = UISlider()
+    slider.minimumValue = 30
+    slider.maximumValue = 150
+    slider.value = 65
+    slider.minimumTrackTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    return slider
+  }()
   
-  private let weightRangeLabel = UILabel().then {
-    $0.text = NSLocalizedString("profile.weight.range", comment: "")
-    $0.font = DS.Font.caption
-    $0.textColor = DS.Color.textTertiary
-    $0.textAlignment = .center
-  }
+  private lazy var weightRangeLabel: UILabel = {
+    let label = UILabel()
+    label.text = NSLocalizedString("profile.weight.range", comment: "")
+    label.font = DS.Font.caption
+    label.textColor = DS.Color.textTertiary
+    label.textAlignment = .center
+    return label
+  }()
   
-  private let recommendSection = UIView().then {
-    $0.backgroundColor = UIColor(red: 0.9, green: 0.95, blue: 1.0, alpha: 1)
-    $0.layer.cornerRadius = 12
-  }
+  private lazy var recommendSection: UIView = {
+    let view = UIView()
+    view.backgroundColor = UIColor(red: 0.9, green: 0.95, blue: 1.0, alpha: 1)
+    view.layer.cornerRadius = 12
+    return view
+  }()
   
-  private let recommendIcon = UILabel().then {
-    $0.text = "💡"
-    $0.font = .systemFont(ofSize: 24)
-  }
+  private lazy var recommendIcon: UILabel = {
+    let label = UILabel()
+    label.text = "💡"
+    label.font = .systemFont(ofSize: 24)
+    return label
+  }()
   
-  private let recommendTitleLabel = UILabel().then {
-    $0.text = NSLocalizedString("profile.recommended.title", comment: "")
-    $0.font = DS.Font.subheadMedium
-    $0.textColor = DS.Color.textPrimary
-  }
+  private lazy var recommendTitleLabel: UILabel = {
+    let label = UILabel()
+    label.text = NSLocalizedString("profile.recommended.title", comment: "")
+    label.font = DS.Font.subheadMedium
+    label.textColor = DS.Color.textPrimary
+    return label
+  }()
   
-  private let recommendValueLabel = UILabel().then {
-    $0.text = "2,145ml"
-    $0.font = .systemFont(ofSize: 28, weight: .bold)
-    $0.textColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-  }
+  private lazy var recommendValueLabel: UILabel = {
+    let label = UILabel()
+    label.text = "2,145ml"
+    label.font = .systemFont(ofSize: 28, weight: .bold)
+    label.textColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    return label
+  }()
   
-  private let recommendDescLabel = UILabel().then {
-    $0.text = NSLocalizedString("profile.recommended.description", comment: "")
-    $0.font = DS.Font.caption
-    $0.textColor = DS.Color.textSecondary
-  }
+  private lazy var recommendDescLabel: UILabel = {
+    let label = UILabel()
+    label.text = NSLocalizedString("profile.recommended.description", comment: "")
+    label.font = DS.Font.caption
+    label.textColor = DS.Color.textSecondary
+    return label
+  }()
   
-  private let applyButton = UIButton().then {
+  private lazy var applyButton: UIButton = {
+    let button = UIButton()
     var config = UIButton.Configuration.filled()
     config.title = NSLocalizedString("profile.apply.button", comment: "")
     config.baseBackgroundColor = DS.Color.primary
     config.baseForegroundColor = .white
     config.cornerStyle = .large
-    $0.configuration = config
-  }
+    button.configuration = config
+    return button
+  }()
   
   init(store: ProfileStore) {
     self.store = store

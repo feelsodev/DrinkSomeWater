@@ -1,5 +1,5 @@
 {
-  "originHash" : "542339e53f09bc5e3f082b7547af59dce6cbe4fc1221c314893f5a30719cf532",
+  "originHash" : "5fa2e3b09f54040ed3491e0df0ebfa9792e7fab0a47704fa6ab7565334a70126",
   "pins" : [
     {
       "identity" : "fscalendar",
@@ -35,15 +35,6 @@
       "state" : {
         "revision" : "708a282840c2171ee63bd93b87afa49fe507d70e",
         "version" : "2.7.0"
-      }
-    },
-    {
-      "identity" : "then",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/devxoul/Then",
-      "state" : {
-        "revision" : "d41ef523faef0f911369f79c0b96815d9dbb6d7a",
-        "version" : "3.0.0"
       }
     }
   ],

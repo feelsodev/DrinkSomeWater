@@ -25,7 +25,7 @@ let project = Project(
             name: "DrinkSomeWater",
             destinations: .iOS,
             product: .app,
-            bundleId: "com.feelso.DrinkSomeWater",
+            bundleId: "com.onceagain.DrinkSomeWater",
             deploymentTargets: .iOS("26.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "$(PRODUCT_NAME)",
@@ -120,7 +120,6 @@ let project = Project(
             entitlements: "DrinkSomeWater/Support/DrinkSomeWater.entitlements",
             dependencies: [
                 .external(name: "SnapKit"),
-                .external(name: "Then"),
                 .external(name: "FSCalendar"),
                 .external(name: "GoogleMobileAds"),
             ],

@@ -1,42 +1,45 @@
 import UIKit
 import SwiftUI
 import SnapKit
-import Then
 import GoogleMobileAds
 
 final class SettingsViewController: BaseViewController {
   
   private let store: SettingsStore
   
-  private let waveBackground = WaveAnimationView(
-    frame: .zero,
-    color: DS.Color.primaryLight
-  ).then {
-    $0.backgroundColor = DS.Color.backgroundPrimary
-    $0.setProgress(0.5)
-  }
+  private lazy var waveBackground: WaveAnimationView = {
+    let view = WaveAnimationView(frame: .zero, color: DS.Color.primaryLight)
+    view.backgroundColor = DS.Color.backgroundPrimary
+    view.setProgress(0.5)
+    return view
+  }()
   
-  private let titleLabel = UILabel().then {
-    $0.text = NSLocalizedString("settings.title", comment: "")
-    $0.font = DS.Font.display
-    $0.textColor = DS.Color.textPrimary
-  }
+  private lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.text = NSLocalizedString("settings.title", comment: "")
+    label.font = DS.Font.display
+    label.textColor = DS.Color.textPrimary
+    return label
+  }()
   
-  private let subtitleLabel = UILabel().then {
-    $0.text = NSLocalizedString("settings.subtitle", comment: "")
-    $0.font = DS.Font.title3
-    $0.textColor = DS.Color.textSecondary
-  }
+  private lazy var subtitleLabel: UILabel = {
+    let label = UILabel()
+    label.text = NSLocalizedString("settings.subtitle", comment: "")
+    label.font = DS.Font.title3
+    label.textColor = DS.Color.textSecondary
+    return label
+  }()
   
-  private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
-    $0.backgroundColor = .clear
-    $0.delegate = self
-    $0.dataSource = self
-    $0.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellID)
-    $0.separatorStyle = .none
-    $0.showsVerticalScrollIndicator = false
-    $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
-    $0.sectionHeaderTopPadding = 0
+  private lazy var tableView: UITableView = {
+    let tableView = UITableView(frame: .zero, style: .grouped)
+    tableView.backgroundColor = .clear
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.cellID)
+    tableView.separatorStyle = .none
+    tableView.showsVerticalScrollIndicator = false
+    tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
+    tableView.sectionHeaderTopPadding = 0
     
     let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120))
     headerView.addSubviews([titleLabel, subtitleLabel])
@@ -51,8 +54,9 @@ final class SettingsViewController: BaseViewController {
       $0.leading.equalToSuperview().offset(DS.Spacing.xl)
     }
     
-    $0.tableHeaderView = headerView
-  }
+    tableView.tableHeaderView = headerView
+    return tableView
+  }()
   
   private lazy var bannerView: GADBannerView = {
     let banner = AdMobService.shared.createBannerView(rootViewController: self)

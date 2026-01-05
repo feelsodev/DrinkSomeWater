@@ -16,20 +16,19 @@ struct FSCalendarRepresentable: UIViewRepresentable {
     calendar.layer.cornerCurve = .continuous
     calendar.clipsToBounds = true
     
-    calendar.appearance.do {
-      $0.selectionColor = DS.Color.textPrimary
-      $0.todayColor = DS.Color.primary.withAlphaComponent(0.3)
-      $0.todaySelectionColor = DS.Color.primary
-      $0.headerMinimumDissolvedAlpha = 0.0
-      $0.headerDateFormat = "yyyy년 M월"
-      $0.headerTitleColor = DS.Color.textPrimary
-      $0.weekdayTextColor = DS.Color.textSecondary
-      $0.headerTitleFont = .systemFont(ofSize: 18, weight: .bold)
-      $0.weekdayFont = .systemFont(ofSize: 14, weight: .semibold)
-      $0.titleFont = .systemFont(ofSize: 14, weight: .medium)
-      $0.eventDefaultColor = DS.Color.primary
-      $0.eventSelectionColor = DS.Color.primary
-    }
+    let appearance = calendar.appearance
+    appearance.selectionColor = DS.Color.textPrimary
+    appearance.todayColor = DS.Color.primary.withAlphaComponent(0.3)
+    appearance.todaySelectionColor = DS.Color.primary
+    appearance.headerMinimumDissolvedAlpha = 0.0
+    appearance.headerDateFormat = "yyyy년 M월"
+    appearance.headerTitleColor = DS.Color.textPrimary
+    appearance.weekdayTextColor = DS.Color.textSecondary
+    appearance.headerTitleFont = UIFont.systemFont(ofSize: 18, weight: .bold)
+    appearance.weekdayFont = UIFont.systemFont(ofSize: 14, weight: .semibold)
+    appearance.titleFont = UIFont.systemFont(ofSize: 14, weight: .medium)
+    appearance.eventDefaultColor = DS.Color.primary
+    appearance.eventSelectionColor = DS.Color.primary
     
     return calendar
   }

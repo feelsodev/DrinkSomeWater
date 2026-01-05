@@ -1,6 +1,5 @@
 import UIKit
 import SnapKit
-import Then
 
 enum OnboardingPageType {
   case intro
@@ -16,52 +15,66 @@ final class OnboardingPageViewController: UIViewController {
   private let store: OnboardingStore
   private var onComplete: (() -> Void)?
   
-  private let iconImageView = UIImageView().then {
-    $0.contentMode = .scaleAspectFit
-    $0.tintColor = DS.Color.primary
-  }
+  private lazy var iconImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleAspectFit
+    imageView.tintColor = DS.Color.primary
+    return imageView
+  }()
   
-  private let titleLabel = UILabel().then {
-    $0.font = DS.Font.title1
-    $0.textAlignment = .center
-    $0.numberOfLines = 0
-  }
+  private lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.font = DS.Font.title1
+    label.textAlignment = .center
+    label.numberOfLines = 0
+    return label
+  }()
   
-  private let descriptionLabel = UILabel().then {
-    $0.font = DS.Font.body
-    $0.textColor = DS.Color.textSecondary
-    $0.textAlignment = .center
-    $0.numberOfLines = 0
-  }
+  private lazy var descriptionLabel: UILabel = {
+    let label = UILabel()
+    label.font = DS.Font.body
+    label.textColor = DS.Color.textSecondary
+    label.textAlignment = .center
+    label.numberOfLines = 0
+    return label
+  }()
   
-  private lazy var goalSlider = UISlider().then {
-    $0.minimumValue = 1500
-    $0.maximumValue = 4500
-    $0.value = Float(store.goal)
-    $0.minimumTrackTintColor = DS.Color.primary
-    $0.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
-  }
+  private lazy var goalSlider: UISlider = {
+    let slider = UISlider()
+    slider.minimumValue = 1500
+    slider.maximumValue = 4500
+    slider.value = Float(store.goal)
+    slider.minimumTrackTintColor = DS.Color.primary
+    slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+    return slider
+  }()
   
-  private let goalValueLabel = UILabel().then {
-    $0.font = DS.Font.display
-    $0.textColor = DS.Color.primary
-    $0.textAlignment = .center
-  }
+  private lazy var goalValueLabel: UILabel = {
+    let label = UILabel()
+    label.font = DS.Font.display
+    label.textColor = DS.Color.primary
+    label.textAlignment = .center
+    return label
+  }()
   
-  private let goalUnitLabel = UILabel().then {
-    $0.text = "ml"
-    $0.font = DS.Font.title3
-    $0.textColor = DS.Color.textSecondary
-    $0.textAlignment = .center
-  }
+  private lazy var goalUnitLabel: UILabel = {
+    let label = UILabel()
+    label.text = "ml"
+    label.font = DS.Font.title3
+    label.textColor = DS.Color.textSecondary
+    label.textAlignment = .center
+    return label
+  }()
   
-  private lazy var actionButton = UIButton(type: .system).then {
-    $0.backgroundColor = DS.Color.primary
-    $0.setTitleColor(.white, for: .normal)
-    $0.titleLabel?.font = DS.Font.headline
-    $0.layer.cornerRadius = DS.Size.cornerRadiusMedium
-    $0.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
-  }
+  private lazy var actionButton: UIButton = {
+    let button = UIButton(type: .system)
+    button.backgroundColor = DS.Color.primary
+    button.setTitleColor(.white, for: .normal)
+    button.titleLabel?.font = DS.Font.headline
+    button.layer.cornerRadius = DS.Size.cornerRadiusMedium
+    button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+    return button
+  }()
   
   init(pageType: OnboardingPageType, store: OnboardingStore, onComplete: (() -> Void)? = nil) {
     self.pageType = pageType
