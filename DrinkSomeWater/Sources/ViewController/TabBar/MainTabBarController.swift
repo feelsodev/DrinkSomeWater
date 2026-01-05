@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 final class MainTabBarController: UITabBarController {
   
@@ -40,24 +41,30 @@ final class MainTabBarController: UITabBarController {
   
   private func createHomeTab() -> UINavigationController {
     let store = HomeStore(provider: serviceProvider)
-    let vc = HomeViewController(store: store)
+    let homeView = HomeView(store: store)
+    let vc = UIHostingController(rootView: homeView)
     vc.tabBarItem = UITabBarItem(
       title: "오늘",
       image: UIImage(systemName: "drop"),
       selectedImage: UIImage(systemName: "drop.fill")
     )
-    return UINavigationController(rootViewController: vc)
+    let nav = UINavigationController(rootViewController: vc)
+    nav.isNavigationBarHidden = true
+    return nav
   }
   
   private func createHistoryTab() -> UINavigationController {
     let store = HistoryStore(provider: serviceProvider)
-    let vc = HistoryViewController(store: store)
+    let historyView = HistoryView(store: store)
+    let vc = UIHostingController(rootView: historyView)
     vc.tabBarItem = UITabBarItem(
       title: "기록",
       image: UIImage(systemName: "calendar"),
       selectedImage: UIImage(systemName: "calendar.circle.fill")
     )
-    return UINavigationController(rootViewController: vc)
+    let nav = UINavigationController(rootViewController: vc)
+    nav.isNavigationBarHidden = true
+    return nav
   }
   
   private func createSettingsTab() -> UINavigationController {
