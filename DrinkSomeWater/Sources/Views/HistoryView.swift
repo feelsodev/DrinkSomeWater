@@ -18,7 +18,7 @@ enum HistoryViewMode: String, CaseIterable {
 struct HistoryView: View {
   @Bindable var store: HistoryStore
   @State private var selectedMode: HistoryViewMode = .calendar
-  @State private var selectedDate: Date? = nil
+  @State private var selectedDate: Date? = Date()
   
   var body: some View {
     ZStack {
@@ -53,6 +53,7 @@ struct HistoryView: View {
     }
     .task {
       await store.send(.viewDidLoad)
+      await store.send(.selectDate(Date()))
     }
   }
   
