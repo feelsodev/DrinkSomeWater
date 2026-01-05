@@ -6,27 +6,26 @@ final class AdMobService {
   
   static let shared = AdMobService()
   
-  // MARK: - Test Ad Unit IDs (Replace with real IDs for production)
   private enum AdUnitID {
-    static let banner = "ca-app-pub-3940256099942544/2934735716"
-    static let rewarded = "ca-app-pub-3940256099942544/1712485313"
+    static let banner = "ca-app-pub-8353974542825246/4689364013"
+    static let rewarded = "ca-app-pub-8353974542825246/9237298909"
+    static let native = "ca-app-pub-8353974542825246/8756601534"
   }
   
   private var rewardedAd: GADRewardedAd?
   private var isRewardedAdLoading = false
   
-  private init() {}
+  private var nativeAdLoader: NativeAdLoader?
   
-  // MARK: - SDK Initialization
+  private init() {}
   
   func configure() {
     GADMobileAds.sharedInstance().start { status in
       print("[AdMob] SDK initialized: \(status.adapterStatusesByClassName)")
     }
     loadRewardedAd()
+    preloadNativeAds(count: 3)
   }
-  
-  // MARK: - Banner Ad
   
   func createBannerView(rootViewController: UIViewController) -> GADBannerView {
     let bannerView = GADBannerView(adSize: GADAdSizeBanner)
@@ -35,8 +34,6 @@ final class AdMobService {
     bannerView.load(GADRequest())
     return bannerView
   }
-  
-  // MARK: - Rewarded Ad
   
   func loadRewardedAd() {
     guard !isRewardedAdLoading else { return }
@@ -72,5 +69,70 @@ final class AdMobService {
       self?.rewardedAd = nil
       self?.loadRewardedAd()
     }
+  }
+  
+  func preloadNativeAds(count: Int) {
+    nativeAdLoader = NativeAdLoader(adUnitID: AdUnitID.native, numberOfAds: count)
+    nativeAdLoader?.load()
+  }
+  
+  func getNativeAd() -> GADNativeAd? {
+    guard let ad = nativeAdLoader?.getAd() else {
+      preloadNativeAds(count: 2)
+      return nil
+    }
+    if (nativeAdLoader?.adCount ?? 0) < 2 {
+      preloadNativeAds(count: 2)
+    }
+    return ad
+  }
+  
+  var hasNativeAd: Bool {
+    (nativeAdLoader?.adCount ?? 0) > 0
+  }
+}
+
+final class NativeAdLoader: NSObject, GADNativeAdLoaderDelegate {
+  private var adLoader: GADAdLoader?
+  private var loadedAds: [GADNativeAd] = []
+  private let adUnitID: String
+  private let numberOfAds: Int
+  
+  init(adUnitID: String, numberOfAds: Int) {
+    self.adUnitID = adUnitID
+    self.numberOfAds = numberOfAds
+    super.init()
+  }
+  
+  func load() {
+    let options = GADMultipleAdsAdLoaderOptions()
+    options.numberOfAds = numberOfAds
+    
+    adLoader = GADAdLoader(
+      adUnitID: adUnitID,
+      rootViewController: nil,
+      adTypes: [.native],
+      options: [options]
+    )
+    adLoader?.delegate = self
+    adLoader?.load(GADRequest())
+  }
+  
+  func getAd() -> GADNativeAd? {
+    guard !loadedAds.isEmpty else { return nil }
+    return loadedAds.removeFirst()
+  }
+  
+  var adCount: Int {
+    loadedAds.count
+  }
+  
+  func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
+    loadedAds.append(nativeAd)
+    print("[AdMob] Native ad loaded. Total: \(loadedAds.count)")
+  }
+  
+  func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
+    print("[AdMob] Failed to load native ad: \(error.localizedDescription)")
   }
 }

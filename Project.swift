@@ -56,7 +56,7 @@ let project = Project(
                 ],
                 "NSHealthShareUsageDescription": "체중 정보를 읽어 맞춤 권장량을 계산합니다.",
                 "NSHealthUpdateUsageDescription": "물 섭취 기록을 건강 앱과 동기화합니다.",
-                "GADApplicationIdentifier": "ca-app-pub-3940256099942544~1458002511",
+                "GADApplicationIdentifier": "ca-app-pub-8353974542825246~9138292219",
                 "NSUserTrackingUsageDescription": "맞춤 광고를 제공하기 위해 사용됩니다.",
                 "SKAdNetworkItems": [
                     ["SKAdNetworkIdentifier": "cstr6suwn9.skadnetwork"],
