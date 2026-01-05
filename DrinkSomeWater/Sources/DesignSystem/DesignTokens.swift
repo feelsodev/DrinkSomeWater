@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 enum DesignTokens {
   
@@ -95,6 +96,24 @@ enum DesignTokens {
     static let iconGreen = UIColor(red: 0.35, green: 0.78, blue: 0.62, alpha: 1)
     static let iconBlue = UIColor(red: 0.35, green: 0.68, blue: 0.95, alpha: 1)
     static let iconGray = UIColor(red: 0.55, green: 0.55, blue: 0.6, alpha: 1)
+  }
+  
+  enum SwiftUIColor {
+    static let primary = SwiftUI.Color(red: 0.35, green: 0.75, blue: 0.95)
+    static let primaryDark = SwiftUI.Color(red: 0.25, green: 0.65, blue: 0.90)
+    static let primaryLight = SwiftUI.Color(red: 0.9, green: 0.95, blue: 1.0)
+    
+    static let success = SwiftUI.Color(red: 0.35, green: 0.78, blue: 0.62)
+    static let warning = SwiftUI.Color(red: 1.0, green: 0.76, blue: 0.28)
+    static let error = SwiftUI.Color(red: 1.0, green: 0.42, blue: 0.42)
+    
+    static let textPrimary = SwiftUI.Color(red: 0.2, green: 0.2, blue: 0.25)
+    static let textSecondary = SwiftUI.Color(red: 0.5, green: 0.5, blue: 0.55)
+    static let textTertiary = SwiftUI.Color(red: 0.7, green: 0.7, blue: 0.73)
+    
+    static let backgroundPrimary = SwiftUI.Color(red: 0.96, green: 0.96, blue: 0.98)
+    static let backgroundSecondary = SwiftUI.Color.white
+    static let backgroundTertiary = SwiftUI.Color(red: 0.92, green: 0.92, blue: 0.94)
   }
 }
 
