@@ -1,0 +1,51 @@
+name: Version Update
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Calculate new version
+        run: |
+          YEAR=$(date +%y)
+          WEEK=$(date +%V | sed 's/^0*//')
+          
+          VERSION_PREFIX="${YEAR}.${WEEK}."
+          TAG_PREFIX="v${VERSION_PREFIX}"
+          
+          LATEST_N=$(git tag -l "${TAG_PREFIX}*" | sed "s/${TAG_PREFIX}//" | sort -n | tail -1)
+          
+          if [ -z "$LATEST_N" ]; then
+            NEW_N=0
+          else
+            NEW_N=$((LATEST_N + 1))
+          fi
+          
+          NEW_VERSION="${VERSION_PREFIX}${NEW_N}"
+          
+          echo "New version: $NEW_VERSION"
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Update Project.swift
+        run: |
+          sed -i 's/"CFBundleShortVersionString": "[^"]*"/"CFBundleShortVersionString": "'"$NEW_VERSION"'"/' Project.swift
+          echo "Updated Project.swift to version $NEW_VERSION"
+          cat Project.swift | grep CFBundleShortVersionString
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Project.swift
+          git diff --staged --quiet || git commit -m "chore: bump version to $NEW_VERSION"
+          git push
