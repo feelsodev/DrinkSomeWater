@@ -119,6 +119,7 @@ let project = Project(
             ],
             entitlements: "DrinkSomeWater/Support/DrinkSomeWater.entitlements",
             dependencies: [
+                .target(name: "DrinkSomeWaterWidget"),
                 .external(name: "SnapKit"),
                 .external(name: "FSCalendar"),
                 .external(name: "GoogleMobileAds"),
@@ -134,7 +135,7 @@ let project = Project(
             name: "DrinkSomeWaterWidget",
             destinations: .iOS,
             product: .appExtension,
-            bundleId: "com.feelso.DrinkSomeWater.Widget",
+            bundleId: "com.onceagain.DrinkSomeWater.Widget",
             deploymentTargets: .iOS("26.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "벌컥벌컥 위젯",
