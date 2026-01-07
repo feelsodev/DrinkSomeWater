@@ -13,6 +13,7 @@ struct DrinkSomeWaterWidget: Widget {
     .supportedFamilies([
       .systemSmall,
       .systemMedium,
+      .systemLarge,
       .accessoryCircular,
       .accessoryRectangular,
       .accessoryInline
@@ -30,6 +31,8 @@ struct DrinkSomeWaterWidgetEntryView: View {
       SmallWidgetView(entry: entry)
     case .systemMedium:
       MediumWidgetView(entry: entry)
+    case .systemLarge:
+      LargeWidgetView(entry: entry)
     case .accessoryCircular:
       LockScreenCircularView(entry: entry)
     case .accessoryRectangular:
