@@ -15,36 +15,30 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Calculate version and create tag
+      - name: Read version from Project.swift
         run: |
-          YEAR=$(date +%y)
-          WEEK=$(date +%V | sed 's/^0*//')
-          
-          TAG_PREFIX="v${YEAR}.${WEEK}."
-          
-          LATEST_N=$(git tag -l "${TAG_PREFIX}*" | sed "s/${TAG_PREFIX}//" | sort -n | tail -1)
-          
-          if [ -z "$LATEST_N" ]; then
-            NEW_N=1
-          else
-            NEW_N=$((LATEST_N + 1))
-          fi
-          
-          NEW_TAG="${TAG_PREFIX}${NEW_N}"
-          
-          echo "Creating tag: $NEW_TAG"
-          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+          VERSION=$(grep 'CFBundleShortVersionString' Project.swift | sed 's/.*"\([0-9.]*\)".*/\1/')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Read version: $VERSION"
 
       - name: Create and push tag
         run: |
+          NEW_TAG="v${VERSION}"
+          
+          if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
+            echo "Tag $NEW_TAG already exists!"
+            exit 1
+          fi
+          
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a "$NEW_TAG" -m "$NEW_TAG"
           git push origin "$NEW_TAG"
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ env.NEW_TAG }}
-          name: ${{ env.NEW_TAG }}
+          tag_name: v${{ env.VERSION }}
+          name: v${{ env.VERSION }}
           generate_release_notes: true
