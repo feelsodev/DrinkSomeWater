@@ -1,5 +1,6 @@
 import Foundation
 import WidgetKit
+import Analytics
 
 protocol WaterServiceProtocol {
   func fetchWater() async -> [WaterRecord]

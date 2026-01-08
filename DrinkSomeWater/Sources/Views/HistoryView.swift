@@ -1,6 +1,7 @@
 import SwiftUI
 import UIKit
 import GoogleMobileAds
+import Analytics
 
 enum HistoryViewMode: String, CaseIterable {
   case calendar = "캘린더"
@@ -55,6 +56,7 @@ struct HistoryView: View {
     .task {
       await store.send(.viewDidLoad)
       await store.send(.selectDate(Date()))
+      Analytics.shared.logScreenView("history_screen")
     }
   }
   

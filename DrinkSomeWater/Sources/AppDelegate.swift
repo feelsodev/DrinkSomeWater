@@ -1,11 +1,21 @@
 import UIKit
 import GoogleMobileAds
+import Analytics
+
+#if canImport(FirebaseCore)
+import FirebaseCore
+#endif
 
 @main
 @MainActor
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    #if canImport(FirebaseCore)
+    FirebaseApp.configure()
+    #endif
+    Analytics.shared.configure()
+    Analytics.shared.logAppOpen()
     AdMobService.shared.configure()
     
     let center = UNUserNotificationCenter.current()
