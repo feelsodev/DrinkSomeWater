@@ -1,7 +1,6 @@
 import Foundation
 import Observation
 import HealthKit
-import UserNotifications
 import Analytics
 
 @MainActor
@@ -10,7 +9,6 @@ final class OnboardingStore {
   enum Action {
     case setGoal(Int)
     case requestHealthKitPermission
-    case requestNotificationPermission
     case completeOnboarding
     case skip
   }
@@ -20,7 +18,6 @@ final class OnboardingStore {
   var currentPage: Int = 0
   var goal: Int = 2000
   var isHealthKitAuthorized: Bool = false
-  var isNotificationAuthorized: Bool = false
   
   init(provider: ServiceProviderProtocol) {
     self.provider = provider
@@ -44,24 +41,6 @@ final class OnboardingStore {
         Analytics.shared.setHealthKitEnabled(true)
       } else {
         Analytics.shared.log(.permissionDenied(type: .healthKit))
-      }
-      
-    case .requestNotificationPermission:
-      Analytics.shared.log(.permissionRequested(type: .notification))
-      do {
-        let center = UNUserNotificationCenter.current()
-        isNotificationAuthorized = try await center.requestAuthorization(options: [.alert, .badge, .sound])
-        if isNotificationAuthorized {
-          Analytics.shared.log(.permissionGranted(type: .notification))
-          Analytics.shared.setNotificationEnabled(true)
-          let settings = provider.notificationService.loadSettings()
-          provider.notificationService.scheduleNotifications(with: settings)
-        } else {
-          Analytics.shared.log(.permissionDenied(type: .notification))
-        }
-      } catch {
-        isNotificationAuthorized = false
-        Analytics.shared.log(.permissionDenied(type: .notification))
       }
       
     case .completeOnboarding:
