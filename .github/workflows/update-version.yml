@@ -22,11 +22,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     
     steps:
-      - name: Checkout
+      - name: Checkout master
         uses: actions/checkout@v4
         with:
+          ref: master
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -71,6 +73,16 @@ jobs:
           
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
+      - name: Create version update branch
+        id: branch
+        run: |
+          NEW_VERSION="${{ steps.new.outputs.version }}"
+          BRANCH_NAME="version-update/v${NEW_VERSION}"
+          
+          git checkout -b "$BRANCH_NAME"
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          echo "Created branch: $BRANCH_NAME"
+
       - name: Update version in xcconfig
         run: |
           NEW_VERSION="${{ steps.new.outputs.version }}"
@@ -84,15 +96,46 @@ jobs:
       - name: Commit and push changes
         run: |
           NEW_VERSION="${{ steps.new.outputs.version }}"
+          BRANCH_NAME="${{ steps.branch.outputs.branch }}"
           
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
           git add Tuist/Config/Base.xcconfig
           git commit -m "chore: bump version to $NEW_VERSION"
-          git push
+          git push origin "$BRANCH_NAME"
           
-          echo "Version updated to $NEW_VERSION"
+          echo "Pushed branch: $BRANCH_NAME"
+
+      - name: Create Pull Request
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NEW_VERSION="${{ steps.new.outputs.version }}"
+          CURRENT_VERSION="${{ steps.current.outputs.version }}"
+          BRANCH_NAME="${{ steps.branch.outputs.branch }}"
+          BUMP_TYPE="${{ inputs.custom_version && 'custom' || inputs.bump_type }}"
+          
+          PR_BODY="## Version Update
+          
+          | Item | Value |
+          |------|-------|
+          | Previous Version | ${CURRENT_VERSION} |
+          | New Version | ${NEW_VERSION} |
+          | Bump Type | ${BUMP_TYPE} |
+          
+          ---
+          *This PR was automatically created by the Update Version workflow.*"
+          
+          PR_URL=$(gh pr create \
+            --base master \
+            --head "$BRANCH_NAME" \
+            --title "chore: bump version to $NEW_VERSION" \
+            --body "$PR_BODY")
+          
+          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
+          echo "Created PR: $PR_URL"
 
       - name: Summary
         run: |
@@ -103,3 +146,5 @@ jobs:
           echo "| Previous Version | ${{ steps.current.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
           echo "| New Version | ${{ steps.new.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Bump Type | ${{ inputs.custom_version && 'custom' || inputs.bump_type }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | ${{ steps.branch.outputs.branch }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Pull Request | ${{ steps.pr.outputs.pr_url }} |" >> $GITHUB_STEP_SUMMARY
