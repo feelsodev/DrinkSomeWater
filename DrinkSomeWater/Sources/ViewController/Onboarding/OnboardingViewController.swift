@@ -22,6 +22,16 @@ final class OnboardingViewController: UIViewController {
     return button
   }()
   
+  private lazy var nextButton: UIButton = {
+    let button = UIButton(type: .system)
+    button.setTitle(NSLocalizedString("onboarding.next", comment: ""), for: .normal)
+    button.backgroundColor = DS.Color.primary
+    button.setTitleColor(.white, for: .normal)
+    button.titleLabel?.font = DS.Font.headline
+    button.layer.cornerRadius = DS.Size.cornerRadiusMedium
+    return button
+  }()
+  
   init(store: OnboardingStore) {
     self.store = store
     super.init(nibName: nil, bundle: nil)
@@ -93,6 +103,7 @@ final class OnboardingViewController: UIViewController {
   private func setupConstraints() {
     view.addSubview(skipButton)
     view.addSubview(pageControl)
+    view.addSubview(nextButton)
     
     skipButton.snp.makeConstraints {
       $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
@@ -102,7 +113,13 @@ final class OnboardingViewController: UIViewController {
     pageViewController.view.snp.makeConstraints {
       $0.top.equalTo(skipButton.snp.bottom).offset(8)
       $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalTo(pageControl.snp.top).offset(-20)
+      $0.bottom.equalTo(nextButton.snp.top).offset(-20)
+    }
+    
+    nextButton.snp.makeConstraints {
+      $0.leading.trailing.equalToSuperview().inset(32)
+      $0.bottom.equalTo(pageControl.snp.top).offset(-16)
+      $0.height.equalTo(56)
     }
     
     pageControl.snp.makeConstraints {
@@ -113,6 +130,7 @@ final class OnboardingViewController: UIViewController {
   
   private func setupActions() {
     skipButton.addTarget(self, action: #selector(skipTapped), for: .touchUpInside)
+    nextButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
   }
   
   @objc private func skipTapped() {
@@ -120,6 +138,27 @@ final class OnboardingViewController: UIViewController {
       await store.send(.skip)
       transitionToMainApp()
     }
+  }
+  
+  @objc private func nextTapped() {
+    let currentIndex = pageControl.currentPage
+    if currentIndex < pages.count - 1 {
+      let nextPage = pages[currentIndex + 1]
+      pageViewController.setViewControllers([nextPage], direction: .forward, animated: true)
+      pageControl.currentPage = currentIndex + 1
+      store.currentPage = currentIndex + 1
+      updateNextButtonTitle()
+    } else {
+      completeOnboarding()
+    }
+  }
+  
+  private func updateNextButtonTitle() {
+    let isLastPage = pageControl.currentPage == pages.count - 1
+    let title = isLastPage
+      ? NSLocalizedString("onboarding.start", comment: "")
+      : NSLocalizedString("onboarding.next", comment: "")
+    nextButton.setTitle(title, for: .normal)
   }
   
   private func completeOnboarding() {
@@ -165,5 +204,6 @@ extension OnboardingViewController: UIPageViewControllerDelegate {
        let index = pages.firstIndex(of: currentVC) else { return }
     pageControl.currentPage = index
     store.currentPage = index
+    updateNextButtonTitle()
   }
 }
