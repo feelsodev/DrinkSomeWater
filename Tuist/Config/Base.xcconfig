@@ -2,7 +2,7 @@
 // Shared settings for all configurations
 
 // MARK: - Version Info
-MARKETING_VERSION = 2.2.0
+MARKETING_VERSION = 26.2.0
 CURRENT_PROJECT_VERSION = 1
 
 // MARK: - App Info
