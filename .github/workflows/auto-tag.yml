@@ -15,9 +15,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Read version from Project.swift
+      - name: Read version from xcconfig
         run: |
-          VERSION=$(grep 'CFBundleShortVersionString' Project.swift | sed 's/.*"\([0-9.]*\)".*/\1/')
+          VERSION=$(grep '^MARKETING_VERSION' Tuist/Config/Base.xcconfig | sed 's/.*= *//')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "Read version: $VERSION"
 
