@@ -29,6 +29,7 @@
 
 // Onboarding
 "onboarding.skip" = "Skip";
+"onboarding.next" = "Next";
 "onboarding.start" = "Get Started";
 "onboarding.intro.title" = "Welcome to Gulp";
 "onboarding.intro.description" = "Track your daily water intake and stay hydrated.\n\nWater is essential for your health - it helps maintain energy, improve focus, and keep your body functioning at its best.";
@@ -102,6 +103,8 @@
 
 // Ad
 "settings.support.developer" = "Support Developer";
+"ad.confirm.title" = "Support Developer";
+"ad.confirm.message" = "An ad will be shown. Watching it helps support the developer!";
 "ad.loading.title" = "Please Wait";
 "ad.loading.message" = "Loading ad. Please try again in a moment.";
 "ad.thanks.title" = "Thank You!";

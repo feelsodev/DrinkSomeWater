@@ -29,6 +29,7 @@
 
 // Onboarding
 "onboarding.skip" = "건너뛰기";
+"onboarding.next" = "다음";
 "onboarding.start" = "시작하기";
 "onboarding.intro.title" = "벌컥벌컥에 오신 것을 환영합니다";
 "onboarding.intro.description" = "매일 물 섭취량을 기록하고 건강하게 수분을 유지하세요.\n\n물은 에너지 유지, 집중력 향상, 신체 기능 최적화에 필수적입니다.";
@@ -102,6 +103,8 @@
 
 // Ad
 "settings.support.developer" = "개발자 응원하기";
+"ad.confirm.title" = "개발자 응원하기";
+"ad.confirm.message" = "광고가 노출됩니다. 시청해주시면 개발자에게 큰 힘이 됩니다!";
 "ad.loading.title" = "잠시만요";
 "ad.loading.message" = "광고를 불러오는 중입니다. 잠시 후 다시 시도해주세요.";
 "ad.thanks.title" = "감사합니다!";
