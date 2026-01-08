@@ -1,6 +1,10 @@
 // Base.xcconfig
 // Shared settings for all configurations
 
+// MARK: - Version Info
+MARKETING_VERSION = 2.2.0
+CURRENT_PROJECT_VERSION = 1
+
 // MARK: - App Info
 APP_NAME = DrinkSomeWater
 APP_BUNDLE_ID = com.onceagain.DrinkSomeWater
