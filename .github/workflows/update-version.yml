@@ -1,0 +1,105 @@
+name: Update Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: 'Version bump type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: 'patch'
+      custom_version:
+        description: 'Custom version (e.g., 2.3.0) - overrides bump_type if provided'
+        required: false
+        type: string
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Read current version from xcconfig
+        id: current
+        run: |
+          CURRENT_VERSION=$(grep '^MARKETING_VERSION' Tuist/Config/Base.xcconfig | sed 's/.*= *//')
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $CURRENT_VERSION"
+
+      - name: Calculate new version
+        id: new
+        run: |
+          CURRENT="${{ steps.current.outputs.version }}"
+          CUSTOM="${{ inputs.custom_version }}"
+          BUMP_TYPE="${{ inputs.bump_type }}"
+          
+          if [ -n "$CUSTOM" ]; then
+            NEW_VERSION="$CUSTOM"
+            echo "Using custom version: $NEW_VERSION"
+          else
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
+            
+            case "$BUMP_TYPE" in
+              major)
+                MAJOR=$((MAJOR + 1))
+                MINOR=0
+                PATCH=0
+                ;;
+              minor)
+                MINOR=$((MINOR + 1))
+                PATCH=0
+                ;;
+              patch)
+                PATCH=$((PATCH + 1))
+                ;;
+            esac
+            
+            NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+            echo "Bumping $BUMP_TYPE: $CURRENT -> $NEW_VERSION"
+          fi
+          
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update version in xcconfig
+        run: |
+          NEW_VERSION="${{ steps.new.outputs.version }}"
+          
+          # Update MARKETING_VERSION in Base.xcconfig
+          sed -i "s/^MARKETING_VERSION = .*/MARKETING_VERSION = $NEW_VERSION/" Tuist/Config/Base.xcconfig
+          
+          echo "Updated Base.xcconfig:"
+          grep -E '^(MARKETING_VERSION|CURRENT_PROJECT_VERSION)' Tuist/Config/Base.xcconfig
+
+      - name: Commit and push changes
+        run: |
+          NEW_VERSION="${{ steps.new.outputs.version }}"
+          
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add Tuist/Config/Base.xcconfig
+          git commit -m "chore: bump version to $NEW_VERSION"
+          git push
+          
+          echo "Version updated to $NEW_VERSION"
+
+      - name: Summary
+        run: |
+          echo "## Version Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Previous Version | ${{ steps.current.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| New Version | ${{ steps.new.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Bump Type | ${{ inputs.custom_version && 'custom' || inputs.bump_type }} |" >> $GITHUB_STEP_SUMMARY
