@@ -192,7 +192,7 @@ struct GoalSettingView: View {
   let currentGoal: Int
   let provider: ServiceProviderProtocol
   let onSave: () -> Void
-  @Environment(\.dismiss) private var dismiss
+  @SwiftUI.Environment(\.dismiss) private var dismiss
   @State private var goal: Double
   
   init(currentGoal: Int, provider: ServiceProviderProtocol, onSave: @escaping () -> Void) {
@@ -262,7 +262,7 @@ struct QuickButtonSettingView: View {
   let currentButtons: [Int]
   let provider: ServiceProviderProtocol
   let onSave: () -> Void
-  @Environment(\.dismiss) private var dismiss
+  @SwiftUI.Environment(\.dismiss) private var dismiss
   @State private var buttons: [Int]
   @State private var newAmount: String = ""
   
