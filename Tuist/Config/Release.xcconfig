@@ -1,0 +1,23 @@
+// Release.xcconfig
+// Production settings
+
+#include "Base.xcconfig"
+
+// MARK: - Bundle ID (Production)
+APP_BUNDLE_ID = com.onceagain.DrinkSomeWater
+APP_NAME = DrinkSomeWater
+
+// MARK: - Build Settings
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE
+ENABLE_TESTABILITY = NO
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+VALIDATE_PRODUCT = YES
+SWIFT_OPTIMIZATION_LEVEL = -O
+
+// MARK: - API URLs
+API_BASE_URL = https://api.drinksomewater.com
+LOG_LEVEL = error
+
+// MARK: - Feature Flags
+ENABLE_ANALYTICS = YES
+ENABLE_DEBUG_MENU = NO

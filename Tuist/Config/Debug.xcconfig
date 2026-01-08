@@ -1,0 +1,27 @@
+// Debug.xcconfig
+// Debug-specific settings
+
+#include "Base.xcconfig"
+
+// MARK: - Bundle ID (Debug suffix for parallel install)
+APP_BUNDLE_ID = com.onceagain.DrinkSomeWater.debug
+APP_NAME = DrinkSomeWater-Dev
+
+// MARK: - Build Settings
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG
+ENABLE_TESTABILITY = YES
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+ONLY_ACTIVE_ARCH = YES
+
+// MARK: - AdMob (Test IDs)
+ADMOB_APP_ID = ca-app-pub-3940256099942544~1458002511
+ADMOB_BANNER_ID = ca-app-pub-3940256099942544/2934735716
+ADMOB_NATIVE_ID = ca-app-pub-3940256099942544/3986624511
+
+// MARK: - API URLs
+API_BASE_URL = https://api-dev.drinksomewater.com
+LOG_LEVEL = verbose
+
+// MARK: - Feature Flags
+ENABLE_ANALYTICS = NO
+ENABLE_DEBUG_MENU = YES
