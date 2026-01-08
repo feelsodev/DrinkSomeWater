@@ -15,8 +15,8 @@ let project = Project(
             "CODE_SIGN_STYLE": "Automatic",
         ],
         configurations: [
-            .debug(name: "Debug"),
-            .release(name: "Release"),
+            .debug(name: "Debug", xcconfig: "Tuist/Config/Debug.xcconfig"),
+            .release(name: "Release", xcconfig: "Tuist/Config/Release.xcconfig"),
         ]
     ),
     targets: [
@@ -25,10 +25,10 @@ let project = Project(
             name: "DrinkSomeWater",
             destinations: .iOS,
             product: .app,
-            bundleId: "com.onceagain.DrinkSomeWater",
+            bundleId: "$(APP_BUNDLE_ID)",
             deploymentTargets: .iOS("26.0"),
             infoPlist: .extendingDefault(with: [
-                "CFBundleDisplayName": "$(PRODUCT_NAME)",
+                "CFBundleDisplayName": "$(APP_NAME)",
                 "CFBundleShortVersionString": "2.2.0",
                 "CFBundleVersion": "1",
                 "UILaunchStoryboardName": "LaunchScreen",
@@ -56,7 +56,14 @@ let project = Project(
                 ],
                 "NSHealthShareUsageDescription": "체중 정보를 읽어 맞춤 권장량을 계산합니다.",
                 "NSHealthUpdateUsageDescription": "물 섭취 기록을 건강 앱과 동기화합니다.",
-                "GADApplicationIdentifier": "ca-app-pub-8353974542825246~9138292219",
+                "GADApplicationIdentifier": "$(ADMOB_APP_ID)",
+                "API_BASE_URL": "$(API_BASE_URL)",
+                "ADMOB_APP_ID": "$(ADMOB_APP_ID)",
+                "ADMOB_BANNER_ID": "$(ADMOB_BANNER_ID)",
+                "ADMOB_NATIVE_ID": "$(ADMOB_NATIVE_ID)",
+                "LOG_LEVEL": "$(LOG_LEVEL)",
+                "ENABLE_ANALYTICS": "$(ENABLE_ANALYTICS)",
+                "ENABLE_DEBUG_MENU": "$(ENABLE_DEBUG_MENU)",
                 "NSUserTrackingUsageDescription": "맞춤 광고를 제공하기 위해 사용됩니다.",
                 "SKAdNetworkItems": [
                     ["SKAdNetworkIdentifier": "cstr6suwn9.skadnetwork"],
@@ -120,6 +127,7 @@ let project = Project(
             entitlements: "DrinkSomeWater/Support/DrinkSomeWater.entitlements",
             dependencies: [
                 .target(name: "DrinkSomeWaterWidget"),
+                .target(name: "Analytics"),
                 .external(name: "SnapKit"),
                 .external(name: "FSCalendar"),
                 .external(name: "GoogleMobileAds"),
@@ -148,6 +156,16 @@ let project = Project(
                 "Shared/**",
             ],
             entitlements: "DrinkSomeWaterWidget/DrinkSomeWaterWidget.entitlements",
+            dependencies: []
+        ),
+        // MARK: - Analytics Module
+        .target(
+            name: "Analytics",
+            destinations: .iOS,
+            product: .framework,
+            bundleId: "com.onceagain.DrinkSomeWater.Analytics",
+            deploymentTargets: .iOS("26.0"),
+            sources: ["Analytics/Sources/**"],
             dependencies: []
         ),
         // MARK: - Unit Tests

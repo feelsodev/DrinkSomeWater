@@ -1,0 +1,21 @@
+// Base.xcconfig
+// Shared settings for all configurations
+
+// MARK: - App Info
+APP_NAME = DrinkSomeWater
+APP_BUNDLE_ID = com.onceagain.DrinkSomeWater
+
+// MARK: - Build Settings
+SWIFT_VERSION = 6.0
+IPHONEOS_DEPLOYMENT_TARGET = 26.0
+TARGETED_DEVICE_FAMILY = 1,2
+DEVELOPMENT_TEAM = TG4L9MF5FD
+CODE_SIGN_STYLE = Automatic
+
+// MARK: - AdMob (Production)
+ADMOB_APP_ID = ca-app-pub-8353974542825246~9138292219
+ADMOB_BANNER_ID = ca-app-pub-8353974542825246/1234567890
+ADMOB_NATIVE_ID = ca-app-pub-8353974542825246/0987654321
+
+// MARK: - Feature Flags
+ENABLE_ANALYTICS = YES
