@@ -29,8 +29,8 @@ let project = Project(
             deploymentTargets: .iOS("26.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "$(APP_NAME)",
-                "CFBundleShortVersionString": "2.2.0",
-                "CFBundleVersion": "1",
+                "CFBundleShortVersionString": "$(MARKETING_VERSION)",
+                "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
                 "UILaunchStoryboardName": "LaunchScreen",
                 "UIMainStoryboardFile": "Main",
                 "UISupportedInterfaceOrientations": [
