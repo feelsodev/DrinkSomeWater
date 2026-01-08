@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import Analytics
 
 @MainActor
 @Observable
@@ -34,6 +35,13 @@ final class NotificationStore {
     case .toggleEnabled(let enabled):
       settings.isEnabled = enabled
       await applySettings()
+      Analytics.shared.log(.notificationSettingChanged(
+        enabled: enabled,
+        startTime: "\(settings.startTime.hour):\(settings.startTime.minute)",
+        endTime: "\(settings.endTime.hour):\(settings.endTime.minute)",
+        intervalHours: settings.interval.rawValue / 60
+      ))
+      Analytics.shared.setNotificationEnabled(enabled)
       
     case .updateStartTime(let time):
       settings.startTime = time

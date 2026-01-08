@@ -1,5 +1,6 @@
 import Foundation
 import HealthKit
+import Analytics
 
 protocol HealthKitServiceProtocol: AnyObject {
   var isAvailable: Bool { get }
@@ -74,8 +75,15 @@ final class HealthKitService: BaseService, HealthKitServiceProtocol {
     
     do {
       try await healthStore.save(sample)
+      await MainActor.run {
+        Analytics.shared.log(.healthKitSyncSuccess(recordCount: 1, syncType: .automatic))
+      }
       return true
     } catch {
+      await MainActor.run {
+        Analytics.shared.log(.healthKitSyncFailed(errorCode: "save_failed", errorMessage: error.localizedDescription))
+        Analytics.shared.recordError(error, context: ["operation": "saveWaterIntake", "ml": ml])
+      }
       return false
     }
   }

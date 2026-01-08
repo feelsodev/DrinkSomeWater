@@ -1,5 +1,6 @@
 import UIKit
 import GoogleMobileAds
+import Analytics
 
 @MainActor
 final class AdMobService {
@@ -62,9 +63,11 @@ final class AdMobService {
       return
     }
     
+    Analytics.shared.log(.rewardedAdStarted(rewardType: "support"))
     rewardedAd.present(fromRootViewController: viewController) { [weak self] in
       let reward = rewardedAd.adReward
       print("[AdMob] User earned reward: \(reward.amount) \(reward.type)")
+      Analytics.shared.log(.rewardedAdCompleted(rewardType: reward.type, rewardAmount: reward.amount.intValue))
       completion(true)
       self?.rewardedAd = nil
       self?.loadRewardedAd()
@@ -130,9 +133,17 @@ final class NativeAdLoader: NSObject, GADNativeAdLoaderDelegate {
   func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
     loadedAds.append(nativeAd)
     print("[AdMob] Native ad loaded. Total: \(loadedAds.count)")
+    let adUnitIDCopy = adUnitID
+    Task { @MainActor in
+      Analytics.shared.log(.adImpression(adType: .native, adUnitId: adUnitIDCopy, screen: "preload"))
+    }
   }
   
   func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
     print("[AdMob] Failed to load native ad: \(error.localizedDescription)")
+    let adUnitIDCopy = adUnitID
+    Task { @MainActor in
+      Analytics.shared.recordError(error, context: ["ad_type": "native", "ad_unit_id": adUnitIDCopy])
+    }
   }
 }

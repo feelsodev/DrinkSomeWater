@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import Analytics
 
 struct HomeView: View {
   @Bindable var store: HomeStore
@@ -32,6 +33,7 @@ struct HomeView: View {
     .task {
       await store.send(.refreshGoal)
       await store.send(.refresh)
+      Analytics.shared.logScreenView("home_screen")
     }
     .sheet(isPresented: $showGoalSetting) {
       GoalSettingView(
@@ -226,7 +228,10 @@ struct GoalSettingView: View {
         
         Button {
           Task {
+            let oldGoal = currentGoal
             _ = await provider.waterService.updateGoal(to: Int(goal))
+            Analytics.shared.log(.goalChanged(oldGoal: oldGoal, newGoal: Int(goal), source: .settings))
+            Analytics.shared.setDailyGoal(Int(goal))
             onSave()
             dismiss()
           }
@@ -313,6 +318,9 @@ struct QuickButtonSettingView: View {
         ToolbarItem(placement: .confirmationAction) {
           Button("저장") {
             provider.userDefaultsService.set(value: buttons, forkey: .quickButtons)
+            for (index, amount) in buttons.enumerated() {
+              Analytics.shared.log(.quickButtonCustomized(buttonIndex: index, amountMl: amount))
+            }
             onSave()
             dismiss()
           }

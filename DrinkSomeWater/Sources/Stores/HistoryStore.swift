@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import Analytics
 
 @MainActor
 @Observable
@@ -44,6 +45,10 @@ final class HistoryStore {
     case .selectDate(let date):
       let dateString = date.dateToString
       selectedRecord = waterRecordList.first { $0.date.dateToString == dateString }
+      
+      let hadRecords = selectedRecord != nil
+      let wasAchieved = selectedRecord?.isSuccess ?? false
+      Analytics.shared.log(.calendarDateSelected(date: date, hadRecords: hadRecords, wasAchieved: wasAchieved))
     }
   }
 }

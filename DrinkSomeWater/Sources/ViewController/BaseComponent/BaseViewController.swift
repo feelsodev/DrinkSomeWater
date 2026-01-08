@@ -1,11 +1,16 @@
 import UIKit
 import SnapKit
+import Analytics
 
 class BaseViewController: UIViewController {
   
   var observation: ObservationToken?
   var viewWidth: CGFloat { view.bounds.width }
   var viewHeight: CGFloat { view.bounds.height }
+  
+  var analyticsScreenName: String {
+    String(describing: type(of: self)).replacingOccurrences(of: "ViewController", with: "").lowercased() + "_screen"
+  }
   
   init() {
     super.init(nibName: nil, bundle: nil)
@@ -20,6 +25,11 @@ class BaseViewController: UIViewController {
     overrideUserInterfaceStyle = .light
     view.backgroundColor = .white
     setupConstraints()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    Analytics.shared.logScreenView(analyticsScreenName)
   }
   
   override func viewWillAppear(_ animated: Bool) {
