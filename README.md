@@ -174,30 +174,6 @@ observation = startObservation { [weak self] in
 - Swift 최신 기능(Observation, async/await)을 실제 앱에 적용해보고 싶었습니다
 - 깔끔한 3탭 구조로 직관적인 UX를 구현하고 싶었습니다
 
-## 🗺 로드맵
-
-### v2.0
-- ✅ 3탭 구조 리팩토링
-- ✅ @Observable 마이그레이션
-- ✅ 알림 설정 기능
-
-### v2.1
-- ✅ Apple Health 연동 (체중/물 섭취 동기화)
-- ✅ 체중 기반 권장량 자동 계산
-- ✅ 랜덤 알림 문구 (10가지)
-
-### v2.2 (예정)
-- 🔲 홈 화면 위젯 (Small/Medium)
-- 🔲 잠금화면 위젯
-- 🔲 인터랙티브 위젯 (위젯에서 물 추가)
-- 🔲 온보딩 플로우 (5페이지 스와이프)
-
-### v2.3 (예정)
-- 🔲 AdMob 광고 연동
-- 🔲 운동 감지 → 목표량 자동 조정
-- 🔲 주간/월간 인사이트 리포트
-- 🔲 프리미엄 ($0.99) 광고 제거 옵션
-
 ## 📄 License
 
 MIT License - [LICENSE](https://github.com/feelsodev/DrinkSomeWater/blob/master/LICENSE)
