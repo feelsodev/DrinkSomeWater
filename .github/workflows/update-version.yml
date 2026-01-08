@@ -2,20 +2,6 @@ name: Update Version
 
 on:
   workflow_dispatch:
-    inputs:
-      bump_type:
-        description: 'Version bump type'
-        required: true
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
-        default: 'patch'
-      custom_version:
-        description: 'Custom version (e.g., 2.3.0) - overrides bump_type if provided'
-        required: false
-        type: string
 
 jobs:
   update-version:
@@ -42,35 +28,24 @@ jobs:
       - name: Calculate new version
         id: new
         run: |
-          CURRENT="${{ steps.current.outputs.version }}"
-          CUSTOM="${{ inputs.custom_version }}"
-          BUMP_TYPE="${{ inputs.bump_type }}"
+          YEAR=$(date +%y)
+          WEEK=$(date +%V | sed 's/^0*//')
           
-          if [ -n "$CUSTOM" ]; then
-            NEW_VERSION="$CUSTOM"
-            echo "Using custom version: $NEW_VERSION"
+          VERSION_PREFIX="${YEAR}.${WEEK}."
+          TAG_PREFIX="v${VERSION_PREFIX}"
+          
+          # Find the latest N for this year.week
+          LATEST_N=$(git tag -l "${TAG_PREFIX}*" | sed "s/${TAG_PREFIX}//" | sort -n | tail -1)
+          
+          if [ -z "$LATEST_N" ]; then
+            NEW_N=0
           else
-            IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
-            
-            case "$BUMP_TYPE" in
-              major)
-                MAJOR=$((MAJOR + 1))
-                MINOR=0
-                PATCH=0
-                ;;
-              minor)
-                MINOR=$((MINOR + 1))
-                PATCH=0
-                ;;
-              patch)
-                PATCH=$((PATCH + 1))
-                ;;
-            esac
-            
-            NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
-            echo "Bumping $BUMP_TYPE: $CURRENT -> $NEW_VERSION"
+            NEW_N=$((LATEST_N + 1))
           fi
           
+          NEW_VERSION="${VERSION_PREFIX}${NEW_N}"
+          
+          echo "New version: $NEW_VERSION"
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
       - name: Create version update branch
@@ -115,7 +90,6 @@ jobs:
           NEW_VERSION="${{ steps.new.outputs.version }}"
           CURRENT_VERSION="${{ steps.current.outputs.version }}"
           BRANCH_NAME="${{ steps.branch.outputs.branch }}"
-          BUMP_TYPE="${{ inputs.custom_version && 'custom' || inputs.bump_type }}"
           
           PR_BODY="## Version Update
           
@@ -123,7 +97,6 @@ jobs:
           |------|-------|
           | Previous Version | ${CURRENT_VERSION} |
           | New Version | ${NEW_VERSION} |
-          | Bump Type | ${BUMP_TYPE} |
           
           ---
           *This PR was automatically created by the Update Version workflow.*"
@@ -145,6 +118,5 @@ jobs:
           echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| Previous Version | ${{ steps.current.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
           echo "| New Version | ${{ steps.new.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Bump Type | ${{ inputs.custom_version && 'custom' || inputs.bump_type }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Branch | ${{ steps.branch.outputs.branch }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Pull Request | ${{ steps.pr.outputs.pr_url }} |" >> $GITHUB_STEP_SUMMARY
