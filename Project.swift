@@ -143,10 +143,12 @@ let project = Project(
             name: "DrinkSomeWaterWidget",
             destinations: .iOS,
             product: .appExtension,
-            bundleId: "com.onceagain.DrinkSomeWater.Widget",
+            bundleId: "$(APP_BUNDLE_ID).Widget",
             deploymentTargets: .iOS("26.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "벌컥벌컥 위젯",
+                "CFBundleShortVersionString": "$(MARKETING_VERSION)",
+                "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
                 "NSExtension": [
                     "NSExtensionPointIdentifier": "com.apple.widgetkit-extension"
                 ]
