@@ -255,6 +255,21 @@ final class SettingsViewController: BaseViewController {
   }
   
   private func showRewardedAd() {
+    let confirmAlert = UIAlertController(
+      title: NSLocalizedString("ad.confirm.title", comment: ""),
+      message: NSLocalizedString("ad.confirm.message", comment: ""),
+      preferredStyle: .alert
+    )
+    
+    confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("common.cancel", comment: ""), style: .cancel))
+    confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default) { [weak self] _ in
+      self?.presentRewardedAd()
+    })
+    
+    present(confirmAlert, animated: true)
+  }
+  
+  private func presentRewardedAd() {
     guard AdMobService.shared.isRewardedAdReady else {
       let alert = UIAlertController(
         title: NSLocalizedString("ad.loading.title", comment: ""),
