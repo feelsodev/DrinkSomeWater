@@ -160,6 +160,25 @@ let project = Project(
             entitlements: "DrinkSomeWaterWidget/DrinkSomeWaterWidget.entitlements",
             dependencies: []
         ),
+        // MARK: - Watch App
+        .target(
+            name: "DrinkSomeWaterWatch",
+            destinations: [.appleWatch],
+            product: .app,
+            bundleId: "$(APP_BUNDLE_ID).watchkitapp",
+            deploymentTargets: .watchOS("11.0"),
+            infoPlist: .extendingDefault(with: [
+                "CFBundleDisplayName": "$(APP_NAME)",
+                "CFBundleShortVersionString": "$(MARKETING_VERSION)",
+                "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
+                "WKApplication": true,
+                "WKCompanionAppBundleIdentifier": "$(APP_BUNDLE_ID)",
+            ]),
+            sources: ["DrinkSomeWaterWatch/Sources/**"],
+            resources: ["DrinkSomeWaterWatch/Resources/**"],
+            entitlements: "DrinkSomeWaterWatch/DrinkSomeWaterWatch.entitlements",
+            dependencies: []
+        ),
         // MARK: - Analytics Module
         .target(
             name: "Analytics",
