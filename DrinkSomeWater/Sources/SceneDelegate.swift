@@ -17,7 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     let settings = serviceProvider.notificationService.loadSettings()
     serviceProvider.notificationService.scheduleNotifications(with: settings)
-    
+
+    serviceProvider.watchConnectivityService.activate()
+
     syncWidgetDataOnLaunch(serviceProvider: serviceProvider)
     
     let isOnboardingCompleted = serviceProvider.userDefaultsService.value(forkey: .onboardingCompleted) ?? false
@@ -40,12 +42,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       if let pendingWater = WidgetDataManager.shared.checkPendingWaterFromWidget() {
         _ = await serviceProvider.waterService.updateWater(by: Float(pendingWater))
       }
-      
+
       let records = await serviceProvider.waterService.fetchWater()
       let goal = await serviceProvider.waterService.fetchGoal()
       let todayWater = records.first(where: { $0.date.checkToday })?.value ?? 0
-      
+
       WidgetDataManager.shared.syncFromMainApp(todayWater: todayWater, goal: goal)
+      serviceProvider.watchConnectivityService.syncToWatch(todayWater: todayWater, goal: goal)
     }
   }
   

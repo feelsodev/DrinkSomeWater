@@ -6,6 +6,7 @@ protocol ServiceProviderProtocol: AnyObject, Sendable {
   var alertService: AlertServiceProtocol { get }
   var notificationService: NotificationServiceProtocol { get }
   var healthKitService: HealthKitServiceProtocol { get }
+  var watchConnectivityService: WatchConnectivityServiceProtocol { get }
 }
 
 final class ServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
@@ -14,4 +15,5 @@ final class ServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
   lazy var alertService: AlertServiceProtocol = AlertService(provider: self)
   lazy var notificationService: NotificationServiceProtocol = NotificationService(provider: self)
   lazy var healthKitService: HealthKitServiceProtocol = HealthKitService(provider: self)
+  lazy var watchConnectivityService: WatchConnectivityServiceProtocol = WatchConnectivityService(provider: self)
 }

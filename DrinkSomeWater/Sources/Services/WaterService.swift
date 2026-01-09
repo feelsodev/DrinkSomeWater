@@ -60,9 +60,10 @@ final class WaterService: BaseService, WaterServiceProtocol {
     waterRecord[index] = newRecord
     
     await saveWater(waterRecord)
-    
+
     WidgetDataManager.shared.syncFromMainApp(todayWater: newRecord.value, goal: newRecord.goal)
-    
+    provider.watchConnectivityService.syncToWatch(todayWater: newRecord.value, goal: newRecord.goal)
+
     return waterRecord
   }
   
@@ -84,6 +85,7 @@ final class WaterService: BaseService, WaterServiceProtocol {
       
       await saveWater(waterRecord)
       WidgetDataManager.shared.syncFromMainApp(todayWater: newRecord.value, goal: ml)
+      provider.watchConnectivityService.syncToWatch(todayWater: newRecord.value, goal: ml)
     }
     provider.userDefaultsService.set(value: ml, forkey: .goal)
     WidgetDataManager.shared.updateGoal(ml)
