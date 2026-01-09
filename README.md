@@ -1,5 +1,5 @@
 # 벌컥벌컥 (Gulp)
-> 💧 간편한 물 섭취 기록 iOS 앱
+> 💧 간편한 물 섭취 기록 iOS & watchOS 앱
 
 <img src="https://user-images.githubusercontent.com/59601439/115199996-bd370800-a12e-11eb-8f70-bc1ab0a0c97d.PNG">
 
@@ -12,6 +12,7 @@
 <p align="center">
   <img alt="Swift" src="https://img.shields.io/badge/Swift-6-orange.svg">
   <img alt="iOS" src="https://img.shields.io/badge/iOS-26%2B-yellow">
+  <img alt="watchOS" src="https://img.shields.io/badge/watchOS-11%2B-red">
   <img alt="Architecture" src="https://img.shields.io/badge/Architecture-Observable%20Store-blue">
 </p>
 
@@ -66,11 +67,23 @@
 - 알림 설정
 - 위젯 설정 가이드
 
+### ⌚ Apple Watch 앱
+손목에서 바로 물 섭취량을 기록합니다.
+- **홈 화면**: 오늘 섭취량과 목표 대비 진행률 표시
+- **퀵 추가**: 150ml, 250ml, 300ml, 500ml 빠른 추가 버튼
+- **직접 입력**: 50ml 단위로 세밀하게 조절
+- **실시간 동기화**: iPhone과 Watch Connectivity로 자동 동기화
+- **컴플리케이션**: 시계 페이스에서 바로 확인
+  - Circular: 진행률 게이지
+  - Rectangular: 섭취량/목표량 상세 표시
+  - Corner: 아이콘과 퍼센트
+  - Inline: 텍스트 형태
+
 ## 🏗 앱 구조
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                                                             │
+│                         iOS App                             │
 │   Intro (스플래시)                                          │
 │         │                                                   │
 │         ▼                                                   │
@@ -78,6 +91,18 @@
 │   │     💧      │     📅      │     ⚙️      │               │
 │   │    오늘     │    기록     │    설정     │               │
 │   └─────────────┴─────────────┴─────────────┘               │
+│                         │                                   │
+│                  WatchConnectivity                          │
+│                         │                                   │
+├─────────────────────────┼───────────────────────────────────┤
+│                    watchOS App                              │
+│   ┌─────────────────────┴─────────────────────┐             │
+│   │              ⌚ Watch App                  │             │
+│   │   ┌─────────────┬─────────────────────┐   │             │
+│   │   │    홈      │     퀵 추가          │   │             │
+│   │   │  진행률    │  150/250/300/500ml   │   │             │
+│   │   └─────────────┴─────────────────────┘   │             │
+│   └───────────────────────────────────────────┘             │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -86,14 +111,16 @@
 
 | Category | Technology |
 |----------|------------|
-| UI | UIKit + SnapKit |
+| iOS UI | UIKit + SnapKit |
+| watchOS UI | SwiftUI |
 | Widget | SwiftUI + WidgetKit |
 | Architecture | @Observable Store Pattern |
 | Concurrency | async/await, Swift 6 |
+| Sync | WatchConnectivity |
 | Animation | WaveAnimationView |
 | Calendar | FSCalendar |
 | Health | HealthKit |
-| Ads | Google AdMob (v2.3 예정) |
+| Ads | Google AdMob |
 | Build | Tuist |
 
 ## 📦 의존성
@@ -101,13 +128,14 @@
 ```swift
 // Tuist SPM
 - SnapKit
-- Then
 - FSCalendar
-- Google Mobile Ads (v2.3 예정)
+- Google Mobile Ads
 
 // System Frameworks
 - HealthKit
 - WidgetKit
+- WatchConnectivity
+- WatchKit
 ```
 
 ## 🚀 빌드 방법
