@@ -4,7 +4,7 @@ import WidgetKit
 final class WidgetDataManager: @unchecked Sendable {
   
   static let shared = WidgetDataManager()
-  static let appGroupIdentifier = "group.com.feelso.DrinkSomeWater"
+  static let appGroupIdentifier = "group.com.onceagain.DrinkSomeWater"
   
   private let defaults: UserDefaults?
   private let lock = NSLock()
