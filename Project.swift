@@ -6,6 +6,9 @@ let project = Project(
         defaultKnownRegions: ["en", "ko"],
         developmentRegion: "ko"
     ),
+    packages: [
+        .remote(url: "https://github.com/firebase/firebase-ios-sdk.git", requirement: .upToNextMajor(from: "11.0.0")),
+    ],
     settings: .settings(
         base: [
             "SWIFT_VERSION": "6.0",
@@ -187,7 +190,10 @@ let project = Project(
             bundleId: "com.onceagain.DrinkSomeWater.Analytics",
             deploymentTargets: .iOS("26.0"),
             sources: ["Analytics/Sources/**"],
-            dependencies: []
+            dependencies: [
+                .package(product: "FirebaseAnalytics"),
+                .package(product: "FirebaseCrashlytics"),
+            ]
         ),
         // MARK: - Unit Tests
         .target(
