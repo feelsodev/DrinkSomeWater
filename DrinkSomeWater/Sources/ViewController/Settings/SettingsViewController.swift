@@ -44,7 +44,7 @@ final class SettingsViewController: BaseViewController {
     tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     tableView.sectionHeaderTopPadding = 0
     
-    let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120))
+    let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 120))
     headerView.addSubviews([titleLabel, subtitleLabel])
     
     titleLabel.snp.makeConstraints {

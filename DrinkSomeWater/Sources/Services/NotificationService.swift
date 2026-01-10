@@ -133,7 +133,7 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
   
   private func scheduleCustomTimeNotifications(with settings: NotificationSettings) {
     let weekdays = Array(settings.enabledWeekdays)
-    let totalRequired = settings.customTimes.count * weekdays.count
+    _ = settings.customTimes.count * weekdays.count
     var scheduledCount = 0
     
     for (index, time) in settings.customTimes.enumerated() {

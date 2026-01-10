@@ -82,7 +82,9 @@ final class NativeAdTableViewCell: UITableViewCell {
     ctaButton.backgroundColor = DS.Color.primary
     ctaButton.layer.cornerRadius = 10
     ctaButton.isUserInteractionEnabled = false
-    ctaButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
+    var config = UIButton.Configuration.plain()
+    config.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12)
+    ctaButton.configuration = config
     nativeAdView.addSubview(ctaButton)
     nativeAdView.callToActionView = ctaButton
     
