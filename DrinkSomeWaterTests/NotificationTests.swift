@@ -120,13 +120,19 @@ final class MockNotificationService: NotificationServiceProtocol, @unchecked Sen
     }
 }
 
+final class MockWatchConnectivityService: WatchConnectivityServiceProtocol {
+    func activate() {}
+    func syncToWatch(todayWater: Int, goal: Int) {}
+}
+
 final class MockServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
     let userDefaultsService: UserDefaultsServiceProtocol
     let waterService: WaterServiceProtocol
     let alertService: AlertServiceProtocol
     let notificationService: NotificationServiceProtocol
     let healthKitService: HealthKitServiceProtocol
-    
+    let watchConnectivityService: WatchConnectivityServiceProtocol
+
     init(notificationService: NotificationServiceProtocol = MockNotificationService()) {
         let realProvider = ServiceProvider()
         self.userDefaultsService = UserDefaultsService(provider: realProvider)
@@ -134,6 +140,7 @@ final class MockServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
         self.alertService = AlertService(provider: realProvider)
         self.notificationService = notificationService
         self.healthKitService = HealthKitService(provider: realProvider)
+        self.watchConnectivityService = MockWatchConnectivityService()
     }
 }
 
