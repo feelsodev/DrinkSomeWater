@@ -190,3 +190,122 @@
 "appguide.health.feature1.desc" = "건강 앱에서 체중을 가져와 맞춤 권장 섭취량을 계산해요.";
 "appguide.health.feature2.title" = "건강 앱에 저장";
 "appguide.health.feature2.desc" = "기록한 물 섭취량이 건강 앱에 자동으로 저장됩니다.";
+
+// Tab Bar
+"tab.today" = "오늘";
+"tab.history" = "기록";
+"tab.settings" = "설정";
+
+// Home
+"home.goal" = "목표 %@ml";
+"home.goal.achieved" = "오늘 목표 달성!";
+"home.goal.remaining" = "%@잔 더 마시면 목표 달성!";
+"home.quick.add" = "빠른 추가";
+"home.quick.subtract" = "빼기";
+"home.edit" = "편집";
+"home.goal.setting.title" = "목표 설정";
+"home.goal.save" = "저장";
+"home.goal.min" = "1,000ml";
+"home.goal.max" = "4,000ml";
+"home.goal.cancel" = "취소";
+"home.quickbutton.title" = "빠른 추가 버튼";
+"home.quickbutton.current" = "현재 버튼";
+"home.quickbutton.add.section" = "새 버튼 추가";
+"home.quickbutton.placeholder" = "용량 (ml)";
+"home.quickbutton.add" = "추가";
+"home.quickbutton.reset" = "기본값으로 초기화";
+"home.adjustment.title" = "섭취량 수정";
+"home.adjustment.done" = "완료";
+"home.adjustment.reset" = "오늘 기록 초기화";
+"home.adjustment.reset.confirm" = "오늘 마신 물을 초기화할까요?";
+"home.adjustment.reset.button" = "초기화";
+"home.adjustment.reset.message" = "이 작업은 되돌릴 수 없습니다.";
+
+// History
+"history.title" = "기록";
+"history.mode.calendar" = "캘린더";
+"history.mode.list" = "리스트";
+"history.mode.timeline" = "타임라인";
+"history.month.summary" = "이번 달: %@일 달성";
+"history.legend.today" = "오늘";
+"history.legend.selected" = "선택";
+"history.legend.achieved" = "달성";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@일 달성";
+"history.record.goal" = "목표 %@ml";
+"history.card.goal" = "목표량";
+"history.card.intake" = "섭취량";
+"history.card.achieved" = "달성! ✅";
+"history.label.achieved" = "달성";
+
+// Widget
+"widget.hydration.tracker" = "수분 섭취";
+"widget.current" = "현재";
+"widget.goal" = "목표";
+"widget.current.hydration" = "현재 수분 섭취";
+"widget.todays.hydration" = "오늘의 수분 섭취";
+"widget.motivation.achieved" = "목표 달성! 수고했어요! 🎉";
+"widget.motivation.almost" = "거의 다 왔어요! 조금만 더! 🚀";
+"widget.motivation.halfway" = "잘하고 있어요! 💧";
+"widget.motivation.start" = "물 마실 시간이에요! 🥤";
+
+// Watch
+"watch.add.water" = "물 추가하기";
+"watch.custom.input" = "직접 입력";
+"watch.add" = "추가";
+
+// Update
+"update.required.title" = "업데이트 필요";
+"update.available.title" = "업데이트 안내";
+"update.required.message" = "새로운 버전이 출시되었습니다. 계속 사용하려면 업데이트가 필요합니다.";
+"update.available.message" = "새로운 버전이 출시되었습니다. 지금 업데이트하시겠습니까?";
+"update.later" = "나중에";
+"update.now" = "업데이트";
+
+// Notification Messages
+"notification.title" = "벌컥벌컥";
+"notification.message.1" = "물 마실 시간이에요! 💧";
+"notification.message.2" = "수분 보충 잊지 마세요~ 🌊";
+"notification.message.3" = "건강한 하루의 시작, 물 한잔! ☀️";
+"notification.message.4" = "목이 마르기 전에 마셔요 🥤";
+"notification.message.5" = "오늘도 벌컥벌컥! 💪";
+"notification.message.6" = "물 한 잔이 피로를 씻어줘요 🧘";
+"notification.message.7" = "촉촉한 피부의 비결, 물! ✨";
+"notification.message.8" = "집중력 UP! 물 한 잔 어때요? 🧠";
+"notification.message.9" = "잠깐! 물 마시고 하세요 🚰";
+"notification.message.10" = "당신의 몸이 물을 기다려요 🌿";
+
+// Weekdays
+"weekday.sun" = "일";
+"weekday.mon" = "월";
+"weekday.tue" = "화";
+"weekday.wed" = "수";
+"weekday.thu" = "목";
+"weekday.fri" = "금";
+"weekday.sat" = "토";
+
+// Intervals
+"interval.30min" = "30분";
+"interval.1hour" = "1시간";
+"interval.2hours" = "2시간";
+"interval.3hours" = "3시간";
+
+// Notification Settings
+"notification.settings.title" = "알림 설정";
+"notification.settings.enable" = "알림 활성화";
+"notification.settings.timerange" = "알림 시간대";
+"notification.settings.interval" = "알림 간격";
+"notification.settings.weekdays" = "요일 선택";
+"notification.settings.custom" = "커스텀 시간 (설정 시 간격 대신 사용)";
+"notification.settings.starttime" = "시작 시간";
+"notification.settings.endtime" = "종료 시간";
+"notification.settings.addtime" = "시간 추가";
+
+// Date Formats
+"dateformat.month" = "M월";
+"dateformat.yearmonth" = "yyyy년 M월";
+"dateformat.monthday" = "M월 d일 (E)";
+
+// Watch Complication
+"complication.displayname" = "물 섭취량";
+"complication.description" = "오늘 마신 물의 양을 확인합니다.";

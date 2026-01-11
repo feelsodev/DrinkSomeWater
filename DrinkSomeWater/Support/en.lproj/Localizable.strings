@@ -190,3 +190,122 @@
 "appguide.health.feature1.desc" = "Import your weight from Health app to calculate personalized intake recommendations.";
 "appguide.health.feature2.title" = "Save to Health";
 "appguide.health.feature2.desc" = "Your water intake records are automatically saved to the Health app.";
+
+// Tab Bar
+"tab.today" = "Today";
+"tab.history" = "History";
+"tab.settings" = "Settings";
+
+// Home
+"home.goal" = "Goal %@ml";
+"home.goal.achieved" = "Goal achieved today!";
+"home.goal.remaining" = "%@ more cups to reach your goal!";
+"home.quick.add" = "Quick Add";
+"home.quick.subtract" = "Subtract";
+"home.edit" = "Edit";
+"home.goal.setting.title" = "Set Goal";
+"home.goal.save" = "Save";
+"home.goal.min" = "1,000ml";
+"home.goal.max" = "4,000ml";
+"home.goal.cancel" = "Cancel";
+"home.quickbutton.title" = "Quick Add Buttons";
+"home.quickbutton.current" = "Current Buttons";
+"home.quickbutton.add.section" = "Add New Button";
+"home.quickbutton.placeholder" = "Amount (ml)";
+"home.quickbutton.add" = "Add";
+"home.quickbutton.reset" = "Reset to Default";
+"home.adjustment.title" = "Adjust Intake";
+"home.adjustment.done" = "Done";
+"home.adjustment.reset" = "Reset Today's Record";
+"home.adjustment.reset.confirm" = "Reset today's water intake?";
+"home.adjustment.reset.button" = "Reset";
+"home.adjustment.reset.message" = "This action cannot be undone.";
+
+// History
+"history.title" = "History";
+"history.mode.calendar" = "Calendar";
+"history.mode.list" = "List";
+"history.mode.timeline" = "Timeline";
+"history.month.summary" = "This month: %@ days achieved";
+"history.legend.today" = "Today";
+"history.legend.selected" = "Selected";
+"history.legend.achieved" = "Achieved";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ days achieved";
+"history.record.goal" = "Goal %@ml";
+"history.card.goal" = "Goal";
+"history.card.intake" = "Intake";
+"history.card.achieved" = "Achieved! ✅";
+"history.label.achieved" = "Achieved";
+
+// Widget
+"widget.hydration.tracker" = "Hydration Tracker";
+"widget.current" = "Current";
+"widget.goal" = "Goal";
+"widget.current.hydration" = "Current Hydration";
+"widget.todays.hydration" = "Today's Hydration";
+"widget.motivation.achieved" = "Goal achieved! Great job! 🎉";
+"widget.motivation.almost" = "Almost there! Keep going! 🚀";
+"widget.motivation.halfway" = "You're doing great! 💧";
+"widget.motivation.start" = "Time to hydrate! 🥤";
+
+// Watch
+"watch.add.water" = "Add Water";
+"watch.custom.input" = "Custom Input";
+"watch.add" = "Add";
+
+// Update
+"update.required.title" = "Update Required";
+"update.available.title" = "Update Available";
+"update.required.message" = "A new version has been released. Please update to continue using the app.";
+"update.available.message" = "A new version is available. Would you like to update now?";
+"update.later" = "Later";
+"update.now" = "Update";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Time to drink water! 💧";
+"notification.message.2" = "Don't forget to hydrate~ 🌊";
+"notification.message.3" = "Start your healthy day with water! ☀️";
+"notification.message.4" = "Drink before you feel thirsty 🥤";
+"notification.message.5" = "Gulp gulp today too! 💪";
+"notification.message.6" = "A glass of water washes away fatigue 🧘";
+"notification.message.7" = "The secret to glowing skin: water! ✨";
+"notification.message.8" = "Focus UP! How about a glass of water? 🧠";
+"notification.message.9" = "Wait! Have some water first 🚰";
+"notification.message.10" = "Your body is waiting for water 🌿";
+
+// Weekdays
+"weekday.sun" = "Sun";
+"weekday.mon" = "Mon";
+"weekday.tue" = "Tue";
+"weekday.wed" = "Wed";
+"weekday.thu" = "Thu";
+"weekday.fri" = "Fri";
+"weekday.sat" = "Sat";
+
+// Intervals
+"interval.30min" = "30 min";
+"interval.1hour" = "1 hour";
+"interval.2hours" = "2 hours";
+"interval.3hours" = "3 hours";
+
+// Notification Settings
+"notification.settings.title" = "Notification Settings";
+"notification.settings.enable" = "Enable Notifications";
+"notification.settings.timerange" = "Notification Time Range";
+"notification.settings.interval" = "Notification Interval";
+"notification.settings.weekdays" = "Select Days";
+"notification.settings.custom" = "Custom Times (overrides interval)";
+"notification.settings.starttime" = "Start Time";
+"notification.settings.endtime" = "End Time";
+"notification.settings.addtime" = "Add Time";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "MMM d (E)";
+
+// Watch Complication
+"complication.displayname" = "Water Intake";
+"complication.description" = "Check how much water you drank today.";

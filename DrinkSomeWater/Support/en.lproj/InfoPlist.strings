@@ -1,11 +1,16 @@
-/* 
+/*
   InfoPlist.strings
   DrinkSomeWater
 
   Created by once on 2021/04/19.
-  
+
 */
 
 // App name
 "CFBundleDisplayName" = "Gulp";
 "CFBundleName" = "Gulp";
+
+// Usage Descriptions
+"NSHealthShareUsageDescription" = "Read weight data to calculate personalized recommendations.";
+"NSHealthUpdateUsageDescription" = "Sync water intake records with Health app.";
+"NSUserTrackingUsageDescription" = "Used to provide personalized ads.";

@@ -57,8 +57,8 @@ let project = Project(
                         ]
                     ]
                 ],
-                "NSHealthShareUsageDescription": "체중 정보를 읽어 맞춤 권장량을 계산합니다.",
-                "NSHealthUpdateUsageDescription": "물 섭취 기록을 건강 앱과 동기화합니다.",
+                "NSHealthShareUsageDescription": "Read weight data to calculate personalized recommendations.",
+                "NSHealthUpdateUsageDescription": "Sync water intake records with Health app.",
                 "GADApplicationIdentifier": "$(ADMOB_APP_ID)",
                 "API_BASE_URL": "$(API_BASE_URL)",
                 "ADMOB_APP_ID": "$(ADMOB_APP_ID)",
@@ -68,7 +68,7 @@ let project = Project(
                 "LOG_LEVEL": "$(LOG_LEVEL)",
                 "ENABLE_ANALYTICS": "$(ENABLE_ANALYTICS)",
                 "ENABLE_DEBUG_MENU": "$(ENABLE_DEBUG_MENU)",
-                "NSUserTrackingUsageDescription": "맞춤 광고를 제공하기 위해 사용됩니다.",
+                "NSUserTrackingUsageDescription": "Used to provide personalized ads.",
                 "SKAdNetworkItems": [
                     ["SKAdNetworkIdentifier": "cstr6suwn9.skadnetwork"],
                     ["SKAdNetworkIdentifier": "4fzdc2evr5.skadnetwork"],
@@ -151,7 +151,7 @@ let project = Project(
             bundleId: "$(APP_BUNDLE_ID).Widget",
             deploymentTargets: .iOS("26.0"),
             infoPlist: .extendingDefault(with: [
-                "CFBundleDisplayName": "벌컥벌컥 위젯",
+                "CFBundleDisplayName": "Gulp Widget",
                 "CFBundleShortVersionString": "$(MARKETING_VERSION)",
                 "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
                 "NSExtension": [
