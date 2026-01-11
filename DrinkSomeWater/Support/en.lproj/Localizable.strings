@@ -221,6 +221,11 @@
 "home.adjustment.reset.button" = "Reset";
 "home.adjustment.reset.message" = "This action cannot be undone.";
 
+// Notification Banner
+"home.notification.banner.title" = "Enable Notifications";
+"home.notification.banner.description" = "Get reminders to stay hydrated";
+"home.notification.banner.settings" = "Settings";
+
 // History
 "history.title" = "History";
 "history.mode.calendar" = "Calendar";

@@ -221,6 +221,11 @@
 "home.adjustment.reset.button" = "초기화";
 "home.adjustment.reset.message" = "이 작업은 되돌릴 수 없습니다.";
 
+// Notification Banner
+"home.notification.banner.title" = "알림을 켜주세요";
+"home.notification.banner.description" = "물 마시기 리마인더를 받아보세요";
+"home.notification.banner.settings" = "설정";
+
 // History
 "history.title" = "기록";
 "history.mode.calendar" = "캘린더";

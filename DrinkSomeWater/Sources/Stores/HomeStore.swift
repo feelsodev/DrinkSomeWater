@@ -12,6 +12,8 @@ final class HomeStore {
     case addWater(Int)
     case subtractWater(Int)
     case resetTodayWater
+    case checkNotificationPermission
+    case dismissNotificationBanner
   }
   
   let provider: ServiceProviderProtocol
@@ -24,6 +26,8 @@ final class HomeStore {
   
   static let defaultQuickButtons = [100, 200, 300, 500]
   var quickButtons: [Int] = HomeStore.defaultQuickButtons
+
+  var showNotificationBanner: Bool = false
   
   init(provider: ServiceProviderProtocol) {
     self.provider = provider
@@ -71,6 +75,15 @@ final class HomeStore {
       _ = await provider.waterService.resetTodayWater()
       await send(.refresh)
       Analytics.shared.log(.waterReset(previousAmountMl: previousAmount))
+
+    case .checkNotificationPermission:
+      let isAuthorized = await provider.notificationService.checkAuthorizationStatus()
+      let isDismissed = provider.userDefaultsService.value(forkey: .notificationBannerDismissed) ?? false
+      showNotificationBanner = !isAuthorized && !isDismissed
+
+    case .dismissNotificationBanner:
+      provider.userDefaultsService.set(value: true, forkey: .notificationBannerDismissed)
+      showNotificationBanner = false
     }
   }
   

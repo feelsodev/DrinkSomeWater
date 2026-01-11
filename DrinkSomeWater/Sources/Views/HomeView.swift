@@ -19,6 +19,10 @@ struct HomeView: View {
       .ignoresSafeArea()
 
       VStack(spacing: 0) {
+        if store.showNotificationBanner {
+          notificationBanner
+        }
+
         headerSection
 
         Spacer(minLength: 16)
@@ -36,6 +40,7 @@ struct HomeView: View {
     .task {
       await store.send(.refreshGoal)
       await store.send(.refresh)
+      await store.send(.checkNotificationPermission)
       Analytics.shared.logScreenView("home_screen")
     }
     .sheet(isPresented: $showGoalSetting) {
@@ -119,7 +124,57 @@ struct HomeView: View {
         )
     )
   }
-  
+
+  private var notificationBanner: some View {
+    HStack(spacing: 12) {
+      Image(systemName: "bell.badge")
+        .font(.system(size: 20))
+        .foregroundStyle(.orange)
+
+      VStack(alignment: .leading, spacing: 2) {
+        Text(String(localized: "home.notification.banner.title"))
+          .font(.system(size: 14, weight: .semibold))
+          .foregroundStyle(DS.SwiftUIColor.textPrimary)
+        Text(String(localized: "home.notification.banner.description"))
+          .font(.system(size: 12))
+          .foregroundStyle(.secondary)
+      }
+
+      Spacer()
+
+      Button {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+          UIApplication.shared.open(url)
+        }
+      } label: {
+        Text(String(localized: "home.notification.banner.settings"))
+          .font(.system(size: 12, weight: .semibold))
+          .foregroundStyle(.white)
+          .padding(.horizontal, 12)
+          .padding(.vertical, 6)
+          .background(DS.SwiftUIColor.primary)
+          .clipShape(Capsule())
+      }
+
+      Button {
+        Task {
+          await store.send(.dismissNotificationBanner)
+        }
+      } label: {
+        Image(systemName: "xmark")
+          .font(.system(size: 12, weight: .medium))
+          .foregroundStyle(.secondary)
+      }
+    }
+    .padding(.horizontal, 16)
+    .padding(.vertical, 12)
+    .background(
+      RoundedRectangle(cornerRadius: 12, style: .continuous)
+        .fill(Color.orange.opacity(0.1))
+    )
+    .padding(.bottom, 8)
+  }
+
   private var bottleSection: some View {
     VStack(spacing: 0) {
       RoundedRectangle(cornerRadius: 6)

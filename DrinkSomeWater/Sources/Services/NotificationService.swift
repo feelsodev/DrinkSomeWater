@@ -7,6 +7,7 @@ protocol NotificationServiceProtocol: AnyObject {
   func scheduleNotifications(with settings: NotificationSettings)
   func cancelAllNotifications()
   func requestAuthorization() async -> Bool
+  func checkAuthorizationStatus() async -> Bool
 }
 
 final class NotificationService: BaseService, NotificationServiceProtocol {
@@ -23,11 +24,11 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
     let startMinute = defaults.value(forkey: .notificationStartMinute) ?? 0
     let endHour = defaults.value(forkey: .notificationEndHour) ?? 22
     let endMinute = defaults.value(forkey: .notificationEndMinute) ?? 0
-    let intervalMinutes = defaults.value(forkey: .notificationIntervalMinutes) ?? 60
+    let intervalMinutes = defaults.value(forkey: .notificationIntervalMinutes) ?? 120
     let weekdayValues = defaults.value(forkey: .notificationWeekdays) ?? Array(1...7)
     let customTimeDicts = defaults.value(forkey: .notificationCustomTimes) ?? []
     
-    let interval = NotificationInterval(rawValue: intervalMinutes) ?? .oneHour
+    let interval = NotificationInterval(rawValue: intervalMinutes) ?? .twoHours
     let weekdays = Set(weekdayValues.compactMap { Weekday(rawValue: $0) })
     let customTimes = customTimeDicts.compactMap { NotificationTime.from(dictionary: $0) }
     
@@ -77,6 +78,11 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
       print("Notification authorization error: \(error)")
       return false
     }
+  }
+
+  func checkAuthorizationStatus() async -> Bool {
+    let settings = await notificationCenter.notificationSettings()
+    return settings.authorizationStatus == .authorized
   }
   
   private func scheduleIntervalBasedNotifications(with settings: NotificationSettings) {
