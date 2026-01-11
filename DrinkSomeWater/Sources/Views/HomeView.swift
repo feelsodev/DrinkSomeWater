@@ -80,7 +80,7 @@ struct HomeView: View {
         showGoalSetting = true
       } label: {
         HStack(spacing: 6) {
-          Text("목표 \(Int(store.total))ml")
+          Text(String(format: String(localized: "home.goal"), "\(Int(store.total))"))
             .font(.system(size: 14, weight: .semibold))
           Image(systemName: "pencil.circle.fill")
             .font(.system(size: 14, weight: .medium))
@@ -102,8 +102,8 @@ struct HomeView: View {
     HStack(spacing: 8) {
       Text(store.remainingMl <= 0 ? "🎉" : "💧")
         .font(.system(size: 20))
-      
-      Text(store.remainingMl <= 0 ? "오늘 목표 달성!" : "\(store.remainingCups)잔 더 마시면 목표 달성!")
+
+      Text(store.remainingMl <= 0 ? String(localized: "home.goal.achieved") : String(format: String(localized: "home.goal.remaining"), "\(store.remainingCups)"))
         .font(.system(size: 14, weight: .semibold))
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
     }
@@ -153,7 +153,7 @@ struct HomeView: View {
   private var quickButtonsSection: some View {
     VStack(spacing: 10) {
       HStack {
-        Text(isSubtractMode ? "빼기" : "빠른 추가")
+        Text(isSubtractMode ? String(localized: "home.quick.subtract") : String(localized: "home.quick.add"))
           .font(.system(size: 14, weight: .medium))
           .foregroundStyle(.gray)
 
@@ -179,7 +179,7 @@ struct HomeView: View {
           )
         }
 
-        Button("편집") {
+        Button(String(localized: "home.edit")) {
           showQuickButtonSetting = true
         }
         .font(.system(size: 14, weight: .medium))
@@ -248,20 +248,20 @@ struct GoalSettingView: View {
         Slider(value: $goal, in: 1000...4000, step: 100)
           .tint(DS.SwiftUIColor.primary)
           .padding(.horizontal)
-        
+
         HStack {
-          Text("1,000ml")
+          Text(String(localized: "home.goal.min"))
             .font(.caption)
             .foregroundStyle(.secondary)
           Spacer()
-          Text("4,000ml")
+          Text(String(localized: "home.goal.max"))
             .font(.caption)
             .foregroundStyle(.secondary)
         }
         .padding(.horizontal)
-        
+
         Spacer()
-        
+
         Button {
           Task {
             let oldGoal = currentGoal
@@ -272,7 +272,7 @@ struct GoalSettingView: View {
             dismiss()
           }
         } label: {
-          Text("저장")
+          Text(String(localized: "home.goal.save"))
             .font(.headline)
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
@@ -283,11 +283,11 @@ struct GoalSettingView: View {
         .padding(.horizontal)
       }
       .padding(.vertical, 24)
-      .navigationTitle("목표 설정")
+      .navigationTitle(String(localized: "home.goal.setting.title"))
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
-          Button("취소") { dismiss() }
+          Button(String(localized: "home.goal.cancel")) { dismiss() }
         }
       }
     }
@@ -312,7 +312,7 @@ struct QuickButtonSettingView: View {
   var body: some View {
     NavigationStack {
       List {
-        Section("현재 버튼") {
+        Section(String(localized: "home.quickbutton.current")) {
           ForEach(buttons, id: \.self) { amount in
             HStack {
               Text("+\(amount)ml")
@@ -322,13 +322,13 @@ struct QuickButtonSettingView: View {
           .onDelete(perform: deleteButton)
           .onMove(perform: moveButton)
         }
-        
-        Section("새 버튼 추가") {
+
+        Section(String(localized: "home.quickbutton.add.section")) {
           HStack {
-            TextField("용량 (ml)", text: $newAmount)
+            TextField(String(localized: "home.quickbutton.placeholder"), text: $newAmount)
               .keyboardType(.numberPad)
-            
-            Button("추가") {
+
+            Button(String(localized: "home.quickbutton.add")) {
               if let amount = Int(newAmount), amount > 0 {
                 buttons.append(amount)
                 newAmount = ""
@@ -337,22 +337,22 @@ struct QuickButtonSettingView: View {
             .disabled(newAmount.isEmpty)
           }
         }
-        
+
         Section {
-          Button("기본값으로 초기화") {
+          Button(String(localized: "home.quickbutton.reset")) {
             buttons = HomeStore.defaultQuickButtons
           }
           .foregroundStyle(.red)
         }
       }
-      .navigationTitle("빠른 추가 버튼")
+      .navigationTitle(String(localized: "home.quickbutton.title"))
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
-          Button("취소") { dismiss() }
+          Button(String(localized: "home.goal.cancel")) { dismiss() }
         }
         ToolbarItem(placement: .confirmationAction) {
-          Button("저장") {
+          Button(String(localized: "home.goal.save")) {
             provider.userDefaultsService.set(value: buttons, forkey: .quickButtons)
             for (index, amount) in buttons.enumerated() {
               Analytics.shared.log(.quickButtonCustomized(buttonIndex: index, amountMl: amount))
@@ -392,7 +392,7 @@ struct WaterAdjustmentView: View {
           .foregroundStyle(DS.SwiftUIColor.primary)
 
         VStack(spacing: 16) {
-          Text("빼기")
+          Text(String(localized: "home.quick.subtract"))
             .font(.system(size: 14, weight: .medium))
             .foregroundStyle(.secondary)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -426,7 +426,7 @@ struct WaterAdjustmentView: View {
         } label: {
           HStack {
             Image(systemName: "arrow.counterclockwise")
-            Text("오늘 기록 초기화")
+            Text(String(localized: "home.adjustment.reset"))
           }
           .font(.system(size: 15, weight: .medium))
           .foregroundStyle(.red)
@@ -441,26 +441,26 @@ struct WaterAdjustmentView: View {
         Spacer()
       }
       .padding(.vertical, 24)
-      .navigationTitle("섭취량 수정")
+      .navigationTitle(String(localized: "home.adjustment.title"))
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .confirmationAction) {
-          Button("완료") { dismiss() }
+          Button(String(localized: "home.adjustment.done")) { dismiss() }
         }
       }
       .confirmationDialog(
-        "오늘 마신 물을 초기화할까요?",
+        String(localized: "home.adjustment.reset.confirm"),
         isPresented: $showResetConfirmation,
         titleVisibility: .visible
       ) {
-        Button("초기화", role: .destructive) {
+        Button(String(localized: "home.adjustment.reset.button"), role: .destructive) {
           Task {
             await store.send(.resetTodayWater)
           }
         }
-        Button("취소", role: .cancel) {}
+        Button(String(localized: "home.goal.cancel"), role: .cancel) {}
       } message: {
-        Text("이 작업은 되돌릴 수 없습니다.")
+        Text(String(localized: "home.adjustment.reset.message"))
       }
     }
   }
