@@ -63,6 +63,7 @@ let project = Project(
                 "API_BASE_URL": "$(API_BASE_URL)",
                 "ADMOB_APP_ID": "$(ADMOB_APP_ID)",
                 "ADMOB_BANNER_ID": "$(ADMOB_BANNER_ID)",
+                "ADMOB_REWARDED_ID": "$(ADMOB_REWARDED_ID)",
                 "ADMOB_NATIVE_ID": "$(ADMOB_NATIVE_ID)",
                 "LOG_LEVEL": "$(LOG_LEVEL)",
                 "ENABLE_ANALYTICS": "$(ENABLE_ANALYTICS)",

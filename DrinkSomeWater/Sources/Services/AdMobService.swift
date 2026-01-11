@@ -8,9 +8,15 @@ final class AdMobService {
   static let shared = AdMobService()
   
   private enum AdUnitID {
-    static let banner = "ca-app-pub-8353974542825246/4689364013"
-    static let rewarded = "ca-app-pub-8353974542825246/9237298909"
-    static let native = "ca-app-pub-8353974542825246/8756601534"
+    static var banner: String {
+      Bundle.main.object(forInfoDictionaryKey: "ADMOB_BANNER_ID") as? String ?? ""
+    }
+    static var rewarded: String {
+      Bundle.main.object(forInfoDictionaryKey: "ADMOB_REWARDED_ID") as? String ?? ""
+    }
+    static var native: String {
+      Bundle.main.object(forInfoDictionaryKey: "ADMOB_NATIVE_ID") as? String ?? ""
+    }
   }
   
   private var rewardedAd: GADRewardedAd?
