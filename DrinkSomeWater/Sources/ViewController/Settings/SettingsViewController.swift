@@ -76,7 +76,8 @@ final class SettingsViewController: BaseViewController {
       ]),
       (NSLocalizedString("settings.section.app", comment: "앱 설정"), [
         ("bell.fill", NSLocalizedString("settings.notification", comment: ""), nil, .notification),
-        ("apps.iphone", NSLocalizedString("settings.widget.guide", comment: ""), nil, .widgetGuide)
+        ("apps.iphone", NSLocalizedString("settings.widget.guide", comment: ""), nil, .widgetGuide),
+        ("book.fill", NSLocalizedString("settings.app.guide", comment: ""), nil, .appGuide)
       ]),
       (NSLocalizedString("settings.section.support", comment: ""), [
         ("heart.fill", NSLocalizedString("settings.support.developer", comment: ""), nil, .supportDeveloper),
@@ -90,7 +91,7 @@ final class SettingsViewController: BaseViewController {
   }
   
   enum SettingsAction {
-    case profile, goal, quickButtons, notification, widgetGuide, supportDeveloper, review, contact, version
+    case profile, goal, quickButtons, notification, widgetGuide, appGuide, supportDeveloper, review, contact, version
   }
   
   init(store: SettingsStore) {
@@ -161,6 +162,8 @@ final class SettingsViewController: BaseViewController {
       openNotificationSettings()
     case .widgetGuide:
       presentWidgetGuide()
+    case .appGuide:
+      presentAppGuide()
     case .supportDeveloper:
       showRewardedAd()
     case .review:
@@ -174,6 +177,16 @@ final class SettingsViewController: BaseViewController {
   
   private func presentWidgetGuide() {
     let vc = WidgetGuideViewController()
+    if let sheet = vc.sheetPresentationController {
+      sheet.detents = [.large()]
+      sheet.prefersGrabberVisible = true
+    }
+    present(vc, animated: true)
+  }
+
+  private func presentAppGuide() {
+    let appGuideView = AppGuideView()
+    let vc = UIHostingController(rootView: appGuideView)
     if let sheet = vc.sheetPresentationController {
       sheet.detents = [.large()]
       sheet.prefersGrabberVisible = true

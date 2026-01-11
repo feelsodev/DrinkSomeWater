@@ -131,3 +131,62 @@
 "ad.loading.message" = "Loading ad. Please try again in a moment.";
 "ad.thanks.title" = "Thank You!";
 "ad.thanks.message" = "Thank you for supporting the developer 💙";
+
+// App Guide
+"settings.app.guide" = "App Feature Guide";
+"appguide.title" = "Gulp Guide";
+"appguide.subtitle" = "Discover all the features";
+
+// App Guide - Home
+"appguide.home.title" = "Today Tab";
+"appguide.home.feature1.title" = "Track Water Intake";
+"appguide.home.feature1.desc" = "Tap the button to record your water intake. Progress updates in real-time.";
+"appguide.home.feature2.title" = "Quick Buttons";
+"appguide.home.feature2.desc" = "Set your frequently consumed amounts as quick buttons for one-tap recording.";
+"appguide.home.feature3.title" = "Set Your Goal";
+"appguide.home.feature3.desc" = "Set your daily water intake goal. Weight-based recommendations are available.";
+"appguide.home.feature4.title" = "Subtract Mode";
+"appguide.home.feature4.desc" = "Switch to subtract mode to correct any mistakes in your intake records.";
+
+// App Guide - History
+"appguide.history.title" = "History Tab";
+"appguide.history.feature1.title" = "Calendar View";
+"appguide.history.feature1.desc" = "View your monthly achievements at a glance. Goal completion days are highlighted.";
+"appguide.history.feature2.title" = "List View";
+"appguide.history.feature2.desc" = "Check all records in chronological order with progress for each day.";
+"appguide.history.feature3.title" = "Timeline View";
+"appguide.history.feature3.desc" = "View records grouped by month in a timeline format.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Quick Recording";
+"appguide.watch.feature1.desc" = "Record your water intake directly from your watch. Quick buttons for 150ml, 250ml, 300ml, and 500ml.";
+"appguide.watch.feature2.title" = "Real-time Sync";
+"appguide.watch.feature2.desc" = "Syncs with your iPhone in real-time to keep your records always up to date.";
+"appguide.watch.feature3.title" = "Complications";
+"appguide.watch.feature3.desc" = "Add a complication to your watch face to check your progress at a glance.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widgets";
+"appguide.widget.feature1.title" = "Home Screen Widget";
+"appguide.widget.feature1.desc" = "Add a widget to your home screen for quick progress checks. Small, medium, and large sizes available.";
+"appguide.widget.feature2.title" = "Lock Screen Widget";
+"appguide.widget.feature2.desc" = "Check your daily water intake right from the lock screen.";
+"appguide.widget.feature3.title" = "Interactive Buttons";
+"appguide.widget.feature3.desc" = "Tap buttons on medium/large widgets to add water without opening the app.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Notifications";
+"appguide.notification.feature1.title" = "Custom Intervals";
+"appguide.notification.feature1.desc" = "Get reminders at 30-minute, 1-hour, 2-hour, or 3-hour intervals.";
+"appguide.notification.feature2.title" = "Day Selection";
+"appguide.notification.feature2.desc" = "Choose which days of the week you want to receive notifications.";
+"appguide.notification.feature3.title" = "Motivating Messages";
+"appguide.notification.feature3.desc" = "Receive various motivating messages to help build your hydration habit.";
+
+// App Guide - Health
+"appguide.health.title" = "Health Integration";
+"appguide.health.feature1.title" = "Weight-based Recommendations";
+"appguide.health.feature1.desc" = "Import your weight from Health app to calculate personalized intake recommendations.";
+"appguide.health.feature2.title" = "Save to Health";
+"appguide.health.feature2.desc" = "Your water intake records are automatically saved to the Health app.";

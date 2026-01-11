@@ -131,3 +131,62 @@
 "ad.loading.message" = "광고를 불러오는 중입니다. 잠시 후 다시 시도해주세요.";
 "ad.thanks.title" = "감사합니다!";
 "ad.thanks.message" = "개발자를 응원해주셔서 감사합니다 💙";
+
+// App Guide
+"settings.app.guide" = "앱 기능 가이드";
+"appguide.title" = "벌컥벌컥 가이드";
+"appguide.subtitle" = "앱의 모든 기능을 알아보세요";
+
+// App Guide - Home
+"appguide.home.title" = "오늘 탭";
+"appguide.home.feature1.title" = "물 섭취 기록";
+"appguide.home.feature1.desc" = "버튼을 탭하여 마신 물의 양을 기록하세요. 실시간으로 진행률이 업데이트됩니다.";
+"appguide.home.feature2.title" = "퀵버튼";
+"appguide.home.feature2.desc" = "자주 마시는 양을 퀵버튼으로 설정하면 한 번의 탭으로 빠르게 기록할 수 있어요.";
+"appguide.home.feature3.title" = "목표 설정";
+"appguide.home.feature3.desc" = "하루 목표 물 섭취량을 설정하세요. 체중 기반 권장량을 참고할 수 있습니다.";
+"appguide.home.feature4.title" = "빼기 모드";
+"appguide.home.feature4.desc" = "잘못 입력했을 때 빼기 모드로 전환하여 섭취량을 수정할 수 있어요.";
+
+// App Guide - History
+"appguide.history.title" = "기록 탭";
+"appguide.history.feature1.title" = "캘린더 보기";
+"appguide.history.feature1.desc" = "월별 달성 현황을 캘린더에서 한눈에 확인하세요. 목표 달성일이 표시됩니다.";
+"appguide.history.feature2.title" = "리스트 보기";
+"appguide.history.feature2.desc" = "모든 기록을 날짜순으로 확인할 수 있어요. 각 날짜의 진행률도 함께 표시됩니다.";
+"appguide.history.feature3.title" = "타임라인 보기";
+"appguide.history.feature3.desc" = "월별로 그룹화된 기록을 타임라인 형태로 볼 수 있어요.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "빠른 기록";
+"appguide.watch.feature1.desc" = "워치에서 바로 물 섭취량을 기록하세요. 150ml, 250ml, 300ml, 500ml 퀵버튼을 제공합니다.";
+"appguide.watch.feature2.title" = "실시간 동기화";
+"appguide.watch.feature2.desc" = "iPhone과 실시간으로 동기화되어 항상 최신 기록을 유지합니다.";
+"appguide.watch.feature3.title" = "컴플리케이션";
+"appguide.watch.feature3.desc" = "워치 페이스에 컴플리케이션을 추가하여 진행률을 바로 확인하세요.";
+
+// App Guide - Widget
+"appguide.widget.title" = "위젯";
+"appguide.widget.feature1.title" = "홈 화면 위젯";
+"appguide.widget.feature1.desc" = "홈 화면에 위젯을 추가하여 진행률을 한눈에 확인하세요. 작은/중간/큰 크기를 지원합니다.";
+"appguide.widget.feature2.title" = "잠금 화면 위젯";
+"appguide.widget.feature2.desc" = "잠금 화면에서도 오늘의 물 섭취량을 확인할 수 있어요.";
+"appguide.widget.feature3.title" = "인터랙티브 버튼";
+"appguide.widget.feature3.desc" = "중간/큰 위젯에서 버튼을 탭하면 앱을 열지 않고도 물을 추가할 수 있어요.";
+
+// App Guide - Notification
+"appguide.notification.title" = "알림";
+"appguide.notification.feature1.title" = "맞춤 알림 간격";
+"appguide.notification.feature1.desc" = "30분, 1시간, 2시간, 3시간 간격으로 알림을 받을 수 있어요.";
+"appguide.notification.feature2.title" = "요일별 설정";
+"appguide.notification.feature2.desc" = "원하는 요일에만 알림을 받도록 설정할 수 있습니다.";
+"appguide.notification.feature3.title" = "동기부여 메시지";
+"appguide.notification.feature3.desc" = "다양한 동기부여 메시지로 물 마시기 습관을 도와드려요.";
+
+// App Guide - Health
+"appguide.health.title" = "건강 앱 연동";
+"appguide.health.feature1.title" = "체중 기반 권장량";
+"appguide.health.feature1.desc" = "건강 앱에서 체중을 가져와 맞춤 권장 섭취량을 계산해요.";
+"appguide.health.feature2.title" = "건강 앱에 저장";
+"appguide.health.feature2.desc" = "기록한 물 섭취량이 건강 앱에 자동으로 저장됩니다.";
