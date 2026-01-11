@@ -30,29 +30,31 @@ struct HistoryView: View {
         backgroundColor: DS.Color.backgroundPrimary
       )
       .ignoresSafeArea()
-      
+
       VStack(spacing: 0) {
         headerSection
-        
+
         modePicker
           .padding(.top, 12)
-        
+
         TabView(selection: $selectedMode) {
           HistoryCalendarTab(
             store: store,
             selectedDate: $selectedDate
           )
           .tag(HistoryViewMode.calendar)
-          
+
           HistoryListTab(store: store)
             .tag(HistoryViewMode.list)
-          
+
           HistoryTimelineTab(store: store)
             .tag(HistoryViewMode.timeline)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
       }
     }
+    .toolbarBackgroundVisibility(.hidden, for: .tabBar)
+    .ignoresSafeArea(edges: .bottom)
     .task {
       await store.send(.viewDidLoad)
       await store.send(.selectDate(Date()))
@@ -181,7 +183,7 @@ struct HistoryListTab: View {
       LazyVStack(spacing: 12) {
         ForEach(Array(sortedRecords.enumerated()), id: \.element.id) { index, record in
           ListRecordRow(record: record)
-          
+
           if (index + 1) % 5 == 0, let ad = nativeAd {
             NativeAdCard(nativeAd: ad)
           }
@@ -191,6 +193,8 @@ struct HistoryListTab: View {
       .padding(.top, 16)
       .padding(.bottom, 100)
     }
+    .scrollContentBackground(.hidden)
+    .ignoresSafeArea(edges: .bottom)
     .onAppear {
       nativeAd = AdMobService.shared.getNativeAd()
     }
@@ -294,6 +298,8 @@ struct HistoryTimelineTab: View {
       .padding(.top, 16)
       .padding(.bottom, 100)
     }
+    .scrollContentBackground(.hidden)
+    .ignoresSafeArea(edges: .bottom)
   }
 }
 

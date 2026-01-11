@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import SnapKit
 
 final class OnboardingViewController: UIViewController {
@@ -171,11 +172,12 @@ final class OnboardingViewController: UIViewController {
   private func transitionToMainApp() {
     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
        let window = windowScene.windows.first else { return }
-    
+
     let serviceProvider = ServiceProvider()
-    let tabBarController = MainTabBarController(serviceProvider: serviceProvider)
-    
-    window.rootViewController = tabBarController
+    let mainTabView = MainTabView(serviceProvider: serviceProvider)
+    let hostingController = UIHostingController(rootView: mainTabView)
+
+    window.rootViewController = hostingController
     window.makeKeyAndVisible()
     UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
   }

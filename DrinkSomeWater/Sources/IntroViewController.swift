@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class IntroViewController: UIViewController {
  
@@ -67,12 +68,13 @@ class IntroViewController: UIViewController {
    if done {
     DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
      let serviceProvider = ServiceProvider()
-     let tabBarController = MainTabBarController(serviceProvider: serviceProvider)
-     tabBarController.modalPresentationStyle = .fullScreen
-     
+     let mainTabView = MainTabView(serviceProvider: serviceProvider)
+     let hostingController = UIHostingController(rootView: mainTabView)
+     hostingController.modalPresentationStyle = .fullScreen
+
      if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
       let window = windowScene.windows.first {
-      window.rootViewController = tabBarController
+      window.rootViewController = hostingController
       window.makeKeyAndVisible()
       UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
      }
