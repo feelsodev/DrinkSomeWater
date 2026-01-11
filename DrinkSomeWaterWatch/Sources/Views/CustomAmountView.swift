@@ -50,7 +50,7 @@ struct CustomAmountView: View {
       } label: {
         HStack {
           Image(systemName: "plus")
-          Text("추가")
+          Text(String(localized: "watch.add"))
         }
         .frame(maxWidth: .infinity)
       }
@@ -58,7 +58,7 @@ struct CustomAmountView: View {
       .tint(.blue)
     }
     .padding()
-    .navigationTitle("직접 입력")
+    .navigationTitle(String(localized: "watch.custom.input"))
     .containerBackground(.blue.gradient.opacity(0.2), for: .navigation)
   }
 }

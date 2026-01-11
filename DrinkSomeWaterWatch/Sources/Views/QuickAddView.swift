@@ -8,7 +8,7 @@ struct QuickAddView: View {
   var body: some View {
     ScrollView {
       VStack(spacing: 8) {
-        Text("물 추가하기")
+        Text(String(localized: "watch.add.water"))
           .font(.headline)
           .padding(.bottom, 4)
 
@@ -25,7 +25,7 @@ struct QuickAddView: View {
         } label: {
           HStack {
             Image(systemName: "slider.horizontal.3")
-            Text("직접 입력")
+            Text(String(localized: "watch.custom.input"))
           }
           .frame(maxWidth: .infinity)
           .padding(.vertical, 8)

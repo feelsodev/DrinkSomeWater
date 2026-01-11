@@ -116,8 +116,8 @@ struct WaterComplication: Widget {
     StaticConfiguration(kind: kind, provider: WaterComplicationProvider()) { entry in
       ComplicationEntryView(entry: entry)
     }
-    .configurationDisplayName("물 섭취량")
-    .description("오늘 마신 물의 양을 확인합니다.")
+    .configurationDisplayName(String(localized: "complication.displayname"))
+    .description(String(localized: "complication.description"))
     .supportedFamilies([
       .accessoryCircular,
       .accessoryRectangular,
