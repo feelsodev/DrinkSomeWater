@@ -120,6 +120,10 @@ final class MockNotificationService: NotificationServiceProtocol, @unchecked Sen
     func requestAuthorization() async -> Bool {
         authorizationResult
     }
+
+    func checkAuthorizationStatus() async -> Bool {
+        authorizationResult
+    }
 }
 
 final class MockWatchConnectivityService: WatchConnectivityServiceProtocol {
