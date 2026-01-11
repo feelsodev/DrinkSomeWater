@@ -11,17 +11,18 @@ struct FSCalendarRepresentable: UIViewRepresentable {
     let calendar = FSCalendar()
     calendar.delegate = context.coordinator
     calendar.dataSource = context.coordinator
+    calendar.locale = Locale.current
     calendar.backgroundColor = UIColor.white.withAlphaComponent(0.95)
     calendar.layer.cornerRadius = 20
     calendar.layer.cornerCurve = .continuous
     calendar.clipsToBounds = true
-    
+
     let appearance = calendar.appearance
     appearance.selectionColor = DS.Color.textPrimary
     appearance.todayColor = DS.Color.primary.withAlphaComponent(0.3)
     appearance.todaySelectionColor = DS.Color.primary
     appearance.headerMinimumDissolvedAlpha = 0.0
-    appearance.headerDateFormat = "yyyy년 M월"
+    appearance.headerDateFormat = NSLocalizedString("MMMM, YYYY", comment: "")
     appearance.headerTitleColor = DS.Color.textPrimary
     appearance.weekdayTextColor = DS.Color.textSecondary
     appearance.headerTitleFont = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -29,9 +30,9 @@ struct FSCalendarRepresentable: UIViewRepresentable {
     appearance.titleFont = UIFont.systemFont(ofSize: 14, weight: .medium)
     appearance.eventDefaultColor = DS.Color.primary
     appearance.eventSelectionColor = DS.Color.primary
-    
+
     calendar.select(Date())
-    
+
     return calendar
   }
   

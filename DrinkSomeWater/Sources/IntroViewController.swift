@@ -91,13 +91,13 @@ class IntroViewController: UIViewController {
 
  private func showForceUpdateAlert(message: String, storeUrl: String) {
   let alert = UIAlertController(
-   title: NSLocalizedString("update.required.title", value: "업데이트 필요", comment: ""),
+   title: String(localized: "update.required.title"),
    message: message,
    preferredStyle: .alert
   )
 
   alert.addAction(UIAlertAction(
-   title: NSLocalizedString("update.now", value: "업데이트", comment: ""),
+   title: String(localized: "update.now"),
    style: .default
   ) { [weak self] _ in
    self?.openAppStore(urlString: storeUrl)
@@ -109,20 +109,20 @@ class IntroViewController: UIViewController {
 
  private func showOptionalUpdateAlert(message: String, storeUrl: String) {
   let alert = UIAlertController(
-   title: NSLocalizedString("update.available.title", value: "업데이트 안내", comment: ""),
+   title: String(localized: "update.available.title"),
    message: message,
    preferredStyle: .alert
   )
 
   alert.addAction(UIAlertAction(
-   title: NSLocalizedString("update.later", value: "나중에", comment: ""),
+   title: String(localized: "update.later"),
    style: .cancel
   ) { [weak self] _ in
    self?.navigateToMain()
   })
 
   alert.addAction(UIAlertAction(
-   title: NSLocalizedString("update.now", value: "업데이트", comment: ""),
+   title: String(localized: "update.now"),
    style: .default
   ) { [weak self] _ in
    self?.openAppStore(urlString: storeUrl)

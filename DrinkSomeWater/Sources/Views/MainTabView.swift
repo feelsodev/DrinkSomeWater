@@ -12,15 +12,15 @@ struct MainTabView: View {
 
   var body: some View {
     TabView {
-      Tab("오늘", systemImage: "drop.fill") {
+      Tab(String(localized: "tab.today"), systemImage: "drop.fill") {
         HomeView(store: HomeStore(provider: serviceProvider))
       }
 
-      Tab("기록", systemImage: "calendar") {
+      Tab(String(localized: "tab.history"), systemImage: "calendar") {
         HistoryView(store: HistoryStore(provider: serviceProvider))
       }
 
-      Tab("설정", systemImage: "gearshape") {
+      Tab(String(localized: "tab.settings"), systemImage: "gearshape") {
         SettingsViewControllerRepresentable(store: SettingsStore(provider: serviceProvider))
           .ignoresSafeArea()
       }

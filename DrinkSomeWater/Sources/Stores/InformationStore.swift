@@ -38,8 +38,8 @@ final class InformationStore {
     case let .itemSelect(row):
       if row == 2 {
         await provider.alertService.show(
-          title: "문의",
-          message: "feelsodev@gmail.com 으로 문의 바랍니다."
+          title: String(localized: "contact.title"),
+          message: String(localized: "contact.message")
         )
       }
     }

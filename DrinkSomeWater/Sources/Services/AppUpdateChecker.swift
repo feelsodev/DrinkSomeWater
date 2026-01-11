@@ -35,11 +35,7 @@ final class AppUpdateChecker {
     }
 
     if currentVersion < minimumVersion {
-      let defaultMessage = NSLocalizedString(
-        "update.force.message",
-        value: "새로운 버전이 출시되었습니다. 계속 사용하려면 업데이트가 필요합니다.",
-        comment: "Force update message"
-      )
+      let defaultMessage = String(localized: "update.required.message")
       return .force(
         message: config.forceUpdateMessage ?? defaultMessage,
         storeUrl: config.appStoreUrl
@@ -47,11 +43,7 @@ final class AppUpdateChecker {
     }
 
     if currentVersion < latestVersion {
-      let defaultMessage = NSLocalizedString(
-        "update.optional.message",
-        value: "새로운 버전이 출시되었습니다. 지금 업데이트하시겠습니까?",
-        comment: "Optional update message"
-      )
+      let defaultMessage = String(localized: "update.available.message")
       return .optional(
         message: config.optionalUpdateMessage ?? defaultMessage,
         storeUrl: config.appStoreUrl
@@ -78,18 +70,18 @@ final class AppUpdateChecker {
 
   private func showOptionalUpdateAlert(on viewController: UIViewController, message: String, storeUrl: String) {
     let alert = UIAlertController(
-      title: NSLocalizedString("update.available.title", value: "업데이트 안내", comment: "Update available title"),
+      title: String(localized: "update.available.title"),
       message: message,
       preferredStyle: .alert
     )
 
     alert.addAction(UIAlertAction(
-      title: NSLocalizedString("update.later", value: "나중에", comment: "Later button"),
+      title: String(localized: "update.later"),
       style: .cancel
     ))
 
     alert.addAction(UIAlertAction(
-      title: NSLocalizedString("update.now", value: "업데이트", comment: "Update button"),
+      title: String(localized: "update.now"),
       style: .default
     ) { _ in
       self.openAppStore(urlString: storeUrl)
@@ -100,13 +92,13 @@ final class AppUpdateChecker {
 
   private func showForceUpdateAlert(on viewController: UIViewController, message: String, storeUrl: String) {
     let alert = UIAlertController(
-      title: NSLocalizedString("update.required.title", value: "업데이트 필요", comment: "Update required title"),
+      title: String(localized: "update.required.title"),
       message: message,
       preferredStyle: .alert
     )
 
     alert.addAction(UIAlertAction(
-      title: NSLocalizedString("update.now", value: "업데이트", comment: "Update button"),
+      title: String(localized: "update.now"),
       style: .default
     ) { _ in
       self.openAppStore(urlString: storeUrl)

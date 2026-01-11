@@ -27,7 +27,7 @@ final class AlertService: BaseService, AlertServiceProtocol {
     
     await withCheckedContinuation { continuation in
       let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-      let alertAction = UIAlertAction(title: "확인", style: .default) { _ in
+      let alertAction = UIAlertAction(title: String(localized: "common.confirm"), style: .default) { _ in
         continuation.resume()
       }
       alert.addAction(alertAction)
