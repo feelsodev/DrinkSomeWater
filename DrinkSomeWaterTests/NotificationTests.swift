@@ -1,4 +1,5 @@
 import Testing
+import Foundation
 @testable import DrinkSomeWater
 
 @Suite("NotificationTime")
@@ -131,6 +132,44 @@ final class MockWatchConnectivityService: WatchConnectivityServiceProtocol {
     func syncToWatch(todayWater: Int, goal: Int) {}
 }
 
+final class MockHealthKitService: HealthKitServiceProtocol {
+    var isAvailable: Bool { false }
+    func requestAuthorization() async -> Bool { false }
+    func fetchWeight() async -> Double? { nil }
+    func saveWaterIntake(_ ml: Double, date: Date) async -> Bool { false }
+    func fetchTodayWaterIntake() async -> Double { 0 }
+}
+
+final class MockUserDefaultsService: UserDefaultsServiceProtocol {
+    private var storage: [String: Any] = [:]
+
+    func value<T>(forkey key: UserDefaultsKey<T>) -> T? {
+        storage[key.key] as? T
+    }
+
+    func set<T>(value: T?, forkey key: UserDefaultsKey<T>) {
+        if let value = value {
+            storage[key.key] = value
+        } else {
+            storage.removeValue(forKey: key.key)
+        }
+    }
+}
+
+final class MockWaterService: WaterServiceProtocol {
+    func fetchWater() async -> [WaterRecord] { [] }
+    func fetchGoal() async -> Int { 2000 }
+    func saveWater(_ waterRecord: [WaterRecord]) async {}
+    func updateWater(by ml: Float) async -> [WaterRecord] { [] }
+    func updateGoal(to ml: Int) async -> Int { ml }
+    func resetTodayWater() async -> [WaterRecord] { [] }
+}
+
+final class MockAlertService: AlertServiceProtocol {
+    @MainActor
+    func show(title: String?, message: String?) async {}
+}
+
 final class MockServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
     let userDefaultsService: UserDefaultsServiceProtocol
     let waterService: WaterServiceProtocol
@@ -140,12 +179,11 @@ final class MockServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
     let watchConnectivityService: WatchConnectivityServiceProtocol
 
     init(notificationService: NotificationServiceProtocol = MockNotificationService()) {
-        let realProvider = ServiceProvider()
-        self.userDefaultsService = UserDefaultsService(provider: realProvider)
-        self.waterService = WaterService(provider: realProvider)
-        self.alertService = AlertService(provider: realProvider)
+        self.userDefaultsService = MockUserDefaultsService()
+        self.waterService = MockWaterService()
+        self.alertService = MockAlertService()
         self.notificationService = notificationService
-        self.healthKitService = HealthKitService(provider: realProvider)
+        self.healthKitService = MockHealthKitService()
         self.watchConnectivityService = MockWatchConnectivityService()
     }
 }
