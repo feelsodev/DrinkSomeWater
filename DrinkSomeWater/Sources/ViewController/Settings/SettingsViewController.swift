@@ -145,7 +145,7 @@ final class SettingsViewController: BaseViewController {
     tableView.snp.makeConstraints {
       $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
       $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+      $0.bottom.equalToSuperview()
     }
   }
   
