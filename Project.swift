@@ -135,6 +135,7 @@ let project = Project(
                 .external(name: "SnapKit"),
                 .external(name: "FSCalendar"),
                 .external(name: "GoogleMobileAds"),
+                .package(product: "FirebaseRemoteConfig"),
             ],
             settings: .settings(
                 base: [

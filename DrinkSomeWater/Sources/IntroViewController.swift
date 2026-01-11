@@ -54,31 +54,101 @@ class IntroViewController: UIViewController {
  
  
  // MARK: - Animate
- 
+
  private func animate() {
   self.imageView.snp.remakeConstraints {
    $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
    $0.centerX.equalToSuperview()
    $0.width.height.equalTo(self.view.frame.height / 8)
   }
-  
+
   UIView.animate(withDuration: 1.2, delay: 0.2, options: .curveEaseInOut) {
    self.view.layoutIfNeeded()
   } completion: { done in
    if done {
-    DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
-     let serviceProvider = ServiceProvider()
-     let mainTabView = MainTabView(serviceProvider: serviceProvider)
-     let hostingController = UIHostingController(rootView: mainTabView)
-     hostingController.modalPresentationStyle = .fullScreen
-
-     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-      let window = windowScene.windows.first {
-      window.rootViewController = hostingController
-      window.makeKeyAndVisible()
-      UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
-     }
+    Task {
+     await self.checkUpdateAndProceed()
     }
+   }
+  }
+ }
+
+ private func checkUpdateAndProceed() async {
+  let updateChecker = AppUpdateChecker()
+  let updateType = await updateChecker.checkForUpdate()
+
+  switch updateType {
+  case .force(let message, let storeUrl):
+   showForceUpdateAlert(message: message, storeUrl: storeUrl)
+
+  case .optional(let message, let storeUrl):
+   showOptionalUpdateAlert(message: message, storeUrl: storeUrl)
+
+  case .none:
+   navigateToMain()
+  }
+ }
+
+ private func showForceUpdateAlert(message: String, storeUrl: String) {
+  let alert = UIAlertController(
+   title: NSLocalizedString("update.required.title", value: "업데이트 필요", comment: ""),
+   message: message,
+   preferredStyle: .alert
+  )
+
+  alert.addAction(UIAlertAction(
+   title: NSLocalizedString("update.now", value: "업데이트", comment: ""),
+   style: .default
+  ) { [weak self] _ in
+   self?.openAppStore(urlString: storeUrl)
+   self?.showForceUpdateAlert(message: message, storeUrl: storeUrl)
+  })
+
+  present(alert, animated: true)
+ }
+
+ private func showOptionalUpdateAlert(message: String, storeUrl: String) {
+  let alert = UIAlertController(
+   title: NSLocalizedString("update.available.title", value: "업데이트 안내", comment: ""),
+   message: message,
+   preferredStyle: .alert
+  )
+
+  alert.addAction(UIAlertAction(
+   title: NSLocalizedString("update.later", value: "나중에", comment: ""),
+   style: .cancel
+  ) { [weak self] _ in
+   self?.navigateToMain()
+  })
+
+  alert.addAction(UIAlertAction(
+   title: NSLocalizedString("update.now", value: "업데이트", comment: ""),
+   style: .default
+  ) { [weak self] _ in
+   self?.openAppStore(urlString: storeUrl)
+   self?.navigateToMain()
+  })
+
+  present(alert, animated: true)
+ }
+
+ private func openAppStore(urlString: String) {
+  guard let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) else { return }
+  UIApplication.shared.open(url)
+ }
+
+ private func navigateToMain() {
+  DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+   let serviceProvider = ServiceProvider()
+   let mainTabView = MainTabView(serviceProvider: serviceProvider)
+   let hostingController = UIHostingController(rootView: mainTabView)
+   hostingController.modalPresentationStyle = .fullScreen
+
+   if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+    let window = windowScene.windows.first {
+    window.rootViewController = hostingController
+    window.makeKeyAndVisible()
+    UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
    }
   }
  }
