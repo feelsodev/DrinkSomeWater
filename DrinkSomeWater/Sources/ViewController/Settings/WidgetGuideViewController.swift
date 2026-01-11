@@ -16,7 +16,7 @@ final class WidgetGuideViewController: UIViewController {
   
   private lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "Widget Setup Guide"
+    label.text = NSLocalizedString("widget.guide.title", comment: "")
     label.font = .systemFont(ofSize: 24, weight: .bold)
     label.textAlignment = .center
     return label
@@ -33,7 +33,7 @@ final class WidgetGuideViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    title = "Widget Guide"
+    title = NSLocalizedString("widget.guide.nav.title", comment: "")
     setupUI()
     setupSteps()
   }
@@ -72,27 +72,27 @@ final class WidgetGuideViewController: UIViewController {
   
   private func setupSteps() {
     let steps: [(String, String, String)] = [
-      ("1", "Long press on Home Screen", "Press and hold on an empty area of your Home Screen until the apps start to jiggle."),
-      ("2", "Tap the + button", "Tap the \"+\" button in the top left corner of the screen."),
-      ("3", "Search for Gulp", "In the widget gallery, search for \"Gulp\" or \"Water\"."),
-      ("4", "Choose widget size", "Select your preferred widget size:\n• Small: Shows water intake and progress\n• Medium: Includes quick add buttons"),
-      ("5", "Add to Home Screen", "Tap \"Add Widget\" and position it where you'd like.")
+      ("1", NSLocalizedString("widget.guide.step1.title", comment: ""), NSLocalizedString("widget.guide.step1.description", comment: "")),
+      ("2", NSLocalizedString("widget.guide.step2.title", comment: ""), NSLocalizedString("widget.guide.step2.description", comment: "")),
+      ("3", NSLocalizedString("widget.guide.step3.title", comment: ""), NSLocalizedString("widget.guide.step3.description", comment: "")),
+      ("4", NSLocalizedString("widget.guide.step4.title", comment: ""), NSLocalizedString("widget.guide.step4.description", comment: "")),
+      ("5", NSLocalizedString("widget.guide.step5.title", comment: ""), NSLocalizedString("widget.guide.step5.description", comment: ""))
     ]
-    
+
     for step in steps {
       let stepView = createStepView(number: step.0, title: step.1, description: step.2)
       stepsStackView.addArrangedSubview(stepView)
     }
-    
-    let lockScreenSection = createSectionHeader("Lock Screen Widget")
+
+    let lockScreenSection = createSectionHeader(NSLocalizedString("widget.guide.lockscreen.header", comment: ""))
     stepsStackView.addArrangedSubview(lockScreenSection)
-    
+
     let lockScreenSteps: [(String, String, String)] = [
-      ("1", "Long press on Lock Screen", "Press and hold on your Lock Screen and tap \"Customize\"."),
-      ("2", "Select widget area", "Tap the widget area above or below the time."),
-      ("3", "Add Gulp widget", "Search for \"Gulp\" and select the widget style you prefer.")
+      ("1", NSLocalizedString("widget.guide.lockscreen.step1.title", comment: ""), NSLocalizedString("widget.guide.lockscreen.step1.description", comment: "")),
+      ("2", NSLocalizedString("widget.guide.lockscreen.step2.title", comment: ""), NSLocalizedString("widget.guide.lockscreen.step2.description", comment: "")),
+      ("3", NSLocalizedString("widget.guide.lockscreen.step3.title", comment: ""), NSLocalizedString("widget.guide.lockscreen.step3.description", comment: ""))
     ]
-    
+
     for step in lockScreenSteps {
       let stepView = createStepView(number: step.0, title: step.1, description: step.2)
       stepsStackView.addArrangedSubview(stepView)

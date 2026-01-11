@@ -50,6 +50,28 @@
 // Widget
 "widget.today" = "Today";
 "widget.guide.title" = "Widget Setup Guide";
+"widget.guide.nav.title" = "Widget Guide";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Long press on Home Screen";
+"widget.guide.step1.description" = "Press and hold on an empty area of your Home Screen until the apps start to jiggle.";
+"widget.guide.step2.title" = "Tap the + button";
+"widget.guide.step2.description" = "Tap the \"+\" button in the top left corner of the screen.";
+"widget.guide.step3.title" = "Search for Gulp";
+"widget.guide.step3.description" = "In the widget gallery, search for \"Gulp\" or \"Water\".";
+"widget.guide.step4.title" = "Choose widget size";
+"widget.guide.step4.description" = "Select your preferred widget size:\n• Small: Shows water intake and progress\n• Medium: Includes quick add buttons";
+"widget.guide.step5.title" = "Add to Home Screen";
+"widget.guide.step5.description" = "Tap \"Add Widget\" and position it where you'd like.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Lock Screen Widget";
+"widget.guide.lockscreen.step1.title" = "Long press on Lock Screen";
+"widget.guide.lockscreen.step1.description" = "Press and hold on your Lock Screen and tap \"Customize\".";
+"widget.guide.lockscreen.step2.title" = "Select widget area";
+"widget.guide.lockscreen.step2.description" = "Tap the widget area above or below the time.";
+"widget.guide.lockscreen.step3.title" = "Add Gulp widget";
+"widget.guide.lockscreen.step3.description" = "Search for \"Gulp\" and select the widget style you prefer.";
 
 // Settings
 "settings.title" = "Settings";
