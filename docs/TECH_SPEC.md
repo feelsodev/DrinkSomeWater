@@ -1,29 +1,33 @@
 # DrinkSomeWater Technical Specification
 
-> UIKit + @Observable + async/await 아키텍처
+> SwiftUI + UIKit + @Observable + async/await 아키텍처
 
 ## 1. Overview
 
 ### 1.1 Project Summary
 - **App Name**: 벌컥벌컥 (Gulp) - 물 섭취 추적 iOS 앱
-- **Architecture**: UIKit + @Observable Store + async/await
+- **Architecture**: SwiftUI + UIKit + @Observable Store + async/await
 - **Min iOS**: iOS 26+
 - **Swift**: Swift 6
+- **UI Framework**: SwiftUI (Home, History), UIKit (Settings, Onboarding)
 
 ### 1.2 Core Features
 | Feature | Description |
 |---------|-------------|
 | 물 섭취 기록 | 퀵버튼으로 간편하게 물 섭취량 기록 |
-| 목표량 설정 | 일일 목표량 커스텀 설정 |
-| 기록 조회 | 캘린더로 달성 이력 확인 |
-| 퀵버튼 커스텀 | 자주 마시는 용량 설정 |
+| 물 빼기/초기화 | 잘못 기록한 양 수정 및 하루 기록 리셋 |
+| 목표량 설정 | 일일 목표량 커스텀 설정 (1,000~4,000ml) |
+| 기록 조회 | 캘린더/리스트/타임라인 3가지 뷰 모드 |
+| 퀵버튼 커스텀 | 자주 마시는 용량 설정 (추가/삭제/정렬) |
 | HealthKit 연동 | Apple 건강앱과 물 섭취량/체중 동기화 |
 | 개인화 권장량 | 체중 기반 일일 권장 물 섭취량 계산 |
-| 랜덤 알림 문구 | 10가지 동기부여 문구 랜덤 발송 |
-| 🆕 홈 화면 위젯 | Small/Medium 크기 위젯으로 빠른 확인 |
-| 🆕 잠금화면 위젯 | Circular/Rectangular 잠금화면 위젯 |
-| 🆕 인터랙티브 위젯 | 위젯에서 바로 물 추가 (iOS 17+) |
-| 🆕 온보딩 플로우 | 최초 실행 시 앱 소개 및 설정 가이드 |
+| 랜덤 알림 문구 | 10가지 로컬라이징된 동기부여 문구 |
+| 홈 화면 위젯 | Small/Medium/Large 크기 위젯 |
+| 잠금화면 위젯 | Circular/Rectangular/Inline 위젯 |
+| 인터랙티브 위젯 | AppIntent로 위젯에서 바로 물 추가 |
+| 온보딩 플로우 | 5단계 앱 소개 및 설정 가이드 |
+| Watch 앱 | 손목에서 물 섭취 기록 및 컴플리케이션 |
+| Native Ad | 기록 리스트에 네이티브 광고 표시 |
 
 ---
 
@@ -87,15 +91,24 @@ final class HomeStore {
     enum Action {
         case refresh
         case refreshGoal
+        case refreshQuickButtons
         case addWater(Int)
+        case subtractWater(Int)
+        case resetTodayWater
+        case checkNotificationPermission
+        case dismissNotificationBanner
     }
-    
+
     let provider: ServiceProviderProtocol
-    
+
     var total: Float = 0
     var ml: Float = 0
     var progress: Float { total == 0 ? 0 : ml / total }
-    
+    var remainingMl: Int { max(0, Int(total - ml)) }
+    var remainingCups: Int { remainingMl / 250 }
+    var quickButtons: [Int] = [100, 200, 300, 500]
+    var showNotificationBanner: Bool = false
+
     func send(_ action: Action) async {
         switch action {
         case .refresh:
@@ -103,39 +116,83 @@ final class HomeStore {
             if let todayRecord = records.first(where: { $0.date.checkToday }) {
                 ml = Float(todayRecord.value)
             }
-            
+
         case .refreshGoal:
             let goal = await provider.waterService.fetchGoal()
             total = Float(goal)
-            
+
         case .addWater(let amount):
             _ = await provider.waterService.updateWater(by: Float(amount))
             await send(.refresh)
+            Analytics.shared.logWaterIntake(amountMl: amount, method: .quickButton)
+
+        case .subtractWater(let amount):
+            let newValue = max(0, Int(ml) - amount)
+            let diff = Int(ml) - newValue
+            if diff > 0 {
+                _ = await provider.waterService.updateWater(by: Float(-diff))
+                await send(.refresh)
+            }
+
+        case .resetTodayWater:
+            _ = await provider.waterService.resetTodayWater()
+            await send(.refresh)
+
+        // ... 기타 액션
         }
     }
 }
 ```
 
-### 2.4 ViewController Binding
+### 2.4 SwiftUI View Binding
 
 ```swift
-final class HomeViewController: BaseViewController {
-    private let store: HomeStore
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        observation = startObservation { [weak self] in self?.render() }
-        
-        Task {
+struct HomeView: View {
+    @Bindable var store: HomeStore
+    @State private var showGoalSetting = false
+
+    var body: some View {
+        VStack {
+            Text("\(Int(store.ml))ml")
+                .font(.system(size: 48, weight: .bold))
+
+            Text(String(format: "목표: %@ml", "\(Int(store.total))"))
+
+            // 퀵버튼
+            ForEach(store.quickButtons, id: \.self) { amount in
+                Button("+\(amount)ml") {
+                    Task { await store.send(.addWater(amount)) }
+                }
+            }
+        }
+        .task {
             await store.send(.refreshGoal)
             await store.send(.refresh)
         }
+        .sheet(isPresented: $showGoalSetting) {
+            GoalSettingView(...)
+        }
     }
-    
+}
+```
+
+### 2.5 UIKit ViewController (Settings)
+
+```swift
+final class SettingsViewController: BaseViewController {
+    private let store: SettingsStore
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        observation = startObservation { [weak self] in self?.render() }
+
+        Task {
+            await store.send(.loadGoal)
+        }
+    }
+
     override func render() {
-        let progress = store.progress
-        bottle.setProgress(progress)
-        waterCapacity.text = "\(Int(store.ml))ml"
+        // UIKit 기반 설정 화면 렌더링
     }
 }
 ```
@@ -149,6 +206,10 @@ DrinkSomeWater/Sources/
 ├── AppDelegate.swift
 ├── SceneDelegate.swift
 ├── IntroViewController.swift
+├── Environment.swift                    # 환경 설정
+│
+├── DesignSystem/
+│   └── DesignTokens.swift              # DS 디자인 토큰 (Color, Font, Size)
 │
 ├── Extensions-Utillities/
 │   ├── Date+Ext.swift
@@ -160,21 +221,26 @@ DrinkSomeWater/Sources/
 │   ├── Info.swift
 │   ├── ModelType.swift
 │   ├── NotificationSettings.swift
-│   ├── UserProfile.swift              # 🆕 사용자 프로필 (체중, 권장량)
-│   └── WaterRecord.swift
+│   ├── UserProfile.swift               # 사용자 프로필 (체중, 권장량)
+│   ├── WaterRecord.swift
+│   ├── AppVersion.swift                # 앱 버전 모델
+│   └── AppUpdateConfig.swift           # 업데이트 설정
 │
 ├── Services/
 │   ├── AlertService.swift
 │   ├── BaseService.swift
-│   ├── HealthKitService.swift         # 🆕 HealthKit 연동
+│   ├── HealthKitService.swift          # HealthKit 연동
 │   ├── NotificationService.swift
 │   ├── ServiceProvider.swift
 │   ├── UserDefaultsService.swift
-│   └── WaterService.swift
+│   ├── WaterService.swift
+│   ├── AdMobService.swift              # 🆕 AdMob 광고 서비스
+│   ├── WatchConnectivityService.swift  # 🆕 Watch 연동 서비스
+│   ├── RemoteConfigService.swift       # 🆕 원격 설정 서비스
+│   └── AppUpdateChecker.swift          # 🆕 앱 업데이트 체커
 │
 ├── StaticComponent/
-│   ├── Licenses.swift
-│   ├── NotificationMessages.swift     # 🆕 알림 문구 상수 (10개)
+│   ├── NotificationMessages.swift      # 알림 문구 (로컬라이징)
 │   └── WaterImage.swift
 │
 ├── Stores/
@@ -182,13 +248,14 @@ DrinkSomeWater/Sources/
 │   ├── HomeStore.swift
 │   ├── HistoryStore.swift
 │   ├── NotificationStore.swift
-│   ├── ProfileStore.swift             # 🆕 프로필/HealthKit 연동
+│   ├── ProfileStore.swift              # 프로필/HealthKit 연동
 │   ├── SettingsStore.swift
+│   ├── OnboardingStore.swift           # 온보딩 상태 관리
 │   ├── DrinkStore.swift (legacy)
 │   ├── CalendarStore.swift (legacy)
 │   ├── MainStore.swift (legacy)
 │   ├── SettingStore.swift (legacy)
-│   └── InformationStore.swift (legacy)
+│   └── InformationStore.swift (legacy) # 정보 화면 Store
 │
 ├── Types/
 │   └── UserDefaultsKey.swift
@@ -196,104 +263,149 @@ DrinkSomeWater/Sources/
 ├── Vendor/
 │   └── WaveAnimationView.swift
 │
+├── Views/                              # 🆕 SwiftUI Views
+│   ├── MainTabView.swift               # SwiftUI TabView (메인)
+│   ├── HomeView.swift                  # 홈 화면 (SwiftUI)
+│   ├── HistoryView.swift               # 기록 화면 (SwiftUI)
+│   └── AppGuideView.swift              # 앱 가이드 뷰
+│
 ├── ViewComponent/
 │   ├── Beaker.swift
 │   ├── CalendarDescriptView.swift
 │   ├── IntrinsicTableView.swift
-│   └── WaterRecordResultView.swift
+│   ├── WaterRecordResultView.swift
+│   ├── FSCalendarRepresentable.swift   # 🆕 FSCalendar SwiftUI 래퍼
+│   ├── WaveAnimationViewRepresentable.swift  # 🆕 Wave 애니메이션 래퍼
+│   ├── NativeAdView.swift              # 🆕 네이티브 광고 뷰
+│   └── NativeAdTableViewCell.swift     # 🆕 광고 테이블 셀
 │
 └── ViewController/
     ├── BaseComponent/
     │   ├── BaseTableViewCell.swift
     │   └── BaseViewController.swift
     │
-    ├── TabBar/
-    │   └── MainTabBarController.swift
+    ├── Onboarding/
+    │   ├── OnboardingViewController.swift
+    │   └── OnboardingPageViewController.swift
     │
-    ├── Home/
-    │   └── HomeViewController.swift
-    │
-    ├── History/
-    │   └── HistoryViewController.swift
-    │
-├── Settings/
-│   ├── SettingsViewController.swift
-│   ├── SettingsCell.swift
-│   ├── NotificationSettingViewController.swift
-│   └── ProfileSettingViewController.swift  # 🆕 프로필 설정 화면
-    │
-    ├── Common/
-    │   ├── GoalSettingViewController.swift
-    │   ├── DrinkInputViewController.swift
-    │   └── QuickButtonSettingViewController.swift
-    │
-    └── Licenses/
-        ├── LicensesViewController.swift
-        ├── LicenseCell.swift
-        └── LicenseDetailViewController.swift
+    └── Settings/
+        ├── SettingsViewController.swift
+        ├── SettingsCell.swift
+        ├── NotificationSettingViewController.swift
+        ├── ProfileSettingViewController.swift
+        └── WidgetGuideViewController.swift  # 🆕 위젯 가이드
+
+Shared/
+└── WidgetDataManager.swift             # 메인앱 + 위젯 공유 데이터
+
+DrinkSomeWaterWidget/
+├── DrinkSomeWaterWidget.swift          # Widget Entry Point
+├── WaterEntry.swift                    # Timeline Entry
+├── WaterProvider.swift                 # Timeline Provider
+├── Views/
+│   ├── SmallWidgetView.swift           # 2x2 위젯
+│   ├── MediumWidgetView.swift          # 4x2 위젯 + 버튼
+│   ├── LargeWidgetView.swift           # 4x4 위젯 + 동기부여 메시지
+│   └── LockScreenWidgetView.swift      # 잠금화면 위젯
+└── Intents/
+    └── AddWaterIntent.swift            # AppIntent
+
+DrinkSomeWaterWatch/
+└── Sources/
+    ├── DrinkSomeWaterWatchApp.swift
+    ├── Stores/
+    │   └── WatchStore.swift
+    ├── Views/
+    │   ├── ContentView.swift
+    │   ├── HomeView.swift
+    │   ├── QuickAddView.swift
+    │   └── CustomAmountView.swift
+    └── Complications/
+        ├── DrinkSomeWaterWidgetBundle.swift  # 위젯 번들
+        └── WaterComplication.swift           # 컴플리케이션 뷰
 ```
 
 ---
 
 ## 4. Screen Specifications
 
-### 4.1 Home (오늘)
+### 4.1 Home (오늘) - SwiftUI
 
 ```
 ┌────────────────────────────────────────┐
-│                            ┌────┐      │
-│   오늘의 물 섭취           │ 🎯 │      │ ← 목표량 퀵 설정
-│                            └────┘      │
+│   [알림 배너 - 권한 없을 시 표시]       │
+│   🔔 알림을 켜서 물 마시기 알림을...    │
+│                                        │
+│            1,200ml                     │ ← 현재 섭취량
+│        ┌──────────────┐                │
+│        │ 목표: 2000ml ✏️│               │ ← 탭하면 목표 설정
+│        └──────────────┘                │
+│                                        │
+│   ┌────────────────────────────────┐   │
+│   │  💧 2잔 더 마시면 목표 달성!   │   │ ← 남은 컵 수 표시
+│   └────────────────────────────────┘   │
 │                                        │
 │         ┌──────────────┐               │
 │         │    물병      │               │
-│         │  Wave 애니   │  60%          │
+│         │  Wave 애니   │               │
 │         └──────────────┘               │
 │                                        │
-│      1,200ml / 2,000ml                 │
+│   빠른 추가 ──────── [+/-] [편집]      │ ← 추가/빼기 모드 전환
 │                                        │
-│   ┌────────────────────────────────┐   │
-│   │  ☀️ 2잔 더 마시면 목표 달성!   │   │
-│   └────────────────────────────────┘   │
-│                                        │
-│   ┌────────┐ ┌────────┐ ┌────────┐     │
-│   │  +150  │ │  +300  │ │  +500  │     │ ← 기본 퀵버튼
-│   └────────┘ └────────┘ └────────┘     │
-│                                        │
-│   ┌────────┐ ┌────────┐ ┌──────────┐   │
-│   │  +250  │ │  +400  │ │ 직접입력 │   │ ← 커스텀 버튼
-│   └────────┘ └────────┘ └──────────┘   │
+│   ┌────────┐ ┌────────┐                │
+│   │  +100  │ │  +200  │                │ ← 퀵버튼 (커스텀 가능)
+│   └────────┘ └────────┘                │
+│   ┌────────┐ ┌────────┐                │
+│   │  +300  │ │  +500  │                │
+│   └────────┘ └────────┘                │
 │                                        │
 └────────────────────────────────────────┘
 ```
 
+**View**: `HomeView.swift` (SwiftUI)
 **Store**: `HomeStore`
-**Actions**: `refresh`, `refreshGoal`, `addWater(Int)`
+**Actions**: `refresh`, `refreshGoal`, `refreshQuickButtons`, `addWater(Int)`, `subtractWater(Int)`, `resetTodayWater`, `checkNotificationPermission`, `dismissNotificationBanner`
 
-### 4.2 History (기록)
+### 4.2 History (기록) - SwiftUI
 
 ```
 ┌────────────────────────────────────────┐
 │   📅 기록              📊 12일 달성   │
 │                                        │
+│   ┌─────────┬─────────┬─────────┐      │
+│   │ 캘린더  │  리스트  │타임라인 │      │ ← 3가지 뷰 모드
+│   └─────────┴─────────┴─────────┘      │
+│                                        │
+│   [캘린더 모드]                         │
 │   ┌────────────────────────────────┐   │
 │   │        FSCalendar              │   │
 │   │    (달성일 하이라이트)         │   │
 │   └────────────────────────────────┘   │
+│   ● 오늘  ● 선택됨  ● 달성            │ ← 범례
 │                                        │
+│   [리스트 모드]                         │
 │   ┌────────────────────────────────┐   │
-│   │  📌 1월 15일 (수)              │   │
-│   │  목표: 2,000ml  섭취: 2,150ml  │   │
-│   │  달성률: 107% ✅               │   │
+│   │ 15 │ 금요일    ████████░░ 80%  │   │
+│   │ 1월│ 1600/2000ml       ✓      │   │
 │   └────────────────────────────────┘   │
+│   ┌── Native Ad ────────────────────┐  │ ← 5개마다 광고
+│   └────────────────────────────────┘   │
+│                                        │
+│   [타임라인 모드]                       │
+│   2025년 1월                7/15 달성  │
+│   ● 15일 (금) - 1600ml    ✓ 달성      │
+│   │                                    │
+│   ● 14일 (목) - 2100ml    ✓ 달성      │
 │                                        │
 └────────────────────────────────────────┘
 ```
 
+**View**: `HistoryView.swift` (SwiftUI)
 **Store**: `HistoryStore`
 **Actions**: `viewDidLoad`, `selectDate(Date)`
+**State**: `waterRecordList`, `successDates`, `selectedRecord`, `monthlySuccessCount`
 
-### 4.3 Settings (설정)
+### 4.3 Settings (설정) - UIKit
 
 ```
 ┌────────────────────────────────────────┐
@@ -303,14 +415,21 @@ DrinkSomeWater/Sources/
 │   │ 🎯 일일 목표량         2,000ml >│   │
 │                                        │
 │   ─────────── 퀵버튼 ───────────       │
-│   │ ⚡ 퀵버튼 설정       250, 400ml >│   │
+│   │ ⚡ 퀵버튼 설정       100,200... >│   │
 │                                        │
 │   ─────────── 알림 ───────────         │
 │   │ 🔔 물 마시기 알림              >│   │
 │                                        │
+│   ─────────── 건강 ───────────         │
+│   │ 🍎 프로필 설정 (HealthKit)     >│   │
+│                                        │
+│   ─────────── 도움말 ───────────       │
+│   │ 📱 위젯 설정 가이드            >│   │
+│                                        │
 │   ─────────── 지원 ───────────         │
 │   │ ⭐ 앱 리뷰 남기기               │   │
 │   │ 💬 문의하기                     │   │
+│   │ 🎁 개발자 응원하기 (Rewarded)   │   │
 │   │ 📄 오픈소스 라이선스           >│   │
 │                                        │
 │   ─────────── 정보 ───────────         │
@@ -319,16 +438,17 @@ DrinkSomeWater/Sources/
 └────────────────────────────────────────┘
 ```
 
+**View**: `SettingsViewController.swift` (UIKit)
 **Store**: `SettingsStore`
-**Actions**: `loadGoal`, `updateGoal(Int)`, `loadCustomButtons`, `updateCustomButtons([Int])`
+**Actions**: `loadGoal`, `updateGoal(Int)`, `loadQuickButtons`, `updateQuickButtons([Int])`
 
-### 4.4 Bottom Sheets
+### 4.4 Bottom Sheets / Modals
 
-| Sheet | Purpose | Trigger |
-|-------|---------|---------|
-| GoalSettingVC | 목표량 설정 (1,500-4,500ml) | Home 🎯 / Settings |
-| DrinkInputVC | 직접 입력 (30-500ml) | Home 직접입력 버튼 |
-| QuickButtonSettingVC | 퀵버튼 커스텀 | Settings |
+| Sheet | Purpose | Trigger | Type |
+|-------|---------|---------|------|
+| GoalSettingView | 목표량 설정 (1,000-4,000ml) | Home 목표 탭 | SwiftUI Sheet |
+| QuickButtonSettingView | 퀵버튼 커스텀 (추가/삭제/정렬) | Home 편집 버튼 | SwiftUI Sheet |
+| WaterAdjustmentView | 물 빼기/초기화 | Home | SwiftUI Sheet |
 
 ---
 
@@ -342,13 +462,17 @@ let package = Package(
     name: "DrinkSomeWater",
     dependencies: [
         .package(url: "https://github.com/SnapKit/SnapKit", from: "5.7.0"),
-        .package(url: "https://github.com/devxoul/Then", from: "3.0.0"),
-        .package(url: "https://github.com/WenchaoD/FSCalendar", from: "2.8.0"),
+        .package(url: "https://github.com/WenchaoD/FSCalendar", from: "2.8.4"),
+        .package(url: "https://github.com/googleads/swift-package-manager-google-mobile-ads", from: "11.2.0"),
     ]
 )
 ```
 
-### 5.2 Local Vendor
+### 5.2 Internal Modules
+
+- `Analytics` - Firebase Analytics 래퍼 모듈
+
+### 5.3 Local Vendor
 
 - `WaveAnimationView.swift` - 물결 애니메이션 (SPM 미지원으로 로컬 포함)
 
@@ -558,22 +682,27 @@ let recommendedIntake = weight (kg) × 33 (ml)
 
 ## 10. Notification System
 
-### 10.1 Random Message Pool
+### 10.1 Random Message Pool (Localized)
 
 ```swift
 enum NotificationMessages {
+    // 로컬라이징된 알림 문구 (한국어/영어 지원)
     static let messages: [String] = [
-        "물 마실 시간이에요! 💧",
-        "수분 보충 잊지 마세요~ 🌊",
-        "건강한 하루의 시작, 물 한잔! ☀️",
-        "목이 마르기 전에 마셔요 🥤",
-        "오늘도 벌컥벌컥! 💪",
-        "물 한 잔이 피로를 씻어줘요 🧘",
-        "촉촉한 피부의 비결, 물! ✨",
-        "집중력 UP! 물 한 잔 어때요? 🧠",
-        "잠깐! 물 마시고 하세요 🚰",
-        "당신의 몸이 물을 기다려요 🌿"
+        String(localized: "notification.message.1"),  // 물 마실 시간이에요!
+        String(localized: "notification.message.2"),  // 수분 보충 잊지 마세요~
+        String(localized: "notification.message.3"),  // 건강한 하루의 시작, 물 한잔!
+        String(localized: "notification.message.4"),  // 목이 마르기 전에 마셔요
+        String(localized: "notification.message.5"),  // 오늘도 벌컥벌컥!
+        String(localized: "notification.message.6"),  // 물 한 잔이 피로를 씻어줘요
+        String(localized: "notification.message.7"),  // 촉촉한 피부의 비결, 물!
+        String(localized: "notification.message.8"),  // 집중력 UP! 물 한 잔 어때요?
+        String(localized: "notification.message.9"),  // 잠깐! 물 마시고 하세요
+        String(localized: "notification.message.10")  // 당신의 몸이 물을 기다려요
     ]
+
+    static var random: String {
+        messages.randomElement() ?? messages[0]
+    }
 }
 ```
 
@@ -658,19 +787,22 @@ enum NotificationMessages {
 @Observable
 final class ProfileStore {
     enum Action {
-        case loadProfile
+        case load
         case requestHealthKitPermission
-        case syncWeight
+        case syncWeightFromHealthKit
         case updateWeight(Double)
+        case toggleHealthKitWeight(Bool)
         case applyRecommendedGoal
     }
-    
-    var weight: Double = 0           // kg
-    var isHealthKitEnabled: Bool = false
+
+    var profile: UserProfile = .default
+    var isHealthKitAvailable: Bool = false
+    var isHealthKitAuthorized: Bool = false
+
     var recommendedIntake: Int {     // ml
-        Int(weight * 33)
+        profile.recommendedIntake    // weight * 33
     }
-    
+
     func send(_ action: Action) async { ... }
 }
 ```
@@ -691,63 +823,67 @@ final class ProfileStore {
 └─────────────────────────────────────────────────────┘
 ```
 
-### 12.2 Ad Types & Placement
+### 12.2 Ad Types & Placement (현재 구현)
 
-| 광고 유형 | 위치 | 빈도 | UX 영향 |
-|----------|------|------|--------|
-| **Banner** | 홈 탭 하단 | 상시 | 낮음 |
-| **Interstitial** | 물 기록 완료 후 | N회마다 1회 | 중간 |
-| **Rewarded** | 추가 기능 해금 (선택) | 사용자 선택 | 없음 |
+| 광고 유형 | 위치 | 빈도 | UX 영향 | 상태 |
+|----------|------|------|--------|------|
+| **Native Ad** | 기록 탭 리스트 | 5개 기록마다 | 낮음 | ✅ 구현됨 |
+| **Rewarded** | 설정 > 개발자 응원하기 | 사용자 선택 | 없음 | ✅ 구현됨 |
+| Banner | - | - | - | 미구현 |
+| Interstitial | - | - | - | 미구현 |
 
-### 12.3 Recommended Placement
+### 12.3 Native Ad Placement (History List)
 
 ```
 ┌────────────────────────────────────────┐
-│   오늘의 물 섭취           🎯          │
+│   📅 기록              📊 12일 달성   │
 │                                        │
-│         ┌──────────────┐               │
-│         │    물병      │               │
-│         │  Wave 애니   │               │
-│         └──────────────┘               │
+│   ┌────────────────────────────────┐   │
+│   │ 15 │ 금요일    ████████░░ 80%  │   │
+│   └────────────────────────────────┘   │
+│   ┌────────────────────────────────┐   │
+│   │ 14 │ 목요일    ██████████ 100% │   │
+│   └────────────────────────────────┘   │
+│   ... (3개 더)                         │
 │                                        │
-│      1,200ml / 2,000ml                 │
+│   ┌────────────────────────────────┐   │
+│   │    🔲 Native Ad Card            │   │ ← 5개마다 삽입
+│   │    광고 제목 / 설명             │   │
+│   └────────────────────────────────┘   │
 │                                        │
-│   ┌────────┐ ┌────────┐ ┌────────┐     │
-│   │  +150  │ │  +300  │ │  +500  │     │
-│   └────────┘ └────────┘ └────────┘     │
-│                                        │
-│   ┌────────┐ ┌────────┐ ┌──────────┐   │
-│   │  +250  │ │  +400  │ │ 직접입력 │   │
-│   └────────┘ └────────┘ └──────────┘   │
-│                                        │
-│  ┌──────────────────────────────────┐  │
-│  │         🔲 Banner Ad              │  │  ← AdMob Banner
-│  └──────────────────────────────────┘  │
+│   ┌────────────────────────────────┐   │
+│   │ 10 │ 일요일    ████████░░ 75%  │   │
+│   └────────────────────────────────┘   │
 │                                        │
 └────────────────────────────────────────┘
 ```
 
-### 12.4 Interstitial Strategy
+### 12.4 AdMobService
 
-```
-물 기록 카운터 (UserDefaults)
-         │
-         ▼
-    N회째 기록?
-    (예: 5회마다)
-         │
-    ├── Yes → Interstitial 광고 표시 → 카운터 리셋
-    │
-    └── No → 그냥 진행
-```
+```swift
+@MainActor
+final class AdMobService {
+    static let shared = AdMobService()
 
-**권장 빈도**: 5~10회 기록마다 1회 (너무 잦으면 이탈)
+    // Native Ad 프리로드
+    func preloadNativeAds(count: Int)
+    func getNativeAd() -> GADNativeAd?
+
+    // Rewarded Ad
+    func loadRewardedAd()
+    var isRewardedAdReady: Bool
+    func showRewardedAd(from: UIViewController, completion: (Bool) -> Void)
+
+    // Banner (구현 예정)
+    func createBannerView(rootViewController: UIViewController) -> GADBannerView
+}
+```
 
 ### 12.5 Required Configuration
 
 **Tuist/Package.swift**
 ```swift
-.package(url: "https://github.com/googleads/swift-package-manager-google-mobile-ads", from: "11.0.0")
+.package(url: "https://github.com/googleads/swift-package-manager-google-mobile-ads", from: "11.2.0")
 ```
 
 **Info.plist**
@@ -833,14 +969,14 @@ ATTrackingManager.requestTrackingAuthorization { status in
 ### 13.2 App Group Configuration
 
 ```
-App Group ID: group.com.feelso.DrinkSomeWater
+App Group ID: group.com.onceagain.DrinkSomeWater
 ```
 
 **Entitlements** (메인앱 + 위젯 Extension)
 ```xml
 <key>com.apple.security.application-groups</key>
 <array>
-    <string>group.com.feelso.DrinkSomeWater</string>
+    <string>group.com.onceagain.DrinkSomeWater</string>
 </array>
 ```
 
@@ -848,10 +984,12 @@ App Group ID: group.com.feelso.DrinkSomeWater
 
 | Widget | Family | Description |
 |--------|--------|-------------|
-| **Small** | `systemSmall` | 오늘 마신 물/목표량 + 진행률 |
-| **Medium** | `systemMedium` | 진행바 + 인터랙티브 버튼 (+150ml, +300ml) |
+| **Small** | `systemSmall` | 원형 진행률 + 퍼센트 + 섭취량 |
+| **Medium** | `systemMedium` | 진행률 + 인터랙티브 버튼 (+150ml, +300ml) |
+| **Large** | `systemLarge` | 큰 진행률 + 동기부여 메시지 + 버튼 (150/300/500ml) |
 | **Lock Circular** | `accessoryCircular` | 진행률 원형 표시 |
 | **Lock Rectangular** | `accessoryRectangular` | 물 섭취량/목표량 텍스트 |
+| **Lock Inline** | `accessoryInline` | 텍스트 형태 (섭취량/목표량) |
 
 ### 13.4 Small Widget Design
 
@@ -876,7 +1014,26 @@ App Group ID: group.com.feelso.DrinkSomeWater
 
 - **[+150], [+300]**: 탭하면 AppIntent로 물 추가
 
-### 13.6 Lock Screen Widget Design
+### 13.6 Large Widget Design (Interactive)
+
+```
+┌──────────────────────────────────────────┐
+│  💧 Hydration Tracker                     │
+│                                          │
+│    ┌────────────┐    현재: 1,200ml       │
+│    │   60%     │    ─────────────        │
+│    │  ◯◯◯◯    │    목표: 2,000ml        │
+│    └────────────┘                        │
+│                                          │
+│       "조금만 더 마시면 목표 달성!"       │ ← 동기부여 메시지
+│                                          │
+│  ┌────────┐ ┌────────┐ ┌────────┐        │
+│  │  +150  │ │  +300  │ │  +500  │        │ ← 인터랙티브 버튼
+│  └────────┘ └────────┘ └────────┘        │
+└──────────────────────────────────────────┘
+```
+
+### 13.7 Lock Screen Widget Design
 
 ```
 Circular:        Rectangular:
@@ -937,23 +1094,23 @@ struct AddWaterIntent: AppIntent {
 }
 ```
 
-### 13.9 File Structure
+### 13.10 File Structure
 
 ```
 DrinkSomeWaterWidget/
-├── DrinkSomeWaterWidget.swift          # Widget Entry Point
+├── DrinkSomeWaterWidget.swift          # Widget Entry Point + Bundle
 ├── WaterEntry.swift                     # Timeline Entry
 ├── WaterProvider.swift                  # Timeline Provider
 ├── Views/
-│   ├── SmallWidgetView.swift           # 2x2 위젯
-│   ├── MediumWidgetView.swift          # 4x2 위젯 + 버튼
-│   └── LockScreenWidgetView.swift      # 잠금화면 위젯
-├── Intents/
-│   └── AddWaterIntent.swift            # AppIntent
-└── DrinkSomeWaterWidget.entitlements   # App Group
+│   ├── SmallWidgetView.swift           # 2x2 위젯 (원형 진행률)
+│   ├── MediumWidgetView.swift          # 4x2 위젯 + 버튼 (150/300ml)
+│   ├── LargeWidgetView.swift           # 4x4 위젯 + 동기부여 + 버튼 (150/300/500ml)
+│   └── LockScreenWidgetView.swift      # 잠금화면 위젯 (Circular/Rectangular/Inline)
+└── Intents/
+    └── AddWaterIntent.swift            # AppIntent
 
 Shared/
-└── WidgetDataManager.swift             # 메인앱 + 위젯 공유
+└── WidgetDataManager.swift             # 메인앱 + 위젯 공유 (App Group)
 ```
 
 ---
@@ -1055,6 +1212,7 @@ final class OnboardingStore {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.3.x | 2025-01 | SwiftUI 마이그레이션 (Home/History), Large 위젯, Native Ad, 물 빼기/초기화, 로컬라이징 |
 | 2.2.0 | 2025-01 | 홈/잠금화면 위젯, 인터랙티브 위젯, 온보딩 플로우 |
 | 2.1.0 | 2025-01 | HealthKit 연동, 체중 기반 권장량, 랜덤 알림 문구 |
 | 2.0.x | 2025-01 | 3탭 구조 리팩토링, @Observable 마이그레이션 |

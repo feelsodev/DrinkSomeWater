@@ -22,9 +22,11 @@
 퀵버튼으로 간편하게 물 섭취량을 기록합니다.
 - 기본 퀵버튼: 100ml, 200ml, 300ml, 500ml
 - 커스텀 퀵버튼: 자주 마시는 용량 설정 가능
-- 직접 입력: 슬라이더로 정확한 양 입력
+- 물 추가/빼기 모드: 잘못 기록한 양 쉽게 수정
+- 오늘 기록 초기화: 하루 기록 리셋 가능
 - 목표량 퀵설정: 🎯 버튼으로 빠르게 조절
 - 물결 애니메이션으로 진행도 시각화
+- 남은 양/컵 수 실시간 표시
 
 ### 📅 기록 탭
 3가지 뷰 모드로 달성 이력을 확인합니다.
@@ -58,11 +60,11 @@
 
 ### 📱 홈 화면 위젯
 홈 화면에서 바로 물 섭취량을 확인하고 기록합니다.
-- **Small 위젯**: 원형 진행도 차트 + 백분율
+- **Small 위젯**: 원형 진행도 차트 + 백분율 + 섭취량
 - **Medium 위젯**: 진행도 + 빠른 추가 버튼 (150ml, 300ml)
-- **Large 위젯**: 큰 진행도 + 동기부여 메시지 + 3개 버튼
-- **잠금화면 위젯**: Circular/Rectangular/Inline 형태 지원
-- 인터랙티브 버튼으로 위젯에서 직접 물 추가 가능
+- **Large 위젯**: 큰 진행도 + 동기부여 메시지 + 3개 버튼 (150ml, 300ml, 500ml)
+- **잠금화면 위젯**: Circular/Rectangular/Inline 형태 모두 지원
+- 인터랙티브 버튼으로 위젯에서 직접 물 추가 가능 (AppIntent)
 
 ### 🎯 온보딩
 최초 실행 시 앱 사용법을 안내합니다.
@@ -116,25 +118,30 @@
 
 | Category | Technology |
 |----------|------------|
-| iOS UI | UIKit + SnapKit |
+| iOS UI | SwiftUI + UIKit (Settings) |
 | watchOS UI | SwiftUI |
-| Widget | SwiftUI + WidgetKit |
+| Widget | SwiftUI + WidgetKit + AppIntent |
 | Architecture | @Observable Store Pattern |
 | Concurrency | async/await, Swift 6 |
 | Sync | WatchConnectivity |
 | Animation | WaveAnimationView |
 | Calendar | FSCalendar |
 | Health | HealthKit |
-| Ads | Google AdMob |
+| Ads | Google AdMob (Native, Rewarded) |
+| Analytics | Firebase Analytics |
+| Design System | DesignTokens (DS) |
 | Build | Tuist |
 
 ## 📦 의존성
 
 ```swift
 // Tuist SPM
-- SnapKit
-- FSCalendar
-- Google Mobile Ads
+- SnapKit (5.7.0+)
+- FSCalendar (2.8.4+)
+- Google Mobile Ads (11.2.0+)
+
+// Internal Modules
+- Analytics
 
 // System Frameworks
 - HealthKit
@@ -177,27 +184,50 @@ ReactorKit에서 영감을 받은 단방향 데이터 흐름:
 final class HomeStore {
     enum Action {
         case refresh
+        case refreshGoal
+        case refreshQuickButtons
         case addWater(Int)
+        case subtractWater(Int)
+        case resetTodayWater
+        case checkNotificationPermission
+        case dismissNotificationBanner
     }
-    
+
+    var total: Float = 0
     var ml: Float = 0
-    
+    var progress: Float { total == 0 ? 0 : ml / total }
+    var remainingMl: Int { max(0, Int(total - ml)) }
+    var quickButtons: [Int] = [100, 200, 300, 500]
+
     func send(_ action: Action) async {
         switch action {
         case .refresh:
-            // 데이터 로드
+            // 오늘 섭취량 로드
         case .addWater(let amount):
             // 물 추가
+        case .subtractWater(let amount):
+            // 물 빼기
+        // ...
         }
     }
 }
 ```
 
-ViewController에서 자동 UI 업데이트:
+SwiftUI View에서 자동 UI 업데이트:
 
 ```swift
-observation = startObservation { [weak self] in 
-    self?.render() 
+struct HomeView: View {
+    @Bindable var store: HomeStore
+
+    var body: some View {
+        VStack {
+            Text("\(Int(store.ml))ml")
+            // store 프로퍼티 변경 시 자동 리렌더링
+        }
+        .task {
+            await store.send(.refresh)
+        }
+    }
 }
 ```
 
