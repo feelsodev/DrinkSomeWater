@@ -23,7 +23,9 @@ public enum AnalyticsEvent {
   case permissionDenied(type: PermissionType)
   
   // MARK: - Tier 3: Feature Usage
-  
+
+  case waterSubtracted(amountMl: Int)
+  case waterReset(previousAmountMl: Int)
   case quickButtonTap(amountMl: Int, buttonIndex: Int, isCustom: Bool)
   case sliderUsed(amountMl: Int)
   case goalChanged(oldGoal: Int, newGoal: Int, source: GoalChangeSource)
@@ -86,6 +88,8 @@ public enum AnalyticsEvent {
     case .permissionRequested: return "permission_requested"
     case .permissionGranted: return "permission_granted"
     case .permissionDenied: return "permission_denied"
+    case .waterSubtracted: return "water_subtracted"
+    case .waterReset: return "water_reset"
     case .quickButtonTap: return "quick_button_tap"
     case .sliderUsed: return "slider_used"
     case .goalChanged: return "goal_changed"
@@ -165,6 +169,12 @@ public enum AnalyticsEvent {
     case .permissionRequested(let type), .permissionGranted(let type), .permissionDenied(let type):
       return ["type": type.rawValue]
       
+    case .waterSubtracted(let amountMl):
+      return ["amount_ml": amountMl]
+
+    case .waterReset(let previousAmountMl):
+      return ["previous_amount_ml": previousAmountMl]
+
     case .quickButtonTap(let amountMl, let buttonIndex, let isCustom):
       return ["amount_ml": amountMl, "button_index": buttonIndex, "is_custom": isCustom]
       

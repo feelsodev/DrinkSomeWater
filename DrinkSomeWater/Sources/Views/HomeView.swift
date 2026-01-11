@@ -6,6 +6,8 @@ struct HomeView: View {
   @Bindable var store: HomeStore
   @State private var showGoalSetting = false
   @State private var showQuickButtonSetting = false
+  @State private var showWaterAdjustment = false
+  @State private var isSubtractMode = false
   
   var body: some View {
     ZStack {
@@ -15,21 +17,22 @@ struct HomeView: View {
         backgroundColor: DS.Color.backgroundPrimary
       )
       .ignoresSafeArea()
-      
+
       VStack(spacing: 0) {
         headerSection
-        
+
         Spacer(minLength: 16)
-        
+
         bottleSection
-        
+
         Spacer(minLength: 20)
-        
+
         quickButtonsSection
       }
       .padding(.horizontal, 24)
       .padding(.bottom, 8)
     }
+    .background(Color(DS.Color.backgroundPrimary).ignoresSafeArea())
     .task {
       await store.send(.refreshGoal)
       await store.send(.refresh)
@@ -60,6 +63,11 @@ struct HomeView: View {
       .presentationDetents([.large])
       .presentationDragIndicator(.visible)
     }
+    .sheet(isPresented: $showWaterAdjustment) {
+      WaterAdjustmentView(store: store)
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
+    }
   }
   
   private var headerSection: some View {
@@ -67,7 +75,7 @@ struct HomeView: View {
       Text("\(Int(store.ml))ml")
         .font(.system(size: 48, weight: .bold))
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
-      
+
       Button {
         showGoalSetting = true
       } label: {
@@ -145,24 +153,45 @@ struct HomeView: View {
   private var quickButtonsSection: some View {
     VStack(spacing: 10) {
       HStack {
-        Text("빠른 추가")
+        Text(isSubtractMode ? "빼기" : "빠른 추가")
           .font(.system(size: 14, weight: .medium))
           .foregroundStyle(.gray)
-        
+
         Spacer()
-        
+
+        Button {
+          withAnimation(.easeInOut(duration: 0.2)) {
+            isSubtractMode.toggle()
+          }
+        } label: {
+          HStack(spacing: 5) {
+            Text(isSubtractMode ? "−" : "+")
+              .font(.system(size: 15, weight: .bold))
+            Image(systemName: "arrow.triangle.2.circlepath")
+              .font(.system(size: 12, weight: .medium))
+          }
+          .foregroundStyle(isSubtractMode ? .red : DS.SwiftUIColor.primary)
+          .padding(.horizontal, 10)
+          .padding(.vertical, 6)
+          .background(
+            Capsule()
+              .fill(isSubtractMode ? Color.red.opacity(0.12) : DS.SwiftUIColor.primary.opacity(0.12))
+          )
+        }
+
         Button("편집") {
           showQuickButtonSetting = true
         }
         .font(.system(size: 14, weight: .medium))
         .foregroundStyle(.gray)
+        .padding(.leading, 8)
       }
-      
+
       let buttons = store.quickButtons
       let midPoint = (buttons.count + 1) / 2
       let firstRow = Array(buttons.prefix(midPoint))
       let secondRow = Array(buttons.suffix(from: midPoint))
-      
+
       quickButtonRow(amounts: firstRow)
       quickButtonRow(amounts: secondRow)
     }
@@ -172,17 +201,24 @@ struct HomeView: View {
     HStack(spacing: 12) {
       ForEach(amounts, id: \.self) { amount in
         Button {
-          Task { await store.send(.addWater(amount)) }
+          Task {
+            if isSubtractMode {
+              await store.send(.subtractWater(amount))
+            } else {
+              await store.send(.addWater(amount))
+            }
+          }
         } label: {
-          Text("+\(amount)ml")
+          Text(isSubtractMode ? "-\(amount)ml" : "+\(amount)ml")
             .font(.system(size: 13, weight: .semibold))
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
             .frame(height: 44)
-            .background(DS.SwiftUIColor.primary)
+            .background(isSubtractMode ? Color.red.opacity(0.85) : DS.SwiftUIColor.primary)
             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
             .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
         }
+        .disabled(isSubtractMode && store.ml <= 0)
       }
     }
   }
@@ -335,8 +371,97 @@ struct QuickButtonSettingView: View {
   private func deleteButton(at offsets: IndexSet) {
     buttons.remove(atOffsets: offsets)
   }
-  
+
   private func moveButton(from source: IndexSet, to destination: Int) {
     buttons.move(fromOffsets: source, toOffset: destination)
+  }
+}
+
+struct WaterAdjustmentView: View {
+  let store: HomeStore
+  @SwiftUI.Environment(\.dismiss) private var dismiss
+  @State private var showResetConfirmation = false
+
+  private let subtractAmounts = [50, 100, 200, 300]
+
+  var body: some View {
+    NavigationStack {
+      VStack(spacing: 24) {
+        Text("\(Int(store.ml))ml")
+          .font(.system(size: 48, weight: .bold))
+          .foregroundStyle(DS.SwiftUIColor.primary)
+
+        VStack(spacing: 16) {
+          Text("빼기")
+            .font(.system(size: 14, weight: .medium))
+            .foregroundStyle(.secondary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+          LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+            ForEach(subtractAmounts, id: \.self) { amount in
+              Button {
+                Task {
+                  await store.send(.subtractWater(amount))
+                }
+              } label: {
+                Text("-\(amount)ml")
+                  .font(.system(size: 15, weight: .semibold))
+                  .foregroundStyle(.white)
+                  .frame(maxWidth: .infinity)
+                  .frame(height: 48)
+                  .background(DS.SwiftUIColor.primary.opacity(0.8))
+                  .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+              }
+              .disabled(store.ml <= 0)
+            }
+          }
+        }
+        .padding(.horizontal)
+
+        Divider()
+          .padding(.horizontal)
+
+        Button(role: .destructive) {
+          showResetConfirmation = true
+        } label: {
+          HStack {
+            Image(systemName: "arrow.counterclockwise")
+            Text("오늘 기록 초기화")
+          }
+          .font(.system(size: 15, weight: .medium))
+          .foregroundStyle(.red)
+          .frame(maxWidth: .infinity)
+          .frame(height: 48)
+          .background(Color.red.opacity(0.1))
+          .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        }
+        .padding(.horizontal)
+        .disabled(store.ml <= 0)
+
+        Spacer()
+      }
+      .padding(.vertical, 24)
+      .navigationTitle("섭취량 수정")
+      .navigationBarTitleDisplayMode(.inline)
+      .toolbar {
+        ToolbarItem(placement: .confirmationAction) {
+          Button("완료") { dismiss() }
+        }
+      }
+      .confirmationDialog(
+        "오늘 마신 물을 초기화할까요?",
+        isPresented: $showResetConfirmation,
+        titleVisibility: .visible
+      ) {
+        Button("초기화", role: .destructive) {
+          Task {
+            await store.send(.resetTodayWater)
+          }
+        }
+        Button("취소", role: .cancel) {}
+      } message: {
+        Text("이 작업은 되돌릴 수 없습니다.")
+      }
+    }
   }
 }

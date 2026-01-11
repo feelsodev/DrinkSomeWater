@@ -8,6 +8,7 @@ protocol WaterServiceProtocol {
   func saveWater(_ waterRecord: [WaterRecord]) async
   func updateWater(by ml: Float) async -> [WaterRecord]
   func updateGoal(to ml: Int) async -> Int
+  func resetTodayWater() async -> [WaterRecord]
 }
 
 final class WaterService: BaseService, WaterServiceProtocol {
@@ -90,5 +91,26 @@ final class WaterService: BaseService, WaterServiceProtocol {
     provider.userDefaultsService.set(value: ml, forkey: .goal)
     WidgetDataManager.shared.updateGoal(ml)
     return ml
+  }
+
+  @discardableResult
+  func resetTodayWater() async -> [WaterRecord] {
+    var waterRecord = await fetchWater()
+    guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
+      return []
+    }
+
+    var newRecord = waterRecord[index]
+    newRecord.value = 0
+    newRecord.date = Date()
+    newRecord.isSuccess = false
+    waterRecord[index] = newRecord
+
+    await saveWater(waterRecord)
+
+    WidgetDataManager.shared.syncFromMainApp(todayWater: 0, goal: newRecord.goal)
+    provider.watchConnectivityService.syncToWatch(todayWater: 0, goal: newRecord.goal)
+
+    return waterRecord
   }
 }

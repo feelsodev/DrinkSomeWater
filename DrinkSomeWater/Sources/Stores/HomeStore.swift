@@ -10,6 +10,8 @@ final class HomeStore {
     case refreshGoal
     case refreshQuickButtons
     case addWater(Int)
+    case subtractWater(Int)
+    case resetTodayWater
   }
   
   let provider: ServiceProviderProtocol
@@ -47,13 +49,28 @@ final class HomeStore {
       let wasAchieved = ml >= total
       _ = await provider.waterService.updateWater(by: Float(amount))
       await send(.refresh)
-      
+
       Analytics.shared.logWaterIntake(amountMl: amount, method: .quickButton)
-      
+
       if !wasAchieved && ml >= total {
         let streakDays = calculateStreak()
         Analytics.shared.logGoalAchieved(goalMl: Int(total), actualMl: Int(ml), streakDays: streakDays)
       }
+
+    case .subtractWater(let amount):
+      let newValue = max(0, Int(ml) - amount)
+      let diff = Int(ml) - newValue
+      if diff > 0 {
+        _ = await provider.waterService.updateWater(by: Float(-diff))
+        await send(.refresh)
+        Analytics.shared.log(.waterSubtracted(amountMl: diff))
+      }
+
+    case .resetTodayWater:
+      let previousAmount = Int(ml)
+      _ = await provider.waterService.resetTodayWater()
+      await send(.refresh)
+      Analytics.shared.log(.waterReset(previousAmountMl: previousAmount))
     }
   }
   
