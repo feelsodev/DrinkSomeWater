@@ -1,0 +1,15 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWidget
+*/
+
+// Widget
+"widget.hydration.tracker" = "수분 섭취";
+"widget.current" = "현재";
+"widget.goal" = "목표";
+"widget.current.hydration" = "현재 수분 섭취";
+"widget.todays.hydration" = "오늘의 수분 섭취";
+"widget.motivation.achieved" = "목표 달성! 수고했어요! 🎉";
+"widget.motivation.almost" = "거의 다 왔어요! 조금만 더! 🚀";
+"widget.motivation.halfway" = "잘하고 있어요! 💧";
+"widget.motivation.start" = "물 마실 시간이에요! 🥤";

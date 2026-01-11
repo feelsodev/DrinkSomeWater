@@ -23,7 +23,7 @@ struct MediumWidgetView: View {
           Image(systemName: "drop.fill")
             .font(.system(size: 14))
             .foregroundStyle(Color(red: 0.35, green: 0.78, blue: 0.98))
-          Text("Today's Hydration")
+          Text(String(localized: "widget.todays.hydration"))
             .font(.system(size: 13, weight: .medium, design: .rounded))
             .foregroundStyle(.secondary)
         }

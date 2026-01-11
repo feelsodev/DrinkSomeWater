@@ -1,0 +1,7 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWaterWidget
+*/
+
+"CFBundleDisplayName" = "벌컥벌컥 위젯";
+"CFBundleName" = "벌컥벌컥 위젯";

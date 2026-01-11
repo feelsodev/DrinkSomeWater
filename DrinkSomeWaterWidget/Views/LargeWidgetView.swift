@@ -18,13 +18,13 @@ struct LargeWidgetView: View {
   
   var motivationText: String {
     if entry.isGoalAchieved {
-      return "Goal achieved! Great job! 🎉"
+      return String(localized: "widget.motivation.achieved")
     } else if entry.progress >= 0.8 {
-      return "Almost there! Keep going! 🚀"
+      return String(localized: "widget.motivation.almost")
     } else if entry.progress >= 0.5 {
-      return "You're doing great! 💧"
+      return String(localized: "widget.motivation.halfway")
     } else {
-      return "Time to hydrate! 🥤"
+      return String(localized: "widget.motivation.start")
     }
   }
   
@@ -57,7 +57,7 @@ struct LargeWidgetView: View {
       Image(systemName: "drop.fill")
         .font(.system(size: 16))
         .foregroundStyle(Color(red: 0.35, green: 0.78, blue: 0.98))
-      Text("Hydration Tracker")
+      Text(String(localized: "widget.hydration.tracker"))
         .font(.system(size: 15, weight: .medium, design: .rounded))
         .foregroundStyle(.secondary)
       Spacer()
@@ -97,27 +97,27 @@ struct LargeWidgetView: View {
   private var statsView: some View {
     VStack(alignment: .leading, spacing: 6) {
       VStack(alignment: .leading, spacing: 2) {
-        Text("Current")
+        Text(String(localized: "widget.current"))
           .font(.system(size: 14, weight: .medium, design: .rounded))
           .foregroundStyle(.secondary)
-        
+
         Text("\(entry.todayWater)")
           .font(.system(size: 34, weight: .bold, design: .rounded))
           .foregroundStyle(.primary)
           .contentTransition(.numericText(value: Double(entry.todayWater)))
       }
-      
+
       Rectangle()
         .fill(Color.secondary.opacity(0.2))
         .frame(height: 1)
         .padding(.vertical, 4)
         .frame(width: 80)
-        
+
       VStack(alignment: .leading, spacing: 2) {
-        Text("Goal")
+        Text(String(localized: "widget.goal"))
           .font(.system(size: 14, weight: .medium, design: .rounded))
           .foregroundStyle(.secondary)
-        
+
         Text("\(entry.goal)ml")
           .font(.system(size: 20, weight: .semibold, design: .rounded))
           .foregroundStyle(.secondary)

@@ -25,7 +25,7 @@ struct LockScreenRectangularView: View {
         HStack(spacing: 4) {
           Image(systemName: "drop.fill")
             .font(.system(size: 10))
-          Text("Current Hydration")
+          Text(String(localized: "widget.current.hydration"))
             .font(.system(size: 10, weight: .medium))
             .textCase(.uppercase)
         }
