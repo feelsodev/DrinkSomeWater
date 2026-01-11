@@ -3,11 +3,19 @@ import UIKit
 import GoogleMobileAds
 import Analytics
 
-enum HistoryViewMode: String, CaseIterable {
-  case calendar = "캘린더"
-  case list = "리스트"
-  case timeline = "타임라인"
-  
+enum HistoryViewMode: CaseIterable {
+  case calendar
+  case list
+  case timeline
+
+  var localizedName: String {
+    switch self {
+    case .calendar: return String(localized: "history.mode.calendar")
+    case .list: return String(localized: "history.mode.list")
+    case .timeline: return String(localized: "history.mode.timeline")
+    }
+  }
+
   var icon: String {
     switch self {
     case .calendar: return "calendar"
@@ -64,23 +72,23 @@ struct HistoryView: View {
   
   private var headerSection: some View {
     HStack {
-      Text("기록")
+      Text(String(localized: "history.title"))
         .font(.system(size: 28, weight: .bold))
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
-      
+
       Spacer()
-      
+
       monthSummaryBadge
     }
     .padding(.horizontal, 20)
     .padding(.top, 16)
   }
-  
+
   private var monthSummaryBadge: some View {
     HStack(spacing: 6) {
       Text("📊")
         .font(.system(size: 14))
-      Text("이번 달: \(store.monthlySuccessCount)일 달성")
+      Text(String(format: String(localized: "history.month.summary"), "\(store.monthlySuccessCount)"))
         .font(.system(size: 13, weight: .semibold))
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
     }
@@ -104,7 +112,7 @@ struct HistoryView: View {
           HStack(spacing: 6) {
             Image(systemName: mode.icon)
               .font(.system(size: 12, weight: .semibold))
-            Text(mode.rawValue)
+            Text(mode.localizedName)
               .font(.system(size: 13, weight: .semibold))
           }
           .foregroundStyle(selectedMode == mode ? .white : DS.SwiftUIColor.textSecondary)
@@ -162,9 +170,9 @@ struct HistoryCalendarTab: View {
   
   private var legendSection: some View {
     HStack(spacing: 24) {
-      LegendItem(color: DS.SwiftUIColor.primary.opacity(0.3), text: "오늘")
-      LegendItem(color: Color(DS.Color.textPrimary), text: "선택")
-      LegendItem(color: DS.SwiftUIColor.primary, text: "달성")
+      LegendItem(color: DS.SwiftUIColor.primary.opacity(0.3), text: String(localized: "history.legend.today"))
+      LegendItem(color: Color(DS.Color.textPrimary), text: String(localized: "history.legend.selected"))
+      LegendItem(color: DS.SwiftUIColor.primary, text: String(localized: "history.legend.achieved"))
     }
   }
 }
@@ -223,8 +231,8 @@ struct ListRecordRow: View {
         
         ProgressView(value: min(Float(record.value) / Float(record.goal), 1.0))
           .tint(record.isSuccess ? DS.SwiftUIColor.success : DS.SwiftUIColor.primary)
-        
-        Text("\(record.value)ml / \(record.goal)ml")
+
+        Text(String(format: String(localized: "history.record.progress"), "\(record.value)", "\(record.goal)"))
           .font(.system(size: 12, weight: .medium))
           .foregroundStyle(DS.SwiftUIColor.textTertiary)
       }
@@ -257,14 +265,15 @@ struct ListRecordRow: View {
   
   private var monthString: String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "M월"
+    formatter.dateFormat = NSLocalizedString("dateformat.month", comment: "")
+    formatter.locale = Locale.current
     return formatter.string(from: record.date)
   }
   
   private var weekdayString: String {
     let formatter = DateFormatter()
     formatter.dateFormat = "EEEE"
-    formatter.locale = Locale(identifier: "ko_KR")
+    formatter.locale = Locale.current
     return formatter.string(from: record.date)
   }
   
@@ -281,7 +290,8 @@ struct HistoryTimelineTab: View {
   private var groupedRecords: [(String, [WaterRecord])] {
     let grouped = Dictionary(grouping: store.waterRecordList) { record -> String in
       let formatter = DateFormatter()
-      formatter.dateFormat = "yyyy년 M월"
+      formatter.dateFormat = NSLocalizedString("dateformat.yearmonth", comment: "")
+      formatter.locale = Locale.current
       return formatter.string(from: record.date)
     }
     return grouped.sorted { $0.key > $1.key }
@@ -317,10 +327,10 @@ struct TimelineMonthSection: View {
         Text(month)
           .font(.system(size: 18, weight: .bold))
           .foregroundStyle(DS.SwiftUIColor.textPrimary)
-        
+
         Spacer()
-        
-        Text("\(successCount)/\(records.count)일 달성")
+
+        Text(String(format: String(localized: "history.timeline.achieved"), "\(successCount)", "\(records.count)"))
           .font(.system(size: 13, weight: .medium))
           .foregroundStyle(DS.SwiftUIColor.textSecondary)
       }
@@ -362,18 +372,18 @@ struct TimelineRecordRow: View {
           Spacer()
           
           if record.isSuccess {
-            Label("달성", systemImage: "checkmark.circle.fill")
+            Label(String(localized: "history.label.achieved"), systemImage: "checkmark.circle.fill")
               .font(.system(size: 12, weight: .semibold))
               .foregroundStyle(DS.SwiftUIColor.success)
           }
         }
-        
+
         HStack(spacing: 16) {
           Label("\(record.value)ml", systemImage: "drop.fill")
             .font(.system(size: 13, weight: .medium))
             .foregroundStyle(DS.SwiftUIColor.primary)
-          
-          Text("목표 \(record.goal)ml")
+
+          Text(String(format: String(localized: "history.record.goal"), "\(record.goal)"))
             .font(.system(size: 13, weight: .medium))
             .foregroundStyle(DS.SwiftUIColor.textTertiary)
         }
@@ -384,8 +394,8 @@ struct TimelineRecordRow: View {
   
   private var dateString: String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "M월 d일 (E)"
-    formatter.locale = Locale(identifier: "ko_KR")
+    formatter.dateFormat = NSLocalizedString("dateformat.monthday", comment: "")
+    formatter.locale = Locale.current
     return formatter.string(from: record.date)
   }
 }
@@ -403,16 +413,16 @@ struct RecordCard: View {
         
         HStack(spacing: 16) {
           VStack(alignment: .leading, spacing: 2) {
-            Text("목표량")
+            Text(String(localized: "history.card.goal"))
               .font(.system(size: 12, weight: .medium))
               .foregroundStyle(DS.SwiftUIColor.textTertiary)
             Text("\(record.goal)ml")
               .font(.system(size: 14, weight: .semibold))
               .foregroundStyle(DS.SwiftUIColor.textSecondary)
           }
-          
+
           VStack(alignment: .leading, spacing: 2) {
-            Text("섭취량")
+            Text(String(localized: "history.card.intake"))
               .font(.system(size: 12, weight: .medium))
               .foregroundStyle(DS.SwiftUIColor.textTertiary)
             Text("\(record.value)ml")
@@ -421,16 +431,16 @@ struct RecordCard: View {
           }
         }
       }
-      
+
       Spacer()
-      
+
       VStack(spacing: 4) {
         Text(calculatePercentage(record))
           .font(.system(size: 24, weight: .bold))
           .foregroundStyle(record.isSuccess ? DS.SwiftUIColor.success : DS.SwiftUIColor.primary)
-        
+
         if record.isSuccess {
-          Text("달성! ✅")
+          Text(String(localized: "history.card.achieved"))
             .font(.system(size: 12, weight: .semibold))
             .foregroundStyle(DS.SwiftUIColor.success)
         }
@@ -446,8 +456,8 @@ struct RecordCard: View {
   
   private func formatDate(_ date: Date) -> String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "M월 d일 (E)"
-    formatter.locale = Locale(identifier: "ko_KR")
+    formatter.dateFormat = NSLocalizedString("dateformat.monthday", comment: "")
+    formatter.locale = Locale.current
     return "📌 " + formatter.string(from: date)
   }
   
