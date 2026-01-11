@@ -23,13 +23,13 @@ enum NotificationInterval: Int, CaseIterable {
   case oneHour = 60
   case twoHours = 120
   case threeHours = 180
-  
+
   var displayString: String {
     switch self {
-    case .thirtyMinutes: return "30분"
-    case .oneHour: return "1시간"
-    case .twoHours: return "2시간"
-    case .threeHours: return "3시간"
+    case .thirtyMinutes: return String(localized: "interval.30min")
+    case .oneHour: return String(localized: "interval.1hour")
+    case .twoHours: return String(localized: "interval.2hours")
+    case .threeHours: return String(localized: "interval.3hours")
     }
   }
 }
@@ -42,16 +42,16 @@ enum Weekday: Int, CaseIterable {
   case thursday = 5
   case friday = 6
   case saturday = 7
-  
+
   var shortName: String {
     switch self {
-    case .sunday: return "일"
-    case .monday: return "월"
-    case .tuesday: return "화"
-    case .wednesday: return "수"
-    case .thursday: return "목"
-    case .friday: return "금"
-    case .saturday: return "토"
+    case .sunday: return String(localized: "weekday.sun")
+    case .monday: return String(localized: "weekday.mon")
+    case .tuesday: return String(localized: "weekday.tue")
+    case .wednesday: return String(localized: "weekday.wed")
+    case .thursday: return String(localized: "weekday.thu")
+    case .friday: return String(localized: "weekday.fri")
+    case .saturday: return String(localized: "weekday.sat")
     }
   }
 }

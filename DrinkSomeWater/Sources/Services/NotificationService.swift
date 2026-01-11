@@ -10,9 +10,9 @@ protocol NotificationServiceProtocol: AnyObject {
 }
 
 final class NotificationService: BaseService, NotificationServiceProtocol {
-  
+
   private let notificationCenter = UNUserNotificationCenter.current()
-  private let notificationTitle = "벌컥벌컥"
+  private var notificationTitle: String { String(localized: "notification.title") }
   private let maxPendingNotifications = 64
   
   func loadSettings() -> NotificationSettings {
