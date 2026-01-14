@@ -6,7 +6,6 @@ import Analytics
 import FirebaseCore
 #endif
 
-@main
 @MainActor
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
