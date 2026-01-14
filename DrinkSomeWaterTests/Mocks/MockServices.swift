@@ -101,7 +101,10 @@ final class MockWaterService: WaterServiceProtocol {
     }
     func resetTodayWater() async -> [WaterRecord] {
         let today = Calendar.current.startOfDay(for: Date())
-        waterRecords.removeAll { Calendar.current.isDate($0.date, inSameDayAs: today) }
+        if let index = waterRecords.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: today) }) {
+            let record = waterRecords[index]
+            waterRecords[index] = WaterRecord(date: today, value: 0, isSuccess: false, goal: record.goal)
+        }
         return waterRecords
     }
 }
