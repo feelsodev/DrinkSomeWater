@@ -22,10 +22,16 @@ struct WaterRecord: ModelType, Identifiable {
  }
  
  init?(dictionary: [String: Any]) {
-  self.date = dictionary["date"] as! Date
-  self.value = dictionary["value"] as! Int
-  self.isSuccess = dictionary["isSuccess"] as! Bool
-  self.goal = dictionary["goal"] as! Int
+  guard let date = dictionary["date"] as? Date,
+        let value = dictionary["value"] as? Int,
+        let isSuccess = dictionary["isSuccess"] as? Bool,
+        let goal = dictionary["goal"] as? Int else {
+   return nil
+  }
+  self.date = date
+  self.value = value
+  self.isSuccess = isSuccess
+  self.goal = goal
  }
  
  func asDictionary() -> [String: Any] {
