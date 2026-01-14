@@ -1,9 +1,8 @@
 import Foundation
 @testable import DrinkSomeWater
 
-// MARK: - Mock Notification Service
-
-final class MockNotificationService: NotificationServiceProtocol, @unchecked Sendable {
+@MainActor
+final class MockNotificationService: NotificationServiceProtocol {
     var savedSettings: NotificationSettings?
     var scheduledSettings: NotificationSettings?
     var cancelAllCalled = false
@@ -34,16 +33,15 @@ final class MockNotificationService: NotificationServiceProtocol, @unchecked Sen
     }
 }
 
-// MARK: - Mock Watch Connectivity Service
-
-final class MockWatchConnectivityService: WatchConnectivityServiceProtocol, @unchecked Sendable {
+@MainActor
+final class MockWatchConnectivityService: WatchConnectivityServiceProtocol {
     func activate() {}
     func syncToWatch(todayWater: Int, goal: Int) {}
+    func setWaterService(_ waterService: WaterServiceProtocol) {}
 }
 
-// MARK: - Mock HealthKit Service
-
-final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable {
+@MainActor
+final class MockHealthKitService: HealthKitServiceProtocol {
     var isAvailable: Bool { false }
     func requestAuthorization() async -> Bool { false }
     func fetchWeight() async -> Double? { nil }
@@ -51,9 +49,8 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
     func fetchTodayWaterIntake() async -> Double { 0 }
 }
 
-// MARK: - Mock UserDefaults Service
-
-final class MockUserDefaultsService: UserDefaultsServiceProtocol, @unchecked Sendable {
+@MainActor
+final class MockUserDefaultsService: UserDefaultsServiceProtocol {
     private var storage: [String: Any] = [:]
 
     func value<T>(forkey key: UserDefaultsKey<T>) -> T? {
@@ -69,9 +66,8 @@ final class MockUserDefaultsService: UserDefaultsServiceProtocol, @unchecked Sen
     }
 }
 
-// MARK: - Mock Water Service
-
-final class MockWaterService: WaterServiceProtocol, @unchecked Sendable {
+@MainActor
+final class MockWaterService: WaterServiceProtocol {
     var waterRecords: [WaterRecord] = []
     var goal: Int = 2000
 
@@ -110,16 +106,13 @@ final class MockWaterService: WaterServiceProtocol, @unchecked Sendable {
     }
 }
 
-// MARK: - Mock Alert Service
-
-final class MockAlertService: AlertServiceProtocol, @unchecked Sendable {
-    @MainActor
+@MainActor
+final class MockAlertService: AlertServiceProtocol {
     func show(title: String?, message: String?) async {}
 }
 
-// MARK: - Mock Service Provider
-
-final class MockServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
+@MainActor
+final class MockServiceProvider: ServiceProviderProtocol {
     let userDefaultsService: UserDefaultsServiceProtocol
     let waterService: WaterServiceProtocol
     let alertService: AlertServiceProtocol

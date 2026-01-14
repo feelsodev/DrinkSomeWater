@@ -22,16 +22,18 @@ extension UserDefaultsKey {
   static var notificationBannerDismissed: Key<Bool> { return "notificationBannerDismissed" }
 }
 
-protocol UserDefaultsServiceProtocol {
+@MainActor
+protocol UserDefaultsServiceProtocol: AnyObject {
   func value<T>(forkey key: UserDefaultsKey<T>) -> T?
   func set<T>(value: T?, forkey key: UserDefaultsKey<T>)
 }
 
-final class UserDefaultsService: BaseService, UserDefaultsServiceProtocol {
+@MainActor
+final class UserDefaultsService: UserDefaultsServiceProtocol {
   
-  private var defaults: UserDefaults {
-    return UserDefaults.standard
-  }
+  private let defaults = UserDefaults.standard
+  
+  init() {}
   
   func value<T>(forkey key: UserDefaultsKey<T>) -> T? {
     return defaults.value(forKey: key.key) as? T

@@ -1,18 +1,24 @@
 import Foundation
 import WatchConnectivity
 
+@MainActor
 protocol WatchConnectivityServiceProtocol: AnyObject {
   func activate()
   func syncToWatch(todayWater: Int, goal: Int)
+  func setWaterService(_ waterService: WaterServiceProtocol)
 }
 
-final class WatchConnectivityService: NSObject, WatchConnectivityServiceProtocol, @unchecked Sendable {
-  weak var provider: ServiceProviderProtocol?
+@MainActor
+final class WatchConnectivityService: NSObject, WatchConnectivityServiceProtocol {
+  private var waterService: WaterServiceProtocol?
   private var session: WCSession?
 
-  init(provider: ServiceProviderProtocol) {
-    self.provider = provider
+  override init() {
     super.init()
+  }
+  
+  func setWaterService(_ waterService: WaterServiceProtocol) {
+    self.waterService = waterService
   }
 
   func activate() {
@@ -41,10 +47,22 @@ final class WatchConnectivityService: NSObject, WatchConnectivityServiceProtocol
       session.sendMessage(context, replyHandler: nil)
     }
   }
+  
+  private func syncCurrentStateToWatch() async {
+    guard let waterService = waterService else { return }
+    let water = await waterService.fetchWater()
+    let goal = await waterService.fetchGoal()
+
+    if let todayRecord = water.first(where: { $0.date.checkToday }) {
+      syncToWatch(todayWater: todayRecord.value, goal: goal)
+    } else {
+      syncToWatch(todayWater: 0, goal: goal)
+    }
+  }
 }
 
 extension WatchConnectivityService: WCSessionDelegate {
-  func session(
+  nonisolated func session(
     _ session: WCSession,
     activationDidCompleteWith activationState: WCSessionActivationState,
     error: Error?
@@ -56,17 +74,17 @@ extension WatchConnectivityService: WCSessionDelegate {
     }
   }
 
-  func sessionDidBecomeInactive(_ session: WCSession) {}
+  nonisolated func sessionDidBecomeInactive(_ session: WCSession) {}
 
-  func sessionDidDeactivate(_ session: WCSession) {
+  nonisolated func sessionDidDeactivate(_ session: WCSession) {
     session.activate()
   }
 
-  func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
+  nonisolated func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
     handleMessage(message)
   }
 
-  func session(
+  nonisolated func session(
     _ session: WCSession,
     didReceiveMessage message: [String: Any],
     replyHandler: @escaping ([String: Any]) -> Void
@@ -75,31 +93,18 @@ extension WatchConnectivityService: WCSessionDelegate {
     replyHandler(["status": "received"])
   }
 
-  private func handleMessage(_ message: [String: Any]) {
+  nonisolated private func handleMessage(_ message: [String: Any]) {
     guard let action = message["action"] as? String else { return }
 
     switch action {
     case "addWater":
       if let amount = message["amount"] as? Int {
         Task { @MainActor [weak self] in
-          await self?.provider?.waterService.updateWater(by: Float(amount))
+          _ = await self?.waterService?.updateWater(by: Float(amount))
         }
       }
     default:
       break
-    }
-  }
-
-  @MainActor
-  private func syncCurrentStateToWatch() async {
-    guard let provider = provider else { return }
-    let water = await provider.waterService.fetchWater()
-    let goal = await provider.waterService.fetchGoal()
-
-    if let todayRecord = water.first(where: { $0.date.checkToday }) {
-      syncToWatch(todayWater: todayRecord.value, goal: goal)
-    } else {
-      syncToWatch(todayWater: 0, goal: goal)
     }
   }
 }

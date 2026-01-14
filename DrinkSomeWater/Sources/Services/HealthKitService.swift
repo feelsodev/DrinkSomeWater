@@ -2,6 +2,7 @@ import Foundation
 import HealthKit
 import Analytics
 
+@MainActor
 protocol HealthKitServiceProtocol: AnyObject {
   var isAvailable: Bool { get }
   func requestAuthorization() async -> Bool
@@ -10,9 +11,12 @@ protocol HealthKitServiceProtocol: AnyObject {
   func fetchTodayWaterIntake() async -> Double
 }
 
-final class HealthKitService: BaseService, HealthKitServiceProtocol {
+@MainActor
+final class HealthKitService: HealthKitServiceProtocol {
   
   private let healthStore = HKHealthStore()
+  
+  init() {}
   
   private var weightType: HKQuantityType? {
     HKQuantityType.quantityType(forIdentifier: .bodyMass)

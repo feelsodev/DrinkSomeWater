@@ -4,12 +4,13 @@ import WidgetKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
+  private var serviceProvider: ServiceProvider!
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     
     self.window = UIWindow(windowScene: windowScene)
-    let serviceProvider = ServiceProvider()
+    self.serviceProvider = ServiceProvider()
     
     if serviceProvider.userDefaultsService.value(forkey: .goal) == nil {
       serviceProvider.userDefaultsService.set(value: 2000, forkey: .goal)
@@ -25,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let isOnboardingCompleted = serviceProvider.userDefaultsService.value(forkey: .onboardingCompleted) ?? false
     
     if isOnboardingCompleted {
-      let intro = IntroViewController()
+      let intro = IntroViewController(serviceProvider: serviceProvider)
       let navIntro = UINavigationController(rootViewController: intro)
       window?.rootViewController = navIntro
     } else {

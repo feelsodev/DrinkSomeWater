@@ -11,14 +11,16 @@ extension AlertActionType {
   }
 }
 
+@MainActor
 protocol AlertServiceProtocol: AnyObject {
-  @MainActor
   func show(title: String?, message: String?) async
 }
 
-final class AlertService: BaseService, AlertServiceProtocol {
+@MainActor
+final class AlertService: AlertServiceProtocol {
   
-  @MainActor
+  init() {}
+
   func show(title: String?, message: String?) async {
     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
        let rootViewController = windowScene.windows.first?.rootViewController else {

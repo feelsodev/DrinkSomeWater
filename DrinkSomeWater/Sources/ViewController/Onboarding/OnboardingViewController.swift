@@ -173,8 +173,7 @@ final class OnboardingViewController: UIViewController {
     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
        let window = windowScene.windows.first else { return }
 
-    let serviceProvider = ServiceProvider()
-    let mainTabView = MainTabView(serviceProvider: serviceProvider)
+    let mainTabView = MainTabView(serviceProvider: store.provider)
     let hostingController = UIHostingController(rootView: mainTabView)
 
     window.rootViewController = hostingController

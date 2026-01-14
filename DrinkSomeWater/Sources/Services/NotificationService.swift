@@ -1,6 +1,7 @@
 import Foundation
 import UserNotifications
 
+@MainActor
 protocol NotificationServiceProtocol: AnyObject {
   func loadSettings() -> NotificationSettings
   func saveSettings(_ settings: NotificationSettings)
@@ -10,14 +11,20 @@ protocol NotificationServiceProtocol: AnyObject {
   func checkAuthorizationStatus() async -> Bool
 }
 
-final class NotificationService: BaseService, NotificationServiceProtocol {
+@MainActor
+final class NotificationService: NotificationServiceProtocol {
 
   private let notificationCenter = UNUserNotificationCenter.current()
   private var notificationTitle: String { String(localized: "notification.title") }
   private let maxPendingNotifications = 64
+  private let userDefaultsService: UserDefaultsServiceProtocol
+  
+  init(userDefaultsService: UserDefaultsServiceProtocol) {
+    self.userDefaultsService = userDefaultsService
+  }
   
   func loadSettings() -> NotificationSettings {
-    let defaults = provider.userDefaultsService
+    let defaults = userDefaultsService
     
     let isEnabled = defaults.value(forkey: .notificationEnabled) ?? true
     let startHour = defaults.value(forkey: .notificationStartHour) ?? 8
@@ -43,7 +50,7 @@ final class NotificationService: BaseService, NotificationServiceProtocol {
   }
   
   func saveSettings(_ settings: NotificationSettings) {
-    let defaults = provider.userDefaultsService
+    let defaults = userDefaultsService
     
     defaults.set(value: settings.isEnabled, forkey: .notificationEnabled)
     defaults.set(value: settings.startTime.hour, forkey: .notificationStartHour)

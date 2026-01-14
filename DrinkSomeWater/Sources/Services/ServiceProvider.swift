@@ -1,6 +1,7 @@
 import Foundation
 
-protocol ServiceProviderProtocol: AnyObject, Sendable {
+@MainActor
+protocol ServiceProviderProtocol: AnyObject {
   var userDefaultsService: UserDefaultsServiceProtocol { get }
   var waterService: WaterServiceProtocol { get }
   var alertService: AlertServiceProtocol { get }
@@ -9,11 +10,38 @@ protocol ServiceProviderProtocol: AnyObject, Sendable {
   var watchConnectivityService: WatchConnectivityServiceProtocol { get }
 }
 
-final class ServiceProvider: ServiceProviderProtocol, @unchecked Sendable {
-  lazy var userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(provider: self)
-  lazy var waterService: WaterServiceProtocol = WaterService(provider: self)
-  lazy var alertService: AlertServiceProtocol = AlertService(provider: self)
-  lazy var notificationService: NotificationServiceProtocol = NotificationService(provider: self)
-  lazy var healthKitService: HealthKitServiceProtocol = HealthKitService(provider: self)
-  lazy var watchConnectivityService: WatchConnectivityServiceProtocol = WatchConnectivityService(provider: self)
+@MainActor
+final class ServiceProvider: ServiceProviderProtocol {
+  let userDefaultsService: UserDefaultsServiceProtocol
+  let waterService: WaterServiceProtocol
+  let alertService: AlertServiceProtocol
+  let notificationService: NotificationServiceProtocol
+  let healthKitService: HealthKitServiceProtocol
+  let watchConnectivityService: WatchConnectivityServiceProtocol
+  
+  init() {
+    // 1. Services with no dependencies
+    let userDefaults = UserDefaultsService()
+    let alert = AlertService()
+    let healthKit = HealthKitService()
+    
+    // 2. Services depending on UserDefaults
+    let notification = NotificationService(userDefaultsService: userDefaults)
+    
+    // 3. Circular dependency resolution: WaterService <-> WatchConnectivityService
+    let watchConnectivity = WatchConnectivityService()
+    let water = WaterService(
+      userDefaultsService: userDefaults,
+      watchConnectivityService: watchConnectivity
+    )
+    watchConnectivity.setWaterService(water)
+    
+    // 4. Assign properties
+    self.userDefaultsService = userDefaults
+    self.alertService = alert
+    self.healthKitService = healthKit
+    self.notificationService = notification
+    self.watchConnectivityService = watchConnectivity
+    self.waterService = water
+  }
 }

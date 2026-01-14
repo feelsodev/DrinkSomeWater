@@ -11,6 +11,10 @@ import SnapKit
 
 class IntroViewController: UIViewController {
  
+ // MARK: - Properties
+ 
+ private let serviceProvider: ServiceProviderProtocol
+ 
  // MARK: - UI
  
  lazy var imageView: UIImageView = {
@@ -18,6 +22,17 @@ class IntroViewController: UIViewController {
   imageView.image = UIImage(named: "bang")
   return imageView
  }()
+ 
+ // MARK: - Init
+ 
+ init(serviceProvider: ServiceProviderProtocol) {
+  self.serviceProvider = serviceProvider
+  super.init(nibName: nil, bundle: nil)
+ }
+ 
+ required init?(coder: NSCoder) {
+  fatalError("init(coder:) has not been implemented")
+ }
  
  
  // MARK: - LifeCycle
@@ -139,8 +154,7 @@ class IntroViewController: UIViewController {
  }
 
  private func navigateToMain() {
-  DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-   let serviceProvider = ServiceProvider()
+  DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [self] in
    let mainTabView = MainTabView(serviceProvider: serviceProvider)
    let hostingController = UIHostingController(rootView: mainTabView)
    hostingController.modalPresentationStyle = .fullScreen
