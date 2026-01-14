@@ -121,7 +121,7 @@ final class OnboardingPageViewController: UIViewController {
       iconImageView.tintColor = .systemOrange
       titleLabel.text = NSLocalizedString("onboarding.notification.title", comment: "")
       descriptionLabel.text = NSLocalizedString("onboarding.notification.description", comment: "")
-      actionButton.setTitle(NSLocalizedString("onboarding.notification.button", comment: ""), for: .normal)
+      actionButton.isHidden = true
       
     case .widget:
       iconImageView.image = UIImage(systemName: "apps.iphone")
@@ -191,11 +191,6 @@ final class OnboardingPageViewController: UIViewController {
         await store.send(.requestHealthKitPermission)
         updateButtonState()
       }
-    case .notification:
-      Task {
-        await store.send(.requestNotificationPermission)
-        updateButtonState()
-      }
     case .widget:
       onComplete?()
     default:
@@ -208,12 +203,6 @@ final class OnboardingPageViewController: UIViewController {
     case .healthKit:
       if store.isHealthKitAuthorized {
         actionButton.setTitle(NSLocalizedString("onboarding.healthkit.connected", comment: ""), for: .normal)
-        actionButton.backgroundColor = .systemGreen
-        actionButton.isEnabled = false
-      }
-    case .notification:
-      if store.isNotificationAuthorized {
-        actionButton.setTitle(NSLocalizedString("onboarding.notification.enabled", comment: ""), for: .normal)
         actionButton.backgroundColor = .systemGreen
         actionButton.isEnabled = false
       }

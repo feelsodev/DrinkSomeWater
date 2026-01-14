@@ -143,15 +143,31 @@ final class OnboardingViewController: UIViewController {
   
   @objc private func nextTapped() {
     let currentIndex = pageControl.currentPage
-    if currentIndex < pages.count - 1 {
-      let nextPage = pages[currentIndex + 1]
-      pageViewController.setViewControllers([nextPage], direction: .forward, animated: true)
-      pageControl.currentPage = currentIndex + 1
-      store.currentPage = currentIndex + 1
-      updateNextButtonTitle()
+    let currentPage = pages[currentIndex]
+    
+    if currentPage.pageType == .notification {
+      Task {
+        await store.send(.requestNotificationPermission)
+        advanceToNextPage()
+      }
+    } else if currentIndex < pages.count - 1 {
+      advanceToNextPage()
     } else {
       completeOnboarding()
     }
+  }
+  
+  private func advanceToNextPage() {
+    let currentIndex = pageControl.currentPage
+    guard currentIndex < pages.count - 1 else {
+      completeOnboarding()
+      return
+    }
+    let nextPage = pages[currentIndex + 1]
+    pageViewController.setViewControllers([nextPage], direction: .forward, animated: true)
+    pageControl.currentPage = currentIndex + 1
+    store.currentPage = currentIndex + 1
+    updateNextButtonTitle()
   }
   
   private func updateNextButtonTitle() {
