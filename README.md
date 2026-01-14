@@ -172,6 +172,47 @@ tuist test
 open DrinkSomeWater.xcworkspace
 ```
 
+## 🧪 테스트
+
+### 테스트 실행
+```bash
+tuist test
+```
+
+### 테스트 커버리지
+
+| 모듈 | 테스트 파일 | 테스트 케이스 |
+|------|------------|--------------|
+| HomeStore | HomeStoreTests.swift | 12개 |
+| WaterService | WaterServiceTests.swift | 13개 |
+| HistoryStore | HistoryStoreTests.swift | 8개 |
+| ProfileStore | ProfileStoreTests.swift | 12개 |
+| NotificationStore | NotificationStoreTests.swift | 10개 |
+| Models | DrinkSomeWaterTests.swift | 11개 |
+
+총 **53개 이상**의 테스트 케이스로 핵심 비즈니스 로직을 검증합니다.
+
+### 테스트 구조
+
+```
+DrinkSomeWaterTests/
+├── Mocks/
+│   └── MockServices.swift      # 테스트용 Mock 서비스
+├── HomeStoreTests.swift        # 홈 화면 Store 테스트
+├── WaterServiceTests.swift     # 물 섭취 서비스 테스트
+├── HistoryStoreTests.swift     # 기록 화면 Store 테스트
+├── ProfileStoreTests.swift     # 프로필 Store 테스트
+└── DrinkSomeWaterTests.swift   # 모델 및 기타 테스트
+```
+
+## ♿ 접근성
+
+VoiceOver를 지원하여 시각 장애인도 앱을 사용할 수 있습니다.
+
+- **홈 화면**: 현재 섭취량, 목표량, 퀵버튼에 접근성 레이블 제공
+- **기록 화면**: 월간 달성 통계, 기록 리스트에 접근성 지원
+- **다국어 지원**: 한국어/영어 접근성 레이블 완비
+
 ## 📝 아키텍처
 
 ### @Observable Store Pattern
