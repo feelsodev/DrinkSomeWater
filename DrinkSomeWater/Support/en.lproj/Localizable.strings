@@ -314,3 +314,18 @@
 // Watch Complication
 "complication.displayname" = "Water Intake";
 "complication.description" = "Check how much water you drank today.";
+
+// Accessibility
+"accessibility.home.current" = "Current intake %d milliliters";
+"accessibility.home.goal" = "Daily goal %d milliliters";
+"accessibility.home.goal.hint" = "Double tap to change goal";
+"accessibility.home.add" = "Add %d milliliters";
+"accessibility.home.add.hint" = "Double tap to add water";
+"accessibility.home.subtract" = "Subtract %d milliliters";
+"accessibility.home.subtract.hint" = "Double tap to subtract water";
+"accessibility.home.mode.add" = "Add mode active";
+"accessibility.home.mode.subtract" = "Subtract mode active";
+"accessibility.home.mode.hint" = "Double tap to toggle between add and subtract mode";
+"accessibility.history.summary" = "This month %d days achieved";
+"accessibility.history.achieved" = "Goal achieved";
+"accessibility.history.progress" = "%@ of goal";

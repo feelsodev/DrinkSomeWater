@@ -314,3 +314,18 @@
 // Watch Complication
 "complication.displayname" = "물 섭취량";
 "complication.description" = "오늘 마신 물의 양을 확인합니다.";
+
+// Accessibility
+"accessibility.home.current" = "현재 섭취량 %d 밀리리터";
+"accessibility.home.goal" = "일일 목표 %d 밀리리터";
+"accessibility.home.goal.hint" = "두 번 탭하여 목표 변경";
+"accessibility.home.add" = "%d 밀리리터 추가";
+"accessibility.home.add.hint" = "두 번 탭하여 물 추가";
+"accessibility.home.subtract" = "%d 밀리리터 빼기";
+"accessibility.home.subtract.hint" = "두 번 탭하여 물 빼기";
+"accessibility.home.mode.add" = "추가 모드 활성화됨";
+"accessibility.home.mode.subtract" = "빼기 모드 활성화됨";
+"accessibility.home.mode.hint" = "두 번 탭하여 추가/빼기 모드 전환";
+"accessibility.history.summary" = "이번 달 %d일 달성";
+"accessibility.history.achieved" = "목표 달성";
+"accessibility.history.progress" = "목표의 %@";

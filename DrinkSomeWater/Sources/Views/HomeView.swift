@@ -80,6 +80,7 @@ struct HomeView: View {
       Text("\(Int(store.ml))ml")
         .font(.system(size: 48, weight: .bold))
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
+        .accessibilityLabel(String(localized: "accessibility.home.current", defaultValue: "Current intake \(Int(store.ml)) milliliters"))
 
       Button {
         showGoalSetting = true
@@ -96,6 +97,8 @@ struct HomeView: View {
         .background(DS.SwiftUIColor.primary.opacity(0.12))
         .clipShape(Capsule())
       }
+      .accessibilityLabel(String(localized: "accessibility.home.goal", defaultValue: "Daily goal \(Int(store.total)) milliliters"))
+      .accessibilityHint(String(localized: "accessibility.home.goal.hint", defaultValue: "Double tap to change goal"))
       
       messageCard
         .padding(.top, 8)
@@ -107,6 +110,7 @@ struct HomeView: View {
     HStack(spacing: 8) {
       Text(store.remainingMl <= 0 ? "🎉" : "💧")
         .font(.system(size: 20))
+        .accessibilityHidden(true)
 
       Text(store.remainingMl <= 0 ? String(localized: "home.goal.achieved") : String(format: String(localized: "home.goal.remaining"), "\(store.remainingCups)"))
         .font(.system(size: 14, weight: .semibold))
@@ -235,6 +239,10 @@ struct HomeView: View {
               .fill(isSubtractMode ? Color.red.opacity(0.12) : DS.SwiftUIColor.primary.opacity(0.12))
           )
         }
+        .accessibilityLabel(isSubtractMode
+          ? String(localized: "accessibility.home.mode.subtract", defaultValue: "Subtract mode active")
+          : String(localized: "accessibility.home.mode.add", defaultValue: "Add mode active"))
+        .accessibilityHint(String(localized: "accessibility.home.mode.hint", defaultValue: "Double tap to toggle between add and subtract mode"))
 
         Button(String(localized: "home.edit")) {
           showQuickButtonSetting = true
@@ -276,6 +284,12 @@ struct HomeView: View {
             .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
         }
         .disabled(isSubtractMode && store.ml <= 0)
+        .accessibilityLabel(isSubtractMode 
+          ? String(localized: "accessibility.home.subtract", defaultValue: "Subtract \(amount) milliliters")
+          : String(localized: "accessibility.home.add", defaultValue: "Add \(amount) milliliters"))
+        .accessibilityHint(isSubtractMode
+          ? String(localized: "accessibility.home.subtract.hint", defaultValue: "Double tap to subtract water")
+          : String(localized: "accessibility.home.add.hint", defaultValue: "Double tap to add water"))
       }
     }
   }

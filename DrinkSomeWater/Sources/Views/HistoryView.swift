@@ -75,6 +75,7 @@ struct HistoryView: View {
       Text(String(localized: "history.title"))
         .font(.system(size: 28, weight: .bold))
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
+        .accessibilityAddTraits(.isHeader)
 
       Spacer()
 
@@ -88,10 +89,13 @@ struct HistoryView: View {
     HStack(spacing: 6) {
       Text("📊")
         .font(.system(size: 14))
+        .accessibilityHidden(true)
       Text(String(format: String(localized: "history.month.summary"), "\(store.monthlySuccessCount)"))
         .font(.system(size: 13, weight: .semibold))
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
     }
+    .accessibilityElement(children: .combine)
+    .accessibilityLabel(String(localized: "accessibility.history.summary", defaultValue: "This month \(store.monthlySuccessCount) days achieved"))
     .padding(.horizontal, 12)
     .padding(.vertical, 8)
     .background(
@@ -123,6 +127,8 @@ struct HistoryView: View {
               .fill(selectedMode == mode ? DS.SwiftUIColor.primary : .clear)
           )
         }
+        .accessibilityLabel(mode.localizedName)
+        .accessibilityAddTraits(selectedMode == mode ? [.isSelected] : [])
       }
     }
     .padding(4)
@@ -231,6 +237,7 @@ struct ListRecordRow: View {
         
         ProgressView(value: min(Float(record.value) / Float(record.goal), 1.0))
           .tint(record.isSuccess ? DS.SwiftUIColor.success : DS.SwiftUIColor.primary)
+          .accessibilityHidden(true)
 
         Text(String(format: String(localized: "history.record.progress"), "\(record.value)", "\(record.goal)"))
           .font(.system(size: 12, weight: .medium))
@@ -243,6 +250,7 @@ struct ListRecordRow: View {
         Image(systemName: "checkmark.circle.fill")
           .font(.system(size: 24))
           .foregroundStyle(DS.SwiftUIColor.success)
+          .accessibilityHidden(true)
       } else {
         Text(percentageString)
           .font(.system(size: 16, weight: .bold))
@@ -255,6 +263,15 @@ struct ListRecordRow: View {
         .fill(.white)
         .shadow(color: DS.SwiftUIColor.primary.opacity(0.08), radius: 8, y: 2)
     )
+    .accessibilityElement(children: .combine)
+    .accessibilityLabel(accessibilityDescription)
+  }
+  
+  private var accessibilityDescription: String {
+    let status = record.isSuccess 
+      ? String(localized: "accessibility.history.achieved", defaultValue: "Goal achieved")
+      : String(localized: "accessibility.history.progress", defaultValue: "\(percentageString) of goal")
+    return "\(weekdayString), \(monthString) \(dayString). \(record.value) of \(record.goal) milliliters. \(status)"
   }
   
   private var dayString: String {
