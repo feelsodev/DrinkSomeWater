@@ -42,7 +42,8 @@ final class HealthKitService: HealthKitServiceProtocol {
     
     do {
       try await healthStore.requestAuthorization(toShare: writeTypes, read: readTypes)
-      return true
+      let status = healthStore.authorizationStatus(for: waterType)
+      return status == .sharingAuthorized
     } catch {
       return false
     }

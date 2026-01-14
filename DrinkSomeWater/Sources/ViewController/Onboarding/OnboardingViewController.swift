@@ -74,10 +74,7 @@ final class OnboardingViewController: UIViewController {
     
     let widgetPage = OnboardingPageViewController(
       pageType: .widget,
-      store: store,
-      onComplete: { [weak self] in
-        self?.completeOnboarding()
-      }
+      store: store
     )
     
     pages = [introPage, goalPage, healthKitPage, notificationPage, widgetPage]
@@ -89,7 +86,6 @@ final class OnboardingViewController: UIViewController {
       transitionStyle: .scroll,
       navigationOrientation: .horizontal
     )
-    pageViewController.dataSource = self
     pageViewController.delegate = self
     
     if let firstPage = pages.first {
@@ -145,15 +141,23 @@ final class OnboardingViewController: UIViewController {
     let currentIndex = pageControl.currentPage
     let currentPage = pages[currentIndex]
     
-    if currentPage.pageType == .notification {
+    switch currentPage.pageType {
+    case .healthKit:
+      Task {
+        await store.send(.requestHealthKitPermission)
+        advanceToNextPage()
+      }
+    case .notification:
       Task {
         await store.send(.requestNotificationPermission)
         advanceToNextPage()
       }
-    } else if currentIndex < pages.count - 1 {
-      advanceToNextPage()
-    } else {
-      completeOnboarding()
+    default:
+      if currentIndex < pages.count - 1 {
+        advanceToNextPage()
+      } else {
+        completeOnboarding()
+      }
     }
   }
   
@@ -195,22 +199,6 @@ final class OnboardingViewController: UIViewController {
     window.rootViewController = hostingController
     window.makeKeyAndVisible()
     UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
-  }
-}
-
-extension OnboardingViewController: UIPageViewControllerDataSource {
-  func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-    guard let currentPage = viewController as? OnboardingPageViewController,
-       let currentIndex = pages.firstIndex(of: currentPage),
-       currentIndex > 0 else { return nil }
-    return pages[currentIndex - 1]
-  }
-  
-  func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-    guard let currentPage = viewController as? OnboardingPageViewController,
-       let currentIndex = pages.firstIndex(of: currentPage),
-       currentIndex < pages.count - 1 else { return nil }
-    return pages[currentIndex + 1]
   }
 }
 

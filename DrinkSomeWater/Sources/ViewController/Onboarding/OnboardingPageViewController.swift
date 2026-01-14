@@ -13,7 +13,6 @@ final class OnboardingPageViewController: UIViewController {
   
   let pageType: OnboardingPageType
   private let store: OnboardingStore
-  private var onComplete: (() -> Void)?
   
   private lazy var iconImageView: UIImageView = {
     let imageView = UIImageView()
@@ -76,10 +75,9 @@ final class OnboardingPageViewController: UIViewController {
     return button
   }()
   
-  init(pageType: OnboardingPageType, store: OnboardingStore, onComplete: (() -> Void)? = nil) {
+  init(pageType: OnboardingPageType, store: OnboardingStore) {
     self.pageType = pageType
     self.store = store
-    self.onComplete = onComplete
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -114,7 +112,7 @@ final class OnboardingPageViewController: UIViewController {
       iconImageView.tintColor = .systemPink
       titleLabel.text = NSLocalizedString("onboarding.healthkit.title", comment: "")
       descriptionLabel.text = NSLocalizedString("onboarding.healthkit.description", comment: "")
-      actionButton.setTitle(NSLocalizedString("onboarding.healthkit.button", comment: ""), for: .normal)
+      actionButton.isHidden = true
       
     case .notification:
       iconImageView.image = UIImage(systemName: "bell.fill")
@@ -127,7 +125,7 @@ final class OnboardingPageViewController: UIViewController {
       iconImageView.image = UIImage(systemName: "apps.iphone")
       titleLabel.text = NSLocalizedString("onboarding.widget.title", comment: "")
       descriptionLabel.text = NSLocalizedString("onboarding.widget.description", comment: "")
-      actionButton.setTitle(NSLocalizedString("onboarding.widget.button", comment: ""), for: .normal)
+      actionButton.isHidden = true
     }
   }
   
@@ -184,30 +182,5 @@ final class OnboardingPageViewController: UIViewController {
     }
   }
   
-  @objc private func actionButtonTapped() {
-    switch pageType {
-    case .healthKit:
-      Task {
-        await store.send(.requestHealthKitPermission)
-        updateButtonState()
-      }
-    case .widget:
-      onComplete?()
-    default:
-      break
-    }
-  }
-  
-  private func updateButtonState() {
-    switch pageType {
-    case .healthKit:
-      if store.isHealthKitAuthorized {
-        actionButton.setTitle(NSLocalizedString("onboarding.healthkit.connected", comment: ""), for: .normal)
-        actionButton.backgroundColor = .systemGreen
-        actionButton.isEnabled = false
-      }
-    default:
-      break
-    }
-  }
+  @objc private func actionButtonTapped() {}
 }

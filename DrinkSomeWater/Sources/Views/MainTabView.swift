@@ -30,11 +30,10 @@ struct MainTabView: View {
 
   private func configureTabBarAppearance() {
     let appearance = UITabBarAppearance()
-    appearance.configureWithTransparentBackground()
-    appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+    appearance.configureWithDefaultBackground()
     UITabBar.appearance().standardAppearance = appearance
     UITabBar.appearance().scrollEdgeAppearance = appearance
-    UITabBar.appearance().unselectedItemTintColor = .darkGray
+    UITabBar.appearance().unselectedItemTintColor = .gray
   }
 }
 

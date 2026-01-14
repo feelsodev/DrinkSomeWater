@@ -126,7 +126,7 @@ struct HomeView: View {
   }
 
   private var notificationBanner: some View {
-    HStack(spacing: 12) {
+    HStack(alignment: .center, spacing: 12) {
       Image(systemName: "bell.badge")
         .font(.system(size: 20))
         .foregroundStyle(.orange)
@@ -138,7 +138,9 @@ struct HomeView: View {
         Text(String(localized: "home.notification.banner.description"))
           .font(.system(size: 12))
           .foregroundStyle(.secondary)
+          .fixedSize(horizontal: false, vertical: true)
       }
+      .layoutPriority(1)
 
       Spacer()
 
