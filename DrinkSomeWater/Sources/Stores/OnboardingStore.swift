@@ -42,6 +42,7 @@ final class OnboardingStore {
       if isHealthKitAuthorized {
         Analytics.shared.log(.permissionGranted(type: .healthKit))
         Analytics.shared.setHealthKitEnabled(true)
+        provider.userDefaultsService.set(value: true, forkey: .useHealthKitWeight)
       } else {
         Analytics.shared.log(.permissionDenied(type: .healthKit))
       }

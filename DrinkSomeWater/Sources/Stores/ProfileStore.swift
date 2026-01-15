@@ -26,6 +26,7 @@ final class ProfileStore {
   init(provider: ServiceProviderProtocol) {
     self.provider = provider
     self.isHealthKitAvailable = provider.healthKitService.isAvailable
+    loadProfile()
   }
   
   func send(_ action: Action) async {
