@@ -210,5 +210,14 @@ let project = Project(
                 .target(name: "DrinkSomeWater")
             ]
         ),
+    ],
+    schemes: [
+        .scheme(
+            name: "DrinkSomeWater",
+            shared: true,
+            buildAction: .buildAction(targets: ["DrinkSomeWater"]),
+            testAction: .targets(["DrinkSomeWaterTests"]),
+            runAction: .runAction(configuration: .debug, executable: "DrinkSomeWater")
+        ),
     ]
 )
