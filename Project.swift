@@ -13,7 +13,7 @@ let project = Project(
         base: [
             "SWIFT_VERSION": "6.0",
             "IPHONEOS_DEPLOYMENT_TARGET": "26.0",
-            "TARGETED_DEVICE_FAMILY": "1,2",
+            "TARGETED_DEVICE_FAMILY": "1",
             "DEVELOPMENT_TEAM": "TG4L9MF5FD",
             "CODE_SIGN_STYLE": "Automatic",
         ],
@@ -38,12 +38,6 @@ let project = Project(
                 "UIMainStoryboardFile": "Main",
                 "UISupportedInterfaceOrientations": [
                     "UIInterfaceOrientationPortrait"
-                ],
-                "UISupportedInterfaceOrientations~ipad": [
-                    "UIInterfaceOrientationPortrait",
-                    "UIInterfaceOrientationPortraitUpsideDown",
-                    "UIInterfaceOrientationLandscapeLeft",
-                    "UIInterfaceOrientationLandscapeRight"
                 ],
                 "UIApplicationSceneManifest": [
                     "UIApplicationSupportsMultipleScenes": false,
