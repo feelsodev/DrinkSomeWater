@@ -13,4 +13,3 @@
 // Usage Descriptions
 "NSHealthShareUsageDescription" = "Read weight data to calculate personalized recommendations.";
 "NSHealthUpdateUsageDescription" = "Sync water intake records with Health app.";
-"NSUserTrackingUsageDescription" = "Used to provide personalized ads.";

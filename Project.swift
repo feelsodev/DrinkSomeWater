@@ -62,7 +62,6 @@ let project = Project(
                 "LOG_LEVEL": "$(LOG_LEVEL)",
                 "ENABLE_ANALYTICS": "$(ENABLE_ANALYTICS)",
                 "ENABLE_DEBUG_MENU": "$(ENABLE_DEBUG_MENU)",
-                "NSUserTrackingUsageDescription": "Used to provide personalized ads.",
                 "SKAdNetworkItems": [
                     ["SKAdNetworkIdentifier": "cstr6suwn9.skadnetwork"],
                     ["SKAdNetworkIdentifier": "4fzdc2evr5.skadnetwork"],

@@ -1,12 +1,10 @@
 import UIKit
 import WidgetKit
-import AppTrackingTransparency
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
   private var serviceProvider: ServiceProvider!
-  private var hasRequestedATT = false
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -60,30 +58,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
   
   func sceneDidBecomeActive(_ scene: UIScene) {
-    requestTrackingAuthorizationIfNeeded()
-  }
-  
-  private func requestTrackingAuthorizationIfNeeded() {
-    guard !hasRequestedATT else { return }
-    hasRequestedATT = true
-    
-    // Apple recommends a slight delay after app becomes active
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-      ATTrackingManager.requestTrackingAuthorization { status in
-        switch status {
-        case .authorized:
-          print("[ATT] User authorized tracking")
-        case .denied:
-          print("[ATT] User denied tracking")
-        case .notDetermined:
-          print("[ATT] Tracking authorization not determined")
-        case .restricted:
-          print("[ATT] Tracking authorization restricted")
-        @unknown default:
-          print("[ATT] Unknown tracking authorization status")
-        }
-      }
-    }
   }
   
   func sceneWillResignActive(_ scene: UIScene) {
