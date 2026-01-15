@@ -39,11 +39,11 @@ struct HistoryView: View {
       )
       .ignoresSafeArea()
 
-      VStack(spacing: 0) {
+      VStack(spacing: DS.Spacing.none) {
         headerSection
 
         modePicker
-          .padding(.top, 12)
+          .padding(.top, DS.Spacing.sm)
 
         TabView(selection: $selectedMode) {
           HistoryCalendarTab(
@@ -73,7 +73,7 @@ struct HistoryView: View {
   private var headerSection: some View {
     HStack {
       Text(String(localized: "history.title"))
-        .font(.system(size: 28, weight: .bold))
+        .font(DS.SwiftUIFont.title1)
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
         .accessibilityAddTraits(.isHeader)
 
@@ -81,49 +81,49 @@ struct HistoryView: View {
 
       monthSummaryBadge
     }
-    .padding(.horizontal, 20)
-    .padding(.top, 16)
+    .padding(.horizontal, DS.Spacing.lg)
+    .padding(.top, DS.Spacing.md)
   }
 
   private var monthSummaryBadge: some View {
-    HStack(spacing: 6) {
+    HStack(spacing: DS.Spacing.xxs) {
       Text("📊")
-        .font(.system(size: 14))
+        .font(DS.SwiftUIFont.subhead)
         .accessibilityHidden(true)
       Text(String(format: String(localized: "history.month.summary"), "\(store.monthlySuccessCount)"))
-        .font(.system(size: 13, weight: .semibold))
+        .font(DS.SwiftUIFont.footnoteSemibold)
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
     }
     .accessibilityElement(children: .combine)
     .accessibilityLabel(String(localized: "accessibility.history.summary", defaultValue: "This month \(store.monthlySuccessCount) days achieved"))
-    .padding(.horizontal, 12)
-    .padding(.vertical, 8)
+    .padding(.horizontal, DS.Spacing.sm)
+    .padding(.vertical, DS.Spacing.xs)
     .background(
-      RoundedRectangle(cornerRadius: 16, style: .continuous)
+      RoundedRectangle(cornerRadius: DS.Size.cornerRadiusLarge, style: .continuous)
         .fill(.white)
-        .shadow(color: DS.SwiftUIColor.primary.opacity(0.15), radius: 8, y: 2)
+        .shadow(color: DS.SwiftUIColor.primary.opacity(0.15), radius: DS.Spacing.xs, y: 2)
     )
   }
   
   private var modePicker: some View {
-    HStack(spacing: 0) {
+    HStack(spacing: DS.Spacing.none) {
       ForEach(HistoryViewMode.allCases, id: \.self) { mode in
         Button {
           withAnimation(.easeInOut(duration: 0.2)) {
             selectedMode = mode
           }
         } label: {
-          HStack(spacing: 6) {
+          HStack(spacing: DS.Spacing.xxs) {
             Image(systemName: mode.icon)
-              .font(.system(size: 12, weight: .semibold))
+              .font(DS.SwiftUIFont.captionSemibold)
             Text(mode.localizedName)
-              .font(.system(size: 13, weight: .semibold))
+              .font(DS.SwiftUIFont.footnoteSemibold)
           }
           .foregroundStyle(selectedMode == mode ? .white : DS.SwiftUIColor.textSecondary)
           .frame(maxWidth: .infinity)
-          .padding(.vertical, 10)
+          .padding(.vertical, DS.Spacing.xs)
           .background(
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
+            RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium, style: .continuous)
               .fill(selectedMode == mode ? DS.SwiftUIColor.primary : .clear)
           )
         }
@@ -131,13 +131,13 @@ struct HistoryView: View {
         .accessibilityAddTraits(selectedMode == mode ? [.isSelected] : [])
       }
     }
-    .padding(4)
+    .padding(DS.Spacing.xxs)
     .background(
-      RoundedRectangle(cornerRadius: 14, style: .continuous)
+      RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium, style: .continuous)
         .fill(.white)
-        .shadow(color: DS.SwiftUIColor.primary.opacity(0.1), radius: 8, y: 2)
+        .shadow(color: DS.SwiftUIColor.primary.opacity(0.1), radius: DS.Spacing.xs, y: 2)
     )
-    .padding(.horizontal, 20)
+    .padding(.horizontal, DS.Spacing.lg)
   }
 }
 
@@ -147,7 +147,7 @@ struct HistoryCalendarTab: View {
   @Binding var selectedDate: Date?
   
   var body: some View {
-    VStack(spacing: 0) {
+    VStack(spacing: DS.Spacing.none) {
       FSCalendarRepresentable(
         selectedDate: $selectedDate,
         successDates: store.successDates
@@ -155,17 +155,17 @@ struct HistoryCalendarTab: View {
         Task { await store.send(.selectDate(date)) }
       }
       .frame(height: 320)
-      .padding(.horizontal, 20)
-      .padding(.top, 16)
-      .shadow(color: DS.SwiftUIColor.primary.opacity(0.1), radius: 12, y: 4)
+      .padding(.horizontal, DS.Spacing.lg)
+      .padding(.top, DS.Spacing.md)
+      .shadow(color: DS.SwiftUIColor.primary.opacity(0.1), radius: DS.Spacing.sm, y: DS.Spacing.xxs)
       
       legendSection
-        .padding(.top, 16)
+        .padding(.top, DS.Spacing.md)
       
       if let record = store.selectedRecord {
         RecordCard(record: record)
-          .padding(.horizontal, 20)
-          .padding(.top, 20)
+          .padding(.horizontal, DS.Spacing.lg)
+          .padding(.top, DS.Spacing.lg)
           .transition(.opacity.combined(with: .move(edge: .bottom)))
       }
       
@@ -175,7 +175,7 @@ struct HistoryCalendarTab: View {
   }
   
   private var legendSection: some View {
-    HStack(spacing: 24) {
+    HStack(spacing: DS.Spacing.xl) {
       LegendItem(color: DS.SwiftUIColor.primary.opacity(0.3), text: String(localized: "history.legend.today"))
       LegendItem(color: Color(DS.Color.textPrimary), text: String(localized: "history.legend.selected"))
       LegendItem(color: DS.SwiftUIColor.primary, text: String(localized: "history.legend.achieved"))
@@ -194,7 +194,7 @@ struct HistoryListTab: View {
   
   var body: some View {
     ScrollView {
-      LazyVStack(spacing: 12) {
+      LazyVStack(spacing: DS.Spacing.sm) {
         ForEach(Array(sortedRecords.enumerated()), id: \.element.id) { index, record in
           ListRecordRow(record: record)
 
@@ -203,9 +203,9 @@ struct HistoryListTab: View {
           }
         }
       }
-      .padding(.horizontal, 20)
-      .padding(.top, 16)
-      .padding(.bottom, 100)
+      .padding(.horizontal, DS.Spacing.lg)
+      .padding(.top, DS.Spacing.md)
+      .padding(.bottom, DS.Spacing.scrollBottom)
     }
     .scrollContentBackground(.hidden)
     .ignoresSafeArea(edges: .bottom)
@@ -219,20 +219,20 @@ struct ListRecordRow: View {
   let record: WaterRecord
   
   var body: some View {
-    HStack(spacing: 16) {
-      VStack(spacing: 4) {
+    HStack(spacing: DS.Spacing.md) {
+      VStack(spacing: DS.Spacing.xxs) {
         Text(dayString)
-          .font(.system(size: 24, weight: .bold))
+          .font(DS.SwiftUIFont.title2)
           .foregroundStyle(record.isSuccess ? DS.SwiftUIColor.primary : DS.SwiftUIColor.textSecondary)
         Text(monthString)
-          .font(.system(size: 12, weight: .medium))
+          .font(DS.SwiftUIFont.captionMedium)
           .foregroundStyle(DS.SwiftUIColor.textTertiary)
       }
       .frame(width: 50)
       
-      VStack(alignment: .leading, spacing: 4) {
+      VStack(alignment: .leading, spacing: DS.Spacing.xxs) {
         Text(weekdayString)
-          .font(.system(size: 14, weight: .semibold))
+          .font(DS.SwiftUIFont.subheadSemibold)
           .foregroundStyle(DS.SwiftUIColor.textPrimary)
         
         ProgressView(value: min(Float(record.value) / Float(record.goal), 1.0))
@@ -240,7 +240,7 @@ struct ListRecordRow: View {
           .accessibilityHidden(true)
 
         Text(String(format: String(localized: "history.record.progress"), "\(record.value)", "\(record.goal)"))
-          .font(.system(size: 12, weight: .medium))
+          .font(DS.SwiftUIFont.captionMedium)
           .foregroundStyle(DS.SwiftUIColor.textTertiary)
       }
       
@@ -248,20 +248,20 @@ struct ListRecordRow: View {
       
       if record.isSuccess {
         Image(systemName: "checkmark.circle.fill")
-          .font(.system(size: 24))
+          .font(DS.SwiftUIFont.title2)
           .foregroundStyle(DS.SwiftUIColor.success)
           .accessibilityHidden(true)
       } else {
         Text(percentageString)
-          .font(.system(size: 16, weight: .bold))
+          .font(DS.SwiftUIFont.bodyBold)
           .foregroundStyle(DS.SwiftUIColor.textSecondary)
       }
     }
-    .padding(16)
+    .padding(DS.Spacing.md)
     .background(
-      RoundedRectangle(cornerRadius: 16, style: .continuous)
+      RoundedRectangle(cornerRadius: DS.Size.cornerRadiusLarge, style: .continuous)
         .fill(.white)
-        .shadow(color: DS.SwiftUIColor.primary.opacity(0.08), radius: 8, y: 2)
+        .shadow(color: DS.SwiftUIColor.primary.opacity(0.08), radius: DS.Spacing.xs, y: 2)
     )
     .accessibilityElement(children: .combine)
     .accessibilityLabel(accessibilityDescription)
@@ -316,14 +316,14 @@ struct HistoryTimelineTab: View {
   
   var body: some View {
     ScrollView {
-      LazyVStack(spacing: 0) {
+      LazyVStack(spacing: DS.Spacing.none) {
         ForEach(groupedRecords, id: \.0) { month, records in
           TimelineMonthSection(month: month, records: records.sorted { $0.date > $1.date })
         }
       }
-      .padding(.horizontal, 20)
-      .padding(.top, 16)
-      .padding(.bottom, 100)
+      .padding(.horizontal, DS.Spacing.lg)
+      .padding(.top, DS.Spacing.md)
+      .padding(.bottom, DS.Spacing.scrollBottom)
     }
     .scrollContentBackground(.hidden)
     .ignoresSafeArea(edges: .bottom)
@@ -339,19 +339,19 @@ struct TimelineMonthSection: View {
   }
   
   var body: some View {
-    VStack(alignment: .leading, spacing: 0) {
+    VStack(alignment: .leading, spacing: DS.Spacing.none) {
       HStack {
         Text(month)
-          .font(.system(size: 18, weight: .bold))
+          .font(DS.SwiftUIFont.headline)
           .foregroundStyle(DS.SwiftUIColor.textPrimary)
 
         Spacer()
 
         Text(String(format: String(localized: "history.timeline.achieved"), "\(successCount)", "\(records.count)"))
-          .font(.system(size: 13, weight: .medium))
+          .font(DS.SwiftUIFont.footnoteMedium)
           .foregroundStyle(DS.SwiftUIColor.textSecondary)
       }
-      .padding(.vertical, 12)
+      .padding(.vertical, DS.Spacing.sm)
       
       ForEach(records.indices, id: \.self) { index in
         TimelineRecordRow(record: records[index], isLast: index == records.count - 1)
@@ -365,11 +365,11 @@ struct TimelineRecordRow: View {
   let isLast: Bool
   
   var body: some View {
-    HStack(alignment: .top, spacing: 16) {
-      VStack(spacing: 0) {
+    HStack(alignment: .top, spacing: DS.Spacing.md) {
+      VStack(spacing: DS.Spacing.none) {
         Circle()
           .fill(record.isSuccess ? DS.SwiftUIColor.success : DS.SwiftUIColor.primary.opacity(0.3))
-          .frame(width: 12, height: 12)
+          .frame(width: DS.Spacing.sm, height: DS.Spacing.sm)
         
         if !isLast {
           Rectangle()
@@ -378,34 +378,34 @@ struct TimelineRecordRow: View {
             .frame(maxHeight: .infinity)
         }
       }
-      .frame(width: 12)
+      .frame(width: DS.Spacing.sm)
       
-      VStack(alignment: .leading, spacing: 8) {
+      VStack(alignment: .leading, spacing: DS.Spacing.xs) {
         HStack {
           Text(dateString)
-            .font(.system(size: 14, weight: .semibold))
+            .font(DS.SwiftUIFont.subheadSemibold)
             .foregroundStyle(DS.SwiftUIColor.textPrimary)
           
           Spacer()
           
           if record.isSuccess {
             Label(String(localized: "history.label.achieved"), systemImage: "checkmark.circle.fill")
-              .font(.system(size: 12, weight: .semibold))
+              .font(DS.SwiftUIFont.captionSemibold)
               .foregroundStyle(DS.SwiftUIColor.success)
           }
         }
 
-        HStack(spacing: 16) {
+        HStack(spacing: DS.Spacing.md) {
           Label("\(record.value)ml", systemImage: "drop.fill")
-            .font(.system(size: 13, weight: .medium))
+            .font(DS.SwiftUIFont.footnoteMedium)
             .foregroundStyle(DS.SwiftUIColor.primary)
 
           Text(String(format: String(localized: "history.record.goal"), "\(record.goal)"))
-            .font(.system(size: 13, weight: .medium))
+            .font(DS.SwiftUIFont.footnoteMedium)
             .foregroundStyle(DS.SwiftUIColor.textTertiary)
         }
       }
-      .padding(.bottom, isLast ? 0 : 20)
+      .padding(.bottom, isLast ? DS.Spacing.none : DS.Spacing.lg)
     }
   }
   
@@ -423,27 +423,27 @@ struct RecordCard: View {
   
   var body: some View {
     HStack {
-      VStack(alignment: .leading, spacing: 8) {
+      VStack(alignment: .leading, spacing: DS.Spacing.xs) {
         Text(formatDate(record.date))
-          .font(.system(size: 16, weight: .bold))
+          .font(DS.SwiftUIFont.bodyBold)
           .foregroundStyle(DS.SwiftUIColor.textPrimary)
         
-        HStack(spacing: 16) {
+        HStack(spacing: DS.Spacing.md) {
           VStack(alignment: .leading, spacing: 2) {
             Text(String(localized: "history.card.goal"))
-              .font(.system(size: 12, weight: .medium))
+              .font(DS.SwiftUIFont.captionMedium)
               .foregroundStyle(DS.SwiftUIColor.textTertiary)
             Text("\(record.goal)ml")
-              .font(.system(size: 14, weight: .semibold))
+              .font(DS.SwiftUIFont.subheadSemibold)
               .foregroundStyle(DS.SwiftUIColor.textSecondary)
           }
 
           VStack(alignment: .leading, spacing: 2) {
             Text(String(localized: "history.card.intake"))
-              .font(.system(size: 12, weight: .medium))
+              .font(DS.SwiftUIFont.captionMedium)
               .foregroundStyle(DS.SwiftUIColor.textTertiary)
             Text("\(record.value)ml")
-              .font(.system(size: 14, weight: .semibold))
+              .font(DS.SwiftUIFont.subheadSemibold)
               .foregroundStyle(DS.SwiftUIColor.textSecondary)
           }
         }
@@ -451,23 +451,23 @@ struct RecordCard: View {
 
       Spacer()
 
-      VStack(spacing: 4) {
+      VStack(spacing: DS.Spacing.xxs) {
         Text(calculatePercentage(record))
-          .font(.system(size: 24, weight: .bold))
+          .font(DS.SwiftUIFont.title2)
           .foregroundStyle(record.isSuccess ? DS.SwiftUIColor.success : DS.SwiftUIColor.primary)
 
         if record.isSuccess {
           Text(String(localized: "history.card.achieved"))
-            .font(.system(size: 12, weight: .semibold))
+            .font(DS.SwiftUIFont.captionSemibold)
             .foregroundStyle(DS.SwiftUIColor.success)
         }
       }
     }
-    .padding(20)
+    .padding(DS.Spacing.lg)
     .background(
-      RoundedRectangle(cornerRadius: 20, style: .continuous)
+      RoundedRectangle(cornerRadius: DS.Size.cornerRadiusXLarge, style: .continuous)
         .fill(.white)
-        .shadow(color: DS.SwiftUIColor.primary.opacity(0.15), radius: 12, y: 4)
+        .shadow(color: DS.SwiftUIColor.primary.opacity(0.15), radius: DS.Spacing.sm, y: DS.Spacing.xxs)
     )
   }
   
@@ -489,12 +489,12 @@ struct LegendItem: View {
   let text: String
   
   var body: some View {
-    HStack(spacing: 6) {
+    HStack(spacing: DS.Spacing.xxs) {
       Circle()
         .fill(color)
-        .frame(width: 10, height: 10)
+        .frame(width: DS.Spacing.xs + 2, height: DS.Spacing.xs + 2)
       Text(text)
-        .font(.system(size: 12, weight: .medium))
+        .font(DS.SwiftUIFont.captionMedium)
         .foregroundStyle(DS.SwiftUIColor.textSecondary)
     }
   }

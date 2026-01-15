@@ -5,12 +5,12 @@ struct AppGuideView: View {
 
   var body: some View {
     ScrollView {
-      VStack(spacing: 40) {
+      VStack(spacing: DS.Spacing.xxxl) {
         // Header
         headerSection
 
         // Feature Sections
-        VStack(spacing: 24) {
+        VStack(spacing: DS.Spacing.xl) {
           homeSectionView
           historySectionView
           watchSectionView
@@ -18,9 +18,9 @@ struct AppGuideView: View {
           notificationSectionView
           healthSectionView
         }
-        .padding(.horizontal, 20)
+        .padding(.horizontal, DS.Spacing.lg)
       }
-      .padding(.bottom, 40)
+      .padding(.bottom, DS.Spacing.xxxl)
     }
     .background(DS.SwiftUIColor.backgroundPrimary)
   }
@@ -28,18 +28,18 @@ struct AppGuideView: View {
   // MARK: - Header
 
   private var headerSection: some View {
-    VStack(spacing: 12) {
+    VStack(spacing: DS.Spacing.sm) {
       Image(systemName: "drop.fill")
-        .font(.system(size: 60))
+        .font(DS.SwiftUIFont.display)
         .foregroundStyle(DS.SwiftUIColor.primary)
-        .padding(.top, 20)
+        .padding(.top, DS.Spacing.lg)
 
       Text(NSLocalizedString("appguide.title", comment: ""))
-        .font(.system(size: 28, weight: .bold))
+        .font(DS.SwiftUIFont.title1)
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
 
       Text(NSLocalizedString("appguide.subtitle", comment: ""))
-        .font(.system(size: 16, weight: .medium))
+        .font(DS.SwiftUIFont.bodyMedium)
         .foregroundStyle(DS.SwiftUIColor.textSecondary)
         .multilineTextAlignment(.center)
     }
@@ -225,28 +225,28 @@ private struct FeatureSectionView: View {
   let features: [FeatureItem]
 
   var body: some View {
-    VStack(alignment: .leading, spacing: 20) {
+    VStack(alignment: .leading, spacing: DS.Spacing.lg) {
       // Section Header
-      HStack(spacing: 12) {
+      HStack(spacing: DS.Spacing.sm) {
         ZStack {
-          RoundedRectangle(cornerRadius: 12)
+          RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium)
             .fill(iconColor.opacity(0.15))
-            .frame(width: 44, height: 44)
+            .frame(width: DS.Size.iconContainerLarge, height: DS.Size.iconContainerLarge)
 
           Image(systemName: icon)
-            .font(.system(size: 22))
+            .font(DS.SwiftUIFont.title2)
             .foregroundStyle(iconColor)
         }
 
         Text(title)
-          .font(.system(size: 20, weight: .semibold))
+          .font(DS.SwiftUIFont.title3)
           .foregroundStyle(DS.SwiftUIColor.textPrimary)
 
         Spacer()
       }
 
       // Features
-      VStack(alignment: .leading, spacing: 16) {
+      VStack(alignment: .leading, spacing: DS.Spacing.md) {
         ForEach(features.indices, id: \.self) { index in
           FeatureRowView(
             icon: features[index].icon,
@@ -257,11 +257,11 @@ private struct FeatureSectionView: View {
         }
       }
     }
-    .padding(20)
+    .padding(DS.Spacing.lg)
     .background(
-      RoundedRectangle(cornerRadius: 16)
+      RoundedRectangle(cornerRadius: DS.Size.cornerRadiusLarge)
         .fill(DS.SwiftUIColor.backgroundSecondary)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+        .shadow(color: .black.opacity(0.05), radius: DS.Spacing.xs, x: 0, y: 2)
     )
   }
 }
@@ -275,19 +275,19 @@ private struct FeatureRowView: View {
   let description: String
 
   var body: some View {
-    HStack(alignment: .top, spacing: 12) {
+    HStack(alignment: .top, spacing: DS.Spacing.sm) {
       Image(systemName: icon)
-        .font(.system(size: 18))
+        .font(DS.SwiftUIFont.headline)
         .foregroundStyle(iconColor.opacity(0.8))
-        .frame(width: 20)
+        .frame(width: DS.Spacing.lg)
 
       VStack(alignment: .leading, spacing: 2) {
         Text(title)
-          .font(.system(size: 16, weight: .semibold))
+          .font(DS.SwiftUIFont.bodySemibold)
           .foregroundStyle(DS.SwiftUIColor.textPrimary)
 
         Text(description)
-          .font(.system(size: 14, weight: .medium))
+          .font(DS.SwiftUIFont.subheadMedium)
           .foregroundStyle(DS.SwiftUIColor.textSecondary)
           .fixedSize(horizontal: false, vertical: true)
       }

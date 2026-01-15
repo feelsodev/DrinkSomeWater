@@ -18,23 +18,23 @@ struct HomeView: View {
       )
       .ignoresSafeArea()
 
-      VStack(spacing: 0) {
+      VStack(spacing: DS.Spacing.none) {
         if store.showNotificationBanner {
           notificationBanner
         }
 
         headerSection
 
-        Spacer(minLength: 16)
+        Spacer(minLength: DS.Spacing.md)
 
         bottleSection
 
-        Spacer(minLength: 20)
+        Spacer(minLength: DS.Spacing.lg)
 
         quickButtonsSection
       }
-      .padding(.horizontal, 24)
-      .padding(.bottom, 8)
+      .padding(.horizontal, DS.Spacing.xl)
+      .padding(.bottom, DS.Spacing.xs)
     }
     .background(Color(DS.Color.backgroundPrimary).ignoresSafeArea())
     .task {
@@ -76,24 +76,24 @@ struct HomeView: View {
   }
   
   private var headerSection: some View {
-    VStack(spacing: 4) {
+    VStack(spacing: DS.Spacing.xxs) {
       Text("\(Int(store.ml))ml")
-        .font(.system(size: 48, weight: .bold))
+        .font(DS.SwiftUIFont.display)
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
         .accessibilityLabel(String(localized: "accessibility.home.current", defaultValue: "Current intake \(Int(store.ml)) milliliters"))
 
       Button {
         showGoalSetting = true
       } label: {
-        HStack(spacing: 6) {
+        HStack(spacing: DS.Spacing.xs) {
           Text(String(format: String(localized: "home.goal"), "\(Int(store.total))"))
-            .font(.system(size: 14, weight: .semibold))
+            .font(DS.SwiftUIFont.subheadSemibold)
           Image(systemName: "pencil.circle.fill")
-            .font(.system(size: 14, weight: .medium))
+            .font(DS.SwiftUIFont.subheadMedium)
         }
         .foregroundStyle(DS.SwiftUIColor.primary)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 8)
+        .padding(.horizontal, DS.Spacing.md)
+        .padding(.vertical, DS.Spacing.xs)
         .background(DS.SwiftUIColor.primary.opacity(0.12))
         .clipShape(Capsule())
       }
@@ -101,46 +101,46 @@ struct HomeView: View {
       .accessibilityHint(String(localized: "accessibility.home.goal.hint", defaultValue: "Double tap to change goal"))
       
       messageCard
-        .padding(.top, 8)
+        .padding(.top, DS.Spacing.xs)
     }
-    .padding(.top, 8)
+    .padding(.top, DS.Spacing.xs)
   }
   
   private var messageCard: some View {
-    HStack(spacing: 8) {
+    HStack(spacing: DS.Spacing.xs) {
       Text(store.remainingMl <= 0 ? "🎉" : "💧")
-        .font(.system(size: 20))
+        .font(DS.SwiftUIFont.title3)
         .accessibilityHidden(true)
 
       Text(store.remainingMl <= 0 ? String(localized: "home.goal.achieved") : String(format: String(localized: "home.goal.remaining"), "\(store.remainingCups)"))
-        .font(.system(size: 14, weight: .semibold))
+        .font(DS.SwiftUIFont.subheadSemibold)
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
     }
-    .padding(.horizontal, 16)
-    .padding(.vertical, 10)
+    .padding(.horizontal, DS.Spacing.md)
+    .padding(.vertical, DS.Spacing.sm)
     .background(
-      RoundedRectangle(cornerRadius: 20, style: .continuous)
+      RoundedRectangle(cornerRadius: DS.Size.cornerRadiusXLarge, style: .continuous)
         .fill(store.remainingMl <= 0 ? DS.SwiftUIColor.success.opacity(0.1) : .white)
         .shadow(
           color: store.remainingMl <= 0 ? DS.SwiftUIColor.success.opacity(0.3) : DS.SwiftUIColor.primary.opacity(0.2),
-          radius: 12,
-          y: 4
+          radius: DS.Spacing.sm,
+          y: DS.Spacing.xxs
         )
     )
   }
 
   private var notificationBanner: some View {
-    HStack(alignment: .center, spacing: 12) {
+    HStack(alignment: .center, spacing: DS.Spacing.sm) {
       Image(systemName: "bell.badge")
-        .font(.system(size: 20))
+        .font(DS.SwiftUIFont.title3)
         .foregroundStyle(.orange)
 
-      VStack(alignment: .leading, spacing: 2) {
+      VStack(alignment: .leading, spacing: DS.Spacing.xxs) {
         Text(String(localized: "home.notification.banner.title"))
-          .font(.system(size: 14, weight: .semibold))
+          .font(DS.SwiftUIFont.subheadSemibold)
           .foregroundStyle(DS.SwiftUIColor.textPrimary)
         Text(String(localized: "home.notification.banner.description"))
-          .font(.system(size: 12))
+          .font(DS.SwiftUIFont.caption)
           .foregroundStyle(.secondary)
           .fixedSize(horizontal: false, vertical: true)
       }
@@ -154,10 +154,10 @@ struct HomeView: View {
         }
       } label: {
         Text(String(localized: "home.notification.banner.settings"))
-          .font(.system(size: 12, weight: .semibold))
+          .font(DS.SwiftUIFont.captionSemibold)
           .foregroundStyle(.white)
-          .padding(.horizontal, 12)
-          .padding(.vertical, 6)
+          .padding(.horizontal, DS.Spacing.sm)
+          .padding(.vertical, DS.Spacing.xs)
           .background(DS.SwiftUIColor.primary)
           .clipShape(Capsule())
       }
@@ -168,54 +168,54 @@ struct HomeView: View {
         }
       } label: {
         Image(systemName: "xmark")
-          .font(.system(size: 12, weight: .medium))
+          .font(DS.SwiftUIFont.captionMedium)
           .foregroundStyle(.secondary)
       }
     }
-    .padding(.horizontal, 16)
-    .padding(.vertical, 12)
+    .padding(.horizontal, DS.Spacing.md)
+    .padding(.vertical, DS.Spacing.sm)
     .background(
-      RoundedRectangle(cornerRadius: 12, style: .continuous)
+      RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium, style: .continuous)
         .fill(Color.orange.opacity(0.1))
     )
-    .padding(.bottom, 8)
+    .padding(.bottom, DS.Spacing.xs)
   }
 
   private var bottleSection: some View {
-    VStack(spacing: 0) {
-      RoundedRectangle(cornerRadius: 6)
+    VStack(spacing: DS.Spacing.none) {
+      RoundedRectangle(cornerRadius: DS.Size.cornerRadiusSmall)
         .fill(DS.SwiftUIColor.primaryDark)
         .frame(width: 90, height: 10)
       
-      RoundedRectangle(cornerRadius: 0)
+      RoundedRectangle(cornerRadius: DS.Spacing.none)
         .fill(DS.SwiftUIColor.primary.opacity(0.3))
-        .frame(width: 50, height: 12)
+        .frame(width: 50, height: DS.Spacing.sm)
         .offset(y: -2)
       
       ZStack {
-        RoundedRectangle(cornerRadius: 32, style: .continuous)
+        RoundedRectangle(cornerRadius: DS.Size.cornerRadiusPill, style: .continuous)
           .fill(.white)
-          .shadow(color: DS.SwiftUIColor.primary.opacity(0.4), radius: 16, y: 8)
+          .shadow(color: DS.SwiftUIColor.primary.opacity(0.4), radius: DS.Spacing.md, y: DS.Spacing.xs)
         
         WaveAnimationViewRepresentable(
           color: DS.Color.primary,
           progress: store.progress,
           backgroundColor: UIColor.white.withAlphaComponent(0.6),
-          cornerRadius: 32,
+          cornerRadius: DS.Size.cornerRadiusPill,
           borderWidth: 4,
           borderColor: .white
         )
       }
       .frame(width: 160)
-      .offset(y: -4)
+      .offset(y: -DS.Spacing.xxs)
     }
   }
   
   private var quickButtonsSection: some View {
-    VStack(spacing: 10) {
+    VStack(spacing: DS.Spacing.sm) {
       HStack {
         Text(isSubtractMode ? String(localized: "home.quick.subtract") : String(localized: "home.quick.add"))
-          .font(.system(size: 14, weight: .medium))
+          .font(DS.SwiftUIFont.subheadMedium)
           .foregroundStyle(.gray)
 
         Spacer()
@@ -225,15 +225,15 @@ struct HomeView: View {
             isSubtractMode.toggle()
           }
         } label: {
-          HStack(spacing: 5) {
+          HStack(spacing: DS.Spacing.xxs) {
             Text(isSubtractMode ? "−" : "+")
-              .font(.system(size: 15, weight: .bold))
+              .font(DS.SwiftUIFont.bodyBold)
             Image(systemName: "arrow.triangle.2.circlepath")
-              .font(.system(size: 12, weight: .medium))
+              .font(DS.SwiftUIFont.captionMedium)
           }
           .foregroundStyle(isSubtractMode ? .red : DS.SwiftUIColor.primary)
-          .padding(.horizontal, 10)
-          .padding(.vertical, 6)
+          .padding(.horizontal, DS.Spacing.sm)
+          .padding(.vertical, DS.Spacing.xs)
           .background(
             Capsule()
               .fill(isSubtractMode ? Color.red.opacity(0.12) : DS.SwiftUIColor.primary.opacity(0.12))
@@ -247,9 +247,9 @@ struct HomeView: View {
         Button(String(localized: "home.edit")) {
           showQuickButtonSetting = true
         }
-        .font(.system(size: 14, weight: .medium))
+        .font(DS.SwiftUIFont.subheadMedium)
         .foregroundStyle(.gray)
-        .padding(.leading, 8)
+        .padding(.leading, DS.Spacing.xs)
       }
 
       let buttons = store.quickButtons
@@ -263,7 +263,7 @@ struct HomeView: View {
   }
   
   private func quickButtonRow(amounts: [Int]) -> some View {
-    HStack(spacing: 12) {
+    HStack(spacing: DS.Spacing.sm) {
       ForEach(amounts, id: \.self) { amount in
         Button {
           Task {
@@ -275,13 +275,13 @@ struct HomeView: View {
           }
         } label: {
           Text(isSubtractMode ? "-\(amount)ml" : "+\(amount)ml")
-            .font(.system(size: 13, weight: .semibold))
+            .font(DS.SwiftUIFont.footnoteSemibold)
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
-            .frame(height: 44)
+            .frame(height: DS.Size.iconContainerLarge)
             .background(isSubtractMode ? Color.red.opacity(0.85) : DS.SwiftUIColor.primary)
-            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-            .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+            .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium, style: .continuous))
+            .shadow(color: .black.opacity(0.1), radius: DS.Spacing.xxs, y: 2)
         }
         .disabled(isSubtractMode && store.ml <= 0)
         .accessibilityLabel(isSubtractMode 
@@ -311,9 +311,9 @@ struct GoalSettingView: View {
   
   var body: some View {
     NavigationStack {
-      VStack(spacing: 24) {
+      VStack(spacing: DS.Spacing.xl) {
         Text("\(Int(goal))ml")
-          .font(.system(size: 48, weight: .bold))
+          .font(DS.SwiftUIFont.display)
           .foregroundStyle(DS.SwiftUIColor.primary)
         
         Slider(value: $goal, in: 1000...4000, step: 100)
@@ -347,13 +347,13 @@ struct GoalSettingView: View {
             .font(.headline)
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
-            .frame(height: 50)
+            .frame(height: DS.Size.buttonHeight)
             .background(DS.SwiftUIColor.primary)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium))
         }
         .padding(.horizontal)
       }
-      .padding(.vertical, 24)
+      .padding(.vertical, DS.Spacing.xl)
       .navigationTitle(String(localized: "home.goal.setting.title"))
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
@@ -457,18 +457,18 @@ struct WaterAdjustmentView: View {
 
   var body: some View {
     NavigationStack {
-      VStack(spacing: 24) {
+      VStack(spacing: DS.Spacing.xl) {
         Text("\(Int(store.ml))ml")
-          .font(.system(size: 48, weight: .bold))
+          .font(DS.SwiftUIFont.display)
           .foregroundStyle(DS.SwiftUIColor.primary)
 
-        VStack(spacing: 16) {
+        VStack(spacing: DS.Spacing.md) {
           Text(String(localized: "home.quick.subtract"))
-            .font(.system(size: 14, weight: .medium))
+            .font(DS.SwiftUIFont.subheadMedium)
             .foregroundStyle(.secondary)
             .frame(maxWidth: .infinity, alignment: .leading)
 
-          LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+          LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: DS.Spacing.sm) {
             ForEach(subtractAmounts, id: \.self) { amount in
               Button {
                 Task {
@@ -476,12 +476,12 @@ struct WaterAdjustmentView: View {
                 }
               } label: {
                 Text("-\(amount)ml")
-                  .font(.system(size: 15, weight: .semibold))
+                  .font(DS.SwiftUIFont.bodySemibold)
                   .foregroundStyle(.white)
                   .frame(maxWidth: .infinity)
-                  .frame(height: 48)
+                  .frame(height: DS.Spacing.xxxxl)
                   .background(DS.SwiftUIColor.primary.opacity(0.8))
-                  .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                  .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium, style: .continuous))
               }
               .disabled(store.ml <= 0)
             }
@@ -499,19 +499,19 @@ struct WaterAdjustmentView: View {
             Image(systemName: "arrow.counterclockwise")
             Text(String(localized: "home.adjustment.reset"))
           }
-          .font(.system(size: 15, weight: .medium))
+          .font(DS.SwiftUIFont.bodyMedium)
           .foregroundStyle(.red)
           .frame(maxWidth: .infinity)
-          .frame(height: 48)
+          .frame(height: DS.Spacing.xxxxl)
           .background(Color.red.opacity(0.1))
-          .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+          .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium, style: .continuous))
         }
         .padding(.horizontal)
         .disabled(store.ml <= 0)
 
         Spacer()
       }
-      .padding(.vertical, 24)
+      .padding(.vertical, DS.Spacing.xl)
       .navigationTitle(String(localized: "home.adjustment.title"))
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
