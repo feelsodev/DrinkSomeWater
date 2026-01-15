@@ -3,7 +3,9 @@ import SwiftUI
 
 enum DesignTokens {
   
+  // MARK: - Spacing
   enum Spacing {
+    static let none: CGFloat = 0
     static let xxs: CGFloat = 4
     static let xs: CGFloat = 8
     static let sm: CGFloat = 12
@@ -13,8 +15,12 @@ enum DesignTokens {
     static let xxl: CGFloat = 32
     static let xxxl: CGFloat = 40
     static let xxxxl: CGFloat = 48
+    
+    /// Bottom padding for scrollable content (above tab bar)
+    static let scrollBottom: CGFloat = 100
   }
   
+  // MARK: - Size
   enum Size {
     static let iconSmall: CGFloat = 18
     static let iconMedium: CGFloat = 24
@@ -30,12 +36,14 @@ enum DesignTokens {
     static let cornerRadiusMedium: CGFloat = 12
     static let cornerRadiusLarge: CGFloat = 16
     static let cornerRadiusXLarge: CGFloat = 20
+    static let cornerRadiusPill: CGFloat = 32
     
     static let iconContainerSmall: CGFloat = 32
     static let iconContainerMedium: CGFloat = 36
     static let iconContainerLarge: CGFloat = 44
   }
   
+  // MARK: - UIKit Font
   enum Font {
     static let captionSmall = UIFont.systemFont(ofSize: 11, weight: .regular)
     static let caption = UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -70,6 +78,42 @@ enum DesignTokens {
     static let display = UIFont.systemFont(ofSize: 48, weight: .bold)
   }
   
+  // MARK: - SwiftUI Font
+  enum SwiftUIFont {
+    static let captionSmall = SwiftUI.Font.system(size: 11, weight: .regular)
+    static let caption = SwiftUI.Font.system(size: 12, weight: .regular)
+    static let captionMedium = SwiftUI.Font.system(size: 12, weight: .medium)
+    static let captionSemibold = SwiftUI.Font.system(size: 12, weight: .semibold)
+    
+    static let footnote = SwiftUI.Font.system(size: 13, weight: .regular)
+    static let footnoteMedium = SwiftUI.Font.system(size: 13, weight: .medium)
+    static let footnoteSemibold = SwiftUI.Font.system(size: 13, weight: .semibold)
+    
+    static let subhead = SwiftUI.Font.system(size: 14, weight: .regular)
+    static let subheadMedium = SwiftUI.Font.system(size: 14, weight: .medium)
+    static let subheadSemibold = SwiftUI.Font.system(size: 14, weight: .semibold)
+    
+    static let body = SwiftUI.Font.system(size: 16, weight: .regular)
+    static let bodyMedium = SwiftUI.Font.system(size: 16, weight: .medium)
+    static let bodySemibold = SwiftUI.Font.system(size: 16, weight: .semibold)
+    static let bodyBold = SwiftUI.Font.system(size: 16, weight: .bold)
+    
+    static let headline = SwiftUI.Font.system(size: 17, weight: .semibold)
+    static let headlineBold = SwiftUI.Font.system(size: 17, weight: .bold)
+    
+    static let title3 = SwiftUI.Font.system(size: 20, weight: .semibold)
+    static let title3Bold = SwiftUI.Font.system(size: 20, weight: .bold)
+    
+    static let title2 = SwiftUI.Font.system(size: 22, weight: .bold)
+    
+    static let title1 = SwiftUI.Font.system(size: 28, weight: .bold)
+    
+    static let largeTitle = SwiftUI.Font.system(size: 32, weight: .bold)
+    
+    static let display = SwiftUI.Font.system(size: 48, weight: .bold)
+  }
+  
+  // MARK: - UIKit Color
   enum Color {
     static let primary = UIColor(red: 0.35, green: 0.75, blue: 0.95, alpha: 1)
     static let primaryDark = UIColor(red: 0.25, green: 0.65, blue: 0.90, alpha: 1)
@@ -98,6 +142,7 @@ enum DesignTokens {
     static let iconGray = UIColor(red: 0.55, green: 0.55, blue: 0.6, alpha: 1)
   }
   
+  // MARK: - SwiftUI Color
   enum SwiftUIColor {
     static let primary = SwiftUI.Color(red: 0.35, green: 0.75, blue: 0.95)
     static let primaryDark = SwiftUI.Color(red: 0.25, green: 0.65, blue: 0.90)
