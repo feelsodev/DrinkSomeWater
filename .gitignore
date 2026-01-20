@@ -3,15 +3,15 @@
 
 ### Tuist ###
 # Tuist managed files (regenerated via `tuist generate`)
-Derived/
-*.xcodeproj
-*.xcworkspace
-graph.dot
-Tuist/.build
+ios/Derived/
+ios/*.xcodeproj
+ios/*.xcworkspace
+ios/graph.dot
+ios/Tuist/.build
 
 # Tuist cache
-.tuist-bin
-.tuist-cache
+ios/.tuist-bin
+ios/.tuist-cache
 
 ### CocoaPods (Legacy - to be removed) ###
 Pods/
@@ -122,10 +122,10 @@ Dependencies/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+ios/fastlane/report.xml
+ios/fastlane/Preview.html
+ios/fastlane/screenshots/**/*.png
+ios/fastlane/test_output
 
 # Code Injection
 # After new code Injection tools there's a generated folder /iOSInjectionProject

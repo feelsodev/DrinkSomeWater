@@ -1,0 +1,24 @@
+{
+  "originHash" : "1cd10e195e7ea9b4cb7676b018f853758d10e8e0aa8af10f99294ff9090d16f5",
+  "pins" : [
+    {
+      "identity" : "elegantcalendar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ThasianX/ElegantCalendar",
+      "state" : {
+        "revision" : "be232985813724bb3b88d254383a20fc1d6023ff",
+        "version" : "1.3.0"
+      }
+    },
+    {
+      "identity" : "elegantpages",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ThasianX/ElegantPages",
+      "state" : {
+        "revision" : "d598ce4824c40296decc84eae5b3c042d3dff842",
+        "version" : "1.4.2"
+      }
+    }
+  ],
+  "version" : 3
+}
