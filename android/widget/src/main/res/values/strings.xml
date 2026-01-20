@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">물 섭취</string>
+    <string name="widget_description">오늘의 물 섭취량을 확인하고 빠르게 기록하세요</string>
+</resources>
