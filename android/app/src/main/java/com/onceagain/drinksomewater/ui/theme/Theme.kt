@@ -1,0 +1,56 @@
+package com.onceagain.drinksomewater.ui.theme
+
+import android.app.Activity
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
+
+private val LightColorScheme = lightColorScheme(
+    primary = DS.Colors.primary,
+    onPrimary = DS.Colors.backgroundSecondary,
+    primaryContainer = DS.Colors.primaryLight,
+    onPrimaryContainer = DS.Colors.textPrimary,
+    secondary = DS.Colors.success,
+    onSecondary = DS.Colors.backgroundSecondary,
+    secondaryContainer = DS.Colors.successLight,
+    onSecondaryContainer = DS.Colors.textPrimary,
+    tertiary = DS.Colors.warning,
+    error = DS.Colors.error,
+    onError = DS.Colors.backgroundSecondary,
+    background = DS.Colors.backgroundPrimary,
+    onBackground = DS.Colors.textPrimary,
+    surface = DS.Colors.backgroundSecondary,
+    onSurface = DS.Colors.textPrimary,
+    surfaceVariant = DS.Colors.backgroundTertiary,
+    onSurfaceVariant = DS.Colors.textSecondary,
+    outline = DS.Colors.divider,
+    outlineVariant = DS.Colors.divider
+)
+
+@Composable
+fun DrinkSomeWaterTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val colorScheme = LightColorScheme
+
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as Activity).window
+            window.statusBarColor = colorScheme.background.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
+        }
+    }
+
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = Typography,
+        content = content
+    )
+}

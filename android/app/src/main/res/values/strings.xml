@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">벌컥벌컥</string>
+
+    <string name="tab_home">오늘</string>
+    <string name="tab_history">기록</string>
+    <string name="tab_settings">설정</string>
+
+    <string name="home_title">오늘의 물 섭취</string>
+    <string name="home_remaining">남은 양</string>
+    <string name="home_remaining_cups">남은 잔</string>
+    <string name="home_goal_achieved">목표 달성!</string>
+    <string name="home_add_water">물 추가</string>
+    <string name="home_subtract_water">물 빼기</string>
+    <string name="home_reset">초기화</string>
+
+    <string name="history_title">물 섭취 기록</string>
+    <string name="history_calendar">캘린더</string>
+    <string name="history_list">리스트</string>
+    <string name="history_timeline">타임라인</string>
+    <string name="history_monthly_success">이번 달 달성</string>
+    <string name="history_no_records">기록이 없습니다</string>
+
+    <string name="settings_title">설정</string>
+    <string name="settings_goal">일일 목표량</string>
+    <string name="settings_quick_buttons">퀵버튼 설정</string>
+    <string name="settings_notifications">알림 설정</string>
+    <string name="settings_health_connect">Health Connect</string>
+    <string name="settings_widget_guide">위젯 가이드</string>
+    <string name="settings_about">앱 정보</string>
+    <string name="settings_version">버전</string>
+    <string name="settings_review">리뷰 작성</string>
+    <string name="settings_contact">문의하기</string>
+
+    <string name="goal_setting_title">목표량 설정</string>
+    <string name="goal_setting_description">하루 물 섭취 목표량을 설정하세요</string>
+    <string name="goal_setting_recommended">권장량: %1$dml</string>
+
+    <string name="quick_button_setting_title">퀵버튼 설정</string>
+    <string name="quick_button_setting_description">자주 마시는 양을 설정하세요</string>
+
+    <string name="notification_title">물 마실 시간!</string>
+    <string name="notification_enable">알림 받기</string>
+    <string name="notification_interval">알림 간격</string>
+    <string name="notification_start_time">시작 시간</string>
+    <string name="notification_end_time">종료 시간</string>
+    <string name="notification_channel_name">물 마시기 알림</string>
+    <string name="notification_channel_description">정해진 시간에 물 마시기 알림을 보내드려요</string>
+    <string name="notification_message_1">물 마실 시간이에요! 💧</string>
+    <string name="notification_message_2">집중력 UP! 물 한 잔 어때요? 🧠</string>
+    <string name="notification_message_3">건강한 습관, 물 한 잔으로 시작해요 ✨</string>
+    <string name="notification_message_4">목이 마르기 전에 마셔야 해요! 🥤</string>
+    <string name="notification_message_5">오늘도 건강한 하루! 물 한 잔 🌿</string>
+    <string name="notification_message_6">수분 보충 시간이에요 💦</string>
+    <string name="notification_message_7">피부 미인의 비결, 물 마시기! 🪴</string>
+    <string name="notification_message_8">지금 물 마시면 기분이 좋아져요 😊</string>
+    <string name="notification_message_9">건강을 위해 꼭 챙기세요! 💙</string>
+    <string name="notification_message_10">잠깐! 물 한 잔 하고 가세요 🚰</string>
+
+    <string name="onboarding_welcome">환영합니다!</string>
+    <string name="onboarding_goal">목표 설정</string>
+    <string name="onboarding_health">건강 연동</string>
+    <string name="onboarding_notification">알림 설정</string>
+    <string name="onboarding_widget">위젯 안내</string>
+    <string name="onboarding_start">시작하기</string>
+    <string name="onboarding_skip">건너뛰기</string>
+    <string name="onboarding_next">다음</string>
+
+    <string name="unit_ml">ml</string>
+    <string name="unit_cups">잔</string>
+
+    <string name="btn_save">저장</string>
+    <string name="btn_cancel">취소</string>
+    <string name="btn_confirm">확인</string>
+    <string name="btn_close">닫기</string>
+
+    <string name="a11y_progress_chart">물 섭취 진행률 차트, %1$d퍼센트 달성</string>
+    <string name="a11y_current_intake">현재 %1$d밀리리터 중 목표 %2$d밀리리터</string>
+    <string name="a11y_remaining">남은 양 %1$d밀리리터</string>
+    <string name="a11y_remaining_cups">남은 잔 수 %1$d잔</string>
+    <string name="a11y_quick_button_add">%1$d밀리리터 추가</string>
+    <string name="a11y_quick_button_subtract">%1$d밀리리터 빼기</string>
+    <string name="a11y_toggle_subtract_mode">물 빼기 모드로 전환</string>
+    <string name="a11y_toggle_add_mode">물 추가 모드로 전환</string>
+    <string name="a11y_reset_today">오늘 기록 초기화</string>
+    <string name="a11y_goal_achieved">목표 달성! 축하합니다</string>
+
+    <string name="notification_permission_title">알림 권한 필요</string>
+    <string name="notification_permission_rationale">물 마시기 알림을 받으려면 알림 권한이 필요합니다. 설정에서 알림을 허용해주세요.</string>
+    <string name="health_permission_title">건강 데이터 권한 필요</string>
+    <string name="health_permission_rationale">체중 정보를 읽고 물 섭취량을 기록하려면 Health Connect 권한이 필요합니다.</string>
+    <string name="btn_settings">설정으로 이동</string>
+</resources>

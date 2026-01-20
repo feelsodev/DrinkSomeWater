@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gulp</string>
+
+    <string name="tab_home">Today</string>
+    <string name="tab_history">History</string>
+    <string name="tab_settings">Settings</string>
+
+    <string name="home_title">Today\'s Water Intake</string>
+    <string name="home_remaining">Remaining</string>
+    <string name="home_remaining_cups">Cups Left</string>
+    <string name="home_goal_achieved">Goal Achieved!</string>
+    <string name="home_add_water">Add Water</string>
+    <string name="home_subtract_water">Remove Water</string>
+    <string name="home_reset">Reset</string>
+
+    <string name="history_title">Water Intake History</string>
+    <string name="history_calendar">Calendar</string>
+    <string name="history_list">List</string>
+    <string name="history_timeline">Timeline</string>
+    <string name="history_monthly_success">Monthly Success</string>
+    <string name="history_no_records">No records</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_goal">Daily Goal</string>
+    <string name="settings_quick_buttons">Quick Buttons</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_health_connect">Health Connect</string>
+    <string name="settings_widget_guide">Widget Guide</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_review">Write a Review</string>
+    <string name="settings_contact">Contact Us</string>
+
+    <string name="goal_setting_title">Set Goal</string>
+    <string name="goal_setting_description">Set your daily water intake goal</string>
+    <string name="goal_setting_recommended">Recommended: %1$dml</string>
+
+    <string name="quick_button_setting_title">Quick Button Settings</string>
+    <string name="quick_button_setting_description">Set your frequently used amounts</string>
+
+    <string name="notification_title">Time to drink water!</string>
+    <string name="notification_enable">Enable Notifications</string>
+    <string name="notification_interval">Notification Interval</string>
+    <string name="notification_start_time">Start Time</string>
+    <string name="notification_end_time">End Time</string>
+    <string name="notification_channel_name">Water Reminder</string>
+    <string name="notification_channel_description">Reminds you to drink water at scheduled times</string>
+    <string name="notification_message_1">Time to hydrate!</string>
+    <string name="notification_message_2">Stay focused! How about a glass of water?</string>
+    <string name="notification_message_3">Start a healthy habit with a glass of water</string>
+    <string name="notification_message_4">Drink before you get thirsty!</string>
+    <string name="notification_message_5">Have a healthy day! Drink some water</string>
+    <string name="notification_message_6">Time to rehydrate!</string>
+    <string name="notification_message_7">The secret to great skin: drinking water!</string>
+    <string name="notification_message_8">Drinking water now will make you feel better</string>
+    <string name="notification_message_9">Take care of your health!</string>
+    <string name="notification_message_10">Wait! Have a glass of water first</string>
+
+    <string name="onboarding_welcome">Welcome!</string>
+    <string name="onboarding_goal">Set Goal</string>
+    <string name="onboarding_health">Health Integration</string>
+    <string name="onboarding_notification">Notification Settings</string>
+    <string name="onboarding_widget">Widget Guide</string>
+    <string name="onboarding_start">Get Started</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+
+    <string name="unit_ml">ml</string>
+    <string name="unit_cups">cups</string>
+
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_close">Close</string>
+
+    <string name="a11y_progress_chart">Water intake progress chart, %1$d percent achieved</string>
+    <string name="a11y_current_intake">Current %1$d milliliters of %2$d milliliter goal</string>
+    <string name="a11y_remaining">Remaining %1$d milliliters</string>
+    <string name="a11y_remaining_cups">Remaining %1$d cups</string>
+    <string name="a11y_quick_button_add">Add %1$d milliliters</string>
+    <string name="a11y_quick_button_subtract">Subtract %1$d milliliters</string>
+    <string name="a11y_toggle_subtract_mode">Switch to subtract mode</string>
+    <string name="a11y_toggle_add_mode">Switch to add mode</string>
+    <string name="a11y_reset_today">Reset today\'s record</string>
+    <string name="a11y_goal_achieved">Goal achieved! Congratulations</string>
+
+    <string name="notification_permission_title">Notification Permission Required</string>
+    <string name="notification_permission_rationale">Notification permission is required to receive water reminders. Please enable notifications in settings.</string>
+    <string name="health_permission_title">Health Data Permission Required</string>
+    <string name="health_permission_rationale">Health Connect permission is required to read weight and record water intake.</string>
+    <string name="btn_settings">Go to Settings</string>
+</resources>
