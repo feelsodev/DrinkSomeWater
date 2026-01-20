@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">벌컥벌컥</string>
+    <string name="tile_name">물 섭취</string>
+
+    <string name="wear_today">오늘</string>
+    <string name="wear_goal">목표</string>
+    <string name="wear_add">추가</string>
+    <string name="wear_quick_add">빠른 추가</string>
+    <string name="wear_custom_amount">직접 입력</string>
+    <string name="wear_syncing">동기화 중...</string>
+    <string name="wear_not_connected">폰 연결 필요</string>
+</resources>

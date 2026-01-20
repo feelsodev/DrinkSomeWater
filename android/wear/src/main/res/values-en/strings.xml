@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gulp</string>
+    <string name="tile_name">Water Intake</string>
+
+    <string name="wear_today">Today</string>
+    <string name="wear_goal">Goal</string>
+    <string name="wear_add">Add</string>
+    <string name="wear_quick_add">Quick Add</string>
+    <string name="wear_custom_amount">Custom Amount</string>
+    <string name="wear_syncing">Syncing...</string>
+    <string name="wear_not_connected">Phone connection required</string>
+</resources>
