@@ -1,0 +1,40 @@
+# Android .gitignore
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Android Studio
+.idea/
+*.iml
+local.properties
+.DS_Store
+
+# Signing
+*.jks
+*.keystore
+keystore.properties
+
+# Secrets
+google-services.json
+secrets.properties
+
+# Generated
+/captures
+.externalNativeBuild
+.cxx
+
+# Test outputs
+/app/build/
+/widget/build/
+/wear/build/
+/analytics/build/
+
+# Proguard
+proguard/
+
+# Misc
+*.log
+*.tmp
+*.temp
