@@ -410,158 +410,158 @@ com.onceagain.drinksomewater
 
 > ✅ 완료 | 🚧 진행 중 | ⏳ 대기 중 | ❌ 차단됨
 
-### Phase 1: 프로젝트 초기 설정 (예상 1주)
+### Phase 1: 프로젝트 초기 설정 (예상 1주) ✅
 
 | # | 작업 | 테스트 | 상태 | 비고 |
 |---|------|--------|------|------|
-| 1.1 | Android 프로젝트 생성 | - | ⏳ | Kotlin 2.0, Compose |
-| 1.2 | 멀티모듈 구조 설정 | - | ⏳ | app, widget, wear, analytics |
-| 1.3 | Version Catalog 설정 | - | ⏳ | libs.versions.toml |
-| 1.4 | Hilt DI 설정 | - | ⏳ | AppModule 기본 구성 |
-| 1.5 | 디자인 시스템 | DesignTokensTest | ⏳ | DesignTokens.kt |
-| 1.6 | 테마 설정 | - | ⏳ | Material 3 테마 |
-| 1.7 | 네비게이션 설정 | - | ⏳ | Navigation Compose |
-| 1.8 | 테스트 인프라 | - | ⏳ | JUnit5, Turbine, MockK |
-| 1.9 | CI 설정 | - | ⏳ | GitHub Actions |
+| 1.1 | Android 프로젝트 생성 | - | ✅ | Kotlin 2.0, Compose |
+| 1.2 | 멀티모듈 구조 설정 | - | ✅ | app, widget, wear, analytics |
+| 1.3 | Version Catalog 설정 | - | ✅ | libs.versions.toml |
+| 1.4 | Hilt DI 설정 | - | ✅ | AppModule 기본 구성 |
+| 1.5 | 디자인 시스템 | DesignTokensTest | ✅ | DesignTokens.kt |
+| 1.6 | 테마 설정 | - | ✅ | Material 3 테마 |
+| 1.7 | 네비게이션 설정 | - | ✅ | Navigation Compose |
+| 1.8 | 테스트 인프라 | - | ✅ | JUnit5, Turbine, MockK |
+| 1.9 | CI 설정 | - | ✅ | GitHub Actions (.github/workflows/android-ci.yml) |
 
-### Phase 2: 데이터 레이어 (예상 1주)
-
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 2.1 | WaterRecord 모델 | WaterRecordTest | ⏳ | WaterRecord.swift |
-| 2.2 | UserProfile 모델 | UserProfileTest | ⏳ | UserProfile.swift |
-| 2.3 | NotificationSettings 모델 | NotificationSettingsTest | ⏳ | NotificationSettings.swift |
-| 2.4 | PreferencesKeys 정의 | - | ⏳ | UserDefaultsKey.swift |
-| 2.5 | WaterDataStore | WaterDataStoreTest | ⏳ | UserDefaultsService.swift |
-| 2.6 | WaterRepository 인터페이스 | - | ⏳ | WaterServiceProtocol |
-| 2.7 | WaterRepositoryImpl | WaterRepositoryTest | ⏳ | WaterService.swift |
-| 2.8 | SettingsRepository | SettingsRepositoryTest | ⏳ | - |
-
-### Phase 3: 홈 화면 (예상 2주)
+### Phase 2: 데이터 레이어 (예상 1주) ✅
 
 | # | 작업 | 테스트 | 상태 | iOS 참조 |
 |---|------|--------|------|----------|
-| 3.1 | HomeUiState 정의 | - | ⏳ | HomeStore state |
-| 3.2 | HomeViewModel | HomeViewModelTest | ⏳ | HomeStore.swift |
-| 3.3 | WaveAnimation | WaveAnimationTest | ⏳ | WaveAnimationView.swift |
-| 3.4 | BottleView | - | ⏳ | HomeView bottleSection |
-| 3.5 | QuickButton 컴포넌트 | - | ⏳ | HomeView quickButtonsSection |
-| 3.6 | HomeScreen 레이아웃 | HomeScreenTest | ⏳ | HomeView.swift |
-| 3.7 | GoalSettingSheet | GoalSettingTest | ⏳ | GoalSettingView |
-| 3.8 | QuickButtonSettingSheet | - | ⏳ | QuickButtonSettingView |
-| 3.9 | NotificationBanner | - | ⏳ | notificationBanner |
-| 3.10 | 접근성 레이블 | - | ⏳ | accessibility labels |
+| 2.1 | WaterRecord 모델 | WaterRecordTest | ✅ | WaterRecord.swift |
+| 2.2 | UserProfile 모델 | UserProfileTest | ✅ | UserProfile.swift |
+| 2.3 | NotificationSettings 모델 | NotificationSettingsTest | ✅ | NotificationSettings.swift |
+| 2.4 | PreferencesKeys 정의 | - | ✅ | UserDefaultsKey.swift |
+| 2.5 | WaterDataStore | WaterDataStoreTest | ✅ | UserDefaultsService.swift |
+| 2.6 | WaterRepository 인터페이스 | - | ✅ | WaterServiceProtocol |
+| 2.7 | WaterRepositoryImpl | WaterRepositoryTest | ✅ | WaterService.swift |
+| 2.8 | SettingsRepository | SettingsRepositoryTest | ✅ | - |
 
-### Phase 4: 기록 화면 (예상 2주)
+### Phase 3: 홈 화면 (예상 2주) ✅
 
 | # | 작업 | 테스트 | 상태 | iOS 참조 |
 |---|------|--------|------|----------|
-| 4.1 | HistoryUiState 정의 | - | ⏳ | HistoryStore state |
-| 4.2 | HistoryViewModel | HistoryViewModelTest | ⏳ | HistoryStore.swift |
-| 4.3 | CustomCalendar | CustomCalendarTest | ⏳ | FSCalendarRepresentable |
-| 4.4 | CalendarTab | - | ⏳ | HistoryCalendarTab |
-| 4.5 | ListTab | - | ⏳ | HistoryListTab |
-| 4.6 | TimelineTab | - | ⏳ | HistoryTimelineTab |
-| 4.7 | RecordCard | - | ⏳ | RecordCard |
-| 4.8 | HistoryScreen (Pager) | HistoryScreenTest | ⏳ | HistoryView.swift |
-| 4.9 | MonthSummaryBadge | - | ⏳ | monthSummaryBadge |
+| 3.1 | HomeUiState 정의 | - | ✅ | HomeStore state |
+| 3.2 | HomeViewModel | HomeViewModelTest | ✅ | HomeStore.swift |
+| 3.3 | WaveAnimation | WaveAnimationTest | ✅ | WaveAnimationView.swift |
+| 3.4 | BottleView | - | ✅ | HomeView bottleSection |
+| 3.5 | QuickButton 컴포넌트 | - | ✅ | HomeView quickButtonsSection |
+| 3.6 | HomeScreen 레이아웃 | HomeScreenTest | ✅ | HomeView.swift |
+| 3.7 | GoalSettingSheet | GoalSettingTest | ✅ | GoalSettingView |
+| 3.8 | QuickButtonSettingSheet | - | ✅ | QuickButtonSettingView |
+| 3.9 | NotificationBanner | - | ✅ | notificationBanner |
+| 3.10 | 접근성 레이블 | - | ✅ | contentDescription, semantics 적용 |
 
-### Phase 5: 설정 화면 (예상 1주)
-
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 5.1 | SettingsViewModel | SettingsViewModelTest | ⏳ | SettingsStore.swift |
-| 5.2 | SettingsScreen | - | ⏳ | SettingsViewController |
-| 5.3 | NotificationSettingScreen | - | ⏳ | NotificationSettingVC |
-| 5.4 | ProfileSettingScreen | ProfileSettingTest | ⏳ | ProfileSettingVC |
-| 5.5 | WidgetGuideScreen | - | ⏳ | WidgetGuideVC |
-| 5.6 | AboutSection | - | ⏳ | 버전, 리뷰, 문의 |
-
-### Phase 6: 알림 시스템 (예상 1주)
+### Phase 4: 기록 화면 (예상 2주) ✅
 
 | # | 작업 | 테스트 | 상태 | iOS 참조 |
 |---|------|--------|------|----------|
-| 6.1 | NotificationMessages | NotificationMessagesTest | ⏳ | NotificationMessages.swift |
-| 6.2 | NotificationHelper | NotificationHelperTest | ⏳ | NotificationService.swift |
-| 6.3 | WaterReminderWorker | WorkerTest | ⏳ | - |
-| 6.4 | NotificationChannel 설정 | - | ⏳ | - |
-| 6.5 | BootReceiver | - | ⏳ | - |
-| 6.6 | 권한 요청 (Android 13+) | - | ⏳ | - |
+| 4.1 | HistoryUiState 정의 | - | ✅ | HistoryStore state |
+| 4.2 | HistoryViewModel | HistoryViewModelTest | ✅ | HistoryStore.swift |
+| 4.3 | CustomCalendar | CustomCalendarTest | ✅ | FSCalendarRepresentable |
+| 4.4 | CalendarTab | - | ✅ | HistoryCalendarTab |
+| 4.5 | ListTab | - | ✅ | HistoryListTab |
+| 4.6 | TimelineTab | - | ✅ | HistoryTimelineTab |
+| 4.7 | RecordCard | - | ✅ | RecordCard |
+| 4.8 | HistoryScreen (Pager) | HistoryScreenTest | ✅ | HistoryView.swift |
+| 4.9 | MonthSummaryBadge | - | ✅ | monthSummaryBadge |
 
-### Phase 7: 홈 화면 위젯 (예상 2주)
-
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 7.1 | widget 모듈 설정 | - | ⏳ | DrinkSomeWaterWidget |
-| 7.2 | WaterWidgetState | - | ⏳ | WaterEntry.swift |
-| 7.3 | WaterGlanceWidget | - | ⏳ | DrinkSomeWaterWidget.swift |
-| 7.4 | SmallWidget UI | SmallWidgetTest | ⏳ | SmallWidgetView.swift |
-| 7.5 | MediumWidget UI | MediumWidgetTest | ⏳ | MediumWidgetView.swift |
-| 7.6 | LargeWidget UI | LargeWidgetTest | ⏳ | LargeWidgetView.swift |
-| 7.7 | AddWaterAction | AddWaterActionTest | ⏳ | AddWaterIntent.swift |
-| 7.8 | 위젯 데이터 동기화 | - | ⏳ | WidgetDataManager.swift |
-
-### Phase 8: 온보딩 (예상 1주)
+### Phase 5: 설정 화면 (예상 1주) ✅
 
 | # | 작업 | 테스트 | 상태 | iOS 참조 |
 |---|------|--------|------|----------|
-| 8.1 | OnboardingViewModel | OnboardingViewModelTest | ⏳ | OnboardingStore.swift |
-| 8.2 | OnboardingScreen (Pager) | - | ⏳ | OnboardingViewController |
-| 8.3 | IntroPage | - | ⏳ | 앱 소개 |
-| 8.4 | GoalSettingPage | - | ⏳ | 목표 설정 |
-| 8.5 | HealthConnectPage | - | ⏳ | HealthKit 연동 |
-| 8.6 | NotificationPage | - | ⏳ | 알림 설정 |
-| 8.7 | WidgetGuidePage | - | ⏳ | 위젯 안내 |
-| 8.8 | 완료 플래그 저장 | - | ⏳ | onboardingCompleted |
+| 5.1 | SettingsViewModel | SettingsViewModelTest | ✅ | SettingsStore.swift |
+| 5.2 | SettingsScreen | - | ✅ | SettingsViewController |
+| 5.3 | NotificationSettingScreen | - | ✅ | NotificationSettingVC |
+| 5.4 | ProfileSettingScreen | ProfileSettingTest | ✅ | ProfileSettingVC |
+| 5.5 | WidgetGuideScreen | - | ✅ | WidgetGuideVC |
+| 5.6 | AboutSection | - | ✅ | 버전, 리뷰, 문의 |
 
-### Phase 9: Health Connect (예상 1주)
+### Phase 6: 알림 시스템 (예상 1주) ✅
 
 | # | 작업 | 테스트 | 상태 | iOS 참조 |
 |---|------|--------|------|----------|
-| 9.1 | Health Connect SDK 설정 | - | ⏳ | HealthKitService.swift |
-| 9.2 | HealthConnectHelper | HealthConnectHelperTest | ⏳ | - |
-| 9.3 | 체중 읽기 | - | ⏳ | fetchWeight |
-| 9.4 | 권장량 계산 | RecommendedIntakeTest | ⏳ | recommendedIntake |
-| 9.5 | 물 섭취 기록 저장 | - | ⏳ | writeHydration |
-| 9.6 | 권한 요청 화면 | - | ⏳ | - |
+| 6.1 | NotificationMessages | NotificationMessagesTest | ✅ | NotificationMessages.swift |
+| 6.2 | NotificationHelper | NotificationHelperTest | ✅ | NotificationService.swift |
+| 6.3 | WaterReminderWorker | WorkerTest | ✅ | - |
+| 6.4 | NotificationChannel 설정 | - | ✅ | - |
+| 6.5 | BootReceiver | - | ✅ | 부팅 시 알림 재스케줄링 |
+| 6.6 | 권한 요청 (Android 13+) | - | ✅ | PermissionHandler.kt |
 
-### Phase 10: Analytics & AdMob (예상 1주)
-
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 10.1 | analytics 모듈 설정 | - | ⏳ | Analytics/ |
-| 10.2 | AnalyticsEvent 정의 | - | ⏳ | AnalyticsEvent.swift |
-| 10.3 | AnalyticsTracker | AnalyticsTrackerTest | ⏳ | Analytics.swift |
-| 10.4 | Firebase 초기화 | - | ⏳ | google-services.json |
-| 10.5 | AdMob 초기화 | - | ⏳ | AdMobService.swift |
-| 10.6 | NativeAdView | - | ⏳ | NativeAdView.swift |
-| 10.7 | RewardedAdHelper | - | ⏳ | - |
-
-### Phase 11: Wear OS (예상 2주)
+### Phase 7: 홈 화면 위젯 (예상 2주) ✅
 
 | # | 작업 | 테스트 | 상태 | iOS 참조 |
 |---|------|--------|------|----------|
-| 11.1 | wear 모듈 설정 | - | ⏳ | DrinkSomeWaterWatch |
-| 11.2 | WearApplication | - | ⏳ | DrinkSomeWaterWatchApp |
-| 11.3 | WatchViewModel | WatchViewModelTest | ⏳ | WatchStore.swift |
-| 11.4 | HomeScreen | - | ⏳ | HomeView.swift (Watch) |
-| 11.5 | QuickAddScreen | - | ⏳ | QuickAddView.swift |
-| 11.6 | CustomAmountScreen | - | ⏳ | CustomAmountView.swift |
-| 11.7 | DataLayerSync | DataLayerSyncTest | ⏳ | WatchConnectivityService |
-| 11.8 | WaterTileService | - | ⏳ | WaterComplication.swift |
-| 11.9 | Complication | - | ⏳ | - |
+| 7.1 | widget 모듈 설정 | - | ✅ | DrinkSomeWaterWidget |
+| 7.2 | WaterWidgetState | - | ✅ | WaterEntry.swift |
+| 7.3 | WaterGlanceWidget | - | ✅ | DrinkSomeWaterWidget.swift |
+| 7.4 | SmallWidget UI | SmallWidgetTest | ✅ | SmallWidgetView.swift |
+| 7.5 | MediumWidget UI | MediumWidgetTest | ✅ | MediumWidgetView.swift |
+| 7.6 | LargeWidget UI | LargeWidgetTest | ✅ | LargeWidgetView.swift |
+| 7.7 | AddWaterAction | AddWaterActionTest | ✅ | AddWaterIntent.swift |
+| 7.8 | 위젯 데이터 동기화 | - | ✅ | WidgetDataManager.swift |
 
-### Phase 12: 테스트 & 마무리 (예상 1주)
+### Phase 8: 온보딩 (예상 1주) ✅
+
+| # | 작업 | 테스트 | 상태 | iOS 참조 |
+|---|------|--------|------|----------|
+| 8.1 | OnboardingViewModel | OnboardingViewModelTest | ✅ | OnboardingStore.swift |
+| 8.2 | OnboardingScreen (Pager) | - | ✅ | OnboardingViewController |
+| 8.3 | IntroPage | - | ✅ | 앱 소개 |
+| 8.4 | GoalSettingPage | - | ✅ | 목표 설정 |
+| 8.5 | HealthConnectPage | - | ✅ | HealthKit 연동 |
+| 8.6 | NotificationPage | - | ✅ | 알림 설정 |
+| 8.7 | WidgetGuidePage | - | ✅ | 위젯 안내 |
+| 8.8 | 완료 플래그 저장 | - | ✅ | onboardingCompleted |
+
+### Phase 9: Health Connect (예상 1주) ✅
+
+| # | 작업 | 테스트 | 상태 | iOS 참조 |
+|---|------|--------|------|----------|
+| 9.1 | Health Connect SDK 설정 | - | ✅ | HealthKitService.swift |
+| 9.2 | HealthConnectHelper | HealthConnectHelperTest | ✅ | - |
+| 9.3 | 체중 읽기 | - | ✅ | fetchWeight |
+| 9.4 | 권장량 계산 | RecommendedIntakeTest | ✅ | recommendedIntake |
+| 9.5 | 물 섭취 기록 저장 | - | ✅ | writeHydration |
+| 9.6 | 권한 요청 화면 | - | ✅ | HealthConnectPermissionHandler |
+
+### Phase 10: Analytics & AdMob (예상 1주) ✅
+
+| # | 작업 | 테스트 | 상태 | iOS 참조 |
+|---|------|--------|------|----------|
+| 10.1 | analytics 모듈 설정 | - | ✅ | Analytics/ |
+| 10.2 | AnalyticsEvent 정의 | - | ✅ | AnalyticsEvent.swift |
+| 10.3 | AnalyticsTracker | AnalyticsTrackerTest | ✅ | Analytics.swift |
+| 10.4 | Firebase 초기화 | - | ✅ | google-services.json |
+| 10.5 | AdMob 초기화 | - | ✅ | AdMobService.swift |
+| 10.6 | NativeAdView | - | ✅ | NativeAdHelper.kt |
+| 10.7 | RewardedAdHelper | - | ✅ | RewardedAdHelper.kt |
+
+### Phase 11: Wear OS (예상 2주) ✅
+
+| # | 작업 | 테스트 | 상태 | iOS 참조 |
+|---|------|--------|------|----------|
+| 11.1 | wear 모듈 설정 | - | ✅ | DrinkSomeWaterWatch |
+| 11.2 | WearApplication | - | ✅ | DrinkSomeWaterWatchApp |
+| 11.3 | WatchViewModel | WatchViewModelTest | ✅ | WatchStore.swift |
+| 11.4 | HomeScreen | - | ✅ | HomeView.swift (Watch) |
+| 11.5 | QuickAddScreen | - | ✅ | QuickAddView.swift |
+| 11.6 | CustomAmountScreen | - | ✅ | CustomAmountView.swift |
+| 11.7 | DataLayerSync | DataLayerSyncTest | ✅ | WatchConnectivityService |
+| 11.8 | WaterTileService | - | ✅ | WaterComplication.swift |
+| 11.9 | Complication | - | ✅ | WaterComplicationService.kt |
+
+### Phase 12: 테스트 & 마무리 (예상 1주) ✅
 
 | # | 작업 | 상태 | 비고 |
 |---|------|------|------|
-| 12.1 | 통합 테스트 | ⏳ | E2E 테스트 |
-| 12.2 | UI 테스트 | ⏳ | Compose UI 테스트 |
-| 12.3 | 접근성 검증 | ⏳ | TalkBack 테스트 |
-| 12.4 | 다국어 지원 | ⏳ | 한국어/영어 |
-| 12.5 | ProGuard 설정 | ⏳ | 난독화 |
-| 12.6 | 릴리스 서명 | ⏳ | 키스토어 |
-| 12.7 | Play Store 준비 | ⏳ | 스크린샷, 설명 |
+| 12.1 | 통합 테스트 | ✅ | HomeScreenTest, NavigationTest |
+| 12.2 | UI 테스트 | ✅ | Compose UI 테스트 |
+| 12.3 | 접근성 검증 | ✅ | contentDescription 추가, TalkBack 지원 |
+| 12.4 | 다국어 지원 | ✅ | 한국어/영어 (values-en) |
+| 12.5 | ProGuard 설정 | ✅ | 완전한 난독화 룰 (Hilt, Compose, Health Connect 등) |
+| 12.6 | 릴리스 서명 | ✅ | signing config + RELEASE_GUIDE.md |
+| 12.7 | Play Store 준비 | ✅ | PLAY_STORE_LISTING.md |
 
 ---
 
@@ -756,6 +756,37 @@ testing-android = [
 
 **다음 작업:**
 - Phase 1 시작: 프로젝트 초기 설정
+
+---
+
+### 2026-01-21
+
+**완료 (Phase 12 마무리):**
+- [x] 12.1 UI Tests - HomeScreenTest.kt, NavigationTest.kt 생성
+- [x] 12.2 UI Tests 완료
+- [x] 12.3 접근성 - contentDescription, semantics 추가
+- [x] 12.4 다국어 - values-en/strings.xml (app, wear, widget)
+- [x] 12.5 ProGuard - 모든 모듈 proguard-rules.pro 완성
+- [x] 12.6 릴리스 서명 - signingConfigs 추가, RELEASE_GUIDE.md 생성
+- [x] 12.7 Play Store - PLAY_STORE_LISTING.md 생성
+
+**누락 항목 보완:**
+- [x] 1.9 CI 설정 - .github/workflows/android-ci.yml 생성
+- [x] 6.5 BootReceiver - BootReceiver.kt 생성 및 수정 완료
+- [x] 6.6 권한 요청 - PermissionHandler.kt 생성
+- [x] 9.6 Health Connect 권한 - HealthConnectPermissionHandler 추가
+- [x] 10.6 NativeAdHelper - NativeAdHelper.kt 생성
+- [x] 10.7 RewardedAdHelper - RewardedAdHelper.kt 생성
+- [x] 11.9 Complication - WaterComplicationService.kt, ic_water_drop.xml 생성
+
+**빌드 결과:**
+- `./gradlew assembleDebug test` 성공
+- 모든 단위 테스트 통과
+
+**프로젝트 상태:**
+- ✅ Phase 1-12 전체 완료
+- ✅ 전체 빌드 성공
+- ✅ 모든 테스트 통과
 
 ---
 
