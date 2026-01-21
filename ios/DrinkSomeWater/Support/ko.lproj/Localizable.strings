@@ -17,7 +17,7 @@
 "You can check the history when you select a success date."
 = "성공 날짜를 선택 시 기록 확인이 가능합니다.";
 "Goal of this month" = "이달의 목표 달성";
-"MMMM, YYYY" = "YYYY년 M월";
+"MMMM, YYYY" = "yyyy년 M월";
 
 // Information
 "Alarm" = "알람";
@@ -102,7 +102,6 @@
 "profile.apply.success.message" = "일일 목표량이 %@ml로 설정되었습니다.";
 
 // Notification Settings
-"notification.title" = "알림 설정";
 "notification.enable" = "알림 활성화";
 "notification.time.start" = "시작 시간";
 "notification.time.end" = "종료 시간";
