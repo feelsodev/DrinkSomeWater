@@ -1,0 +1,9 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWater - Hindi
+*/
+
+"CFBundleDisplayName" = "Gulp";
+"CFBundleName" = "Gulp";
+"NSHealthShareUsageDescription" = "व्यक्तिगत सिफारिशों की गणना के लिए वजन डेटा पढ़ें।";
+"NSHealthUpdateUsageDescription" = "स्वास्थ्य ऐप के साथ पानी सेवन रिकॉर्ड सिंक करें।";

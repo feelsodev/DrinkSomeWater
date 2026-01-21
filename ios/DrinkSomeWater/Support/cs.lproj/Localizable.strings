@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Czech Localization
+*/
+
+// Main
+"You achieved " = "Dosáhli jste ";
+"TodaySuffix" = " dnes!!";
+
+// Calendar
+"Today" = "Dnes";
+"Success" = "Úspěch";
+"Selected" = "Vybráno";
+"You can check the history when you select a success date."
+= "Historii můžete zkontrolovat výběrem úspěšného dne.";
+"Goal of this month" = "Cíl tohoto měsíce";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "Budík";
+"Review" = "Recenze";
+"Contact Us" = "Kontaktujte nás";
+"Version" = "Verze";
+"License" = "Licence";
+"Set" = "Nastavit";
+
+// Onboarding
+"onboarding.skip" = "Přeskočit";
+"onboarding.next" = "Další";
+"onboarding.start" = "Začít";
+"onboarding.intro.title" = "Vítejte v Gulp";
+"onboarding.intro.description" = "Sledujte svůj denní příjem vody a zůstaňte hydratovaní.\n\nVoda je nezbytná pro vaše zdraví – pomáhá udržovat energii, zlepšovat soustředění a udržovat tělo v nejlepší kondici.";
+"onboarding.goal.title" = "Nastavte svůj cíl";
+"onboarding.goal.description" = "Kolik vody chcete denně vypít?\nNastavte cíl posuvníkem.";
+"onboarding.healthkit.title" = "Propojit zdraví";
+"onboarding.healthkit.description" = "Synchronizujte s Apple Health:\n\n• Vypočítejte personalizovaný příjem vody na základě vaší váhy\n• Ukládejte záznamy o vodě do aplikace Zdraví\n• Sledujte pokrok spolu s dalšími zdravotními údaji";
+"onboarding.healthkit.button" = "Propojit Apple Health";
+"onboarding.healthkit.connected" = "Propojeno";
+"onboarding.notification.title" = "Připomínky";
+"onboarding.notification.description" = "Povolte oznámení a dostávejte přátelské připomínky během dne.\n\nBudeme vám posílat motivační zprávy, které vám pomohou dodržovat vaše cíle hydratace.";
+"onboarding.notification.button" = "Povolit oznámení";
+"onboarding.notification.enabled" = "Povoleno";
+"onboarding.widget.title" = "Přidat widget";
+"onboarding.widget.description" = "Přidejte widget na domovskou obrazovku pro rychlý přístup:\n\n1. Dlouze stiskněte domovskou obrazovku\n2. Klepněte na tlačítko +\n3. Vyhledejte 'Gulp'\n4. Vyberte preferovanou velikost widgetu";
+"onboarding.widget.button" = "Začít";
+
+// Widget
+"widget.today" = "Dnes";
+"widget.guide.title" = "Průvodce nastavením widgetu";
+"widget.guide.nav.title" = "Průvodce widgetem";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Dlouze stiskněte domovskou obrazovku";
+"widget.guide.step1.description" = "Stiskněte a podržte prázdné místo na domovské obrazovce, dokud se aplikace nezačnou třást.";
+"widget.guide.step2.title" = "Klepněte na tlačítko +";
+"widget.guide.step2.description" = "Klepněte na tlačítko \"+\" v levém horním rohu obrazovky.";
+"widget.guide.step3.title" = "Vyhledejte Gulp";
+"widget.guide.step3.description" = "V galerii widgetů vyhledejte \"Gulp\" nebo \"Voda\".";
+"widget.guide.step4.title" = "Vyberte velikost widgetu";
+"widget.guide.step4.description" = "Vyberte preferovanou velikost widgetu:\n• Malý: Zobrazuje příjem vody a pokrok\n• Střední: Obsahuje tlačítka rychlého přidání";
+"widget.guide.step5.title" = "Přidat na domovskou obrazovku";
+"widget.guide.step5.description" = "Klepněte na \"Přidat widget\" a umístěte ho kam chcete.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Widget zamykací obrazovky";
+"widget.guide.lockscreen.step1.title" = "Dlouze stiskněte zamykací obrazovku";
+"widget.guide.lockscreen.step1.description" = "Stiskněte a podržte zamykací obrazovku a klepněte na \"Přizpůsobit\".";
+"widget.guide.lockscreen.step2.title" = "Vyberte oblast widgetu";
+"widget.guide.lockscreen.step2.description" = "Klepněte na oblast widgetu nad nebo pod časem.";
+"widget.guide.lockscreen.step3.title" = "Přidat widget Gulp";
+"widget.guide.lockscreen.step3.description" = "Vyhledejte \"Gulp\" a vyberte preferovaný styl widgetu.";
+
+// Settings
+"settings.title" = "Nastavení";
+"settings.subtitle" = "Přizpůsobte si zážitek";
+"settings.section.personal" = "Osobní";
+"settings.section.app" = "Nastavení aplikace";
+"settings.section.support" = "Podpora";
+"settings.section.info" = "Informace";
+"settings.profile" = "Nastavení profilu";
+"settings.goal" = "Denní cíl";
+"settings.quickbuttons" = "Nastavení rychlých tlačítek";
+"settings.notification" = "Připomínka pití";
+"settings.widget.guide" = "Průvodce nastavením widgetu";
+"settings.review" = "Napsat recenzi";
+"settings.contact" = "Kontaktujte nás";
+"settings.version" = "Verze";
+
+// Profile
+"profile.title" = "Nastavení profilu";
+"profile.healthkit.title" = "Synchronizace Apple Health";
+"profile.healthkit.description" = "Automaticky načíst váhu z aplikace Zdraví";
+"profile.weight" = "Váha";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Denní doporučený příjem";
+"profile.recommended.description" = "Vzorec: Váha × 33ml";
+"profile.apply.button" = "Použít jako denní cíl";
+"profile.apply.success.title" = "Cíl aktualizován";
+"profile.apply.success.message" = "Denní cíl nastaven na %@ml.";
+
+// Notification Settings
+"notification.enable" = "Povolit oznámení";
+"notification.time.start" = "Čas začátku";
+"notification.time.end" = "Čas konce";
+"notification.interval" = "Interval";
+"notification.weekdays" = "Dny";
+"notification.custom.times" = "Vlastní časy";
+"notification.custom.add" = "Přidat čas";
+"notification.message.info" = "Oznámení budou zasílána s různými zprávami";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Zrušit";
+"common.save" = "Uložit";
+"common.delete" = "Smazat";
+"common.done" = "Hotovo";
+
+// Contact
+"contact.title" = "Kontakt";
+"contact.message" = "Kontaktujte nás na feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Podpořit vývojáře";
+"ad.confirm.title" = "Podpořit vývojáře";
+"ad.confirm.message" = "Zobrazí se reklama. Její sledování pomáhá podpořit vývojáře!";
+"ad.loading.title" = "Prosím čekejte";
+"ad.loading.message" = "Načítání reklamy. Zkuste to prosím za chvíli znovu.";
+"ad.thanks.title" = "Děkujeme!";
+"ad.thanks.message" = "Děkujeme za podporu vývojáře 💙";
+
+// App Guide
+"settings.app.guide" = "Průvodce funkcemi aplikace";
+"appguide.title" = "Průvodce Gulp";
+"appguide.subtitle" = "Objevte všechny funkce";
+
+// App Guide - Home
+"appguide.home.title" = "Záložka Dnes";
+"appguide.home.feature1.title" = "Sledování příjmu vody";
+"appguide.home.feature1.desc" = "Klepnutím na tlačítko zaznamenáte příjem vody. Pokrok se aktualizuje v reálném čase.";
+"appguide.home.feature2.title" = "Rychlá tlačítka";
+"appguide.home.feature2.desc" = "Nastavte často konzumovaná množství jako rychlá tlačítka pro záznam jedním klepnutím.";
+"appguide.home.feature3.title" = "Nastavte svůj cíl";
+"appguide.home.feature3.desc" = "Nastavte svůj denní cíl příjmu vody. K dispozici jsou doporučení založená na váze.";
+"appguide.home.feature4.title" = "Režim odečtení";
+"appguide.home.feature4.desc" = "Přepněte do režimu odečtení pro opravu chyb v záznamech příjmu.";
+
+// App Guide - History
+"appguide.history.title" = "Záložka Historie";
+"appguide.history.feature1.title" = "Zobrazení kalendáře";
+"appguide.history.feature1.desc" = "Zobrazte své měsíční úspěchy na první pohled. Dny splnění cíle jsou zvýrazněny.";
+"appguide.history.feature2.title" = "Zobrazení seznamu";
+"appguide.history.feature2.desc" = "Zkontrolujte všechny záznamy v chronologickém pořadí s pokrokem pro každý den.";
+"appguide.history.feature3.title" = "Zobrazení časové osy";
+"appguide.history.feature3.desc" = "Zobrazujte záznamy seskupené podle měsíce ve formátu časové osy.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Rychlý záznam";
+"appguide.watch.feature1.desc" = "Zaznamenávejte příjem vody přímo z hodinek. Rychlá tlačítka pro 150ml, 250ml, 300ml a 500ml.";
+"appguide.watch.feature2.title" = "Synchronizace v reálném čase";
+"appguide.watch.feature2.desc" = "Synchronizuje se s vaším iPhone v reálném čase pro aktuální záznamy.";
+"appguide.watch.feature3.title" = "Komplikace";
+"appguide.watch.feature3.desc" = "Přidejte komplikaci na ciferník pro rychlou kontrolu pokroku.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widgety";
+"appguide.widget.feature1.title" = "Widget domovské obrazovky";
+"appguide.widget.feature1.desc" = "Přidejte widget na domovskou obrazovku pro rychlou kontrolu pokroku. K dispozici malé, střední a velké velikosti.";
+"appguide.widget.feature2.title" = "Widget zamykací obrazovky";
+"appguide.widget.feature2.desc" = "Zkontrolujte svůj denní příjem vody přímo ze zamykací obrazovky.";
+"appguide.widget.feature3.title" = "Interaktivní tlačítka";
+"appguide.widget.feature3.desc" = "Klepnutím na tlačítka na středních/velkých widgetech přidáte vodu bez otevření aplikace.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Oznámení";
+"appguide.notification.feature1.title" = "Vlastní intervaly";
+"appguide.notification.feature1.desc" = "Dostávejte připomínky v intervalech 30 minut, 1 hodiny, 2 hodin nebo 3 hodin.";
+"appguide.notification.feature2.title" = "Výběr dnů";
+"appguide.notification.feature2.desc" = "Vyberte, ve které dny v týdnu chcete dostávat oznámení.";
+"appguide.notification.feature3.title" = "Motivační zprávy";
+"appguide.notification.feature3.desc" = "Dostávejte různé motivační zprávy, které vám pomohou budovat návyk hydratace.";
+
+// App Guide - Health
+"appguide.health.title" = "Integrace zdraví";
+"appguide.health.feature1.title" = "Doporučení založené na váze";
+"appguide.health.feature1.desc" = "Importujte svou váhu z aplikace Zdraví pro výpočet personalizovaných doporučení příjmu.";
+"appguide.health.feature2.title" = "Uložit do Zdraví";
+"appguide.health.feature2.desc" = "Vaše záznamy o příjmu vody se automaticky ukládají do aplikace Zdraví.";
+
+// Tab Bar
+"tab.today" = "Dnes";
+"tab.history" = "Historie";
+"tab.settings" = "Nastavení";
+
+// Home
+"home.goal" = "Cíl %@ml";
+"home.goal.achieved" = "Dnešní cíl splněn!";
+"home.goal.remaining" = "Ještě %@ sklenic do splnění cíle!";
+"home.quick.add" = "Rychlé přidání";
+"home.quick.subtract" = "Odečíst";
+"home.edit" = "Upravit";
+"home.goal.setting.title" = "Nastavit cíl";
+"home.goal.save" = "Uložit";
+"home.goal.min" = "1 000ml";
+"home.goal.max" = "4 000ml";
+"home.goal.cancel" = "Zrušit";
+"home.quickbutton.title" = "Tlačítka rychlého přidání";
+"home.quickbutton.current" = "Aktuální tlačítka";
+"home.quickbutton.add.section" = "Přidat nové tlačítko";
+"home.quickbutton.placeholder" = "Množství (ml)";
+"home.quickbutton.add" = "Přidat";
+"home.quickbutton.reset" = "Obnovit výchozí";
+"home.adjustment.title" = "Upravit příjem";
+"home.adjustment.done" = "Hotovo";
+"home.adjustment.reset" = "Resetovat dnešní záznam";
+"home.adjustment.reset.confirm" = "Resetovat dnešní příjem vody?";
+"home.adjustment.reset.button" = "Resetovat";
+"home.adjustment.reset.message" = "Tuto akci nelze vrátit zpět.";
+
+// Notification Banner
+"home.notification.banner.title" = "Povolit oznámení";
+"home.notification.banner.description" = "Dostávejte připomínky k hydrataci";
+"home.notification.banner.settings" = "Nastavení";
+
+// History
+"history.title" = "Historie";
+"history.mode.calendar" = "Kalendář";
+"history.mode.list" = "Seznam";
+"history.mode.timeline" = "Časová osa";
+"history.month.summary" = "Tento měsíc: %@ dní splněno";
+"history.legend.today" = "Dnes";
+"history.legend.selected" = "Vybráno";
+"history.legend.achieved" = "Splněno";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ dní splněno";
+"history.record.goal" = "Cíl %@ml";
+"history.card.goal" = "Cíl";
+"history.card.intake" = "Příjem";
+"history.card.achieved" = "Splněno! ✅";
+"history.label.achieved" = "Splněno";
+
+// Widget
+"widget.hydration.tracker" = "Sledování hydratace";
+"widget.current" = "Aktuální";
+"widget.goal" = "Cíl";
+"widget.current.hydration" = "Aktuální hydratace";
+"widget.todays.hydration" = "Dnešní hydratace";
+"widget.motivation.achieved" = "Cíl splněn! Skvělá práce! 🎉";
+"widget.motivation.almost" = "Skoro tam! Pokračujte! 🚀";
+"widget.motivation.halfway" = "Jde vám to skvěle! 💧";
+"widget.motivation.start" = "Čas na hydrataci! 🥤";
+
+// Watch
+"watch.add.water" = "Přidat vodu";
+"watch.custom.input" = "Vlastní vstup";
+"watch.add" = "Přidat";
+
+// Update
+"update.required.title" = "Vyžadována aktualizace";
+"update.available.title" = "Dostupná aktualizace";
+"update.required.message" = "Byla vydána nová verze. Pro pokračování v používání aplikace prosím aktualizujte.";
+"update.available.message" = "Je k dispozici nová verze. Chcete nyní aktualizovat?";
+"update.later" = "Později";
+"update.now" = "Aktualizovat";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Čas napít se vody! 💧";
+"notification.message.2" = "Nezapomeňte se hydratovat~ 🌊";
+"notification.message.3" = "Začněte svůj zdravý den vodou! ☀️";
+"notification.message.4" = "Pijte dříve, než pocítíte žízeň 🥤";
+"notification.message.5" = "Gulp gulp i dnes! 💪";
+"notification.message.6" = "Sklenice vody smyje únavu 🧘";
+"notification.message.7" = "Tajemství zářivé pleti: voda! ✨";
+"notification.message.8" = "Soustředění NAHORU! Co takhle sklenici vody? 🧠";
+"notification.message.9" = "Počkejte! Nejdřív se napijte 🚰";
+"notification.message.10" = "Vaše tělo čeká na vodu 🌿";
+
+// Weekdays
+"weekday.sun" = "Ne";
+"weekday.mon" = "Po";
+"weekday.tue" = "Út";
+"weekday.wed" = "St";
+"weekday.thu" = "Čt";
+"weekday.fri" = "Pá";
+"weekday.sat" = "So";
+
+// Intervals
+"interval.30min" = "30 min";
+"interval.1hour" = "1 hodina";
+"interval.2hours" = "2 hodiny";
+"interval.3hours" = "3 hodiny";
+
+// Notification Settings
+"notification.settings.title" = "Nastavení oznámení";
+"notification.settings.enable" = "Povolit oznámení";
+"notification.settings.timerange" = "Časový rozsah oznámení";
+"notification.settings.interval" = "Interval oznámení";
+"notification.settings.weekdays" = "Vybrat dny";
+"notification.settings.custom" = "Vlastní časy (přepisují interval)";
+"notification.settings.starttime" = "Čas začátku";
+"notification.settings.endtime" = "Čas konce";
+"notification.settings.addtime" = "Přidat čas";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d. MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Příjem vody";
+"complication.description" = "Zjistěte, kolik vody jste dnes vypili.";
+
+// Accessibility
+"accessibility.home.current" = "Aktuální příjem %d mililitrů";
+"accessibility.home.goal" = "Denní cíl %d mililitrů";
+"accessibility.home.goal.hint" = "Dvojitým klepnutím změníte cíl";
+"accessibility.home.add" = "Přidat %d mililitrů";
+"accessibility.home.add.hint" = "Dvojitým klepnutím přidáte vodu";
+"accessibility.home.subtract" = "Odečíst %d mililitrů";
+"accessibility.home.subtract.hint" = "Dvojitým klepnutím odečtete vodu";
+"accessibility.home.mode.add" = "Aktivní režim přidání";
+"accessibility.home.mode.subtract" = "Aktivní režim odečtení";
+"accessibility.home.mode.hint" = "Dvojitým klepnutím přepnete mezi režimem přidání a odečtení";
+"accessibility.history.summary" = "Tento měsíc %d dní splněno";
+"accessibility.history.achieved" = "Cíl splněn";
+"accessibility.history.progress" = "%@ cíle";

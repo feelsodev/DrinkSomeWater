@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Greek Localization
+*/
+
+// Main
+"You achieved " = "Πετύχατε ";
+"TodaySuffix" = " σήμερα!!";
+
+// Calendar
+"Today" = "Σήμερα";
+"Success" = "Επιτυχία";
+"Selected" = "Επιλεγμένο";
+"You can check the history when you select a success date."
+= "Μπορείτε να ελέγξετε το ιστορικό όταν επιλέξετε μια επιτυχημένη ημερομηνία.";
+"Goal of this month" = "Στόχος αυτού του μήνα";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "Ξυπνητήρι";
+"Review" = "Κριτική";
+"Contact Us" = "Επικοινωνία";
+"Version" = "Έκδοση";
+"License" = "Άδεια";
+"Set" = "Ρύθμιση";
+
+// Onboarding
+"onboarding.skip" = "Παράλειψη";
+"onboarding.next" = "Επόμενο";
+"onboarding.start" = "Ξεκινήστε";
+"onboarding.intro.title" = "Καλώς ήρθατε στο Gulp";
+"onboarding.intro.description" = "Παρακολουθήστε την ημερήσια κατανάλωση νερού και μείνετε ενυδατωμένοι.\n\nΤο νερό είναι απαραίτητο για την υγεία σας – βοηθά στη διατήρηση της ενέργειας, τη βελτίωση της συγκέντρωσης και τη διατήρηση του σώματός σας σε άριστη κατάσταση.";
+"onboarding.goal.title" = "Ορίστε τον στόχο σας";
+"onboarding.goal.description" = "Πόσο νερό θέλετε να πίνετε καθημερινά;\nΡυθμίστε το ρυθμιστικό για να ορίσετε τον στόχο σας.";
+"onboarding.healthkit.title" = "Σύνδεση Υγείας";
+"onboarding.healthkit.description" = "Συγχρονίστε με το Apple Health για να:\n\n• Υπολογίσετε εξατομικευμένη κατανάλωση νερού βάσει του βάρους σας\n• Αποθηκεύσετε αρχεία νερού στην εφαρμογή Υγεία\n• Παρακολουθήσετε την πρόοδό σας μαζί με άλλα δεδομένα υγείας";
+"onboarding.healthkit.button" = "Σύνδεση Apple Health";
+"onboarding.healthkit.connected" = "Συνδέθηκε";
+"onboarding.notification.title" = "Υπενθυμίσεις";
+"onboarding.notification.description" = "Ενεργοποιήστε τις ειδοποιήσεις για να λαμβάνετε φιλικές υπενθυμίσεις καθ' όλη τη διάρκεια της ημέρας.\n\nΘα σας στέλνουμε παρακινητικά μηνύματα για να σας βοηθήσουμε να παραμείνετε στους στόχους ενυδάτωσής σας.";
+"onboarding.notification.button" = "Ενεργοποίηση ειδοποιήσεων";
+"onboarding.notification.enabled" = "Ενεργοποιημένο";
+"onboarding.widget.title" = "Προσθήκη Widget";
+"onboarding.widget.description" = "Προσθέστε το widget μας στην αρχική οθόνη για γρήγορη πρόσβαση:\n\n1. Πατήστε παρατεταμένα στην αρχική οθόνη\n2. Πατήστε το κουμπί +\n3. Αναζητήστε 'Gulp'\n4. Επιλέξτε το μέγεθος widget που προτιμάτε";
+"onboarding.widget.button" = "Ξεκινήστε";
+
+// Widget
+"widget.today" = "Σήμερα";
+"widget.guide.title" = "Οδηγός ρύθμισης Widget";
+"widget.guide.nav.title" = "Οδηγός Widget";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Πατήστε παρατεταμένα στην αρχική οθόνη";
+"widget.guide.step1.description" = "Πατήστε και κρατήστε σε ένα κενό σημείο της αρχικής οθόνης μέχρι να αρχίσουν να τρέμουν οι εφαρμογές.";
+"widget.guide.step2.title" = "Πατήστε το κουμπί +";
+"widget.guide.step2.description" = "Πατήστε το κουμπί \"+\" στην επάνω αριστερή γωνία της οθόνης.";
+"widget.guide.step3.title" = "Αναζητήστε το Gulp";
+"widget.guide.step3.description" = "Στη συλλογή widget, αναζητήστε \"Gulp\" ή \"Νερό\".";
+"widget.guide.step4.title" = "Επιλέξτε μέγεθος widget";
+"widget.guide.step4.description" = "Επιλέξτε το μέγεθος widget που προτιμάτε:\n• Μικρό: Δείχνει κατανάλωση νερού και πρόοδο\n• Μεσαίο: Περιλαμβάνει κουμπιά γρήγορης προσθήκης";
+"widget.guide.step5.title" = "Προσθήκη στην αρχική οθόνη";
+"widget.guide.step5.description" = "Πατήστε \"Προσθήκη Widget\" και τοποθετήστε το όπου θέλετε.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Widget οθόνης κλειδώματος";
+"widget.guide.lockscreen.step1.title" = "Πατήστε παρατεταμένα στην οθόνη κλειδώματος";
+"widget.guide.lockscreen.step1.description" = "Πατήστε και κρατήστε την οθόνη κλειδώματος και πατήστε \"Προσαρμογή\".";
+"widget.guide.lockscreen.step2.title" = "Επιλέξτε περιοχή widget";
+"widget.guide.lockscreen.step2.description" = "Πατήστε την περιοχή widget πάνω ή κάτω από την ώρα.";
+"widget.guide.lockscreen.step3.title" = "Προσθήκη widget Gulp";
+"widget.guide.lockscreen.step3.description" = "Αναζητήστε \"Gulp\" και επιλέξτε το στυλ widget που προτιμάτε.";
+
+// Settings
+"settings.title" = "Ρυθμίσεις";
+"settings.subtitle" = "Προσαρμόστε την εμπειρία σας";
+"settings.section.personal" = "Προσωπικά";
+"settings.section.app" = "Ρυθμίσεις εφαρμογής";
+"settings.section.support" = "Υποστήριξη";
+"settings.section.info" = "Πληροφορίες";
+"settings.profile" = "Ρυθμίσεις προφίλ";
+"settings.goal" = "Ημερήσιος στόχος";
+"settings.quickbuttons" = "Ρυθμίσεις γρήγορων κουμπιών";
+"settings.notification" = "Υπενθύμιση νερού";
+"settings.widget.guide" = "Οδηγός ρύθμισης Widget";
+"settings.review" = "Γράψτε κριτική";
+"settings.contact" = "Επικοινωνία";
+"settings.version" = "Έκδοση";
+
+// Profile
+"profile.title" = "Ρυθμίσεις προφίλ";
+"profile.healthkit.title" = "Συγχρονισμός Apple Health";
+"profile.healthkit.description" = "Αυτόματη λήψη βάρους από την εφαρμογή Υγεία";
+"profile.weight" = "Βάρος";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Ημερήσια συνιστώμενη κατανάλωση";
+"profile.recommended.description" = "Τύπος Βάρος × 33ml";
+"profile.apply.button" = "Εφαρμογή ως ημερήσιος στόχος";
+"profile.apply.success.title" = "Ο στόχος ενημερώθηκε";
+"profile.apply.success.message" = "Ο ημερήσιος στόχος ορίστηκε σε %@ml.";
+
+// Notification Settings
+"notification.enable" = "Ενεργοποίηση ειδοποιήσεων";
+"notification.time.start" = "Ώρα έναρξης";
+"notification.time.end" = "Ώρα λήξης";
+"notification.interval" = "Διάστημα";
+"notification.weekdays" = "Ημέρες";
+"notification.custom.times" = "Προσαρμοσμένες ώρες";
+"notification.custom.add" = "Προσθήκη ώρας";
+"notification.message.info" = "Οι ειδοποιήσεις θα αποστέλλονται με διάφορα μηνύματα";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Ακύρωση";
+"common.save" = "Αποθήκευση";
+"common.delete" = "Διαγραφή";
+"common.done" = "Τέλος";
+
+// Contact
+"contact.title" = "Επικοινωνία";
+"contact.message" = "Επικοινωνήστε μαζί μας στο feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Υποστηρίξτε τον προγραμματιστή";
+"ad.confirm.title" = "Υποστηρίξτε τον προγραμματιστή";
+"ad.confirm.message" = "Θα εμφανιστεί μια διαφήμιση. Η παρακολούθησή της βοηθά στην υποστήριξη του προγραμματιστή!";
+"ad.loading.title" = "Παρακαλώ περιμένετε";
+"ad.loading.message" = "Φόρτωση διαφήμισης. Δοκιμάστε ξανά σε λίγο.";
+"ad.thanks.title" = "Ευχαριστούμε!";
+"ad.thanks.message" = "Ευχαριστούμε που υποστηρίζετε τον προγραμματιστή 💙";
+
+// App Guide
+"settings.app.guide" = "Οδηγός λειτουργιών εφαρμογής";
+"appguide.title" = "Οδηγός Gulp";
+"appguide.subtitle" = "Ανακαλύψτε όλες τις λειτουργίες";
+
+// App Guide - Home
+"appguide.home.title" = "Καρτέλα Σήμερα";
+"appguide.home.feature1.title" = "Παρακολούθηση κατανάλωσης νερού";
+"appguide.home.feature1.desc" = "Πατήστε το κουμπί για να καταγράψετε την κατανάλωση νερού. Η πρόοδος ενημερώνεται σε πραγματικό χρόνο.";
+"appguide.home.feature2.title" = "Γρήγορα κουμπιά";
+"appguide.home.feature2.desc" = "Ορίστε τις συχνά καταναλισκόμενες ποσότητες ως γρήγορα κουμπιά για καταγραφή με ένα πάτημα.";
+"appguide.home.feature3.title" = "Ορίστε τον στόχο σας";
+"appguide.home.feature3.desc" = "Ορίστε τον ημερήσιο στόχο κατανάλωσης νερού. Διατίθενται συστάσεις βάσει βάρους.";
+"appguide.home.feature4.title" = "Λειτουργία αφαίρεσης";
+"appguide.home.feature4.desc" = "Μεταβείτε σε λειτουργία αφαίρεσης για να διορθώσετε τυχόν λάθη στις καταγραφές.";
+
+// App Guide - History
+"appguide.history.title" = "Καρτέλα Ιστορικό";
+"appguide.history.feature1.title" = "Προβολή ημερολογίου";
+"appguide.history.feature1.desc" = "Δείτε τις μηνιαίες επιτυχίες σας με μια ματιά. Οι ημέρες επίτευξης στόχου επισημαίνονται.";
+"appguide.history.feature2.title" = "Προβολή λίστας";
+"appguide.history.feature2.desc" = "Ελέγξτε όλες τις καταγραφές σε χρονολογική σειρά με την πρόοδο για κάθε ημέρα.";
+"appguide.history.feature3.title" = "Προβολή χρονολογίου";
+"appguide.history.feature3.desc" = "Δείτε καταγραφές ομαδοποιημένες ανά μήνα σε μορφή χρονολογίου.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Γρήγορη καταγραφή";
+"appguide.watch.feature1.desc" = "Καταγράψτε την κατανάλωση νερού απευθείας από το ρολόι σας. Γρήγορα κουμπιά για 150ml, 250ml, 300ml και 500ml.";
+"appguide.watch.feature2.title" = "Συγχρονισμός σε πραγματικό χρόνο";
+"appguide.watch.feature2.desc" = "Συγχρονίζεται με το iPhone σας σε πραγματικό χρόνο για να διατηρούνται οι καταγραφές σας πάντα ενημερωμένες.";
+"appguide.watch.feature3.title" = "Επιπλοκές";
+"appguide.watch.feature3.desc" = "Προσθέστε μια επιπλοκή στην πρόσοψη του ρολογιού για να ελέγχετε την πρόοδό σας με μια ματιά.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widgets";
+"appguide.widget.feature1.title" = "Widget αρχικής οθόνης";
+"appguide.widget.feature1.desc" = "Προσθέστε ένα widget στην αρχική οθόνη για γρήγορους ελέγχους προόδου. Διατίθεται σε μικρό, μεσαίο και μεγάλο μέγεθος.";
+"appguide.widget.feature2.title" = "Widget οθόνης κλειδώματος";
+"appguide.widget.feature2.desc" = "Ελέγξτε την ημερήσια κατανάλωση νερού απευθείας από την οθόνη κλειδώματος.";
+"appguide.widget.feature3.title" = "Διαδραστικά κουμπιά";
+"appguide.widget.feature3.desc" = "Πατήστε κουμπιά σε μεσαία/μεγάλα widgets για να προσθέσετε νερό χωρίς να ανοίξετε την εφαρμογή.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Ειδοποιήσεις";
+"appguide.notification.feature1.title" = "Προσαρμοσμένα διαστήματα";
+"appguide.notification.feature1.desc" = "Λάβετε υπενθυμίσεις σε διαστήματα 30 λεπτών, 1 ώρας, 2 ωρών ή 3 ωρών.";
+"appguide.notification.feature2.title" = "Επιλογή ημέρας";
+"appguide.notification.feature2.desc" = "Επιλέξτε ποιες ημέρες της εβδομάδας θέλετε να λαμβάνετε ειδοποιήσεις.";
+"appguide.notification.feature3.title" = "Παρακινητικά μηνύματα";
+"appguide.notification.feature3.desc" = "Λάβετε διάφορα παρακινητικά μηνύματα για να σας βοηθήσουν να δημιουργήσετε τη συνήθεια ενυδάτωσης.";
+
+// App Guide - Health
+"appguide.health.title" = "Ενσωμάτωση Υγείας";
+"appguide.health.feature1.title" = "Συστάσεις βάσει βάρους";
+"appguide.health.feature1.desc" = "Εισαγάγετε το βάρος σας από την εφαρμογή Υγεία για να υπολογίσετε εξατομικευμένες συστάσεις κατανάλωσης.";
+"appguide.health.feature2.title" = "Αποθήκευση στην Υγεία";
+"appguide.health.feature2.desc" = "Οι καταγραφές κατανάλωσης νερού αποθηκεύονται αυτόματα στην εφαρμογή Υγεία.";
+
+// Tab Bar
+"tab.today" = "Σήμερα";
+"tab.history" = "Ιστορικό";
+"tab.settings" = "Ρυθμίσεις";
+
+// Home
+"home.goal" = "Στόχος %@ml";
+"home.goal.achieved" = "Ο σημερινός στόχος επιτεύχθηκε!";
+"home.goal.remaining" = "%@ ακόμη ποτήρια για να φτάσετε τον στόχο σας!";
+"home.quick.add" = "Γρήγορη προσθήκη";
+"home.quick.subtract" = "Αφαίρεση";
+"home.edit" = "Επεξεργασία";
+"home.goal.setting.title" = "Ορισμός στόχου";
+"home.goal.save" = "Αποθήκευση";
+"home.goal.min" = "1.000ml";
+"home.goal.max" = "4.000ml";
+"home.goal.cancel" = "Ακύρωση";
+"home.quickbutton.title" = "Κουμπιά γρήγορης προσθήκης";
+"home.quickbutton.current" = "Τρέχοντα κουμπιά";
+"home.quickbutton.add.section" = "Προσθήκη νέου κουμπιού";
+"home.quickbutton.placeholder" = "Ποσότητα (ml)";
+"home.quickbutton.add" = "Προσθήκη";
+"home.quickbutton.reset" = "Επαναφορά προεπιλογών";
+"home.adjustment.title" = "Προσαρμογή κατανάλωσης";
+"home.adjustment.done" = "Τέλος";
+"home.adjustment.reset" = "Επαναφορά σημερινής καταγραφής";
+"home.adjustment.reset.confirm" = "Επαναφορά σημερινής κατανάλωσης νερού;";
+"home.adjustment.reset.button" = "Επαναφορά";
+"home.adjustment.reset.message" = "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.";
+
+// Notification Banner
+"home.notification.banner.title" = "Ενεργοποίηση ειδοποιήσεων";
+"home.notification.banner.description" = "Λάβετε υπενθυμίσεις για να μείνετε ενυδατωμένοι";
+"home.notification.banner.settings" = "Ρυθμίσεις";
+
+// History
+"history.title" = "Ιστορικό";
+"history.mode.calendar" = "Ημερολόγιο";
+"history.mode.list" = "Λίστα";
+"history.mode.timeline" = "Χρονολόγιο";
+"history.month.summary" = "Αυτόν τον μήνα: %@ ημέρες επιτεύχθηκαν";
+"history.legend.today" = "Σήμερα";
+"history.legend.selected" = "Επιλεγμένο";
+"history.legend.achieved" = "Επιτεύχθηκε";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ ημέρες επιτεύχθηκαν";
+"history.record.goal" = "Στόχος %@ml";
+"history.card.goal" = "Στόχος";
+"history.card.intake" = "Κατανάλωση";
+"history.card.achieved" = "Επιτεύχθηκε! ✅";
+"history.label.achieved" = "Επιτεύχθηκε";
+
+// Widget
+"widget.hydration.tracker" = "Παρακολούθηση ενυδάτωσης";
+"widget.current" = "Τρέχουσα";
+"widget.goal" = "Στόχος";
+"widget.current.hydration" = "Τρέχουσα ενυδάτωση";
+"widget.todays.hydration" = "Σημερινή ενυδάτωση";
+"widget.motivation.achieved" = "Στόχος επιτεύχθηκε! Μπράβο! 🎉";
+"widget.motivation.almost" = "Σχεδόν τα καταφέρατε! Συνεχίστε! 🚀";
+"widget.motivation.halfway" = "Τα πάτε υπέροχα! 💧";
+"widget.motivation.start" = "Ώρα για ενυδάτωση! 🥤";
+
+// Watch
+"watch.add.water" = "Προσθήκη νερού";
+"watch.custom.input" = "Προσαρμοσμένη εισαγωγή";
+"watch.add" = "Προσθήκη";
+
+// Update
+"update.required.title" = "Απαιτείται ενημέρωση";
+"update.available.title" = "Διαθέσιμη ενημέρωση";
+"update.required.message" = "Κυκλοφόρησε νέα έκδοση. Παρακαλούμε ενημερώστε για να συνεχίσετε να χρησιμοποιείτε την εφαρμογή.";
+"update.available.message" = "Μια νέα έκδοση είναι διαθέσιμη. Θέλετε να ενημερώσετε τώρα;";
+"update.later" = "Αργότερα";
+"update.now" = "Ενημέρωση";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Ώρα για νερό! 💧";
+"notification.message.2" = "Μην ξεχνάτε να ενυδατώνεστε~ 🌊";
+"notification.message.3" = "Ξεκινήστε την υγιεινή σας μέρα με νερό! ☀️";
+"notification.message.4" = "Πιείτε πριν νιώσετε δίψα 🥤";
+"notification.message.5" = "Γκουλπ γκουλπ και σήμερα! 💪";
+"notification.message.6" = "Ένα ποτήρι νερό ξεπλένει την κούραση 🧘";
+"notification.message.7" = "Το μυστικό για λαμπερό δέρμα: νερό! ✨";
+"notification.message.8" = "Συγκέντρωση UP! Τι λέτε για ένα ποτήρι νερό; 🧠";
+"notification.message.9" = "Περιμένετε! Πιείτε πρώτα λίγο νερό 🚰";
+"notification.message.10" = "Το σώμα σας περιμένει νερό 🌿";
+
+// Weekdays
+"weekday.sun" = "Κυρ";
+"weekday.mon" = "Δευ";
+"weekday.tue" = "Τρι";
+"weekday.wed" = "Τετ";
+"weekday.thu" = "Πεμ";
+"weekday.fri" = "Παρ";
+"weekday.sat" = "Σαβ";
+
+// Intervals
+"interval.30min" = "30 λεπ";
+"interval.1hour" = "1 ώρα";
+"interval.2hours" = "2 ώρες";
+"interval.3hours" = "3 ώρες";
+
+// Notification Settings
+"notification.settings.title" = "Ρυθμίσεις ειδοποιήσεων";
+"notification.settings.enable" = "Ενεργοποίηση ειδοποιήσεων";
+"notification.settings.timerange" = "Χρονικό εύρος ειδοποιήσεων";
+"notification.settings.interval" = "Διάστημα ειδοποιήσεων";
+"notification.settings.weekdays" = "Επιλογή ημερών";
+"notification.settings.custom" = "Προσαρμοσμένες ώρες (υπερισχύει του διαστήματος)";
+"notification.settings.starttime" = "Ώρα έναρξης";
+"notification.settings.endtime" = "Ώρα λήξης";
+"notification.settings.addtime" = "Προσθήκη ώρας";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Κατανάλωση νερού";
+"complication.description" = "Ελέγξτε πόσο νερό πιείτε σήμερα.";
+
+// Accessibility
+"accessibility.home.current" = "Τρέχουσα κατανάλωση %d χιλιοστόλιτρα";
+"accessibility.home.goal" = "Ημερήσιος στόχος %d χιλιοστόλιτρα";
+"accessibility.home.goal.hint" = "Διπλό πάτημα για αλλαγή στόχου";
+"accessibility.home.add" = "Προσθήκη %d χιλιοστόλιτρα";
+"accessibility.home.add.hint" = "Διπλό πάτημα για προσθήκη νερού";
+"accessibility.home.subtract" = "Αφαίρεση %d χιλιοστόλιτρα";
+"accessibility.home.subtract.hint" = "Διπλό πάτημα για αφαίρεση νερού";
+"accessibility.home.mode.add" = "Ενεργή λειτουργία προσθήκης";
+"accessibility.home.mode.subtract" = "Ενεργή λειτουργία αφαίρεσης";
+"accessibility.home.mode.hint" = "Διπλό πάτημα για εναλλαγή μεταξύ λειτουργίας προσθήκης και αφαίρεσης";
+"accessibility.history.summary" = "Αυτόν τον μήνα %d ημέρες επιτεύχθηκαν";
+"accessibility.history.achieved" = "Στόχος επιτεύχθηκε";
+"accessibility.history.progress" = "%@ του στόχου";

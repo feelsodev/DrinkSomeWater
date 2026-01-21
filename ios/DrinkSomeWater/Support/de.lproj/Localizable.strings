@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  German Localization
+*/
+
+// Main
+"You achieved " = "Du hast erreicht ";
+"TodaySuffix" = " Heute!!";
+
+// Calendar
+"Today" = "Heute";
+"Success" = "Erfolg";
+"Selected" = "Ausgewählt";
+"You can check the history when you select a success date."
+= "Du kannst den Verlauf überprüfen, wenn du ein Erfolgsdatum auswählst.";
+"Goal of this month" = "Ziel dieses Monats";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "Alarm";
+"Review" = "Bewerten";
+"Contact Us" = "Kontakt";
+"Version" = "Version";
+"License" = "Lizenz";
+"Set" = "Einstellen";
+
+// Onboarding
+"onboarding.skip" = "Überspringen";
+"onboarding.next" = "Weiter";
+"onboarding.start" = "Los geht's";
+"onboarding.intro.title" = "Willkommen bei Gulp";
+"onboarding.intro.description" = "Verfolge deine tägliche Wasseraufnahme und bleibe hydriert.\n\nWasser ist essentiell für deine Gesundheit - es hilft, Energie zu erhalten, die Konzentration zu verbessern und deinen Körper optimal funktionieren zu lassen.";
+"onboarding.goal.title" = "Setze dein Ziel";
+"onboarding.goal.description" = "Wie viel Wasser möchtest du täglich trinken?\nPasse den Schieberegler an, um dein Ziel festzulegen.";
+"onboarding.healthkit.title" = "Health verbinden";
+"onboarding.healthkit.description" = "Mit Apple Health synchronisieren:\n\n• Personalisierte Wasseraufnahme basierend auf deinem Gewicht berechnen\n• Wasseraufzeichnungen in der Health-App speichern\n• Fortschritt zusammen mit anderen Gesundheitsdaten verfolgen";
+"onboarding.healthkit.button" = "Apple Health verbinden";
+"onboarding.healthkit.connected" = "Verbunden";
+"onboarding.notification.title" = "Erinnert bleiben";
+"onboarding.notification.description" = "Aktiviere Benachrichtigungen, um den ganzen Tag freundliche Erinnerungen zu erhalten.\n\nWir senden dir motivierende Nachrichten, um dir bei deinen Hydrationszielen zu helfen.";
+"onboarding.notification.button" = "Benachrichtigungen aktivieren";
+"onboarding.notification.enabled" = "Aktiviert";
+"onboarding.widget.title" = "Widget hinzufügen";
+"onboarding.widget.description" = "Füge unser Widget zu deinem Startbildschirm für schnellen Zugriff hinzu:\n\n1. Halte den Startbildschirm gedrückt\n2. Tippe auf die + Taste\n3. Suche nach 'Gulp'\n4. Wähle deine bevorzugte Widget-Größe";
+"onboarding.widget.button" = "Los geht's";
+
+// Widget
+"widget.today" = "Heute";
+"widget.guide.title" = "Widget-Einrichtungsanleitung";
+"widget.guide.nav.title" = "Widget-Anleitung";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Startbildschirm gedrückt halten";
+"widget.guide.step1.description" = "Halte eine leere Stelle auf deinem Startbildschirm gedrückt, bis die Apps wackeln.";
+"widget.guide.step2.title" = "Auf + Taste tippen";
+"widget.guide.step2.description" = "Tippe auf die „+" Taste in der oberen linken Ecke des Bildschirms.";
+"widget.guide.step3.title" = "Gulp suchen";
+"widget.guide.step3.description" = "Suche in der Widget-Galerie nach „Gulp" oder „Wasser".";
+"widget.guide.step4.title" = "Widget-Größe wählen";
+"widget.guide.step4.description" = "Wähle deine bevorzugte Widget-Größe:\n• Klein: Zeigt Wasseraufnahme und Fortschritt\n• Mittel: Enthält Schnell-Hinzufügen-Buttons";
+"widget.guide.step5.title" = "Zum Startbildschirm hinzufügen";
+"widget.guide.step5.description" = "Tippe auf „Widget hinzufügen" und positioniere es nach Wunsch.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Sperrbildschirm-Widget";
+"widget.guide.lockscreen.step1.title" = "Sperrbildschirm gedrückt halten";
+"widget.guide.lockscreen.step1.description" = "Halte deinen Sperrbildschirm gedrückt und tippe auf „Anpassen".";
+"widget.guide.lockscreen.step2.title" = "Widget-Bereich auswählen";
+"widget.guide.lockscreen.step2.description" = "Tippe auf den Widget-Bereich über oder unter der Uhrzeit.";
+"widget.guide.lockscreen.step3.title" = "Gulp-Widget hinzufügen";
+"widget.guide.lockscreen.step3.description" = "Suche nach „Gulp" und wähle den gewünschten Widget-Stil.";
+
+// Settings
+"settings.title" = "Einstellungen";
+"settings.subtitle" = "Passe dein Erlebnis an";
+"settings.section.personal" = "Persönlich";
+"settings.section.app" = "App-Einstellungen";
+"settings.section.support" = "Support";
+"settings.section.info" = "Info";
+"settings.profile" = "Profil-Einstellungen";
+"settings.goal" = "Tagesziel";
+"settings.quickbuttons" = "Schnelltasten-Einstellungen";
+"settings.notification" = "Wasser-Erinnerung";
+"settings.widget.guide" = "Widget-Einrichtungsanleitung";
+"settings.review" = "Bewertung abgeben";
+"settings.contact" = "Kontaktiere uns";
+"settings.version" = "Version";
+
+// Profile
+"profile.title" = "Profil-Einstellungen";
+"profile.healthkit.title" = "Apple Health Sync";
+"profile.healthkit.description" = "Gewicht automatisch aus der Health-App abrufen";
+"profile.weight" = "Gewicht";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Empfohlene Tagesmenge";
+"profile.recommended.description" = "Gewicht × 33ml Formel";
+"profile.apply.button" = "Als Tagesziel anwenden";
+"profile.apply.success.title" = "Ziel aktualisiert";
+"profile.apply.success.message" = "Tagesziel auf %@ml gesetzt.";
+
+// Notification Settings
+"notification.enable" = "Benachrichtigungen aktivieren";
+"notification.time.start" = "Startzeit";
+"notification.time.end" = "Endzeit";
+"notification.interval" = "Intervall";
+"notification.weekdays" = "Tage";
+"notification.custom.times" = "Benutzerdefinierte Zeiten";
+"notification.custom.add" = "Zeit hinzufügen";
+"notification.message.info" = "Benachrichtigungen werden mit verschiedenen Nachrichten gesendet";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Abbrechen";
+"common.save" = "Speichern";
+"common.delete" = "Löschen";
+"common.done" = "Fertig";
+
+// Contact
+"contact.title" = "Kontakt";
+"contact.message" = "Bitte kontaktiere uns unter feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Entwickler unterstützen";
+"ad.confirm.title" = "Entwickler unterstützen";
+"ad.confirm.message" = "Eine Werbung wird angezeigt. Das Ansehen hilft, den Entwickler zu unterstützen!";
+"ad.loading.title" = "Bitte warten";
+"ad.loading.message" = "Werbung wird geladen. Bitte versuche es gleich erneut.";
+"ad.thanks.title" = "Danke!";
+"ad.thanks.message" = "Danke für deine Unterstützung des Entwicklers 💙";
+
+// App Guide
+"settings.app.guide" = "App-Funktionsanleitung";
+"appguide.title" = "Gulp-Anleitung";
+"appguide.subtitle" = "Entdecke alle Funktionen";
+
+// App Guide - Home
+"appguide.home.title" = "Heute-Tab";
+"appguide.home.feature1.title" = "Wasseraufnahme verfolgen";
+"appguide.home.feature1.desc" = "Tippe auf den Button, um deine Wasseraufnahme zu erfassen. Der Fortschritt wird in Echtzeit aktualisiert.";
+"appguide.home.feature2.title" = "Schnelltasten";
+"appguide.home.feature2.desc" = "Lege deine häufig getrunkenen Mengen als Schnelltasten fest für Ein-Tipp-Erfassung.";
+"appguide.home.feature3.title" = "Ziel festlegen";
+"appguide.home.feature3.desc" = "Lege dein tägliches Wasserziel fest. Gewichtsbasierte Empfehlungen sind verfügbar.";
+"appguide.home.feature4.title" = "Abziehen-Modus";
+"appguide.home.feature4.desc" = "Wechsle in den Abziehen-Modus, um Fehler in deinen Aufzeichnungen zu korrigieren.";
+
+// App Guide - History
+"appguide.history.title" = "Verlauf-Tab";
+"appguide.history.feature1.title" = "Kalenderansicht";
+"appguide.history.feature1.desc" = "Sieh deine monatlichen Erfolge auf einen Blick. Zielerreichungstage werden hervorgehoben.";
+"appguide.history.feature2.title" = "Listenansicht";
+"appguide.history.feature2.desc" = "Überprüfe alle Aufzeichnungen in chronologischer Reihenfolge mit Fortschritt für jeden Tag.";
+"appguide.history.feature3.title" = "Zeitachsen-Ansicht";
+"appguide.history.feature3.desc" = "Sieh Aufzeichnungen nach Monaten gruppiert im Zeitachsen-Format.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Schnelle Erfassung";
+"appguide.watch.feature1.desc" = "Erfasse deine Wasseraufnahme direkt von deiner Uhr. Schnelltasten für 150ml, 250ml, 300ml und 500ml.";
+"appguide.watch.feature2.title" = "Echtzeit-Sync";
+"appguide.watch.feature2.desc" = "Synchronisiert in Echtzeit mit deinem iPhone, um deine Aufzeichnungen immer aktuell zu halten.";
+"appguide.watch.feature3.title" = "Komplikationen";
+"appguide.watch.feature3.desc" = "Füge eine Komplikation zu deinem Zifferblatt hinzu, um deinen Fortschritt auf einen Blick zu sehen.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widgets";
+"appguide.widget.feature1.title" = "Startbildschirm-Widget";
+"appguide.widget.feature1.desc" = "Füge ein Widget zu deinem Startbildschirm hinzu für schnelle Fortschrittsprüfung. Klein, mittel und groß verfügbar.";
+"appguide.widget.feature2.title" = "Sperrbildschirm-Widget";
+"appguide.widget.feature2.desc" = "Überprüfe deine tägliche Wasseraufnahme direkt vom Sperrbildschirm.";
+"appguide.widget.feature3.title" = "Interaktive Buttons";
+"appguide.widget.feature3.desc" = "Tippe auf Buttons bei mittleren/großen Widgets, um Wasser hinzuzufügen ohne die App zu öffnen.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Benachrichtigungen";
+"appguide.notification.feature1.title" = "Benutzerdefinierte Intervalle";
+"appguide.notification.feature1.desc" = "Erhalte Erinnerungen in 30-Minuten-, 1-Stunden-, 2-Stunden- oder 3-Stunden-Intervallen.";
+"appguide.notification.feature2.title" = "Tagesauswahl";
+"appguide.notification.feature2.desc" = "Wähle, an welchen Wochentagen du Benachrichtigungen erhalten möchtest.";
+"appguide.notification.feature3.title" = "Motivierende Nachrichten";
+"appguide.notification.feature3.desc" = "Erhalte verschiedene motivierende Nachrichten, um deine Trinkgewohnheit aufzubauen.";
+
+// App Guide - Health
+"appguide.health.title" = "Health-Integration";
+"appguide.health.feature1.title" = "Gewichtsbasierte Empfehlungen";
+"appguide.health.feature1.desc" = "Importiere dein Gewicht aus der Health-App, um personalisierte Empfehlungen zu berechnen.";
+"appguide.health.feature2.title" = "In Health speichern";
+"appguide.health.feature2.desc" = "Deine Wasseraufzeichnungen werden automatisch in der Health-App gespeichert.";
+
+// Tab Bar
+"tab.today" = "Heute";
+"tab.history" = "Verlauf";
+"tab.settings" = "Einstellungen";
+
+// Home
+"home.goal" = "Ziel %@ml";
+"home.goal.achieved" = "Tagesziel erreicht!";
+"home.goal.remaining" = "Noch %@ Gläser bis zum Ziel!";
+"home.quick.add" = "Schnell hinzufügen";
+"home.quick.subtract" = "Abziehen";
+"home.edit" = "Bearbeiten";
+"home.goal.setting.title" = "Ziel festlegen";
+"home.goal.save" = "Speichern";
+"home.goal.min" = "1.000ml";
+"home.goal.max" = "4.000ml";
+"home.goal.cancel" = "Abbrechen";
+"home.quickbutton.title" = "Schnell-Hinzufügen-Buttons";
+"home.quickbutton.current" = "Aktuelle Buttons";
+"home.quickbutton.add.section" = "Neuen Button hinzufügen";
+"home.quickbutton.placeholder" = "Menge (ml)";
+"home.quickbutton.add" = "Hinzufügen";
+"home.quickbutton.reset" = "Auf Standard zurücksetzen";
+"home.adjustment.title" = "Aufnahme anpassen";
+"home.adjustment.done" = "Fertig";
+"home.adjustment.reset" = "Heutige Aufzeichnung zurücksetzen";
+"home.adjustment.reset.confirm" = "Heutige Wasseraufnahme zurücksetzen?";
+"home.adjustment.reset.button" = "Zurücksetzen";
+"home.adjustment.reset.message" = "Diese Aktion kann nicht rückgängig gemacht werden.";
+
+// Notification Banner
+"home.notification.banner.title" = "Benachrichtigungen aktivieren";
+"home.notification.banner.description" = "Erhalte Erinnerungen zum Trinken";
+"home.notification.banner.settings" = "Einstellungen";
+
+// History
+"history.title" = "Verlauf";
+"history.mode.calendar" = "Kalender";
+"history.mode.list" = "Liste";
+"history.mode.timeline" = "Zeitachse";
+"history.month.summary" = "Diesen Monat: %@ Tage erreicht";
+"history.legend.today" = "Heute";
+"history.legend.selected" = "Ausgewählt";
+"history.legend.achieved" = "Erreicht";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ Tage erreicht";
+"history.record.goal" = "Ziel %@ml";
+"history.card.goal" = "Ziel";
+"history.card.intake" = "Aufnahme";
+"history.card.achieved" = "Erreicht! ✅";
+"history.label.achieved" = "Erreicht";
+
+// Widget
+"widget.hydration.tracker" = "Hydrations-Tracker";
+"widget.current" = "Aktuell";
+"widget.goal" = "Ziel";
+"widget.current.hydration" = "Aktuelle Hydration";
+"widget.todays.hydration" = "Heutige Hydration";
+"widget.motivation.achieved" = "Ziel erreicht! Super gemacht! 🎉";
+"widget.motivation.almost" = "Fast geschafft! Weiter so! 🚀";
+"widget.motivation.halfway" = "Du machst das toll! 💧";
+"widget.motivation.start" = "Zeit zum Trinken! 🥤";
+
+// Watch
+"watch.add.water" = "Wasser hinzufügen";
+"watch.custom.input" = "Eigene Eingabe";
+"watch.add" = "Hinzufügen";
+
+// Update
+"update.required.title" = "Update erforderlich";
+"update.available.title" = "Update verfügbar";
+"update.required.message" = "Eine neue Version wurde veröffentlicht. Bitte aktualisiere, um die App weiter zu nutzen.";
+"update.available.message" = "Eine neue Version ist verfügbar. Möchtest du jetzt aktualisieren?";
+"update.later" = "Später";
+"update.now" = "Aktualisieren";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Zeit, Wasser zu trinken! 💧";
+"notification.message.2" = "Vergiss nicht zu trinken~ 🌊";
+"notification.message.3" = "Starte gesund in den Tag mit Wasser! ☀️";
+"notification.message.4" = "Trink bevor du durstig bist 🥤";
+"notification.message.5" = "Heute auch gluckern! 💪";
+"notification.message.6" = "Ein Glas Wasser vertreibt Müdigkeit 🧘";
+"notification.message.7" = "Das Geheimnis schöner Haut: Wasser! ✨";
+"notification.message.8" = "Konzentration UP! Wie wäre es mit einem Glas Wasser? 🧠";
+"notification.message.9" = "Warte! Erst etwas Wasser 🚰";
+"notification.message.10" = "Dein Körper wartet auf Wasser 🌿";
+
+// Weekdays
+"weekday.sun" = "So";
+"weekday.mon" = "Mo";
+"weekday.tue" = "Di";
+"weekday.wed" = "Mi";
+"weekday.thu" = "Do";
+"weekday.fri" = "Fr";
+"weekday.sat" = "Sa";
+
+// Intervals
+"interval.30min" = "30 Min";
+"interval.1hour" = "1 Stunde";
+"interval.2hours" = "2 Stunden";
+"interval.3hours" = "3 Stunden";
+
+// Notification Settings
+"notification.settings.title" = "Benachrichtigungs-Einstellungen";
+"notification.settings.enable" = "Benachrichtigungen aktivieren";
+"notification.settings.timerange" = "Benachrichtigungs-Zeitraum";
+"notification.settings.interval" = "Benachrichtigungs-Intervall";
+"notification.settings.weekdays" = "Tage auswählen";
+"notification.settings.custom" = "Benutzerdefinierte Zeiten (überschreibt Intervall)";
+"notification.settings.starttime" = "Startzeit";
+"notification.settings.endtime" = "Endzeit";
+"notification.settings.addtime" = "Zeit hinzufügen";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d. MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Wasseraufnahme";
+"complication.description" = "Prüfe, wie viel Wasser du heute getrunken hast.";
+
+// Accessibility
+"accessibility.home.current" = "Aktuelle Aufnahme %d Milliliter";
+"accessibility.home.goal" = "Tagesziel %d Milliliter";
+"accessibility.home.goal.hint" = "Doppeltippen zum Ändern des Ziels";
+"accessibility.home.add" = "%d Milliliter hinzufügen";
+"accessibility.home.add.hint" = "Doppeltippen zum Hinzufügen von Wasser";
+"accessibility.home.subtract" = "%d Milliliter abziehen";
+"accessibility.home.subtract.hint" = "Doppeltippen zum Abziehen von Wasser";
+"accessibility.home.mode.add" = "Hinzufügen-Modus aktiv";
+"accessibility.home.mode.subtract" = "Abziehen-Modus aktiv";
+"accessibility.home.mode.hint" = "Doppeltippen zum Wechseln zwischen Hinzufügen und Abziehen";
+"accessibility.history.summary" = "Diesen Monat %d Tage erreicht";
+"accessibility.history.achieved" = "Ziel erreicht";
+"accessibility.history.progress" = "%@ des Ziels";

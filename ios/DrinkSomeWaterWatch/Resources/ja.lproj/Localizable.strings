@@ -1,0 +1,15 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWatch
+
+  Japanese Localization
+*/
+
+// Watch
+"watch.add.water" = "水を追加";
+"watch.custom.input" = "カスタム入力";
+"watch.add" = "追加";
+
+// Watch Complication
+"complication.displayname" = "水分摂取量";
+"complication.description" = "今日どれくらい水を飲んだか確認します。";

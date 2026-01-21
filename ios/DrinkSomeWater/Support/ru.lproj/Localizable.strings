@@ -1,0 +1,330 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Russian (ru)
+   
+*/
+
+// Main
+"You achieved " = "Вы достигли ";
+"TodaySuffix" = " Сегодня!!";
+
+// Calendar
+"Today" = "Сегодня";
+"Success" = "Успех";
+"Selected" = "Выбрано";
+"You can check the history when you select a success date."
+= "Вы можете посмотреть историю, выбрав успешную дату.";
+"Goal of this month" = "Цель этого месяца";
+"MMMM, YYYY" = "MMMM, yyyy";
+
+// Information
+"Alarm" = "Напоминание";
+"Review" = "Оценить";
+"Contact Us" = "Связаться с нами";
+"Version" = "Версия";
+"License" = "Лицензия";
+"Set" = "Установить";
+
+// Onboarding
+"onboarding.skip" = "Пропустить";
+"onboarding.next" = "Далее";
+"onboarding.start" = "Начать";
+"onboarding.intro.title" = "Добро пожаловать в Gulp";
+"onboarding.intro.description" = "Отслеживайте ежедневное потребление воды и поддерживайте водный баланс.\n\nВода необходима для здоровья — она помогает поддерживать энергию, улучшает концентрацию и поддерживает оптимальную работу организма.";
+"onboarding.goal.title" = "Установите цель";
+"onboarding.goal.description" = "Сколько воды вы хотите пить ежедневно?\nОтрегулируйте ползунок, чтобы установить цель.";
+"onboarding.healthkit.title" = "Подключить Здоровье";
+"onboarding.healthkit.description" = "Синхронизируйтесь с Apple Health, чтобы:\n\n• Рассчитывать персональное потребление воды на основе веса\n• Сохранять записи о воде в приложении Здоровье\n• Отслеживать прогресс вместе с другими данными о здоровье";
+"onboarding.healthkit.button" = "Подключить Apple Health";
+"onboarding.healthkit.connected" = "Подключено";
+"onboarding.notification.title" = "Получайте напоминания";
+"onboarding.notification.description" = "Включите уведомления, чтобы получать дружеские напоминания в течение дня.\n\nМы будем отправлять вам мотивирующие сообщения, чтобы помочь вам достичь целей по гидратации.";
+"onboarding.notification.button" = "Включить уведомления";
+"onboarding.notification.enabled" = "Включено";
+"onboarding.widget.title" = "Добавить виджет";
+"onboarding.widget.description" = "Добавьте наш виджет на главный экран для быстрого доступа:\n\n1. Долго нажмите на главном экране\n2. Нажмите кнопку +\n3. Найдите «Gulp»\n4. Выберите предпочтительный размер виджета";
+"onboarding.widget.button" = "Начать";
+
+// Widget
+"widget.today" = "Сегодня";
+"widget.guide.title" = "Руководство по настройке виджета";
+"widget.guide.nav.title" = "Руководство по виджету";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Долго нажмите на главном экране";
+"widget.guide.step1.description" = "Нажмите и удерживайте пустую область главного экрана, пока приложения не начнут покачиваться.";
+"widget.guide.step2.title" = "Нажмите кнопку +";
+"widget.guide.step2.description" = "Нажмите кнопку «+» в левом верхнем углу экрана.";
+"widget.guide.step3.title" = "Найдите Gulp";
+"widget.guide.step3.description" = "В галерее виджетов найдите «Gulp» или «Вода».";
+"widget.guide.step4.title" = "Выберите размер виджета";
+"widget.guide.step4.description" = "Выберите предпочтительный размер виджета:\n• Маленький: показывает потребление воды и прогресс\n• Средний: включает кнопки быстрого добавления";
+"widget.guide.step5.title" = "Добавить на главный экран";
+"widget.guide.step5.description" = "Нажмите «Добавить виджет» и разместите его там, где хотите.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Виджет экрана блокировки";
+"widget.guide.lockscreen.step1.title" = "Долго нажмите на экране блокировки";
+"widget.guide.lockscreen.step1.description" = "Нажмите и удерживайте экран блокировки и нажмите «Настроить».";
+"widget.guide.lockscreen.step2.title" = "Выберите область виджета";
+"widget.guide.lockscreen.step2.description" = "Нажмите на область виджета выше или ниже времени.";
+"widget.guide.lockscreen.step3.title" = "Добавьте виджет Gulp";
+"widget.guide.lockscreen.step3.description" = "Найдите «Gulp» и выберите предпочитаемый стиль виджета.";
+
+// Settings
+"settings.title" = "Настройки";
+"settings.subtitle" = "Настройте свой опыт";
+"settings.section.personal" = "Личное";
+"settings.section.app" = "Настройки приложения";
+"settings.section.support" = "Поддержка";
+"settings.section.info" = "Информация";
+"settings.profile" = "Настройки профиля";
+"settings.goal" = "Дневная цель";
+"settings.quickbuttons" = "Настройки быстрых кнопок";
+"settings.notification" = "Напоминание о воде";
+"settings.widget.guide" = "Руководство по настройке виджета";
+"settings.review" = "Оставить отзыв";
+"settings.contact" = "Связаться с нами";
+"settings.version" = "Версия";
+
+// Profile
+"profile.title" = "Настройки профиля";
+"profile.healthkit.title" = "Синхронизация с Apple Health";
+"profile.healthkit.description" = "Автоматически получать вес из приложения Здоровье";
+"profile.weight" = "Вес";
+"profile.weight.range" = "30кг ~ 150кг";
+"profile.recommended.title" = "Рекомендуемое дневное потребление";
+"profile.recommended.description" = "Формула: вес × 33мл";
+"profile.apply.button" = "Применить как дневную цель";
+"profile.apply.success.title" = "Цель обновлена";
+"profile.apply.success.message" = "Дневная цель установлена на %@мл.";
+
+// Notification Settings
+"notification.enable" = "Включить уведомления";
+"notification.time.start" = "Время начала";
+"notification.time.end" = "Время окончания";
+"notification.interval" = "Интервал";
+"notification.weekdays" = "Дни";
+"notification.custom.times" = "Пользовательское время";
+"notification.custom.add" = "Добавить время";
+"notification.message.info" = "Уведомления будут отправляться с различными сообщениями";
+
+// Common
+"common.confirm" = "ОК";
+"common.cancel" = "Отмена";
+"common.save" = "Сохранить";
+"common.delete" = "Удалить";
+"common.done" = "Готово";
+
+// Contact
+"contact.title" = "Контакты";
+"contact.message" = "Пожалуйста, свяжитесь с нами по адресу feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Поддержать разработчика";
+"ad.confirm.title" = "Поддержать разработчика";
+"ad.confirm.message" = "Будет показана реклама. Её просмотр помогает поддержать разработчика!";
+"ad.loading.title" = "Пожалуйста, подождите";
+"ad.loading.message" = "Загрузка рекламы. Пожалуйста, повторите попытку через мгновение.";
+"ad.thanks.title" = "Спасибо!";
+"ad.thanks.message" = "Спасибо за поддержку разработчика 💙";
+
+// App Guide
+"settings.app.guide" = "Руководство по функциям приложения";
+"appguide.title" = "Руководство Gulp";
+"appguide.subtitle" = "Откройте для себя все функции";
+
+// App Guide - Home
+"appguide.home.title" = "Вкладка «Сегодня»";
+"appguide.home.feature1.title" = "Отслеживание потребления воды";
+"appguide.home.feature1.desc" = "Нажмите кнопку, чтобы записать потребление воды. Прогресс обновляется в реальном времени.";
+"appguide.home.feature2.title" = "Быстрые кнопки";
+"appguide.home.feature2.desc" = "Установите часто потребляемые объёмы как быстрые кнопки для записи одним нажатием.";
+"appguide.home.feature3.title" = "Установите цель";
+"appguide.home.feature3.desc" = "Установите дневную цель потребления воды. Доступны рекомендации на основе веса.";
+"appguide.home.feature4.title" = "Режим вычитания";
+"appguide.home.feature4.desc" = "Переключитесь в режим вычитания, чтобы исправить ошибки в записях о потреблении.";
+
+// App Guide - History
+"appguide.history.title" = "Вкладка «История»";
+"appguide.history.feature1.title" = "Вид календаря";
+"appguide.history.feature1.desc" = "Просматривайте месячные достижения одним взглядом. Дни достижения цели выделены.";
+"appguide.history.feature2.title" = "Вид списка";
+"appguide.history.feature2.desc" = "Проверяйте все записи в хронологическом порядке с прогрессом за каждый день.";
+"appguide.history.feature3.title" = "Вид временной шкалы";
+"appguide.history.feature3.desc" = "Просматривайте записи, сгруппированные по месяцам в формате временной шкалы.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Быстрая запись";
+"appguide.watch.feature1.desc" = "Записывайте потребление воды прямо с часов. Быстрые кнопки для 150мл, 250мл, 300мл и 500мл.";
+"appguide.watch.feature2.title" = "Синхронизация в реальном времени";
+"appguide.watch.feature2.desc" = "Синхронизируется с iPhone в реальном времени, чтобы записи всегда были актуальными.";
+"appguide.watch.feature3.title" = "Расширения";
+"appguide.watch.feature3.desc" = "Добавьте расширение на циферблат, чтобы проверять прогресс одним взглядом.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Виджеты";
+"appguide.widget.feature1.title" = "Виджет главного экрана";
+"appguide.widget.feature1.desc" = "Добавьте виджет на главный экран для быстрой проверки прогресса. Доступны маленький, средний и большой размеры.";
+"appguide.widget.feature2.title" = "Виджет экрана блокировки";
+"appguide.widget.feature2.desc" = "Проверяйте дневное потребление воды прямо с экрана блокировки.";
+"appguide.widget.feature3.title" = "Интерактивные кнопки";
+"appguide.widget.feature3.desc" = "Нажимайте кнопки на средних/больших виджетах, чтобы добавить воду без открытия приложения.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Уведомления";
+"appguide.notification.feature1.title" = "Пользовательские интервалы";
+"appguide.notification.feature1.desc" = "Получайте напоминания с интервалом 30 минут, 1 час, 2 часа или 3 часа.";
+"appguide.notification.feature2.title" = "Выбор дней";
+"appguide.notification.feature2.desc" = "Выберите, в какие дни недели вы хотите получать уведомления.";
+"appguide.notification.feature3.title" = "Мотивирующие сообщения";
+"appguide.notification.feature3.desc" = "Получайте различные мотивирующие сообщения, чтобы сформировать привычку пить воду.";
+
+// App Guide - Health
+"appguide.health.title" = "Интеграция со Здоровьем";
+"appguide.health.feature1.title" = "Рекомендации на основе веса";
+"appguide.health.feature1.desc" = "Импортируйте свой вес из приложения Здоровье для расчёта персональных рекомендаций по потреблению.";
+"appguide.health.feature2.title" = "Сохранение в Здоровье";
+"appguide.health.feature2.desc" = "Ваши записи о потреблении воды автоматически сохраняются в приложении Здоровье.";
+
+// Tab Bar
+"tab.today" = "Сегодня";
+"tab.history" = "История";
+"tab.settings" = "Настройки";
+
+// Home
+"home.goal" = "Цель %@мл";
+"home.goal.achieved" = "Цель достигнута сегодня!";
+"home.goal.remaining" = "Ещё %@ стаканов до цели!";
+"home.quick.add" = "Быстрое добавление";
+"home.quick.subtract" = "Вычесть";
+"home.edit" = "Изменить";
+"home.goal.setting.title" = "Установить цель";
+"home.goal.save" = "Сохранить";
+"home.goal.min" = "1 000мл";
+"home.goal.max" = "4 000мл";
+"home.goal.cancel" = "Отмена";
+"home.quickbutton.title" = "Кнопки быстрого добавления";
+"home.quickbutton.current" = "Текущие кнопки";
+"home.quickbutton.add.section" = "Добавить новую кнопку";
+"home.quickbutton.placeholder" = "Количество (мл)";
+"home.quickbutton.add" = "Добавить";
+"home.quickbutton.reset" = "Сбросить по умолчанию";
+"home.adjustment.title" = "Корректировка потребления";
+"home.adjustment.done" = "Готово";
+"home.adjustment.reset" = "Сбросить сегодняшнюю запись";
+"home.adjustment.reset.confirm" = "Сбросить сегодняшнее потребление воды?";
+"home.adjustment.reset.button" = "Сбросить";
+"home.adjustment.reset.message" = "Это действие нельзя отменить.";
+
+// Notification Banner
+"home.notification.banner.title" = "Включить уведомления";
+"home.notification.banner.description" = "Получайте напоминания о питье воды";
+"home.notification.banner.settings" = "Настройки";
+
+// History
+"history.title" = "История";
+"history.mode.calendar" = "Календарь";
+"history.mode.list" = "Список";
+"history.mode.timeline" = "Временная шкала";
+"history.month.summary" = "Этот месяц: %@ дней достигнуто";
+"history.legend.today" = "Сегодня";
+"history.legend.selected" = "Выбрано";
+"history.legend.achieved" = "Достигнуто";
+"history.record.progress" = "%@мл / %@мл";
+"history.timeline.achieved" = "%@/%@ дней достигнуто";
+"history.record.goal" = "Цель %@мл";
+"history.card.goal" = "Цель";
+"history.card.intake" = "Потребление";
+"history.card.achieved" = "Достигнуто! ✅";
+"history.label.achieved" = "Достигнуто";
+
+// Widget
+"widget.hydration.tracker" = "Трекер гидратации";
+"widget.current" = "Текущее";
+"widget.goal" = "Цель";
+"widget.current.hydration" = "Текущая гидратация";
+"widget.todays.hydration" = "Сегодняшняя гидратация";
+"widget.motivation.achieved" = "Цель достигнута! Отличная работа! 🎉";
+"widget.motivation.almost" = "Почти у цели! Продолжайте! 🚀";
+"widget.motivation.halfway" = "Вы отлично справляетесь! 💧";
+"widget.motivation.start" = "Время пить воду! 🥤";
+
+// Watch
+"watch.add.water" = "Добавить воду";
+"watch.custom.input" = "Ввод вручную";
+"watch.add" = "Добавить";
+
+// Update
+"update.required.title" = "Требуется обновление";
+"update.available.title" = "Доступно обновление";
+"update.required.message" = "Вышла новая версия. Пожалуйста, обновите приложение, чтобы продолжить использование.";
+"update.available.message" = "Доступна новая версия. Хотите обновить сейчас?";
+"update.later" = "Позже";
+"update.now" = "Обновить";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Время пить воду! 💧";
+"notification.message.2" = "Не забывайте пить воду~ 🌊";
+"notification.message.3" = "Начните здоровый день со стакана воды! ☀️";
+"notification.message.4" = "Пейте до того, как почувствуете жажду 🥤";
+"notification.message.5" = "Глоток за глотком и сегодня! 💪";
+"notification.message.6" = "Стакан воды смывает усталость 🧘";
+"notification.message.7" = "Секрет сияющей кожи: вода! ✨";
+"notification.message.8" = "Концентрация UP! Как насчёт стакана воды? 🧠";
+"notification.message.9" = "Стоп! Сначала выпейте воды 🚰";
+"notification.message.10" = "Ваше тело ждёт воду 🌿";
+
+// Weekdays
+"weekday.sun" = "Вс";
+"weekday.mon" = "Пн";
+"weekday.tue" = "Вт";
+"weekday.wed" = "Ср";
+"weekday.thu" = "Чт";
+"weekday.fri" = "Пт";
+"weekday.sat" = "Сб";
+
+// Intervals
+"interval.30min" = "30 мин";
+"interval.1hour" = "1 час";
+"interval.2hours" = "2 часа";
+"interval.3hours" = "3 часа";
+
+// Notification Settings
+"notification.settings.title" = "Настройки уведомлений";
+"notification.settings.enable" = "Включить уведомления";
+"notification.settings.timerange" = "Временной диапазон уведомлений";
+"notification.settings.interval" = "Интервал уведомлений";
+"notification.settings.weekdays" = "Выбрать дни";
+"notification.settings.custom" = "Пользовательское время (переопределяет интервал)";
+"notification.settings.starttime" = "Время начала";
+"notification.settings.endtime" = "Время окончания";
+"notification.settings.addtime" = "Добавить время";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Потребление воды";
+"complication.description" = "Проверьте, сколько воды вы выпили сегодня.";
+
+// Accessibility
+"accessibility.home.current" = "Текущее потребление %d миллилитров";
+"accessibility.home.goal" = "Дневная цель %d миллилитров";
+"accessibility.home.goal.hint" = "Дважды нажмите, чтобы изменить цель";
+"accessibility.home.add" = "Добавить %d миллилитров";
+"accessibility.home.add.hint" = "Дважды нажмите, чтобы добавить воду";
+"accessibility.home.subtract" = "Вычесть %d миллилитров";
+"accessibility.home.subtract.hint" = "Дважды нажмите, чтобы вычесть воду";
+"accessibility.home.mode.add" = "Режим добавления активен";
+"accessibility.home.mode.subtract" = "Режим вычитания активен";
+"accessibility.home.mode.hint" = "Дважды нажмите, чтобы переключить режим добавления и вычитания";
+"accessibility.history.summary" = "В этом месяце %d дней достигнуто";
+"accessibility.history.achieved" = "Цель достигнута";
+"accessibility.history.progress" = "%@ от цели";

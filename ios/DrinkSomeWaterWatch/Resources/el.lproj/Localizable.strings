@@ -1,0 +1,10 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWatch
+*/
+
+"watch.add.water" = "Add Water";
+"watch.custom.input" = "Custom Input";
+"watch.add" = "Add";
+"complication.displayname" = "Water Intake";
+"complication.description" = "Check how much water you drank today.";

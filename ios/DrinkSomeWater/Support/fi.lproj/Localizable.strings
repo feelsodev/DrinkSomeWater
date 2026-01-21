@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Finnish Localization
+*/
+
+// Main
+"You achieved " = "Saavutit ";
+"TodaySuffix" = " tänään!!";
+
+// Calendar
+"Today" = "Tänään";
+"Success" = "Onnistui";
+"Selected" = "Valittu";
+"You can check the history when you select a success date."
+= "Voit tarkistaa historian valitsemalla onnistuneen päivämäärän.";
+"Goal of this month" = "Tämän kuukauden tavoite";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "Hälytys";
+"Review" = "Arvostelu";
+"Contact Us" = "Ota yhteyttä";
+"Version" = "Versio";
+"License" = "Lisenssi";
+"Set" = "Aseta";
+
+// Onboarding
+"onboarding.skip" = "Ohita";
+"onboarding.next" = "Seuraava";
+"onboarding.start" = "Aloita";
+"onboarding.intro.title" = "Tervetuloa Gulpiin";
+"onboarding.intro.description" = "Seuraa päivittäistä vedenkulutustasi ja pysy nesteytettynä.\n\nVesi on välttämätöntä terveydellesi – se auttaa ylläpitämään energiaa, parantamaan keskittymistä ja pitämään kehosi parhaassa kunnossa.";
+"onboarding.goal.title" = "Aseta tavoitteesi";
+"onboarding.goal.description" = "Kuinka paljon vettä haluat juoda päivittäin?\nSäädä liukusäädintä asettaaksesi tavoitteesi.";
+"onboarding.healthkit.title" = "Yhdistä Terveys";
+"onboarding.healthkit.description" = "Synkronoi Apple Healthin kanssa:\n\n• Laske henkilökohtainen vedenkulutus painosi perusteella\n• Tallenna vesimerkinnät Terveys-sovellukseen\n• Seuraa edistymistäsi muiden terveystietojen rinnalla";
+"onboarding.healthkit.button" = "Yhdistä Apple Health";
+"onboarding.healthkit.connected" = "Yhdistetty";
+"onboarding.notification.title" = "Muistutukset";
+"onboarding.notification.description" = "Ota ilmoitukset käyttöön saadaksesi ystävällisiä muistutuksia päivän aikana.\n\nLähetämme sinulle motivoivia viestejä auttaaksemme sinua pysymään nestytystavoitteissasi.";
+"onboarding.notification.button" = "Ota ilmoitukset käyttöön";
+"onboarding.notification.enabled" = "Käytössä";
+"onboarding.widget.title" = "Lisää widget";
+"onboarding.widget.description" = "Lisää widgetimme aloitusnäytölle nopeaa käyttöä varten:\n\n1. Paina pitkään aloitusnäyttöä\n2. Napauta + -painiketta\n3. Etsi 'Gulp'\n4. Valitse haluamasi widgetin koko";
+"onboarding.widget.button" = "Aloita";
+
+// Widget
+"widget.today" = "Tänään";
+"widget.guide.title" = "Widget-asennusopas";
+"widget.guide.nav.title" = "Widget-opas";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Paina pitkään aloitusnäyttöä";
+"widget.guide.step1.description" = "Paina ja pidä tyhjää kohtaa aloitusnäytössä, kunnes sovellukset alkavat täristä.";
+"widget.guide.step2.title" = "Napauta + -painiketta";
+"widget.guide.step2.description" = "Napauta \"+\" -painiketta näytön vasemmassa yläkulmassa.";
+"widget.guide.step3.title" = "Etsi Gulp";
+"widget.guide.step3.description" = "Etsi widget-galleriasta \"Gulp\" tai \"Vesi\".";
+"widget.guide.step4.title" = "Valitse widgetin koko";
+"widget.guide.step4.description" = "Valitse haluamasi widgetin koko:\n• Pieni: Näyttää vedenkulutuksen ja edistymisen\n• Keskikokoinen: Sisältää pikanäppäimet";
+"widget.guide.step5.title" = "Lisää aloitusnäyttöön";
+"widget.guide.step5.description" = "Napauta \"Lisää widget\" ja sijoita se haluamaasi paikkaan.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Lukitusnäytön widget";
+"widget.guide.lockscreen.step1.title" = "Paina pitkään lukitusnäyttöä";
+"widget.guide.lockscreen.step1.description" = "Paina ja pidä lukitusnäyttöä ja napauta \"Mukauta\".";
+"widget.guide.lockscreen.step2.title" = "Valitse widget-alue";
+"widget.guide.lockscreen.step2.description" = "Napauta widget-aluetta kellon ylä- tai alapuolella.";
+"widget.guide.lockscreen.step3.title" = "Lisää Gulp-widget";
+"widget.guide.lockscreen.step3.description" = "Etsi \"Gulp\" ja valitse haluamasi widgetin tyyli.";
+
+// Settings
+"settings.title" = "Asetukset";
+"settings.subtitle" = "Mukauta kokemustasi";
+"settings.section.personal" = "Henkilökohtainen";
+"settings.section.app" = "Sovelluksen asetukset";
+"settings.section.support" = "Tuki";
+"settings.section.info" = "Tiedot";
+"settings.profile" = "Profiiliasetukset";
+"settings.goal" = "Päivittäinen tavoite";
+"settings.quickbuttons" = "Pikanäppäinten asetukset";
+"settings.notification" = "Vesimuistutus";
+"settings.widget.guide" = "Widget-asennusopas";
+"settings.review" = "Kirjoita arvostelu";
+"settings.contact" = "Ota yhteyttä";
+"settings.version" = "Versio";
+
+// Profile
+"profile.title" = "Profiiliasetukset";
+"profile.healthkit.title" = "Apple Health -synkronointi";
+"profile.healthkit.description" = "Hae paino automaattisesti Terveys-sovelluksesta";
+"profile.weight" = "Paino";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Päivittäinen suositeltu saanti";
+"profile.recommended.description" = "Paino × 33ml kaava";
+"profile.apply.button" = "Käytä päivittäisenä tavoitteena";
+"profile.apply.success.title" = "Tavoite päivitetty";
+"profile.apply.success.message" = "Päivittäinen tavoite asetettu %@ml.";
+
+// Notification Settings
+"notification.enable" = "Ota ilmoitukset käyttöön";
+"notification.time.start" = "Alkamisaika";
+"notification.time.end" = "Päättymisaika";
+"notification.interval" = "Väli";
+"notification.weekdays" = "Päivät";
+"notification.custom.times" = "Mukautetut ajat";
+"notification.custom.add" = "Lisää aika";
+"notification.message.info" = "Ilmoitukset lähetetään erilaisilla viesteillä";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Peruuta";
+"common.save" = "Tallenna";
+"common.delete" = "Poista";
+"common.done" = "Valmis";
+
+// Contact
+"contact.title" = "Yhteystiedot";
+"contact.message" = "Ota yhteyttä osoitteeseen feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Tue kehittäjää";
+"ad.confirm.title" = "Tue kehittäjää";
+"ad.confirm.message" = "Mainos näytetään. Sen katsominen auttaa tukemaan kehittäjää!";
+"ad.loading.title" = "Odota hetki";
+"ad.loading.message" = "Ladataan mainosta. Yritä hetken kuluttua uudelleen.";
+"ad.thanks.title" = "Kiitos!";
+"ad.thanks.message" = "Kiitos kehittäjän tukemisesta 💙";
+
+// App Guide
+"settings.app.guide" = "Sovelluksen ominaisuusopas";
+"appguide.title" = "Gulp-opas";
+"appguide.subtitle" = "Tutustu kaikkiin ominaisuuksiin";
+
+// App Guide - Home
+"appguide.home.title" = "Tänään-välilehti";
+"appguide.home.feature1.title" = "Seuraa vedenkulutusta";
+"appguide.home.feature1.desc" = "Napauta painiketta tallentaaksesi vedenkulutuksesi. Edistyminen päivittyy reaaliajassa.";
+"appguide.home.feature2.title" = "Pikanäppäimet";
+"appguide.home.feature2.desc" = "Aseta usein käyttämäsi määrät pikanäppäimiksi yhden napautuksen tallennusta varten.";
+"appguide.home.feature3.title" = "Aseta tavoitteesi";
+"appguide.home.feature3.desc" = "Aseta päivittäinen vedensaantitavoitteesi. Painoon perustuvat suositukset ovat saatavilla.";
+"appguide.home.feature4.title" = "Vähennystila";
+"appguide.home.feature4.desc" = "Vaihda vähennystilaan korjataksesi virheet saantimerkinnöissäsi.";
+
+// App Guide - History
+"appguide.history.title" = "Historia-välilehti";
+"appguide.history.feature1.title" = "Kalenterinäkymä";
+"appguide.history.feature1.desc" = "Näe kuukausittaiset saavutuksesi yhdellä silmäyksellä. Tavoitteen saavutuspäivät on korostettu.";
+"appguide.history.feature2.title" = "Listanäkymä";
+"appguide.history.feature2.desc" = "Tarkista kaikki merkinnät aikajärjestyksessä kunkin päivän edistymisen kanssa.";
+"appguide.history.feature3.title" = "Aikajananäkymä";
+"appguide.history.feature3.desc" = "Näytä merkinnät kuukausittain ryhmiteltynä aikajanamuodossa.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Nopea tallennus";
+"appguide.watch.feature1.desc" = "Tallenna vedenkulutuksesi suoraan kellostasi. Pikanäppäimet 150ml, 250ml, 300ml ja 500ml.";
+"appguide.watch.feature2.title" = "Reaaliaikainen synkronointi";
+"appguide.watch.feature2.desc" = "Synkronoi iPhonesi kanssa reaaliajassa pitäen merkintäsi aina ajan tasalla.";
+"appguide.watch.feature3.title" = "Komplikaatiot";
+"appguide.watch.feature3.desc" = "Lisää komplikaatio kellotauluusi tarkistaaksesi edistymisesi yhdellä silmäyksellä.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widgetit";
+"appguide.widget.feature1.title" = "Aloitusnäytön widget";
+"appguide.widget.feature1.desc" = "Lisää widget aloitusnäytöllesi nopeaa edistymisen tarkistusta varten. Pieni, keskikokoinen ja suuri koko saatavilla.";
+"appguide.widget.feature2.title" = "Lukitusnäytön widget";
+"appguide.widget.feature2.desc" = "Tarkista päivittäinen vedenkulutuksesi suoraan lukitusnäytöltä.";
+"appguide.widget.feature3.title" = "Vuorovaikutteiset painikkeet";
+"appguide.widget.feature3.desc" = "Napauta keskikokoisten/suurten widgetien painikkeita lisätäksesi vettä avaamatta sovellusta.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Ilmoitukset";
+"appguide.notification.feature1.title" = "Mukautetut välit";
+"appguide.notification.feature1.desc" = "Saa muistutuksia 30 minuutin, 1 tunnin, 2 tunnin tai 3 tunnin välein.";
+"appguide.notification.feature2.title" = "Päivän valinta";
+"appguide.notification.feature2.desc" = "Valitse mitkä viikonpäivät haluat saada ilmoituksia.";
+"appguide.notification.feature3.title" = "Motivoivat viestit";
+"appguide.notification.feature3.desc" = "Vastaanota erilaisia motivoivia viestejä auttamaan nesteytystottumuksesi rakentamisessa.";
+
+// App Guide - Health
+"appguide.health.title" = "Terveys-integraatio";
+"appguide.health.feature1.title" = "Painoon perustuvat suositukset";
+"appguide.health.feature1.desc" = "Tuo painosi Terveys-sovelluksesta laskeaksesi henkilökohtaiset saantisuositukset.";
+"appguide.health.feature2.title" = "Tallenna Terveyteen";
+"appguide.health.feature2.desc" = "Vedenkulutusmerkintäsi tallennetaan automaattisesti Terveys-sovellukseen.";
+
+// Tab Bar
+"tab.today" = "Tänään";
+"tab.history" = "Historia";
+"tab.settings" = "Asetukset";
+
+// Home
+"home.goal" = "Tavoite %@ml";
+"home.goal.achieved" = "Päivän tavoite saavutettu!";
+"home.goal.remaining" = "%@ lasia lisää tavoitteen saavuttamiseen!";
+"home.quick.add" = "Nopea lisäys";
+"home.quick.subtract" = "Vähennä";
+"home.edit" = "Muokkaa";
+"home.goal.setting.title" = "Aseta tavoite";
+"home.goal.save" = "Tallenna";
+"home.goal.min" = "1 000ml";
+"home.goal.max" = "4 000ml";
+"home.goal.cancel" = "Peruuta";
+"home.quickbutton.title" = "Nopean lisäyksen painikkeet";
+"home.quickbutton.current" = "Nykyiset painikkeet";
+"home.quickbutton.add.section" = "Lisää uusi painike";
+"home.quickbutton.placeholder" = "Määrä (ml)";
+"home.quickbutton.add" = "Lisää";
+"home.quickbutton.reset" = "Palauta oletukset";
+"home.adjustment.title" = "Säädä saantia";
+"home.adjustment.done" = "Valmis";
+"home.adjustment.reset" = "Nollaa päivän merkinnät";
+"home.adjustment.reset.confirm" = "Nollaa päivän vedenkulutus?";
+"home.adjustment.reset.button" = "Nollaa";
+"home.adjustment.reset.message" = "Tätä toimintoa ei voi kumota.";
+
+// Notification Banner
+"home.notification.banner.title" = "Ota ilmoitukset käyttöön";
+"home.notification.banner.description" = "Saa muistutuksia pysyäksesi nesteytettynä";
+"home.notification.banner.settings" = "Asetukset";
+
+// History
+"history.title" = "Historia";
+"history.mode.calendar" = "Kalenteri";
+"history.mode.list" = "Lista";
+"history.mode.timeline" = "Aikajana";
+"history.month.summary" = "Tämä kuukausi: %@ päivää saavutettu";
+"history.legend.today" = "Tänään";
+"history.legend.selected" = "Valittu";
+"history.legend.achieved" = "Saavutettu";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ päivää saavutettu";
+"history.record.goal" = "Tavoite %@ml";
+"history.card.goal" = "Tavoite";
+"history.card.intake" = "Saanti";
+"history.card.achieved" = "Saavutettu! ✅";
+"history.label.achieved" = "Saavutettu";
+
+// Widget
+"widget.hydration.tracker" = "Nesteytyksen seuranta";
+"widget.current" = "Nykyinen";
+"widget.goal" = "Tavoite";
+"widget.current.hydration" = "Nykyinen nesteytys";
+"widget.todays.hydration" = "Päivän nesteytys";
+"widget.motivation.achieved" = "Tavoite saavutettu! Hienoa työtä! 🎉";
+"widget.motivation.almost" = "Melkein perillä! Jatka samaan malliin! 🚀";
+"widget.motivation.halfway" = "Menee hienosti! 💧";
+"widget.motivation.start" = "Aika nesteyttää! 🥤";
+
+// Watch
+"watch.add.water" = "Lisää vettä";
+"watch.custom.input" = "Mukautettu syöttö";
+"watch.add" = "Lisää";
+
+// Update
+"update.required.title" = "Päivitys vaaditaan";
+"update.available.title" = "Päivitys saatavilla";
+"update.required.message" = "Uusi versio on julkaistu. Päivitä jatkaaksesi sovelluksen käyttöä.";
+"update.available.message" = "Uusi versio on saatavilla. Haluatko päivittää nyt?";
+"update.later" = "Myöhemmin";
+"update.now" = "Päivitä";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Aika juoda vettä! 💧";
+"notification.message.2" = "Älä unohda nesteyttää~ 🌊";
+"notification.message.3" = "Aloita terveellinen päiväsi vedellä! ☀️";
+"notification.message.4" = "Juo ennen kuin tunnet janoa 🥤";
+"notification.message.5" = "Gulp gulp tänäänkin! 💪";
+"notification.message.6" = "Lasillinen vettä huuhtoo väsymyksen pois 🧘";
+"notification.message.7" = "Hehkuvan ihon salaisuus: vesi! ✨";
+"notification.message.8" = "Keskittyminen YLÖS! Mitäpä lasillinen vettä? 🧠";
+"notification.message.9" = "Hetkinen! Juo ensin vettä 🚰";
+"notification.message.10" = "Kehosi odottaa vettä 🌿";
+
+// Weekdays
+"weekday.sun" = "Su";
+"weekday.mon" = "Ma";
+"weekday.tue" = "Ti";
+"weekday.wed" = "Ke";
+"weekday.thu" = "To";
+"weekday.fri" = "Pe";
+"weekday.sat" = "La";
+
+// Intervals
+"interval.30min" = "30 min";
+"interval.1hour" = "1 tunti";
+"interval.2hours" = "2 tuntia";
+"interval.3hours" = "3 tuntia";
+
+// Notification Settings
+"notification.settings.title" = "Ilmoitusasetukset";
+"notification.settings.enable" = "Ota ilmoitukset käyttöön";
+"notification.settings.timerange" = "Ilmoitusten aikaväli";
+"notification.settings.interval" = "Ilmoitusväli";
+"notification.settings.weekdays" = "Valitse päivät";
+"notification.settings.custom" = "Mukautetut ajat (ohittaa välin)";
+"notification.settings.starttime" = "Alkamisaika";
+"notification.settings.endtime" = "Päättymisaika";
+"notification.settings.addtime" = "Lisää aika";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d. MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Vedenkulutus";
+"complication.description" = "Tarkista kuinka paljon vettä joit tänään.";
+
+// Accessibility
+"accessibility.home.current" = "Nykyinen saanti %d millilitraa";
+"accessibility.home.goal" = "Päivittäinen tavoite %d millilitraa";
+"accessibility.home.goal.hint" = "Kaksoisnapauta muuttaaksesi tavoitetta";
+"accessibility.home.add" = "Lisää %d millilitraa";
+"accessibility.home.add.hint" = "Kaksoisnapauta lisätäksesi vettä";
+"accessibility.home.subtract" = "Vähennä %d millilitraa";
+"accessibility.home.subtract.hint" = "Kaksoisnapauta vähentääksesi vettä";
+"accessibility.home.mode.add" = "Lisäystila aktiivinen";
+"accessibility.home.mode.subtract" = "Vähennystila aktiivinen";
+"accessibility.home.mode.hint" = "Kaksoisnapauta vaihtaaksesi lisäys- ja vähennystilan välillä";
+"accessibility.history.summary" = "Tämä kuukausi %d päivää saavutettu";
+"accessibility.history.achieved" = "Tavoite saavutettu";
+"accessibility.history.progress" = "%@ tavoitteesta";

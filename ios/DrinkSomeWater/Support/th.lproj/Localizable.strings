@@ -1,0 +1,328 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Thai Localization
+*/
+
+// Main
+"You achieved " = "คุณทำได้ ";
+"TodaySuffix" = " วันนี้!!";
+
+// Calendar
+"Today" = "วันนี้";
+"Success" = "สำเร็จ";
+"Selected" = "เลือกแล้ว";
+"You can check the history when you select a success date." = "คุณสามารถดูประวัติได้เมื่อเลือกวันที่สำเร็จ";
+"Goal of this month" = "เป้าหมายเดือนนี้";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "แจ้งเตือน";
+"Review" = "รีวิว";
+"Contact Us" = "ติดต่อเรา";
+"Version" = "เวอร์ชัน";
+"License" = "ใบอนุญาต";
+"Set" = "ตั้งค่า";
+
+// Onboarding
+"onboarding.skip" = "ข้าม";
+"onboarding.next" = "ถัดไป";
+"onboarding.start" = "เริ่มต้น";
+"onboarding.intro.title" = "ยินดีต้อนรับสู่ Gulp";
+"onboarding.intro.description" = "ติดตามการดื่มน้ำประจำวันและรักษาความชุ่มชื้น\n\nน้ำเป็นสิ่งจำเป็นสำหรับสุขภาพ - ช่วยรักษาพลังงาน เพิ่มสมาธิ และทำให้ร่างกายทำงานได้ดีที่สุด";
+"onboarding.goal.title" = "ตั้งเป้าหมาย";
+"onboarding.goal.description" = "คุณต้องการดื่มน้ำวันละเท่าไหร่?\nปรับแถบเลื่อนเพื่อตั้งเป้าหมาย";
+"onboarding.healthkit.title" = "เชื่อมต่อสุขภาพ";
+"onboarding.healthkit.description" = "ซิงค์กับ Apple Health เพื่อ:\n\n• คำนวณปริมาณน้ำที่เหมาะสมตามน้ำหนัก\n• บันทึกข้อมูลน้ำไปยังแอพสุขภาพ\n• ติดตามความก้าวหน้าร่วมกับข้อมูลสุขภาพอื่นๆ";
+"onboarding.healthkit.button" = "เชื่อมต่อ Apple Health";
+"onboarding.healthkit.connected" = "เชื่อมต่อแล้ว";
+"onboarding.notification.title" = "รับการแจ้งเตือน";
+"onboarding.notification.description" = "เปิดการแจ้งเตือนเพื่อรับการเตือนตลอดทั้งวัน\n\nเราจะส่งข้อความสร้างแรงบันดาลใจเพื่อช่วยให้คุณบรรลุเป้าหมายการดื่มน้ำ";
+"onboarding.notification.button" = "เปิดการแจ้งเตือน";
+"onboarding.notification.enabled" = "เปิดใช้งานแล้ว";
+"onboarding.widget.title" = "เพิ่มวิดเจ็ต";
+"onboarding.widget.description" = "เพิ่มวิดเจ็ตไปยังหน้าจอหลักเพื่อเข้าถึงอย่างรวดเร็ว:\n\n1. กดค้างที่หน้าจอหลัก\n2. แตะปุ่ม +\n3. ค้นหา 'Gulp'\n4. เลือกขนาดวิดเจ็ตที่ต้องการ";
+"onboarding.widget.button" = "เริ่มต้น";
+
+// Widget
+"widget.today" = "วันนี้";
+"widget.guide.title" = "คู่มือการตั้งค่าวิดเจ็ต";
+"widget.guide.nav.title" = "คู่มือวิดเจ็ต";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "กดค้างที่หน้าจอหลัก";
+"widget.guide.step1.description" = "กดค้างที่พื้นที่ว่างบนหน้าจอหลักจนกว่าแอพจะสั่น";
+"widget.guide.step2.title" = "แตะปุ่ม +";
+"widget.guide.step2.description" = "แตะปุ่ม \"+\" ที่มุมบนซ้ายของหน้าจอ";
+"widget.guide.step3.title" = "ค้นหา Gulp";
+"widget.guide.step3.description" = "ในแกลเลอรีวิดเจ็ต ค้นหา \"Gulp\" หรือ \"น้ำ\"";
+"widget.guide.step4.title" = "เลือกขนาดวิดเจ็ต";
+"widget.guide.step4.description" = "เลือกขนาดวิดเจ็ตที่ต้องการ:\n• เล็ก: แสดงปริมาณน้ำและความก้าวหน้า\n• กลาง: มีปุ่มเพิ่มด่วน";
+"widget.guide.step5.title" = "เพิ่มไปยังหน้าจอหลัก";
+"widget.guide.step5.description" = "แตะ \"เพิ่มวิดเจ็ต\" และวางในตำแหน่งที่ต้องการ";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "วิดเจ็ตหน้าจอล็อค";
+"widget.guide.lockscreen.step1.title" = "กดค้างที่หน้าจอล็อค";
+"widget.guide.lockscreen.step1.description" = "กดค้างที่หน้าจอล็อคแล้วแตะ \"ปรับแต่ง\"";
+"widget.guide.lockscreen.step2.title" = "เลือกพื้นที่วิดเจ็ต";
+"widget.guide.lockscreen.step2.description" = "แตะพื้นที่วิดเจ็ตด้านบนหรือด้านล่างเวลา";
+"widget.guide.lockscreen.step3.title" = "เพิ่มวิดเจ็ต Gulp";
+"widget.guide.lockscreen.step3.description" = "ค้นหา \"Gulp\" และเลือกสไตล์วิดเจ็ตที่ต้องการ";
+
+// Settings
+"settings.title" = "การตั้งค่า";
+"settings.subtitle" = "ปรับแต่งประสบการณ์ของคุณ";
+"settings.section.personal" = "ส่วนตัว";
+"settings.section.app" = "การตั้งค่าแอพ";
+"settings.section.support" = "การสนับสนุน";
+"settings.section.info" = "ข้อมูล";
+"settings.profile" = "การตั้งค่าโปรไฟล์";
+"settings.goal" = "เป้าหมายประจำวัน";
+"settings.quickbuttons" = "การตั้งค่าปุ่มด่วน";
+"settings.notification" = "การเตือนดื่มน้ำ";
+"settings.widget.guide" = "คู่มือการตั้งค่าวิดเจ็ต";
+"settings.review" = "เขียนรีวิว";
+"settings.contact" = "ติดต่อเรา";
+"settings.version" = "เวอร์ชัน";
+
+// Profile
+"profile.title" = "การตั้งค่าโปรไฟล์";
+"profile.healthkit.title" = "ซิงค์ Apple Health";
+"profile.healthkit.description" = "ดึงน้ำหนักจากแอพสุขภาพอัตโนมัติ";
+"profile.weight" = "น้ำหนัก";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "ปริมาณแนะนำต่อวัน";
+"profile.recommended.description" = "สูตร น้ำหนัก × 33ml";
+"profile.apply.button" = "ใช้เป็นเป้าหมายประจำวัน";
+"profile.apply.success.title" = "อัปเดตเป้าหมายแล้ว";
+"profile.apply.success.message" = "ตั้งเป้าหมายประจำวันเป็น %@ml แล้ว";
+
+// Notification Settings
+"notification.enable" = "เปิดการแจ้งเตือน";
+"notification.time.start" = "เวลาเริ่มต้น";
+"notification.time.end" = "เวลาสิ้นสุด";
+"notification.interval" = "ช่วงเวลา";
+"notification.weekdays" = "วัน";
+"notification.custom.times" = "เวลาที่กำหนดเอง";
+"notification.custom.add" = "เพิ่มเวลา";
+"notification.message.info" = "การแจ้งเตือนจะถูกส่งพร้อมข้อความต่างๆ";
+
+// Common
+"common.confirm" = "ตกลง";
+"common.cancel" = "ยกเลิก";
+"common.save" = "บันทึก";
+"common.delete" = "ลบ";
+"common.done" = "เสร็จ";
+
+// Contact
+"contact.title" = "ติดต่อ";
+"contact.message" = "กรุณาติดต่อเราที่ feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "สนับสนุนนักพัฒนา";
+"ad.confirm.title" = "สนับสนุนนักพัฒนา";
+"ad.confirm.message" = "โฆษณาจะแสดง การรับชมช่วยสนับสนุนนักพัฒนา!";
+"ad.loading.title" = "กรุณารอสักครู่";
+"ad.loading.message" = "กำลังโหลดโฆษณา กรุณาลองอีกครั้งในอีกสักครู่";
+"ad.thanks.title" = "ขอบคุณ!";
+"ad.thanks.message" = "ขอบคุณที่สนับสนุนนักพัฒนา 💙";
+
+// App Guide
+"settings.app.guide" = "คู่มือฟีเจอร์แอพ";
+"appguide.title" = "คู่มือ Gulp";
+"appguide.subtitle" = "ค้นพบฟีเจอร์ทั้งหมด";
+
+// App Guide - Home
+"appguide.home.title" = "แท็บวันนี้";
+"appguide.home.feature1.title" = "ติดตามการดื่มน้ำ";
+"appguide.home.feature1.desc" = "แตะปุ่มเพื่อบันทึกการดื่มน้ำ ความก้าวหน้าอัปเดตแบบเรียลไทม์";
+"appguide.home.feature2.title" = "ปุ่มด่วน";
+"appguide.home.feature2.desc" = "ตั้งปริมาณที่ดื่มบ่อยเป็นปุ่มด่วนเพื่อบันทึกด้วยการแตะเดียว";
+"appguide.home.feature3.title" = "ตั้งเป้าหมาย";
+"appguide.home.feature3.desc" = "ตั้งเป้าหมายการดื่มน้ำประจำวัน มีคำแนะนำตามน้ำหนัก";
+"appguide.home.feature4.title" = "โหมดลบ";
+"appguide.home.feature4.desc" = "สลับเป็นโหมดลบเพื่อแก้ไขข้อผิดพลาดในการบันทึก";
+
+// App Guide - History
+"appguide.history.title" = "แท็บประวัติ";
+"appguide.history.feature1.title" = "มุมมองปฏิทิน";
+"appguide.history.feature1.desc" = "ดูความสำเร็จรายเดือนได้ในมุมมองเดียว วันที่บรรลุเป้าหมายจะถูกไฮไลท์";
+"appguide.history.feature2.title" = "มุมมองรายการ";
+"appguide.history.feature2.desc" = "ตรวจสอบบันทึกทั้งหมดตามลำดับเวลาพร้อมความก้าวหน้าของแต่ละวัน";
+"appguide.history.feature3.title" = "มุมมองไทม์ไลน์";
+"appguide.history.feature3.desc" = "ดูบันทึกที่จัดกลุ่มตามเดือนในรูปแบบไทม์ไลน์";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "บันทึกด่วน";
+"appguide.watch.feature1.desc" = "บันทึกการดื่มน้ำโดยตรงจากนาฬิกา ปุ่มด่วนสำหรับ 150ml, 250ml, 300ml และ 500ml";
+"appguide.watch.feature2.title" = "ซิงค์เรียลไทม์";
+"appguide.watch.feature2.desc" = "ซิงค์กับ iPhone แบบเรียลไทม์เพื่อให้บันทึกอัปเดตอยู่เสมอ";
+"appguide.watch.feature3.title" = "คอมพลิเคชัน";
+"appguide.watch.feature3.desc" = "เพิ่มคอมพลิเคชันไปยังหน้าปัดเพื่อดูความก้าวหน้าได้ทันที";
+
+// App Guide - Widget
+"appguide.widget.title" = "วิดเจ็ต";
+"appguide.widget.feature1.title" = "วิดเจ็ตหน้าจอหลัก";
+"appguide.widget.feature1.desc" = "เพิ่มวิดเจ็ตไปยังหน้าจอหลักเพื่อตรวจสอบความก้าวหน้าอย่างรวดเร็ว มีขนาดเล็ก กลาง และใหญ่";
+"appguide.widget.feature2.title" = "วิดเจ็ตหน้าจอล็อค";
+"appguide.widget.feature2.desc" = "ดูปริมาณน้ำประจำวันได้โดยตรงจากหน้าจอล็อค";
+"appguide.widget.feature3.title" = "ปุ่มโต้ตอบ";
+"appguide.widget.feature3.desc" = "แตะปุ่มบนวิดเจ็ตกลาง/ใหญ่เพื่อเพิ่มน้ำโดยไม่ต้องเปิดแอพ";
+
+// App Guide - Notification
+"appguide.notification.title" = "การแจ้งเตือน";
+"appguide.notification.feature1.title" = "ช่วงเวลาที่กำหนดเอง";
+"appguide.notification.feature1.desc" = "รับการเตือนในช่วง 30 นาที, 1 ชั่วโมง, 2 ชั่วโมง หรือ 3 ชั่วโมง";
+"appguide.notification.feature2.title" = "เลือกวัน";
+"appguide.notification.feature2.desc" = "เลือกวันในสัปดาห์ที่ต้องการรับการแจ้งเตือน";
+"appguide.notification.feature3.title" = "ข้อความสร้างแรงบันดาลใจ";
+"appguide.notification.feature3.desc" = "รับข้อความสร้างแรงบันดาลใจต่างๆ เพื่อช่วยสร้างนิสัยการดื่มน้ำ";
+
+// App Guide - Health
+"appguide.health.title" = "การเชื่อมต่อสุขภาพ";
+"appguide.health.feature1.title" = "คำแนะนำตามน้ำหนัก";
+"appguide.health.feature1.desc" = "นำเข้าน้ำหนักจากแอพสุขภาพเพื่อคำนวณคำแนะนำเฉพาะบุคคล";
+"appguide.health.feature2.title" = "บันทึกไปยังสุขภาพ";
+"appguide.health.feature2.desc" = "บันทึกการดื่มน้ำของคุณจะถูกบันทึกไปยังแอพสุขภาพโดยอัตโนมัติ";
+
+// Tab Bar
+"tab.today" = "วันนี้";
+"tab.history" = "ประวัติ";
+"tab.settings" = "ตั้งค่า";
+
+// Home
+"home.goal" = "เป้าหมาย %@ml";
+"home.goal.achieved" = "บรรลุเป้าหมายวันนี้แล้ว!";
+"home.goal.remaining" = "อีก %@ แก้วจะถึงเป้าหมาย!";
+"home.quick.add" = "เพิ่มด่วน";
+"home.quick.subtract" = "ลบ";
+"home.edit" = "แก้ไข";
+"home.goal.setting.title" = "ตั้งเป้าหมาย";
+"home.goal.save" = "บันทึก";
+"home.goal.min" = "1,000ml";
+"home.goal.max" = "4,000ml";
+"home.goal.cancel" = "ยกเลิก";
+"home.quickbutton.title" = "ปุ่มเพิ่มด่วน";
+"home.quickbutton.current" = "ปุ่มปัจจุบัน";
+"home.quickbutton.add.section" = "เพิ่มปุ่มใหม่";
+"home.quickbutton.placeholder" = "ปริมาณ (ml)";
+"home.quickbutton.add" = "เพิ่ม";
+"home.quickbutton.reset" = "รีเซ็ตเป็นค่าเริ่มต้น";
+"home.adjustment.title" = "ปรับปริมาณ";
+"home.adjustment.done" = "เสร็จ";
+"home.adjustment.reset" = "รีเซ็ตบันทึกวันนี้";
+"home.adjustment.reset.confirm" = "รีเซ็ตปริมาณน้ำวันนี้?";
+"home.adjustment.reset.button" = "รีเซ็ต";
+"home.adjustment.reset.message" = "การกระทำนี้ไม่สามารถยกเลิกได้";
+
+// Notification Banner
+"home.notification.banner.title" = "เปิดการแจ้งเตือน";
+"home.notification.banner.description" = "รับการเตือนเพื่อรักษาความชุ่มชื้น";
+"home.notification.banner.settings" = "ตั้งค่า";
+
+// History
+"history.title" = "ประวัติ";
+"history.mode.calendar" = "ปฏิทิน";
+"history.mode.list" = "รายการ";
+"history.mode.timeline" = "ไทม์ไลน์";
+"history.month.summary" = "เดือนนี้: %@ วันที่บรรลุ";
+"history.legend.today" = "วันนี้";
+"history.legend.selected" = "เลือก";
+"history.legend.achieved" = "บรรลุ";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ วันที่บรรลุ";
+"history.record.goal" = "เป้าหมาย %@ml";
+"history.card.goal" = "เป้าหมาย";
+"history.card.intake" = "ปริมาณ";
+"history.card.achieved" = "บรรลุแล้ว! ✅";
+"history.label.achieved" = "บรรลุ";
+
+// Widget
+"widget.hydration.tracker" = "ตัวติดตามการดื่มน้ำ";
+"widget.current" = "ปัจจุบัน";
+"widget.goal" = "เป้าหมาย";
+"widget.current.hydration" = "การดื่มน้ำปัจจุบัน";
+"widget.todays.hydration" = "การดื่มน้ำวันนี้";
+"widget.motivation.achieved" = "บรรลุเป้าหมาย! เยี่ยมมาก! 🎉";
+"widget.motivation.almost" = "ใกล้แล้ว! สู้ต่อไป! 🚀";
+"widget.motivation.halfway" = "ทำได้ดีมาก! 💧";
+"widget.motivation.start" = "ถึงเวลาดื่มน้ำแล้ว! 🥤";
+
+// Watch
+"watch.add.water" = "เพิ่มน้ำ";
+"watch.custom.input" = "ป้อนเอง";
+"watch.add" = "เพิ่ม";
+
+// Update
+"update.required.title" = "ต้องอัปเดต";
+"update.available.title" = "มีอัปเดต";
+"update.required.message" = "เวอร์ชันใหม่เปิดตัวแล้ว กรุณาอัปเดตเพื่อใช้แอพต่อไป";
+"update.available.message" = "เวอร์ชันใหม่พร้อมใช้งาน ต้องการอัปเดตตอนนี้ไหม?";
+"update.later" = "ทีหลัง";
+"update.now" = "อัปเดต";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "ถึงเวลาดื่มน้ำแล้ว! 💧";
+"notification.message.2" = "อย่าลืมดื่มน้ำนะ~ 🌊";
+"notification.message.3" = "เริ่มต้นวันที่ดีด้วยน้ำ! ☀️";
+"notification.message.4" = "ดื่มก่อนกระหาย 🥤";
+"notification.message.5" = "กลืกๆ วันนี้ด้วย! 💪";
+"notification.message.6" = "น้ำหนึ่งแก้วล้างความเหนื่อยล้า 🧘";
+"notification.message.7" = "เคล็ดลับผิวสวย: น้ำ! ✨";
+"notification.message.8" = "สมาธิ UP! ดื่มน้ำสักแก้วไหม? 🧠";
+"notification.message.9" = "เดี๋ยว! ดื่มน้ำก่อน 🚰";
+"notification.message.10" = "ร่างกายคุณกำลังรอน้ำอยู่ 🌿";
+
+// Weekdays
+"weekday.sun" = "อา";
+"weekday.mon" = "จ";
+"weekday.tue" = "อ";
+"weekday.wed" = "พ";
+"weekday.thu" = "พฤ";
+"weekday.fri" = "ศ";
+"weekday.sat" = "ส";
+
+// Intervals
+"interval.30min" = "30 นาที";
+"interval.1hour" = "1 ชั่วโมง";
+"interval.2hours" = "2 ชั่วโมง";
+"interval.3hours" = "3 ชั่วโมง";
+
+// Notification Settings
+"notification.settings.title" = "การตั้งค่าการแจ้งเตือน";
+"notification.settings.enable" = "เปิดการแจ้งเตือน";
+"notification.settings.timerange" = "ช่วงเวลาแจ้งเตือน";
+"notification.settings.interval" = "ช่วงห่างการแจ้งเตือน";
+"notification.settings.weekdays" = "เลือกวัน";
+"notification.settings.custom" = "เวลาที่กำหนดเอง (แทนที่ช่วงห่าง)";
+"notification.settings.starttime" = "เวลาเริ่มต้น";
+"notification.settings.endtime" = "เวลาสิ้นสุด";
+"notification.settings.addtime" = "เพิ่มเวลา";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "ปริมาณน้ำ";
+"complication.description" = "ดูว่าวันนี้ดื่มน้ำไปเท่าไหร่";
+
+// Accessibility
+"accessibility.home.current" = "ปริมาณปัจจุบัน %d มิลลิลิตร";
+"accessibility.home.goal" = "เป้าหมายประจำวัน %d มิลลิลิตร";
+"accessibility.home.goal.hint" = "แตะสองครั้งเพื่อเปลี่ยนเป้าหมาย";
+"accessibility.home.add" = "เพิ่ม %d มิลลิลิตร";
+"accessibility.home.add.hint" = "แตะสองครั้งเพื่อเพิ่มน้ำ";
+"accessibility.home.subtract" = "ลบ %d มิลลิลิตร";
+"accessibility.home.subtract.hint" = "แตะสองครั้งเพื่อลบน้ำ";
+"accessibility.home.mode.add" = "โหมดเพิ่มใช้งานอยู่";
+"accessibility.home.mode.subtract" = "โหมดลบใช้งานอยู่";
+"accessibility.home.mode.hint" = "แตะสองครั้งเพื่อสลับระหว่างโหมดเพิ่มและลบ";
+"accessibility.history.summary" = "เดือนนี้ %d วันที่บรรลุ";
+"accessibility.history.achieved" = "บรรลุเป้าหมาย";
+"accessibility.history.progress" = "%@ ของเป้าหมาย";

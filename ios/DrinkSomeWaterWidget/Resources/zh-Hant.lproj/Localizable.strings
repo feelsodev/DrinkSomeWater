@@ -1,0 +1,17 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWidget
+
+  Traditional Chinese Localization
+*/
+
+// Widget
+"widget.hydration.tracker" = "飲水追蹤";
+"widget.current" = "目前";
+"widget.goal" = "目標";
+"widget.current.hydration" = "目前飲水量";
+"widget.todays.hydration" = "今日飲水量";
+"widget.motivation.achieved" = "目標達成！太棒了！ 🎉";
+"widget.motivation.almost" = "快到了！繼續加油！ 🚀";
+"widget.motivation.halfway" = "做得很好！ 💧";
+"widget.motivation.start" = "該喝水了！ 🥤";

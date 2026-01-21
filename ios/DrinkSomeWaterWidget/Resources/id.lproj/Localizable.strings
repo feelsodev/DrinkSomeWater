@@ -1,0 +1,17 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWidget
+
+  Indonesian Localization
+*/
+
+// Widget
+"widget.hydration.tracker" = "Pelacak Hidrasi";
+"widget.current" = "Saat ini";
+"widget.goal" = "Target";
+"widget.current.hydration" = "Hidrasi Saat Ini";
+"widget.todays.hydration" = "Hidrasi Hari Ini";
+"widget.motivation.achieved" = "Target tercapai! Kerja bagus! 🎉";
+"widget.motivation.almost" = "Hampir! Terus semangat! 🚀";
+"widget.motivation.halfway" = "Kamu hebat! 💧";
+"widget.motivation.start" = "Waktunya minum! 🥤";

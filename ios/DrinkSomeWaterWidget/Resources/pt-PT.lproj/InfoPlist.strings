@@ -1,0 +1,9 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWaterWidget
+
+  European Portuguese Localization
+*/
+
+"CFBundleDisplayName" = "Widget Gulp";
+"CFBundleName" = "Widget Gulp";

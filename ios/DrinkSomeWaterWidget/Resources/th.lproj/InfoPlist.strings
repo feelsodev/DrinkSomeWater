@@ -1,0 +1,9 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWaterWidget
+
+  Thai Localization
+*/
+
+"CFBundleDisplayName" = "Gulp วิดเจ็ต";
+"CFBundleName" = "Gulp วิดเจ็ต";

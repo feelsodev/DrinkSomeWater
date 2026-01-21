@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Ukrainian Localization
+*/
+
+// Main
+"You achieved " = "Ви досягли ";
+"TodaySuffix" = " сьогодні!!";
+
+// Calendar
+"Today" = "Сьогодні";
+"Success" = "Успіх";
+"Selected" = "Вибрано";
+"You can check the history when you select a success date."
+= "Ви можете перевірити історію, коли виберете успішну дату.";
+"Goal of this month" = "Ціль цього місяця";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "Будильник";
+"Review" = "Відгук";
+"Contact Us" = "Зв'яжіться з нами";
+"Version" = "Версія";
+"License" = "Ліцензія";
+"Set" = "Встановити";
+
+// Onboarding
+"onboarding.skip" = "Пропустити";
+"onboarding.next" = "Далі";
+"onboarding.start" = "Почати";
+"onboarding.intro.title" = "Ласкаво просимо до Gulp";
+"onboarding.intro.description" = "Відстежуйте щоденне споживання води та залишайтеся зволоженими.\n\nВода необхідна для вашого здоров'я – вона допомагає підтримувати енергію, покращувати концентрацію та тримати ваше тіло в найкращій формі.";
+"onboarding.goal.title" = "Встановіть свою ціль";
+"onboarding.goal.description" = "Скільки води ви хочете пити щодня?\nВідрегулюйте повзунок, щоб встановити ціль.";
+"onboarding.healthkit.title" = "Підключити Здоров'я";
+"onboarding.healthkit.description" = "Синхронізуйте з Apple Health, щоб:\n\n• Розрахувати персоналізоване споживання води на основі вашої ваги\n• Зберігати записи про воду в додатку Здоров'я\n• Відстежувати прогрес разом з іншими даними про здоров'я";
+"onboarding.healthkit.button" = "Підключити Apple Health";
+"onboarding.healthkit.connected" = "Підключено";
+"onboarding.notification.title" = "Нагадування";
+"onboarding.notification.description" = "Увімкніть сповіщення, щоб отримувати дружні нагадування протягом дня.\n\nМи надсилатимемо вам мотиваційні повідомлення, щоб допомогти вам досягти цілей зволоження.";
+"onboarding.notification.button" = "Увімкнути сповіщення";
+"onboarding.notification.enabled" = "Увімкнено";
+"onboarding.widget.title" = "Додати віджет";
+"onboarding.widget.description" = "Додайте наш віджет на головний екран для швидкого доступу:\n\n1. Довго натисніть на головний екран\n2. Натисніть кнопку +\n3. Знайдіть 'Gulp'\n4. Виберіть бажаний розмір віджета";
+"onboarding.widget.button" = "Почати";
+
+// Widget
+"widget.today" = "Сьогодні";
+"widget.guide.title" = "Посібник з налаштування віджета";
+"widget.guide.nav.title" = "Посібник віджета";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Довго натисніть на головний екран";
+"widget.guide.step1.description" = "Натисніть і утримуйте порожню область головного екрану, доки додатки не почнуть тремтіти.";
+"widget.guide.step2.title" = "Натисніть кнопку +";
+"widget.guide.step2.description" = "Натисніть кнопку \"+\" у верхньому лівому куті екрана.";
+"widget.guide.step3.title" = "Знайдіть Gulp";
+"widget.guide.step3.description" = "У галереї віджетів знайдіть \"Gulp\" або \"Вода\".";
+"widget.guide.step4.title" = "Виберіть розмір віджета";
+"widget.guide.step4.description" = "Виберіть бажаний розмір віджета:\n• Малий: Показує споживання води та прогрес\n• Середній: Включає кнопки швидкого додавання";
+"widget.guide.step5.title" = "Додати на головний екран";
+"widget.guide.step5.description" = "Натисніть \"Додати віджет\" і розмістіть його де хочете.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Віджет екрана блокування";
+"widget.guide.lockscreen.step1.title" = "Довго натисніть на екран блокування";
+"widget.guide.lockscreen.step1.description" = "Натисніть і утримуйте екран блокування та натисніть \"Налаштувати\".";
+"widget.guide.lockscreen.step2.title" = "Виберіть область віджета";
+"widget.guide.lockscreen.step2.description" = "Натисніть область віджета над або під часом.";
+"widget.guide.lockscreen.step3.title" = "Додати віджет Gulp";
+"widget.guide.lockscreen.step3.description" = "Знайдіть \"Gulp\" і виберіть бажаний стиль віджета.";
+
+// Settings
+"settings.title" = "Налаштування";
+"settings.subtitle" = "Налаштуйте свій досвід";
+"settings.section.personal" = "Особисте";
+"settings.section.app" = "Налаштування додатку";
+"settings.section.support" = "Підтримка";
+"settings.section.info" = "Інформація";
+"settings.profile" = "Налаштування профілю";
+"settings.goal" = "Щоденна ціль";
+"settings.quickbuttons" = "Налаштування швидких кнопок";
+"settings.notification" = "Нагадування про воду";
+"settings.widget.guide" = "Посібник з налаштування віджета";
+"settings.review" = "Написати відгук";
+"settings.contact" = "Зв'яжіться з нами";
+"settings.version" = "Версія";
+
+// Profile
+"profile.title" = "Налаштування профілю";
+"profile.healthkit.title" = "Синхронізація Apple Health";
+"profile.healthkit.description" = "Автоматично отримувати вагу з додатку Здоров'я";
+"profile.weight" = "Вага";
+"profile.weight.range" = "30кг ~ 150кг";
+"profile.recommended.title" = "Рекомендована добова норма";
+"profile.recommended.description" = "Формула: Вага × 33мл";
+"profile.apply.button" = "Застосувати як щоденну ціль";
+"profile.apply.success.title" = "Ціль оновлено";
+"profile.apply.success.message" = "Щоденну ціль встановлено на %@мл.";
+
+// Notification Settings
+"notification.enable" = "Увімкнути сповіщення";
+"notification.time.start" = "Час початку";
+"notification.time.end" = "Час закінчення";
+"notification.interval" = "Інтервал";
+"notification.weekdays" = "Дні";
+"notification.custom.times" = "Власний час";
+"notification.custom.add" = "Додати час";
+"notification.message.info" = "Сповіщення надсилатимуться з різними повідомленнями";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Скасувати";
+"common.save" = "Зберегти";
+"common.delete" = "Видалити";
+"common.done" = "Готово";
+
+// Contact
+"contact.title" = "Контакт";
+"contact.message" = "Будь ласка, зв'яжіться з нами за адресою feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Підтримати розробника";
+"ad.confirm.title" = "Підтримати розробника";
+"ad.confirm.message" = "Буде показано рекламу. Перегляд допоможе підтримати розробника!";
+"ad.loading.title" = "Будь ласка, зачекайте";
+"ad.loading.message" = "Завантаження реклами. Спробуйте ще раз через мить.";
+"ad.thanks.title" = "Дякуємо!";
+"ad.thanks.message" = "Дякуємо за підтримку розробника 💙";
+
+// App Guide
+"settings.app.guide" = "Посібник з функцій додатку";
+"appguide.title" = "Посібник Gulp";
+"appguide.subtitle" = "Відкрийте всі функції";
+
+// App Guide - Home
+"appguide.home.title" = "Вкладка Сьогодні";
+"appguide.home.feature1.title" = "Відстеження споживання води";
+"appguide.home.feature1.desc" = "Натисніть кнопку, щоб записати споживання води. Прогрес оновлюється в реальному часі.";
+"appguide.home.feature2.title" = "Швидкі кнопки";
+"appguide.home.feature2.desc" = "Встановіть часто вживані обсяги як швидкі кнопки для запису одним дотиком.";
+"appguide.home.feature3.title" = "Встановіть свою ціль";
+"appguide.home.feature3.desc" = "Встановіть щоденну ціль споживання води. Доступні рекомендації на основі ваги.";
+"appguide.home.feature4.title" = "Режим віднімання";
+"appguide.home.feature4.desc" = "Перейдіть у режим віднімання, щоб виправити помилки в записах споживання.";
+
+// App Guide - History
+"appguide.history.title" = "Вкладка Історія";
+"appguide.history.feature1.title" = "Календарний вигляд";
+"appguide.history.feature1.desc" = "Перегляньте свої місячні досягнення з одного погляду. Дні досягнення цілі виділені.";
+"appguide.history.feature2.title" = "Вигляд списку";
+"appguide.history.feature2.desc" = "Перевірте всі записи в хронологічному порядку з прогресом для кожного дня.";
+"appguide.history.feature3.title" = "Вигляд часової шкали";
+"appguide.history.feature3.desc" = "Переглядайте записи, згруповані за місяцями у форматі часової шкали.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Швидкий запис";
+"appguide.watch.feature1.desc" = "Записуйте споживання води прямо з годинника. Швидкі кнопки для 150мл, 250мл, 300мл та 500мл.";
+"appguide.watch.feature2.title" = "Синхронізація в реальному часі";
+"appguide.watch.feature2.desc" = "Синхронізується з вашим iPhone у реальному часі, щоб ваші записи завжди були актуальними.";
+"appguide.watch.feature3.title" = "Ускладнення";
+"appguide.watch.feature3.desc" = "Додайте ускладнення на циферблат годинника, щоб перевіряти прогрес з одного погляду.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Віджети";
+"appguide.widget.feature1.title" = "Віджет головного екрану";
+"appguide.widget.feature1.desc" = "Додайте віджет на головний екран для швидкої перевірки прогресу. Доступні малий, середній та великий розміри.";
+"appguide.widget.feature2.title" = "Віджет екрана блокування";
+"appguide.widget.feature2.desc" = "Перевіряйте щоденне споживання води прямо з екрана блокування.";
+"appguide.widget.feature3.title" = "Інтерактивні кнопки";
+"appguide.widget.feature3.desc" = "Натискайте кнопки на середніх/великих віджетах, щоб додати воду без відкриття додатку.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Сповіщення";
+"appguide.notification.feature1.title" = "Власні інтервали";
+"appguide.notification.feature1.desc" = "Отримуйте нагадування з інтервалом 30 хвилин, 1 година, 2 години або 3 години.";
+"appguide.notification.feature2.title" = "Вибір дня";
+"appguide.notification.feature2.desc" = "Виберіть, у які дні тижня ви хочете отримувати сповіщення.";
+"appguide.notification.feature3.title" = "Мотиваційні повідомлення";
+"appguide.notification.feature3.desc" = "Отримуйте різні мотиваційні повідомлення, щоб допомогти сформувати звичку зволоження.";
+
+// App Guide - Health
+"appguide.health.title" = "Інтеграція зі Здоров'ям";
+"appguide.health.feature1.title" = "Рекомендації на основі ваги";
+"appguide.health.feature1.desc" = "Імпортуйте свою вагу з додатку Здоров'я для розрахунку персоналізованих рекомендацій споживання.";
+"appguide.health.feature2.title" = "Зберегти в Здоров'я";
+"appguide.health.feature2.desc" = "Ваші записи споживання води автоматично зберігаються в додатку Здоров'я.";
+
+// Tab Bar
+"tab.today" = "Сьогодні";
+"tab.history" = "Історія";
+"tab.settings" = "Налаштування";
+
+// Home
+"home.goal" = "Ціль %@мл";
+"home.goal.achieved" = "Ціль на сьогодні досягнута!";
+"home.goal.remaining" = "Ще %@ склянок до досягнення цілі!";
+"home.quick.add" = "Швидко додати";
+"home.quick.subtract" = "Відняти";
+"home.edit" = "Редагувати";
+"home.goal.setting.title" = "Встановити ціль";
+"home.goal.save" = "Зберегти";
+"home.goal.min" = "1 000мл";
+"home.goal.max" = "4 000мл";
+"home.goal.cancel" = "Скасувати";
+"home.quickbutton.title" = "Кнопки швидкого додавання";
+"home.quickbutton.current" = "Поточні кнопки";
+"home.quickbutton.add.section" = "Додати нову кнопку";
+"home.quickbutton.placeholder" = "Обсяг (мл)";
+"home.quickbutton.add" = "Додати";
+"home.quickbutton.reset" = "Скинути до стандартних";
+"home.adjustment.title" = "Налаштувати споживання";
+"home.adjustment.done" = "Готово";
+"home.adjustment.reset" = "Скинути сьогоднішній запис";
+"home.adjustment.reset.confirm" = "Скинути сьогоднішнє споживання води?";
+"home.adjustment.reset.button" = "Скинути";
+"home.adjustment.reset.message" = "Цю дію не можна скасувати.";
+
+// Notification Banner
+"home.notification.banner.title" = "Увімкнути сповіщення";
+"home.notification.banner.description" = "Отримуйте нагадування про зволоження";
+"home.notification.banner.settings" = "Налаштування";
+
+// History
+"history.title" = "Історія";
+"history.mode.calendar" = "Календар";
+"history.mode.list" = "Список";
+"history.mode.timeline" = "Часова шкала";
+"history.month.summary" = "Цього місяця: %@ днів досягнуто";
+"history.legend.today" = "Сьогодні";
+"history.legend.selected" = "Вибрано";
+"history.legend.achieved" = "Досягнуто";
+"history.record.progress" = "%@мл / %@мл";
+"history.timeline.achieved" = "%@/%@ днів досягнуто";
+"history.record.goal" = "Ціль %@мл";
+"history.card.goal" = "Ціль";
+"history.card.intake" = "Споживання";
+"history.card.achieved" = "Досягнуто! ✅";
+"history.label.achieved" = "Досягнуто";
+
+// Widget
+"widget.hydration.tracker" = "Трекер зволоження";
+"widget.current" = "Поточний";
+"widget.goal" = "Ціль";
+"widget.current.hydration" = "Поточне зволоження";
+"widget.todays.hydration" = "Сьогоднішнє зволоження";
+"widget.motivation.achieved" = "Ціль досягнута! Чудова робота! 🎉";
+"widget.motivation.almost" = "Майже там! Продовжуйте! 🚀";
+"widget.motivation.halfway" = "Ви чудово справляєтесь! 💧";
+"widget.motivation.start" = "Час зволожитись! 🥤";
+
+// Watch
+"watch.add.water" = "Додати воду";
+"watch.custom.input" = "Власний ввід";
+"watch.add" = "Додати";
+
+// Update
+"update.required.title" = "Потрібне оновлення";
+"update.available.title" = "Доступне оновлення";
+"update.required.message" = "Вийшла нова версія. Будь ласка, оновіть, щоб продовжити використання додатку.";
+"update.available.message" = "Доступна нова версія. Бажаєте оновити зараз?";
+"update.later" = "Пізніше";
+"update.now" = "Оновити";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Час пити воду! 💧";
+"notification.message.2" = "Не забувайте зволожуватись~ 🌊";
+"notification.message.3" = "Почніть здоровий день з води! ☀️";
+"notification.message.4" = "Пийте до того, як відчуєте спрагу 🥤";
+"notification.message.5" = "Сьогодні теж gulp gulp! 💪";
+"notification.message.6" = "Склянка води змиває втому 🧘";
+"notification.message.7" = "Секрет сяючої шкіри: вода! ✨";
+"notification.message.8" = "Концентрація ВГОРУ! Як щодо склянки води? 🧠";
+"notification.message.9" = "Зачекайте! Спочатку випийте води 🚰";
+"notification.message.10" = "Ваше тіло чекає на воду 🌿";
+
+// Weekdays
+"weekday.sun" = "Нд";
+"weekday.mon" = "Пн";
+"weekday.tue" = "Вт";
+"weekday.wed" = "Ср";
+"weekday.thu" = "Чт";
+"weekday.fri" = "Пт";
+"weekday.sat" = "Сб";
+
+// Intervals
+"interval.30min" = "30 хв";
+"interval.1hour" = "1 година";
+"interval.2hours" = "2 години";
+"interval.3hours" = "3 години";
+
+// Notification Settings
+"notification.settings.title" = "Налаштування сповіщень";
+"notification.settings.enable" = "Увімкнути сповіщення";
+"notification.settings.timerange" = "Часовий діапазон сповіщень";
+"notification.settings.interval" = "Інтервал сповіщень";
+"notification.settings.weekdays" = "Вибрати дні";
+"notification.settings.custom" = "Власний час (замінює інтервал)";
+"notification.settings.starttime" = "Час початку";
+"notification.settings.endtime" = "Час закінчення";
+"notification.settings.addtime" = "Додати час";
+
+// Date Formats
+"dateformat.month" = "LLL";
+"dateformat.yearmonth" = "LLLL yyyy";
+"dateformat.monthday" = "d LLL (E)";
+
+// Watch Complication
+"complication.displayname" = "Споживання води";
+"complication.description" = "Перевірте, скільки води ви випили сьогодні.";
+
+// Accessibility
+"accessibility.home.current" = "Поточне споживання %d мілілітрів";
+"accessibility.home.goal" = "Щоденна ціль %d мілілітрів";
+"accessibility.home.goal.hint" = "Подвійний дотик, щоб змінити ціль";
+"accessibility.home.add" = "Додати %d мілілітрів";
+"accessibility.home.add.hint" = "Подвійний дотик, щоб додати воду";
+"accessibility.home.subtract" = "Відняти %d мілілітрів";
+"accessibility.home.subtract.hint" = "Подвійний дотик, щоб відняти воду";
+"accessibility.home.mode.add" = "Режим додавання активний";
+"accessibility.home.mode.subtract" = "Режим віднімання активний";
+"accessibility.home.mode.hint" = "Подвійний дотик для перемикання між режимом додавання та віднімання";
+"accessibility.history.summary" = "Цього місяця %d днів досягнуто";
+"accessibility.history.achieved" = "Ціль досягнута";
+"accessibility.history.progress" = "%@ від цілі";

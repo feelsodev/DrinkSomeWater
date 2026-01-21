@@ -1,0 +1,15 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWatch
+
+  Chinese Simplified Localization
+*/
+
+// Watch
+"watch.add.water" = "添加饮水";
+"watch.custom.input" = "自定义输入";
+"watch.add" = "添加";
+
+// Watch Complication
+"complication.displayname" = "饮水量";
+"complication.description" = "查看今天喝了多少水。";

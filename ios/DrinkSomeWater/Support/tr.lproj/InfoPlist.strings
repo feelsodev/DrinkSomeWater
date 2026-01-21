@@ -1,0 +1,14 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWater
+
+  Turkish Localization
+*/
+
+// App name
+"CFBundleDisplayName" = "Gulp";
+"CFBundleName" = "Gulp";
+
+// Usage Descriptions
+"NSHealthShareUsageDescription" = "Kişiselleştirilmiş öneriler hesaplamak için kilo verilerini okuyun.";
+"NSHealthUpdateUsageDescription" = "Su tüketimi kayıtlarını Sağlık uygulamasıyla senkronize edin.";

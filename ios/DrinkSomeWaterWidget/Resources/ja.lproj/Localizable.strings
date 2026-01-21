@@ -1,0 +1,17 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWidget
+
+  Japanese Localization
+*/
+
+// Widget
+"widget.hydration.tracker" = "水分トラッカー";
+"widget.current" = "現在";
+"widget.goal" = "目標";
+"widget.current.hydration" = "現在の水分摂取";
+"widget.todays.hydration" = "今日の水分摂取";
+"widget.motivation.achieved" = "目標達成！よくできました！ 🎉";
+"widget.motivation.almost" = "もう少し！頑張って！ 🚀";
+"widget.motivation.halfway" = "順調です！ 💧";
+"widget.motivation.start" = "水分補給の時間です！ 🥤";

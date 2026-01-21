@@ -1,0 +1,9 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWaterWidget
+
+  Chinese Simplified Localization
+*/
+
+"CFBundleDisplayName" = "Gulp 小组件";
+"CFBundleName" = "Gulp 小组件";

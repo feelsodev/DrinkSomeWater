@@ -1,0 +1,15 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWatch
+
+  Thai Localization
+*/
+
+// Watch
+"watch.add.water" = "เพิ่มน้ำ";
+"watch.custom.input" = "ป้อนเอง";
+"watch.add" = "เพิ่ม";
+
+// Watch Complication
+"complication.displayname" = "ปริมาณน้ำ";
+"complication.description" = "ดูว่าวันนี้ดื่มน้ำไปเท่าไหร่";

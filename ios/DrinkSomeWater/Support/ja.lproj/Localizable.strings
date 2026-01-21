@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Japanese Localization
+*/
+
+// Main
+"You achieved " = "達成しました ";
+"TodaySuffix" = " 今日!!";
+
+// Calendar
+"Today" = "今日";
+"Success" = "成功";
+"Selected" = "選択中";
+"You can check the history when you select a success date."
+= "成功した日付を選択すると履歴を確認できます。";
+"Goal of this month" = "今月の目標";
+"MMMM, YYYY" = "yyyy年M月";
+
+// Information
+"Alarm" = "アラーム";
+"Review" = "レビュー";
+"Contact Us" = "お問い合わせ";
+"Version" = "バージョン";
+"License" = "ライセンス";
+"Set" = "設定";
+
+// Onboarding
+"onboarding.skip" = "スキップ";
+"onboarding.next" = "次へ";
+"onboarding.start" = "始める";
+"onboarding.intro.title" = "Gulpへようこそ";
+"onboarding.intro.description" = "毎日の水分摂取量を記録して、健康的な水分補給を維持しましょう。\n\n水は健康に不可欠です。エネルギーの維持、集中力の向上、体の最適な機能に役立ちます。";
+"onboarding.goal.title" = "目標を設定";
+"onboarding.goal.description" = "1日にどれくらい水を飲みたいですか？\nスライダーを調整して目標を設定してください。";
+"onboarding.healthkit.title" = "ヘルスケアと連携";
+"onboarding.healthkit.description" = "Apple ヘルスケアと同期して：\n\n• 体重に基づいた個別の水分摂取量を計算\n• 水分記録をヘルスケアアプリに保存\n• 他の健康データと一緒に進捗を追跡";
+"onboarding.healthkit.button" = "Apple ヘルスケアと連携";
+"onboarding.healthkit.connected" = "連携済み";
+"onboarding.notification.title" = "リマインダー";
+"onboarding.notification.description" = "通知をオンにして、1日を通じて優しいリマインダーを受け取りましょう。\n\n水分補給の目標達成を助ける励ましのメッセージをお届けします。";
+"onboarding.notification.button" = "通知を許可";
+"onboarding.notification.enabled" = "許可済み";
+"onboarding.widget.title" = "ウィジェットを追加";
+"onboarding.widget.description" = "ホーム画面にウィジェットを追加して素早くアクセス：\n\n1. ホーム画面を長押し\n2. + ボタンをタップ\n3.「Gulp」を検索\n4. お好みのウィジェットサイズを選択";
+"onboarding.widget.button" = "始める";
+
+// Widget
+"widget.today" = "今日";
+"widget.guide.title" = "ウィジェット設定ガイド";
+"widget.guide.nav.title" = "ウィジェットガイド";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "ホーム画面を長押し";
+"widget.guide.step1.description" = "アプリが揺れ始めるまでホーム画面の空きスペースを長押しします。";
+"widget.guide.step2.title" = "+ ボタンをタップ";
+"widget.guide.step2.description" = "画面左上の「+」ボタンをタップします。";
+"widget.guide.step3.title" = "Gulpを検索";
+"widget.guide.step3.description" = "ウィジェットギャラリーで「Gulp」または「水」を検索します。";
+"widget.guide.step4.title" = "ウィジェットサイズを選択";
+"widget.guide.step4.description" = "お好みのウィジェットサイズを選択：\n• 小：水分摂取量と進捗を表示\n• 中：クイック追加ボタン付き";
+"widget.guide.step5.title" = "ホーム画面に追加";
+"widget.guide.step5.description" = "「ウィジェットを追加」をタップしてお好みの位置に配置します。";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "ロック画面ウィジェット";
+"widget.guide.lockscreen.step1.title" = "ロック画面を長押し";
+"widget.guide.lockscreen.step1.description" = "ロック画面を長押しして「カスタマイズ」をタップします。";
+"widget.guide.lockscreen.step2.title" = "ウィジェット領域を選択";
+"widget.guide.lockscreen.step2.description" = "時計の上または下のウィジェット領域をタップします。";
+"widget.guide.lockscreen.step3.title" = "Gulpウィジェットを追加";
+"widget.guide.lockscreen.step3.description" = "「Gulp」を検索してお好みのウィジェットスタイルを選択します。";
+
+// Settings
+"settings.title" = "設定";
+"settings.subtitle" = "体験をカスタマイズ";
+"settings.section.personal" = "個人設定";
+"settings.section.app" = "アプリ設定";
+"settings.section.support" = "サポート";
+"settings.section.info" = "情報";
+"settings.profile" = "プロフィール設定";
+"settings.goal" = "1日の目標";
+"settings.quickbuttons" = "クイックボタン設定";
+"settings.notification" = "水分補給リマインダー";
+"settings.widget.guide" = "ウィジェット設定ガイド";
+"settings.review" = "レビューを書く";
+"settings.contact" = "お問い合わせ";
+"settings.version" = "バージョン";
+
+// Profile
+"profile.title" = "プロフィール設定";
+"profile.healthkit.title" = "Apple ヘルスケア同期";
+"profile.healthkit.description" = "ヘルスケアアプリから体重を自動取得";
+"profile.weight" = "体重";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "1日の推奨摂取量";
+"profile.recommended.description" = "体重 × 33ml の計算式";
+"profile.apply.button" = "1日の目標として適用";
+"profile.apply.success.title" = "目標を更新しました";
+"profile.apply.success.message" = "1日の目標を %@ml に設定しました。";
+
+// Notification Settings
+"notification.enable" = "通知を有効にする";
+"notification.time.start" = "開始時間";
+"notification.time.end" = "終了時間";
+"notification.interval" = "間隔";
+"notification.weekdays" = "曜日";
+"notification.custom.times" = "カスタム時間";
+"notification.custom.add" = "時間を追加";
+"notification.message.info" = "様々なメッセージで通知が送信されます";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "キャンセル";
+"common.save" = "保存";
+"common.delete" = "削除";
+"common.done" = "完了";
+
+// Contact
+"contact.title" = "お問い合わせ";
+"contact.message" = "feelsodev@gmail.com までご連絡ください";
+
+// Ad
+"settings.support.developer" = "開発者をサポート";
+"ad.confirm.title" = "開発者をサポート";
+"ad.confirm.message" = "広告が表示されます。視聴すると開発者のサポートになります！";
+"ad.loading.title" = "お待ちください";
+"ad.loading.message" = "広告を読み込み中です。しばらくしてからお試しください。";
+"ad.thanks.title" = "ありがとうございます！";
+"ad.thanks.message" = "開発者をサポートしていただきありがとうございます 💙";
+
+// App Guide
+"settings.app.guide" = "アプリ機能ガイド";
+"appguide.title" = "Gulpガイド";
+"appguide.subtitle" = "すべての機能を探索";
+
+// App Guide - Home
+"appguide.home.title" = "今日タブ";
+"appguide.home.feature1.title" = "水分摂取を記録";
+"appguide.home.feature1.desc" = "ボタンをタップして水分摂取を記録。進捗はリアルタイムで更新されます。";
+"appguide.home.feature2.title" = "クイックボタン";
+"appguide.home.feature2.desc" = "よく飲む量をクイックボタンに設定して、ワンタップで記録できます。";
+"appguide.home.feature3.title" = "目標を設定";
+"appguide.home.feature3.desc" = "1日の水分摂取目標を設定。体重に基づいた推奨量も参考にできます。";
+"appguide.home.feature4.title" = "減らすモード";
+"appguide.home.feature4.desc" = "減らすモードに切り替えて、記録の間違いを修正できます。";
+
+// App Guide - History
+"appguide.history.title" = "履歴タブ";
+"appguide.history.feature1.title" = "カレンダー表示";
+"appguide.history.feature1.desc" = "月間の達成状況を一目で確認。目標達成日がハイライト表示されます。";
+"appguide.history.feature2.title" = "リスト表示";
+"appguide.history.feature2.desc" = "すべての記録を時系列で確認。各日の進捗も表示されます。";
+"appguide.history.feature3.title" = "タイムライン表示";
+"appguide.history.feature3.desc" = "月ごとにグループ化された記録をタイムライン形式で表示。";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "クイック記録";
+"appguide.watch.feature1.desc" = "ウォッチから直接水分摂取を記録。150ml、250ml、300ml、500mlのクイックボタン。";
+"appguide.watch.feature2.title" = "リアルタイム同期";
+"appguide.watch.feature2.desc" = "iPhoneとリアルタイムで同期し、記録を常に最新に保ちます。";
+"appguide.watch.feature3.title" = "コンプリケーション";
+"appguide.watch.feature3.desc" = "ウォッチフェイスにコンプリケーションを追加して、進捗をすぐに確認。";
+
+// App Guide - Widget
+"appguide.widget.title" = "ウィジェット";
+"appguide.widget.feature1.title" = "ホーム画面ウィジェット";
+"appguide.widget.feature1.desc" = "ホーム画面にウィジェットを追加して進捗を素早く確認。小・中・大サイズに対応。";
+"appguide.widget.feature2.title" = "ロック画面ウィジェット";
+"appguide.widget.feature2.desc" = "ロック画面から直接今日の水分摂取量を確認できます。";
+"appguide.widget.feature3.title" = "インタラクティブボタン";
+"appguide.widget.feature3.desc" = "中・大ウィジェットのボタンをタップして、アプリを開かずに水を追加。";
+
+// App Guide - Notification
+"appguide.notification.title" = "通知";
+"appguide.notification.feature1.title" = "カスタム間隔";
+"appguide.notification.feature1.desc" = "30分、1時間、2時間、3時間間隔でリマインダーを受け取れます。";
+"appguide.notification.feature2.title" = "曜日選択";
+"appguide.notification.feature2.desc" = "通知を受け取る曜日を選択できます。";
+"appguide.notification.feature3.title" = "励ましのメッセージ";
+"appguide.notification.feature3.desc" = "様々な励ましのメッセージで水分補給の習慣づくりをサポート。";
+
+// App Guide - Health
+"appguide.health.title" = "ヘルスケア連携";
+"appguide.health.feature1.title" = "体重に基づく推奨";
+"appguide.health.feature1.desc" = "ヘルスケアアプリから体重をインポートして、個別の摂取推奨量を計算。";
+"appguide.health.feature2.title" = "ヘルスケアに保存";
+"appguide.health.feature2.desc" = "水分摂取記録は自動的にヘルスケアアプリに保存されます。";
+
+// Tab Bar
+"tab.today" = "今日";
+"tab.history" = "履歴";
+"tab.settings" = "設定";
+
+// Home
+"home.goal" = "目標 %@ml";
+"home.goal.achieved" = "今日の目標達成！";
+"home.goal.remaining" = "あと %@ 杯で目標達成！";
+"home.quick.add" = "クイック追加";
+"home.quick.subtract" = "減らす";
+"home.edit" = "編集";
+"home.goal.setting.title" = "目標を設定";
+"home.goal.save" = "保存";
+"home.goal.min" = "1,000ml";
+"home.goal.max" = "4,000ml";
+"home.goal.cancel" = "キャンセル";
+"home.quickbutton.title" = "クイック追加ボタン";
+"home.quickbutton.current" = "現在のボタン";
+"home.quickbutton.add.section" = "新しいボタンを追加";
+"home.quickbutton.placeholder" = "容量 (ml)";
+"home.quickbutton.add" = "追加";
+"home.quickbutton.reset" = "デフォルトにリセット";
+"home.adjustment.title" = "摂取量を調整";
+"home.adjustment.done" = "完了";
+"home.adjustment.reset" = "今日の記録をリセット";
+"home.adjustment.reset.confirm" = "今日の水分摂取量をリセットしますか？";
+"home.adjustment.reset.button" = "リセット";
+"home.adjustment.reset.message" = "この操作は元に戻せません。";
+
+// Notification Banner
+"home.notification.banner.title" = "通知を有効にする";
+"home.notification.banner.description" = "水分補給リマインダーを受け取る";
+"home.notification.banner.settings" = "設定";
+
+// History
+"history.title" = "履歴";
+"history.mode.calendar" = "カレンダー";
+"history.mode.list" = "リスト";
+"history.mode.timeline" = "タイムライン";
+"history.month.summary" = "今月：%@ 日達成";
+"history.legend.today" = "今日";
+"history.legend.selected" = "選択中";
+"history.legend.achieved" = "達成";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ 日達成";
+"history.record.goal" = "目標 %@ml";
+"history.card.goal" = "目標";
+"history.card.intake" = "摂取量";
+"history.card.achieved" = "達成！ ✅";
+"history.label.achieved" = "達成";
+
+// Widget
+"widget.hydration.tracker" = "水分トラッカー";
+"widget.current" = "現在";
+"widget.goal" = "目標";
+"widget.current.hydration" = "現在の水分摂取";
+"widget.todays.hydration" = "今日の水分摂取";
+"widget.motivation.achieved" = "目標達成！よくできました！ 🎉";
+"widget.motivation.almost" = "もう少し！頑張って！ 🚀";
+"widget.motivation.halfway" = "順調です！ 💧";
+"widget.motivation.start" = "水分補給の時間です！ 🥤";
+
+// Watch
+"watch.add.water" = "水を追加";
+"watch.custom.input" = "カスタム入力";
+"watch.add" = "追加";
+
+// Update
+"update.required.title" = "アップデートが必要です";
+"update.available.title" = "アップデート可能";
+"update.required.message" = "新しいバージョンがリリースされました。アプリを使い続けるにはアップデートが必要です。";
+"update.available.message" = "新しいバージョンが利用可能です。今すぐアップデートしますか？";
+"update.later" = "後で";
+"update.now" = "アップデート";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "水を飲む時間です！ 💧";
+"notification.message.2" = "水分補給を忘れずに～ 🌊";
+"notification.message.3" = "水で健康な1日をスタート！ ☀️";
+"notification.message.4" = "喉が渇く前に飲みましょう 🥤";
+"notification.message.5" = "今日もゴクゴク！ 💪";
+"notification.message.6" = "コップ1杯の水が疲れを洗い流します 🧘";
+"notification.message.7" = "美肌の秘訣：水！ ✨";
+"notification.message.8" = "集中力UP！水を1杯いかが？ 🧠";
+"notification.message.9" = "ちょっと待って！まず水を 🚰";
+"notification.message.10" = "あなたの体は水を待っています 🌿";
+
+// Weekdays
+"weekday.sun" = "日";
+"weekday.mon" = "月";
+"weekday.tue" = "火";
+"weekday.wed" = "水";
+"weekday.thu" = "木";
+"weekday.fri" = "金";
+"weekday.sat" = "土";
+
+// Intervals
+"interval.30min" = "30分";
+"interval.1hour" = "1時間";
+"interval.2hours" = "2時間";
+"interval.3hours" = "3時間";
+
+// Notification Settings
+"notification.settings.title" = "通知設定";
+"notification.settings.enable" = "通知を有効にする";
+"notification.settings.timerange" = "通知時間帯";
+"notification.settings.interval" = "通知間隔";
+"notification.settings.weekdays" = "曜日を選択";
+"notification.settings.custom" = "カスタム時間（間隔を上書き）";
+"notification.settings.starttime" = "開始時間";
+"notification.settings.endtime" = "終了時間";
+"notification.settings.addtime" = "時間を追加";
+
+// Date Formats
+"dateformat.month" = "M月";
+"dateformat.yearmonth" = "yyyy年M月";
+"dateformat.monthday" = "M月d日 (E)";
+
+// Watch Complication
+"complication.displayname" = "水分摂取量";
+"complication.description" = "今日どれくらい水を飲んだか確認します。";
+
+// Accessibility
+"accessibility.home.current" = "現在の摂取量 %d ミリリットル";
+"accessibility.home.goal" = "1日の目標 %d ミリリットル";
+"accessibility.home.goal.hint" = "ダブルタップで目標を変更";
+"accessibility.home.add" = "%d ミリリットル追加";
+"accessibility.home.add.hint" = "ダブルタップで水を追加";
+"accessibility.home.subtract" = "%d ミリリットル減らす";
+"accessibility.home.subtract.hint" = "ダブルタップで水を減らす";
+"accessibility.home.mode.add" = "追加モードがアクティブ";
+"accessibility.home.mode.subtract" = "減らすモードがアクティブ";
+"accessibility.home.mode.hint" = "ダブルタップで追加と減らすモードを切り替え";
+"accessibility.history.summary" = "今月 %d 日達成";
+"accessibility.history.achieved" = "目標達成";
+"accessibility.history.progress" = "目標の %@";

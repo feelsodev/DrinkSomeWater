@@ -1,0 +1,9 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWater - Arabic
+*/
+
+"CFBundleDisplayName" = "Gulp";
+"CFBundleName" = "Gulp";
+"NSHealthShareUsageDescription" = "قراءة بيانات الوزن لحساب التوصيات المخصصة.";
+"NSHealthUpdateUsageDescription" = "مزامنة سجلات استهلاك الماء مع تطبيق الصحة.";

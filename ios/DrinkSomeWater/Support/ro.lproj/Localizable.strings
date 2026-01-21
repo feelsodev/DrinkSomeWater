@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Romanian Localization
+*/
+
+// Main
+"You achieved " = "Ai atins ";
+"TodaySuffix" = " astăzi!!";
+
+// Calendar
+"Today" = "Astăzi";
+"Success" = "Succes";
+"Selected" = "Selectat";
+"You can check the history when you select a success date."
+= "Poți verifica istoricul când selectezi o dată de succes.";
+"Goal of this month" = "Obiectivul acestei luni";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "Alarmă";
+"Review" = "Recenzie";
+"Contact Us" = "Contactează-ne";
+"Version" = "Versiune";
+"License" = "Licență";
+"Set" = "Setează";
+
+// Onboarding
+"onboarding.skip" = "Omite";
+"onboarding.next" = "Următorul";
+"onboarding.start" = "Începe";
+"onboarding.intro.title" = "Bine ai venit la Gulp";
+"onboarding.intro.description" = "Urmărește-ți consumul zilnic de apă și rămâi hidratat.\n\nApa este esențială pentru sănătatea ta – ajută la menținerea energiei, îmbunătățirea concentrării și menținerea corpului în formă optimă.";
+"onboarding.goal.title" = "Setează-ți obiectivul";
+"onboarding.goal.description" = "Câtă apă vrei să bei zilnic?\nAjustează cursorul pentru a-ți seta obiectivul.";
+"onboarding.healthkit.title" = "Conectează Sănătatea";
+"onboarding.healthkit.description" = "Sincronizează cu Apple Health pentru a:\n\n• Calcula consumul personalizat de apă pe baza greutății tale\n• Salva înregistrările de apă în aplicația Sănătate\n• Urmări progresul alături de alte date de sănătate";
+"onboarding.healthkit.button" = "Conectează Apple Health";
+"onboarding.healthkit.connected" = "Conectat";
+"onboarding.notification.title" = "Memento-uri";
+"onboarding.notification.description" = "Activează notificările pentru a primi memento-uri prietenoase pe parcursul zilei.\n\nÎți vom trimite mesaje motivaționale pentru a te ajuta să îți atingi obiectivele de hidratare.";
+"onboarding.notification.button" = "Activează notificările";
+"onboarding.notification.enabled" = "Activat";
+"onboarding.widget.title" = "Adaugă Widget";
+"onboarding.widget.description" = "Adaugă widget-ul nostru pe ecranul de start pentru acces rapid:\n\n1. Apasă lung pe ecranul de start\n2. Atinge butonul +\n3. Caută 'Gulp'\n4. Alege dimensiunea preferată a widget-ului";
+"onboarding.widget.button" = "Începe";
+
+// Widget
+"widget.today" = "Astăzi";
+"widget.guide.title" = "Ghid configurare Widget";
+"widget.guide.nav.title" = "Ghid Widget";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Apasă lung pe ecranul de start";
+"widget.guide.step1.description" = "Apasă și ține apăsat pe o zonă goală a ecranului de start până când aplicațiile încep să tremure.";
+"widget.guide.step2.title" = "Atinge butonul +";
+"widget.guide.step2.description" = "Atinge butonul \"+\" în colțul din stânga sus al ecranului.";
+"widget.guide.step3.title" = "Caută Gulp";
+"widget.guide.step3.description" = "În galeria de widget-uri, caută \"Gulp\" sau \"Apă\".";
+"widget.guide.step4.title" = "Alege dimensiunea widget-ului";
+"widget.guide.step4.description" = "Selectează dimensiunea preferată a widget-ului:\n• Mic: Arată consumul de apă și progresul\n• Mediu: Include butoane de adăugare rapidă";
+"widget.guide.step5.title" = "Adaugă pe ecranul de start";
+"widget.guide.step5.description" = "Atinge \"Adaugă Widget\" și poziționează-l unde dorești.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Widget ecran de blocare";
+"widget.guide.lockscreen.step1.title" = "Apasă lung pe ecranul de blocare";
+"widget.guide.lockscreen.step1.description" = "Apasă și ține apăsat pe ecranul de blocare și atinge \"Personalizează\".";
+"widget.guide.lockscreen.step2.title" = "Selectează zona widget-ului";
+"widget.guide.lockscreen.step2.description" = "Atinge zona widget-ului de deasupra sau de sub oră.";
+"widget.guide.lockscreen.step3.title" = "Adaugă widget Gulp";
+"widget.guide.lockscreen.step3.description" = "Caută \"Gulp\" și selectează stilul de widget preferat.";
+
+// Settings
+"settings.title" = "Setări";
+"settings.subtitle" = "Personalizează-ți experiența";
+"settings.section.personal" = "Personal";
+"settings.section.app" = "Setări aplicație";
+"settings.section.support" = "Suport";
+"settings.section.info" = "Info";
+"settings.profile" = "Setări profil";
+"settings.goal" = "Obiectiv zilnic";
+"settings.quickbuttons" = "Setări butoane rapide";
+"settings.notification" = "Memento apă";
+"settings.widget.guide" = "Ghid configurare Widget";
+"settings.review" = "Lasă o recenzie";
+"settings.contact" = "Contactează-ne";
+"settings.version" = "Versiune";
+
+// Profile
+"profile.title" = "Setări profil";
+"profile.healthkit.title" = "Sincronizare Apple Health";
+"profile.healthkit.description" = "Preia automat greutatea din aplicația Sănătate";
+"profile.weight" = "Greutate";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Aport zilnic recomandat";
+"profile.recommended.description" = "Formula Greutate × 33ml";
+"profile.apply.button" = "Aplică ca obiectiv zilnic";
+"profile.apply.success.title" = "Obiectiv actualizat";
+"profile.apply.success.message" = "Obiectivul zilnic setat la %@ml.";
+
+// Notification Settings
+"notification.enable" = "Activează notificările";
+"notification.time.start" = "Ora de început";
+"notification.time.end" = "Ora de sfârșit";
+"notification.interval" = "Interval";
+"notification.weekdays" = "Zile";
+"notification.custom.times" = "Ore personalizate";
+"notification.custom.add" = "Adaugă oră";
+"notification.message.info" = "Notificările vor fi trimise cu mesaje diferite";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Anulează";
+"common.save" = "Salvează";
+"common.delete" = "Șterge";
+"common.done" = "Gata";
+
+// Contact
+"contact.title" = "Contact";
+"contact.message" = "Te rugăm să ne contactezi la feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Susține dezvoltatorul";
+"ad.confirm.title" = "Susține dezvoltatorul";
+"ad.confirm.message" = "O reclamă va fi afișată. Vizionarea ajută la susținerea dezvoltatorului!";
+"ad.loading.title" = "Te rugăm așteaptă";
+"ad.loading.message" = "Se încarcă reclama. Te rugăm încearcă din nou într-un moment.";
+"ad.thanks.title" = "Mulțumesc!";
+"ad.thanks.message" = "Mulțumesc că susții dezvoltatorul 💙";
+
+// App Guide
+"settings.app.guide" = "Ghid funcții aplicație";
+"appguide.title" = "Ghid Gulp";
+"appguide.subtitle" = "Descoperă toate funcțiile";
+
+// App Guide - Home
+"appguide.home.title" = "Tab Astăzi";
+"appguide.home.feature1.title" = "Urmărește consumul de apă";
+"appguide.home.feature1.desc" = "Atinge butonul pentru a înregistra consumul de apă. Progresul se actualizează în timp real.";
+"appguide.home.feature2.title" = "Butoane rapide";
+"appguide.home.feature2.desc" = "Setează cantitățile consumate frecvent ca butoane rapide pentru înregistrare cu o singură atingere.";
+"appguide.home.feature3.title" = "Setează-ți obiectivul";
+"appguide.home.feature3.desc" = "Setează obiectivul zilnic de consum de apă. Recomandări bazate pe greutate sunt disponibile.";
+"appguide.home.feature4.title" = "Mod scădere";
+"appguide.home.feature4.desc" = "Comută la modul de scădere pentru a corecta greșelile din înregistrările de consum.";
+
+// App Guide - History
+"appguide.history.title" = "Tab Istoric";
+"appguide.history.feature1.title" = "Vizualizare calendar";
+"appguide.history.feature1.desc" = "Vezi realizările tale lunare dintr-o privire. Zilele de atingere a obiectivului sunt evidențiate.";
+"appguide.history.feature2.title" = "Vizualizare listă";
+"appguide.history.feature2.desc" = "Verifică toate înregistrările în ordine cronologică cu progresul pentru fiecare zi.";
+"appguide.history.feature3.title" = "Vizualizare cronologie";
+"appguide.history.feature3.desc" = "Vezi înregistrările grupate pe lună în format cronologie.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Înregistrare rapidă";
+"appguide.watch.feature1.desc" = "Înregistrează consumul de apă direct de pe ceas. Butoane rapide pentru 150ml, 250ml, 300ml și 500ml.";
+"appguide.watch.feature2.title" = "Sincronizare în timp real";
+"appguide.watch.feature2.desc" = "Se sincronizează cu iPhone-ul tău în timp real pentru a-ți menține înregistrările mereu actualizate.";
+"appguide.watch.feature3.title" = "Complicații";
+"appguide.watch.feature3.desc" = "Adaugă o complicație pe cadranul ceasului pentru a-ți verifica progresul dintr-o privire.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widget-uri";
+"appguide.widget.feature1.title" = "Widget ecran de start";
+"appguide.widget.feature1.desc" = "Adaugă un widget pe ecranul de start pentru verificări rapide ale progresului. Dimensiuni mică, medie și mare disponibile.";
+"appguide.widget.feature2.title" = "Widget ecran de blocare";
+"appguide.widget.feature2.desc" = "Verifică consumul zilnic de apă direct de pe ecranul de blocare.";
+"appguide.widget.feature3.title" = "Butoane interactive";
+"appguide.widget.feature3.desc" = "Atinge butoanele de pe widget-urile medii/mari pentru a adăuga apă fără a deschide aplicația.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Notificări";
+"appguide.notification.feature1.title" = "Intervale personalizate";
+"appguide.notification.feature1.desc" = "Primește memento-uri la intervale de 30 de minute, 1 oră, 2 ore sau 3 ore.";
+"appguide.notification.feature2.title" = "Selectare zile";
+"appguide.notification.feature2.desc" = "Alege în ce zile ale săptămânii vrei să primești notificări.";
+"appguide.notification.feature3.title" = "Mesaje motivaționale";
+"appguide.notification.feature3.desc" = "Primește diverse mesaje motivaționale pentru a te ajuta să-ți construiești obiceiul de hidratare.";
+
+// App Guide - Health
+"appguide.health.title" = "Integrare Sănătate";
+"appguide.health.feature1.title" = "Recomandări bazate pe greutate";
+"appguide.health.feature1.desc" = "Importă greutatea din aplicația Sănătate pentru a calcula recomandări personalizate de consum.";
+"appguide.health.feature2.title" = "Salvează în Sănătate";
+"appguide.health.feature2.desc" = "Înregistrările tale de consum de apă sunt salvate automat în aplicația Sănătate.";
+
+// Tab Bar
+"tab.today" = "Astăzi";
+"tab.history" = "Istoric";
+"tab.settings" = "Setări";
+
+// Home
+"home.goal" = "Obiectiv %@ml";
+"home.goal.achieved" = "Obiectivul de azi atins!";
+"home.goal.remaining" = "Încă %@ pahare pentru a-ți atinge obiectivul!";
+"home.quick.add" = "Adăugare rapidă";
+"home.quick.subtract" = "Scade";
+"home.edit" = "Editează";
+"home.goal.setting.title" = "Setează obiectiv";
+"home.goal.save" = "Salvează";
+"home.goal.min" = "1.000ml";
+"home.goal.max" = "4.000ml";
+"home.goal.cancel" = "Anulează";
+"home.quickbutton.title" = "Butoane adăugare rapidă";
+"home.quickbutton.current" = "Butoane curente";
+"home.quickbutton.add.section" = "Adaugă buton nou";
+"home.quickbutton.placeholder" = "Cantitate (ml)";
+"home.quickbutton.add" = "Adaugă";
+"home.quickbutton.reset" = "Resetează la implicit";
+"home.adjustment.title" = "Ajustează consumul";
+"home.adjustment.done" = "Gata";
+"home.adjustment.reset" = "Resetează înregistrarea de azi";
+"home.adjustment.reset.confirm" = "Resetezi consumul de apă de azi?";
+"home.adjustment.reset.button" = "Resetează";
+"home.adjustment.reset.message" = "Această acțiune nu poate fi anulată.";
+
+// Notification Banner
+"home.notification.banner.title" = "Activează notificările";
+"home.notification.banner.description" = "Primește memento-uri să rămâi hidratat";
+"home.notification.banner.settings" = "Setări";
+
+// History
+"history.title" = "Istoric";
+"history.mode.calendar" = "Calendar";
+"history.mode.list" = "Listă";
+"history.mode.timeline" = "Cronologie";
+"history.month.summary" = "Luna aceasta: %@ zile atinse";
+"history.legend.today" = "Astăzi";
+"history.legend.selected" = "Selectat";
+"history.legend.achieved" = "Atins";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ zile atinse";
+"history.record.goal" = "Obiectiv %@ml";
+"history.card.goal" = "Obiectiv";
+"history.card.intake" = "Consum";
+"history.card.achieved" = "Atins! ✅";
+"history.label.achieved" = "Atins";
+
+// Widget
+"widget.hydration.tracker" = "Tracker hidratare";
+"widget.current" = "Curent";
+"widget.goal" = "Obiectiv";
+"widget.current.hydration" = "Hidratare curentă";
+"widget.todays.hydration" = "Hidratarea de azi";
+"widget.motivation.achieved" = "Obiectiv atins! Treabă bună! 🎉";
+"widget.motivation.almost" = "Aproape ai ajuns! Continuă! 🚀";
+"widget.motivation.halfway" = "Te descurci grozav! 💧";
+"widget.motivation.start" = "E timpul să te hidratezi! 🥤";
+
+// Watch
+"watch.add.water" = "Adaugă apă";
+"watch.custom.input" = "Introducere personalizată";
+"watch.add" = "Adaugă";
+
+// Update
+"update.required.title" = "Actualizare necesară";
+"update.available.title" = "Actualizare disponibilă";
+"update.required.message" = "O nouă versiune a fost lansată. Te rugăm actualizează pentru a continua să folosești aplicația.";
+"update.available.message" = "O nouă versiune este disponibilă. Vrei să actualizezi acum?";
+"update.later" = "Mai târziu";
+"update.now" = "Actualizează";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "E timpul să bei apă! 💧";
+"notification.message.2" = "Nu uita să te hidratezi~ 🌊";
+"notification.message.3" = "Începe-ți ziua sănătoasă cu apă! ☀️";
+"notification.message.4" = "Bea înainte să simți sete 🥤";
+"notification.message.5" = "Gulp gulp și azi! 💪";
+"notification.message.6" = "Un pahar de apă spală oboseala 🧘";
+"notification.message.7" = "Secretul pielii strălucitoare: apă! ✨";
+"notification.message.8" = "Concentrare SUS! Ce zici de un pahar de apă? 🧠";
+"notification.message.9" = "Așteaptă! Bea mai întâi puțină apă 🚰";
+"notification.message.10" = "Corpul tău așteaptă apă 🌿";
+
+// Weekdays
+"weekday.sun" = "Dum";
+"weekday.mon" = "Lun";
+"weekday.tue" = "Mar";
+"weekday.wed" = "Mie";
+"weekday.thu" = "Joi";
+"weekday.fri" = "Vin";
+"weekday.sat" = "Sâm";
+
+// Intervals
+"interval.30min" = "30 min";
+"interval.1hour" = "1 oră";
+"interval.2hours" = "2 ore";
+"interval.3hours" = "3 ore";
+
+// Notification Settings
+"notification.settings.title" = "Setări notificări";
+"notification.settings.enable" = "Activează notificările";
+"notification.settings.timerange" = "Interval orar notificări";
+"notification.settings.interval" = "Interval notificări";
+"notification.settings.weekdays" = "Selectează zile";
+"notification.settings.custom" = "Ore personalizate (înlocuiește intervalul)";
+"notification.settings.starttime" = "Ora de început";
+"notification.settings.endtime" = "Ora de sfârșit";
+"notification.settings.addtime" = "Adaugă oră";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Consum apă";
+"complication.description" = "Verifică cât de multă apă ai băut astăzi.";
+
+// Accessibility
+"accessibility.home.current" = "Consum curent %d mililitri";
+"accessibility.home.goal" = "Obiectiv zilnic %d mililitri";
+"accessibility.home.goal.hint" = "Atingere dublă pentru a schimba obiectivul";
+"accessibility.home.add" = "Adaugă %d mililitri";
+"accessibility.home.add.hint" = "Atingere dublă pentru a adăuga apă";
+"accessibility.home.subtract" = "Scade %d mililitri";
+"accessibility.home.subtract.hint" = "Atingere dublă pentru a scădea apă";
+"accessibility.home.mode.add" = "Mod adăugare activ";
+"accessibility.home.mode.subtract" = "Mod scădere activ";
+"accessibility.home.mode.hint" = "Atingere dublă pentru a comuta între modul adăugare și scădere";
+"accessibility.history.summary" = "Luna aceasta %d zile atinse";
+"accessibility.history.achieved" = "Obiectiv atins";
+"accessibility.history.progress" = "%@ din obiectiv";

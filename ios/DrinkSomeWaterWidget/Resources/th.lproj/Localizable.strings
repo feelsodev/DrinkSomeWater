@@ -1,0 +1,17 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWidget
+
+  Thai Localization
+*/
+
+// Widget
+"widget.hydration.tracker" = "ตัวติดตามการดื่มน้ำ";
+"widget.current" = "ปัจจุบัน";
+"widget.goal" = "เป้าหมาย";
+"widget.current.hydration" = "การดื่มน้ำปัจจุบัน";
+"widget.todays.hydration" = "การดื่มน้ำวันนี้";
+"widget.motivation.achieved" = "บรรลุเป้าหมาย! เยี่ยมมาก! 🎉";
+"widget.motivation.almost" = "ใกล้แล้ว! สู้ต่อไป! 🚀";
+"widget.motivation.halfway" = "ทำได้ดีมาก! 💧";
+"widget.motivation.start" = "ถึงเวลาดื่มน้ำแล้ว! 🥤";

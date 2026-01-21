@@ -1,0 +1,310 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater - Hindi
+*/
+
+// Main
+"You achieved " = "आपने हासिल किया ";
+"TodaySuffix" = " आज!!";
+
+// Calendar
+"Today" = "आज";
+"Success" = "सफलता";
+"Selected" = "चयनित";
+"You can check the history when you select a success date." = "सफलता की तारीख चुनने पर आप इतिहास देख सकते हैं।";
+"Goal of this month" = "इस महीने का लक्ष्य";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "अलार्म";
+"Review" = "समीक्षा";
+"Contact Us" = "संपर्क करें";
+"Version" = "संस्करण";
+"License" = "लाइसेंस";
+"Set" = "सेट करें";
+
+// Onboarding
+"onboarding.skip" = "छोड़ें";
+"onboarding.next" = "अगला";
+"onboarding.start" = "शुरू करें";
+"onboarding.intro.title" = "Gulp में आपका स्वागत है";
+"onboarding.intro.description" = "अपने दैनिक पानी की खपत को ट्रैक करें और हाइड्रेटेड रहें।\n\nपानी आपके स्वास्थ्य के लिए आवश्यक है - यह ऊर्जा बनाए रखने, फोकस में सुधार करने और आपके शरीर को बेहतर ढंग से काम करने में मदद करता है।";
+"onboarding.goal.title" = "अपना लक्ष्य निर्धारित करें";
+"onboarding.goal.description" = "आप रोजाना कितना पानी पीना चाहते हैं?\nअपना लक्ष्य निर्धारित करने के लिए स्लाइडर को समायोजित करें।";
+"onboarding.healthkit.title" = "स्वास्थ्य से जुड़ें";
+"onboarding.healthkit.description" = "Apple Health के साथ सिंक करें:\n\n• वजन के आधार पर व्यक्तिगत पानी सेवन की गणना करें\n• स्वास्थ्य ऐप में पानी के रिकॉर्ड सहेजें\n• अन्य स्वास्थ्य डेटा के साथ प्रगति ट्रैक करें";
+"onboarding.healthkit.button" = "Apple Health से जुड़ें";
+"onboarding.healthkit.connected" = "जुड़ा हुआ";
+"onboarding.notification.title" = "याद दिलाएं";
+"onboarding.notification.description" = "पूरे दिन दोस्ताना अनुस्मारक प्राप्त करने के लिए सूचनाएं सक्षम करें।\n\nहम आपको हाइड्रेशन लक्ष्यों को प्राप्त करने में मदद करने के लिए प्रेरक संदेश भेजेंगे।";
+"onboarding.notification.button" = "सूचनाएं सक्षम करें";
+"onboarding.notification.enabled" = "सक्षम";
+"onboarding.widget.title" = "विजेट जोड़ें";
+"onboarding.widget.description" = "त्वरित पहुंच के लिए होम स्क्रीन पर विजेट जोड़ें:\n\n1. होम स्क्रीन को देर तक दबाएं\n2. + बटन पर टैप करें\n3. 'Gulp' खोजें\n4. अपना पसंदीदा विजेट आकार चुनें";
+"onboarding.widget.button" = "शुरू करें";
+
+// Widget Guide
+"widget.today" = "आज";
+"widget.guide.title" = "विजेट सेटअप गाइड";
+"widget.guide.nav.title" = "विजेट गाइड";
+"widget.guide.step1.title" = "होम स्क्रीन को देर तक दबाएं";
+"widget.guide.step1.description" = "ऐप्स हिलने तक होम स्क्रीन के खाली क्षेत्र पर दबाएं और होल्ड करें।";
+"widget.guide.step2.title" = "+ बटन पर टैप करें";
+"widget.guide.step2.description" = "स्क्रीन के ऊपरी बाएं कोने में \"+\" बटन पर टैप करें।";
+"widget.guide.step3.title" = "Gulp खोजें";
+"widget.guide.step3.description" = "विजेट गैलरी में, \"Gulp\" या \"पानी\" खोजें।";
+"widget.guide.step4.title" = "विजेट का आकार चुनें";
+"widget.guide.step4.description" = "अपना पसंदीदा विजेट आकार चुनें:\n• छोटा: पानी सेवन और प्रगति दिखाता है\n• मध्यम: त्वरित जोड़ बटन शामिल";
+"widget.guide.step5.title" = "होम स्क्रीन पर जोड़ें";
+"widget.guide.step5.description" = "\"विजेट जोड़ें\" पर टैप करें और जहां चाहें वहां रखें।";
+"widget.guide.lockscreen.header" = "लॉक स्क्रीन विजेट";
+"widget.guide.lockscreen.step1.title" = "लॉक स्क्रीन को देर तक दबाएं";
+"widget.guide.lockscreen.step1.description" = "लॉक स्क्रीन को दबाएं और होल्ड करें और \"कस्टमाइज़\" पर टैप करें।";
+"widget.guide.lockscreen.step2.title" = "विजेट क्षेत्र चुनें";
+"widget.guide.lockscreen.step2.description" = "समय के ऊपर या नीचे विजेट क्षेत्र पर टैप करें।";
+"widget.guide.lockscreen.step3.title" = "Gulp विजेट जोड़ें";
+"widget.guide.lockscreen.step3.description" = "\"Gulp\" खोजें और अपना पसंदीदा विजेट स्टाइल चुनें।";
+
+// Settings
+"settings.title" = "सेटिंग्स";
+"settings.subtitle" = "अपना अनुभव कस्टमाइज़ करें";
+"settings.section.personal" = "व्यक्तिगत";
+"settings.section.app" = "ऐप सेटिंग्स";
+"settings.section.support" = "सहायता";
+"settings.section.info" = "जानकारी";
+"settings.profile" = "प्रोफ़ाइल सेटिंग्स";
+"settings.goal" = "दैनिक लक्ष्य";
+"settings.quickbuttons" = "त्वरित बटन सेटिंग्स";
+"settings.notification" = "पानी अनुस्मारक";
+"settings.widget.guide" = "विजेट सेटअप गाइड";
+"settings.review" = "समीक्षा लिखें";
+"settings.contact" = "संपर्क करें";
+"settings.version" = "संस्करण";
+
+// Profile
+"profile.title" = "प्रोफ़ाइल सेटिंग्स";
+"profile.healthkit.title" = "Apple Health सिंक";
+"profile.healthkit.description" = "स्वास्थ्य ऐप से वजन स्वचालित रूप से प्राप्त करें";
+"profile.weight" = "वजन";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "दैनिक अनुशंसित सेवन";
+"profile.recommended.description" = "वजन × 33ml फॉर्मूला";
+"profile.apply.button" = "दैनिक लक्ष्य के रूप में लागू करें";
+"profile.apply.success.title" = "लक्ष्य अपडेट किया गया";
+"profile.apply.success.message" = "दैनिक लक्ष्य %@ml पर सेट किया गया।";
+
+// Notification Settings
+"notification.enable" = "सूचनाएं सक्षम करें";
+"notification.time.start" = "प्रारंभ समय";
+"notification.time.end" = "समाप्ति समय";
+"notification.interval" = "अंतराल";
+"notification.weekdays" = "दिन";
+"notification.custom.times" = "कस्टम समय";
+"notification.custom.add" = "समय जोड़ें";
+"notification.message.info" = "विभिन्न संदेशों के साथ सूचनाएं भेजी जाएंगी";
+
+// Common
+"common.confirm" = "ठीक है";
+"common.cancel" = "रद्द करें";
+"common.save" = "सहेजें";
+"common.delete" = "हटाएं";
+"common.done" = "हो गया";
+
+// Contact
+"contact.title" = "संपर्क";
+"contact.message" = "कृपया feelsodev@gmail.com पर संपर्क करें";
+
+// Ad
+"settings.support.developer" = "डेवलपर का समर्थन करें";
+"ad.confirm.title" = "डेवलपर का समर्थन करें";
+"ad.confirm.message" = "एक विज्ञापन दिखाया जाएगा। देखने से डेवलपर को मदद मिलती है!";
+"ad.loading.title" = "कृपया प्रतीक्षा करें";
+"ad.loading.message" = "विज्ञापन लोड हो रहा है। कृपया थोड़ी देर में पुनः प्रयास करें।";
+"ad.thanks.title" = "धन्यवाद!";
+"ad.thanks.message" = "डेवलपर का समर्थन करने के लिए धन्यवाद 💙";
+
+// App Guide
+"settings.app.guide" = "ऐप फीचर गाइड";
+"appguide.title" = "Gulp गाइड";
+"appguide.subtitle" = "सभी सुविधाएं खोजें";
+"appguide.home.title" = "आज टैब";
+"appguide.home.feature1.title" = "पानी सेवन ट्रैक करें";
+"appguide.home.feature1.desc" = "अपना पानी सेवन रिकॉर्ड करने के लिए बटन पर टैप करें। प्रगति रियल-टाइम में अपडेट होती है।";
+"appguide.home.feature2.title" = "त्वरित बटन";
+"appguide.home.feature2.desc" = "एक-टैप रिकॉर्डिंग के लिए अपनी अक्सर पी जाने वाली मात्रा को त्वरित बटन के रूप में सेट करें।";
+"appguide.home.feature3.title" = "लक्ष्य सेट करें";
+"appguide.home.feature3.desc" = "अपना दैनिक पानी सेवन लक्ष्य सेट करें। वजन-आधारित सिफारिशें उपलब्ध हैं।";
+"appguide.home.feature4.title" = "घटाव मोड";
+"appguide.home.feature4.desc" = "अपने सेवन रिकॉर्ड में किसी भी गलती को ठीक करने के लिए घटाव मोड पर स्विच करें।";
+"appguide.history.title" = "इतिहास टैब";
+"appguide.history.feature1.title" = "कैलेंडर व्यू";
+"appguide.history.feature1.desc" = "अपनी मासिक उपलब्धियां एक नज़र में देखें। लक्ष्य पूर्ण दिन हाइलाइट किए जाते हैं।";
+"appguide.history.feature2.title" = "सूची व्यू";
+"appguide.history.feature2.desc" = "प्रत्येक दिन की प्रगति के साथ कालानुक्रमिक क्रम में सभी रिकॉर्ड देखें।";
+"appguide.history.feature3.title" = "टाइमलाइन व्यू";
+"appguide.history.feature3.desc" = "टाइमलाइन प्रारूप में महीने के अनुसार समूहीकृत रिकॉर्ड देखें।";
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "त्वरित रिकॉर्डिंग";
+"appguide.watch.feature1.desc" = "अपनी घड़ी से सीधे पानी सेवन रिकॉर्ड करें। 150ml, 250ml, 300ml और 500ml के लिए त्वरित बटन।";
+"appguide.watch.feature2.title" = "रियल-टाइम सिंक";
+"appguide.watch.feature2.desc" = "अपने रिकॉर्ड को हमेशा अपडेट रखने के लिए iPhone के साथ रियल-टाइम में सिंक करें।";
+"appguide.watch.feature3.title" = "कॉम्प्लिकेशन";
+"appguide.watch.feature3.desc" = "अपनी प्रगति एक नज़र में देखने के लिए वॉच फेस पर कॉम्प्लिकेशन जोड़ें।";
+"appguide.widget.title" = "विजेट";
+"appguide.widget.feature1.title" = "होम स्क्रीन विजेट";
+"appguide.widget.feature1.desc" = "त्वरित प्रगति जांच के लिए होम स्क्रीन पर विजेट जोड़ें। छोटा, मध्यम और बड़ा आकार उपलब्ध।";
+"appguide.widget.feature2.title" = "लॉक स्क्रीन विजेट";
+"appguide.widget.feature2.desc" = "लॉक स्क्रीन से सीधे अपना दैनिक पानी सेवन देखें।";
+"appguide.widget.feature3.title" = "इंटरैक्टिव बटन";
+"appguide.widget.feature3.desc" = "ऐप खोले बिना पानी जोड़ने के लिए मध्यम/बड़े विजेट पर बटन टैप करें।";
+"appguide.notification.title" = "सूचनाएं";
+"appguide.notification.feature1.title" = "कस्टम अंतराल";
+"appguide.notification.feature1.desc" = "30-मिनट, 1-घंटे, 2-घंटे या 3-घंटे के अंतराल पर अनुस्मारक प्राप्त करें।";
+"appguide.notification.feature2.title" = "दिन चयन";
+"appguide.notification.feature2.desc" = "चुनें कि सप्ताह के किन दिनों में आप सूचनाएं प्राप्त करना चाहते हैं।";
+"appguide.notification.feature3.title" = "प्रेरक संदेश";
+"appguide.notification.feature3.desc" = "अपनी हाइड्रेशन आदत बनाने में मदद के लिए विभिन्न प्रेरक संदेश प्राप्त करें।";
+"appguide.health.title" = "स्वास्थ्य एकीकरण";
+"appguide.health.feature1.title" = "वजन-आधारित सिफारिशें";
+"appguide.health.feature1.desc" = "व्यक्तिगत सेवन सिफारिशों की गणना के लिए स्वास्थ्य ऐप से वजन आयात करें।";
+"appguide.health.feature2.title" = "स्वास्थ्य में सहेजें";
+"appguide.health.feature2.desc" = "आपके पानी सेवन रिकॉर्ड स्वचालित रूप से स्वास्थ्य ऐप में सहेजे जाते हैं।";
+
+// Tab Bar
+"tab.today" = "आज";
+"tab.history" = "इतिहास";
+"tab.settings" = "सेटिंग्स";
+
+// Home
+"home.goal" = "लक्ष्य %@ml";
+"home.goal.achieved" = "आज का लक्ष्य प्राप्त!";
+"home.goal.remaining" = "लक्ष्य तक %@ और गिलास!";
+"home.quick.add" = "त्वरित जोड़";
+"home.quick.subtract" = "घटाएं";
+"home.edit" = "संपादित करें";
+"home.goal.setting.title" = "लक्ष्य सेट करें";
+"home.goal.save" = "सहेजें";
+"home.goal.min" = "1,000ml";
+"home.goal.max" = "4,000ml";
+"home.goal.cancel" = "रद्द करें";
+"home.quickbutton.title" = "त्वरित जोड़ बटन";
+"home.quickbutton.current" = "वर्तमान बटन";
+"home.quickbutton.add.section" = "नया बटन जोड़ें";
+"home.quickbutton.placeholder" = "मात्रा (ml)";
+"home.quickbutton.add" = "जोड़ें";
+"home.quickbutton.reset" = "डिफ़ॉल्ट पर रीसेट करें";
+"home.adjustment.title" = "सेवन समायोजित करें";
+"home.adjustment.done" = "हो गया";
+"home.adjustment.reset" = "आज का रिकॉर्ड रीसेट करें";
+"home.adjustment.reset.confirm" = "आज का पानी सेवन रीसेट करें?";
+"home.adjustment.reset.button" = "रीसेट";
+"home.adjustment.reset.message" = "यह क्रिया पूर्ववत नहीं की जा सकती।";
+
+// Notification Banner
+"home.notification.banner.title" = "सूचनाएं सक्षम करें";
+"home.notification.banner.description" = "हाइड्रेटेड रहने के लिए अनुस्मारक प्राप्त करें";
+"home.notification.banner.settings" = "सेटिंग्स";
+
+// History
+"history.title" = "इतिहास";
+"history.mode.calendar" = "कैलेंडर";
+"history.mode.list" = "सूची";
+"history.mode.timeline" = "टाइमलाइन";
+"history.month.summary" = "इस महीने: %@ दिन प्राप्त";
+"history.legend.today" = "आज";
+"history.legend.selected" = "चयनित";
+"history.legend.achieved" = "प्राप्त";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ दिन प्राप्त";
+"history.record.goal" = "लक्ष्य %@ml";
+"history.card.goal" = "लक्ष्य";
+"history.card.intake" = "सेवन";
+"history.card.achieved" = "प्राप्त! ✅";
+"history.label.achieved" = "प्राप्त";
+
+// Widget
+"widget.hydration.tracker" = "हाइड्रेशन ट्रैकर";
+"widget.current" = "वर्तमान";
+"widget.goal" = "लक्ष्य";
+"widget.current.hydration" = "वर्तमान हाइड्रेशन";
+"widget.todays.hydration" = "आज का हाइड्रेशन";
+"widget.motivation.achieved" = "लक्ष्य प्राप्त! शाबाश! 🎉";
+"widget.motivation.almost" = "लगभग हो गया! जारी रखें! 🚀";
+"widget.motivation.halfway" = "आप बढ़िया कर रहे हैं! 💧";
+"widget.motivation.start" = "पानी पीने का समय! 🥤";
+
+// Watch
+"watch.add.water" = "पानी जोड़ें";
+"watch.custom.input" = "कस्टम इनपुट";
+"watch.add" = "जोड़ें";
+
+// Update
+"update.required.title" = "अपडेट आवश्यक";
+"update.available.title" = "अपडेट उपलब्ध";
+"update.required.message" = "एक नया संस्करण जारी किया गया है। ऐप का उपयोग जारी रखने के लिए कृपया अपडेट करें।";
+"update.available.message" = "एक नया संस्करण उपलब्ध है। क्या आप अभी अपडेट करना चाहेंगे?";
+"update.later" = "बाद में";
+"update.now" = "अपडेट";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "पानी पीने का समय! 💧";
+"notification.message.2" = "हाइड्रेट होना न भूलें~ 🌊";
+"notification.message.3" = "पानी के साथ स्वस्थ दिन शुरू करें! ☀️";
+"notification.message.4" = "प्यास लगने से पहले पिएं 🥤";
+"notification.message.5" = "आज भी गटक गटक! 💪";
+"notification.message.6" = "एक गिलास पानी थकान दूर करता है 🧘";
+"notification.message.7" = "चमकती त्वचा का राज: पानी! ✨";
+"notification.message.8" = "फोकस UP! एक गिलास पानी? 🧠";
+"notification.message.9" = "रुको! पहले पानी 🚰";
+"notification.message.10" = "आपका शरीर पानी का इंतजार कर रहा है 🌿";
+
+// Weekdays
+"weekday.sun" = "रवि";
+"weekday.mon" = "सोम";
+"weekday.tue" = "मंगल";
+"weekday.wed" = "बुध";
+"weekday.thu" = "गुरु";
+"weekday.fri" = "शुक्र";
+"weekday.sat" = "शनि";
+
+// Intervals
+"interval.30min" = "30 मिनट";
+"interval.1hour" = "1 घंटा";
+"interval.2hours" = "2 घंटे";
+"interval.3hours" = "3 घंटे";
+
+// Notification Settings
+"notification.settings.title" = "सूचना सेटिंग्स";
+"notification.settings.enable" = "सूचनाएं सक्षम करें";
+"notification.settings.timerange" = "सूचना समय सीमा";
+"notification.settings.interval" = "सूचना अंतराल";
+"notification.settings.weekdays" = "दिन चुनें";
+"notification.settings.custom" = "कस्टम समय (अंतराल को ओवरराइड करता है)";
+"notification.settings.starttime" = "प्रारंभ समय";
+"notification.settings.endtime" = "समाप्ति समय";
+"notification.settings.addtime" = "समय जोड़ें";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "पानी सेवन";
+"complication.description" = "देखें आज आपने कितना पानी पिया।";
+
+// Accessibility
+"accessibility.home.current" = "वर्तमान सेवन %d मिलीलीटर";
+"accessibility.home.goal" = "दैनिक लक्ष्य %d मिलीलीटर";
+"accessibility.home.goal.hint" = "लक्ष्य बदलने के लिए डबल टैप करें";
+"accessibility.home.add" = "%d मिलीलीटर जोड़ें";
+"accessibility.home.add.hint" = "पानी जोड़ने के लिए डबल टैप करें";
+"accessibility.home.subtract" = "%d मिलीलीटर घटाएं";
+"accessibility.home.subtract.hint" = "पानी घटाने के लिए डबल टैप करें";
+"accessibility.home.mode.add" = "जोड़ें मोड सक्रिय";
+"accessibility.home.mode.subtract" = "घटाएं मोड सक्रिय";
+"accessibility.home.mode.hint" = "जोड़ें और घटाएं मोड के बीच टॉगल करने के लिए डबल टैप करें";
+"accessibility.history.summary" = "इस महीने %d दिन प्राप्त";
+"accessibility.history.achieved" = "लक्ष्य प्राप्त";
+"accessibility.history.progress" = "लक्ष्य का %@";

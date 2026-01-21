@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Hungarian Localization
+*/
+
+// Main
+"You achieved " = "Elérted a ";
+"TodaySuffix" = " ma!!";
+
+// Calendar
+"Today" = "Ma";
+"Success" = "Siker";
+"Selected" = "Kiválasztva";
+"You can check the history when you select a success date."
+= "Ellenőrizheted az előzményeket, ha kiválasztasz egy sikeres napot.";
+"Goal of this month" = "E hónap célja";
+"MMMM, YYYY" = "yyyy. MMMM";
+
+// Information
+"Alarm" = "Ébresztő";
+"Review" = "Értékelés";
+"Contact Us" = "Kapcsolat";
+"Version" = "Verzió";
+"License" = "Licenc";
+"Set" = "Beállítás";
+
+// Onboarding
+"onboarding.skip" = "Kihagyás";
+"onboarding.next" = "Következő";
+"onboarding.start" = "Kezdés";
+"onboarding.intro.title" = "Üdvözöl a Gulp";
+"onboarding.intro.description" = "Kövesd nyomon a napi vízfogyasztásodat és maradj hidratált.\n\nA víz elengedhetetlen az egészségedhez – segít fenntartani az energiát, javítja a koncentrációt és optimális állapotban tartja a testedet.";
+"onboarding.goal.title" = "Állítsd be a célodat";
+"onboarding.goal.description" = "Mennyi vizet szeretnél inni naponta?\nÁllítsd be a csúszkát a célod meghatározásához.";
+"onboarding.healthkit.title" = "Egészség összekapcsolása";
+"onboarding.healthkit.description" = "Szinkronizálj az Apple Health-szel:\n\n• Számítsd ki a személyre szabott vízfogyasztást a testsúlyod alapján\n• Mentsd a vízfogyasztási adatokat az Egészség alkalmazásba\n• Kövesd nyomon a haladásodat más egészségügyi adatokkal együtt";
+"onboarding.healthkit.button" = "Apple Health összekapcsolása";
+"onboarding.healthkit.connected" = "Összekapcsolva";
+"onboarding.notification.title" = "Emlékeztetők";
+"onboarding.notification.description" = "Engedélyezd az értesítéseket, hogy barátságos emlékeztetőket kapj a nap folyamán.\n\nMotivációs üzeneteket küldünk, hogy segítsünk elérni a hidratációs céljaidat.";
+"onboarding.notification.button" = "Értesítések engedélyezése";
+"onboarding.notification.enabled" = "Engedélyezve";
+"onboarding.widget.title" = "Widget hozzáadása";
+"onboarding.widget.description" = "Add hozzá a widgetünket a kezdőképernyődhöz a gyors hozzáférés érdekében:\n\n1. Nyomd hosszan a kezdőképernyőt\n2. Érintsd meg a + gombot\n3. Keress rá a 'Gulp'-ra\n4. Válaszd ki a kívánt widget méretet";
+"onboarding.widget.button" = "Kezdés";
+
+// Widget
+"widget.today" = "Ma";
+"widget.guide.title" = "Widget beállítási útmutató";
+"widget.guide.nav.title" = "Widget útmutató";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Nyomd hosszan a kezdőképernyőt";
+"widget.guide.step1.description" = "Nyomj és tarts egy üres területet a kezdőképernyőn, amíg az alkalmazások el nem kezdenek rázkódni.";
+"widget.guide.step2.title" = "Érintsd meg a + gombot";
+"widget.guide.step2.description" = "Érintsd meg a \"+\" gombot a képernyő bal felső sarkában.";
+"widget.guide.step3.title" = "Keress rá a Gulp-ra";
+"widget.guide.step3.description" = "A widget galériában keress rá a \"Gulp\" vagy \"Víz\" kifejezésre.";
+"widget.guide.step4.title" = "Válassz widget méretet";
+"widget.guide.step4.description" = "Válaszd ki a kívánt widget méretet:\n• Kicsi: Vízfogyasztás és haladás megjelenítése\n• Közepes: Gyors hozzáadás gombokkal";
+"widget.guide.step5.title" = "Hozzáadás a kezdőképernyőhöz";
+"widget.guide.step5.description" = "Érintsd meg a \"Widget hozzáadása\" gombot és helyezd el, ahová szeretnéd.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Zárolási képernyő widget";
+"widget.guide.lockscreen.step1.title" = "Nyomd hosszan a zárolási képernyőt";
+"widget.guide.lockscreen.step1.description" = "Nyomj és tarts a zárolási képernyőn, majd érintsd meg a \"Testreszabás\" gombot.";
+"widget.guide.lockscreen.step2.title" = "Válaszd ki a widget területet";
+"widget.guide.lockscreen.step2.description" = "Érintsd meg a widget területet az idő felett vagy alatt.";
+"widget.guide.lockscreen.step3.title" = "Gulp widget hozzáadása";
+"widget.guide.lockscreen.step3.description" = "Keress rá a \"Gulp\"-ra és válaszd ki a kívánt widget stílust.";
+
+// Settings
+"settings.title" = "Beállítások";
+"settings.subtitle" = "Testreszabhatod az élményt";
+"settings.section.personal" = "Személyes";
+"settings.section.app" = "Alkalmazás beállítások";
+"settings.section.support" = "Támogatás";
+"settings.section.info" = "Információ";
+"settings.profile" = "Profil beállítások";
+"settings.goal" = "Napi cél";
+"settings.quickbuttons" = "Gyorsgomb beállítások";
+"settings.notification" = "Víz emlékeztető";
+"settings.widget.guide" = "Widget beállítási útmutató";
+"settings.review" = "Értékelés írása";
+"settings.contact" = "Kapcsolat";
+"settings.version" = "Verzió";
+
+// Profile
+"profile.title" = "Profil beállítások";
+"profile.healthkit.title" = "Apple Health szinkronizálás";
+"profile.healthkit.description" = "Testsúly automatikus lekérése az Egészség alkalmazásból";
+"profile.weight" = "Testsúly";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Napi ajánlott bevitel";
+"profile.recommended.description" = "Testsúly × 33ml képlet";
+"profile.apply.button" = "Alkalmazás napi célként";
+"profile.apply.success.title" = "Cél frissítve";
+"profile.apply.success.message" = "Napi cél beállítva: %@ml.";
+
+// Notification Settings
+"notification.enable" = "Értesítések engedélyezése";
+"notification.time.start" = "Kezdési idő";
+"notification.time.end" = "Befejezési idő";
+"notification.interval" = "Időköz";
+"notification.weekdays" = "Napok";
+"notification.custom.times" = "Egyéni időpontok";
+"notification.custom.add" = "Időpont hozzáadása";
+"notification.message.info" = "Az értesítések különböző üzenetekkel kerülnek kiküldésre";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Mégse";
+"common.save" = "Mentés";
+"common.delete" = "Törlés";
+"common.done" = "Kész";
+
+// Contact
+"contact.title" = "Kapcsolat";
+"contact.message" = "Kérjük, lépj kapcsolatba velünk: feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Fejlesztő támogatása";
+"ad.confirm.title" = "Fejlesztő támogatása";
+"ad.confirm.message" = "Egy hirdetés jelenik meg. A megtekintés segíti a fejlesztő támogatását!";
+"ad.loading.title" = "Kérlek várj";
+"ad.loading.message" = "Hirdetés betöltése. Kérlek próbáld újra egy pillanat múlva.";
+"ad.thanks.title" = "Köszönöm!";
+"ad.thanks.message" = "Köszönöm, hogy támogatod a fejlesztőt 💙";
+
+// App Guide
+"settings.app.guide" = "Alkalmazás funkció útmutató";
+"appguide.title" = "Gulp útmutató";
+"appguide.subtitle" = "Fedezd fel az összes funkciót";
+
+// App Guide - Home
+"appguide.home.title" = "Ma fül";
+"appguide.home.feature1.title" = "Vízfogyasztás követése";
+"appguide.home.feature1.desc" = "Érintsd meg a gombot a vízfogyasztás rögzítéséhez. A haladás valós időben frissül.";
+"appguide.home.feature2.title" = "Gyorsgombok";
+"appguide.home.feature2.desc" = "Állítsd be a gyakran fogyasztott mennyiségeket gyorsgombként az egykattintásos rögzítéshez.";
+"appguide.home.feature3.title" = "Állítsd be a célodat";
+"appguide.home.feature3.desc" = "Állítsd be a napi vízfogyasztási célodat. Testsúly alapú ajánlások elérhetők.";
+"appguide.home.feature4.title" = "Kivonás mód";
+"appguide.home.feature4.desc" = "Válts kivonás módra a beviteli hibák javításához.";
+
+// App Guide - History
+"appguide.history.title" = "Előzmények fül";
+"appguide.history.feature1.title" = "Naptár nézet";
+"appguide.history.feature1.desc" = "Nézd meg a havi eredményeidet egy pillantással. A cél elérési napok ki vannak emelve.";
+"appguide.history.feature2.title" = "Lista nézet";
+"appguide.history.feature2.desc" = "Ellenőrizd az összes bejegyzést időrendi sorrendben az egyes napok haladásával.";
+"appguide.history.feature3.title" = "Idővonal nézet";
+"appguide.history.feature3.desc" = "Nézd meg a bejegyzéseket hónapok szerint csoportosítva idővonal formátumban.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Gyors rögzítés";
+"appguide.watch.feature1.desc" = "Rögzítsd a vízfogyasztásodat közvetlenül az órádról. Gyorsgombok 150ml, 250ml, 300ml és 500ml.";
+"appguide.watch.feature2.title" = "Valós idejű szinkronizálás";
+"appguide.watch.feature2.desc" = "Valós időben szinkronizál az iPhone-oddal, hogy a bejegyzéseid mindig naprakészek legyenek.";
+"appguide.watch.feature3.title" = "Komplikációk";
+"appguide.watch.feature3.desc" = "Adj hozzá komplikációt az óra számlapjához, hogy egy pillantással ellenőrizhesd a haladásodat.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widgetek";
+"appguide.widget.feature1.title" = "Kezdőképernyő widget";
+"appguide.widget.feature1.desc" = "Adj hozzá widgetet a kezdőképernyődhöz a gyors haladás ellenőrzéshez. Kicsi, közepes és nagy méret elérhető.";
+"appguide.widget.feature2.title" = "Zárolási képernyő widget";
+"appguide.widget.feature2.desc" = "Ellenőrizd a napi vízfogyasztásodat közvetlenül a zárolási képernyőről.";
+"appguide.widget.feature3.title" = "Interaktív gombok";
+"appguide.widget.feature3.desc" = "Érintsd meg a közepes/nagy widgetek gombjait víz hozzáadásához az alkalmazás megnyitása nélkül.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Értesítések";
+"appguide.notification.feature1.title" = "Egyéni időközök";
+"appguide.notification.feature1.desc" = "Kapj emlékeztetőket 30 perces, 1 órás, 2 órás vagy 3 órás időközönként.";
+"appguide.notification.feature2.title" = "Nap kiválasztása";
+"appguide.notification.feature2.desc" = "Válaszd ki, mely napokon szeretnél értesítéseket kapni.";
+"appguide.notification.feature3.title" = "Motivációs üzenetek";
+"appguide.notification.feature3.desc" = "Kapj különböző motivációs üzeneteket a hidratációs szokásod kialakításához.";
+
+// App Guide - Health
+"appguide.health.title" = "Egészség integráció";
+"appguide.health.feature1.title" = "Testsúly alapú ajánlások";
+"appguide.health.feature1.desc" = "Importáld a testsúlyodat az Egészség alkalmazásból a személyre szabott beviteli ajánlások kiszámításához.";
+"appguide.health.feature2.title" = "Mentés az Egészségbe";
+"appguide.health.feature2.desc" = "A vízfogyasztási bejegyzéseid automatikusan mentésre kerülnek az Egészség alkalmazásba.";
+
+// Tab Bar
+"tab.today" = "Ma";
+"tab.history" = "Előzmények";
+"tab.settings" = "Beállítások";
+
+// Home
+"home.goal" = "Cél %@ml";
+"home.goal.achieved" = "Mai cél elérve!";
+"home.goal.remaining" = "Még %@ pohár a célod eléréséhez!";
+"home.quick.add" = "Gyors hozzáadás";
+"home.quick.subtract" = "Kivonás";
+"home.edit" = "Szerkesztés";
+"home.goal.setting.title" = "Cél beállítása";
+"home.goal.save" = "Mentés";
+"home.goal.min" = "1 000ml";
+"home.goal.max" = "4 000ml";
+"home.goal.cancel" = "Mégse";
+"home.quickbutton.title" = "Gyors hozzáadás gombok";
+"home.quickbutton.current" = "Jelenlegi gombok";
+"home.quickbutton.add.section" = "Új gomb hozzáadása";
+"home.quickbutton.placeholder" = "Mennyiség (ml)";
+"home.quickbutton.add" = "Hozzáadás";
+"home.quickbutton.reset" = "Alapértelmezés visszaállítása";
+"home.adjustment.title" = "Bevitel módosítása";
+"home.adjustment.done" = "Kész";
+"home.adjustment.reset" = "Mai bejegyzés törlése";
+"home.adjustment.reset.confirm" = "Törli a mai vízfogyasztást?";
+"home.adjustment.reset.button" = "Törlés";
+"home.adjustment.reset.message" = "Ez a művelet nem vonható vissza.";
+
+// Notification Banner
+"home.notification.banner.title" = "Értesítések engedélyezése";
+"home.notification.banner.description" = "Kapj emlékeztetőket a hidratáláshoz";
+"home.notification.banner.settings" = "Beállítások";
+
+// History
+"history.title" = "Előzmények";
+"history.mode.calendar" = "Naptár";
+"history.mode.list" = "Lista";
+"history.mode.timeline" = "Idővonal";
+"history.month.summary" = "Ez a hónap: %@ nap elérve";
+"history.legend.today" = "Ma";
+"history.legend.selected" = "Kiválasztva";
+"history.legend.achieved" = "Elérve";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ nap elérve";
+"history.record.goal" = "Cél %@ml";
+"history.card.goal" = "Cél";
+"history.card.intake" = "Bevitel";
+"history.card.achieved" = "Elérve! ✅";
+"history.label.achieved" = "Elérve";
+
+// Widget
+"widget.hydration.tracker" = "Hidratáció követő";
+"widget.current" = "Jelenlegi";
+"widget.goal" = "Cél";
+"widget.current.hydration" = "Jelenlegi hidratáció";
+"widget.todays.hydration" = "Mai hidratáció";
+"widget.motivation.achieved" = "Cél elérve! Szép munka! 🎉";
+"widget.motivation.almost" = "Majdnem ott vagy! Hajrá! 🚀";
+"widget.motivation.halfway" = "Nagyszerűen haladsz! 💧";
+"widget.motivation.start" = "Ideje hidratálni! 🥤";
+
+// Watch
+"watch.add.water" = "Víz hozzáadása";
+"watch.custom.input" = "Egyéni bevitel";
+"watch.add" = "Hozzáadás";
+
+// Update
+"update.required.title" = "Frissítés szükséges";
+"update.available.title" = "Frissítés elérhető";
+"update.required.message" = "Új verzió jelent meg. Kérjük, frissíts az alkalmazás további használatához.";
+"update.available.message" = "Új verzió elérhető. Szeretnéd most frissíteni?";
+"update.later" = "Később";
+"update.now" = "Frissítés";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Ideje vizet inni! 💧";
+"notification.message.2" = "Ne felejts el hidratálni~ 🌊";
+"notification.message.3" = "Kezdd az egészséges napodat vízzel! ☀️";
+"notification.message.4" = "Igyál, mielőtt megszomjazol 🥤";
+"notification.message.5" = "Gulp gulp ma is! 💪";
+"notification.message.6" = "Egy pohár víz elmossa a fáradtságot 🧘";
+"notification.message.7" = "A ragyogó bőr titka: víz! ✨";
+"notification.message.8" = "Koncentráció FEL! Mit szólsz egy pohár vízhez? 🧠";
+"notification.message.9" = "Várj! Előbb igyál egy kis vizet 🚰";
+"notification.message.10" = "A tested vízre vár 🌿";
+
+// Weekdays
+"weekday.sun" = "V";
+"weekday.mon" = "H";
+"weekday.tue" = "K";
+"weekday.wed" = "Sze";
+"weekday.thu" = "Cs";
+"weekday.fri" = "P";
+"weekday.sat" = "Szo";
+
+// Intervals
+"interval.30min" = "30 perc";
+"interval.1hour" = "1 óra";
+"interval.2hours" = "2 óra";
+"interval.3hours" = "3 óra";
+
+// Notification Settings
+"notification.settings.title" = "Értesítési beállítások";
+"notification.settings.enable" = "Értesítések engedélyezése";
+"notification.settings.timerange" = "Értesítési időtartam";
+"notification.settings.interval" = "Értesítési időköz";
+"notification.settings.weekdays" = "Napok kiválasztása";
+"notification.settings.custom" = "Egyéni időpontok (felülírja az időközt)";
+"notification.settings.starttime" = "Kezdési idő";
+"notification.settings.endtime" = "Befejezési idő";
+"notification.settings.addtime" = "Időpont hozzáadása";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "yyyy. MMMM";
+"dateformat.monthday" = "MMM d. (E)";
+
+// Watch Complication
+"complication.displayname" = "Vízfogyasztás";
+"complication.description" = "Ellenőrizd, mennyi vizet ittál ma.";
+
+// Accessibility
+"accessibility.home.current" = "Jelenlegi bevitel %d milliliter";
+"accessibility.home.goal" = "Napi cél %d milliliter";
+"accessibility.home.goal.hint" = "Dupla érintés a cél módosításához";
+"accessibility.home.add" = "%d milliliter hozzáadása";
+"accessibility.home.add.hint" = "Dupla érintés víz hozzáadásához";
+"accessibility.home.subtract" = "%d milliliter kivonása";
+"accessibility.home.subtract.hint" = "Dupla érintés víz kivonásához";
+"accessibility.home.mode.add" = "Hozzáadás mód aktív";
+"accessibility.home.mode.subtract" = "Kivonás mód aktív";
+"accessibility.home.mode.hint" = "Dupla érintés a hozzáadás és kivonás mód közötti váltáshoz";
+"accessibility.history.summary" = "Ez a hónap %d nap elérve";
+"accessibility.history.achieved" = "Cél elérve";
+"accessibility.history.progress" = "A cél %@-a";

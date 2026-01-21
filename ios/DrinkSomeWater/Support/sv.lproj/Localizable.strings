@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Swedish Localization
+*/
+
+// Main
+"You achieved " = "Du uppnådde ";
+"TodaySuffix" = " idag!!";
+
+// Calendar
+"Today" = "Idag";
+"Success" = "Framgång";
+"Selected" = "Vald";
+"You can check the history when you select a success date."
+= "Du kan kontrollera historiken när du väljer ett framgångsdatum.";
+"Goal of this month" = "Denna månads mål";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "Alarm";
+"Review" = "Recension";
+"Contact Us" = "Kontakta oss";
+"Version" = "Version";
+"License" = "Licens";
+"Set" = "Ställ in";
+
+// Onboarding
+"onboarding.skip" = "Hoppa över";
+"onboarding.next" = "Nästa";
+"onboarding.start" = "Kom igång";
+"onboarding.intro.title" = "Välkommen till Gulp";
+"onboarding.intro.description" = "Spåra ditt dagliga vattenintag och håll dig hydrerad.\n\nVatten är nödvändigt för din hälsa – det hjälper till att upprätthålla energi, förbättra fokus och hålla din kropp i toppform.";
+"onboarding.goal.title" = "Ställ in ditt mål";
+"onboarding.goal.description" = "Hur mycket vatten vill du dricka dagligen?\nJustera skjutreglaget för att ställa in ditt mål.";
+"onboarding.healthkit.title" = "Anslut Hälsa";
+"onboarding.healthkit.description" = "Synkronisera med Apple Health för att:\n\n• Beräkna personligt vattenintag baserat på din vikt\n• Spara vattenregistreringar i Hälsa-appen\n• Följ din framsteg tillsammans med andra hälsodata";
+"onboarding.healthkit.button" = "Anslut Apple Health";
+"onboarding.healthkit.connected" = "Ansluten";
+"onboarding.notification.title" = "Påminnelser";
+"onboarding.notification.description" = "Aktivera aviseringar för att få vänliga påminnelser under dagen.\n\nVi skickar dig motiverande meddelanden för att hjälpa dig att hålla koll på dina hydreringsmål.";
+"onboarding.notification.button" = "Aktivera aviseringar";
+"onboarding.notification.enabled" = "Aktiverad";
+"onboarding.widget.title" = "Lägg till widget";
+"onboarding.widget.description" = "Lägg till vår widget på hemskärmen för snabb åtkomst:\n\n1. Tryck länge på hemskärmen\n2. Tryck på + knappen\n3. Sök efter 'Gulp'\n4. Välj din föredragna widgetstorlek";
+"onboarding.widget.button" = "Kom igång";
+
+// Widget
+"widget.today" = "Idag";
+"widget.guide.title" = "Widget-installationsguide";
+"widget.guide.nav.title" = "Widget-guide";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Tryck länge på hemskärmen";
+"widget.guide.step1.description" = "Tryck och håll på ett tomt område på hemskärmen tills apparna börjar skaka.";
+"widget.guide.step2.title" = "Tryck på + knappen";
+"widget.guide.step2.description" = "Tryck på \"+\" knappen i övre vänstra hörnet av skärmen.";
+"widget.guide.step3.title" = "Sök efter Gulp";
+"widget.guide.step3.description" = "I widgetgalleriet, sök efter \"Gulp\" eller \"Vatten\".";
+"widget.guide.step4.title" = "Välj widgetstorlek";
+"widget.guide.step4.description" = "Välj din föredragna widgetstorlek:\n• Liten: Visar vattenintag och framsteg\n• Medium: Inkluderar snabbknappar";
+"widget.guide.step5.title" = "Lägg till på hemskärmen";
+"widget.guide.step5.description" = "Tryck på \"Lägg till widget\" och placera den där du vill ha den.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Låsskärms-widget";
+"widget.guide.lockscreen.step1.title" = "Tryck länge på låsskärmen";
+"widget.guide.lockscreen.step1.description" = "Tryck och håll på låsskärmen och tryck på \"Anpassa\".";
+"widget.guide.lockscreen.step2.title" = "Välj widgetområde";
+"widget.guide.lockscreen.step2.description" = "Tryck på widgetområdet ovanför eller under tiden.";
+"widget.guide.lockscreen.step3.title" = "Lägg till Gulp-widget";
+"widget.guide.lockscreen.step3.description" = "Sök efter \"Gulp\" och välj den widgetstil du föredrar.";
+
+// Settings
+"settings.title" = "Inställningar";
+"settings.subtitle" = "Anpassa din upplevelse";
+"settings.section.personal" = "Personlig";
+"settings.section.app" = "Appinställningar";
+"settings.section.support" = "Support";
+"settings.section.info" = "Info";
+"settings.profile" = "Profilinställningar";
+"settings.goal" = "Dagligt mål";
+"settings.quickbuttons" = "Snabbknappsinställningar";
+"settings.notification" = "Vattenpåminnelse";
+"settings.widget.guide" = "Widget-installationsguide";
+"settings.review" = "Skriv en recension";
+"settings.contact" = "Kontakta oss";
+"settings.version" = "Version";
+
+// Profile
+"profile.title" = "Profilinställningar";
+"profile.healthkit.title" = "Apple Health-synkronisering";
+"profile.healthkit.description" = "Hämta vikt automatiskt från Hälsa-appen";
+"profile.weight" = "Vikt";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Dagligt rekommenderat intag";
+"profile.recommended.description" = "Vikt × 33ml formel";
+"profile.apply.button" = "Använd som dagligt mål";
+"profile.apply.success.title" = "Mål uppdaterat";
+"profile.apply.success.message" = "Dagligt mål satt till %@ml.";
+
+// Notification Settings
+"notification.enable" = "Aktivera aviseringar";
+"notification.time.start" = "Starttid";
+"notification.time.end" = "Sluttid";
+"notification.interval" = "Intervall";
+"notification.weekdays" = "Dagar";
+"notification.custom.times" = "Anpassade tider";
+"notification.custom.add" = "Lägg till tid";
+"notification.message.info" = "Aviseringar skickas med olika meddelanden";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Avbryt";
+"common.save" = "Spara";
+"common.delete" = "Radera";
+"common.done" = "Klar";
+
+// Contact
+"contact.title" = "Kontakt";
+"contact.message" = "Kontakta oss på feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Stöd utvecklaren";
+"ad.confirm.title" = "Stöd utvecklaren";
+"ad.confirm.message" = "En annons kommer att visas. Att titta på den hjälper till att stödja utvecklaren!";
+"ad.loading.title" = "Vänta";
+"ad.loading.message" = "Laddar annons. Försök igen om en stund.";
+"ad.thanks.title" = "Tack!";
+"ad.thanks.message" = "Tack för att du stödjer utvecklaren 💙";
+
+// App Guide
+"settings.app.guide" = "Appfunktionsguide";
+"appguide.title" = "Gulp-guide";
+"appguide.subtitle" = "Upptäck alla funktioner";
+
+// App Guide - Home
+"appguide.home.title" = "Idag-fliken";
+"appguide.home.feature1.title" = "Spåra vattenintag";
+"appguide.home.feature1.desc" = "Tryck på knappen för att registrera ditt vattenintag. Framsteg uppdateras i realtid.";
+"appguide.home.feature2.title" = "Snabbknappar";
+"appguide.home.feature2.desc" = "Ställ in dina ofta konsumerade mängder som snabbknappar för registrering med ett tryck.";
+"appguide.home.feature3.title" = "Ställ in ditt mål";
+"appguide.home.feature3.desc" = "Ställ in ditt dagliga vattenintag-mål. Viktbaserade rekommendationer finns tillgängliga.";
+"appguide.home.feature4.title" = "Subtrahera-läge";
+"appguide.home.feature4.desc" = "Växla till subtrahera-läge för att korrigera misstag i dina intagsregistreringar.";
+
+// App Guide - History
+"appguide.history.title" = "Historik-fliken";
+"appguide.history.feature1.title" = "Kalendervy";
+"appguide.history.feature1.desc" = "Se dina månatliga prestationer med en blick. Måluppfyllelsedagar är markerade.";
+"appguide.history.feature2.title" = "Listvy";
+"appguide.history.feature2.desc" = "Kontrollera alla registreringar i kronologisk ordning med framsteg för varje dag.";
+"appguide.history.feature3.title" = "Tidslinjevy";
+"appguide.history.feature3.desc" = "Visa registreringar grupperade per månad i ett tidslinjeformat.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Snabb registrering";
+"appguide.watch.feature1.desc" = "Registrera ditt vattenintag direkt från din klocka. Snabbknappar för 150ml, 250ml, 300ml och 500ml.";
+"appguide.watch.feature2.title" = "Realtidssynkronisering";
+"appguide.watch.feature2.desc" = "Synkroniserar med din iPhone i realtid för att hålla dina registreringar alltid uppdaterade.";
+"appguide.watch.feature3.title" = "Komplikationer";
+"appguide.watch.feature3.desc" = "Lägg till en komplikation på din urtavla för att kontrollera dina framsteg med en blick.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widgets";
+"appguide.widget.feature1.title" = "Hemskärms-widget";
+"appguide.widget.feature1.desc" = "Lägg till en widget på hemskärmen för snabba framstegskontroller. Liten, medium och stor storlek tillgänglig.";
+"appguide.widget.feature2.title" = "Låsskärms-widget";
+"appguide.widget.feature2.desc" = "Kontrollera ditt dagliga vattenintag direkt från låsskärmen.";
+"appguide.widget.feature3.title" = "Interaktiva knappar";
+"appguide.widget.feature3.desc" = "Tryck på knappar på medium/stora widgets för att lägga till vatten utan att öppna appen.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Aviseringar";
+"appguide.notification.feature1.title" = "Anpassade intervall";
+"appguide.notification.feature1.desc" = "Få påminnelser med 30-minuters, 1-timmes, 2-timmars eller 3-timmars intervall.";
+"appguide.notification.feature2.title" = "Dagsval";
+"appguide.notification.feature2.desc" = "Välj vilka veckodagar du vill få aviseringar.";
+"appguide.notification.feature3.title" = "Motiverande meddelanden";
+"appguide.notification.feature3.desc" = "Ta emot olika motiverande meddelanden för att hjälpa till att bygga din hydreringsvana.";
+
+// App Guide - Health
+"appguide.health.title" = "Hälsointegrering";
+"appguide.health.feature1.title" = "Viktbaserade rekommendationer";
+"appguide.health.feature1.desc" = "Importera din vikt från Hälsa-appen för att beräkna personliga intagsrekommendationer.";
+"appguide.health.feature2.title" = "Spara till Hälsa";
+"appguide.health.feature2.desc" = "Dina vattenintagsregistreringar sparas automatiskt i Hälsa-appen.";
+
+// Tab Bar
+"tab.today" = "Idag";
+"tab.history" = "Historik";
+"tab.settings" = "Inställningar";
+
+// Home
+"home.goal" = "Mål %@ml";
+"home.goal.achieved" = "Dagens mål uppnått!";
+"home.goal.remaining" = "%@ glas till för att nå ditt mål!";
+"home.quick.add" = "Snabb lägg till";
+"home.quick.subtract" = "Subtrahera";
+"home.edit" = "Redigera";
+"home.goal.setting.title" = "Ställ in mål";
+"home.goal.save" = "Spara";
+"home.goal.min" = "1 000ml";
+"home.goal.max" = "4 000ml";
+"home.goal.cancel" = "Avbryt";
+"home.quickbutton.title" = "Snabbknapparna";
+"home.quickbutton.current" = "Nuvarande knappar";
+"home.quickbutton.add.section" = "Lägg till ny knapp";
+"home.quickbutton.placeholder" = "Mängd (ml)";
+"home.quickbutton.add" = "Lägg till";
+"home.quickbutton.reset" = "Återställ till standard";
+"home.adjustment.title" = "Justera intag";
+"home.adjustment.done" = "Klar";
+"home.adjustment.reset" = "Återställ dagens registrering";
+"home.adjustment.reset.confirm" = "Återställ dagens vattenintag?";
+"home.adjustment.reset.button" = "Återställ";
+"home.adjustment.reset.message" = "Denna åtgärd kan inte ångras.";
+
+// Notification Banner
+"home.notification.banner.title" = "Aktivera aviseringar";
+"home.notification.banner.description" = "Få påminnelser om att hålla dig hydrerad";
+"home.notification.banner.settings" = "Inställningar";
+
+// History
+"history.title" = "Historik";
+"history.mode.calendar" = "Kalender";
+"history.mode.list" = "Lista";
+"history.mode.timeline" = "Tidslinje";
+"history.month.summary" = "Denna månad: %@ dagar uppnådda";
+"history.legend.today" = "Idag";
+"history.legend.selected" = "Vald";
+"history.legend.achieved" = "Uppnått";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ dagar uppnådda";
+"history.record.goal" = "Mål %@ml";
+"history.card.goal" = "Mål";
+"history.card.intake" = "Intag";
+"history.card.achieved" = "Uppnått! ✅";
+"history.label.achieved" = "Uppnått";
+
+// Widget
+"widget.hydration.tracker" = "Hydreringsspårare";
+"widget.current" = "Nuvarande";
+"widget.goal" = "Mål";
+"widget.current.hydration" = "Nuvarande hydrering";
+"widget.todays.hydration" = "Dagens hydrering";
+"widget.motivation.achieved" = "Mål uppnått! Bra jobbat! 🎉";
+"widget.motivation.almost" = "Nästan där! Fortsätt! 🚀";
+"widget.motivation.halfway" = "Du gör det bra! 💧";
+"widget.motivation.start" = "Dags att hydrera! 🥤";
+
+// Watch
+"watch.add.water" = "Lägg till vatten";
+"watch.custom.input" = "Anpassad inmatning";
+"watch.add" = "Lägg till";
+
+// Update
+"update.required.title" = "Uppdatering krävs";
+"update.available.title" = "Uppdatering tillgänglig";
+"update.required.message" = "En ny version har släppts. Vänligen uppdatera för att fortsätta använda appen.";
+"update.available.message" = "En ny version är tillgänglig. Vill du uppdatera nu?";
+"update.later" = "Senare";
+"update.now" = "Uppdatera";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Dags att dricka vatten! 💧";
+"notification.message.2" = "Glöm inte att hydrera~ 🌊";
+"notification.message.3" = "Starta din hälsosamma dag med vatten! ☀️";
+"notification.message.4" = "Drick innan du känner törst 🥤";
+"notification.message.5" = "Gulp gulp idag också! 💪";
+"notification.message.6" = "Ett glas vatten sköljer bort tröttheten 🧘";
+"notification.message.7" = "Hemligheten till strålande hud: vatten! ✨";
+"notification.message.8" = "Fokus UPP! Vad sägs om ett glas vatten? 🧠";
+"notification.message.9" = "Vänta! Drick lite vatten först 🚰";
+"notification.message.10" = "Din kropp väntar på vatten 🌿";
+
+// Weekdays
+"weekday.sun" = "Sön";
+"weekday.mon" = "Mån";
+"weekday.tue" = "Tis";
+"weekday.wed" = "Ons";
+"weekday.thu" = "Tor";
+"weekday.fri" = "Fre";
+"weekday.sat" = "Lör";
+
+// Intervals
+"interval.30min" = "30 min";
+"interval.1hour" = "1 timme";
+"interval.2hours" = "2 timmar";
+"interval.3hours" = "3 timmar";
+
+// Notification Settings
+"notification.settings.title" = "Aviseringsinställningar";
+"notification.settings.enable" = "Aktivera aviseringar";
+"notification.settings.timerange" = "Aviseringstidsintervall";
+"notification.settings.interval" = "Aviseringsintervall";
+"notification.settings.weekdays" = "Välj dagar";
+"notification.settings.custom" = "Anpassade tider (åsidosätter intervall)";
+"notification.settings.starttime" = "Starttid";
+"notification.settings.endtime" = "Sluttid";
+"notification.settings.addtime" = "Lägg till tid";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Vattenintag";
+"complication.description" = "Kontrollera hur mycket vatten du druckit idag.";
+
+// Accessibility
+"accessibility.home.current" = "Nuvarande intag %d milliliter";
+"accessibility.home.goal" = "Dagligt mål %d milliliter";
+"accessibility.home.goal.hint" = "Dubbeltryck för att ändra mål";
+"accessibility.home.add" = "Lägg till %d milliliter";
+"accessibility.home.add.hint" = "Dubbeltryck för att lägga till vatten";
+"accessibility.home.subtract" = "Subtrahera %d milliliter";
+"accessibility.home.subtract.hint" = "Dubbeltryck för att subtrahera vatten";
+"accessibility.home.mode.add" = "Lägg till-läge aktivt";
+"accessibility.home.mode.subtract" = "Subtrahera-läge aktivt";
+"accessibility.home.mode.hint" = "Dubbeltryck för att växla mellan lägg till och subtrahera-läge";
+"accessibility.history.summary" = "Denna månad %d dagar uppnådda";
+"accessibility.history.achieved" = "Mål uppnått";
+"accessibility.history.progress" = "%@ av mål";

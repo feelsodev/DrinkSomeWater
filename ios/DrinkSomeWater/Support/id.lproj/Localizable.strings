@@ -1,0 +1,328 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Indonesian Localization
+*/
+
+// Main
+"You achieved " = "Kamu mencapai ";
+"TodaySuffix" = " Hari ini!!";
+
+// Calendar
+"Today" = "Hari ini";
+"Success" = "Berhasil";
+"Selected" = "Dipilih";
+"You can check the history when you select a success date." = "Kamu bisa melihat riwayat saat memilih tanggal berhasil.";
+"Goal of this month" = "Target bulan ini";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "Alarm";
+"Review" = "Ulasan";
+"Contact Us" = "Hubungi Kami";
+"Version" = "Versi";
+"License" = "Lisensi";
+"Set" = "Atur";
+
+// Onboarding
+"onboarding.skip" = "Lewati";
+"onboarding.next" = "Lanjut";
+"onboarding.start" = "Mulai";
+"onboarding.intro.title" = "Selamat datang di Gulp";
+"onboarding.intro.description" = "Lacak asupan air harianmu dan tetap terhidrasi.\n\nAir sangat penting untuk kesehatanmu - membantu menjaga energi, meningkatkan fokus, dan menjaga tubuhmu berfungsi optimal.";
+"onboarding.goal.title" = "Tetapkan Targetmu";
+"onboarding.goal.description" = "Berapa banyak air yang ingin kamu minum setiap hari?\nGeser slider untuk menetapkan target.";
+"onboarding.healthkit.title" = "Hubungkan Kesehatan";
+"onboarding.healthkit.description" = "Sinkronkan dengan Apple Health untuk:\n\n• Hitung asupan air yang dipersonalisasi berdasarkan berat badan\n• Simpan catatan air ke app Kesehatan\n• Lacak kemajuan bersama data kesehatan lainnya";
+"onboarding.healthkit.button" = "Hubungkan Apple Health";
+"onboarding.healthkit.connected" = "Terhubung";
+"onboarding.notification.title" = "Tetap Diingatkan";
+"onboarding.notification.description" = "Aktifkan notifikasi untuk menerima pengingat sepanjang hari.\n\nKami akan mengirim pesan motivasi untuk membantumu mencapai target hidrasi.";
+"onboarding.notification.button" = "Aktifkan Notifikasi";
+"onboarding.notification.enabled" = "Diaktifkan";
+"onboarding.widget.title" = "Tambah Widget";
+"onboarding.widget.description" = "Tambahkan widget ke Layar Utama untuk akses cepat:\n\n1. Tekan lama Layar Utama\n2. Ketuk tombol +\n3. Cari 'Gulp'\n4. Pilih ukuran widget yang kamu suka";
+"onboarding.widget.button" = "Mulai";
+
+// Widget
+"widget.today" = "Hari ini";
+"widget.guide.title" = "Panduan Pengaturan Widget";
+"widget.guide.nav.title" = "Panduan Widget";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Tekan lama Layar Utama";
+"widget.guide.step1.description" = "Tekan dan tahan area kosong di Layar Utama sampai aplikasi bergetar.";
+"widget.guide.step2.title" = "Ketuk tombol +";
+"widget.guide.step2.description" = "Ketuk tombol \"+\" di pojok kiri atas layar.";
+"widget.guide.step3.title" = "Cari Gulp";
+"widget.guide.step3.description" = "Di galeri widget, cari \"Gulp\" atau \"Air\".";
+"widget.guide.step4.title" = "Pilih ukuran widget";
+"widget.guide.step4.description" = "Pilih ukuran widget yang kamu suka:\n• Kecil: Menampilkan asupan dan kemajuan\n• Sedang: Termasuk tombol tambah cepat";
+"widget.guide.step5.title" = "Tambah ke Layar Utama";
+"widget.guide.step5.description" = "Ketuk \"Tambah Widget\" dan posisikan di tempat yang kamu mau.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Widget Layar Kunci";
+"widget.guide.lockscreen.step1.title" = "Tekan lama Layar Kunci";
+"widget.guide.lockscreen.step1.description" = "Tekan dan tahan Layar Kunci dan ketuk \"Sesuaikan\".";
+"widget.guide.lockscreen.step2.title" = "Pilih area widget";
+"widget.guide.lockscreen.step2.description" = "Ketuk area widget di atas atau bawah waktu.";
+"widget.guide.lockscreen.step3.title" = "Tambah widget Gulp";
+"widget.guide.lockscreen.step3.description" = "Cari \"Gulp\" dan pilih gaya widget yang kamu suka.";
+
+// Settings
+"settings.title" = "Pengaturan";
+"settings.subtitle" = "Sesuaikan pengalamanmu";
+"settings.section.personal" = "Pribadi";
+"settings.section.app" = "Pengaturan Aplikasi";
+"settings.section.support" = "Dukungan";
+"settings.section.info" = "Info";
+"settings.profile" = "Pengaturan Profil";
+"settings.goal" = "Target Harian";
+"settings.quickbuttons" = "Pengaturan Tombol Cepat";
+"settings.notification" = "Pengingat Minum";
+"settings.widget.guide" = "Panduan Pengaturan Widget";
+"settings.review" = "Tulis Ulasan";
+"settings.contact" = "Hubungi Kami";
+"settings.version" = "Versi";
+
+// Profile
+"profile.title" = "Pengaturan Profil";
+"profile.healthkit.title" = "Sinkronisasi Apple Health";
+"profile.healthkit.description" = "Ambil berat badan otomatis dari app Kesehatan";
+"profile.weight" = "Berat Badan";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Asupan Harian yang Disarankan";
+"profile.recommended.description" = "Rumus Berat × 33ml";
+"profile.apply.button" = "Terapkan sebagai Target Harian";
+"profile.apply.success.title" = "Target Diperbarui";
+"profile.apply.success.message" = "Target harian ditetapkan ke %@ml.";
+
+// Notification Settings
+"notification.enable" = "Aktifkan Notifikasi";
+"notification.time.start" = "Waktu Mulai";
+"notification.time.end" = "Waktu Selesai";
+"notification.interval" = "Interval";
+"notification.weekdays" = "Hari";
+"notification.custom.times" = "Waktu Kustom";
+"notification.custom.add" = "Tambah Waktu";
+"notification.message.info" = "Notifikasi akan dikirim dengan berbagai pesan";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Batal";
+"common.save" = "Simpan";
+"common.delete" = "Hapus";
+"common.done" = "Selesai";
+
+// Contact
+"contact.title" = "Kontak";
+"contact.message" = "Silakan hubungi kami di feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Dukung Pengembang";
+"ad.confirm.title" = "Dukung Pengembang";
+"ad.confirm.message" = "Iklan akan ditampilkan. Menonton membantu mendukung pengembang!";
+"ad.loading.title" = "Mohon Tunggu";
+"ad.loading.message" = "Memuat iklan. Silakan coba lagi sebentar.";
+"ad.thanks.title" = "Terima Kasih!";
+"ad.thanks.message" = "Terima kasih telah mendukung pengembang 💙";
+
+// App Guide
+"settings.app.guide" = "Panduan Fitur Aplikasi";
+"appguide.title" = "Panduan Gulp";
+"appguide.subtitle" = "Temukan semua fitur";
+
+// App Guide - Home
+"appguide.home.title" = "Tab Hari Ini";
+"appguide.home.feature1.title" = "Lacak Asupan Air";
+"appguide.home.feature1.desc" = "Ketuk tombol untuk mencatat asupan airmu. Kemajuan diperbarui secara real-time.";
+"appguide.home.feature2.title" = "Tombol Cepat";
+"appguide.home.feature2.desc" = "Atur jumlah yang sering kamu minum sebagai tombol cepat untuk pencatatan sekali ketuk.";
+"appguide.home.feature3.title" = "Tetapkan Target";
+"appguide.home.feature3.desc" = "Tetapkan target asupan air harianmu. Rekomendasi berdasarkan berat badan tersedia.";
+"appguide.home.feature4.title" = "Mode Kurangi";
+"appguide.home.feature4.desc" = "Beralih ke mode kurangi untuk memperbaiki kesalahan pencatatan.";
+
+// App Guide - History
+"appguide.history.title" = "Tab Riwayat";
+"appguide.history.feature1.title" = "Tampilan Kalender";
+"appguide.history.feature1.desc" = "Lihat pencapaian bulananmu sekilas. Hari target tercapai disorot.";
+"appguide.history.feature2.title" = "Tampilan Daftar";
+"appguide.history.feature2.desc" = "Periksa semua catatan secara kronologis dengan kemajuan setiap hari.";
+"appguide.history.feature3.title" = "Tampilan Timeline";
+"appguide.history.feature3.desc" = "Lihat catatan yang dikelompokkan per bulan dalam format timeline.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Pencatatan Cepat";
+"appguide.watch.feature1.desc" = "Catat asupan airmu langsung dari jam. Tombol cepat untuk 150ml, 250ml, 300ml, dan 500ml.";
+"appguide.watch.feature2.title" = "Sinkronisasi Real-time";
+"appguide.watch.feature2.desc" = "Sinkronisasi dengan iPhone secara real-time untuk menjaga catatanmu selalu terbaru.";
+"appguide.watch.feature3.title" = "Komplikasi";
+"appguide.watch.feature3.desc" = "Tambah komplikasi ke tampilan jam untuk memeriksa kemajuanmu sekilas.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widget";
+"appguide.widget.feature1.title" = "Widget Layar Utama";
+"appguide.widget.feature1.desc" = "Tambah widget ke layar utama untuk pemeriksaan kemajuan cepat. Ukuran kecil, sedang, dan besar tersedia.";
+"appguide.widget.feature2.title" = "Widget Layar Kunci";
+"appguide.widget.feature2.desc" = "Periksa asupan air harianmu langsung dari layar kunci.";
+"appguide.widget.feature3.title" = "Tombol Interaktif";
+"appguide.widget.feature3.desc" = "Ketuk tombol di widget sedang/besar untuk menambah air tanpa membuka aplikasi.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Notifikasi";
+"appguide.notification.feature1.title" = "Interval Kustom";
+"appguide.notification.feature1.desc" = "Terima pengingat dengan interval 30 menit, 1 jam, 2 jam, atau 3 jam.";
+"appguide.notification.feature2.title" = "Pilihan Hari";
+"appguide.notification.feature2.desc" = "Pilih hari dalam seminggu kapan kamu mau menerima notifikasi.";
+"appguide.notification.feature3.title" = "Pesan Motivasi";
+"appguide.notification.feature3.desc" = "Terima berbagai pesan motivasi untuk membangun kebiasaan hidrasimu.";
+
+// App Guide - Health
+"appguide.health.title" = "Integrasi Kesehatan";
+"appguide.health.feature1.title" = "Rekomendasi Berdasarkan Berat";
+"appguide.health.feature1.desc" = "Impor berat badanmu dari app Kesehatan untuk menghitung rekomendasi yang dipersonalisasi.";
+"appguide.health.feature2.title" = "Simpan ke Kesehatan";
+"appguide.health.feature2.desc" = "Catatan asupan airmu disimpan otomatis ke app Kesehatan.";
+
+// Tab Bar
+"tab.today" = "Hari ini";
+"tab.history" = "Riwayat";
+"tab.settings" = "Pengaturan";
+
+// Home
+"home.goal" = "Target %@ml";
+"home.goal.achieved" = "Target hari ini tercapai!";
+"home.goal.remaining" = "%@ gelas lagi untuk mencapai target!";
+"home.quick.add" = "Tambah Cepat";
+"home.quick.subtract" = "Kurangi";
+"home.edit" = "Edit";
+"home.goal.setting.title" = "Tetapkan Target";
+"home.goal.save" = "Simpan";
+"home.goal.min" = "1.000ml";
+"home.goal.max" = "4.000ml";
+"home.goal.cancel" = "Batal";
+"home.quickbutton.title" = "Tombol Tambah Cepat";
+"home.quickbutton.current" = "Tombol Saat Ini";
+"home.quickbutton.add.section" = "Tambah Tombol Baru";
+"home.quickbutton.placeholder" = "Jumlah (ml)";
+"home.quickbutton.add" = "Tambah";
+"home.quickbutton.reset" = "Reset ke Default";
+"home.adjustment.title" = "Sesuaikan Asupan";
+"home.adjustment.done" = "Selesai";
+"home.adjustment.reset" = "Reset Catatan Hari Ini";
+"home.adjustment.reset.confirm" = "Reset asupan air hari ini?";
+"home.adjustment.reset.button" = "Reset";
+"home.adjustment.reset.message" = "Tindakan ini tidak dapat dibatalkan.";
+
+// Notification Banner
+"home.notification.banner.title" = "Aktifkan Notifikasi";
+"home.notification.banner.description" = "Terima pengingat untuk tetap terhidrasi";
+"home.notification.banner.settings" = "Pengaturan";
+
+// History
+"history.title" = "Riwayat";
+"history.mode.calendar" = "Kalender";
+"history.mode.list" = "Daftar";
+"history.mode.timeline" = "Timeline";
+"history.month.summary" = "Bulan ini: %@ hari tercapai";
+"history.legend.today" = "Hari ini";
+"history.legend.selected" = "Dipilih";
+"history.legend.achieved" = "Tercapai";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ hari tercapai";
+"history.record.goal" = "Target %@ml";
+"history.card.goal" = "Target";
+"history.card.intake" = "Asupan";
+"history.card.achieved" = "Tercapai! ✅";
+"history.label.achieved" = "Tercapai";
+
+// Widget
+"widget.hydration.tracker" = "Pelacak Hidrasi";
+"widget.current" = "Saat ini";
+"widget.goal" = "Target";
+"widget.current.hydration" = "Hidrasi Saat Ini";
+"widget.todays.hydration" = "Hidrasi Hari Ini";
+"widget.motivation.achieved" = "Target tercapai! Kerja bagus! 🎉";
+"widget.motivation.almost" = "Hampir! Terus semangat! 🚀";
+"widget.motivation.halfway" = "Kamu hebat! 💧";
+"widget.motivation.start" = "Waktunya minum! 🥤";
+
+// Watch
+"watch.add.water" = "Tambah Air";
+"watch.custom.input" = "Input Kustom";
+"watch.add" = "Tambah";
+
+// Update
+"update.required.title" = "Pembaruan Diperlukan";
+"update.available.title" = "Pembaruan Tersedia";
+"update.required.message" = "Versi baru telah dirilis. Silakan perbarui untuk terus menggunakan aplikasi.";
+"update.available.message" = "Versi baru tersedia. Mau perbarui sekarang?";
+"update.later" = "Nanti";
+"update.now" = "Perbarui";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Waktunya minum air! 💧";
+"notification.message.2" = "Jangan lupa minum~ 🌊";
+"notification.message.3" = "Mulai hari sehat dengan air! ☀️";
+"notification.message.4" = "Minum sebelum haus 🥤";
+"notification.message.5" = "Gluk gluk hari ini juga! 💪";
+"notification.message.6" = "Segelas air mengusir lelah 🧘";
+"notification.message.7" = "Rahasia kulit glowing: air! ✨";
+"notification.message.8" = "Fokus UP! Minum segelas? 🧠";
+"notification.message.9" = "Tunggu! Minum dulu 🚰";
+"notification.message.10" = "Tubuhmu menunggu air 🌿";
+
+// Weekdays
+"weekday.sun" = "Min";
+"weekday.mon" = "Sen";
+"weekday.tue" = "Sel";
+"weekday.wed" = "Rab";
+"weekday.thu" = "Kam";
+"weekday.fri" = "Jum";
+"weekday.sat" = "Sab";
+
+// Intervals
+"interval.30min" = "30 menit";
+"interval.1hour" = "1 jam";
+"interval.2hours" = "2 jam";
+"interval.3hours" = "3 jam";
+
+// Notification Settings
+"notification.settings.title" = "Pengaturan Notifikasi";
+"notification.settings.enable" = "Aktifkan Notifikasi";
+"notification.settings.timerange" = "Rentang Waktu Notifikasi";
+"notification.settings.interval" = "Interval Notifikasi";
+"notification.settings.weekdays" = "Pilih Hari";
+"notification.settings.custom" = "Waktu Kustom (menggantikan interval)";
+"notification.settings.starttime" = "Waktu Mulai";
+"notification.settings.endtime" = "Waktu Selesai";
+"notification.settings.addtime" = "Tambah Waktu";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Asupan Air";
+"complication.description" = "Lihat berapa banyak air yang kamu minum hari ini.";
+
+// Accessibility
+"accessibility.home.current" = "Asupan saat ini %d mililiter";
+"accessibility.home.goal" = "Target harian %d mililiter";
+"accessibility.home.goal.hint" = "Ketuk dua kali untuk mengubah target";
+"accessibility.home.add" = "Tambah %d mililiter";
+"accessibility.home.add.hint" = "Ketuk dua kali untuk menambah air";
+"accessibility.home.subtract" = "Kurangi %d mililiter";
+"accessibility.home.subtract.hint" = "Ketuk dua kali untuk mengurangi air";
+"accessibility.home.mode.add" = "Mode tambah aktif";
+"accessibility.home.mode.subtract" = "Mode kurangi aktif";
+"accessibility.home.mode.hint" = "Ketuk dua kali untuk beralih antara mode tambah dan kurangi";
+"accessibility.history.summary" = "Bulan ini %d hari tercapai";
+"accessibility.history.achieved" = "Target tercapai";
+"accessibility.history.progress" = "%@ dari target";

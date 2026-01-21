@@ -1,0 +1,15 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWater
+
+  Polish (pl)
+
+*/
+
+// App name
+"CFBundleDisplayName" = "Gulp";
+"CFBundleName" = "Gulp";
+
+// Usage Descriptions
+"NSHealthShareUsageDescription" = "Odczytywanie danych o wadze w celu obliczenia spersonalizowanych zaleceń.";
+"NSHealthUpdateUsageDescription" = "Synchronizacja zapisów spożycia wody z aplikacją Zdrowie.";

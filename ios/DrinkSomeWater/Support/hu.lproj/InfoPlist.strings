@@ -1,0 +1,14 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWater
+
+  Hungarian Localization
+*/
+
+// App name
+"CFBundleDisplayName" = "Gulp";
+"CFBundleName" = "Gulp";
+
+// Usage Descriptions
+"NSHealthShareUsageDescription" = "Testsúlyadatok olvasása a személyre szabott ajánlások kiszámításához.";
+"NSHealthUpdateUsageDescription" = "Vízfogyasztási bejegyzések szinkronizálása az Egészség alkalmazással.";

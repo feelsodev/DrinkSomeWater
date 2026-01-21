@@ -1,0 +1,14 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWater
+
+  Czech Localization
+*/
+
+// App name
+"CFBundleDisplayName" = "Gulp";
+"CFBundleName" = "Gulp";
+
+// Usage Descriptions
+"NSHealthShareUsageDescription" = "Přečtěte si údaje o hmotnosti pro výpočet personalizovaných doporučení.";
+"NSHealthUpdateUsageDescription" = "Synchronizujte záznamy o příjmu vody s aplikací Zdraví.";

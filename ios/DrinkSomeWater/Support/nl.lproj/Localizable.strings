@@ -1,0 +1,330 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Dutch (nl)
+   
+*/
+
+// Main
+"You achieved " = "Je hebt bereikt ";
+"TodaySuffix" = " Vandaag!!";
+
+// Calendar
+"Today" = "Vandaag";
+"Success" = "Succes";
+"Selected" = "Geselecteerd";
+"You can check the history when you select a success date."
+= "Je kunt de geschiedenis bekijken wanneer je een succesdatum selecteert.";
+"Goal of this month" = "Doel deze maand";
+"MMMM, YYYY" = "MMMM, yyyy";
+
+// Information
+"Alarm" = "Herinnering";
+"Review" = "Beoordeel";
+"Contact Us" = "Contact opnemen";
+"Version" = "Versie";
+"License" = "Licentie";
+"Set" = "Instellen";
+
+// Onboarding
+"onboarding.skip" = "Overslaan";
+"onboarding.next" = "Volgende";
+"onboarding.start" = "Aan de slag";
+"onboarding.intro.title" = "Welkom bij Gulp";
+"onboarding.intro.description" = "Volg je dagelijkse waterinname en blijf gehydrateerd.\n\nWater is essentieel voor je gezondheid — het helpt je energie te behouden, verbetert je focus en houdt je lichaam optimaal functionerend.";
+"onboarding.goal.title" = "Stel je doel in";
+"onboarding.goal.description" = "Hoeveel water wil je dagelijks drinken?\nPas de schuifregelaar aan om je doel in te stellen.";
+"onboarding.healthkit.title" = "Verbind Gezondheid";
+"onboarding.healthkit.description" = "Synchroniseer met Apple Health om:\n\n• Gepersonaliseerde waterinname te berekenen op basis van je gewicht\n• Watergegevens op te slaan in de Gezondheid-app\n• Je voortgang te volgen samen met andere gezondheidsgegevens";
+"onboarding.healthkit.button" = "Verbind Apple Health";
+"onboarding.healthkit.connected" = "Verbonden";
+"onboarding.notification.title" = "Ontvang herinneringen";
+"onboarding.notification.description" = "Schakel meldingen in om vriendelijke herinneringen te ontvangen gedurende de dag.\n\nWe sturen je motiverende berichten om je te helpen je hydratiedoelen te bereiken.";
+"onboarding.notification.button" = "Meldingen inschakelen";
+"onboarding.notification.enabled" = "Ingeschakeld";
+"onboarding.widget.title" = "Widget toevoegen";
+"onboarding.widget.description" = "Voeg onze widget toe aan je beginscherm voor snelle toegang:\n\n1. Houd het beginscherm ingedrukt\n2. Tik op de +-knop\n3. Zoek naar 'Gulp'\n4. Kies je gewenste widgetgrootte";
+"onboarding.widget.button" = "Aan de slag";
+
+// Widget
+"widget.today" = "Vandaag";
+"widget.guide.title" = "Widget-installatiehandleiding";
+"widget.guide.nav.title" = "Widget-handleiding";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Houd het beginscherm ingedrukt";
+"widget.guide.step1.description" = "Houd een leeg gebied op je beginscherm ingedrukt totdat de apps gaan bewegen.";
+"widget.guide.step2.title" = "Tik op de +-knop";
+"widget.guide.step2.description" = "Tik op de '+'-knop in de linkerbovenhoek van het scherm.";
+"widget.guide.step3.title" = "Zoek naar Gulp";
+"widget.guide.step3.description" = "Zoek in de widgetgalerij naar 'Gulp' of 'Water'.";
+"widget.guide.step4.title" = "Kies widgetgrootte";
+"widget.guide.step4.description" = "Selecteer je gewenste widgetgrootte:\n• Klein: toont waterinname en voortgang\n• Gemiddeld: inclusief snel-toevoegknoppen";
+"widget.guide.step5.title" = "Toevoegen aan beginscherm";
+"widget.guide.step5.description" = "Tik op 'Widget toevoegen' en plaats hem waar je wilt.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Vergrendelscherm-widget";
+"widget.guide.lockscreen.step1.title" = "Houd het vergrendelscherm ingedrukt";
+"widget.guide.lockscreen.step1.description" = "Houd je vergrendelscherm ingedrukt en tik op 'Pas aan'.";
+"widget.guide.lockscreen.step2.title" = "Selecteer widgetgebied";
+"widget.guide.lockscreen.step2.description" = "Tik op het widgetgebied boven of onder de tijd.";
+"widget.guide.lockscreen.step3.title" = "Voeg Gulp-widget toe";
+"widget.guide.lockscreen.step3.description" = "Zoek naar 'Gulp' en selecteer de gewenste widgetstijl.";
+
+// Settings
+"settings.title" = "Instellingen";
+"settings.subtitle" = "Pas je ervaring aan";
+"settings.section.personal" = "Persoonlijk";
+"settings.section.app" = "App-instellingen";
+"settings.section.support" = "Ondersteuning";
+"settings.section.info" = "Info";
+"settings.profile" = "Profielinstellingen";
+"settings.goal" = "Dagelijks doel";
+"settings.quickbuttons" = "Snelknopinstellingen";
+"settings.notification" = "Waterherinnering";
+"settings.widget.guide" = "Widget-installatiehandleiding";
+"settings.review" = "Beoordeling achterlaten";
+"settings.contact" = "Contact opnemen";
+"settings.version" = "Versie";
+
+// Profile
+"profile.title" = "Profielinstellingen";
+"profile.healthkit.title" = "Apple Health-synchronisatie";
+"profile.healthkit.description" = "Automatisch gewicht ophalen uit de Gezondheid-app";
+"profile.weight" = "Gewicht";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Aanbevolen dagelijkse inname";
+"profile.recommended.description" = "Formule: gewicht × 33ml";
+"profile.apply.button" = "Toepassen als dagelijks doel";
+"profile.apply.success.title" = "Doel bijgewerkt";
+"profile.apply.success.message" = "Dagelijks doel ingesteld op %@ml.";
+
+// Notification Settings
+"notification.enable" = "Meldingen inschakelen";
+"notification.time.start" = "Starttijd";
+"notification.time.end" = "Eindtijd";
+"notification.interval" = "Interval";
+"notification.weekdays" = "Dagen";
+"notification.custom.times" = "Aangepaste tijden";
+"notification.custom.add" = "Tijd toevoegen";
+"notification.message.info" = "Meldingen worden verzonden met verschillende berichten";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Annuleren";
+"common.save" = "Opslaan";
+"common.delete" = "Verwijderen";
+"common.done" = "Gereed";
+
+// Contact
+"contact.title" = "Contact";
+"contact.message" = "Neem contact met ons op via feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Ondersteun de ontwikkelaar";
+"ad.confirm.title" = "Ondersteun de ontwikkelaar";
+"ad.confirm.message" = "Er wordt een advertentie getoond. Het bekijken ervan helpt de ontwikkelaar te ondersteunen!";
+"ad.loading.title" = "Even geduld";
+"ad.loading.message" = "Advertentie wordt geladen. Probeer het zo opnieuw.";
+"ad.thanks.title" = "Bedankt!";
+"ad.thanks.message" = "Bedankt voor het ondersteunen van de ontwikkelaar 💙";
+
+// App Guide
+"settings.app.guide" = "App-functiehandleiding";
+"appguide.title" = "Gulp-handleiding";
+"appguide.subtitle" = "Ontdek alle functies";
+
+// App Guide - Home
+"appguide.home.title" = "Vandaag-tabblad";
+"appguide.home.feature1.title" = "Waterinname bijhouden";
+"appguide.home.feature1.desc" = "Tik op de knop om je waterinname vast te leggen. Voortgang wordt realtime bijgewerkt.";
+"appguide.home.feature2.title" = "Snelknoppen";
+"appguide.home.feature2.desc" = "Stel veelgebruikte hoeveelheden in als snelknoppen voor registratie met één tik.";
+"appguide.home.feature3.title" = "Stel je doel in";
+"appguide.home.feature3.desc" = "Stel je dagelijkse waterinnamedoel in. Aanbevelingen op basis van gewicht zijn beschikbaar.";
+"appguide.home.feature4.title" = "Aftrekmodus";
+"appguide.home.feature4.desc" = "Schakel naar aftrekmodus om fouten in je inname-registraties te corrigeren.";
+
+// App Guide - History
+"appguide.history.title" = "Geschiedenis-tabblad";
+"appguide.history.feature1.title" = "Kalenderweergave";
+"appguide.history.feature1.desc" = "Bekijk je maandelijkse prestaties in één oogopslag. Dagen waarop het doel is behaald zijn gemarkeerd.";
+"appguide.history.feature2.title" = "Lijstweergave";
+"appguide.history.feature2.desc" = "Bekijk alle registraties in chronologische volgorde met voortgang voor elke dag.";
+"appguide.history.feature3.title" = "Tijdlijnweergave";
+"appguide.history.feature3.desc" = "Bekijk registraties gegroepeerd per maand in tijdlijnformaat.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Snelle registratie";
+"appguide.watch.feature1.desc" = "Registreer je waterinname direct vanaf je horloge. Snelknoppen voor 150ml, 250ml, 300ml en 500ml.";
+"appguide.watch.feature2.title" = "Realtime synchronisatie";
+"appguide.watch.feature2.desc" = "Synchroniseert realtime met je iPhone om je registraties altijd actueel te houden.";
+"appguide.watch.feature3.title" = "Complicaties";
+"appguide.watch.feature3.desc" = "Voeg een complicatie toe aan je wijzerplaat om je voortgang in één oogopslag te bekijken.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widgets";
+"appguide.widget.feature1.title" = "Beginscherm-widget";
+"appguide.widget.feature1.desc" = "Voeg een widget toe aan je beginscherm voor snelle voortgangscontrole. Klein, gemiddeld en groot formaat beschikbaar.";
+"appguide.widget.feature2.title" = "Vergrendelscherm-widget";
+"appguide.widget.feature2.desc" = "Bekijk je dagelijkse waterinname direct vanaf het vergrendelscherm.";
+"appguide.widget.feature3.title" = "Interactieve knoppen";
+"appguide.widget.feature3.desc" = "Tik op knoppen op gemiddelde/grote widgets om water toe te voegen zonder de app te openen.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Meldingen";
+"appguide.notification.feature1.title" = "Aangepaste intervallen";
+"appguide.notification.feature1.desc" = "Ontvang herinneringen met intervallen van 30 minuten, 1 uur, 2 uur of 3 uur.";
+"appguide.notification.feature2.title" = "Dagenselectie";
+"appguide.notification.feature2.desc" = "Kies op welke dagen van de week je meldingen wilt ontvangen.";
+"appguide.notification.feature3.title" = "Motiverende berichten";
+"appguide.notification.feature3.desc" = "Ontvang verschillende motiverende berichten om je drinkgewoonte op te bouwen.";
+
+// App Guide - Health
+"appguide.health.title" = "Gezondheidsintegratie";
+"appguide.health.feature1.title" = "Aanbevelingen op basis van gewicht";
+"appguide.health.feature1.desc" = "Importeer je gewicht uit de Gezondheid-app om gepersonaliseerde inname-aanbevelingen te berekenen.";
+"appguide.health.feature2.title" = "Opslaan in Gezondheid";
+"appguide.health.feature2.desc" = "Je waterinname-registraties worden automatisch opgeslagen in de Gezondheid-app.";
+
+// Tab Bar
+"tab.today" = "Vandaag";
+"tab.history" = "Geschiedenis";
+"tab.settings" = "Instellingen";
+
+// Home
+"home.goal" = "Doel %@ml";
+"home.goal.achieved" = "Doel vandaag behaald!";
+"home.goal.remaining" = "Nog %@ glazen tot je doel!";
+"home.quick.add" = "Snel toevoegen";
+"home.quick.subtract" = "Aftrekken";
+"home.edit" = "Bewerken";
+"home.goal.setting.title" = "Doel instellen";
+"home.goal.save" = "Opslaan";
+"home.goal.min" = "1.000ml";
+"home.goal.max" = "4.000ml";
+"home.goal.cancel" = "Annuleren";
+"home.quickbutton.title" = "Snel-toevoegknoppen";
+"home.quickbutton.current" = "Huidige knoppen";
+"home.quickbutton.add.section" = "Nieuwe knop toevoegen";
+"home.quickbutton.placeholder" = "Hoeveelheid (ml)";
+"home.quickbutton.add" = "Toevoegen";
+"home.quickbutton.reset" = "Herstellen naar standaard";
+"home.adjustment.title" = "Inname aanpassen";
+"home.adjustment.done" = "Gereed";
+"home.adjustment.reset" = "Registratie van vandaag resetten";
+"home.adjustment.reset.confirm" = "Waterinname van vandaag resetten?";
+"home.adjustment.reset.button" = "Resetten";
+"home.adjustment.reset.message" = "Deze actie kan niet ongedaan worden gemaakt.";
+
+// Notification Banner
+"home.notification.banner.title" = "Meldingen inschakelen";
+"home.notification.banner.description" = "Ontvang herinneringen om gehydrateerd te blijven";
+"home.notification.banner.settings" = "Instellingen";
+
+// History
+"history.title" = "Geschiedenis";
+"history.mode.calendar" = "Kalender";
+"history.mode.list" = "Lijst";
+"history.mode.timeline" = "Tijdlijn";
+"history.month.summary" = "Deze maand: %@ dagen behaald";
+"history.legend.today" = "Vandaag";
+"history.legend.selected" = "Geselecteerd";
+"history.legend.achieved" = "Behaald";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ dagen behaald";
+"history.record.goal" = "Doel %@ml";
+"history.card.goal" = "Doel";
+"history.card.intake" = "Inname";
+"history.card.achieved" = "Behaald! ✅";
+"history.label.achieved" = "Behaald";
+
+// Widget
+"widget.hydration.tracker" = "Hydratatie-tracker";
+"widget.current" = "Huidig";
+"widget.goal" = "Doel";
+"widget.current.hydration" = "Huidige hydratatie";
+"widget.todays.hydration" = "Hydratatie vandaag";
+"widget.motivation.achieved" = "Doel behaald! Goed gedaan! 🎉";
+"widget.motivation.almost" = "Bijna! Ga zo door! 🚀";
+"widget.motivation.halfway" = "Je doet het geweldig! 💧";
+"widget.motivation.start" = "Tijd om te hydrateren! 🥤";
+
+// Watch
+"watch.add.water" = "Water toevoegen";
+"watch.custom.input" = "Aangepaste invoer";
+"watch.add" = "Toevoegen";
+
+// Update
+"update.required.title" = "Update vereist";
+"update.available.title" = "Update beschikbaar";
+"update.required.message" = "Er is een nieuwe versie uitgebracht. Update om de app te blijven gebruiken.";
+"update.available.message" = "Er is een nieuwe versie beschikbaar. Wil je nu updaten?";
+"update.later" = "Later";
+"update.now" = "Updaten";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Tijd om water te drinken! 💧";
+"notification.message.2" = "Vergeet niet te hydrateren~ 🌊";
+"notification.message.3" = "Begin je gezonde dag met water! ☀️";
+"notification.message.4" = "Drink voordat je dorst voelt 🥤";
+"notification.message.5" = "Slokje voor slokje, ook vandaag! 💪";
+"notification.message.6" = "Een glas water wast de vermoeidheid weg 🧘";
+"notification.message.7" = "Het geheim van een stralende huid: water! ✨";
+"notification.message.8" = "Focus OMHOOG! Wat dacht je van een glas water? 🧠";
+"notification.message.9" = "Wacht! Drink eerst wat water 🚰";
+"notification.message.10" = "Je lichaam wacht op water 🌿";
+
+// Weekdays
+"weekday.sun" = "Zo";
+"weekday.mon" = "Ma";
+"weekday.tue" = "Di";
+"weekday.wed" = "Wo";
+"weekday.thu" = "Do";
+"weekday.fri" = "Vr";
+"weekday.sat" = "Za";
+
+// Intervals
+"interval.30min" = "30 min";
+"interval.1hour" = "1 uur";
+"interval.2hours" = "2 uur";
+"interval.3hours" = "3 uur";
+
+// Notification Settings
+"notification.settings.title" = "Meldingsinstellingen";
+"notification.settings.enable" = "Meldingen inschakelen";
+"notification.settings.timerange" = "Meldingstijdbereik";
+"notification.settings.interval" = "Meldingsinterval";
+"notification.settings.weekdays" = "Dagen selecteren";
+"notification.settings.custom" = "Aangepaste tijden (overschrijft interval)";
+"notification.settings.starttime" = "Starttijd";
+"notification.settings.endtime" = "Eindtijd";
+"notification.settings.addtime" = "Tijd toevoegen";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Waterinname";
+"complication.description" = "Bekijk hoeveel water je vandaag hebt gedronken.";
+
+// Accessibility
+"accessibility.home.current" = "Huidige inname %d milliliter";
+"accessibility.home.goal" = "Dagelijks doel %d milliliter";
+"accessibility.home.goal.hint" = "Dubbeltik om doel te wijzigen";
+"accessibility.home.add" = "Voeg %d milliliter toe";
+"accessibility.home.add.hint" = "Dubbeltik om water toe te voegen";
+"accessibility.home.subtract" = "Trek %d milliliter af";
+"accessibility.home.subtract.hint" = "Dubbeltik om water af te trekken";
+"accessibility.home.mode.add" = "Toevoegmodus actief";
+"accessibility.home.mode.subtract" = "Aftrekmodus actief";
+"accessibility.home.mode.hint" = "Dubbeltik om te schakelen tussen toevoeg- en aftrekmodus";
+"accessibility.history.summary" = "Deze maand %d dagen behaald";
+"accessibility.history.achieved" = "Doel behaald";
+"accessibility.history.progress" = "%@ van doel";

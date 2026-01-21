@@ -1,0 +1,15 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWatch
+
+  Indonesian Localization
+*/
+
+// Watch
+"watch.add.water" = "Tambah Air";
+"watch.custom.input" = "Input Kustom";
+"watch.add" = "Tambah";
+
+// Watch Complication
+"complication.displayname" = "Asupan Air";
+"complication.description" = "Lihat berapa banyak air yang kamu minum hari ini.";

@@ -1,0 +1,15 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWatch
+
+  Vietnamese Localization
+*/
+
+// Watch
+"watch.add.water" = "Thêm nước";
+"watch.custom.input" = "Nhập tùy chỉnh";
+"watch.add" = "Thêm";
+
+// Watch Complication
+"complication.displayname" = "Lượng nước";
+"complication.description" = "Kiểm tra bạn đã uống bao nhiêu nước hôm nay.";

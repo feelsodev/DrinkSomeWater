@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Chinese Simplified Localization
+*/
+
+// Main
+"You achieved " = "你达成了 ";
+"TodaySuffix" = " 今天!!";
+
+// Calendar
+"Today" = "今天";
+"Success" = "成功";
+"Selected" = "已选择";
+"You can check the history when you select a success date."
+= "选择成功日期时可以查看历史记录。";
+"Goal of this month" = "本月目标";
+"MMMM, YYYY" = "yyyy年M月";
+
+// Information
+"Alarm" = "闹钟";
+"Review" = "评价";
+"Contact Us" = "联系我们";
+"Version" = "版本";
+"License" = "许可证";
+"Set" = "设置";
+
+// Onboarding
+"onboarding.skip" = "跳过";
+"onboarding.next" = "下一步";
+"onboarding.start" = "开始使用";
+"onboarding.intro.title" = "欢迎使用 Gulp";
+"onboarding.intro.description" = "记录每日饮水量，保持身体水分充足。\n\n水对健康至关重要——有助于保持精力、提高注意力，让身体保持最佳状态。";
+"onboarding.goal.title" = "设定目标";
+"onboarding.goal.description" = "你每天想喝多少水？\n调整滑块来设定目标。";
+"onboarding.healthkit.title" = "连接健康";
+"onboarding.healthkit.description" = "与 Apple 健康同步：\n\n• 根据体重计算个性化饮水量\n• 将饮水记录保存到健康应用\n• 与其他健康数据一起追踪进度";
+"onboarding.healthkit.button" = "连接 Apple 健康";
+"onboarding.healthkit.connected" = "已连接";
+"onboarding.notification.title" = "保持提醒";
+"onboarding.notification.description" = "开启通知，全天收到友好提醒。\n\n我们会发送鼓励信息，帮助你达成饮水目标。";
+"onboarding.notification.button" = "开启通知";
+"onboarding.notification.enabled" = "已开启";
+"onboarding.widget.title" = "添加小组件";
+"onboarding.widget.description" = "将小组件添加到主屏幕以便快速访问：\n\n1. 长按主屏幕\n2. 点击 + 按钮\n3. 搜索「Gulp」\n4. 选择你喜欢的小组件大小";
+"onboarding.widget.button" = "开始使用";
+
+// Widget
+"widget.today" = "今天";
+"widget.guide.title" = "小组件设置指南";
+"widget.guide.nav.title" = "小组件指南";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "长按主屏幕";
+"widget.guide.step1.description" = "长按主屏幕空白处，直到应用开始抖动。";
+"widget.guide.step2.title" = "点击 + 按钮";
+"widget.guide.step2.description" = "点击屏幕左上角的「+」按钮。";
+"widget.guide.step3.title" = "搜索 Gulp";
+"widget.guide.step3.description" = "在小组件库中搜索「Gulp」或「水」。";
+"widget.guide.step4.title" = "选择小组件大小";
+"widget.guide.step4.description" = "选择你喜欢的小组件大小：\n• 小：显示饮水量和进度\n• 中：包含快速添加按钮";
+"widget.guide.step5.title" = "添加到主屏幕";
+"widget.guide.step5.description" = "点击「添加小组件」并放置到你想要的位置。";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "锁屏小组件";
+"widget.guide.lockscreen.step1.title" = "长按锁定屏幕";
+"widget.guide.lockscreen.step1.description" = "长按锁定屏幕，然后点击「自定义」。";
+"widget.guide.lockscreen.step2.title" = "选择小组件区域";
+"widget.guide.lockscreen.step2.description" = "点击时间上方或下方的小组件区域。";
+"widget.guide.lockscreen.step3.title" = "添加 Gulp 小组件";
+"widget.guide.lockscreen.step3.description" = "搜索「Gulp」并选择你喜欢的小组件样式。";
+
+// Settings
+"settings.title" = "设置";
+"settings.subtitle" = "自定义你的体验";
+"settings.section.personal" = "个人";
+"settings.section.app" = "应用设置";
+"settings.section.support" = "支持";
+"settings.section.info" = "信息";
+"settings.profile" = "个人资料设置";
+"settings.goal" = "每日目标";
+"settings.quickbuttons" = "快捷按钮设置";
+"settings.notification" = "饮水提醒";
+"settings.widget.guide" = "小组件设置指南";
+"settings.review" = "写评价";
+"settings.contact" = "联系我们";
+"settings.version" = "版本";
+
+// Profile
+"profile.title" = "个人资料设置";
+"profile.healthkit.title" = "Apple 健康同步";
+"profile.healthkit.description" = "自动从健康应用获取体重";
+"profile.weight" = "体重";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "每日推荐摄入量";
+"profile.recommended.description" = "体重 × 33ml 公式";
+"profile.apply.button" = "应用为每日目标";
+"profile.apply.success.title" = "目标已更新";
+"profile.apply.success.message" = "每日目标已设为 %@ml。";
+
+// Notification Settings
+"notification.enable" = "开启通知";
+"notification.time.start" = "开始时间";
+"notification.time.end" = "结束时间";
+"notification.interval" = "间隔";
+"notification.weekdays" = "日期";
+"notification.custom.times" = "自定义时间";
+"notification.custom.add" = "添加时间";
+"notification.message.info" = "通知将以各种消息发送";
+
+// Common
+"common.confirm" = "确定";
+"common.cancel" = "取消";
+"common.save" = "保存";
+"common.delete" = "删除";
+"common.done" = "完成";
+
+// Contact
+"contact.title" = "联系";
+"contact.message" = "请发送邮件至 feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "支持开发者";
+"ad.confirm.title" = "支持开发者";
+"ad.confirm.message" = "将显示一则广告。观看广告有助于支持开发者！";
+"ad.loading.title" = "请稍候";
+"ad.loading.message" = "正在加载广告，请稍后再试。";
+"ad.thanks.title" = "谢谢！";
+"ad.thanks.message" = "感谢你支持开发者 💙";
+
+// App Guide
+"settings.app.guide" = "应用功能指南";
+"appguide.title" = "Gulp 指南";
+"appguide.subtitle" = "探索所有功能";
+
+// App Guide - Home
+"appguide.home.title" = "今天标签";
+"appguide.home.feature1.title" = "记录饮水量";
+"appguide.home.feature1.desc" = "点击按钮记录饮水量。进度实时更新。";
+"appguide.home.feature2.title" = "快捷按钮";
+"appguide.home.feature2.desc" = "将常喝的水量设为快捷按钮，一键记录。";
+"appguide.home.feature3.title" = "设定目标";
+"appguide.home.feature3.desc" = "设定每日饮水目标。可参考基于体重的推荐量。";
+"appguide.home.feature4.title" = "减少模式";
+"appguide.home.feature4.desc" = "切换到减少模式，修正饮水记录中的错误。";
+
+// App Guide - History
+"appguide.history.title" = "历史标签";
+"appguide.history.feature1.title" = "日历视图";
+"appguide.history.feature1.desc" = "一目了然查看每月成就。达标日期会被标记。";
+"appguide.history.feature2.title" = "列表视图";
+"appguide.history.feature2.desc" = "按时间顺序查看所有记录，每天的进度一目了然。";
+"appguide.history.feature3.title" = "时间线视图";
+"appguide.history.feature3.desc" = "以时间线形式查看按月分组的记录。";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "快速记录";
+"appguide.watch.feature1.desc" = "直接在手表上记录饮水量。快捷按钮支持 150ml、250ml、300ml 和 500ml。";
+"appguide.watch.feature2.title" = "实时同步";
+"appguide.watch.feature2.desc" = "与 iPhone 实时同步，记录始终保持最新。";
+"appguide.watch.feature3.title" = "复杂功能";
+"appguide.watch.feature3.desc" = "在表盘添加复杂功能，快速查看进度。";
+
+// App Guide - Widget
+"appguide.widget.title" = "小组件";
+"appguide.widget.feature1.title" = "主屏幕小组件";
+"appguide.widget.feature1.desc" = "在主屏幕添加小组件，快速查看进度。支持小、中、大三种尺寸。";
+"appguide.widget.feature2.title" = "锁屏小组件";
+"appguide.widget.feature2.desc" = "在锁定屏幕查看每日饮水量。";
+"appguide.widget.feature3.title" = "交互按钮";
+"appguide.widget.feature3.desc" = "点击中/大小组件上的按钮，无需打开应用即可添加饮水量。";
+
+// App Guide - Notification
+"appguide.notification.title" = "通知";
+"appguide.notification.feature1.title" = "自定义间隔";
+"appguide.notification.feature1.desc" = "按 30 分钟、1 小时、2 小时或 3 小时间隔接收提醒。";
+"appguide.notification.feature2.title" = "选择日期";
+"appguide.notification.feature2.desc" = "选择一周中的哪几天接收通知。";
+"appguide.notification.feature3.title" = "鼓励消息";
+"appguide.notification.feature3.desc" = "接收各种鼓励消息，帮助养成饮水习惯。";
+
+// App Guide - Health
+"appguide.health.title" = "健康集成";
+"appguide.health.feature1.title" = "基于体重的推荐";
+"appguide.health.feature1.desc" = "从健康应用导入体重，计算个性化摄入推荐。";
+"appguide.health.feature2.title" = "保存到健康";
+"appguide.health.feature2.desc" = "饮水记录自动保存到健康应用。";
+
+// Tab Bar
+"tab.today" = "今天";
+"tab.history" = "历史";
+"tab.settings" = "设置";
+
+// Home
+"home.goal" = "目标 %@ml";
+"home.goal.achieved" = "今天目标达成！";
+"home.goal.remaining" = "再喝 %@ 杯就达标了！";
+"home.quick.add" = "快速添加";
+"home.quick.subtract" = "减少";
+"home.edit" = "编辑";
+"home.goal.setting.title" = "设定目标";
+"home.goal.save" = "保存";
+"home.goal.min" = "1,000ml";
+"home.goal.max" = "4,000ml";
+"home.goal.cancel" = "取消";
+"home.quickbutton.title" = "快速添加按钮";
+"home.quickbutton.current" = "当前按钮";
+"home.quickbutton.add.section" = "添加新按钮";
+"home.quickbutton.placeholder" = "容量 (ml)";
+"home.quickbutton.add" = "添加";
+"home.quickbutton.reset" = "恢复默认";
+"home.adjustment.title" = "调整摄入量";
+"home.adjustment.done" = "完成";
+"home.adjustment.reset" = "重置今日记录";
+"home.adjustment.reset.confirm" = "重置今日饮水量？";
+"home.adjustment.reset.button" = "重置";
+"home.adjustment.reset.message" = "此操作无法撤销。";
+
+// Notification Banner
+"home.notification.banner.title" = "开启通知";
+"home.notification.banner.description" = "获取饮水提醒";
+"home.notification.banner.settings" = "设置";
+
+// History
+"history.title" = "历史";
+"history.mode.calendar" = "日历";
+"history.mode.list" = "列表";
+"history.mode.timeline" = "时间线";
+"history.month.summary" = "本月：%@ 天达标";
+"history.legend.today" = "今天";
+"history.legend.selected" = "已选择";
+"history.legend.achieved" = "已达成";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ 天达标";
+"history.record.goal" = "目标 %@ml";
+"history.card.goal" = "目标";
+"history.card.intake" = "摄入量";
+"history.card.achieved" = "达成！ ✅";
+"history.label.achieved" = "达成";
+
+// Widget
+"widget.hydration.tracker" = "饮水追踪";
+"widget.current" = "当前";
+"widget.goal" = "目标";
+"widget.current.hydration" = "当前饮水量";
+"widget.todays.hydration" = "今日饮水量";
+"widget.motivation.achieved" = "目标达成！太棒了！ 🎉";
+"widget.motivation.almost" = "快到了！继续加油！ 🚀";
+"widget.motivation.halfway" = "做得很好！ 💧";
+"widget.motivation.start" = "该喝水了！ 🥤";
+
+// Watch
+"watch.add.water" = "添加饮水";
+"watch.custom.input" = "自定义输入";
+"watch.add" = "添加";
+
+// Update
+"update.required.title" = "需要更新";
+"update.available.title" = "有可用更新";
+"update.required.message" = "新版本已发布。请更新以继续使用应用。";
+"update.available.message" = "新版本可用。现在更新吗？";
+"update.later" = "稍后";
+"update.now" = "更新";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "该喝水了！ 💧";
+"notification.message.2" = "别忘了补充水分~ 🌊";
+"notification.message.3" = "用水开启健康的一天！ ☀️";
+"notification.message.4" = "口渴前先喝水 🥤";
+"notification.message.5" = "今天也要咕嘟咕嘟！ 💪";
+"notification.message.6" = "一杯水洗去疲惫 🧘";
+"notification.message.7" = "好皮肤的秘诀：水！ ✨";
+"notification.message.8" = "专注力UP！来杯水？ 🧠";
+"notification.message.9" = "等等！先喝杯水 🚰";
+"notification.message.10" = "你的身体在等待水分 🌿";
+
+// Weekdays
+"weekday.sun" = "日";
+"weekday.mon" = "一";
+"weekday.tue" = "二";
+"weekday.wed" = "三";
+"weekday.thu" = "四";
+"weekday.fri" = "五";
+"weekday.sat" = "六";
+
+// Intervals
+"interval.30min" = "30 分钟";
+"interval.1hour" = "1 小时";
+"interval.2hours" = "2 小时";
+"interval.3hours" = "3 小时";
+
+// Notification Settings
+"notification.settings.title" = "通知设置";
+"notification.settings.enable" = "开启通知";
+"notification.settings.timerange" = "通知时间范围";
+"notification.settings.interval" = "通知间隔";
+"notification.settings.weekdays" = "选择日期";
+"notification.settings.custom" = "自定义时间（覆盖间隔）";
+"notification.settings.starttime" = "开始时间";
+"notification.settings.endtime" = "结束时间";
+"notification.settings.addtime" = "添加时间";
+
+// Date Formats
+"dateformat.month" = "M月";
+"dateformat.yearmonth" = "yyyy年M月";
+"dateformat.monthday" = "M月d日 (E)";
+
+// Watch Complication
+"complication.displayname" = "饮水量";
+"complication.description" = "查看今天喝了多少水。";
+
+// Accessibility
+"accessibility.home.current" = "当前摄入量 %d 毫升";
+"accessibility.home.goal" = "每日目标 %d 毫升";
+"accessibility.home.goal.hint" = "双击更改目标";
+"accessibility.home.add" = "添加 %d 毫升";
+"accessibility.home.add.hint" = "双击添加饮水";
+"accessibility.home.subtract" = "减少 %d 毫升";
+"accessibility.home.subtract.hint" = "双击减少饮水";
+"accessibility.home.mode.add" = "添加模式已激活";
+"accessibility.home.mode.subtract" = "减少模式已激活";
+"accessibility.home.mode.hint" = "双击切换添加和减少模式";
+"accessibility.history.summary" = "本月 %d 天达标";
+"accessibility.history.achieved" = "目标达成";
+"accessibility.history.progress" = "目标的 %@";

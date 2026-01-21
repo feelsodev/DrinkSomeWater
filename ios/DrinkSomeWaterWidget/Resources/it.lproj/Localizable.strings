@@ -1,0 +1,17 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWidget
+
+  Italian Localization
+*/
+
+// Widget
+"widget.hydration.tracker" = "Tracker idratazione";
+"widget.current" = "Attuale";
+"widget.goal" = "Obiettivo";
+"widget.current.hydration" = "Idratazione attuale";
+"widget.todays.hydration" = "Idratazione di oggi";
+"widget.motivation.achieved" = "Obiettivo raggiunto! Ottimo lavoro! 🎉";
+"widget.motivation.almost" = "Quasi! Continua così! 🚀";
+"widget.motivation.halfway" = "Stai andando alla grande! 💧";
+"widget.motivation.start" = "È ora di idratarti! 🥤";

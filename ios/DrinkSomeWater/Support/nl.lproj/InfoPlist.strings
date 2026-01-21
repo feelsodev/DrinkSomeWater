@@ -1,0 +1,15 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWater
+
+  Dutch (nl)
+
+*/
+
+// App name
+"CFBundleDisplayName" = "Gulp";
+"CFBundleName" = "Gulp";
+
+// Usage Descriptions
+"NSHealthShareUsageDescription" = "Lees gewichtsgegevens om gepersonaliseerde aanbevelingen te berekenen.";
+"NSHealthUpdateUsageDescription" = "Synchroniseer waterinname-registraties met de Gezondheid-app.";

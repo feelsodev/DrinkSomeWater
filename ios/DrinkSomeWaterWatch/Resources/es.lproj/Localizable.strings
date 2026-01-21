@@ -1,0 +1,15 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWatch
+
+  Spanish Localization
+*/
+
+// Watch
+"watch.add.water" = "Añadir agua";
+"watch.custom.input" = "Entrada personalizada";
+"watch.add" = "Añadir";
+
+// Watch Complication
+"complication.displayname" = "Consumo de agua";
+"complication.description" = "Revisa cuánta agua has bebido hoy.";

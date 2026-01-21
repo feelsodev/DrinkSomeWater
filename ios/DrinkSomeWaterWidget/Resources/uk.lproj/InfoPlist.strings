@@ -1,0 +1,7 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWaterWidget
+*/
+
+"CFBundleDisplayName" = "Gulp Widget";
+"CFBundleName" = "Gulp Widget";

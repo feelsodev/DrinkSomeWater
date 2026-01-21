@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Turkish Localization
+*/
+
+// Main
+"You achieved " = "Başardın ";
+"TodaySuffix" = " bugün!!";
+
+// Calendar
+"Today" = "Bugün";
+"Success" = "Başarı";
+"Selected" = "Seçili";
+"You can check the history when you select a success date."
+= "Başarılı bir tarih seçtiğinizde geçmişi kontrol edebilirsiniz.";
+"Goal of this month" = "Bu ayın hedefi";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "Alarm";
+"Review" = "İnceleme";
+"Contact Us" = "Bize Ulaşın";
+"Version" = "Sürüm";
+"License" = "Lisans";
+"Set" = "Ayarla";
+
+// Onboarding
+"onboarding.skip" = "Atla";
+"onboarding.next" = "İleri";
+"onboarding.start" = "Başla";
+"onboarding.intro.title" = "Gulp'a Hoş Geldiniz";
+"onboarding.intro.description" = "Günlük su tüketiminizi takip edin ve susuz kalmayın.\n\nSu sağlığınız için vazgeçilmezdir – enerjiyi korumaya, odaklanmayı artırmaya ve vücudunuzu en iyi durumda tutmaya yardımcı olur.";
+"onboarding.goal.title" = "Hedefinizi Belirleyin";
+"onboarding.goal.description" = "Günde ne kadar su içmek istiyorsunuz?\nHedefinizi belirlemek için kaydırıcıyı ayarlayın.";
+"onboarding.healthkit.title" = "Sağlık Bağla";
+"onboarding.healthkit.description" = "Apple Health ile senkronize edin:\n\n• Kilonuza göre kişiselleştirilmiş su tüketimini hesaplayın\n• Su kayıtlarını Sağlık uygulamasına kaydedin\n• İlerlemenizi diğer sağlık verileriyle birlikte takip edin";
+"onboarding.healthkit.button" = "Apple Health Bağla";
+"onboarding.healthkit.connected" = "Bağlandı";
+"onboarding.notification.title" = "Hatırlatıcılar";
+"onboarding.notification.description" = "Gün boyunca dostça hatırlatmalar almak için bildirimleri etkinleştirin.\n\nHidrasyon hedeflerinize ulaşmanıza yardımcı olacak motive edici mesajlar göndereceğiz.";
+"onboarding.notification.button" = "Bildirimleri Etkinleştir";
+"onboarding.notification.enabled" = "Etkin";
+"onboarding.widget.title" = "Widget Ekle";
+"onboarding.widget.description" = "Hızlı erişim için ana ekrana widget'ımızı ekleyin:\n\n1. Ana ekrana uzun basın\n2. + düğmesine dokunun\n3. 'Gulp' arayın\n4. Tercih ettiğiniz widget boyutunu seçin";
+"onboarding.widget.button" = "Başla";
+
+// Widget
+"widget.today" = "Bugün";
+"widget.guide.title" = "Widget Kurulum Kılavuzu";
+"widget.guide.nav.title" = "Widget Kılavuzu";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Ana ekrana uzun basın";
+"widget.guide.step1.description" = "Uygulamalar sallanmaya başlayana kadar ana ekranın boş bir alanına basılı tutun.";
+"widget.guide.step2.title" = "+ düğmesine dokunun";
+"widget.guide.step2.description" = "Ekranın sol üst köşesindeki \"+\" düğmesine dokunun.";
+"widget.guide.step3.title" = "Gulp'u arayın";
+"widget.guide.step3.description" = "Widget galerisinde \"Gulp\" veya \"Su\" arayın.";
+"widget.guide.step4.title" = "Widget boyutunu seçin";
+"widget.guide.step4.description" = "Tercih ettiğiniz widget boyutunu seçin:\n• Küçük: Su tüketimini ve ilerlemeyi gösterir\n• Orta: Hızlı ekleme düğmeleri içerir";
+"widget.guide.step5.title" = "Ana ekrana ekle";
+"widget.guide.step5.description" = "\"Widget Ekle\"ye dokunun ve istediğiniz yere konumlandırın.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Kilit Ekranı Widget'ı";
+"widget.guide.lockscreen.step1.title" = "Kilit ekranına uzun basın";
+"widget.guide.lockscreen.step1.description" = "Kilit ekranına basılı tutun ve \"Özelleştir\"e dokunun.";
+"widget.guide.lockscreen.step2.title" = "Widget alanını seçin";
+"widget.guide.lockscreen.step2.description" = "Saatin üstündeki veya altındaki widget alanına dokunun.";
+"widget.guide.lockscreen.step3.title" = "Gulp widget'ı ekle";
+"widget.guide.lockscreen.step3.description" = "\"Gulp\" arayın ve tercih ettiğiniz widget stilini seçin.";
+
+// Settings
+"settings.title" = "Ayarlar";
+"settings.subtitle" = "Deneyiminizi özelleştirin";
+"settings.section.personal" = "Kişisel";
+"settings.section.app" = "Uygulama Ayarları";
+"settings.section.support" = "Destek";
+"settings.section.info" = "Bilgi";
+"settings.profile" = "Profil Ayarları";
+"settings.goal" = "Günlük Hedef";
+"settings.quickbuttons" = "Hızlı Düğme Ayarları";
+"settings.notification" = "Su Hatırlatıcısı";
+"settings.widget.guide" = "Widget Kurulum Kılavuzu";
+"settings.review" = "İnceleme Yaz";
+"settings.contact" = "Bize Ulaşın";
+"settings.version" = "Sürüm";
+
+// Profile
+"profile.title" = "Profil Ayarları";
+"profile.healthkit.title" = "Apple Health Senkronizasyonu";
+"profile.healthkit.description" = "Sağlık uygulamasından kiloyu otomatik al";
+"profile.weight" = "Kilo";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Günlük Önerilen Miktar";
+"profile.recommended.description" = "Kilo × 33ml formülü";
+"profile.apply.button" = "Günlük Hedef Olarak Uygula";
+"profile.apply.success.title" = "Hedef Güncellendi";
+"profile.apply.success.message" = "Günlük hedef %@ml olarak ayarlandı.";
+
+// Notification Settings
+"notification.enable" = "Bildirimleri Etkinleştir";
+"notification.time.start" = "Başlangıç Saati";
+"notification.time.end" = "Bitiş Saati";
+"notification.interval" = "Aralık";
+"notification.weekdays" = "Günler";
+"notification.custom.times" = "Özel Saatler";
+"notification.custom.add" = "Saat Ekle";
+"notification.message.info" = "Bildirimler çeşitli mesajlarla gönderilecek";
+
+// Common
+"common.confirm" = "Tamam";
+"common.cancel" = "İptal";
+"common.save" = "Kaydet";
+"common.delete" = "Sil";
+"common.done" = "Bitti";
+
+// Contact
+"contact.title" = "İletişim";
+"contact.message" = "Lütfen feelsodev@gmail.com adresinden bize ulaşın";
+
+// Ad
+"settings.support.developer" = "Geliştiriciyi Destekle";
+"ad.confirm.title" = "Geliştiriciyi Destekle";
+"ad.confirm.message" = "Bir reklam gösterilecek. İzlemeniz geliştiriciyi desteklemeye yardımcı olur!";
+"ad.loading.title" = "Lütfen Bekleyin";
+"ad.loading.message" = "Reklam yükleniyor. Lütfen birazdan tekrar deneyin.";
+"ad.thanks.title" = "Teşekkürler!";
+"ad.thanks.message" = "Geliştiriciyi desteklediğiniz için teşekkürler 💙";
+
+// App Guide
+"settings.app.guide" = "Uygulama Özellik Kılavuzu";
+"appguide.title" = "Gulp Kılavuzu";
+"appguide.subtitle" = "Tüm özellikleri keşfedin";
+
+// App Guide - Home
+"appguide.home.title" = "Bugün Sekmesi";
+"appguide.home.feature1.title" = "Su Tüketimini Takip Et";
+"appguide.home.feature1.desc" = "Su tüketiminizi kaydetmek için düğmeye dokunun. İlerleme gerçek zamanlı güncellenir.";
+"appguide.home.feature2.title" = "Hızlı Düğmeler";
+"appguide.home.feature2.desc" = "Tek dokunuşla kayıt için sık tükettiğiniz miktarları hızlı düğmeler olarak ayarlayın.";
+"appguide.home.feature3.title" = "Hedefinizi Belirleyin";
+"appguide.home.feature3.desc" = "Günlük su tüketimi hedefinizi belirleyin. Kiloya dayalı öneriler mevcuttur.";
+"appguide.home.feature4.title" = "Çıkarma Modu";
+"appguide.home.feature4.desc" = "Tüketim kayıtlarındaki hataları düzeltmek için çıkarma moduna geçin.";
+
+// App Guide - History
+"appguide.history.title" = "Geçmiş Sekmesi";
+"appguide.history.feature1.title" = "Takvim Görünümü";
+"appguide.history.feature1.desc" = "Aylık başarılarınızı bir bakışta görün. Hedef tamamlama günleri vurgulanır.";
+"appguide.history.feature2.title" = "Liste Görünümü";
+"appguide.history.feature2.desc" = "Tüm kayıtları her gün için ilerlemeyle kronolojik sırayla kontrol edin.";
+"appguide.history.feature3.title" = "Zaman Çizelgesi Görünümü";
+"appguide.history.feature3.desc" = "Kayıtları aya göre gruplandırılmış zaman çizelgesi formatında görüntüleyin.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Hızlı Kayıt";
+"appguide.watch.feature1.desc" = "Su tüketiminizi doğrudan saatinizden kaydedin. 150ml, 250ml, 300ml ve 500ml için hızlı düğmeler.";
+"appguide.watch.feature2.title" = "Gerçek Zamanlı Senkronizasyon";
+"appguide.watch.feature2.desc" = "Kayıtlarınızı her zaman güncel tutmak için iPhone'unuzla gerçek zamanlı senkronize olur.";
+"appguide.watch.feature3.title" = "Komplikasyonlar";
+"appguide.watch.feature3.desc" = "İlerlemenizi bir bakışta kontrol etmek için saat kadranınıza bir komplikasyon ekleyin.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widget'lar";
+"appguide.widget.feature1.title" = "Ana Ekran Widget'ı";
+"appguide.widget.feature1.desc" = "Hızlı ilerleme kontrolleri için ana ekranınıza bir widget ekleyin. Küçük, orta ve büyük boyutlar mevcuttur.";
+"appguide.widget.feature2.title" = "Kilit Ekranı Widget'ı";
+"appguide.widget.feature2.desc" = "Günlük su tüketiminizi doğrudan kilit ekranından kontrol edin.";
+"appguide.widget.feature3.title" = "Etkileşimli Düğmeler";
+"appguide.widget.feature3.desc" = "Uygulamayı açmadan su eklemek için orta/büyük widget'lardaki düğmelere dokunun.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Bildirimler";
+"appguide.notification.feature1.title" = "Özel Aralıklar";
+"appguide.notification.feature1.desc" = "30 dakika, 1 saat, 2 saat veya 3 saat aralıklarla hatırlatıcılar alın.";
+"appguide.notification.feature2.title" = "Gün Seçimi";
+"appguide.notification.feature2.desc" = "Hangi hafta günlerinde bildirim almak istediğinizi seçin.";
+"appguide.notification.feature3.title" = "Motive Edici Mesajlar";
+"appguide.notification.feature3.desc" = "Hidrasyon alışkanlığınızı oluşturmanıza yardımcı olacak çeşitli motive edici mesajlar alın.";
+
+// App Guide - Health
+"appguide.health.title" = "Sağlık Entegrasyonu";
+"appguide.health.feature1.title" = "Kiloya Dayalı Öneriler";
+"appguide.health.feature1.desc" = "Kişiselleştirilmiş tüketim önerileri hesaplamak için kilonuzu Sağlık uygulamasından içe aktarın.";
+"appguide.health.feature2.title" = "Sağlığa Kaydet";
+"appguide.health.feature2.desc" = "Su tüketimi kayıtlarınız otomatik olarak Sağlık uygulamasına kaydedilir.";
+
+// Tab Bar
+"tab.today" = "Bugün";
+"tab.history" = "Geçmiş";
+"tab.settings" = "Ayarlar";
+
+// Home
+"home.goal" = "Hedef %@ml";
+"home.goal.achieved" = "Bugünün hedefi başarıldı!";
+"home.goal.remaining" = "Hedefinize ulaşmak için %@ bardak daha!";
+"home.quick.add" = "Hızlı Ekle";
+"home.quick.subtract" = "Çıkar";
+"home.edit" = "Düzenle";
+"home.goal.setting.title" = "Hedef Belirle";
+"home.goal.save" = "Kaydet";
+"home.goal.min" = "1.000ml";
+"home.goal.max" = "4.000ml";
+"home.goal.cancel" = "İptal";
+"home.quickbutton.title" = "Hızlı Ekleme Düğmeleri";
+"home.quickbutton.current" = "Mevcut Düğmeler";
+"home.quickbutton.add.section" = "Yeni Düğme Ekle";
+"home.quickbutton.placeholder" = "Miktar (ml)";
+"home.quickbutton.add" = "Ekle";
+"home.quickbutton.reset" = "Varsayılana Sıfırla";
+"home.adjustment.title" = "Tüketimi Ayarla";
+"home.adjustment.done" = "Bitti";
+"home.adjustment.reset" = "Bugünün Kaydını Sıfırla";
+"home.adjustment.reset.confirm" = "Bugünün su tüketimini sıfırla?";
+"home.adjustment.reset.button" = "Sıfırla";
+"home.adjustment.reset.message" = "Bu işlem geri alınamaz.";
+
+// Notification Banner
+"home.notification.banner.title" = "Bildirimleri Etkinleştir";
+"home.notification.banner.description" = "Susuz kalmamak için hatırlatıcılar alın";
+"home.notification.banner.settings" = "Ayarlar";
+
+// History
+"history.title" = "Geçmiş";
+"history.mode.calendar" = "Takvim";
+"history.mode.list" = "Liste";
+"history.mode.timeline" = "Zaman Çizelgesi";
+"history.month.summary" = "Bu ay: %@ gün başarıldı";
+"history.legend.today" = "Bugün";
+"history.legend.selected" = "Seçili";
+"history.legend.achieved" = "Başarıldı";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ gün başarıldı";
+"history.record.goal" = "Hedef %@ml";
+"history.card.goal" = "Hedef";
+"history.card.intake" = "Tüketim";
+"history.card.achieved" = "Başarıldı! ✅";
+"history.label.achieved" = "Başarıldı";
+
+// Widget
+"widget.hydration.tracker" = "Hidrasyon Takibi";
+"widget.current" = "Mevcut";
+"widget.goal" = "Hedef";
+"widget.current.hydration" = "Mevcut Hidrasyon";
+"widget.todays.hydration" = "Bugünün Hidrasyonu";
+"widget.motivation.achieved" = "Hedef başarıldı! Harika iş! 🎉";
+"widget.motivation.almost" = "Neredeyse tamam! Devam et! 🚀";
+"widget.motivation.halfway" = "Harika gidiyorsun! 💧";
+"widget.motivation.start" = "Hidrasyon zamanı! 🥤";
+
+// Watch
+"watch.add.water" = "Su Ekle";
+"watch.custom.input" = "Özel Giriş";
+"watch.add" = "Ekle";
+
+// Update
+"update.required.title" = "Güncelleme Gerekli";
+"update.available.title" = "Güncelleme Mevcut";
+"update.required.message" = "Yeni bir sürüm yayınlandı. Uygulamayı kullanmaya devam etmek için lütfen güncelleyin.";
+"update.available.message" = "Yeni bir sürüm mevcut. Şimdi güncellemek ister misiniz?";
+"update.later" = "Daha Sonra";
+"update.now" = "Güncelle";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Su içme zamanı! 💧";
+"notification.message.2" = "Su içmeyi unutma~ 🌊";
+"notification.message.3" = "Sağlıklı gününe suyla başla! ☀️";
+"notification.message.4" = "Susamadan önce iç 🥤";
+"notification.message.5" = "Bugün de gulp gulp! 💪";
+"notification.message.6" = "Bir bardak su yorgunluğu alır 🧘";
+"notification.message.7" = "Parlak cildin sırrı: su! ✨";
+"notification.message.8" = "Odak YUKARI! Bir bardak suya ne dersin? 🧠";
+"notification.message.9" = "Dur! Önce biraz su iç 🚰";
+"notification.message.10" = "Vücudun su bekliyor 🌿";
+
+// Weekdays
+"weekday.sun" = "Paz";
+"weekday.mon" = "Pzt";
+"weekday.tue" = "Sal";
+"weekday.wed" = "Çar";
+"weekday.thu" = "Per";
+"weekday.fri" = "Cum";
+"weekday.sat" = "Cmt";
+
+// Intervals
+"interval.30min" = "30 dk";
+"interval.1hour" = "1 saat";
+"interval.2hours" = "2 saat";
+"interval.3hours" = "3 saat";
+
+// Notification Settings
+"notification.settings.title" = "Bildirim Ayarları";
+"notification.settings.enable" = "Bildirimleri Etkinleştir";
+"notification.settings.timerange" = "Bildirim Zaman Aralığı";
+"notification.settings.interval" = "Bildirim Aralığı";
+"notification.settings.weekdays" = "Günleri Seç";
+"notification.settings.custom" = "Özel Saatler (aralığı geçersiz kılar)";
+"notification.settings.starttime" = "Başlangıç Saati";
+"notification.settings.endtime" = "Bitiş Saati";
+"notification.settings.addtime" = "Saat Ekle";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Su Tüketimi";
+"complication.description" = "Bugün ne kadar su içtiğinizi kontrol edin.";
+
+// Accessibility
+"accessibility.home.current" = "Mevcut tüketim %d mililitre";
+"accessibility.home.goal" = "Günlük hedef %d mililitre";
+"accessibility.home.goal.hint" = "Hedefi değiştirmek için çift dokunun";
+"accessibility.home.add" = "%d mililitre ekle";
+"accessibility.home.add.hint" = "Su eklemek için çift dokunun";
+"accessibility.home.subtract" = "%d mililitre çıkar";
+"accessibility.home.subtract.hint" = "Su çıkarmak için çift dokunun";
+"accessibility.home.mode.add" = "Ekleme modu aktif";
+"accessibility.home.mode.subtract" = "Çıkarma modu aktif";
+"accessibility.home.mode.hint" = "Ekleme ve çıkarma modu arasında geçiş yapmak için çift dokunun";
+"accessibility.history.summary" = "Bu ay %d gün başarıldı";
+"accessibility.history.achieved" = "Hedef başarıldı";
+"accessibility.history.progress" = "Hedefin %@'i";

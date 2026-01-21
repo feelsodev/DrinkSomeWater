@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater
+
+  Vietnamese Localization
+*/
+
+// Main
+"You achieved " = "Bạn đã đạt được ";
+"TodaySuffix" = " Hôm nay!!";
+
+// Calendar
+"Today" = "Hôm nay";
+"Success" = "Thành công";
+"Selected" = "Đã chọn";
+"You can check the history when you select a success date."
+= "Bạn có thể xem lịch sử khi chọn ngày thành công.";
+"Goal of this month" = "Mục tiêu tháng này";
+"MMMM, YYYY" = "MMMM, yyyy";
+
+// Information
+"Alarm" = "Báo thức";
+"Review" = "Đánh giá";
+"Contact Us" = "Liên hệ";
+"Version" = "Phiên bản";
+"License" = "Giấy phép";
+"Set" = "Cài đặt";
+
+// Onboarding
+"onboarding.skip" = "Bỏ qua";
+"onboarding.next" = "Tiếp theo";
+"onboarding.start" = "Bắt đầu";
+"onboarding.intro.title" = "Chào mừng đến với Gulp";
+"onboarding.intro.description" = "Theo dõi lượng nước uống hàng ngày và giữ cho cơ thể đủ nước.\n\nNước rất quan trọng cho sức khỏe - giúp duy trì năng lượng, cải thiện sự tập trung và giữ cho cơ thể hoạt động tốt nhất.";
+"onboarding.goal.title" = "Đặt mục tiêu";
+"onboarding.goal.description" = "Bạn muốn uống bao nhiêu nước mỗi ngày?\nKéo thanh trượt để đặt mục tiêu.";
+"onboarding.healthkit.title" = "Kết nối Sức khỏe";
+"onboarding.healthkit.description" = "Đồng bộ với Apple Health để:\n\n• Tính toán lượng nước cá nhân hóa dựa trên cân nặng\n• Lưu hồ sơ nước vào ứng dụng Sức khỏe\n• Theo dõi tiến độ cùng các dữ liệu sức khỏe khác";
+"onboarding.healthkit.button" = "Kết nối Apple Health";
+"onboarding.healthkit.connected" = "Đã kết nối";
+"onboarding.notification.title" = "Nhắc nhở";
+"onboarding.notification.description" = "Bật thông báo để nhận lời nhắc thân thiện trong ngày.\n\nChúng tôi sẽ gửi tin nhắn động viên để giúp bạn đạt mục tiêu uống nước.";
+"onboarding.notification.button" = "Bật thông báo";
+"onboarding.notification.enabled" = "Đã bật";
+"onboarding.widget.title" = "Thêm Widget";
+"onboarding.widget.description" = "Thêm widget vào Màn hình chính để truy cập nhanh:\n\n1. Nhấn giữ Màn hình chính\n2. Nhấn nút +\n3. Tìm kiếm 'Gulp'\n4. Chọn kích thước widget bạn muốn";
+"onboarding.widget.button" = "Bắt đầu";
+
+// Widget
+"widget.today" = "Hôm nay";
+"widget.guide.title" = "Hướng dẫn cài đặt Widget";
+"widget.guide.nav.title" = "Hướng dẫn Widget";
+
+// Widget Guide - Home Screen Steps
+"widget.guide.step1.title" = "Nhấn giữ Màn hình chính";
+"widget.guide.step1.description" = "Nhấn và giữ vào vùng trống trên Màn hình chính cho đến khi các ứng dụng rung.";
+"widget.guide.step2.title" = "Nhấn nút +";
+"widget.guide.step2.description" = "Nhấn nút \"+\" ở góc trên bên trái màn hình.";
+"widget.guide.step3.title" = "Tìm kiếm Gulp";
+"widget.guide.step3.description" = "Trong thư viện widget, tìm kiếm \"Gulp\" hoặc \"Nước\".";
+"widget.guide.step4.title" = "Chọn kích thước widget";
+"widget.guide.step4.description" = "Chọn kích thước widget bạn muốn:\n• Nhỏ: Hiển thị lượng nước và tiến độ\n• Vừa: Bao gồm nút thêm nhanh";
+"widget.guide.step5.title" = "Thêm vào Màn hình chính";
+"widget.guide.step5.description" = "Nhấn \"Thêm Widget\" và đặt vào vị trí bạn muốn.";
+
+// Widget Guide - Lock Screen Section
+"widget.guide.lockscreen.header" = "Widget Màn hình khóa";
+"widget.guide.lockscreen.step1.title" = "Nhấn giữ Màn hình khóa";
+"widget.guide.lockscreen.step1.description" = "Nhấn và giữ Màn hình khóa rồi nhấn \"Tùy chỉnh\".";
+"widget.guide.lockscreen.step2.title" = "Chọn vùng widget";
+"widget.guide.lockscreen.step2.description" = "Nhấn vào vùng widget phía trên hoặc dưới đồng hồ.";
+"widget.guide.lockscreen.step3.title" = "Thêm widget Gulp";
+"widget.guide.lockscreen.step3.description" = "Tìm kiếm \"Gulp\" và chọn kiểu widget bạn thích.";
+
+// Settings
+"settings.title" = "Cài đặt";
+"settings.subtitle" = "Tùy chỉnh trải nghiệm của bạn";
+"settings.section.personal" = "Cá nhân";
+"settings.section.app" = "Cài đặt ứng dụng";
+"settings.section.support" = "Hỗ trợ";
+"settings.section.info" = "Thông tin";
+"settings.profile" = "Cài đặt hồ sơ";
+"settings.goal" = "Mục tiêu hàng ngày";
+"settings.quickbuttons" = "Cài đặt nút nhanh";
+"settings.notification" = "Nhắc nhở uống nước";
+"settings.widget.guide" = "Hướng dẫn cài đặt Widget";
+"settings.review" = "Viết đánh giá";
+"settings.contact" = "Liên hệ chúng tôi";
+"settings.version" = "Phiên bản";
+
+// Profile
+"profile.title" = "Cài đặt hồ sơ";
+"profile.healthkit.title" = "Đồng bộ Apple Health";
+"profile.healthkit.description" = "Tự động lấy cân nặng từ ứng dụng Sức khỏe";
+"profile.weight" = "Cân nặng";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "Lượng khuyến nghị hàng ngày";
+"profile.recommended.description" = "Công thức: Cân nặng × 33ml";
+"profile.apply.button" = "Áp dụng làm mục tiêu hàng ngày";
+"profile.apply.success.title" = "Đã cập nhật mục tiêu";
+"profile.apply.success.message" = "Mục tiêu hàng ngày đã đặt thành %@ml.";
+
+// Notification Settings
+"notification.enable" = "Bật thông báo";
+"notification.time.start" = "Thời gian bắt đầu";
+"notification.time.end" = "Thời gian kết thúc";
+"notification.interval" = "Khoảng cách";
+"notification.weekdays" = "Ngày";
+"notification.custom.times" = "Thời gian tùy chỉnh";
+"notification.custom.add" = "Thêm thời gian";
+"notification.message.info" = "Thông báo sẽ được gửi với nhiều tin nhắn khác nhau";
+
+// Common
+"common.confirm" = "OK";
+"common.cancel" = "Hủy";
+"common.save" = "Lưu";
+"common.delete" = "Xóa";
+"common.done" = "Xong";
+
+// Contact
+"contact.title" = "Liên hệ";
+"contact.message" = "Vui lòng liên hệ qua feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "Hỗ trợ nhà phát triển";
+"ad.confirm.title" = "Hỗ trợ nhà phát triển";
+"ad.confirm.message" = "Một quảng cáo sẽ được hiển thị. Xem quảng cáo giúp hỗ trợ nhà phát triển!";
+"ad.loading.title" = "Vui lòng đợi";
+"ad.loading.message" = "Đang tải quảng cáo. Vui lòng thử lại sau.";
+"ad.thanks.title" = "Cảm ơn bạn!";
+"ad.thanks.message" = "Cảm ơn bạn đã hỗ trợ nhà phát triển 💙";
+
+// App Guide
+"settings.app.guide" = "Hướng dẫn tính năng ứng dụng";
+"appguide.title" = "Hướng dẫn Gulp";
+"appguide.subtitle" = "Khám phá tất cả tính năng";
+
+// App Guide - Home
+"appguide.home.title" = "Tab Hôm nay";
+"appguide.home.feature1.title" = "Theo dõi lượng nước";
+"appguide.home.feature1.desc" = "Nhấn nút để ghi lại lượng nước uống. Tiến độ cập nhật theo thời gian thực.";
+"appguide.home.feature2.title" = "Nút nhanh";
+"appguide.home.feature2.desc" = "Đặt lượng nước thường uống làm nút nhanh để ghi lại chỉ với một lần nhấn.";
+"appguide.home.feature3.title" = "Đặt mục tiêu";
+"appguide.home.feature3.desc" = "Đặt mục tiêu uống nước hàng ngày. Có sẵn khuyến nghị dựa trên cân nặng.";
+"appguide.home.feature4.title" = "Chế độ trừ";
+"appguide.home.feature4.desc" = "Chuyển sang chế độ trừ để sửa bất kỳ sai sót nào trong hồ sơ uống nước.";
+
+// App Guide - History
+"appguide.history.title" = "Tab Lịch sử";
+"appguide.history.feature1.title" = "Xem lịch";
+"appguide.history.feature1.desc" = "Xem thành tích hàng tháng trong nháy mắt. Ngày hoàn thành mục tiêu được đánh dấu.";
+"appguide.history.feature2.title" = "Xem danh sách";
+"appguide.history.feature2.desc" = "Kiểm tra tất cả hồ sơ theo thứ tự thời gian với tiến độ cho mỗi ngày.";
+"appguide.history.feature3.title" = "Xem dòng thời gian";
+"appguide.history.feature3.desc" = "Xem hồ sơ được nhóm theo tháng dưới dạng dòng thời gian.";
+
+// App Guide - Watch
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "Ghi nhanh";
+"appguide.watch.feature1.desc" = "Ghi lại lượng nước trực tiếp từ đồng hồ. Nút nhanh cho 150ml, 250ml, 300ml và 500ml.";
+"appguide.watch.feature2.title" = "Đồng bộ thời gian thực";
+"appguide.watch.feature2.desc" = "Đồng bộ với iPhone theo thời gian thực để giữ hồ sơ luôn cập nhật.";
+"appguide.watch.feature3.title" = "Complications";
+"appguide.watch.feature3.desc" = "Thêm complication vào mặt đồng hồ để kiểm tra tiến độ nhanh chóng.";
+
+// App Guide - Widget
+"appguide.widget.title" = "Widgets";
+"appguide.widget.feature1.title" = "Widget Màn hình chính";
+"appguide.widget.feature1.desc" = "Thêm widget vào màn hình chính để kiểm tra tiến độ nhanh. Có kích thước nhỏ, vừa và lớn.";
+"appguide.widget.feature2.title" = "Widget Màn hình khóa";
+"appguide.widget.feature2.desc" = "Kiểm tra lượng nước hàng ngày ngay từ màn hình khóa.";
+"appguide.widget.feature3.title" = "Nút tương tác";
+"appguide.widget.feature3.desc" = "Nhấn nút trên widget vừa/lớn để thêm nước mà không cần mở ứng dụng.";
+
+// App Guide - Notification
+"appguide.notification.title" = "Thông báo";
+"appguide.notification.feature1.title" = "Khoảng cách tùy chỉnh";
+"appguide.notification.feature1.desc" = "Nhận nhắc nhở theo khoảng cách 30 phút, 1 giờ, 2 giờ hoặc 3 giờ.";
+"appguide.notification.feature2.title" = "Chọn ngày";
+"appguide.notification.feature2.desc" = "Chọn ngày trong tuần bạn muốn nhận thông báo.";
+"appguide.notification.feature3.title" = "Tin nhắn động viên";
+"appguide.notification.feature3.desc" = "Nhận nhiều tin nhắn động viên để xây dựng thói quen uống nước.";
+
+// App Guide - Health
+"appguide.health.title" = "Tích hợp Sức khỏe";
+"appguide.health.feature1.title" = "Khuyến nghị theo cân nặng";
+"appguide.health.feature1.desc" = "Nhập cân nặng từ ứng dụng Sức khỏe để tính toán khuyến nghị cá nhân hóa.";
+"appguide.health.feature2.title" = "Lưu vào Sức khỏe";
+"appguide.health.feature2.desc" = "Hồ sơ uống nước của bạn tự động lưu vào ứng dụng Sức khỏe.";
+
+// Tab Bar
+"tab.today" = "Hôm nay";
+"tab.history" = "Lịch sử";
+"tab.settings" = "Cài đặt";
+
+// Home
+"home.goal" = "Mục tiêu %@ml";
+"home.goal.achieved" = "Đã đạt mục tiêu hôm nay!";
+"home.goal.remaining" = "Còn %@ cốc nữa để đạt mục tiêu!";
+"home.quick.add" = "Thêm nhanh";
+"home.quick.subtract" = "Trừ";
+"home.edit" = "Chỉnh sửa";
+"home.goal.setting.title" = "Đặt mục tiêu";
+"home.goal.save" = "Lưu";
+"home.goal.min" = "1.000ml";
+"home.goal.max" = "4.000ml";
+"home.goal.cancel" = "Hủy";
+"home.quickbutton.title" = "Nút thêm nhanh";
+"home.quickbutton.current" = "Nút hiện tại";
+"home.quickbutton.add.section" = "Thêm nút mới";
+"home.quickbutton.placeholder" = "Lượng (ml)";
+"home.quickbutton.add" = "Thêm";
+"home.quickbutton.reset" = "Đặt lại mặc định";
+"home.adjustment.title" = "Điều chỉnh lượng nước";
+"home.adjustment.done" = "Xong";
+"home.adjustment.reset" = "Đặt lại hồ sơ hôm nay";
+"home.adjustment.reset.confirm" = "Đặt lại lượng nước hôm nay?";
+"home.adjustment.reset.button" = "Đặt lại";
+"home.adjustment.reset.message" = "Hành động này không thể hoàn tác.";
+
+// Notification Banner
+"home.notification.banner.title" = "Bật thông báo";
+"home.notification.banner.description" = "Nhận nhắc nhở để giữ đủ nước";
+"home.notification.banner.settings" = "Cài đặt";
+
+// History
+"history.title" = "Lịch sử";
+"history.mode.calendar" = "Lịch";
+"history.mode.list" = "Danh sách";
+"history.mode.timeline" = "Dòng thời gian";
+"history.month.summary" = "Tháng này: %@ ngày đạt";
+"history.legend.today" = "Hôm nay";
+"history.legend.selected" = "Đã chọn";
+"history.legend.achieved" = "Đạt được";
+"history.record.progress" = "%@ml / %@ml";
+"history.timeline.achieved" = "%@/%@ ngày đạt";
+"history.record.goal" = "Mục tiêu %@ml";
+"history.card.goal" = "Mục tiêu";
+"history.card.intake" = "Đã uống";
+"history.card.achieved" = "Đạt được! ✅";
+"history.label.achieved" = "Đạt được";
+
+// Widget
+"widget.hydration.tracker" = "Theo dõi nước";
+"widget.current" = "Hiện tại";
+"widget.goal" = "Mục tiêu";
+"widget.current.hydration" = "Lượng nước hiện tại";
+"widget.todays.hydration" = "Lượng nước hôm nay";
+"widget.motivation.achieved" = "Đạt mục tiêu! Tuyệt vời! 🎉";
+"widget.motivation.almost" = "Sắp đạt rồi! Cố lên! 🚀";
+"widget.motivation.halfway" = "Bạn đang làm tốt lắm! 💧";
+"widget.motivation.start" = "Đến lúc uống nước rồi! 🥤";
+
+// Watch
+"watch.add.water" = "Thêm nước";
+"watch.custom.input" = "Nhập tùy chỉnh";
+"watch.add" = "Thêm";
+
+// Update
+"update.required.title" = "Cần cập nhật";
+"update.available.title" = "Có bản cập nhật";
+"update.required.message" = "Phiên bản mới đã được phát hành. Vui lòng cập nhật để tiếp tục sử dụng ứng dụng.";
+"update.available.message" = "Có phiên bản mới. Bạn có muốn cập nhật ngay không?";
+"update.later" = "Sau";
+"update.now" = "Cập nhật";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "Đến lúc uống nước rồi! 💧";
+"notification.message.2" = "Đừng quên uống nước nhé~ 🌊";
+"notification.message.3" = "Bắt đầu ngày lành mạnh với nước! ☀️";
+"notification.message.4" = "Uống trước khi khát 🥤";
+"notification.message.5" = "Ực ực hôm nay nào! 💪";
+"notification.message.6" = "Một ly nước xua tan mệt mỏi 🧘";
+"notification.message.7" = "Bí quyết da đẹp: nước! ✨";
+"notification.message.8" = "Tập trung hơn! Một ly nước nhé? 🧠";
+"notification.message.9" = "Khoan! Uống nước đã 🚰";
+"notification.message.10" = "Cơ thể bạn đang chờ nước 🌿";
+
+// Weekdays
+"weekday.sun" = "CN";
+"weekday.mon" = "T2";
+"weekday.tue" = "T3";
+"weekday.wed" = "T4";
+"weekday.thu" = "T5";
+"weekday.fri" = "T6";
+"weekday.sat" = "T7";
+
+// Intervals
+"interval.30min" = "30 phút";
+"interval.1hour" = "1 giờ";
+"interval.2hours" = "2 giờ";
+"interval.3hours" = "3 giờ";
+
+// Notification Settings
+"notification.settings.title" = "Cài đặt thông báo";
+"notification.settings.enable" = "Bật thông báo";
+"notification.settings.timerange" = "Khoảng thời gian thông báo";
+"notification.settings.interval" = "Khoảng cách thông báo";
+"notification.settings.weekdays" = "Chọn ngày";
+"notification.settings.custom" = "Thời gian tùy chỉnh (thay thế khoảng cách)";
+"notification.settings.starttime" = "Thời gian bắt đầu";
+"notification.settings.endtime" = "Thời gian kết thúc";
+"notification.settings.addtime" = "Thêm thời gian";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "Lượng nước";
+"complication.description" = "Kiểm tra bạn đã uống bao nhiêu nước hôm nay.";
+
+// Accessibility
+"accessibility.home.current" = "Lượng nước hiện tại %d ml";
+"accessibility.home.goal" = "Mục tiêu hàng ngày %d ml";
+"accessibility.home.goal.hint" = "Nhấn đúp để thay đổi mục tiêu";
+"accessibility.home.add" = "Thêm %d ml";
+"accessibility.home.add.hint" = "Nhấn đúp để thêm nước";
+"accessibility.home.subtract" = "Trừ %d ml";
+"accessibility.home.subtract.hint" = "Nhấn đúp để trừ nước";
+"accessibility.home.mode.add" = "Chế độ thêm đang hoạt động";
+"accessibility.home.mode.subtract" = "Chế độ trừ đang hoạt động";
+"accessibility.home.mode.hint" = "Nhấn đúp để chuyển giữa chế độ thêm và trừ";
+"accessibility.history.summary" = "Tháng này %d ngày đạt";
+"accessibility.history.achieved" = "Đạt mục tiêu";
+"accessibility.history.progress" = "%@ mục tiêu";

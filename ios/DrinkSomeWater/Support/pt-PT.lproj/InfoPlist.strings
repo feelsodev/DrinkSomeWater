@@ -1,0 +1,14 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWater
+
+  European Portuguese Localization
+*/
+
+// App name
+"CFBundleDisplayName" = "Gulp";
+"CFBundleName" = "Gulp";
+
+// Usage Descriptions
+"NSHealthShareUsageDescription" = "Ler dados de peso para calcular recomendações personalizadas.";
+"NSHealthUpdateUsageDescription" = "Sincronizar registos de consumo de água com a app Saúde.";

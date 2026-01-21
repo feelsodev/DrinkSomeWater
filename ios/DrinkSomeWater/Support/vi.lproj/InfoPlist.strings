@@ -1,0 +1,14 @@
+/*
+  InfoPlist.strings
+  DrinkSomeWater
+
+  Vietnamese Localization
+*/
+
+// App name
+"CFBundleDisplayName" = "Gulp";
+"CFBundleName" = "Gulp";
+
+// Usage Descriptions
+"NSHealthShareUsageDescription" = "Đọc dữ liệu cân nặng để tính toán khuyến nghị cá nhân hóa.";
+"NSHealthUpdateUsageDescription" = "Đồng bộ hồ sơ uống nước với ứng dụng Sức khỏe.";

@@ -1,0 +1,17 @@
+/*
+  Localizable.strings
+  DrinkSomeWaterWidget
+
+  Vietnamese Localization
+*/
+
+// Widget
+"widget.hydration.tracker" = "Theo dõi nước";
+"widget.current" = "Hiện tại";
+"widget.goal" = "Mục tiêu";
+"widget.current.hydration" = "Lượng nước hiện tại";
+"widget.todays.hydration" = "Lượng nước hôm nay";
+"widget.motivation.achieved" = "Đạt mục tiêu! Tuyệt vời! 🎉";
+"widget.motivation.almost" = "Sắp đạt rồi! Cố lên! 🚀";
+"widget.motivation.halfway" = "Bạn đang làm tốt lắm! 💧";
+"widget.motivation.start" = "Đến lúc uống nước rồi! 🥤";

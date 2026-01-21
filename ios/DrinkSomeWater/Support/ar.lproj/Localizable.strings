@@ -1,0 +1,310 @@
+/* 
+  Localizable.strings
+  DrinkSomeWater - Arabic (RTL)
+*/
+
+// Main
+"You achieved " = "لقد حققت ";
+"TodaySuffix" = " اليوم!!";
+
+// Calendar
+"Today" = "اليوم";
+"Success" = "نجاح";
+"Selected" = "محدد";
+"You can check the history when you select a success date." = "يمكنك التحقق من السجل عند تحديد تاريخ النجاح.";
+"Goal of this month" = "هدف هذا الشهر";
+"MMMM, YYYY" = "MMMM yyyy";
+
+// Information
+"Alarm" = "منبه";
+"Review" = "تقييم";
+"Contact Us" = "اتصل بنا";
+"Version" = "الإصدار";
+"License" = "الترخيص";
+"Set" = "ضبط";
+
+// Onboarding
+"onboarding.skip" = "تخطي";
+"onboarding.next" = "التالي";
+"onboarding.start" = "ابدأ";
+"onboarding.intro.title" = "مرحباً بك في Gulp";
+"onboarding.intro.description" = "تتبع استهلاكك اليومي من الماء وحافظ على ترطيبك.\n\nالماء ضروري لصحتك - يساعد في الحفاظ على الطاقة وتحسين التركيز والحفاظ على عمل جسمك بأفضل حالاته.";
+"onboarding.goal.title" = "حدد هدفك";
+"onboarding.goal.description" = "كم من الماء تريد أن تشرب يومياً؟\nاضبط شريط التمرير لتحديد هدفك.";
+"onboarding.healthkit.title" = "ربط الصحة";
+"onboarding.healthkit.description" = "مزامنة مع Apple Health لـ:\n\n• حساب استهلاك الماء المخصص بناءً على وزنك\n• حفظ سجلات الماء في تطبيق الصحة\n• تتبع تقدمك مع بيانات صحية أخرى";
+"onboarding.healthkit.button" = "ربط Apple Health";
+"onboarding.healthkit.connected" = "متصل";
+"onboarding.notification.title" = "ابقَ على اطلاع";
+"onboarding.notification.description" = "فعّل الإشعارات لتلقي تذكيرات ودية طوال اليوم.\n\nسنرسل لك رسائل تحفيزية لمساعدتك على تحقيق أهداف الترطيب.";
+"onboarding.notification.button" = "تفعيل الإشعارات";
+"onboarding.notification.enabled" = "مفعّل";
+"onboarding.widget.title" = "إضافة ودجت";
+"onboarding.widget.description" = "أضف ودجت إلى الشاشة الرئيسية للوصول السريع:\n\n1. اضغط مطولاً على الشاشة الرئيسية\n2. اضغط على زر +\n3. ابحث عن 'Gulp'\n4. اختر حجم الودجت المفضل";
+"onboarding.widget.button" = "ابدأ";
+
+// Widget Guide
+"widget.today" = "اليوم";
+"widget.guide.title" = "دليل إعداد الودجت";
+"widget.guide.nav.title" = "دليل الودجت";
+"widget.guide.step1.title" = "اضغط مطولاً على الشاشة الرئيسية";
+"widget.guide.step1.description" = "اضغط مع الاستمرار على منطقة فارغة حتى تبدأ التطبيقات بالاهتزاز.";
+"widget.guide.step2.title" = "اضغط على زر +";
+"widget.guide.step2.description" = "اضغط على زر \"+\" في الزاوية العلوية اليسرى من الشاشة.";
+"widget.guide.step3.title" = "ابحث عن Gulp";
+"widget.guide.step3.description" = "في معرض الودجت، ابحث عن \"Gulp\" أو \"ماء\".";
+"widget.guide.step4.title" = "اختر حجم الودجت";
+"widget.guide.step4.description" = "اختر حجم الودجت المفضل:\n• صغير: يعرض استهلاك الماء والتقدم\n• متوسط: يتضمن أزرار الإضافة السريعة";
+"widget.guide.step5.title" = "إضافة إلى الشاشة الرئيسية";
+"widget.guide.step5.description" = "اضغط على \"إضافة ودجت\" وضعه حيث تريد.";
+"widget.guide.lockscreen.header" = "ودجت شاشة القفل";
+"widget.guide.lockscreen.step1.title" = "اضغط مطولاً على شاشة القفل";
+"widget.guide.lockscreen.step1.description" = "اضغط مع الاستمرار على شاشة القفل واضغط على \"تخصيص\".";
+"widget.guide.lockscreen.step2.title" = "حدد منطقة الودجت";
+"widget.guide.lockscreen.step2.description" = "اضغط على منطقة الودجت أعلى أو أسفل الوقت.";
+"widget.guide.lockscreen.step3.title" = "أضف ودجت Gulp";
+"widget.guide.lockscreen.step3.description" = "ابحث عن \"Gulp\" واختر نمط الودجت الذي تفضله.";
+
+// Settings
+"settings.title" = "الإعدادات";
+"settings.subtitle" = "خصص تجربتك";
+"settings.section.personal" = "شخصي";
+"settings.section.app" = "إعدادات التطبيق";
+"settings.section.support" = "الدعم";
+"settings.section.info" = "معلومات";
+"settings.profile" = "إعدادات الملف الشخصي";
+"settings.goal" = "الهدف اليومي";
+"settings.quickbuttons" = "إعدادات الأزرار السريعة";
+"settings.notification" = "تذكير الماء";
+"settings.widget.guide" = "دليل إعداد الودجت";
+"settings.review" = "اكتب تقييم";
+"settings.contact" = "اتصل بنا";
+"settings.version" = "الإصدار";
+
+// Profile
+"profile.title" = "إعدادات الملف الشخصي";
+"profile.healthkit.title" = "مزامنة Apple Health";
+"profile.healthkit.description" = "جلب الوزن تلقائياً من تطبيق الصحة";
+"profile.weight" = "الوزن";
+"profile.weight.range" = "30kg ~ 150kg";
+"profile.recommended.title" = "الاستهلاك اليومي الموصى به";
+"profile.recommended.description" = "معادلة الوزن × 33 مل";
+"profile.apply.button" = "تطبيق كهدف يومي";
+"profile.apply.success.title" = "تم تحديث الهدف";
+"profile.apply.success.message" = "تم تعيين الهدف اليومي إلى %@مل.";
+
+// Notification Settings
+"notification.enable" = "تفعيل الإشعارات";
+"notification.time.start" = "وقت البدء";
+"notification.time.end" = "وقت الانتهاء";
+"notification.interval" = "الفاصل الزمني";
+"notification.weekdays" = "الأيام";
+"notification.custom.times" = "أوقات مخصصة";
+"notification.custom.add" = "إضافة وقت";
+"notification.message.info" = "سيتم إرسال الإشعارات برسائل مختلفة";
+
+// Common
+"common.confirm" = "موافق";
+"common.cancel" = "إلغاء";
+"common.save" = "حفظ";
+"common.delete" = "حذف";
+"common.done" = "تم";
+
+// Contact
+"contact.title" = "اتصال";
+"contact.message" = "يرجى الاتصال بنا على feelsodev@gmail.com";
+
+// Ad
+"settings.support.developer" = "دعم المطور";
+"ad.confirm.title" = "دعم المطور";
+"ad.confirm.message" = "سيتم عرض إعلان. مشاهدته تساعد في دعم المطور!";
+"ad.loading.title" = "يرجى الانتظار";
+"ad.loading.message" = "جارٍ تحميل الإعلان. يرجى المحاولة مرة أخرى بعد قليل.";
+"ad.thanks.title" = "شكراً!";
+"ad.thanks.message" = "شكراً لدعمك المطور 💙";
+
+// App Guide
+"settings.app.guide" = "دليل ميزات التطبيق";
+"appguide.title" = "دليل Gulp";
+"appguide.subtitle" = "اكتشف جميع الميزات";
+"appguide.home.title" = "تبويب اليوم";
+"appguide.home.feature1.title" = "تتبع استهلاك الماء";
+"appguide.home.feature1.desc" = "اضغط على الزر لتسجيل استهلاكك. يتم تحديث التقدم في الوقت الفعلي.";
+"appguide.home.feature2.title" = "الأزرار السريعة";
+"appguide.home.feature2.desc" = "عيّن الكميات المتكررة كأزرار سريعة للتسجيل بضغطة واحدة.";
+"appguide.home.feature3.title" = "حدد هدفك";
+"appguide.home.feature3.desc" = "حدد هدفك اليومي من استهلاك الماء. تتوفر توصيات بناءً على الوزن.";
+"appguide.home.feature4.title" = "وضع الطرح";
+"appguide.home.feature4.desc" = "انتقل إلى وضع الطرح لتصحيح أي أخطاء في سجلاتك.";
+"appguide.history.title" = "تبويب السجل";
+"appguide.history.feature1.title" = "عرض التقويم";
+"appguide.history.feature1.desc" = "شاهد إنجازاتك الشهرية بنظرة واحدة. أيام تحقيق الهدف مميزة.";
+"appguide.history.feature2.title" = "عرض القائمة";
+"appguide.history.feature2.desc" = "تحقق من جميع السجلات بالترتيب الزمني مع تقدم كل يوم.";
+"appguide.history.feature3.title" = "عرض الخط الزمني";
+"appguide.history.feature3.desc" = "عرض السجلات مجمعة حسب الشهر بتنسيق الخط الزمني.";
+"appguide.watch.title" = "Apple Watch";
+"appguide.watch.feature1.title" = "تسجيل سريع";
+"appguide.watch.feature1.desc" = "سجل استهلاكك مباشرة من ساعتك. أزرار سريعة لـ 150 مل و250 مل و300 مل و500 مل.";
+"appguide.watch.feature2.title" = "مزامنة فورية";
+"appguide.watch.feature2.desc" = "مزامنة مع iPhone في الوقت الفعلي للحفاظ على سجلاتك محدثة دائماً.";
+"appguide.watch.feature3.title" = "التعقيدات";
+"appguide.watch.feature3.desc" = "أضف تعقيداً إلى وجه الساعة للتحقق من تقدمك بنظرة.";
+"appguide.widget.title" = "الودجت";
+"appguide.widget.feature1.title" = "ودجت الشاشة الرئيسية";
+"appguide.widget.feature1.desc" = "أضف ودجت للتحقق السريع من التقدم. أحجام صغيرة ومتوسطة وكبيرة متاحة.";
+"appguide.widget.feature2.title" = "ودجت شاشة القفل";
+"appguide.widget.feature2.desc" = "تحقق من استهلاكك اليومي مباشرة من شاشة القفل.";
+"appguide.widget.feature3.title" = "أزرار تفاعلية";
+"appguide.widget.feature3.desc" = "اضغط على الأزرار في الودجت المتوسط/الكبير لإضافة الماء دون فتح التطبيق.";
+"appguide.notification.title" = "الإشعارات";
+"appguide.notification.feature1.title" = "فترات مخصصة";
+"appguide.notification.feature1.desc" = "احصل على تذكيرات بفترات 30 دقيقة أو ساعة أو ساعتين أو 3 ساعات.";
+"appguide.notification.feature2.title" = "اختيار الأيام";
+"appguide.notification.feature2.desc" = "اختر أيام الأسبوع التي تريد تلقي الإشعارات فيها.";
+"appguide.notification.feature3.title" = "رسائل تحفيزية";
+"appguide.notification.feature3.desc" = "احصل على رسائل تحفيزية متنوعة لبناء عادة الترطيب.";
+"appguide.health.title" = "تكامل الصحة";
+"appguide.health.feature1.title" = "توصيات بناءً على الوزن";
+"appguide.health.feature1.desc" = "استورد وزنك من تطبيق الصحة لحساب توصيات مخصصة.";
+"appguide.health.feature2.title" = "حفظ في الصحة";
+"appguide.health.feature2.desc" = "يتم حفظ سجلات استهلاكك تلقائياً في تطبيق الصحة.";
+
+// Tab Bar
+"tab.today" = "اليوم";
+"tab.history" = "السجل";
+"tab.settings" = "الإعدادات";
+
+// Home
+"home.goal" = "الهدف %@مل";
+"home.goal.achieved" = "تم تحقيق هدف اليوم!";
+"home.goal.remaining" = "%@ أكواب أخرى للوصول للهدف!";
+"home.quick.add" = "إضافة سريعة";
+"home.quick.subtract" = "طرح";
+"home.edit" = "تعديل";
+"home.goal.setting.title" = "تحديد الهدف";
+"home.goal.save" = "حفظ";
+"home.goal.min" = "1,000مل";
+"home.goal.max" = "4,000مل";
+"home.goal.cancel" = "إلغاء";
+"home.quickbutton.title" = "أزرار الإضافة السريعة";
+"home.quickbutton.current" = "الأزرار الحالية";
+"home.quickbutton.add.section" = "إضافة زر جديد";
+"home.quickbutton.placeholder" = "الكمية (مل)";
+"home.quickbutton.add" = "إضافة";
+"home.quickbutton.reset" = "إعادة للافتراضي";
+"home.adjustment.title" = "تعديل الاستهلاك";
+"home.adjustment.done" = "تم";
+"home.adjustment.reset" = "إعادة تعيين سجل اليوم";
+"home.adjustment.reset.confirm" = "إعادة تعيين استهلاك الماء اليوم؟";
+"home.adjustment.reset.button" = "إعادة تعيين";
+"home.adjustment.reset.message" = "لا يمكن التراجع عن هذا الإجراء.";
+
+// Notification Banner
+"home.notification.banner.title" = "تفعيل الإشعارات";
+"home.notification.banner.description" = "احصل على تذكيرات للبقاء مرطباً";
+"home.notification.banner.settings" = "الإعدادات";
+
+// History
+"history.title" = "السجل";
+"history.mode.calendar" = "التقويم";
+"history.mode.list" = "القائمة";
+"history.mode.timeline" = "الخط الزمني";
+"history.month.summary" = "هذا الشهر: %@ يوم تم تحقيقه";
+"history.legend.today" = "اليوم";
+"history.legend.selected" = "محدد";
+"history.legend.achieved" = "تم تحقيقه";
+"history.record.progress" = "%@مل / %@مل";
+"history.timeline.achieved" = "%@/%@ يوم تم تحقيقه";
+"history.record.goal" = "الهدف %@مل";
+"history.card.goal" = "الهدف";
+"history.card.intake" = "الاستهلاك";
+"history.card.achieved" = "تم! ✅";
+"history.label.achieved" = "تم تحقيقه";
+
+// Widget
+"widget.hydration.tracker" = "متتبع الترطيب";
+"widget.current" = "الحالي";
+"widget.goal" = "الهدف";
+"widget.current.hydration" = "الترطيب الحالي";
+"widget.todays.hydration" = "ترطيب اليوم";
+"widget.motivation.achieved" = "تم تحقيق الهدف! عمل رائع! 🎉";
+"widget.motivation.almost" = "تقريباً! استمر! 🚀";
+"widget.motivation.halfway" = "أنت تبلي حسناً! 💧";
+"widget.motivation.start" = "وقت الترطيب! 🥤";
+
+// Watch
+"watch.add.water" = "إضافة ماء";
+"watch.custom.input" = "إدخال مخصص";
+"watch.add" = "إضافة";
+
+// Update
+"update.required.title" = "التحديث مطلوب";
+"update.available.title" = "تحديث متاح";
+"update.required.message" = "تم إصدار نسخة جديدة. يرجى التحديث لمتابعة استخدام التطبيق.";
+"update.available.message" = "نسخة جديدة متاحة. هل تريد التحديث الآن؟";
+"update.later" = "لاحقاً";
+"update.now" = "تحديث";
+
+// Notification Messages
+"notification.title" = "Gulp";
+"notification.message.1" = "وقت شرب الماء! 💧";
+"notification.message.2" = "لا تنسَ الترطيب~ 🌊";
+"notification.message.3" = "ابدأ يومك الصحي بالماء! ☀️";
+"notification.message.4" = "اشرب قبل العطش 🥤";
+"notification.message.5" = "جرعة جرعة اليوم أيضاً! 💪";
+"notification.message.6" = "كوب ماء يزيل التعب 🧘";
+"notification.message.7" = "سر البشرة المتوهجة: الماء! ✨";
+"notification.message.8" = "تركيز UP! كوب ماء؟ 🧠";
+"notification.message.9" = "انتظر! الماء أولاً 🚰";
+"notification.message.10" = "جسمك ينتظر الماء 🌿";
+
+// Weekdays
+"weekday.sun" = "أحد";
+"weekday.mon" = "اثنين";
+"weekday.tue" = "ثلاثاء";
+"weekday.wed" = "أربعاء";
+"weekday.thu" = "خميس";
+"weekday.fri" = "جمعة";
+"weekday.sat" = "سبت";
+
+// Intervals
+"interval.30min" = "30 دقيقة";
+"interval.1hour" = "ساعة";
+"interval.2hours" = "ساعتان";
+"interval.3hours" = "3 ساعات";
+
+// Notification Settings
+"notification.settings.title" = "إعدادات الإشعارات";
+"notification.settings.enable" = "تفعيل الإشعارات";
+"notification.settings.timerange" = "نطاق وقت الإشعارات";
+"notification.settings.interval" = "فترة الإشعارات";
+"notification.settings.weekdays" = "اختر الأيام";
+"notification.settings.custom" = "أوقات مخصصة (تتجاوز الفترة)";
+"notification.settings.starttime" = "وقت البدء";
+"notification.settings.endtime" = "وقت الانتهاء";
+"notification.settings.addtime" = "إضافة وقت";
+
+// Date Formats
+"dateformat.month" = "MMM";
+"dateformat.yearmonth" = "MMMM yyyy";
+"dateformat.monthday" = "d MMM (E)";
+
+// Watch Complication
+"complication.displayname" = "استهلاك الماء";
+"complication.description" = "تحقق من كمية الماء التي شربتها اليوم.";
+
+// Accessibility
+"accessibility.home.current" = "الاستهلاك الحالي %d ملليلتر";
+"accessibility.home.goal" = "الهدف اليومي %d ملليلتر";
+"accessibility.home.goal.hint" = "انقر مرتين لتغيير الهدف";
+"accessibility.home.add" = "إضافة %d ملليلتر";
+"accessibility.home.add.hint" = "انقر مرتين لإضافة ماء";
+"accessibility.home.subtract" = "طرح %d ملليلتر";
+"accessibility.home.subtract.hint" = "انقر مرتين لطرح ماء";
+"accessibility.home.mode.add" = "وضع الإضافة نشط";
+"accessibility.home.mode.subtract" = "وضع الطرح نشط";
+"accessibility.home.mode.hint" = "انقر مرتين للتبديل بين وضع الإضافة والطرح";
+"accessibility.history.summary" = "هذا الشهر %d يوم تم تحقيقه";
+"accessibility.history.achieved" = "تم تحقيق الهدف";
+"accessibility.history.progress" = "%@ من الهدف";
