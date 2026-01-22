@@ -16,64 +16,91 @@ protocol WaterServiceProtocol: AnyObject {
 final class WaterService: WaterServiceProtocol {
   
   private let userDefaultsService: UserDefaultsServiceProtocol
+  private let cloudSyncService: CloudSyncServiceProtocol
   private let watchConnectivityService: WatchConnectivityServiceProtocol
   
   init(
     userDefaultsService: UserDefaultsServiceProtocol,
+    cloudSyncService: CloudSyncServiceProtocol,
     watchConnectivityService: WatchConnectivityServiceProtocol
   ) {
     self.userDefaultsService = userDefaultsService
+    self.cloudSyncService = cloudSyncService
     self.watchConnectivityService = watchConnectivityService
   }
   
   func fetchWater() async -> [WaterRecord] {
+    var localRecords: [WaterRecord] = []
+    
     if let currentValue = userDefaultsService.value(forkey: .current) {
-      var water = currentValue.compactMap(WaterRecord.init)
-      if !water.contains(where: { $0.date.checkToday }) {
-        guard let goalWater = userDefaultsService.value(forkey: .goal) else {
-          return []
-        }
-        water.append(WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater))
-      }
-      await saveWater(water)
-      return water
+      localRecords = currentValue.compactMap(WaterRecord.init)
     }
     
-    guard let goalWater = userDefaultsService.value(forkey: .goal) else {
-      return []
+    let mergedRecords = cloudSyncService.mergeWaterRecords(local: localRecords)
+    
+    let todayKey = CloudWaterRecord.dateKey(from: Date())
+    let hasToday = mergedRecords.contains { CloudWaterRecord.dateKey(from: $0.date) == todayKey }
+    
+    var finalRecords = mergedRecords
+    if !hasToday {
+      let goalWater = await fetchGoal()
+      let todayRecord = WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater)
+      finalRecords.insert(todayRecord, at: 0)
     }
-    let waterRecord = WaterRecord(date: Date(), value: 0, isSuccess: false, goal: goalWater)
-    let value = waterRecord.asDictionary()
-    userDefaultsService.set(value: [value], forkey: .current)
-    return [waterRecord]
+    
+    await saveWater(finalRecords)
+    return finalRecords
   }
   
   func fetchGoal() async -> Int {
-    guard let goalWater = userDefaultsService.value(forkey: .goal) else {
-      return 2000
+    if let cloudGoal = cloudSyncService.loadGoal() {
+      return cloudGoal
     }
-    return goalWater
+    return userDefaultsService.value(forkey: .goal) ?? 2000
   }
   
   func saveWater(_ waterRecord: [WaterRecord]) async {
     let dicts = waterRecord.map { $0.asDictionary() }
     userDefaultsService.set(value: dicts, forkey: .current)
+    
+    for record in waterRecord {
+      let cloudRecord = CloudWaterRecord(
+        dateKey: CloudWaterRecord.dateKey(from: record.date),
+        value: record.value,
+        goal: record.goal,
+        isSuccess: record.isSuccess,
+        modifiedAt: Date().timeIntervalSince1970
+      )
+      cloudSyncService.saveWaterRecord(cloudRecord)
+    }
   }
   
   @discardableResult
   func updateWater(by ml: Float) async -> [WaterRecord] {
     var waterRecord = await fetchWater()
-    guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
+    
+    let todayKey = CloudWaterRecord.dateKey(from: Date())
+    guard let index = waterRecord.firstIndex(where: { CloudWaterRecord.dateKey(from: $0.date) == todayKey }) else {
       return []
     }
     
     var newRecord = waterRecord[index]
-    newRecord.value += Int(ml)
+    newRecord.value = max(0, newRecord.value + Int(ml))
     newRecord.date = Date()
     newRecord.isSuccess = newRecord.value >= newRecord.goal
     waterRecord[index] = newRecord
     
-    await saveWater(waterRecord)
+    let dicts = waterRecord.map { $0.asDictionary() }
+    userDefaultsService.set(value: dicts, forkey: .current)
+    
+    let cloudRecord = CloudWaterRecord(
+      dateKey: CloudWaterRecord.dateKey(from: newRecord.date),
+      value: newRecord.value,
+      goal: newRecord.goal,
+      isSuccess: newRecord.isSuccess,
+      modifiedAt: Date().timeIntervalSince1970
+    )
+    cloudSyncService.saveWaterRecord(cloudRecord)
 
     WidgetDataManager.shared.syncFromMainApp(todayWater: newRecord.value, goal: newRecord.goal)
     watchConnectivityService.syncToWatch(todayWater: newRecord.value, goal: newRecord.goal)
@@ -83,15 +110,10 @@ final class WaterService: WaterServiceProtocol {
   
   @discardableResult
   func updateGoal(to ml: Int) async -> Int {
-    if let currentValue = userDefaultsService.value(forkey: .current) {
-      var waterRecord = currentValue.compactMap(WaterRecord.init)
-      guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
-        userDefaultsService.set(value: ml, forkey: .goal)
-        WidgetDataManager.shared.updateGoal(ml)
-        WidgetDataManager.shared.reloadWidgets()
-        return ml
-      }
-      
+    var waterRecord = await fetchWater()
+    
+    let todayKey = CloudWaterRecord.dateKey(from: Date())
+    if let index = waterRecord.firstIndex(where: { CloudWaterRecord.dateKey(from: $0.date) == todayKey }) {
       var newRecord = waterRecord[index]
       newRecord.goal = ml
       newRecord.isSuccess = newRecord.value >= newRecord.goal
@@ -101,7 +123,9 @@ final class WaterService: WaterServiceProtocol {
       WidgetDataManager.shared.syncFromMainApp(todayWater: newRecord.value, goal: ml)
       watchConnectivityService.syncToWatch(todayWater: newRecord.value, goal: ml)
     }
+    
     userDefaultsService.set(value: ml, forkey: .goal)
+    cloudSyncService.saveGoal(ml)
     WidgetDataManager.shared.updateGoal(ml)
     return ml
   }
@@ -109,7 +133,9 @@ final class WaterService: WaterServiceProtocol {
   @discardableResult
   func resetTodayWater() async -> [WaterRecord] {
     var waterRecord = await fetchWater()
-    guard let index = waterRecord.firstIndex(where: { $0.date.checkToday }) else {
+    
+    let todayKey = CloudWaterRecord.dateKey(from: Date())
+    guard let index = waterRecord.firstIndex(where: { CloudWaterRecord.dateKey(from: $0.date) == todayKey }) else {
       return []
     }
 

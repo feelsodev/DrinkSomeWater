@@ -3,6 +3,7 @@ import Foundation
 @MainActor
 protocol ServiceProviderProtocol: AnyObject {
   var userDefaultsService: UserDefaultsServiceProtocol { get }
+  var cloudSyncService: CloudSyncServiceProtocol { get }
   var waterService: WaterServiceProtocol { get }
   var alertService: AlertServiceProtocol { get }
   var notificationService: NotificationServiceProtocol { get }
@@ -13,6 +14,7 @@ protocol ServiceProviderProtocol: AnyObject {
 @MainActor
 final class ServiceProvider: ServiceProviderProtocol {
   let userDefaultsService: UserDefaultsServiceProtocol
+  let cloudSyncService: CloudSyncServiceProtocol
   let waterService: WaterServiceProtocol
   let alertService: AlertServiceProtocol
   let notificationService: NotificationServiceProtocol
@@ -20,24 +22,25 @@ final class ServiceProvider: ServiceProviderProtocol {
   let watchConnectivityService: WatchConnectivityServiceProtocol
   
   init() {
-    // 1. Services with no dependencies
     let userDefaults = UserDefaultsService()
+    let cloudSync = CloudSyncService()
     let alert = AlertService()
     let healthKit = HealthKitService()
     
-    // 2. Services depending on UserDefaults
+    cloudSync.migrateFromUserDefaultsIfNeeded(userDefaultsService: userDefaults)
+    
     let notification = NotificationService(userDefaultsService: userDefaults)
     
-    // 3. Circular dependency resolution: WaterService <-> WatchConnectivityService
     let watchConnectivity = WatchConnectivityService()
     let water = WaterService(
       userDefaultsService: userDefaults,
+      cloudSyncService: cloudSync,
       watchConnectivityService: watchConnectivity
     )
     watchConnectivity.setWaterService(water)
     
-    // 4. Assign properties
     self.userDefaultsService = userDefaults
+    self.cloudSyncService = cloudSync
     self.alertService = alert
     self.healthKitService = healthKit
     self.notificationService = notification

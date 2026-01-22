@@ -7,10 +7,18 @@ final class WidgetDataManager: @unchecked Sendable {
   static let appGroupIdentifier = "group.com.onceagain.DrinkSomeWater"
   
   private let defaults: UserDefaults?
+  private let cloudStore = NSUbiquitousKeyValueStore.default
   private let lock = NSLock()
+  
+  private var isCloudAvailable: Bool {
+    FileManager.default.ubiquityIdentityToken != nil
+  }
   
   private init() {
     self.defaults = UserDefaults(suiteName: Self.appGroupIdentifier)
+    if isCloudAvailable {
+      cloudStore.synchronize()
+    }
   }
   
   private enum Keys {
@@ -23,15 +31,65 @@ final class WidgetDataManager: @unchecked Sendable {
   
   var todayWater: Int {
     lock.withLock {
-      defaults?.integer(forKey: Keys.todayWater) ?? 0
+      let appGroupValue = defaults?.integer(forKey: Keys.todayWater) ?? 0
+      if appGroupValue > 0 {
+        return appGroupValue
+      }
+      
+      if let cloudValue = loadTodayRecordFromCloud() {
+        return cloudValue
+      }
+      
+      return 0
     }
   }
   
   var goal: Int {
     lock.withLock {
-      let value = defaults?.integer(forKey: Keys.goal) ?? 0
-      return value > 0 ? value : 2000
+      let appGroupValue = defaults?.integer(forKey: Keys.goal) ?? 0
+      if appGroupValue > 0 {
+        return appGroupValue
+      }
+      
+      if let cloudValue = loadGoalFromCloud(), cloudValue > 0 {
+        return cloudValue
+      }
+      
+      return 2000
     }
+  }
+  
+  private func todayDateKey() -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    formatter.timeZone = .current
+    return formatter.string(from: Date())
+  }
+  
+  private func loadTodayRecordFromCloud() -> Int? {
+    guard isCloudAvailable else { return nil }
+    
+    let todayKey = "cloud_water_\(todayDateKey())"
+    
+    guard let data = cloudStore.data(forKey: todayKey) else {
+      return nil
+    }
+    
+    struct CloudRecord: Codable {
+      let value: Int
+    }
+    
+    guard let record = try? JSONDecoder().decode(CloudRecord.self, from: data) else {
+      return nil
+    }
+    
+    return record.value
+  }
+  
+  private func loadGoalFromCloud() -> Int? {
+    guard isCloudAvailable else { return nil }
+    let value = cloudStore.longLong(forKey: "cloud_goal")
+    return value > 0 ? Int(value) : nil
   }
   
   var progress: Float {
