@@ -77,7 +77,8 @@ final class SettingsViewController: BaseViewController {
       (NSLocalizedString("settings.section.app", comment: "앱 설정"), [
         ("bell.fill", NSLocalizedString("settings.notification", comment: ""), nil, .notification),
         ("apps.iphone", NSLocalizedString("settings.widget.guide", comment: ""), nil, .widgetGuide),
-        ("book.fill", NSLocalizedString("settings.app.guide", comment: ""), nil, .appGuide)
+        ("book.fill", NSLocalizedString("settings.app.guide", comment: ""), nil, .appGuide),
+        ("icloud.fill", NSLocalizedString("settings.icloud.status", comment: ""), nil, .icloudStatus)
       ]),
       (NSLocalizedString("settings.section.support", comment: ""), [
         ("heart.fill", NSLocalizedString("settings.support.developer", comment: ""), nil, .supportDeveloper),
@@ -91,7 +92,7 @@ final class SettingsViewController: BaseViewController {
   }
   
   enum SettingsAction {
-    case profile, goal, quickButtons, notification, widgetGuide, appGuide, supportDeveloper, review, contact, version
+    case profile, goal, quickButtons, notification, widgetGuide, appGuide, icloudStatus, supportDeveloper, review, contact, version
   }
   
   init(store: SettingsStore) {
@@ -164,6 +165,8 @@ final class SettingsViewController: BaseViewController {
       presentWidgetGuide()
     case .appGuide:
       presentAppGuide()
+    case .icloudStatus:
+      showICloudStatusInfo()
     case .supportDeveloper:
       showRewardedAd()
     case .review:
@@ -173,6 +176,19 @@ final class SettingsViewController: BaseViewController {
     case .version:
       break
     }
+  }
+  
+  private func showICloudStatusInfo() {
+    let title = store.isCloudAvailable
+      ? NSLocalizedString("settings.icloud.info.connected.title", comment: "")
+      : NSLocalizedString("settings.icloud.info.disconnected.title", comment: "")
+    let message = store.isCloudAvailable
+      ? NSLocalizedString("settings.icloud.info.connected.message", comment: "")
+      : NSLocalizedString("settings.icloud.info.disconnected.message", comment: "")
+    
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+    present(alert, animated: true)
   }
   
   private func presentWidgetGuide() {
@@ -379,6 +395,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
       detail = store.quickButtons.map { "\($0)" }.joined(separator: ", ") + "ml"
     case .version:
       detail = store.appVersion
+    case .icloudStatus:
+      detail = store.isCloudAvailable
+        ? NSLocalizedString("settings.icloud.connected", comment: "")
+        : NSLocalizedString("settings.icloud.disconnected", comment: "")
     default:
       break
     }

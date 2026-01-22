@@ -20,6 +20,10 @@ final class SettingsStore {
     Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
   }
   
+  var isCloudAvailable: Bool {
+    provider.cloudSyncService.isCloudAvailable
+  }
+  
   init(provider: ServiceProviderProtocol) {
     self.provider = provider
     loadQuickButtonsSync()
