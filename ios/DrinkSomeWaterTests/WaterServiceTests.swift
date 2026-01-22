@@ -18,6 +18,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -34,6 +35,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -44,17 +46,20 @@ struct WaterServiceTests {
         #expect(records.first?.goal == 2000)
     }
     
-    @Test func fetchWaterReturnsEmptyWhenNoGoal() async {
+    @Test func fetchWaterUsesDefaultGoalWhenNotSet() async {
         let mockUserDefaults = MockUserDefaultsService()
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
         let records = await service.fetchWater()
         
-        #expect(records.isEmpty)
+        #expect(!records.isEmpty)
+        #expect(records.first?.goal == 2000)
+        #expect(records.first?.value == 0)
     }
     
     // MARK: - Fetch Goal Tests
@@ -66,6 +71,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -79,6 +85,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -99,6 +106,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -118,6 +126,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -137,6 +146,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -159,6 +169,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -178,6 +189,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -200,6 +212,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -223,6 +236,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
@@ -241,6 +255,7 @@ struct WaterServiceTests {
         let mockWatchService = MockWatchConnectivityService()
         let service = WaterService(
             userDefaultsService: mockUserDefaults,
+            cloudSyncService: MockCloudSyncService(),
             watchConnectivityService: mockWatchService
         )
         
