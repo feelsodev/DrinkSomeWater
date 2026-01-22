@@ -194,8 +194,44 @@ final class MockAlertService: AlertServiceProtocol {
 }
 
 @MainActor
+final class MockCloudSyncService: CloudSyncServiceProtocol {
+    var isCloudAvailable: Bool { true }
+    func requestSync() {}
+    func migrateFromUserDefaultsIfNeeded(userDefaultsService: UserDefaultsServiceProtocol) {}
+    func saveWaterRecord(_ record: CloudWaterRecord) {}
+    func loadWaterRecords() -> [String: CloudWaterRecord] { [:] }
+    func loadTodayRecord() -> CloudWaterRecord? { nil }
+    func mergeWaterRecords(local: [WaterRecord]) -> [WaterRecord] { local }
+    func saveGoal(_ goal: Int) {}
+    func loadGoal() -> Int? { nil }
+    func saveQuickButtons(_ buttons: [Int]) {}
+    func loadQuickButtons() -> [Int]? { nil }
+    func saveCustomQuickButtons(_ buttons: [Int]) {}
+    func loadCustomQuickButtons() -> [Int]? { nil }
+    func saveNotificationSettings(enabled: Bool, startHour: Int, startMinute: Int, endHour: Int, endMinute: Int, intervalMinutes: Int, weekdays: [Int], customTimes: [[String: Int]]) {}
+    func loadNotificationEnabled() -> Bool? { nil }
+    func loadNotificationStartHour() -> Int? { nil }
+    func loadNotificationStartMinute() -> Int? { nil }
+    func loadNotificationEndHour() -> Int? { nil }
+    func loadNotificationEndMinute() -> Int? { nil }
+    func loadNotificationIntervalMinutes() -> Int? { nil }
+    func loadNotificationWeekdays() -> [Int]? { nil }
+    func loadNotificationCustomTimes() -> [[String: Int]]? { nil }
+    func saveUserWeight(_ weight: Double) {}
+    func loadUserWeight() -> Double? { nil }
+    func saveUseHealthKitWeight(_ use: Bool) {}
+    func loadUseHealthKitWeight() -> Bool? { nil }
+    func saveOnboardingCompleted(_ completed: Bool) {}
+    func loadOnboardingCompleted() -> Bool? { nil }
+    func startObservingChanges(handler: @escaping @MainActor () -> Void) {}
+    func startObservingErrors(handler: @escaping @MainActor (CloudSyncError) -> Void) {}
+    func stopObservingChanges() {}
+}
+
+@MainActor
 final class MockServiceProvider: ServiceProviderProtocol {
     let userDefaultsService: UserDefaultsServiceProtocol
+    let cloudSyncService: CloudSyncServiceProtocol
     let waterService: WaterServiceProtocol
     let alertService: AlertServiceProtocol
     let notificationService: NotificationServiceProtocol
@@ -204,6 +240,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
 
     init(
         userDefaultsService: UserDefaultsServiceProtocol = MockUserDefaultsService(),
+        cloudSyncService: CloudSyncServiceProtocol = MockCloudSyncService(),
         waterService: WaterServiceProtocol = MockWaterService(),
         alertService: AlertServiceProtocol = MockAlertService(),
         notificationService: NotificationServiceProtocol = MockNotificationService(),
@@ -211,6 +248,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
         watchConnectivityService: WatchConnectivityServiceProtocol = MockWatchConnectivityService()
     ) {
         self.userDefaultsService = userDefaultsService
+        self.cloudSyncService = cloudSyncService
         self.waterService = waterService
         self.alertService = alertService
         self.notificationService = notificationService
