@@ -55,22 +55,22 @@
 "widget.guide.step1.title" = "Startbildschirm gedrückt halten";
 "widget.guide.step1.description" = "Halte eine leere Stelle auf deinem Startbildschirm gedrückt, bis die Apps wackeln.";
 "widget.guide.step2.title" = "Auf + Taste tippen";
-"widget.guide.step2.description" = "Tippe auf die „+" Taste in der oberen linken Ecke des Bildschirms.";
+"widget.guide.step2.description" = "Tippe auf die '+' Taste in der oberen linken Ecke des Bildschirms.";
 "widget.guide.step3.title" = "Gulp suchen";
-"widget.guide.step3.description" = "Suche in der Widget-Galerie nach „Gulp" oder „Wasser".";
+"widget.guide.step3.description" = "Suche in der Widget-Galerie nach 'Gulp' oder 'Wasser'.";
 "widget.guide.step4.title" = "Widget-Größe wählen";
 "widget.guide.step4.description" = "Wähle deine bevorzugte Widget-Größe:\n• Klein: Zeigt Wasseraufnahme und Fortschritt\n• Mittel: Enthält Schnell-Hinzufügen-Buttons";
 "widget.guide.step5.title" = "Zum Startbildschirm hinzufügen";
-"widget.guide.step5.description" = "Tippe auf „Widget hinzufügen" und positioniere es nach Wunsch.";
+"widget.guide.step5.description" = "Tippe auf 'Widget hinzufügen' und positioniere es nach Wunsch.";
 
 // Widget Guide - Lock Screen Section
 "widget.guide.lockscreen.header" = "Sperrbildschirm-Widget";
 "widget.guide.lockscreen.step1.title" = "Sperrbildschirm gedrückt halten";
-"widget.guide.lockscreen.step1.description" = "Halte deinen Sperrbildschirm gedrückt und tippe auf „Anpassen".";
+"widget.guide.lockscreen.step1.description" = "Halte deinen Sperrbildschirm gedrückt und tippe auf 'Anpassen'.";
 "widget.guide.lockscreen.step2.title" = "Widget-Bereich auswählen";
 "widget.guide.lockscreen.step2.description" = "Tippe auf den Widget-Bereich über oder unter der Uhrzeit.";
 "widget.guide.lockscreen.step3.title" = "Gulp-Widget hinzufügen";
-"widget.guide.lockscreen.step3.description" = "Suche nach „Gulp" und wähle den gewünschten Widget-Stil.";
+"widget.guide.lockscreen.step3.description" = "Suche nach 'Gulp' und wähle den gewünschten Widget-Stil.";
 
 // Settings
 "settings.title" = "Einstellungen";

@@ -328,3 +328,16 @@
 "accessibility.history.summary" = "This month %d days achieved";
 "accessibility.history.achieved" = "Goal achieved";
 "accessibility.history.progress" = "%@ of goal";
+
+// iCloud
+"settings.icloud.status" = "iCloud Sync";
+"settings.icloud.connected" = "Connected";
+"settings.icloud.disconnected" = "Not Connected";
+"settings.icloud.info.connected.title" = "iCloud Connected";
+"settings.icloud.info.connected.message" = "Your data is automatically backed up to iCloud. Data is preserved even if you delete the app and syncs across your devices.";
+"settings.icloud.info.disconnected.title" = "iCloud Not Connected";
+"settings.icloud.info.disconnected.message" = "You are not signed into iCloud or iCloud Drive is disabled.\n\nPlease check Settings > [Your Name] > iCloud.";
+"icloud.error.quota.title" = "iCloud Storage Full";
+"icloud.error.quota.message" = "Your iCloud storage is full. Some data may not sync.\n\nPlease free up space in Settings > [Your Name] > iCloud > Manage Storage.";
+"icloud.error.account.title" = "iCloud Account Changed";
+"icloud.error.account.message" = "Your iCloud account has changed. Data will sync with the new account.";
