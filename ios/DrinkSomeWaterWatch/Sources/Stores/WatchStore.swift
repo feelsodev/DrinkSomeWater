@@ -2,6 +2,14 @@ import Foundation
 import WatchConnectivity
 import WidgetKit
 
+private struct CloudWaterRecord: Codable {
+  let dateKey: String
+  var value: Int
+  var goal: Int
+  var isSuccess: Bool
+  var modifiedAt: TimeInterval
+}
+
 @MainActor
 @Observable
 final class WatchStore: NSObject {
@@ -18,11 +26,18 @@ final class WatchStore: NSObject {
   }
 
   private var session: WCSession?
+  private let cloudStore = NSUbiquitousKeyValueStore.default
+  private var cloudObserver: NSObjectProtocol?
+  
+  private var isCloudAvailable: Bool {
+    FileManager.default.ubiquityIdentityToken != nil
+  }
 
   override init() {
     super.init()
     setupWatchConnectivity()
-    loadFromUserDefaults()
+    setupCloudObserver()
+    loadData()
   }
 
   private func setupWatchConnectivity() {
@@ -31,10 +46,78 @@ final class WatchStore: NSObject {
     session?.delegate = self
     session?.activate()
   }
+  
+  private func setupCloudObserver() {
+    guard isCloudAvailable else { return }
+    cloudStore.synchronize()
+    cloudObserver = NotificationCenter.default.addObserver(
+      forName: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+      object: cloudStore,
+      queue: .main
+    ) { [weak self] _ in
+      Task { @MainActor in
+        self?.loadFromCloud()
+      }
+    }
+  }
+
+  private func loadData() {
+    loadFromCloud()
+    if todayWater == 0 && goal == 2000 {
+      loadFromUserDefaults()
+    }
+  }
+  
+  private func todayDateKey() -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    formatter.timeZone = .current
+    return formatter.string(from: Date())
+  }
+  
+  private func loadFromCloud() {
+    guard isCloudAvailable else { return }
+    
+    if let cloudGoal = loadGoalFromCloud(), cloudGoal > 0 {
+      goal = cloudGoal
+    }
+    if let cloudWater = loadTodayRecordFromCloud() {
+      todayWater = cloudWater
+    }
+  }
+  
+  private func loadTodayRecordFromCloud() -> Int? {
+    guard isCloudAvailable else { return nil }
+    
+    let todayKey = "cloud_water_\(todayDateKey())"
+    
+    guard let data = cloudStore.data(forKey: todayKey) else {
+      return nil
+    }
+    
+    struct CloudRecord: Codable {
+      let value: Int
+    }
+    
+    guard let record = try? JSONDecoder().decode(CloudRecord.self, from: data) else {
+      return nil
+    }
+    
+    return record.value
+  }
+  
+  private func loadGoalFromCloud() -> Int? {
+    guard isCloudAvailable else { return nil }
+    let value = cloudStore.longLong(forKey: "cloud_goal")
+    return value > 0 ? Int(value) : nil
+  }
 
   private func loadFromUserDefaults() {
     let defaults = UserDefaults.standard
-    todayWater = defaults.integer(forKey: "watch_today_water")
+    let savedWater = defaults.integer(forKey: "watch_today_water")
+    if savedWater > 0 {
+      todayWater = savedWater
+    }
     let savedGoal = defaults.integer(forKey: "watch_goal")
     if savedGoal > 0 {
       goal = savedGoal
@@ -47,10 +130,36 @@ final class WatchStore: NSObject {
     defaults.set(goal, forKey: "watch_goal")
     WidgetCenter.shared.reloadAllTimelines()
   }
+  
+  private func saveToCloud() {
+    guard isCloudAvailable else { return }
+    
+    let todayKey = "cloud_water_\(todayDateKey())"
+    let record = CloudWaterRecord(
+      dateKey: todayDateKey(),
+      value: todayWater,
+      goal: goal,
+      isSuccess: todayWater >= goal,
+      modifiedAt: Date().timeIntervalSince1970
+    )
+    
+    if let existingData = cloudStore.data(forKey: todayKey),
+       let existing = try? JSONDecoder().decode(CloudWaterRecord.self, from: existingData) {
+      if existing.modifiedAt >= record.modifiedAt && existing.value >= record.value {
+        return
+      }
+    }
+    
+    if let data = try? JSONEncoder().encode(record) {
+      cloudStore.set(data, forKey: todayKey)
+      cloudStore.synchronize()
+    }
+  }
 
   func addWater(_ amount: Int) async {
     todayWater += amount
     saveToUserDefaults()
+    saveToCloud()
     sendToiPhone(action: "addWater", amount: amount)
   }
 
