@@ -223,14 +223,20 @@ let project = Project(
             name: "DrinkSomeWater",
             shared: true,
             buildAction: .buildAction(targets: ["DrinkSomeWater"]),
-            testAction: .targets(["DrinkSomeWaterTests"]),
+            testAction: .targets(
+                [.testableTarget(target: "DrinkSomeWaterTests")],
+                configuration: .debug
+            ),
             runAction: .runAction(configuration: .debug, executable: "DrinkSomeWater")
         ),
         .scheme(
             name: "DrinkSomeWaterSnapshotTests",
             shared: true,
             buildAction: .buildAction(targets: ["DrinkSomeWater", "DrinkSomeWaterSnapshotTests"]),
-            testAction: .targets(["DrinkSomeWaterSnapshotTests"]),
+            testAction: .targets(
+                [.testableTarget(target: "DrinkSomeWaterSnapshotTests")],
+                configuration: .debug
+            ),
             runAction: .runAction(configuration: .debug, executable: "DrinkSomeWater")
         ),
     ]
