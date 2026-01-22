@@ -1,6 +1,10 @@
 import UIKit
 import WidgetKit
 
+extension Notification.Name {
+  static let cloudDataDidChange = Notification.Name("cloudDataDidChange")
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
@@ -21,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     serviceProvider.notificationService.scheduleNotifications(with: settings)
 
     serviceProvider.watchConnectivityService.activate()
+    
+    setupCloudSyncObserver()
 
     syncWidgetDataOnLaunch(serviceProvider: serviceProvider)
     
@@ -37,6 +43,74 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     window?.makeKeyAndVisible()
+  }
+  
+  private func setupCloudSyncObserver() {
+    serviceProvider.cloudSyncService.startObservingChanges { [weak self] in
+      guard let self else { return }
+      Task { @MainActor in
+        await self.handleCloudDataChange()
+      }
+    }
+    
+    serviceProvider.cloudSyncService.startObservingErrors { [weak self] error in
+      guard let self else { return }
+      self.handleCloudSyncError(error)
+    }
+  }
+  
+  private var lastErrorAlertTime: Date?
+  private let errorAlertThrottleInterval: TimeInterval = 60
+  
+  private func handleCloudSyncError(_ error: CloudSyncError) {
+    if let lastTime = lastErrorAlertTime,
+       Date().timeIntervalSince(lastTime) < errorAlertThrottleInterval {
+      return
+    }
+    
+    let title: String
+    let message: String
+    
+    switch error {
+    case .quotaViolation:
+      title = NSLocalizedString("icloud.error.quota.title", comment: "")
+      message = NSLocalizedString("icloud.error.quota.message", comment: "")
+    case .accountChanged:
+      title = NSLocalizedString("icloud.error.account.title", comment: "")
+      message = NSLocalizedString("icloud.error.account.message", comment: "")
+    }
+    
+    guard let windowScene = window?.windowScene,
+          let rootVC = windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController else {
+      return
+    }
+    
+    var presentingVC = rootVC
+    while let presented = presentingVC.presentedViewController {
+      if presented is UIAlertController {
+        return
+      }
+      presentingVC = presented
+    }
+    
+    lastErrorAlertTime = Date()
+    
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+    presentingVC.present(alert, animated: true)
+  }
+  
+  private func handleCloudDataChange() async {
+    let cloudGoal = serviceProvider.cloudSyncService.loadGoal()
+    let cloudTodayRecord = serviceProvider.cloudSyncService.loadTodayRecord()
+    
+    let goal = cloudGoal ?? (serviceProvider.userDefaultsService.value(forkey: .goal) ?? 2000)
+    let todayWater = cloudTodayRecord?.value ?? 0
+    
+    WidgetDataManager.shared.syncFromMainApp(todayWater: todayWater, goal: goal)
+    serviceProvider.watchConnectivityService.syncToWatch(todayWater: todayWater, goal: goal)
+    
+    NotificationCenter.default.post(name: .cloudDataDidChange, object: nil)
   }
   
   private func syncWidgetDataOnLaunch(serviceProvider: ServiceProvider) {
