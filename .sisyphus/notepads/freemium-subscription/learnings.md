@@ -586,3 +586,67 @@ if isPremium {
 }
 ```
 
+
+## [2026-01-27 03:47] Task 10: App Store Connect Documentation - COMPLETED
+
+### What Was Done
+- ✅ Created `docs/APP_STORE_CONNECT_SETUP.md` (449 lines, 14KB)
+- ✅ Comprehensive guide covering all 3 products
+- ✅ Step-by-step setup instructions for App Store Connect
+- ✅ Testing procedures (Sandbox, TestFlight)
+- ✅ Production submission checklist
+- ✅ Troubleshooting section
+- ✅ References to official Apple documentation
+
+### Documentation Structure
+1. **Overview** - What this guide covers
+2. **Prerequisites** - App Store Connect access, agreements, app info
+3. **Step 1: Subscription Group** - Creating "premium" group with localizations
+4. **Step 2: Monthly Subscription** - Product setup, pricing, free trial, localizations
+5. **Step 3: Yearly Subscription** - Product setup, pricing, free trial, localizations
+6. **Step 4: Lifetime Purchase** - Non-consumable setup, family sharing
+7. **Step 5: Submission** - Linking products to app version
+8. **Step 6: Testing** - Sandbox, TestFlight testing procedures
+9. **Step 7: Checklist** - Pre-submission verification checklist
+10. **Troubleshooting** - 6 common issues with solutions
+11. **References** - Links to official Apple docs
+12. **Next Steps** - Post-approval actions
+
+### Key Content Highlights
+
+**Product Details Documented:**
+- Monthly: `com.onceagain.drinksomewater.premium.monthly` (₩2,900/month, 7-day trial)
+- Yearly: `com.onceagain.drinksomewater.premium.yearly` (₩19,000/year, 7-day trial, 45% discount)
+- Lifetime: `com.onceagain.drinksomewater.premium.lifetime` (₩49,000, non-consumable, family shareable)
+
+**Testing Coverage:**
+- Xcode StoreKit Configuration File testing
+- Sandbox Account testing with accelerated subscription periods
+- TestFlight testing with real App Store Connect products
+
+**Troubleshooting Scenarios:**
+1. Cannot create Subscription Group (agreement issues)
+2. Product ID already in use (Bundle ID conflicts)
+3. Cannot load products (ID mismatch or approval status)
+4. Purchase not completing (transaction verification)
+5. Subscription renewal issues (Sandbox limitations)
+6. Family Sharing not working (product type restrictions)
+
+### Key Learnings
+
+1. **Subscription Group Required**: All auto-renewable subscriptions must belong to a subscription group
+2. **Product ID Format**: Must use Bundle ID as prefix (e.g., `com.onceagain.drinksomewater.premium.*`)
+3. **Agreements Prerequisite**: Paid Applications Agreement must be completed before creating subscriptions
+4. **Sandbox Acceleration**: Subscription periods are accelerated in Sandbox (1 month → 5 minutes)
+5. **Family Sharing**: Only Non-Consumable products support Family Sharing, not subscriptions
+6. **Review Process**: Products are reviewed together with the app version they're linked to
+7. **Localization**: Both Korean and English localizations required for Korean market
+
+### Files Created
+- `docs/APP_STORE_CONNECT_SETUP.md` - Comprehensive setup guide
+
+### Next Steps
+- All 10 tasks in freemium-subscription plan are now complete
+- Ready for App Store Connect setup when team is ready
+- Documentation provides clear path for product manager or developer to follow
+
