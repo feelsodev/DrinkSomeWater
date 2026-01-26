@@ -1,5 +1,7 @@
 import Testing
 import Foundation
+import UIKit
+import SwiftUI
 @testable import DrinkSomeWater
 
 @Suite("InstagramSharingService")
@@ -128,5 +130,83 @@ struct InstagramSharingServiceTests {
         #expect(mockService.shareToFeedCallCount == 1)
         #expect(mockService.lastSharedRecord?.value == 3000)
         #expect(mockService.lastSharedStreak == 30)
+    }
+    
+    // MARK: - ShareCardView Rendering Tests
+    
+    @Test func shareCardView_rendersToUIImage_successfully() {
+        let record = WaterRecord(date: Date(), value: 1000, isSuccess: false, goal: 2000)
+        let view = ShareCardView(record: record, streak: 5, style: .stories)
+        
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 3.0
+        let image = renderer.uiImage
+        
+        #expect(image != nil)
+        #expect(image?.size.width == 1080)
+        #expect(image?.size.height == 1920)
+    }
+    
+    @Test func shareCardView_rendersCorrectly_for0PercentAchievement() {
+        let record = WaterRecord(date: Date(), value: 0, isSuccess: false, goal: 2000)
+        let view = ShareCardView(record: record, streak: 0, style: .stories)
+        
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 3.0
+        let image = renderer.uiImage
+        
+        #expect(image != nil)
+        #expect(image?.size.width == 1080)
+        #expect(image?.size.height == 1920)
+    }
+    
+    @Test func shareCardView_rendersCorrectly_for100PercentAchievement() {
+        let record = WaterRecord(date: Date(), value: 2000, isSuccess: true, goal: 2000)
+        let view = ShareCardView(record: record, streak: 7, style: .stories)
+        
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 3.0
+        let image = renderer.uiImage
+        
+        #expect(image != nil)
+        #expect(image?.size.width == 1080)
+        #expect(image?.size.height == 1920)
+    }
+    
+    @Test func shareCardView_rendersCorrectly_for150PercentAchievement() {
+        let record = WaterRecord(date: Date(), value: 3000, isSuccess: true, goal: 2000)
+        let view = ShareCardView(record: record, streak: 14, style: .stories)
+        
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 3.0
+        let image = renderer.uiImage
+        
+        #expect(image != nil)
+        #expect(image?.size.width == 1080)
+        #expect(image?.size.height == 1920)
+    }
+    
+    @Test func shareCardView_rendersCorrectly_forFeedStyle() {
+        let record = WaterRecord(date: Date(), value: 2000, isSuccess: true, goal: 2000)
+        let view = ShareCardView(record: record, streak: 7, style: .feed)
+        
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 3.0
+        let image = renderer.uiImage
+        
+        #expect(image != nil)
+        #expect(image?.size.width == 1080)
+        #expect(image?.size.height == 1080)
+    }
+    
+    @Test func shareCardView_rendersWithoutStreak() {
+        let record = WaterRecord(date: Date(), value: 500, isSuccess: false, goal: 2000)
+        let view = ShareCardView(record: record, streak: 0, style: .feed)
+        
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 3.0
+        let image = renderer.uiImage
+        
+        #expect(image != nil)
     }
 }
