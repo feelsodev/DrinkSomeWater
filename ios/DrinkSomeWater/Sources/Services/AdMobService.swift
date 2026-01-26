@@ -5,7 +5,10 @@ import Analytics
 @MainActor
 final class AdMobService {
   
-  static let shared = AdMobService()
+  static var shared: AdMobService = {
+    let storeKit = StoreKitService()
+    return AdMobService(storeKitService: storeKit)
+  }()
   
   private enum AdUnitID {
     static var banner: String {
@@ -19,12 +22,15 @@ final class AdMobService {
     }
   }
   
+  private let storeKitService: StoreKitServiceProtocol
   private var rewardedAd: GADRewardedAd?
   private var isRewardedAdLoading = false
   
   private var nativeAdLoader: NativeAdLoader?
   
-  private init() {}
+  init(storeKitService: StoreKitServiceProtocol) {
+    self.storeKitService = storeKitService
+  }
   
   func configure() {
     GADMobileAds.sharedInstance().start { status in
@@ -38,6 +44,12 @@ final class AdMobService {
     let bannerView = GADBannerView(adSize: GADAdSizeBanner)
     bannerView.adUnitID = AdUnitID.banner
     bannerView.rootViewController = rootViewController
+    
+    guard !storeKitService.isPremium else {
+      print("[AdMob] Skipping banner - user is premium")
+      return bannerView
+    }
+    
     bannerView.load(GADRequest())
     return bannerView
   }
@@ -62,6 +74,12 @@ final class AdMobService {
   }
   
   func showRewardedAd(from viewController: UIViewController, completion: @escaping @MainActor (Bool) -> Void) {
+    guard !storeKitService.isPremium else {
+      print("[AdMob] Skipping rewarded ad - user is premium")
+      completion(false)
+      return
+    }
+    
     guard let rewardedAd = rewardedAd else {
       print("[AdMob] Rewarded ad not ready")
       completion(false)
@@ -86,6 +104,11 @@ final class AdMobService {
   }
   
   func getNativeAd() -> GADNativeAd? {
+    guard !storeKitService.isPremium else {
+      print("[AdMob] Skipping native ad - user is premium")
+      return nil
+    }
+    
     guard let ad = nativeAdLoader?.getAd() else {
       preloadNativeAds(count: 2)
       return nil

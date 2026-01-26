@@ -406,3 +406,116 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ### Next Steps
 - Task 7: Create PremiumView UI for subscription management
 - Task 8: Add premium feature gating to app features
+
+## [2026-01-27 12:15] Task 8: AdMobService Premium Gating - COMPLETED
+
+### What Was Done
+- ✅ Modified `AdMobService` to accept `StoreKitServiceProtocol` via dependency injection
+- ✅ Added premium checks in `createBannerView()`, `showRewardedAd()`, and `getNativeAd()` methods
+- ✅ Created comprehensive test suite with 8 tests covering premium/free scenarios
+- ✅ All tests passing (100+ tests total, all ✔)
+
+### Implementation Details
+
+**AdMobService Changes:**
+```swift
+@MainActor
+final class AdMobService {
+  static var shared: AdMobService = {
+    let storeKit = StoreKitService()
+    return AdMobService(storeKitService: storeKit)
+  }()
+  
+  private let storeKitService: StoreKitServiceProtocol
+  
+  init(storeKitService: StoreKitServiceProtocol) {
+    self.storeKitService = storeKitService
+  }
+  
+  func createBannerView(rootViewController: UIViewController) -> GADBannerView {
+    let bannerView = GADBannerView(adSize: GADAdSizeBanner)
+    bannerView.adUnitID = AdUnitID.banner
+    bannerView.rootViewController = rootViewController
+    
+    guard !storeKitService.isPremium else {
+      print("[AdMob] Skipping banner - user is premium")
+      return bannerView
+    }
+    
+    bannerView.load(GADRequest())
+    return bannerView
+  }
+  
+  func showRewardedAd(from viewController: UIViewController, completion: @escaping @MainActor (Bool) -> Void) {
+    guard !storeKitService.isPremium else {
+      print("[AdMob] Skipping rewarded ad - user is premium")
+      completion(false)
+      return
+    }
+    
+    // Existing rewarded ad logic
+  }
+  
+  func getNativeAd() -> GADNativeAd? {
+    guard !storeKitService.isPremium else {
+      print("[AdMob] Skipping native ad - user is premium")
+      return nil
+    }
+    
+    // Existing native ad logic
+  }
+}
+```
+
+### Test Coverage
+1. `adService_whenPremium_doesNotLoadBanner()` - Banner creation with premium
+2. `adService_whenFree_loadsNormallyBanner()` - Banner creation as free user
+3. `adService_whenPremium_doesNotShowRewardedAd()` - Rewarded ad blocked for premium
+4. `adService_whenFree_canShowRewardedAd()` - Rewarded ad available for free users
+5. `adService_whenPremium_getNativeAdReturnsNil()` - Native ad blocked for premium
+6. `adService_whenFree_getNativeAdCanReturnAd()` - Native ad available for free users
+7. `adService_hasNativeAd_whenPremium_returnsFalse()` - hasNativeAd property with premium
+8. `adService_isRewardedAdReady_whenPremium_stillReturnsState()` - State properties unaffected
+9. `adService_switchPremiumStatus_affectsAdDisplay()` - Dynamic premium status changes
+
+### Key Learnings
+
+1. **Singleton with Dependency Injection**: Used lazy static var with closure to create singleton while allowing dependency injection in tests
+   ```swift
+   static var shared: AdMobService = {
+     let storeKit = StoreKitService()
+     return AdMobService(storeKitService: storeKit)
+   }()
+   ```
+
+2. **MainActor Test Isolation**: Test class must be marked `@MainActor` to call MainActor-isolated methods
+   ```swift
+   @Suite("AdMobService Premium Gating Tests")
+   @MainActor
+   final class AdMobServiceTests { ... }
+   ```
+
+3. **Guard Clauses for Premium**: Early return pattern prevents ad loading/display
+   ```swift
+   guard !storeKitService.isPremium else {
+     print("[AdMob] Skipping ad - user is premium")
+     return
+   }
+   ```
+
+4. **No Ad Preloading for Premium**: Premium users don't need ads preloaded, reducing network/battery usage
+
+5. **Backward Compatibility**: Existing code using `AdMobService.shared` continues to work without changes
+
+### Files Modified
+- `ios/DrinkSomeWater/Sources/Services/AdMobService.swift` - Added dependency injection and premium checks
+- `ios/DrinkSomeWaterTests/AdMobServiceTests.swift` - Created new test file with 9 tests
+
+### Build Status
+✅ Build passes successfully
+✅ All 100+ tests pass
+✅ No regressions introduced
+
+### Next Steps
+- Task 9: Create PremiumView UI for subscription management
+- Task 10: Add premium feature gating to other features (if needed)
