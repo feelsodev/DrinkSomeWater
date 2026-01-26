@@ -133,3 +133,75 @@ enum EntitlementState: Sendable {
 - Task 3: Implement actual StoreKitService with real StoreKit API calls
 - Task 4: Integrate StoreKitService into ServiceProvider
 - Task 5: Add premium feature gating to app features
+
+## [2026-01-27 02:45] Task 3: StoreKitService Implementation - COMPLETED
+
+### What Was Done
+- ✅ Implemented `StoreKitService` class conforming to `StoreKitServiceProtocol`
+- ✅ Product loading with `Product.products(for:)` sorted by price
+- ✅ Purchase flow with transaction verification via `VerificationResult`
+- ✅ Restore purchases using `AppStore.sync()`
+- ✅ `currentEntitlements` AsyncStream monitoring `Transaction.updates`
+- ✅ Subscription state handling: `.subscribed`, `.inGracePeriod`, `.inBillingRetryPeriod` → premium
+- ✅ Non-consumable (lifetime) product handled as premium with nil expiration
+- ✅ Build passes with Swift 6 strict concurrency
+
+### Key Implementation Details
+
+**Transaction Listener Pattern:**
+```swift
+private func listenForTransactions() -> Task<Void, Error> {
+    Task.detached { [weak self] in
+        for await result in Transaction.updates {
+            guard let verifiedTransaction = Self.verifyTransaction(result) else { continue }
+            await self?.handleTransactionUpdate()
+            await verifiedTransaction.finish()
+        }
+    }
+}
+```
+
+**Entitlement Check Pattern:**
+```swift
+for await result in Transaction.currentEntitlements {
+    guard case .verified(let transaction) = result else { continue }
+    guard Self.productIDs.contains(transaction.productID) else { continue }
+    guard transaction.revocationDate == nil else { continue }
+    
+    switch transaction.productType {
+    case .nonConsumable:
+        newState = .premium(expirationDate: nil)
+    case .autoRenewable:
+        // Check expiration and subscription status
+    }
+}
+```
+
+**Subscription Status Check:**
+```swift
+let statuses = try await subscription.status
+for status in statuses {
+    switch status.state {
+    case .subscribed, .inGracePeriod, .inBillingRetryPeriod:
+        // Premium
+    case .expired, .revoked:
+        // Free
+    }
+}
+```
+
+### Key Learnings
+
+1. **Swift 6 Concurrency**: Static methods in `@MainActor` classes need `nonisolated` modifier to be called from detached tasks
+2. **VerificationResult**: Use pattern matching `case .verified(let transaction)` to unwrap
+3. **RenewalInfo vs Transaction**: `RenewalInfo` doesn't have `expirationDate` - get it from the transaction in `status.transaction`
+4. **Product.SubscriptionInfo.Status**: Contains both `transaction` and `renewalInfo` as `VerificationResult` types
+5. **Transaction.currentEntitlements**: Returns all currently entitled transactions (subscriptions + non-consumables)
+6. **Non-consumable handling**: Check `productType == .nonConsumable` for lifetime purchases
+
+### Files Modified
+- `ios/DrinkSomeWater/Sources/Services/StoreKitService.swift` - Added implementation class
+
+### Next Steps
+- Task 4: Integrate StoreKitService into ServiceProvider
+- Task 5: Add premium feature gating to app features

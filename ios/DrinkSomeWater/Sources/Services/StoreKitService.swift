@@ -12,18 +12,217 @@ enum EntitlementState: Sendable {
 
 @MainActor
 protocol StoreKitServiceProtocol: AnyObject {
-    /// Loads available products from StoreKit
     func loadProducts() async throws -> [Product]
-    
-    /// Purchases a product and returns the transaction
     func purchase(_ product: Product) async throws -> Transaction
-    
-    /// Restores previous purchases
     func restorePurchases() async throws
-    
-    /// Stream of entitlement state changes
     var currentEntitlements: AsyncStream<EntitlementState> { get }
-    
-    /// Current premium status
     var isPremium: Bool { get }
+}
+
+// MARK: - StoreKit Errors
+
+enum StoreKitServiceError: Error, LocalizedError {
+    case productNotFound
+    case purchaseFailed
+    case userCancelled
+    case pending
+    case verificationFailed
+    case unknown
+    
+    var errorDescription: String? {
+        switch self {
+        case .productNotFound: return "Product not found"
+        case .purchaseFailed: return "Purchase failed"
+        case .userCancelled: return "Purchase was cancelled"
+        case .pending: return "Purchase is pending"
+        case .verificationFailed: return "Transaction verification failed"
+        case .unknown: return "An unknown error occurred"
+        }
+    }
+}
+
+// MARK: - StoreKit Service Implementation
+
+@MainActor
+final class StoreKitService: StoreKitServiceProtocol {
+    
+    private static let productIDs: Set<String> = [
+        "com.onceagain.drinksomewater.premium.monthly",
+        "com.onceagain.drinksomewater.premium.yearly",
+        "com.onceagain.drinksomewater.premium.lifetime"
+    ]
+    
+    private var updateListenerTask: Task<Void, Error>?
+    private var entitlementContinuation: AsyncStream<EntitlementState>.Continuation?
+    private var _currentEntitlementState: EntitlementState = .free
+    
+    var isPremium: Bool {
+        if case .premium = _currentEntitlementState {
+            return true
+        }
+        return false
+    }
+    
+    lazy var currentEntitlements: AsyncStream<EntitlementState> = {
+        AsyncStream { [weak self] continuation in
+            self?.entitlementContinuation = continuation
+            if let state = self?._currentEntitlementState {
+                continuation.yield(state)
+            }
+            continuation.onTermination = { _ in }
+        }
+    }()
+    
+    init() {
+        updateListenerTask = listenForTransactions()
+        Task {
+            await updateEntitlementState()
+        }
+    }
+    
+    deinit {
+        updateListenerTask?.cancel()
+        entitlementContinuation?.finish()
+    }
+    
+    func loadProducts() async throws -> [Product] {
+        let products = try await Product.products(for: Self.productIDs)
+        return products.sorted { $0.price < $1.price }
+    }
+    
+    func purchase(_ product: Product) async throws -> Transaction {
+        let result = try await product.purchase()
+        
+        switch result {
+        case .success(let verification):
+            let transaction = try Self.checkVerified(verification)
+            await updateEntitlementState()
+            await transaction.finish()
+            return transaction
+            
+        case .userCancelled:
+            throw StoreKitServiceError.userCancelled
+            
+        case .pending:
+            throw StoreKitServiceError.pending
+            
+        @unknown default:
+            throw StoreKitServiceError.unknown
+        }
+    }
+    
+    func restorePurchases() async throws {
+        try await AppStore.sync()
+        await updateEntitlementState()
+    }
+    
+    // MARK: - Private
+    
+    private func listenForTransactions() -> Task<Void, Error> {
+        Task.detached { [weak self] in
+            for await result in Transaction.updates {
+                guard let verifiedTransaction = Self.verifyTransaction(result) else { continue }
+                await self?.handleTransactionUpdate()
+                await verifiedTransaction.finish()
+            }
+        }
+    }
+    
+    private func handleTransactionUpdate() async {
+        await updateEntitlementState()
+    }
+    
+    private nonisolated static func verifyTransaction(_ result: VerificationResult<Transaction>) -> Transaction? {
+        switch result {
+        case .unverified:
+            return nil
+        case .verified(let transaction):
+            return transaction
+        }
+    }
+    
+    private nonisolated static func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
+        switch result {
+        case .unverified:
+            throw StoreKitServiceError.verificationFailed
+        case .verified(let safe):
+            return safe
+        }
+    }
+    
+    private func updateEntitlementState() async {
+        var newState: EntitlementState = .free
+        
+        for await result in Transaction.currentEntitlements {
+            guard case .verified(let transaction) = result else { continue }
+            guard Self.productIDs.contains(transaction.productID) else { continue }
+            guard transaction.revocationDate == nil else { continue }
+            
+            switch transaction.productType {
+            case .nonConsumable:
+                newState = .premium(expirationDate: nil)
+                
+            case .autoRenewable:
+                if let expirationDate = transaction.expirationDate {
+                    if expirationDate > Date() {
+                        newState = .premium(expirationDate: expirationDate)
+                    }
+                    
+                    if let subscriptionStatus = await getSubscriptionStatus(for: transaction.productID) {
+                        switch subscriptionStatus.state {
+                        case .subscribed, .inGracePeriod, .inBillingRetryPeriod:
+                            let expDate = Self.extractExpirationDate(from: subscriptionStatus) ?? expirationDate
+                            newState = .premium(expirationDate: expDate)
+                        case .expired, .revoked:
+                            if case .free = newState {
+                                newState = .free
+                            }
+                        default:
+                            break
+                        }
+                    }
+                }
+                
+            default:
+                break
+            }
+            
+            if case .premium = newState {
+                break
+            }
+        }
+        
+        _currentEntitlementState = newState
+        entitlementContinuation?.yield(newState)
+    }
+    
+    private static func extractExpirationDate(from status: Product.SubscriptionInfo.Status) -> Date? {
+        guard case .verified(let transaction) = status.transaction else {
+            return nil
+        }
+        return transaction.expirationDate
+    }
+    
+    private func getSubscriptionStatus(for productID: String) async -> Product.SubscriptionInfo.Status? {
+        do {
+            let products = try await Product.products(for: [productID])
+            guard let product = products.first,
+                  let subscription = product.subscription else {
+                return nil
+            }
+            
+            let statuses = try await subscription.status
+            
+            for status in statuses {
+                if let transaction = try? status.transaction.payloadValue,
+                   transaction.productID == productID {
+                    return status
+                }
+            }
+            
+            return statuses.first
+        } catch {
+            return nil
+        }
+    }
 }
