@@ -519,3 +519,33 @@ final class AdMobService {
 ### Next Steps
 - Task 9: Create PremiumView UI for subscription management
 - Task 10: Add premium feature gating to other features (if needed)
+
+## [2026-01-27 14:00] Task 7: PaywallView - COMPLETED
+
+### What Was Done
+- ✅ Created `ios/DrinkSomeWater/Sources/Views/PaywallView.swift`
+- ✅ Used SubscriptionStoreView for monthly/yearly subscriptions
+- ✅ Used ProductView for lifetime non-consumable product
+- ✅ Added "구매 복원" restore button
+- ✅ Analytics event logged on appear
+- ✅ Loading state handled
+
+### Key Implementation
+- SubscriptionStoreView(groupID: "premium") for auto-renewable subscriptions
+- ProductView for lifetime product (filtered by id.contains("lifetime"))
+- Analytics.shared.log(.premiumPromptShown(triggerPoint:, variant:))
+- PremiumStore integration for product loading and purchases
+- Error handling with error message display
+
+### UI Structure
+- Header with title and subtitle
+- Subscription products in native iOS UI
+- Lifetime product shown separately
+- Restore purchases button
+- Loading indicator
+- Error message display
+
+### Next Steps
+- Task 8: AdMobService premium gating (COMPLETED)
+- Task 9: Settings screen premium section
+- Task 10: App Store Connect documentation
