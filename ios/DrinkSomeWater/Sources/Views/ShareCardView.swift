@@ -1,9 +1,10 @@
 import SwiftUI
+import UIKit
 import Foundation
 
 enum ShareCardStyle {
-    case stories  // 9:16 aspect ratio (1080x1920)
-    case feed     // 1:1 aspect ratio (1080x1080)
+    case stories
+    case feed
 }
 
 struct ShareCardView: View {
@@ -30,102 +31,102 @@ struct ShareCardView: View {
         return Int((Float(record.value) / Float(record.goal)) * 100)
     }
     
+    private var mascotImage: UIImage? {
+        if achievementPercentage >= 100 {
+            return UIImage(named: "bang3")
+        } else if achievementPercentage >= 50 {
+            return UIImage(named: "bang2")
+        } else {
+            return UIImage(named: "bang")
+        }
+    }
+    
+    private var scaleFactor: CGFloat {
+        style == .stories ? 1.0 : 0.75
+    }
+    
     var body: some View {
         ZStack {
-            // Background
-            LinearGradient(
-                colors: [
-                    DS.SwiftUIColor.primaryLight,
-                    DS.SwiftUIColor.primary.opacity(0.3)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            DS.SwiftUIColor.primaryLight
             
-            VStack(spacing: style == .stories ? DS.Spacing.xxxxl : DS.Spacing.xl) {
+            VStack(spacing: 0) {
                 Spacer()
+                    .frame(height: style == .stories ? 180 : 80)
                 
-                // App Logo/Branding
-                VStack(spacing: DS.Spacing.sm) {
-                    Image(systemName: "drop.fill")
-                        .font(.system(size: style == .stories ? 80 : 60))
+                if let mascot = mascotImage {
+                    Image(uiImage: mascot)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 280 * scaleFactor, height: 280 * scaleFactor)
+                }
+                
+                Spacer()
+                    .frame(height: style == .stories ? 60 : 30)
+                
+                VStack(spacing: 24 * scaleFactor) {
+                    Text("\(record.value)ml")
+                        .font(.system(size: 96 * scaleFactor, weight: .heavy, design: .rounded))
                         .foregroundStyle(DS.SwiftUIColor.primary)
                     
-                    Text("벌컥벌컥")
-                        .font(.system(size: style == .stories ? 32 : 24, weight: .bold))
-                        .foregroundStyle(DS.SwiftUIColor.textPrimary)
+                    Text("/ \(record.goal)ml")
+                        .font(.system(size: 36 * scaleFactor, weight: .medium, design: .rounded))
+                        .foregroundStyle(DS.SwiftUIColor.textSecondary)
                 }
                 
                 Spacer()
+                    .frame(height: style == .stories ? 50 : 24)
                 
-                // Main Content Card
-                VStack(spacing: DS.Spacing.lg) {
-                    // Water Intake Display
-                    VStack(spacing: DS.Spacing.xs) {
-                        Text("\(record.value)ml")
-                            .font(.system(size: style == .stories ? 72 : 56, weight: .bold))
-                            .foregroundStyle(DS.SwiftUIColor.primary)
+                HStack(spacing: 16 * scaleFactor) {
+                    ZStack {
+                        Circle()
+                            .fill(achievementPercentage >= 100 ? DS.SwiftUIColor.success : DS.SwiftUIColor.primary)
+                            .frame(width: 140 * scaleFactor, height: 140 * scaleFactor)
                         
-                        Text("/ \(record.goal)ml")
-                            .font(.system(size: style == .stories ? 28 : 22, weight: .medium))
-                            .foregroundStyle(DS.SwiftUIColor.textSecondary)
-                    }
-                    
-                    // Achievement Percentage
-                    HStack(spacing: DS.Spacing.xs) {
                         Text("\(achievementPercentage)%")
-                            .font(.system(size: style == .stories ? 48 : 36, weight: .bold))
-                            .foregroundStyle(
-                                achievementPercentage >= 100 ? DS.SwiftUIColor.success : DS.SwiftUIColor.primary
-                            )
-                        
-                        if achievementPercentage >= 100 {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: style == .stories ? 40 : 32))
-                                .foregroundStyle(DS.SwiftUIColor.success)
-                        }
+                            .font(.system(size: 44 * scaleFactor, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
                     }
                     
-                    // Streak Display
                     if streak > 0 {
-                        HStack(spacing: DS.Spacing.sm) {
-                            Image(systemName: "flame.fill")
-                                .font(.system(size: style == .stories ? 32 : 24))
-                                .foregroundStyle(.orange)
-                            
-                            Text("\(streak)일 연속 달성")
-                                .font(.system(size: style == .stories ? 24 : 18, weight: .semibold))
-                                .foregroundStyle(DS.SwiftUIColor.textPrimary)
+                        VStack(alignment: .leading, spacing: 4 * scaleFactor) {
+                            HStack(spacing: 8 * scaleFactor) {
+                                Image(systemName: "flame.fill")
+                                    .font(.system(size: 32 * scaleFactor))
+                                    .foregroundStyle(.orange)
+                                Text("\(streak)일")
+                                    .font(.system(size: 44 * scaleFactor, weight: .bold, design: .rounded))
+                                    .foregroundStyle(DS.SwiftUIColor.textPrimary)
+                            }
+                            Text("연속 달성")
+                                .font(.system(size: 24 * scaleFactor, weight: .medium))
+                                .foregroundStyle(DS.SwiftUIColor.textSecondary)
                         }
-                        .padding(.horizontal, DS.Spacing.xl)
-                        .padding(.vertical, DS.Spacing.md)
-                        .background(
-                            RoundedRectangle(cornerRadius: DS.Size.cornerRadiusXLarge, style: .continuous)
-                                .fill(.white.opacity(0.9))
-                        )
                     }
                 }
-                .padding(style == .stories ? DS.Spacing.xxxxl : DS.Spacing.xxl)
+                .padding(.horizontal, 48 * scaleFactor)
+                .padding(.vertical, 32 * scaleFactor)
                 .background(
-                    RoundedRectangle(cornerRadius: style == .stories ? 40 : 32, style: .continuous)
-                        .fill(.white.opacity(0.95))
-                        .shadow(
-                            color: DS.SwiftUIColor.primary.opacity(0.3),
-                            radius: style == .stories ? 30 : 20,
-                            y: style == .stories ? 15 : 10
-                        )
+                    RoundedRectangle(cornerRadius: 32 * scaleFactor, style: .continuous)
+                        .fill(.white)
+                        .shadow(color: .black.opacity(0.1), radius: 20 * scaleFactor, y: 8 * scaleFactor)
                 )
                 
                 Spacer()
                 
-                // Date
-                Text(formatDate(record.date))
-                    .font(.system(size: style == .stories ? 20 : 16, weight: .medium))
-                    .foregroundStyle(DS.SwiftUIColor.textSecondary)
+                VStack(spacing: 8 * scaleFactor) {
+                    Text(formatDate(record.date))
+                        .font(.system(size: 24 * scaleFactor, weight: .medium))
+                        .foregroundStyle(DS.SwiftUIColor.textSecondary)
+                    
+                    Text("벌컥벌컥")
+                        .font(.system(size: 28 * scaleFactor, weight: .bold))
+                        .foregroundStyle(DS.SwiftUIColor.primary)
+                }
                 
                 Spacer()
+                    .frame(height: style == .stories ? 100 : 50)
             }
-            .padding(style == .stories ? DS.Spacing.xxxxl : DS.Spacing.xxl)
+            .padding(.horizontal, 60 * scaleFactor)
         }
         .frame(width: cardWidth, height: cardHeight)
     }
