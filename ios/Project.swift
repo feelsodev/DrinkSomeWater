@@ -51,6 +51,10 @@ let project = Project(
                         ]
                     ]
                 ],
+                "LSApplicationQueriesSchemes": [
+                    "instagram-stories",
+                    "instagram"
+                ],
                 "NSHealthShareUsageDescription": "Read weight data to calculate personalized recommendations.",
                 "NSHealthUpdateUsageDescription": "Sync water intake records with Health app.",
                 "GADApplicationIdentifier": "$(ADMOB_APP_ID)",
