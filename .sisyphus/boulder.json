@@ -1,8 +1,12 @@
 {
-  "active_plan": "/Users/once/Documents/feelso/DrinkSomeWater/.sisyphus/plans/freemium-subscription.md",
+  "active_plan": null,
+  "completed_plans": [
+    "freemium-subscription",
+    "instagram-sharing"
+  ],
   "started_at": "2026-01-27T02:23:33.795Z",
+  "completed_at": "2026-01-26T19:16:02.000Z",
   "session_ids": [
     "ses_404c2e258ffeX9bFXvc7A15Anq"
-  ],
-  "plan_name": "freemium-subscription"
+  ]
 }
