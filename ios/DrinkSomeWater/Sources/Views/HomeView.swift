@@ -100,8 +100,12 @@ struct HomeView: View {
   
   private func shareToInstagram(destination: ShareDestination) async {
     let instagramService = store.provider.instagramSharingService
+    let analyticsDestination: InstagramShareDestination = destination == .stories ? .stories : .feed
+    
+    Analytics.shared.log(.instagramShareInitiated(destination: analyticsDestination, source: .home))
     
     guard instagramService.isInstagramInstalled() else {
+      Analytics.shared.log(.instagramShareFailed(destination: analyticsDestination, reason: "instagram_not_installed"))
       showInstagramNotInstalledAlert = true
       return
     }
@@ -121,7 +125,9 @@ struct HomeView: View {
       case .feed:
         try await instagramService.shareToFeed(record: todayRecord, streak: streak)
       }
+      Analytics.shared.log(.instagramShareCompleted(destination: analyticsDestination, source: .home))
     } catch {
+      Analytics.shared.log(.instagramShareFailed(destination: analyticsDestination, reason: error.localizedDescription))
       showInstagramNotInstalledAlert = true
     }
   }

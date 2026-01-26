@@ -513,7 +513,12 @@ struct RecordCard: View {
   }
   
   private func shareToInstagram(destination: ShareDestination) async {
+    let analyticsDestination: InstagramShareDestination = destination == .stories ? .stories : .feed
+    
+    Analytics.shared.log(.instagramShareInitiated(destination: analyticsDestination, source: .history))
+    
     guard instagramSharingService.isInstagramInstalled() else {
+      Analytics.shared.log(.instagramShareFailed(destination: analyticsDestination, reason: "instagram_not_installed"))
       showInstagramNotInstalledAlert = true
       return
     }
@@ -525,7 +530,9 @@ struct RecordCard: View {
       case .feed:
         try await instagramSharingService.shareToFeed(record: record, streak: streak)
       }
+      Analytics.shared.log(.instagramShareCompleted(destination: analyticsDestination, source: .history))
     } catch {
+      Analytics.shared.log(.instagramShareFailed(destination: analyticsDestination, reason: error.localizedDescription))
       showInstagramNotInstalledAlert = true
     }
   }

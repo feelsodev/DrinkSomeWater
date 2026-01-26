@@ -48,7 +48,13 @@ public enum AnalyticsEvent {
   case recommendedGoalAccepted(recommendedMl: Int, weightKg: Double)
   case recommendedGoalRejected(recommendedMl: Int, customMl: Int)
   
-  // MARK: - Tier 5: Retention
+  // MARK: - Tier 5: Social Sharing
+  
+  case instagramShareInitiated(destination: InstagramShareDestination, source: InstagramShareSource)
+  case instagramShareCompleted(destination: InstagramShareDestination, source: InstagramShareSource)
+  case instagramShareFailed(destination: InstagramShareDestination, reason: String)
+  
+  // MARK: - Tier 6: Retention
   
   case streakAchieved(streakDays: Int)
   case streakBroken(previousStreakDays: Int)
@@ -124,6 +130,9 @@ public enum AnalyticsEvent {
     case .purchaseStarted: return "purchase_started"
     case .purchaseCompleted: return "purchase_completed"
     case .purchaseFailed: return "purchase_failed"
+    case .instagramShareInitiated: return "instagram_share_initiated"
+    case .instagramShareCompleted: return "instagram_share_completed"
+    case .instagramShareFailed: return "instagram_share_failed"
     }
   }
   
@@ -288,6 +297,15 @@ public enum AnalyticsEvent {
       
     case .purchaseFailed(let productId, let errorCode):
       return ["product_id": productId, "error_code": errorCode]
+      
+    case .instagramShareInitiated(let destination, let source):
+      return ["destination": destination.rawValue, "source": source.rawValue]
+      
+    case .instagramShareCompleted(let destination, let source):
+      return ["destination": destination.rawValue, "source": source.rawValue]
+      
+    case .instagramShareFailed(let destination, let reason):
+      return ["destination": destination.rawValue, "reason": reason]
     }
   }
 }
@@ -347,4 +365,14 @@ public enum PremiumAction: String, Sendable {
   case purchase = "purchase"
   case dismiss = "dismiss"
   case later = "later"
+}
+
+public enum InstagramShareDestination: String, Sendable {
+  case stories = "stories"
+  case feed = "feed"
+}
+
+public enum InstagramShareSource: String, Sendable {
+  case home = "home"
+  case history = "history"
 }
