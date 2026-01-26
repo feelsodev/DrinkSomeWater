@@ -10,7 +10,7 @@ final class HistoryStore {
     case selectDate(Date)
   }
   
-  private let provider: ServiceProviderProtocol
+  let provider: ServiceProviderProtocol
   
   var waterRecordList: [WaterRecord] = []
   var successDates: [String] = []
@@ -34,6 +34,30 @@ final class HistoryStore {
   
   init(provider: ServiceProviderProtocol) {
     self.provider = provider
+  }
+  
+  func calculateStreakForDate(_ date: Date) -> Int {
+    let waterRecords = waterRecordList.filter { $0.isSuccess }.sorted { $0.date > $1.date }
+    
+    var streak = 0
+    var currentDate = date
+    let calendar = Calendar.current
+    
+    let targetDateString = date.dateToString
+    guard waterRecords.contains(where: { $0.date.dateToString == targetDateString }) else {
+      return 0
+    }
+    
+    for record in waterRecords {
+      let daysDiff = calendar.dateComponents([.day], from: record.date, to: currentDate).day ?? 0
+      if daysDiff <= 1 && daysDiff >= 0 {
+        streak += 1
+        currentDate = record.date
+      } else if record.date < currentDate {
+        break
+      }
+    }
+    return max(1, streak)
   }
   
   func send(_ action: Action) async {

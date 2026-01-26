@@ -341,3 +341,13 @@
 "icloud.error.quota.message" = "Your iCloud storage is full. Some data may not sync.\n\nPlease free up space in Settings > [Your Name] > iCloud > Manage Storage.";
 "icloud.error.account.title" = "iCloud Account Changed";
 "icloud.error.account.message" = "Your iCloud account has changed. Data will sync with the new account.";
+
+// Share
+"share.title" = "Share to Instagram";
+"share.instagram.stories" = "Share to Stories";
+"share.instagram.feed" = "Share to Feed";
+"share.error.title" = "Cannot Share";
+"share.error.ok" = "OK";
+"share.error.instagram.not.installed" = "Instagram is not installed on this device.";
+"accessibility.home.share" = "Share to Instagram";
+"accessibility.history.share" = "Share to Instagram";

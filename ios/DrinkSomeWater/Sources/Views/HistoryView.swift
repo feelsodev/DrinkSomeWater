@@ -163,7 +163,11 @@ struct HistoryCalendarTab: View {
         .padding(.top, DS.Spacing.md)
       
       if let record = store.selectedRecord {
-        RecordCard(record: record)
+        RecordCard(
+          record: record,
+          streak: store.calculateStreakForDate(record.date),
+          instagramSharingService: store.provider.instagramSharingService
+        )
           .padding(.horizontal, DS.Spacing.lg)
           .padding(.top, DS.Spacing.lg)
           .transition(.opacity.combined(with: .move(edge: .bottom)))
@@ -420,6 +424,10 @@ struct TimelineRecordRow: View {
 // MARK: - Shared Components
 struct RecordCard: View {
   let record: WaterRecord
+  let streak: Int
+  let instagramSharingService: InstagramSharingServiceProtocol
+  @State private var showShareSheet = false
+  @State private var showInstagramNotInstalledAlert = false
   
   var body: some View {
     HStack {
@@ -462,6 +470,18 @@ struct RecordCard: View {
             .foregroundStyle(DS.SwiftUIColor.success)
         }
       }
+      
+      Button {
+        showShareSheet = true
+      } label: {
+        Image(systemName: "square.and.arrow.up")
+          .font(DS.SwiftUIFont.body)
+          .foregroundStyle(DS.SwiftUIColor.primary)
+          .frame(width: DS.Size.iconContainerSmall, height: DS.Size.iconContainerSmall)
+          .background(DS.SwiftUIColor.primary.opacity(0.12))
+          .clipShape(Circle())
+      }
+      .accessibilityLabel(String(localized: "accessibility.history.share", defaultValue: "Share to Instagram"))
     }
     .padding(DS.Spacing.lg)
     .background(
@@ -469,6 +489,45 @@ struct RecordCard: View {
         .fill(.white)
         .shadow(color: DS.SwiftUIColor.primary.opacity(0.15), radius: DS.Spacing.sm, y: DS.Spacing.xxs)
     )
+    .confirmationDialog(
+      String(localized: "share.title"),
+      isPresented: $showShareSheet,
+      titleVisibility: .visible
+    ) {
+      Button(String(localized: "share.instagram.stories")) {
+        Task { await shareToInstagram(destination: .stories) }
+      }
+      Button(String(localized: "share.instagram.feed")) {
+        Task { await shareToInstagram(destination: .feed) }
+      }
+      Button(String(localized: "home.goal.cancel"), role: .cancel) {}
+    }
+    .alert(
+      String(localized: "share.error.title"),
+      isPresented: $showInstagramNotInstalledAlert
+    ) {
+      Button(String(localized: "share.error.ok"), role: .cancel) {}
+    } message: {
+      Text(String(localized: "share.error.instagram.not.installed"))
+    }
+  }
+  
+  private func shareToInstagram(destination: ShareDestination) async {
+    guard instagramSharingService.isInstagramInstalled() else {
+      showInstagramNotInstalledAlert = true
+      return
+    }
+    
+    do {
+      switch destination {
+      case .stories:
+        try await instagramSharingService.shareToStories(record: record, streak: streak)
+      case .feed:
+        try await instagramSharingService.shareToFeed(record: record, streak: streak)
+      }
+    } catch {
+      showInstagramNotInstalledAlert = true
+    }
   }
   
   private func formatDate(_ date: Date) -> String {
