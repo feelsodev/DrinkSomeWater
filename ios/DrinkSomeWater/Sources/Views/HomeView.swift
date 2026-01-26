@@ -8,6 +8,8 @@ struct HomeView: View {
   @State private var showQuickButtonSetting = false
   @State private var showWaterAdjustment = false
   @State private var isSubtractMode = false
+  @State private var showShareSheet = false
+  @State private var showInstagramNotInstalledAlert = false
   
   var body: some View {
     ZStack {
@@ -73,14 +75,79 @@ struct HomeView: View {
         .presentationDetents([.medium])
         .presentationDragIndicator(.visible)
     }
+    .confirmationDialog(
+      String(localized: "share.title"),
+      isPresented: $showShareSheet,
+      titleVisibility: .visible
+    ) {
+      Button(String(localized: "share.instagram.stories")) {
+        Task { await shareToInstagram(destination: .stories) }
+      }
+      Button(String(localized: "share.instagram.feed")) {
+        Task { await shareToInstagram(destination: .feed) }
+      }
+      Button(String(localized: "home.goal.cancel"), role: .cancel) {}
+    }
+    .alert(
+      String(localized: "share.error.title"),
+      isPresented: $showInstagramNotInstalledAlert
+    ) {
+      Button(String(localized: "share.error.ok"), role: .cancel) {}
+    } message: {
+      Text(String(localized: "share.error.instagram.not.installed"))
+    }
+  }
+  
+  private func shareToInstagram(destination: ShareDestination) async {
+    let instagramService = store.provider.instagramSharingService
+    
+    guard instagramService.isInstagramInstalled() else {
+      showInstagramNotInstalledAlert = true
+      return
+    }
+    
+    let todayRecord = WaterRecord(
+      date: Date(),
+      value: Int(store.ml),
+      isSuccess: store.ml >= store.total,
+      goal: Int(store.total)
+    )
+    let streak = store.calculateStreak()
+    
+    do {
+      switch destination {
+      case .stories:
+        try await instagramService.shareToStories(record: todayRecord, streak: streak)
+      case .feed:
+        try await instagramService.shareToFeed(record: todayRecord, streak: streak)
+      }
+    } catch {
+      showInstagramNotInstalledAlert = true
+    }
   }
   
   private var headerSection: some View {
     VStack(spacing: DS.Spacing.xxs) {
-      Text("\(Int(store.ml))ml")
-        .font(DS.SwiftUIFont.display)
-        .foregroundStyle(DS.SwiftUIColor.textPrimary)
-        .accessibilityLabel(String(localized: "accessibility.home.current", defaultValue: "Current intake \(Int(store.ml)) milliliters"))
+      HStack {
+        Spacer()
+        Text("\(Int(store.ml))ml")
+          .font(DS.SwiftUIFont.display)
+          .foregroundStyle(DS.SwiftUIColor.textPrimary)
+          .accessibilityLabel(String(localized: "accessibility.home.current", defaultValue: "Current intake \(Int(store.ml)) milliliters"))
+        Spacer()
+        
+        Button {
+          showShareSheet = true
+        } label: {
+          Image(systemName: "square.and.arrow.up")
+            .font(DS.SwiftUIFont.title3)
+            .foregroundStyle(DS.SwiftUIColor.primary)
+            .frame(width: DS.Size.iconContainerMedium, height: DS.Size.iconContainerMedium)
+            .background(DS.SwiftUIColor.primary.opacity(0.12))
+            .clipShape(Circle())
+        }
+        .accessibilityLabel(String(localized: "accessibility.home.share", defaultValue: "Share to Instagram"))
+      }
 
       Button {
         showGoalSetting = true

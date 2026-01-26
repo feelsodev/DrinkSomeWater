@@ -3,6 +3,11 @@ import SwiftUI
 import UIKit
 import Photos
 
+enum ShareDestination {
+    case stories
+    case feed
+}
+
 // MARK: - Error Types
 
 enum InstagramSharingError: Error, LocalizedError {
