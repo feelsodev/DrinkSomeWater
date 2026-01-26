@@ -1,5 +1,29 @@
 import Foundation
+import StoreKit
 @testable import DrinkSomeWater
+
+@MainActor
+final class SnapshotMockStoreKitService: StoreKitServiceProtocol {
+    var currentEntitlements: AsyncStream<EntitlementState> {
+        AsyncStream { continuation in
+            continuation.yield(.free)
+            continuation.finish()
+        }
+    }
+    
+    var isPremium: Bool { false }
+    
+    func loadProducts() async throws -> [Product] { [] }
+    func purchase(_ product: Product) async throws -> Transaction { fatalError() }
+    func restorePurchases() async throws { }
+}
+
+@MainActor
+final class SnapshotMockInstagramSharingService: InstagramSharingServiceProtocol {
+    func isInstagramInstalled() -> Bool { false }
+    func shareToStories(record: WaterRecord, streak: Int) async throws { }
+    func shareToFeed(record: WaterRecord, streak: Int) async throws { }
+}
 
 @MainActor
 enum SnapshotFixtures {
@@ -237,6 +261,8 @@ final class MockServiceProvider: ServiceProviderProtocol {
     let notificationService: NotificationServiceProtocol
     let healthKitService: HealthKitServiceProtocol
     let watchConnectivityService: WatchConnectivityServiceProtocol
+    let instagramSharingService: InstagramSharingServiceProtocol
+    let storeKitService: StoreKitServiceProtocol
 
     init(
         userDefaultsService: UserDefaultsServiceProtocol = MockUserDefaultsService(),
@@ -245,7 +271,9 @@ final class MockServiceProvider: ServiceProviderProtocol {
         alertService: AlertServiceProtocol = MockAlertService(),
         notificationService: NotificationServiceProtocol = MockNotificationService(),
         healthKitService: HealthKitServiceProtocol = MockHealthKitService(),
-        watchConnectivityService: WatchConnectivityServiceProtocol = MockWatchConnectivityService()
+        watchConnectivityService: WatchConnectivityServiceProtocol = MockWatchConnectivityService(),
+        instagramSharingService: InstagramSharingServiceProtocol = SnapshotMockInstagramSharingService(),
+        storeKitService: StoreKitServiceProtocol = SnapshotMockStoreKitService()
     ) {
         self.userDefaultsService = userDefaultsService
         self.cloudSyncService = cloudSyncService
@@ -254,5 +282,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
         self.notificationService = notificationService
         self.healthKitService = healthKitService
         self.watchConnectivityService = watchConnectivityService
+        self.instagramSharingService = instagramSharingService
+        self.storeKitService = storeKitService
     }
 }

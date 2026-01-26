@@ -318,3 +318,91 @@ The pattern follows existing services:
 ### Next Steps
 - Task 6: Add premium feature gating to app features
 - Task 7: Create PremiumView UI
+
+## [2026-01-27 12:00] Task 6: Transaction.updates Listener in AppDelegate - COMPLETED
+
+### What Was Done
+- ✅ Added `Transaction.updates` listener in `AppDelegate.didFinishLaunchingWithOptions`
+- ✅ Listener detects external purchases, renewals, and cancellations
+- ✅ Integrated with PremiumStore via NotificationCenter
+- ✅ Added listener cancellation in `applicationWillTerminate`
+- ✅ Build passes successfully
+
+### Implementation Details
+
+**AppDelegate Changes:**
+```swift
+import StoreKit
+
+@MainActor
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var transactionListenerTask: Task<Void, Error>?
+  
+  func application(_ application: UIApplication, 
+                  didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    // ... existing setup ...
+    
+    transactionListenerTask = listenForTransactions()
+    print("[StoreKit] Transaction listener started")
+    
+    return true
+  }
+  
+  private func listenForTransactions() -> Task<Void, Error> {
+    Task.detached {
+      for await result in Transaction.updates {
+        await self.handleTransactionUpdate(result)
+      }
+    }
+  }
+  
+  @MainActor
+  private func handleTransactionUpdate(_ result: VerificationResult<Transaction>) async {
+    switch result {
+    case .verified(let transaction):
+      NotificationCenter.default.post(name: NSNotification.Name("TransactionUpdated"), object: nil)
+      await transaction.finish()
+    case .unverified:
+      break
+    @unknown default:
+      break
+    }
+  }
+  
+  func applicationWillTerminate(_ application: UIApplication) {
+    transactionListenerTask?.cancel()
+  }
+}
+```
+
+**PremiumStore Changes:**
+- Added NotificationCenter observer in `init` to listen for "TransactionUpdated" notification
+- Automatically calls `.refreshEntitlements` action when transaction updates detected
+- Ensures premium status stays in sync with external purchase events
+
+### Key Learnings
+
+1. **Swift 6 Concurrency Isolation**: Pattern matching inside `Task.detached` causes "region based isolation checker" errors. Solution: Extract pattern matching to a separate `@MainActor` method.
+
+2. **NotificationCenter Pattern**: Used for app-level coordination between AppDelegate and PremiumStore since ServiceProvider isn't available at app launch time.
+
+3. **Transaction Lifecycle**: Must call `await transaction.finish()` after processing to mark transaction as handled by the app.
+
+4. **Listener Cleanup**: Store the Task reference and cancel it in `applicationWillTerminate` to prevent memory leaks.
+
+5. **Dual Listeners**: StoreKitService has its own internal Transaction.updates listener. AppDelegate listener provides app-level coordination and ensures PremiumStore refreshes on external changes.
+
+### Files Modified
+- `ios/DrinkSomeWater/Sources/AppDelegate.swift` - Added transaction listener
+- `ios/DrinkSomeWater/Sources/Stores/PremiumStore.swift` - Added notification observer
+- `ios/DrinkSomeWaterSnapshotTests/Fixtures/SnapshotTestFixtures.swift` - Added mock services for tests
+- `ios/DrinkSomeWaterSnapshotTests/Views/HistoryViewSnapshotTests.swift` - Updated RecordCard test calls
+
+### Build Status
+✅ Build passes successfully with no errors
+✅ All tests compile correctly
+✅ Log message "[StoreKit] Transaction listener started" confirms listener startup
+
+### Next Steps
+- Task 7: Create PremiumView UI for subscription management
+- Task 8: Add premium feature gating to app features

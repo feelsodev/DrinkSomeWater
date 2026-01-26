@@ -143,7 +143,11 @@ struct RecordCardSnapshotTests {
             isSuccess: true,
             goal: 2000
         )
-        let view = RecordCard(record: record)
+        let view = RecordCard(
+            record: record,
+            streak: 5,
+            instagramSharingService: SnapshotMockInstagramSharingService()
+        )
         
         assertSnapshot(
             of: view,
@@ -159,7 +163,11 @@ struct RecordCardSnapshotTests {
             isSuccess: false,
             goal: 2000
         )
-        let view = RecordCard(record: record)
+        let view = RecordCard(
+            record: record,
+            streak: 3,
+            instagramSharingService: SnapshotMockInstagramSharingService()
+        )
         
         assertSnapshot(
             of: view,

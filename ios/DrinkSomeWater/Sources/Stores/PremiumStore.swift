@@ -25,6 +25,16 @@ final class PremiumStore {
         Task {
             await send(.refreshEntitlements)
         }
+        
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("TransactionUpdated"),
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task {
+                await self?.send(.refreshEntitlements)
+            }
+        }
     }
     
     func send(_ action: Action) async {
