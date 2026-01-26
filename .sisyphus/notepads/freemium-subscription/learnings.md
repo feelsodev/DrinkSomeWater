@@ -269,3 +269,52 @@ final class PremiumStore {
 - Task 5: Integrate PremiumStore into ServiceProvider
 - Task 6: Add premium feature gating
 - Task 7: Create PremiumView UI
+
+## [2026-01-27 11:50] Task 5: StoreKitService Integration into ServiceProvider - COMPLETED
+
+### What Was Done
+- ✅ Added `storeKitService: StoreKitServiceProtocol` property to `ServiceProviderProtocol`
+- ✅ Added `storeKitService` property to `ServiceProvider` class
+- ✅ Initialized `StoreKitService()` in `ServiceProvider.init()`
+- ✅ Added `storeKitService` parameter to `MockServiceProvider.init()`
+- ✅ All existing tests pass (100+ tests, all ✔)
+
+### Files Modified
+- `ios/DrinkSomeWater/Sources/Services/ServiceProvider.swift`
+  - Added protocol property (line 13)
+  - Added class property (line 26)
+  - Added initialization in init (line 45)
+  - Added assignment in init (line 54)
+
+- `ios/DrinkSomeWaterTests/Mocks/MockServices.swift`
+  - Added property to MockServiceProvider (line 319)
+  - Added parameter to init with default MockStoreKitService() (line 328)
+  - Added assignment in init (line 337)
+
+### ServiceProvider Pattern Confirmed
+The pattern follows existing services:
+1. Protocol defines property with getter
+2. Implementation class stores as `let` property
+3. Initialization creates concrete instance in init
+4. Assignment happens at end of init
+5. Mock provider accepts injectable dependency with default mock
+
+### Test Results
+```
+✔ Success - The project tests ran successfully
+- All existing tests continue to pass
+- No regressions introduced
+- StoreKitService tests (10/10) still passing
+- PremiumStore tests (10/10) still passing
+```
+
+### Key Learnings
+- ServiceProvider uses dependency injection pattern
+- All services are @MainActor for thread safety
+- Mock provider allows full test customization via init parameters
+- Lazy initialization not used - all services created eagerly in init
+- Services are stored as `let` (immutable references)
+
+### Next Steps
+- Task 6: Add premium feature gating to app features
+- Task 7: Create PremiumView UI

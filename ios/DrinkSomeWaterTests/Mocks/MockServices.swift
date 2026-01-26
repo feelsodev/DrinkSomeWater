@@ -316,6 +316,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
     let healthKitService: HealthKitServiceProtocol
     let watchConnectivityService: WatchConnectivityServiceProtocol
     let instagramSharingService: InstagramSharingServiceProtocol
+    let storeKitService: StoreKitServiceProtocol
 
     init(
         userDefaultsService: UserDefaultsServiceProtocol = MockUserDefaultsService(),
@@ -325,7 +326,8 @@ final class MockServiceProvider: ServiceProviderProtocol {
         notificationService: NotificationServiceProtocol = MockNotificationService(),
         healthKitService: HealthKitServiceProtocol = MockHealthKitService(),
         watchConnectivityService: WatchConnectivityServiceProtocol = MockWatchConnectivityService(),
-        instagramSharingService: InstagramSharingServiceProtocol = MockInstagramSharingService()
+        instagramSharingService: InstagramSharingServiceProtocol = MockInstagramSharingService(),
+        storeKitService: StoreKitServiceProtocol = MockStoreKitService()
     ) {
         self.userDefaultsService = userDefaultsService
         self.cloudSyncService = cloudSyncService
@@ -335,5 +337,6 @@ final class MockServiceProvider: ServiceProviderProtocol {
         self.healthKitService = healthKitService
         self.watchConnectivityService = watchConnectivityService
         self.instagramSharingService = instagramSharingService
+        self.storeKitService = storeKitService
     }
 }
