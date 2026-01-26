@@ -275,6 +275,38 @@ final class MockCloudSyncService: CloudSyncServiceProtocol {
 }
 
 @MainActor
+final class MockInstagramSharingService: InstagramSharingServiceProtocol {
+    var isInstalled = false
+    var shareToStoriesCallCount = 0
+    var shareToFeedCallCount = 0
+    var lastSharedRecord: WaterRecord?
+    var lastSharedStreak: Int?
+    var shouldThrowError = false
+    
+    func isInstagramInstalled() -> Bool {
+        isInstalled
+    }
+    
+    func shareToStories(record: WaterRecord, streak: Int) async throws {
+        if shouldThrowError {
+            throw InstagramSharingError.urlOpenFailed
+        }
+        shareToStoriesCallCount += 1
+        lastSharedRecord = record
+        lastSharedStreak = streak
+    }
+    
+    func shareToFeed(record: WaterRecord, streak: Int) async throws {
+        if shouldThrowError {
+            throw InstagramSharingError.urlOpenFailed
+        }
+        shareToFeedCallCount += 1
+        lastSharedRecord = record
+        lastSharedStreak = streak
+    }
+}
+
+@MainActor
 final class MockServiceProvider: ServiceProviderProtocol {
     let userDefaultsService: UserDefaultsServiceProtocol
     let cloudSyncService: CloudSyncServiceProtocol
@@ -283,6 +315,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
     let notificationService: NotificationServiceProtocol
     let healthKitService: HealthKitServiceProtocol
     let watchConnectivityService: WatchConnectivityServiceProtocol
+    let instagramSharingService: InstagramSharingServiceProtocol
 
     init(
         userDefaultsService: UserDefaultsServiceProtocol = MockUserDefaultsService(),
@@ -291,7 +324,8 @@ final class MockServiceProvider: ServiceProviderProtocol {
         alertService: AlertServiceProtocol = MockAlertService(),
         notificationService: NotificationServiceProtocol = MockNotificationService(),
         healthKitService: HealthKitServiceProtocol = MockHealthKitService(),
-        watchConnectivityService: WatchConnectivityServiceProtocol = MockWatchConnectivityService()
+        watchConnectivityService: WatchConnectivityServiceProtocol = MockWatchConnectivityService(),
+        instagramSharingService: InstagramSharingServiceProtocol = MockInstagramSharingService()
     ) {
         self.userDefaultsService = userDefaultsService
         self.cloudSyncService = cloudSyncService
@@ -300,5 +334,6 @@ final class MockServiceProvider: ServiceProviderProtocol {
         self.notificationService = notificationService
         self.healthKitService = healthKitService
         self.watchConnectivityService = watchConnectivityService
+        self.instagramSharingService = instagramSharingService
     }
 }
