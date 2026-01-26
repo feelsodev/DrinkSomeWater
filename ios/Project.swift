@@ -153,7 +153,15 @@ let project = Project(
                 "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
                 "NSExtension": [
                     "NSExtensionPointIdentifier": "com.apple.widgetkit-extension"
-                ]
+                ],
+                "FacebookAppID": "1798330597548501",
+                "CFBundleURLTypes": .array([
+                  .dictionary([
+                    "CFBundleURLSchemes": .array([
+                      .string("fb 1798330597548501")
+                    ])
+                  ])
+                ])
             ]),
             sources: [
                 "DrinkSomeWaterWidget/**",

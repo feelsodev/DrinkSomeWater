@@ -549,3 +549,40 @@ final class AdMobService {
 - Task 8: AdMobService premium gating (COMPLETED)
 - Task 9: Settings screen premium section
 - Task 10: App Store Connect documentation
+
+## SettingsViewController Premium Section Implementation
+
+### Key Learnings
+
+1. **Dynamic Section Building**: Used `append()` method instead of `append(contentsOf:)` to avoid type inference issues when building sections array dynamically based on premium status.
+
+2. **Premium Status Access**: Access premium status via `store.provider.storeKitService.isPremium` to conditionally show different UI states.
+
+3. **PaywallView Integration**: PaywallView is a SwiftUI struct that takes `premiumStore` and `triggerPoint` parameters. Wrap it in `UIHostingController` for presentation in UIKit context.
+
+4. **Analytics Logging**: Log premium prompt events using `Analytics.shared.log(.premiumPromptShown(triggerPoint: "settings", variant: nil))` before presenting PaywallView.
+
+5. **App Store Subscription Management**: Use URL scheme `itms-apps://apps.apple.com/account/subscriptions` to open subscription management in App Store.
+
+6. **Build Issues**: PaywallView preview had reference to non-existent `MockStoreKitService`. Fixed by using actual `StoreKitService()` instance in preview.
+
+7. **Section Structure**: Premium section shows different content based on subscription status:
+   - Free users: "프리미엄 업그레이드" cell
+   - Premium users: "구독 상태: 프리미엄" + "구독 관리" cells
+
+### Implementation Pattern
+
+```swift
+// Dynamic section building
+if isPremium {
+  allSections.append(("프리미엄", [
+    ("crown.fill", "구독 상태: 프리미엄", nil, .premium),
+    ("gear", "구독 관리", nil, .subscriptionManagement)
+  ]))
+} else {
+  allSections.append(("프리미엄", [
+    ("star.fill", "프리미엄 업그레이드", nil, .premium)
+  ]))
+}
+```
+

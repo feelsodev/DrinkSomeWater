@@ -2,6 +2,7 @@ import UIKit
 import SwiftUI
 import SnapKit
 import GoogleMobileAds
+import Analytics
 
 final class SettingsViewController: BaseViewController {
   
@@ -68,31 +69,49 @@ final class SettingsViewController: BaseViewController {
   }()
   
   private var sections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] {
-    [
-      (NSLocalizedString("settings.section.personal", comment: "개인 설정"), [
-        ("person.fill", NSLocalizedString("settings.profile", comment: ""), nil, .profile),
-        ("target", NSLocalizedString("settings.goal", comment: ""), nil, .goal),
-        ("bolt.fill", NSLocalizedString("settings.quickbuttons", comment: ""), nil, .quickButtons)
-      ]),
-      (NSLocalizedString("settings.section.app", comment: "앱 설정"), [
-        ("bell.fill", NSLocalizedString("settings.notification", comment: ""), nil, .notification),
-        ("apps.iphone", NSLocalizedString("settings.widget.guide", comment: ""), nil, .widgetGuide),
-        ("book.fill", NSLocalizedString("settings.app.guide", comment: ""), nil, .appGuide),
-        ("icloud.fill", NSLocalizedString("settings.icloud.status", comment: ""), nil, .icloudStatus)
-      ]),
-      (NSLocalizedString("settings.section.support", comment: ""), [
-        ("heart.fill", NSLocalizedString("settings.support.developer", comment: ""), nil, .supportDeveloper),
-        ("star.fill", NSLocalizedString("settings.review", comment: ""), nil, .review),
-        ("envelope.fill", NSLocalizedString("settings.contact", comment: ""), nil, .contact)
-      ]),
-      (NSLocalizedString("settings.section.info", comment: ""), [
-        ("info.circle.fill", NSLocalizedString("settings.version", comment: ""), nil, .version)
-      ])
-    ]
+    let isPremium = store.provider.storeKitService.isPremium
+    
+    var allSections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] = []
+    
+    allSections.append((NSLocalizedString("settings.section.personal", comment: "개인 설정"), [
+      ("person.fill", NSLocalizedString("settings.profile", comment: ""), nil, .profile),
+      ("target", NSLocalizedString("settings.goal", comment: ""), nil, .goal),
+      ("bolt.fill", NSLocalizedString("settings.quickbuttons", comment: ""), nil, .quickButtons)
+    ]))
+    
+    allSections.append((NSLocalizedString("settings.section.app", comment: "앱 설정"), [
+      ("bell.fill", NSLocalizedString("settings.notification", comment: ""), nil, .notification),
+      ("apps.iphone", NSLocalizedString("settings.widget.guide", comment: ""), nil, .widgetGuide),
+      ("book.fill", NSLocalizedString("settings.app.guide", comment: ""), nil, .appGuide),
+      ("icloud.fill", NSLocalizedString("settings.icloud.status", comment: ""), nil, .icloudStatus)
+    ]))
+    
+    if isPremium {
+      allSections.append(("프리미엄", [
+        ("crown.fill", "구독 상태: 프리미엄", nil, .premium),
+        ("gear", "구독 관리", nil, .subscriptionManagement)
+      ]))
+    } else {
+      allSections.append(("프리미엄", [
+        ("star.fill", "프리미엄 업그레이드", nil, .premium)
+      ]))
+    }
+    
+    allSections.append((NSLocalizedString("settings.section.support", comment: ""), [
+      ("heart.fill", NSLocalizedString("settings.support.developer", comment: ""), nil, .supportDeveloper),
+      ("star.fill", NSLocalizedString("settings.review", comment: ""), nil, .review),
+      ("envelope.fill", NSLocalizedString("settings.contact", comment: ""), nil, .contact)
+    ]))
+    
+    allSections.append((NSLocalizedString("settings.section.info", comment: ""), [
+      ("info.circle.fill", NSLocalizedString("settings.version", comment: ""), nil, .version)
+    ]))
+    
+    return allSections
   }
   
   enum SettingsAction {
-    case profile, goal, quickButtons, notification, widgetGuide, appGuide, icloudStatus, supportDeveloper, review, contact, version
+    case profile, goal, quickButtons, notification, widgetGuide, appGuide, icloudStatus, supportDeveloper, review, contact, version, premium, subscriptionManagement
   }
   
   init(store: SettingsStore) {
@@ -151,32 +170,36 @@ final class SettingsViewController: BaseViewController {
     }
   }
   
-  private func handleAction(_ action: SettingsAction) {
-    switch action {
-    case .profile:
-      presentProfileSetting()
-    case .goal:
-      presentGoalSetting()
-    case .quickButtons:
-      presentQuickButtonSetting()
-    case .notification:
-      openNotificationSettings()
-    case .widgetGuide:
-      presentWidgetGuide()
-    case .appGuide:
-      presentAppGuide()
-    case .icloudStatus:
-      showICloudStatusInfo()
-    case .supportDeveloper:
-      showRewardedAd()
-    case .review:
-      openAppStoreReview()
-    case .contact:
-      showContactAlert()
-    case .version:
-      break
-    }
-  }
+   private func handleAction(_ action: SettingsAction) {
+     switch action {
+     case .profile:
+       presentProfileSetting()
+     case .goal:
+       presentGoalSetting()
+     case .quickButtons:
+       presentQuickButtonSetting()
+     case .notification:
+       openNotificationSettings()
+     case .widgetGuide:
+       presentWidgetGuide()
+     case .appGuide:
+       presentAppGuide()
+     case .icloudStatus:
+       showICloudStatusInfo()
+     case .supportDeveloper:
+       showRewardedAd()
+     case .review:
+       openAppStoreReview()
+     case .contact:
+       showContactAlert()
+     case .version:
+       break
+     case .premium:
+       showPaywall()
+     case .subscriptionManagement:
+       openSubscriptionManagement()
+     }
+   }
   
   private func showICloudStatusInfo() {
     let title = store.isCloudAvailable
@@ -298,31 +321,50 @@ final class SettingsViewController: BaseViewController {
     present(confirmAlert, animated: true)
   }
   
-  private func presentRewardedAd() {
-    guard AdMobService.shared.isRewardedAdReady else {
-      let alert = UIAlertController(
-        title: NSLocalizedString("ad.loading.title", comment: ""),
-        message: NSLocalizedString("ad.loading.message", comment: ""),
-        preferredStyle: .alert
-      )
-      alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
-      present(alert, animated: true)
-      return
-    }
-    
-    AdMobService.shared.showRewardedAd(from: self) { [weak self] rewarded in
-      if rewarded {
-        let alert = UIAlertController(
-          title: NSLocalizedString("ad.thanks.title", comment: ""),
-          message: NSLocalizedString("ad.thanks.message", comment: ""),
-          preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
-        self?.present(alert, animated: true)
-      }
-    }
-  }
-}
+   private func presentRewardedAd() {
+     guard AdMobService.shared.isRewardedAdReady else {
+       let alert = UIAlertController(
+         title: NSLocalizedString("ad.loading.title", comment: ""),
+         message: NSLocalizedString("ad.loading.message", comment: ""),
+         preferredStyle: .alert
+       )
+       alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+       present(alert, animated: true)
+       return
+     }
+     
+     AdMobService.shared.showRewardedAd(from: self) { [weak self] rewarded in
+       if rewarded {
+         let alert = UIAlertController(
+           title: NSLocalizedString("ad.thanks.title", comment: ""),
+           message: NSLocalizedString("ad.thanks.message", comment: ""),
+           preferredStyle: .alert
+         )
+         alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+         self?.present(alert, animated: true)
+       }
+     }
+   }
+   
+   private func showPaywall() {
+     Analytics.shared.log(.premiumPromptShown(triggerPoint: "settings", variant: nil))
+     
+     let premiumStore = PremiumStore(storeKitService: store.provider.storeKitService)
+     let paywallView = PaywallView(premiumStore: premiumStore, triggerPoint: "settings")
+     let vc = UIHostingController(rootView: paywallView)
+     if let sheet = vc.sheetPresentationController {
+       sheet.detents = [.large()]
+       sheet.prefersGrabberVisible = true
+     }
+     present(vc, animated: true)
+   }
+   
+   private func openSubscriptionManagement() {
+     if let url = URL(string: "itms-apps://apps.apple.com/account/subscriptions") {
+       UIApplication.shared.open(url)
+     }
+   }
+ }
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
   

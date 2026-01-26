@@ -109,9 +109,10 @@ struct PaywallView: View {
     }
 }
 
-#Preview {
-    PaywallView(
-        premiumStore: PremiumStore(storeKitService: MockStoreKitService()),
-        triggerPoint: "preview"
-    )
-}
+ #Preview {
+     let mockService = StoreKitService()
+     PaywallView(
+         premiumStore: PremiumStore(storeKitService: mockService),
+         triggerPoint: "preview"
+     )
+ }
