@@ -12,7 +12,7 @@ let project = Project(
     settings: .settings(
         base: [
             "SWIFT_VERSION": "6.0",
-            "IPHONEOS_DEPLOYMENT_TARGET": "26.0",
+            "IPHONEOS_DEPLOYMENT_TARGET": "18.0",
             "TARGETED_DEVICE_FAMILY": "1",
             "DEVELOPMENT_TEAM": "TG4L9MF5FD",
             "CODE_SIGN_STYLE": "Automatic",
@@ -29,7 +29,7 @@ let project = Project(
             destinations: .iOS,
             product: .app,
             bundleId: "$(APP_BUNDLE_ID)",
-            deploymentTargets: .iOS("26.0"),
+            deploymentTargets: .iOS("18.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "$(APP_NAME)",
                 "CFBundleShortVersionString": "$(MARKETING_VERSION)",
@@ -146,7 +146,7 @@ let project = Project(
             destinations: .iOS,
             product: .appExtension,
             bundleId: "$(APP_BUNDLE_ID).Widget",
-            deploymentTargets: .iOS("26.0"),
+            deploymentTargets: .iOS("18.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "Gulp Widget",
                 "CFBundleShortVersionString": "$(MARKETING_VERSION)",
@@ -195,7 +195,7 @@ let project = Project(
             destinations: .iOS,
             product: .framework,
             bundleId: "com.onceagain.DrinkSomeWater.Analytics",
-            deploymentTargets: .iOS("26.0"),
+            deploymentTargets: .iOS("18.0"),
             sources: ["Analytics/Sources/**"],
             dependencies: [
                 .package(product: "FirebaseAnalytics"),
@@ -208,7 +208,7 @@ let project = Project(
             destinations: .iOS,
             product: .unitTests,
             bundleId: "com.feelso.DrinkSomeWaterTests",
-            deploymentTargets: .iOS("26.0"),
+            deploymentTargets: .iOS("18.0"),
             infoPlist: .default,
             sources: ["DrinkSomeWaterTests/**"],
             dependencies: [
@@ -221,7 +221,7 @@ let project = Project(
             destinations: .iOS,
             product: .unitTests,
             bundleId: "com.feelso.DrinkSomeWaterSnapshotTests",
-            deploymentTargets: .iOS("26.0"),
+            deploymentTargets: .iOS("18.0"),
             infoPlist: .default,
             sources: ["DrinkSomeWaterSnapshotTests/**"],
             dependencies: [
