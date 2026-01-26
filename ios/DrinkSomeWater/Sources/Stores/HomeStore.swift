@@ -93,7 +93,7 @@ final class HomeStore {
     }
   }
   
-  private func calculateStreak() -> Int {
+  func calculateStreak() -> Int {
     guard let records = provider.userDefaultsService.value(forkey: .current) else { return 1 }
     let waterRecords = records.compactMap(WaterRecord.init).filter { $0.isSuccess }.sorted { $0.date > $1.date }
     
