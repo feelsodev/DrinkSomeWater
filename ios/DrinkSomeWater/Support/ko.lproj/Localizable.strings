@@ -351,3 +351,34 @@
 "share.error.instagram.not.installed" = "이 기기에 Instagram이 설치되어 있지 않습니다.";
 "accessibility.home.share" = "Instagram에 공유";
 "accessibility.history.share" = "Instagram에 공유";
+
+// Share - Extended
+"share.title.extended" = "공유하기";
+"share.system" = "다른 앱으로 공유";
+"share.system.description" = "Twitter, Facebook, 메시지 등";
+
+// Statistics
+"statistics.title" = "통계";
+"statistics.period.week" = "7일";
+"statistics.period.month" = "30일";
+"statistics.daily.average" = "일일 평균";
+"statistics.goal.achievement" = "목표 달성률";
+"statistics.current.streak" = "현재 연속";
+"statistics.longest.streak" = "최장 연속";
+"statistics.days" = "일";
+"statistics.chart.title" = "일일 섭취량";
+"statistics.chart.goal.line" = "목표";
+"statistics.empty" = "아직 기록이 없습니다";
+"accessibility.statistics.button" = "통계 보기";
+
+// Drink Types
+"drink.type.water" = "물";
+"drink.type.coffee" = "커피";
+"drink.type.tea" = "차";
+"drink.type.juice" = "주스";
+"drink.type.soda" = "탄산음료";
+"drink.type.milk" = "우유";
+"drink.type.other" = "기타";
+"drink.type.select" = "음료 선택";
+"drink.type.effective" = "효과량 %@ml";
+"drink.type.hydration.info" = "수분 효과: %@%%";

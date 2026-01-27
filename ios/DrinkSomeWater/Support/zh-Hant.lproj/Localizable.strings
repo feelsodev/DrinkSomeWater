@@ -326,3 +326,34 @@
 "accessibility.history.summary" = "本月 %d 天達標";
 "accessibility.history.achieved" = "目標達成";
 "accessibility.history.progress" = "目標的 %@";
+
+// Share - Extended (English fallback)
+"share.title.extended" = "Share";
+"share.system" = "Share to Other Apps";
+"share.system.description" = "Twitter, Facebook, Messages, etc.";
+
+// Statistics (English fallback)
+"statistics.title" = "Statistics";
+"statistics.period.week" = "7 Days";
+"statistics.period.month" = "30 Days";
+"statistics.daily.average" = "Daily Average";
+"statistics.goal.achievement" = "Goal Achievement";
+"statistics.current.streak" = "Current Streak";
+"statistics.longest.streak" = "Longest Streak";
+"statistics.days" = "days";
+"statistics.chart.title" = "Daily Intake";
+"statistics.chart.goal.line" = "Goal";
+"statistics.empty" = "No records yet";
+"accessibility.statistics.button" = "View Statistics";
+
+// Drink Types (English fallback)
+"drink.type.water" = "Water";
+"drink.type.coffee" = "Coffee";
+"drink.type.tea" = "Tea";
+"drink.type.juice" = "Juice";
+"drink.type.soda" = "Soda";
+"drink.type.milk" = "Milk";
+"drink.type.other" = "Other";
+"drink.type.select" = "Select Drink";
+"drink.type.effective" = "Effective %@ml";
+"drink.type.hydration.info" = "Hydration effect: %@%%";
