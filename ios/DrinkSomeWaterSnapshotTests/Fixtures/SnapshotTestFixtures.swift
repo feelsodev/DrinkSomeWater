@@ -1,5 +1,6 @@
 import Foundation
 import StoreKit
+import Analytics
 @testable import DrinkSomeWater
 
 @MainActor
@@ -23,6 +24,11 @@ final class SnapshotMockInstagramSharingService: InstagramSharingServiceProtocol
     func isInstagramInstalled() -> Bool { false }
     func shareToStories(record: WaterRecord, streak: Int) async throws { }
     func shareToFeed(record: WaterRecord, streak: Int) async throws { }
+}
+
+@MainActor
+final class SnapshotMockSocialSharingService: SocialSharingServiceProtocol {
+    func shareViaSystemSheet(record: WaterRecord, streak: Int, source: InstagramShareSource, from viewController: UIViewController) async throws { }
 }
 
 @MainActor
@@ -154,6 +160,23 @@ final class MockWaterService: WaterServiceProtocol {
         goal = ml
         return goal
     }
+    func updateWater(by ml: Float, drinkType: DrinkType) async -> WaterRecord? {
+        let today = Calendar.current.startOfDay(for: Date())
+        if let index = waterRecords.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: today) }) {
+            let currentRecord = waterRecords[index]
+            let newValue = currentRecord.value + Int(ml)
+            let updatedRecord = WaterRecord(
+                date: today,
+                value: newValue,
+                isSuccess: newValue >= currentRecord.goal,
+                goal: currentRecord.goal,
+                drinkType: drinkType
+            )
+            waterRecords[index] = updatedRecord
+            return updatedRecord
+        }
+        return nil
+    }
     func resetTodayWater() async -> [WaterRecord] {
         let today = Calendar.current.startOfDay(for: Date())
         if let index = waterRecords.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: today) }) {
@@ -262,6 +285,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
     let healthKitService: HealthKitServiceProtocol
     let watchConnectivityService: WatchConnectivityServiceProtocol
     let instagramSharingService: InstagramSharingServiceProtocol
+    let socialSharingService: SocialSharingServiceProtocol
     let storeKitService: StoreKitServiceProtocol
 
     init(
@@ -273,6 +297,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
         healthKitService: HealthKitServiceProtocol = MockHealthKitService(),
         watchConnectivityService: WatchConnectivityServiceProtocol = MockWatchConnectivityService(),
         instagramSharingService: InstagramSharingServiceProtocol = SnapshotMockInstagramSharingService(),
+        socialSharingService: SocialSharingServiceProtocol = SnapshotMockSocialSharingService(),
         storeKitService: StoreKitServiceProtocol = SnapshotMockStoreKitService()
     ) {
         self.userDefaultsService = userDefaultsService
@@ -283,6 +308,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
         self.healthKitService = healthKitService
         self.watchConnectivityService = watchConnectivityService
         self.instagramSharingService = instagramSharingService
+        self.socialSharingService = socialSharingService
         self.storeKitService = storeKitService
     }
 }

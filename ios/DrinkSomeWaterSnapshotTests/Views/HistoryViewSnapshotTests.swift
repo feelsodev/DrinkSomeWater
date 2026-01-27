@@ -146,7 +146,8 @@ struct RecordCardSnapshotTests {
         let view = RecordCard(
             record: record,
             streak: 5,
-            instagramSharingService: SnapshotMockInstagramSharingService()
+            instagramSharingService: SnapshotMockInstagramSharingService(),
+            socialSharingService: SnapshotMockSocialSharingService()
         )
         
         assertSnapshot(
@@ -166,7 +167,8 @@ struct RecordCardSnapshotTests {
         let view = RecordCard(
             record: record,
             streak: 3,
-            instagramSharingService: SnapshotMockInstagramSharingService()
+            instagramSharingService: SnapshotMockInstagramSharingService(),
+            socialSharingService: SnapshotMockSocialSharingService()
         )
         
         assertSnapshot(
