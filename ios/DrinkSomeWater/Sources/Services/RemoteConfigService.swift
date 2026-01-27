@@ -50,7 +50,7 @@ final class RemoteConfigService: RemoteConfigServiceProtocol, @unchecked Sendabl
   }
 
   func getAppUpdateConfig() -> AppUpdateConfig {
-    let jsonString = remoteConfig.configValue(forKey: RemoteConfigKey.appUpdate.rawValue).stringValue ?? ""
+    let jsonString = remoteConfig.configValue(forKey: RemoteConfigKey.appUpdate.rawValue).stringValue
 
     guard let data = jsonString.data(using: .utf8),
           let config = try? decoder.decode(AppUpdateConfig.self, from: data) else {
