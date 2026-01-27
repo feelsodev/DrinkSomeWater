@@ -29,6 +29,7 @@ struct HistoryView: View {
   @Bindable var store: HistoryStore
   @State private var selectedMode: HistoryViewMode = .calendar
   @State private var selectedDate: Date? = Date()
+  @State private var showStatistics: Bool = false
   
   var body: some View {
     ZStack {
@@ -79,10 +80,30 @@ struct HistoryView: View {
 
       Spacer()
 
+      statisticsButton
+      
       monthSummaryBadge
     }
     .padding(.horizontal, DS.Spacing.lg)
     .padding(.top, DS.Spacing.md)
+    .sheet(isPresented: $showStatistics) {
+      StatisticsView(store: StatisticsStore(provider: store.provider))
+    }
+  }
+  
+  private var statisticsButton: some View {
+    Button {
+      showStatistics = true
+      Analytics.shared.log(.statisticsOpened(source: .history))
+    } label: {
+      Image(systemName: "chart.bar.xaxis")
+        .font(DS.SwiftUIFont.body)
+        .foregroundStyle(DS.SwiftUIColor.primary)
+        .padding(DS.Spacing.xs)
+        .background(DS.SwiftUIColor.primary.opacity(0.12))
+        .clipShape(Circle())
+    }
+    .accessibilityLabel(String(localized: "accessibility.statistics.button"))
   }
 
   private var monthSummaryBadge: some View {
@@ -166,7 +187,8 @@ struct HistoryCalendarTab: View {
         RecordCard(
           record: record,
           streak: store.calculateStreakForDate(record.date),
-          instagramSharingService: store.provider.instagramSharingService
+          instagramSharingService: store.provider.instagramSharingService,
+          socialSharingService: store.provider.socialSharingService
         )
           .padding(.horizontal, DS.Spacing.lg)
           .padding(.top, DS.Spacing.lg)
@@ -243,9 +265,14 @@ struct ListRecordRow: View {
           .tint(record.isSuccess ? DS.SwiftUIColor.success : DS.SwiftUIColor.primary)
           .accessibilityHidden(true)
 
-        Text(String(format: String(localized: "history.record.progress"), "\(record.value)", "\(record.goal)"))
-          .font(DS.SwiftUIFont.captionMedium)
-          .foregroundStyle(DS.SwiftUIColor.textTertiary)
+         HStack(spacing: DS.Spacing.xxs) {
+           Image(systemName: record.drinkType?.iconName ?? "drop.fill")
+             .font(DS.SwiftUIFont.caption)
+             .foregroundStyle(DS.SwiftUIColor.textTertiary)
+           Text(String(format: String(localized: "history.record.progress"), "\(record.value)", "\(record.goal)"))
+             .font(DS.SwiftUIFont.captionMedium)
+             .foregroundStyle(DS.SwiftUIColor.textTertiary)
+         }
       }
       
       Spacer()
@@ -399,10 +426,10 @@ struct TimelineRecordRow: View {
           }
         }
 
-        HStack(spacing: DS.Spacing.md) {
-          Label("\(record.value)ml", systemImage: "drop.fill")
-            .font(DS.SwiftUIFont.footnoteMedium)
-            .foregroundStyle(DS.SwiftUIColor.primary)
+         HStack(spacing: DS.Spacing.md) {
+           Label("\(record.value)ml", systemImage: record.drinkType?.iconName ?? "drop.fill")
+             .font(DS.SwiftUIFont.footnoteMedium)
+             .foregroundStyle(DS.SwiftUIColor.primary)
 
           Text(String(format: String(localized: "history.record.goal"), "\(record.goal)"))
             .font(DS.SwiftUIFont.footnoteMedium)
@@ -426,6 +453,7 @@ struct RecordCard: View {
   let record: WaterRecord
   let streak: Int
   let instagramSharingService: InstagramSharingServiceProtocol
+  let socialSharingService: SocialSharingServiceProtocol
   @State private var showShareSheet = false
   @State private var showInstagramNotInstalledAlert = false
   
@@ -446,14 +474,18 @@ struct RecordCard: View {
               .foregroundStyle(DS.SwiftUIColor.textSecondary)
           }
 
-          VStack(alignment: .leading, spacing: 2) {
-            Text(String(localized: "history.card.intake"))
-              .font(DS.SwiftUIFont.captionMedium)
-              .foregroundStyle(DS.SwiftUIColor.textTertiary)
-            Text("\(record.value)ml")
-              .font(DS.SwiftUIFont.subheadSemibold)
-              .foregroundStyle(DS.SwiftUIColor.textSecondary)
-          }
+           VStack(alignment: .leading, spacing: 2) {
+             Text(String(localized: "history.card.intake"))
+               .font(DS.SwiftUIFont.captionMedium)
+               .foregroundStyle(DS.SwiftUIColor.textTertiary)
+             HStack(spacing: DS.Spacing.xxs) {
+               Image(systemName: record.drinkType?.iconName ?? "drop.fill")
+                 .font(DS.SwiftUIFont.caption)
+               Text("\(record.value)ml")
+                 .font(DS.SwiftUIFont.subheadSemibold)
+                 .foregroundStyle(DS.SwiftUIColor.textSecondary)
+             }
+           }
         }
       }
 
@@ -490,7 +522,7 @@ struct RecordCard: View {
         .shadow(color: DS.SwiftUIColor.primary.opacity(0.15), radius: DS.Spacing.sm, y: DS.Spacing.xxs)
     )
     .confirmationDialog(
-      String(localized: "share.title"),
+      String(localized: "share.title.extended"),
       isPresented: $showShareSheet,
       titleVisibility: .visible
     ) {
@@ -499,6 +531,9 @@ struct RecordCard: View {
       }
       Button(String(localized: "share.instagram.feed")) {
         Task { await shareToInstagram(destination: .feed) }
+      }
+      Button(String(localized: "share.system")) {
+        Task { await shareViaSystemSheet() }
       }
       Button(String(localized: "home.goal.cancel"), role: .cancel) {}
     }
@@ -534,6 +569,16 @@ struct RecordCard: View {
     } catch {
       Analytics.shared.log(.instagramShareFailed(destination: analyticsDestination, reason: error.localizedDescription))
       showInstagramNotInstalledAlert = true
+    }
+  }
+  
+  private func shareViaSystemSheet() async {
+    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+          let rootVC = windowScene.windows.first?.rootViewController else { return }
+    
+    do {
+      try await socialSharingService.shareViaSystemSheet(record: record, streak: streak, source: .history, from: rootVC)
+    } catch {
     }
   }
   
