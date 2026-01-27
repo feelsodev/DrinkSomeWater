@@ -13,6 +13,7 @@
 </p>
 
 <p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/Version-26.2.0-purple.svg">
   <img alt="Swift" src="https://img.shields.io/badge/Swift-6-orange.svg">
   <img alt="iOS" src="https://img.shields.io/badge/iOS-18%2B-blue">
   <img alt="watchOS" src="https://img.shields.io/badge/watchOS-11%2B-red">
@@ -28,6 +29,7 @@
 | 퀵버튼으로 물 섭취 기록 | 캘린더/리스트/타임라인 뷰 | 목표량 설정 |
 | 물결 애니메이션 진행도 | 달성일 하이라이트 | 퀵버튼 커스텀 |
 | 목표량 퀵설정 | 월간 달성 통계 | 알림 설정 |
+| 음료 종류별 기록 | 7일/30일 통계 분석 | 프로필 관리 |
 
 ### Additional Features
 
@@ -35,6 +37,16 @@
 - **홈 화면 위젯** - Small/Medium/Large/잠금화면 위젯
 - **Apple Health** - 체중 연동, 물 섭취 기록 동기화
 - **스마트 알림** - 10가지 랜덤 동기부여 문구
+- **iCloud 동기화** - 기기 간 자동 데이터 동기화
+- **통계 분석** - 7일/30일 기간별 음수량 통계 및 차트
+- **스트릭 추적** - 연속 달성일 및 최장 기록 추적
+- **음료 종류** - 물, 커피, 차, 주스 등 종류별 수분 효율 계산
+- **소셜 공유** - Instagram Stories/Feed 및 시스템 공유
+
+### Premium Features
+
+- **광고 제거** - 배너, 네이티브, 리워드 광고 모두 제거
+- **구독 옵션** - 월간/연간 구독 또는 평생 이용권
 
 ---
 
@@ -48,6 +60,8 @@
 | Widget | WidgetKit + AppIntent |
 | Watch | WatchConnectivity |
 | Health | HealthKit |
+| Cloud | iCloud (NSUbiquitousKeyValueStore) |
+| IAP | StoreKit 2 |
 | Analytics | Firebase Analytics |
 | Ads | Google AdMob |
 | Build | Tuist |
