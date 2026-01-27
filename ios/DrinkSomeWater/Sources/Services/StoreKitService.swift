@@ -52,9 +52,22 @@ final class StoreKitService: StoreKitServiceProtocol {
         "com.onceagain.drinksomewater.premium.lifetime"
     ]
     
+    private static let lifetimeProductID = "com.onceagain.drinksomewater.premium.lifetime"
+    
+    // MARK: - Cache Keys
+    private enum CacheKeys {
+        static let isPremium = "StoreKitService.isPremium"
+        static let expirationDate = "StoreKitService.expirationDate"
+        static let isLifetime = "StoreKitService.isLifetime"
+    }
+    
     private var updateListenerTask: Task<Void, Error>?
     private var entitlementContinuation: AsyncStream<EntitlementState>.Continuation?
-    private var _currentEntitlementState: EntitlementState = .free
+    private var _currentEntitlementState: EntitlementState = .free {
+        didSet {
+            cacheEntitlementState(_currentEntitlementState)
+        }
+    }
     
     var isPremium: Bool {
         if case .premium = _currentEntitlementState {
@@ -74,6 +87,7 @@ final class StoreKitService: StoreKitServiceProtocol {
     }()
     
     init() {
+        _currentEntitlementState = Self.loadCachedEntitlementState()
         updateListenerTask = listenForTransactions()
         Task {
             await updateEntitlementState()
@@ -151,7 +165,8 @@ final class StoreKitService: StoreKitServiceProtocol {
     }
     
     private func updateEntitlementState() async {
-        var newState: EntitlementState = .free
+        var hasLifetime = false
+        var subscriptionState: EntitlementState = .free
         
         for await result in Transaction.currentEntitlements {
             guard case .verified(let transaction) = result else { continue }
@@ -160,38 +175,27 @@ final class StoreKitService: StoreKitServiceProtocol {
             
             switch transaction.productType {
             case .nonConsumable:
-                newState = .premium(expirationDate: nil)
+                hasLifetime = true
                 
             case .autoRenewable:
-                if let expirationDate = transaction.expirationDate {
-                    if expirationDate > Date() {
-                        newState = .premium(expirationDate: expirationDate)
-                    }
-                    
-                    if let subscriptionStatus = await getSubscriptionStatus(for: transaction.productID) {
-                        switch subscriptionStatus.state {
-                        case .subscribed, .inGracePeriod, .inBillingRetryPeriod:
-                            let expDate = Self.extractExpirationDate(from: subscriptionStatus) ?? expirationDate
-                            newState = .premium(expirationDate: expDate)
-                        case .expired, .revoked:
-                            if case .free = newState {
-                                newState = .free
-                            }
-                        default:
-                            break
-                        }
+                if let subscriptionStatus = await getSubscriptionStatus(for: transaction.productID) {
+                    switch subscriptionStatus.state {
+                    case .subscribed, .inGracePeriod, .inBillingRetryPeriod:
+                        let expDate = Self.extractExpirationDate(from: subscriptionStatus)
+                        subscriptionState = .premium(expirationDate: expDate)
+                    case .expired, .revoked:
+                        break
+                    default:
+                        break
                     }
                 }
                 
             default:
                 break
             }
-            
-            if case .premium = newState {
-                break
-            }
         }
         
+        let newState: EntitlementState = hasLifetime ? .premium(expirationDate: nil) : subscriptionState
         _currentEntitlementState = newState
         entitlementContinuation?.yield(newState)
     }
@@ -224,5 +228,37 @@ final class StoreKitService: StoreKitServiceProtocol {
         } catch {
             return nil
         }
+    }
+    
+    // MARK: - Cache
+    
+    private func cacheEntitlementState(_ state: EntitlementState) {
+        switch state {
+        case .free:
+            UserDefaults.standard.set(false, forKey: CacheKeys.isPremium)
+            UserDefaults.standard.set(false, forKey: CacheKeys.isLifetime)
+            UserDefaults.standard.removeObject(forKey: CacheKeys.expirationDate)
+        case .premium(let expirationDate):
+            UserDefaults.standard.set(true, forKey: CacheKeys.isPremium)
+            UserDefaults.standard.set(expirationDate == nil, forKey: CacheKeys.isLifetime)
+            UserDefaults.standard.set(expirationDate, forKey: CacheKeys.expirationDate)
+        }
+    }
+    
+    private nonisolated static func loadCachedEntitlementState() -> EntitlementState {
+        let isPremium = UserDefaults.standard.bool(forKey: CacheKeys.isPremium)
+        guard isPremium else { return .free }
+        
+        let isLifetime = UserDefaults.standard.bool(forKey: CacheKeys.isLifetime)
+        if isLifetime {
+            return .premium(expirationDate: nil)
+        }
+        
+        let expirationDate = UserDefaults.standard.object(forKey: CacheKeys.expirationDate) as? Date
+        if let expDate = expirationDate, expDate > Date() {
+            return .premium(expirationDate: expDate)
+        }
+        
+        return .free
     }
 }

@@ -19,6 +19,7 @@ final class PremiumStore {
     var error: Error?
     
     private let storeKitService: StoreKitServiceProtocol
+    private var transactionObserver: NSObjectProtocol?
     
     init(storeKitService: StoreKitServiceProtocol) {
         self.storeKitService = storeKitService
@@ -26,7 +27,7 @@ final class PremiumStore {
             await send(.refreshEntitlements)
         }
         
-        NotificationCenter.default.addObserver(
+        transactionObserver = NotificationCenter.default.addObserver(
             forName: NSNotification.Name("TransactionUpdated"),
             object: nil,
             queue: .main
@@ -34,6 +35,12 @@ final class PremiumStore {
             Task {
                 await self?.send(.refreshEntitlements)
             }
+        }
+    }
+    
+    deinit {
+        if let observer = transactionObserver {
+            NotificationCenter.default.removeObserver(observer)
         }
     }
     
