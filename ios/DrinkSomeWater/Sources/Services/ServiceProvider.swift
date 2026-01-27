@@ -10,6 +10,7 @@ protocol ServiceProviderProtocol: AnyObject {
   var healthKitService: HealthKitServiceProtocol { get }
   var watchConnectivityService: WatchConnectivityServiceProtocol { get }
   var instagramSharingService: InstagramSharingServiceProtocol { get }
+  var socialSharingService: SocialSharingServiceProtocol { get }
   var storeKitService: StoreKitServiceProtocol { get }
 }
 
@@ -23,6 +24,7 @@ final class ServiceProvider: ServiceProviderProtocol {
   let healthKitService: HealthKitServiceProtocol
   let watchConnectivityService: WatchConnectivityServiceProtocol
   let instagramSharingService: InstagramSharingServiceProtocol
+  let socialSharingService: SocialSharingServiceProtocol
   let storeKitService: StoreKitServiceProtocol
   
   init() {
@@ -44,6 +46,7 @@ final class ServiceProvider: ServiceProviderProtocol {
     watchConnectivity.setWaterService(water)
     
     let instagramSharing = InstagramSharingService()
+    let socialSharing = SocialSharingService()
     let storeKit = StoreKitService()
     
     self.userDefaultsService = userDefaults
@@ -54,6 +57,7 @@ final class ServiceProvider: ServiceProviderProtocol {
     self.watchConnectivityService = watchConnectivity
     self.waterService = water
     self.instagramSharingService = instagramSharing
+    self.socialSharingService = socialSharing
     self.storeKitService = storeKit
   }
 }

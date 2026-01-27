@@ -8,6 +8,7 @@ protocol WaterServiceProtocol: AnyObject {
   func fetchGoal() async -> Int
   func saveWater(_ waterRecord: [WaterRecord]) async
   func updateWater(by ml: Float) async -> [WaterRecord]
+  func updateWater(by ml: Float, drinkType: DrinkType) async -> WaterRecord?
   func updateGoal(to ml: Int) async -> Int
   func resetTodayWater() async -> [WaterRecord]
 }
@@ -59,54 +60,91 @@ final class WaterService: WaterServiceProtocol {
     return userDefaultsService.value(forkey: .goal) ?? 2000
   }
   
-  func saveWater(_ waterRecord: [WaterRecord]) async {
-    let dicts = waterRecord.map { $0.asDictionary() }
-    userDefaultsService.set(value: dicts, forkey: .current)
-    
-    for record in waterRecord {
-      let cloudRecord = CloudWaterRecord(
-        dateKey: CloudWaterRecord.dateKey(from: record.date),
-        value: record.value,
-        goal: record.goal,
-        isSuccess: record.isSuccess,
-        modifiedAt: Date().timeIntervalSince1970
+   func saveWater(_ waterRecord: [WaterRecord]) async {
+     let dicts = waterRecord.map { $0.asDictionary() }
+     userDefaultsService.set(value: dicts, forkey: .current)
+     
+     for record in waterRecord {
+       let cloudRecord = CloudWaterRecord(
+         dateKey: CloudWaterRecord.dateKey(from: record.date),
+         value: record.value,
+         goal: record.goal,
+         isSuccess: record.isSuccess,
+         modifiedAt: Date().timeIntervalSince1970,
+         drinkType: record.drinkType?.rawValue
+       )
+       cloudSyncService.saveWaterRecord(cloudRecord)
+     }
+   }
+  
+   @discardableResult
+   func updateWater(by ml: Float) async -> [WaterRecord] {
+     var waterRecord = await fetchWater()
+     
+     let todayKey = CloudWaterRecord.dateKey(from: Date())
+     guard let index = waterRecord.firstIndex(where: { CloudWaterRecord.dateKey(from: $0.date) == todayKey }) else {
+       return []
+     }
+     
+     var newRecord = waterRecord[index]
+     newRecord.value = max(0, newRecord.value + Int(ml))
+     newRecord.date = Date()
+     newRecord.isSuccess = newRecord.value >= newRecord.goal
+     waterRecord[index] = newRecord
+     
+     let dicts = waterRecord.map { $0.asDictionary() }
+     userDefaultsService.set(value: dicts, forkey: .current)
+     
+     let cloudRecord = CloudWaterRecord(
+        dateKey: CloudWaterRecord.dateKey(from: newRecord.date),
+        value: newRecord.value,
+        goal: newRecord.goal,
+        isSuccess: newRecord.isSuccess,
+        modifiedAt: Date().timeIntervalSince1970,
+        drinkType: newRecord.drinkType?.rawValue
       )
       cloudSyncService.saveWaterRecord(cloudRecord)
-    }
-  }
-  
-  @discardableResult
-  func updateWater(by ml: Float) async -> [WaterRecord] {
-    var waterRecord = await fetchWater()
-    
-    let todayKey = CloudWaterRecord.dateKey(from: Date())
-    guard let index = waterRecord.firstIndex(where: { CloudWaterRecord.dateKey(from: $0.date) == todayKey }) else {
-      return []
-    }
-    
-    var newRecord = waterRecord[index]
-    newRecord.value = max(0, newRecord.value + Int(ml))
-    newRecord.date = Date()
-    newRecord.isSuccess = newRecord.value >= newRecord.goal
-    waterRecord[index] = newRecord
-    
-    let dicts = waterRecord.map { $0.asDictionary() }
-    userDefaultsService.set(value: dicts, forkey: .current)
-    
-    let cloudRecord = CloudWaterRecord(
-      dateKey: CloudWaterRecord.dateKey(from: newRecord.date),
-      value: newRecord.value,
-      goal: newRecord.goal,
-      isSuccess: newRecord.isSuccess,
-      modifiedAt: Date().timeIntervalSince1970
-    )
-    cloudSyncService.saveWaterRecord(cloudRecord)
 
-    WidgetDataManager.shared.syncFromMainApp(todayWater: newRecord.value, goal: newRecord.goal)
-    watchConnectivityService.syncToWatch(todayWater: newRecord.value, goal: newRecord.goal)
+     WidgetDataManager.shared.syncFromMainApp(todayWater: newRecord.value, goal: newRecord.goal)
+     watchConnectivityService.syncToWatch(todayWater: newRecord.value, goal: newRecord.goal)
 
-    return waterRecord
-  }
+     return waterRecord
+   }
+   
+   @discardableResult
+   func updateWater(by ml: Float, drinkType: DrinkType) async -> WaterRecord? {
+     var waterRecord = await fetchWater()
+     
+     let todayKey = CloudWaterRecord.dateKey(from: Date())
+     guard let index = waterRecord.firstIndex(where: { CloudWaterRecord.dateKey(from: $0.date) == todayKey }) else {
+       return nil
+     }
+     
+     var newRecord = waterRecord[index]
+     newRecord.value = max(0, newRecord.value + Int(ml))
+     newRecord.date = Date()
+     newRecord.drinkType = drinkType
+     newRecord.isSuccess = newRecord.value >= newRecord.goal
+     waterRecord[index] = newRecord
+     
+     let dicts = waterRecord.map { $0.asDictionary() }
+     userDefaultsService.set(value: dicts, forkey: .current)
+     
+     let cloudRecord = CloudWaterRecord(
+       dateKey: CloudWaterRecord.dateKey(from: newRecord.date),
+       value: newRecord.value,
+       goal: newRecord.goal,
+       isSuccess: newRecord.isSuccess,
+       modifiedAt: Date().timeIntervalSince1970,
+       drinkType: drinkType.rawValue
+     )
+     cloudSyncService.saveWaterRecord(cloudRecord)
+
+     WidgetDataManager.shared.syncFromMainApp(todayWater: newRecord.value, goal: newRecord.goal)
+     watchConnectivityService.syncToWatch(todayWater: newRecord.value, goal: newRecord.goal)
+
+     return newRecord
+   }
   
   @discardableResult
   func updateGoal(to ml: Int) async -> Int {
