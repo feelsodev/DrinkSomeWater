@@ -19,7 +19,7 @@ final class PremiumStore {
     var error: Error?
     
     private let storeKitService: StoreKitServiceProtocol
-    private var transactionObserver: NSObjectProtocol?
+  private nonisolated(unsafe) var transactionObserver: NSObjectProtocol?
     
     init(storeKitService: StoreKitServiceProtocol) {
         self.storeKitService = storeKitService
