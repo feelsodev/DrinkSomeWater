@@ -372,13 +372,3 @@
 "accessibility.statistics.button" = "통계 보기";
 
 // Drink Types
-"drink.type.water" = "물";
-"drink.type.coffee" = "커피";
-"drink.type.tea" = "차";
-"drink.type.juice" = "주스";
-"drink.type.soda" = "탄산음료";
-"drink.type.milk" = "우유";
-"drink.type.other" = "기타";
-"drink.type.select" = "음료 선택";
-"drink.type.effective" = "효과량 %@ml";
-"drink.type.hydration.info" = "수분 효과: %@%%";

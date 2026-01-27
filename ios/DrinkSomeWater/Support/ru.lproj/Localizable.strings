@@ -349,13 +349,3 @@
 "accessibility.statistics.button" = "View Statistics";
 
 // Drink Types (English fallback)
-"drink.type.water" = "Water";
-"drink.type.coffee" = "Coffee";
-"drink.type.tea" = "Tea";
-"drink.type.juice" = "Juice";
-"drink.type.soda" = "Soda";
-"drink.type.milk" = "Milk";
-"drink.type.other" = "Other";
-"drink.type.select" = "Select Drink";
-"drink.type.effective" = "Effective %@ml";
-"drink.type.hydration.info" = "Hydration effect: %@%%";
