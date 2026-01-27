@@ -53,6 +53,15 @@ public enum AnalyticsEvent {
   case instagramShareInitiated(destination: InstagramShareDestination, source: InstagramShareSource)
   case instagramShareCompleted(destination: InstagramShareDestination, source: InstagramShareSource)
   case instagramShareFailed(destination: InstagramShareDestination, reason: String)
+  case systemShareCompleted(source: InstagramShareSource)
+  case systemShareCancelled(source: InstagramShareSource)
+  case systemShareFailed(source: InstagramShareSource, reason: String)
+  
+  // MARK: - Tier 5b: Statistics & Drink Types
+  
+  case statisticsOpened(source: InstagramShareSource)
+  case statisticsPeriodSelected(period: String)
+  case drinkTypeSelected(type: String)
   
   // MARK: - Tier 6: Retention
   
@@ -133,6 +142,12 @@ public enum AnalyticsEvent {
     case .instagramShareInitiated: return "instagram_share_initiated"
     case .instagramShareCompleted: return "instagram_share_completed"
     case .instagramShareFailed: return "instagram_share_failed"
+    case .systemShareCompleted: return "system_share_completed"
+    case .systemShareCancelled: return "system_share_cancelled"
+    case .systemShareFailed: return "system_share_failed"
+    case .statisticsOpened: return "statistics_opened"
+    case .statisticsPeriodSelected: return "statistics_period_selected"
+    case .drinkTypeSelected: return "drink_type_selected"
     }
   }
   
@@ -306,6 +321,24 @@ public enum AnalyticsEvent {
       
     case .instagramShareFailed(let destination, let reason):
       return ["destination": destination.rawValue, "reason": reason]
+      
+    case .systemShareCompleted(let source):
+      return ["source": source.rawValue]
+      
+    case .systemShareCancelled(let source):
+      return ["source": source.rawValue]
+      
+    case .systemShareFailed(let source, let reason):
+      return ["source": source.rawValue, "reason": reason]
+      
+    case .statisticsOpened(let source):
+      return ["source": source.rawValue]
+      
+    case .statisticsPeriodSelected(let period):
+      return ["period": period]
+      
+    case .drinkTypeSelected(let type):
+      return ["type": type]
     }
   }
 }
