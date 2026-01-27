@@ -303,56 +303,12 @@ struct HomeView: View {
       }
       .frame(width: 160)
       .offset(y: -DS.Spacing.xxs)
-    }
-  }
-  
-  private var drinkTypePicker: some View {
-    ScrollView(.horizontal, showsIndicators: false) {
-      HStack(spacing: DS.Spacing.xs) {
-        ForEach(DrinkType.allCases) { type in
-          drinkTypeButton(type)
-        }
-      }
-      .padding(.horizontal, DS.Spacing.lg)
-    }
-  }
-  
-  private func drinkTypeButton(_ type: DrinkType) -> some View {
-    Button {
-      Task { await store.send(.selectDrinkType(type)) }
-    } label: {
-      VStack(spacing: DS.Spacing.xxs) {
-        Image(systemName: type.iconName)
-          .font(DS.SwiftUIFont.body)
-        Text(type.displayName)
-          .font(DS.SwiftUIFont.captionMedium)
-          .lineLimit(1)
-      }
-      .foregroundStyle(store.selectedDrinkType == type ? DS.SwiftUIColor.backgroundSecondary : DS.SwiftUIColor.primary)
-      .frame(width: 56)
-      .padding(.vertical, DS.Spacing.xs)
-      .background(store.selectedDrinkType == type ? DS.SwiftUIColor.primary : DS.SwiftUIColor.primary.opacity(0.1))
-      .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium))
-    }
-  }
-  
-  private var hydrationInfoText: some View {
-    Group {
-      if store.selectedDrinkType != .water {
-        Text(String(format: String(localized: "drink.type.hydration.info"), "\(Int(store.selectedDrinkType.hydrationFactor * 100))"))
-          .font(DS.SwiftUIFont.caption)
-          .foregroundStyle(DS.SwiftUIColor.textSecondary)
-      }
-    }
-  }
-  
-  private var quickButtonsSection: some View {
-    VStack(spacing: DS.Spacing.sm) {
-      drinkTypePicker
-      
-      hydrationInfoText
-      
-      HStack {
+     }
+   }
+   
+   private var quickButtonsSection: some View {
+     VStack(spacing: DS.Spacing.sm) {
+       HStack {
         Text(isSubtractMode ? String(localized: "home.quick.subtract") : String(localized: "home.quick.add"))
           .font(DS.SwiftUIFont.subheadMedium)
           .foregroundStyle(.gray)

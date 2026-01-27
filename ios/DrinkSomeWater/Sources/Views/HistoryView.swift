@@ -266,9 +266,9 @@ struct ListRecordRow: View {
           .accessibilityHidden(true)
 
          HStack(spacing: DS.Spacing.xxs) {
-           Image(systemName: record.drinkType?.iconName ?? "drop.fill")
-             .font(DS.SwiftUIFont.caption)
-             .foregroundStyle(DS.SwiftUIColor.textTertiary)
+            Image(systemName: "drop.fill")
+              .font(DS.SwiftUIFont.caption)
+              .foregroundStyle(DS.SwiftUIColor.textTertiary)
            Text(String(format: String(localized: "history.record.progress"), "\(record.value)", "\(record.goal)"))
              .font(DS.SwiftUIFont.captionMedium)
              .foregroundStyle(DS.SwiftUIColor.textTertiary)
@@ -427,9 +427,9 @@ struct TimelineRecordRow: View {
         }
 
          HStack(spacing: DS.Spacing.md) {
-           Label("\(record.value)ml", systemImage: record.drinkType?.iconName ?? "drop.fill")
-             .font(DS.SwiftUIFont.footnoteMedium)
-             .foregroundStyle(DS.SwiftUIColor.primary)
+            Label("\(record.value)ml", systemImage: "drop.fill")
+              .font(DS.SwiftUIFont.footnoteMedium)
+              .foregroundStyle(DS.SwiftUIColor.primary)
 
           Text(String(format: String(localized: "history.record.goal"), "\(record.goal)"))
             .font(DS.SwiftUIFont.footnoteMedium)
@@ -478,10 +478,10 @@ struct RecordCard: View {
              Text(String(localized: "history.card.intake"))
                .font(DS.SwiftUIFont.captionMedium)
                .foregroundStyle(DS.SwiftUIColor.textTertiary)
-             HStack(spacing: DS.Spacing.xxs) {
-               Image(systemName: record.drinkType?.iconName ?? "drop.fill")
-                 .font(DS.SwiftUIFont.caption)
-               Text("\(record.value)ml")
+              HStack(spacing: DS.Spacing.xxs) {
+                Image(systemName: "drop.fill")
+                  .font(DS.SwiftUIFont.caption)
+                Text("\(record.value)ml")
                  .font(DS.SwiftUIFont.subheadSemibold)
                  .foregroundStyle(DS.SwiftUIColor.textSecondary)
              }

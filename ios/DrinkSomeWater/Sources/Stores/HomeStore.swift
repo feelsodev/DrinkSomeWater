@@ -14,7 +14,6 @@ final class HomeStore {
     case resetTodayWater
     case checkNotificationPermission
     case dismissNotificationBanner
-    case selectDrinkType(DrinkType)
   }
   
   let provider: ServiceProviderProtocol
@@ -29,7 +28,6 @@ final class HomeStore {
   var quickButtons: [Int] = HomeStore.defaultQuickButtons
 
   var showNotificationBanner: Bool = false
-  var selectedDrinkType: DrinkType = .water
   
   init(provider: ServiceProviderProtocol) {
     self.provider = provider
@@ -42,7 +40,6 @@ final class HomeStore {
       let records = await provider.waterService.fetchWater()
       if let todayRecord = records.first(where: { $0.date.checkToday }) {
         ml = Float(todayRecord.value)
-        selectedDrinkType = todayRecord.drinkType ?? .water
       }
       
     case .refreshGoal:
@@ -54,7 +51,7 @@ final class HomeStore {
       
     case .addWater(let amount):
       let wasAchieved = ml >= total
-      _ = await provider.waterService.updateWater(by: Float(amount), drinkType: selectedDrinkType)
+      _ = await provider.waterService.updateWater(by: Float(amount))
       await send(.refresh)
 
       Analytics.shared.logWaterIntake(amountMl: amount, method: .quickButton)
@@ -87,10 +84,6 @@ final class HomeStore {
     case .dismissNotificationBanner:
       provider.userDefaultsService.set(value: true, forkey: .notificationBannerDismissed)
       showNotificationBanner = false
-      
-    case .selectDrinkType(let type):
-      selectedDrinkType = type
-      Analytics.shared.log(.drinkTypeSelected(type: type.rawValue))
     }
   }
   

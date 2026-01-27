@@ -25,7 +25,6 @@ struct CloudWaterRecord: Codable {
   var goal: Int
   var isSuccess: Bool
   var modifiedAt: TimeInterval
-  var drinkType: String?
   
   static func dateKey(from date: Date) -> String {
     let formatter = DateFormatter()
@@ -166,14 +165,13 @@ final class CloudSyncService: CloudSyncServiceProtocol {
      let waterRecords = existingRecords.compactMap(WaterRecord.init)
      for record in waterRecords {
        let dateKey = CloudWaterRecord.dateKey(from: record.date)
-       let cloudRecord = CloudWaterRecord(
-         dateKey: dateKey,
-         value: record.value,
-         goal: record.goal,
-         isSuccess: record.isSuccess,
-         modifiedAt: record.date.timeIntervalSince1970,
-         drinkType: record.drinkType?.rawValue
-       )
+        let cloudRecord = CloudWaterRecord(
+          dateKey: dateKey,
+          value: record.value,
+          goal: record.goal,
+          isSuccess: record.isSuccess,
+          modifiedAt: record.date.timeIntervalSince1970
+        )
        saveWaterRecord(cloudRecord)
      }
     
@@ -289,45 +287,39 @@ final class CloudSyncService: CloudSyncServiceProtocol {
       merged[dateKey] = record
     }
     
-     for (dateKey, cloudRecord) in cloudRecords {
-       if let localRecord = merged[dateKey] {
-         let localModified = localRecord.date.timeIntervalSince1970
-         if cloudRecord.modifiedAt > localModified {
-           if let date = CloudWaterRecord.date(from: dateKey) {
-             let drinkType = cloudRecord.drinkType.flatMap { DrinkType(rawValue: $0) }
-             merged[dateKey] = WaterRecord(
-               date: date,
-               value: cloudRecord.value,
-               isSuccess: cloudRecord.isSuccess,
-               goal: cloudRecord.goal,
-               drinkType: drinkType
-             )
-           }
-         } else if cloudRecord.modifiedAt == localModified && cloudRecord.value > localRecord.value {
-           if let date = CloudWaterRecord.date(from: dateKey) {
-             let drinkType = cloudRecord.drinkType.flatMap { DrinkType(rawValue: $0) }
-             merged[dateKey] = WaterRecord(
-               date: date,
-               value: cloudRecord.value,
-               isSuccess: cloudRecord.isSuccess,
-               goal: cloudRecord.goal,
-               drinkType: drinkType
-             )
-           }
-         }
-       } else {
-         if let date = CloudWaterRecord.date(from: dateKey) {
-           let drinkType = cloudRecord.drinkType.flatMap { DrinkType(rawValue: $0) }
-           merged[dateKey] = WaterRecord(
-             date: date,
-             value: cloudRecord.value,
-             isSuccess: cloudRecord.isSuccess,
-             goal: cloudRecord.goal,
-             drinkType: drinkType
-           )
-         }
-       }
-     }
+    for (dateKey, cloudRecord) in cloudRecords {
+      if let localRecord = merged[dateKey] {
+        let localModified = localRecord.date.timeIntervalSince1970
+        if cloudRecord.modifiedAt > localModified {
+          if let date = CloudWaterRecord.date(from: dateKey) {
+            merged[dateKey] = WaterRecord(
+              date: date,
+              value: cloudRecord.value,
+              isSuccess: cloudRecord.isSuccess,
+              goal: cloudRecord.goal
+            )
+          }
+        } else if cloudRecord.modifiedAt == localModified && cloudRecord.value > localRecord.value {
+          if let date = CloudWaterRecord.date(from: dateKey) {
+            merged[dateKey] = WaterRecord(
+              date: date,
+              value: cloudRecord.value,
+              isSuccess: cloudRecord.isSuccess,
+              goal: cloudRecord.goal
+            )
+          }
+        }
+      } else {
+        if let date = CloudWaterRecord.date(from: dateKey) {
+          merged[dateKey] = WaterRecord(
+            date: date,
+            value: cloudRecord.value,
+            isSuccess: cloudRecord.isSuccess,
+            goal: cloudRecord.goal
+          )
+        }
+      }
+    }
     
     return merged.values.sorted { $0.date > $1.date }
   }

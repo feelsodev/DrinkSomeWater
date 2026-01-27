@@ -59,9 +59,8 @@ public enum AnalyticsEvent {
   
   // MARK: - Tier 5b: Statistics & Drink Types
   
-  case statisticsOpened(source: InstagramShareSource)
-  case statisticsPeriodSelected(period: String)
-  case drinkTypeSelected(type: String)
+   case statisticsOpened(source: InstagramShareSource)
+   case statisticsPeriodSelected(period: String)
   
   // MARK: - Tier 6: Retention
   
@@ -145,10 +144,9 @@ public enum AnalyticsEvent {
     case .systemShareCompleted: return "system_share_completed"
     case .systemShareCancelled: return "system_share_cancelled"
     case .systemShareFailed: return "system_share_failed"
-    case .statisticsOpened: return "statistics_opened"
-    case .statisticsPeriodSelected: return "statistics_period_selected"
-    case .drinkTypeSelected: return "drink_type_selected"
-    }
+     case .statisticsOpened: return "statistics_opened"
+     case .statisticsPeriodSelected: return "statistics_period_selected"
+     }
   }
   
   public var parameters: [String: Any] {
@@ -334,12 +332,9 @@ public enum AnalyticsEvent {
     case .statisticsOpened(let source):
       return ["source": source.rawValue]
       
-    case .statisticsPeriodSelected(let period):
-      return ["period": period]
-      
-    case .drinkTypeSelected(let type):
-      return ["type": type]
-    }
+     case .statisticsPeriodSelected(let period):
+       return ["period": period]
+     }
   }
 }
 

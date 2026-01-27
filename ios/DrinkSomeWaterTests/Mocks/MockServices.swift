@@ -97,28 +97,11 @@ final class MockWaterService: WaterServiceProtocol {
         }
         return waterRecords
     }
-    func updateGoal(to ml: Int) async -> Int {
-        goal = ml
-        return goal
-    }
-    func updateWater(by ml: Float, drinkType: DrinkType) async -> WaterRecord? {
-        let today = Calendar.current.startOfDay(for: Date())
-        if let index = waterRecords.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: today) }) {
-            let currentRecord = waterRecords[index]
-            let newValue = currentRecord.value + Int(ml)
-            let updatedRecord = WaterRecord(
-                date: today,
-                value: newValue,
-                isSuccess: newValue >= currentRecord.goal,
-                goal: currentRecord.goal,
-                drinkType: drinkType
-            )
-            waterRecords[index] = updatedRecord
-            return updatedRecord
-        }
-        return nil
-    }
-    func resetTodayWater() async -> [WaterRecord] {
+     func updateGoal(to ml: Int) async -> Int {
+         goal = ml
+         return goal
+     }
+     func resetTodayWater() async -> [WaterRecord] {
         let today = Calendar.current.startOfDay(for: Date())
         if let index = waterRecords.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: today) }) {
             let record = waterRecords[index]
