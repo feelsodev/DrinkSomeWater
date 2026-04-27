@@ -3,12 +3,16 @@
   DrinkSomeWaterWidget
 */
 
-"widget.hydration.tracker" = "Hydration Tracker";
-"widget.current" = "Current";
-"widget.goal" = "Goal";
-"widget.current.hydration" = "Current Hydration";
-"widget.todays.hydration" = "Today's Hydration";
-"widget.motivation.achieved" = "Goal achieved! Great job! 🎉";
-"widget.motivation.almost" = "Almost there! Keep going! 🚀";
-"widget.motivation.halfway" = "You're doing great! 💧";
-"widget.motivation.start" = "Time to hydrate! 🥤";
+"widget.hydration.tracker" = "Hydreringsmåler";
+"widget.current" = "Nuværende";
+"widget.goal" = "Mål";
+"widget.current.hydration" = "Nuværende hydrering";
+"widget.todays.hydration" = "Dagens hydrering";
+"widget.motivation.achieved" = "Mål opnået! Godt klaret! 🎉";
+"widget.motivation.almost" = "Næsten der! Fortsæt! 🚀";
+"widget.motivation.halfway" = "Du klarer det godt! 💧";
+"widget.motivation.start" = "Tid til at hydrere! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "Vandindtag";
+"widget.configuration.description" = "Spor dit daglige vandindtag";

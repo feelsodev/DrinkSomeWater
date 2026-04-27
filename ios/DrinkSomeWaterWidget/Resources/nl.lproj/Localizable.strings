@@ -3,12 +3,16 @@
   DrinkSomeWaterWidget
 */
 
-"widget.hydration.tracker" = "Hydration Tracker";
-"widget.current" = "Current";
-"widget.goal" = "Goal";
-"widget.current.hydration" = "Current Hydration";
-"widget.todays.hydration" = "Today's Hydration";
-"widget.motivation.achieved" = "Goal achieved! Great job! 🎉";
-"widget.motivation.almost" = "Almost there! Keep going! 🚀";
-"widget.motivation.halfway" = "You're doing great! 💧";
-"widget.motivation.start" = "Time to hydrate! 🥤";
+"widget.hydration.tracker" = "Hydratatie-tracker";
+"widget.current" = "Huidig";
+"widget.goal" = "Doel";
+"widget.current.hydration" = "Huidige hydratatie";
+"widget.todays.hydration" = "Hydratatie vandaag";
+"widget.motivation.achieved" = "Doel behaald! Goed gedaan! 🎉";
+"widget.motivation.almost" = "Bijna! Ga zo door! 🚀";
+"widget.motivation.halfway" = "Je doet het geweldig! 💧";
+"widget.motivation.start" = "Tijd om te hydrateren! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "Waterinname";
+"widget.configuration.description" = "Volg je dagelijkse waterinname";

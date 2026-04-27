@@ -15,3 +15,7 @@
 "widget.motivation.almost" = "Fast geschafft! Weiter so! 🚀";
 "widget.motivation.halfway" = "Du machst das toll! 💧";
 "widget.motivation.start" = "Zeit zum Trinken! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "Wasseraufnahme";
+"widget.configuration.description" = "Verfolge deine tägliche Wasseraufnahme";

@@ -15,3 +15,7 @@
 "widget.motivation.almost" = "Sắp đạt rồi! Cố lên! 🚀";
 "widget.motivation.halfway" = "Bạn đang làm tốt lắm! 💧";
 "widget.motivation.start" = "Đến lúc uống nước rồi! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "Lượng nước";
+"widget.configuration.description" = "Theo dõi lượng nước uống hàng ngày";

@@ -1,14 +1,21 @@
 /*
   Localizable.strings
   DrinkSomeWaterWidget
+
+  Arabic Localization
 */
 
-"widget.hydration.tracker" = "Hydration Tracker";
-"widget.current" = "Current";
-"widget.goal" = "Goal";
-"widget.current.hydration" = "Current Hydration";
-"widget.todays.hydration" = "Today's Hydration";
-"widget.motivation.achieved" = "Goal achieved! Great job! 🎉";
-"widget.motivation.almost" = "Almost there! Keep going! 🚀";
-"widget.motivation.halfway" = "You're doing great! 💧";
-"widget.motivation.start" = "Time to hydrate! 🥤";
+// Widget
+"widget.hydration.tracker" = "متتبع الترطيب";
+"widget.current" = "الحالي";
+"widget.goal" = "الهدف";
+"widget.current.hydration" = "الترطيب الحالي";
+"widget.todays.hydration" = "ترطيب اليوم";
+"widget.motivation.achieved" = "تم تحقيق الهدف! عمل رائع! 🎉";
+"widget.motivation.almost" = "تقريباً! استمر! 🚀";
+"widget.motivation.halfway" = "أنت تبلي حسناً! 💧";
+"widget.motivation.start" = "وقت الترطيب! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "استهلاك الماء";
+"widget.configuration.description" = "تتبع استهلاكك اليومي من الماء";

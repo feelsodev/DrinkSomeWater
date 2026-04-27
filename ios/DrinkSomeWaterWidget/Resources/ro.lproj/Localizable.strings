@@ -12,3 +12,7 @@
 "widget.motivation.almost" = "Almost there! Keep going! 🚀";
 "widget.motivation.halfway" = "You're doing great! 💧";
 "widget.motivation.start" = "Time to hydrate! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "Consumul de apă";
+"widget.configuration.description" = "Urmărește-ți consumul zilnic de apă";

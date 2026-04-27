@@ -13,3 +13,7 @@
 "widget.motivation.almost" = "Almost there! Keep going! 🚀";
 "widget.motivation.halfway" = "You're doing great! 💧";
 "widget.motivation.start" = "Time to hydrate! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "Water Intake";
+"widget.configuration.description" = "Track your daily water intake";

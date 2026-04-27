@@ -15,3 +15,7 @@
 "widget.motivation.almost" = "もう少し！頑張って！ 🚀";
 "widget.motivation.halfway" = "順調です！ 💧";
 "widget.motivation.start" = "水分補給の時間です！ 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "水分摂取量";
+"widget.configuration.description" = "毎日の水分摂取量を追跡";

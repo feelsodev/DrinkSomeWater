@@ -15,3 +15,7 @@
 "widget.motivation.almost" = "Hampir! Terus semangat! 🚀";
 "widget.motivation.halfway" = "Kamu hebat! 💧";
 "widget.motivation.start" = "Waktunya minum! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "Asupan Air";
+"widget.configuration.description" = "Lacak asupan air harianmu";

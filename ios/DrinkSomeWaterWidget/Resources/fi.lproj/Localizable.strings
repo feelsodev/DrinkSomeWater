@@ -3,12 +3,16 @@
   DrinkSomeWaterWidget
 */
 
-"widget.hydration.tracker" = "Hydration Tracker";
-"widget.current" = "Current";
-"widget.goal" = "Goal";
-"widget.current.hydration" = "Current Hydration";
-"widget.todays.hydration" = "Today's Hydration";
-"widget.motivation.achieved" = "Goal achieved! Great job! 🎉";
-"widget.motivation.almost" = "Almost there! Keep going! 🚀";
-"widget.motivation.halfway" = "You're doing great! 💧";
-"widget.motivation.start" = "Time to hydrate! 🥤";
+"widget.hydration.tracker" = "Nesteytyksen seuranta";
+"widget.current" = "Nykyinen";
+"widget.goal" = "Tavoite";
+"widget.current.hydration" = "Nykyinen nesteytys";
+"widget.todays.hydration" = "Päivän nesteytys";
+"widget.motivation.achieved" = "Tavoite saavutettu! Hienoa työtä! 🎉";
+"widget.motivation.almost" = "Melkein perillä! Jatka samaan malliin! 🚀";
+"widget.motivation.halfway" = "Menee hienosti! 💧";
+"widget.motivation.start" = "Aika nesteyttää! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "Vedenkulutus";
+"widget.configuration.description" = "Seuraa päivittäistä vedenkulutustasi";

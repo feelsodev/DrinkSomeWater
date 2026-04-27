@@ -13,3 +13,7 @@
 "widget.motivation.almost" = "거의 다 왔어요! 조금만 더! 🚀";
 "widget.motivation.halfway" = "잘하고 있어요! 💧";
 "widget.motivation.start" = "물 마실 시간이에요! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "물 섭취량";
+"widget.configuration.description" = "일일 물 섭취량을 추적하세요";

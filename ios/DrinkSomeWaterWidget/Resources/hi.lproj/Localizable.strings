@@ -1,14 +1,21 @@
 /*
   Localizable.strings
   DrinkSomeWaterWidget
+
+  Hindi Localization
 */
 
-"widget.hydration.tracker" = "Hydration Tracker";
-"widget.current" = "Current";
-"widget.goal" = "Goal";
-"widget.current.hydration" = "Current Hydration";
-"widget.todays.hydration" = "Today's Hydration";
-"widget.motivation.achieved" = "Goal achieved! Great job! 🎉";
-"widget.motivation.almost" = "Almost there! Keep going! 🚀";
-"widget.motivation.halfway" = "You're doing great! 💧";
-"widget.motivation.start" = "Time to hydrate! 🥤";
+// Widget
+"widget.hydration.tracker" = "हाइड्रेशन ट्रैकर";
+"widget.current" = "वर्तमान";
+"widget.goal" = "लक्ष्य";
+"widget.current.hydration" = "वर्तमान हाइड्रेशन";
+"widget.todays.hydration" = "आज का हाइड्रेशन";
+"widget.motivation.achieved" = "लक्ष्य प्राप्त! शाबाश! 🎉";
+"widget.motivation.almost" = "लगभग हो गया! जारी रखें! 🚀";
+"widget.motivation.halfway" = "आप बढ़िया कर रहे हैं! 💧";
+"widget.motivation.start" = "पानी पीने का समय! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "पानी सेवन";
+"widget.configuration.description" = "अपने दैनिक पानी सेवन को ट्रैक करें";

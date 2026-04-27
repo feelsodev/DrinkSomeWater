@@ -15,3 +15,7 @@
 "widget.motivation.almost" = "ใกล้แล้ว! สู้ต่อไป! 🚀";
 "widget.motivation.halfway" = "ทำได้ดีมาก! 💧";
 "widget.motivation.start" = "ถึงเวลาดื่มน้ำแล้ว! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "ปริมาณน้ำ";
+"widget.configuration.description" = "ติดตามปริมาณน้ำที่ดื่มประจำวัน";

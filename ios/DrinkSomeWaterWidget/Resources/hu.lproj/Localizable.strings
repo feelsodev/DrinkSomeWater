@@ -11,4 +11,6 @@
 "widget.motivation.achieved" = "Goal achieved! Great job! 🎉";
 "widget.motivation.almost" = "Almost there! Keep going! 🚀";
 "widget.motivation.halfway" = "You're doing great! 💧";
-"widget.motivation.start" = "Time to hydrate! 🥤";
+"widget.motivation.start" = "Ideje hidratálni! 🥤";
+"widget.configuration.name" = "Vízfogyasztás";
+"widget.configuration.description" = "Kövesd nyomon a napi vízfogyasztásodat";

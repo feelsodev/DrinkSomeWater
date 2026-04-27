@@ -15,3 +15,7 @@
 "widget.motivation.almost" = "快到了！繼續加油！ 🚀";
 "widget.motivation.halfway" = "做得很好！ 💧";
 "widget.motivation.start" = "該喝水了！ 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "飲水量";
+"widget.configuration.description" = "追蹤每日飲水量";

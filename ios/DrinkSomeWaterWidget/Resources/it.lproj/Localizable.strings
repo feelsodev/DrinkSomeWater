@@ -15,3 +15,7 @@
 "widget.motivation.almost" = "Quasi! Continua così! 🚀";
 "widget.motivation.halfway" = "Stai andando alla grande! 💧";
 "widget.motivation.start" = "È ora di idratarti! 🥤";
+
+// Widget Configuration
+"widget.configuration.name" = "Consumo d'acqua";
+"widget.configuration.description" = "Monitora il tuo consumo giornaliero di acqua";
