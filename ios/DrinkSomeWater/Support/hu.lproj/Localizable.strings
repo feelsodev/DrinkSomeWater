@@ -277,6 +277,16 @@
 "notification.message.8" = "Koncentráció FEL! Mit szólsz egy pohár vízhez? 🧠";
 "notification.message.9" = "Várj! Előbb igyál egy kis vizet 🚰";
 "notification.message.10" = "A tested vízre vár 🌿";
+"notification.message.11" = "A hidratálás feljavítja a hangulatod! 😊";
+"notification.message.12" = "Kis kortyok, nagy különbség egész nap 🫧";
+"notification.message.13" = "A víz a legjobb energiaital ⚡";
+"notification.message.14" = "A jövőbeli éned hálás lesz ezért 💙";
+"notification.message.15" = "Hidratálási szünet! Nyújtózz és igyál 🤸";
+"notification.message.16" = "Ivás ideje! Módosítsd az emlékeztetőket a Beállításokban ⏰";
+"notification.message.17" = "Egy kis korty is számít 🥛";
+"notification.message.18" = "A tiszta elme tiszta vízzel kezdődik 🔮";
+"notification.message.19" = "Más emlékeztető időpontokat szeretnél? Nézd meg a Beállításokat! ⚙️";
+"notification.message.20" = "Egy pohárral közelebb a céljaidhoz 🏆";
 
 // Weekdays
 "weekday.sun" = "V";

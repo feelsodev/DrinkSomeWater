@@ -258,6 +258,16 @@
 "notification.message.8" = "फोकस UP! एक गिलास पानी? 🧠";
 "notification.message.9" = "रुको! पहले पानी 🚰";
 "notification.message.10" = "आपका शरीर पानी का इंतजार कर रहा है 🌿";
+"notification.message.11" = "हाइड्रेशन आपका मूड बेहतर बनाता है! 😊";
+"notification.message.12" = "छोटे-छोटे घूंट, दिनभर में बड़ा फर्क 🫧";
+"notification.message.13" = "पानी सबसे अच्छा एनर्जी ड्रिंक है ⚡";
+"notification.message.14" = "आपका भविष्य वाला खुद इसके लिए शुक्रगुजार होगा 💙";
+"notification.message.15" = "हाइड्रेशन ब्रेक! थोड़ा स्ट्रेच करें और पानी पिएं 🤸";
+"notification.message.16" = "पानी पीने का समय! सेटिंग्स में रिमाइंडर बदलें ⏰";
+"notification.message.17" = "एक छोटा घूंट भी मायने रखता है 🥛";
+"notification.message.18" = "साफ दिमाग की शुरुआत साफ पानी से होती है 🔮";
+"notification.message.19" = "अलग समय पर रिमाइंडर चाहिए? सेटिंग्स देखें! ⚙️";
+"notification.message.20" = "लक्ष्य से एक गिलास और करीब 🏆";
 
 // Weekdays
 "weekday.sun" = "रवि";

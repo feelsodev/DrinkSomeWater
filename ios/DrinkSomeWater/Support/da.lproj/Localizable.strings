@@ -277,6 +277,16 @@
 "notification.message.8" = "Fokus OP! Hvad med et glas vand? 🧠";
 "notification.message.9" = "Vent! Drik lidt vand først 🚰";
 "notification.message.10" = "Din krop venter på vand 🌿";
+"notification.message.11" = "Hydrering løfter dit humør! 😊";
+"notification.message.12" = "Små slurke, stor forskel hele dagen 🫧";
+"notification.message.13" = "Vand er den bedste energidrik ⚡";
+"notification.message.14" = "Dit fremtidige jeg vil takke dig for dette 💙";
+"notification.message.15" = "Hydreringspause! Stræk ud og drik 🤸";
+"notification.message.16" = "Tid til vand! Juster påmindelser i Indstillinger ⏰";
+"notification.message.17" = "Selv en lille slurk tæller 🥛";
+"notification.message.18" = "Et klart sind starter med rent vand 🔮";
+"notification.message.19" = "Vil du have andre påmindelsestider? Tjek Indstillinger! ⚙️";
+"notification.message.20" = "Et glas tættere på dit mål 🏆";
 
 // Weekdays
 "weekday.sun" = "Søn";

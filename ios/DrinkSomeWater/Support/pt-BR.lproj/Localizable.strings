@@ -277,6 +277,16 @@
 "notification.message.8" = "Foco UP! Que tal um copo d'água? 🧠";
 "notification.message.9" = "Espera! Primeiro um pouco de água 🚰";
 "notification.message.10" = "Seu corpo está esperando água 🌿";
+"notification.message.11" = "A hidratação melhora o humor! 😊";
+"notification.message.12" = "Pequenos goles, grande diferença ao longo do dia 🫧";
+"notification.message.13" = "A água é o melhor energético ⚡";
+"notification.message.14" = "Seu eu do futuro vai te agradecer por isso 💙";
+"notification.message.15" = "Pausa de hidratação! Espreguice e beba 🤸";
+"notification.message.16" = "Hora da água! Ajuste os lembretes em Ajustes ⏰";
+"notification.message.17" = "Até um pequeno gole conta 🥛";
+"notification.message.18" = "Mente clara começa com água limpa 🔮";
+"notification.message.19" = "Quer outros horários de lembrete? Veja os Ajustes! ⚙️";
+"notification.message.20" = "Um copo mais perto da sua meta 🏆";
 
 // Weekdays
 "weekday.sun" = "Dom";

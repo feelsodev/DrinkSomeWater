@@ -277,6 +277,16 @@
 "notification.message.8" = "¡Concentración UP! ¿Un vaso de agua? 🧠";
 "notification.message.9" = "¡Espera! Primero un poco de agua 🚰";
 "notification.message.10" = "Tu cuerpo está esperando agua 🌿";
+"notification.message.11" = "¡La hidratación mejora tu estado de ánimo! 😊";
+"notification.message.12" = "Pequeños sorbos, gran diferencia a lo largo del día 🫧";
+"notification.message.13" = "El agua es la mejor bebida energética ⚡";
+"notification.message.14" = "Tu yo del futuro te lo agradecerá 💙";
+"notification.message.15" = "¡Pausa de hidratación! Estírate y bebe 🤸";
+"notification.message.16" = "¡Hora del agua! Ajusta los recordatorios en Ajustes ⏰";
+"notification.message.17" = "Hasta un pequeño sorbo cuenta 🥛";
+"notification.message.18" = "Una mente clara empieza con agua clara 🔮";
+"notification.message.19" = "¿Quieres horarios diferentes? ¡Mira los Ajustes! ⚙️";
+"notification.message.20" = "Un vaso más cerca de tu meta 🏆";
 
 // Weekdays
 "weekday.sun" = "Dom";

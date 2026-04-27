@@ -278,6 +278,16 @@
 "notification.message.8" = "집중력 UP! 물 한 잔 어때요? 🧠";
 "notification.message.9" = "잠깐! 물 마시고 하세요 🚰";
 "notification.message.10" = "당신의 몸이 물을 기다려요 🌿";
+"notification.message.11" = "수분 보충은 기분 전환의 비결! 😊";
+"notification.message.12" = "조금씩 자주, 하루가 달라져요 🫧";
+"notification.message.13" = "물이야말로 최고의 에너지 드링크 ⚡";
+"notification.message.14" = "미래의 나에게 주는 선물, 물 한 잔 💙";
+"notification.message.15" = "스트레칭도 하고 물도 한 잔! 🤸";
+"notification.message.16" = "물 마실 시간! 설정에서 알림을 조절해보세요 ⏰";
+"notification.message.17" = "한 모금이라도 괜찮아요 🥛";
+"notification.message.18" = "맑은 정신은 맑은 물에서 시작돼요 🔮";
+"notification.message.19" = "알림 시간을 바꾸고 싶다면? 설정을 확인하세요! ⚙️";
+"notification.message.20" = "목표까지 한 잔 더 가까이 🏆";
 
 // Weekdays
 "weekday.sun" = "일";

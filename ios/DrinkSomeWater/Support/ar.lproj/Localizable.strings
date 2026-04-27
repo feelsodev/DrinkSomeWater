@@ -258,6 +258,16 @@
 "notification.message.8" = "تركيز UP! كوب ماء؟ 🧠";
 "notification.message.9" = "انتظر! الماء أولاً 🚰";
 "notification.message.10" = "جسمك ينتظر الماء 🌿";
+"notification.message.11" = "الترطيب يرفع مزاجك! 😊";
+"notification.message.12" = "رشفات صغيرة، فرق كبير طوال اليوم 🫧";
+"notification.message.13" = "الماء أفضل مشروب طاقة ⚡";
+"notification.message.14" = "مستقبلك سيشكرك على هذا 💙";
+"notification.message.15" = "استراحة ترطيب! تمدد واشرب 🤸";
+"notification.message.16" = "وقت الماء! عدّل التذكيرات من الإعدادات ⏰";
+"notification.message.17" = "حتى رشفة صغيرة تُحدث فرقاً 🥛";
+"notification.message.18" = "الذهن الصافي يبدأ بالماء الصافي 🔮";
+"notification.message.19" = "تريد أوقات تذكير مختلفة؟ جرّب الإعدادات! ⚙️";
+"notification.message.20" = "كأس واحد أقرب لهدفك 🏆";
 
 // Weekdays
 "weekday.sun" = "أحد";

@@ -276,6 +276,16 @@
 "notification.message.8" = "สมาธิ UP! ดื่มน้ำสักแก้วไหม? 🧠";
 "notification.message.9" = "เดี๋ยว! ดื่มน้ำก่อน 🚰";
 "notification.message.10" = "ร่างกายคุณกำลังรอน้ำอยู่ 🌿";
+"notification.message.11" = "ดื่มน้ำช่วยให้อารมณ์ดีขึ้น! 😊";
+"notification.message.12" = "จิบนิดหน่อยแต่ได้ผลมากตลอดวัน 🫧";
+"notification.message.13" = "น้ำเปล่าคือเครื่องดื่มชูกำลังที่ดีที่สุด ⚡";
+"notification.message.14" = "ตัวคุณในอนาคตจะขอบคุณสิ่งที่ทำวันนี้ 💙";
+"notification.message.15" = "หยุดพักดื่มน้ำ! ยืดเส้นยืดสายแล้วจิบน้ำ 🤸";
+"notification.message.16" = "ถึงเวลาดื่มน้ำแล้ว! ปรับการแจ้งเตือนได้ในการตั้งค่า ⏰";
+"notification.message.17" = "แม้แต่จิบเดียวก็มีความหมาย 🥛";
+"notification.message.18" = "จิตใจที่ผ่องใสเริ่มต้นจากน้ำสะอาด 🔮";
+"notification.message.19" = "อยากเปลี่ยนเวลาแจ้งเตือน? ไปที่การตั้งค่าเลย! ⚙️";
+"notification.message.20" = "อีกแก้วหนึ่ง ใกล้เป้าหมายมากขึ้น 🏆";
 
 // Weekdays
 "weekday.sun" = "อา";

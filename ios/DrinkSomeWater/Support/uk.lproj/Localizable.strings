@@ -277,6 +277,16 @@
 "notification.message.8" = "Концентрація ВГОРУ! Як щодо склянки води? 🧠";
 "notification.message.9" = "Зачекайте! Спочатку випийте води 🚰";
 "notification.message.10" = "Ваше тіло чекає на воду 🌿";
+"notification.message.11" = "Вода покращує настрій! 😊";
+"notification.message.12" = "Маленькі ковтки — велика різниця протягом дня 🫧";
+"notification.message.13" = "Вода — найкращий енергетичний напій ⚡";
+"notification.message.14" = "Ваше майбутнє «я» подякує вам за це 💙";
+"notification.message.15" = "Пауза для води! Потягніться і зробіть ковток 🤸";
+"notification.message.16" = "Час пити воду! Налаштуйте нагадування в Налаштуваннях ⏰";
+"notification.message.17" = "Навіть маленький ковток має значення 🥛";
+"notification.message.18" = "Ясний розум починається з чистої води 🔮";
+"notification.message.19" = "Хочете змінити час нагадувань? Зайдіть у Налаштування! ⚙️";
+"notification.message.20" = "Ще одна склянка — і ви ближче до мети 🏆";
 
 // Weekdays
 "weekday.sun" = "Нд";

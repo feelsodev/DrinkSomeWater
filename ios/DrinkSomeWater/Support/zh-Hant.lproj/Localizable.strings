@@ -276,6 +276,16 @@
 "notification.message.8" = "專注力UP！來杯水？ 🧠";
 "notification.message.9" = "等等！先喝杯水 🚰";
 "notification.message.10" = "你的身體在等待水分 🌿";
+"notification.message.11" = "喝水讓你心情更好哦！😊";
+"notification.message.12" = "一小口一小口，全天精神足 🫧";
+"notification.message.13" = "水是最好的能量飲料 ⚡";
+"notification.message.14" = "未來的你會感謝現在的你 💙";
+"notification.message.15" = "喝水休息！動一動，喝一口 🤸";
+"notification.message.16" = "喝水時間到！可以在設定裡調整提醒時間 ⏰";
+"notification.message.17" = "哪怕只是小小一口也有用 🥛";
+"notification.message.18" = "清醒的頭腦，從清澈的水開始 🔮";
+"notification.message.19" = "想換個提醒時間？去設定裡看看吧！⚙️";
+"notification.message.20" = "再喝一杯，離目標又近了一步 🏆";
 
 // Weekdays
 "weekday.sun" = "日";

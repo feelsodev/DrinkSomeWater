@@ -278,6 +278,16 @@
 "notification.message.8" = "Концентрация UP! Как насчёт стакана воды? 🧠";
 "notification.message.9" = "Стоп! Сначала выпейте воды 🚰";
 "notification.message.10" = "Ваше тело ждёт воду 🌿";
+"notification.message.11" = "Вода улучшает настроение! 😊";
+"notification.message.12" = "Маленькие глотки — большая польза в течение дня 🫧";
+"notification.message.13" = "Вода — лучший энергетик ⚡";
+"notification.message.14" = "Ваше будущее «я» скажет вам спасибо 💙";
+"notification.message.15" = "Пауза для воды! Потянитесь и сделайте глоток 🤸";
+"notification.message.16" = "Время пить воду! Настройте напоминания в Настройках ⏰";
+"notification.message.17" = "Даже маленький глоток имеет значение 🥛";
+"notification.message.18" = "Ясный ум начинается с чистой воды 🔮";
+"notification.message.19" = "Хотите изменить время напоминаний? Загляните в Настройки! ⚙️";
+"notification.message.20" = "Ещё один стакан — и вы ближе к цели 🏆";
 
 // Weekdays
 "weekday.sun" = "Вс";

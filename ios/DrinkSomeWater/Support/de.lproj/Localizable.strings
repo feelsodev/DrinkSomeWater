@@ -277,6 +277,16 @@
 "notification.message.8" = "Konzentration UP! Wie wäre es mit einem Glas Wasser? 🧠";
 "notification.message.9" = "Warte! Erst etwas Wasser 🚰";
 "notification.message.10" = "Dein Körper wartet auf Wasser 🌿";
+"notification.message.11" = "Hydration hebt deine Stimmung! 😊";
+"notification.message.12" = "Kleine Schlücke, großer Unterschied den ganzen Tag 🫧";
+"notification.message.13" = "Wasser ist das beste Energiegetränk ⚡";
+"notification.message.14" = "Dein zukünftiges Ich wird dir dafür danken 💙";
+"notification.message.15" = "Hydrations-Pause! Dehnen und trinken 🤸";
+"notification.message.16" = "Zeit für Wasser! Erinnerungen in den Einstellungen anpassen ⏰";
+"notification.message.17" = "Sogar ein kleiner Schluck zählt 🥛";
+"notification.message.18" = "Ein klarer Geist beginnt mit klarem Wasser 🔮";
+"notification.message.19" = "Andere Erinnerungszeiten gewünscht? Schau in die Einstellungen! ⚙️";
+"notification.message.20" = "Ein Glas näher an deinem Ziel 🏆";
 
 // Weekdays
 "weekday.sun" = "So";

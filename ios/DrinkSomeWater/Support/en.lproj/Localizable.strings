@@ -278,6 +278,16 @@
 "notification.message.8" = "Focus UP! How about a glass of water? 🧠";
 "notification.message.9" = "Wait! Have some water first 🚰";
 "notification.message.10" = "Your body is waiting for water 🌿";
+"notification.message.11" = "Hydration boosts your mood! 😊";
+"notification.message.12" = "Small sips, big difference throughout the day 🫧";
+"notification.message.13" = "Water is the best energy drink ⚡";
+"notification.message.14" = "Your future self will thank you for this 💙";
+"notification.message.15" = "Hydration break! Stretch and sip 🤸";
+"notification.message.16" = "Time for water! Adjust reminders in Settings ⏰";
+"notification.message.17" = "Even a small sip counts 🥛";
+"notification.message.18" = "Clear mind starts with clear water 🔮";
+"notification.message.19" = "Want different reminder times? Check Settings! ⚙️";
+"notification.message.20" = "One glass closer to your goal 🏆";
 
 // Weekdays
 "weekday.sun" = "Sun";

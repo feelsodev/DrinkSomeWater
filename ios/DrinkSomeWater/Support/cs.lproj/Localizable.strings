@@ -277,6 +277,16 @@
 "notification.message.8" = "Soustředění NAHORU! Co takhle sklenici vody? 🧠";
 "notification.message.9" = "Počkejte! Nejdřív se napijte 🚰";
 "notification.message.10" = "Vaše tělo čeká na vodu 🌿";
+"notification.message.11" = "Hydratace zlepšuje náladu! 😊";
+"notification.message.12" = "Malé doušky, velký rozdíl po celý den 🫧";
+"notification.message.13" = "Voda je nejlepší energetický nápoj ⚡";
+"notification.message.14" = "Vaše budoucí já vám za to poděkuje 💙";
+"notification.message.15" = "Hydratační přestávka! Protáhněte se a napijte 🤸";
+"notification.message.16" = "Čas na vodu! Upravte připomenutí v Nastavení ⏰";
+"notification.message.17" = "I malý doušek se počítá 🥛";
+"notification.message.18" = "Jasná mysl začíná čistou vodou 🔮";
+"notification.message.19" = "Chcete jiné časy připomenutí? Mrkněte do Nastavení! ⚙️";
+"notification.message.20" = "O jednu sklenici blíže k cíli 🏆";
 
 // Weekdays
 "weekday.sun" = "Ne";

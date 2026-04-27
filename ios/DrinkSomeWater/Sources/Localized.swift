@@ -207,6 +207,16 @@ enum L {
         static let message8 = String(localized: "notification.message.8")
         static let message9 = String(localized: "notification.message.9")
         static let message10 = String(localized: "notification.message.10")
+        static let message11 = String(localized: "notification.message.11")
+        static let message12 = String(localized: "notification.message.12")
+        static let message13 = String(localized: "notification.message.13")
+        static let message14 = String(localized: "notification.message.14")
+        static let message15 = String(localized: "notification.message.15")
+        static let message16 = String(localized: "notification.message.16")
+        static let message17 = String(localized: "notification.message.17")
+        static let message18 = String(localized: "notification.message.18")
+        static let message19 = String(localized: "notification.message.19")
+        static let message20 = String(localized: "notification.message.20")
     }
 
     // MARK: - Contact

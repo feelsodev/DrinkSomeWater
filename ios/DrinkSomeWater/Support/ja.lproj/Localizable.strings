@@ -277,6 +277,16 @@
 "notification.message.8" = "集中力UP！水を1杯いかが？ 🧠";
 "notification.message.9" = "ちょっと待って！まず水を 🚰";
 "notification.message.10" = "あなたの体は水を待っています 🌿";
+"notification.message.11" = "水分補給で気分アップ！ 😊";
+"notification.message.12" = "少しずつでも、一日の差は大きい 🫧";
+"notification.message.13" = "水は最高のエナジードリンク ⚡";
+"notification.message.14" = "未来の自分がきっと感謝するよ 💙";
+"notification.message.15" = "水分補給タイム！伸びをしてひと口どうぞ 🤸";
+"notification.message.16" = "お水の時間！通知の設定は設定から変更できます ⏰";
+"notification.message.17" = "ひと口でも飲んだら十分 🥛";
+"notification.message.18" = "澄んだ心は、澄んだ水から始まる 🔮";
+"notification.message.19" = "通知の時間を変えたい？設定をチェック！ ⚙️";
+"notification.message.20" = "目標まであと一杯 🏆";
 
 // Weekdays
 "weekday.sun" = "日";

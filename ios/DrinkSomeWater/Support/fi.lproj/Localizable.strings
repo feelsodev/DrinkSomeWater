@@ -277,6 +277,16 @@
 "notification.message.8" = "Keskittyminen YLÖS! Mitäpä lasillinen vettä? 🧠";
 "notification.message.9" = "Hetkinen! Juo ensin vettä 🚰";
 "notification.message.10" = "Kehosi odottaa vettä 🌿";
+"notification.message.11" = "Nesteytys kohentaa mielialaasi! 😊";
+"notification.message.12" = "Pienet siemaukset, suuri ero koko päivän aikana 🫧";
+"notification.message.13" = "Vesi on paras energiajuoma ⚡";
+"notification.message.14" = "Tuleva sinä on kiitollinen tästä 💙";
+"notification.message.15" = "Nesteytystauko! Venyttele ja siemaile 🤸";
+"notification.message.16" = "Veden aika! Muuta muistutuksia Asetuksissa ⏰";
+"notification.message.17" = "Pienkin siemaus on arvokas 🥛";
+"notification.message.18" = "Kirkas mieli alkaa kirkkaasta vedestä 🔮";
+"notification.message.19" = "Haluatko eri muistutusajat? Löydät ne Asetuksista! ⚙️";
+"notification.message.20" = "Yksi lasi lähempänä tavoitettasi 🏆";
 
 // Weekdays
 "weekday.sun" = "Su";

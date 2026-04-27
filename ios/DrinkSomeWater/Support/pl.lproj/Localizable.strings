@@ -278,6 +278,16 @@
 "notification.message.8" = "Koncentracja UP! Może szklankę wody? 🧠";
 "notification.message.9" = "Czekaj! Najpierw napij się wody 🚰";
 "notification.message.10" = "Twoje ciało czeka na wodę 🌿";
+"notification.message.11" = "Nawodnienie poprawia nastrój! 😊";
+"notification.message.12" = "Małe łyki, wielka różnica przez cały dzień 🫧";
+"notification.message.13" = "Woda to najlepszy napój energetyczny ⚡";
+"notification.message.14" = "Twoje przyszłe ja będzie ci za to wdzięczne 💙";
+"notification.message.15" = "Przerwa na nawodnienie! Rozciągnij się i napij 🤸";
+"notification.message.16" = "Czas na wodę! Dostosuj przypomnienia w Ustawieniach ⏰";
+"notification.message.17" = "Nawet mały łyk się liczy 🥛";
+"notification.message.18" = "Jasny umysł zaczyna się od czystej wody 🔮";
+"notification.message.19" = "Chcesz inne godziny przypomnień? Sprawdź Ustawienia! ⚙️";
+"notification.message.20" = "O jedną szklankę bliżej celu 🏆";
 
 // Weekdays
 "weekday.sun" = "Nd";

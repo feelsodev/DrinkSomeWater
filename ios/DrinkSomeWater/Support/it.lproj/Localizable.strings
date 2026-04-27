@@ -277,6 +277,16 @@
 "notification.message.8" = "Concentrazione UP! Un bicchiere d'acqua? 🧠";
 "notification.message.9" = "Aspetta! Prima un po' d'acqua 🚰";
 "notification.message.10" = "Il tuo corpo sta aspettando acqua 🌿";
+"notification.message.11" = "L'idratazione migliora il tuo umore! 😊";
+"notification.message.12" = "Piccoli sorsi, grande differenza durante la giornata 🫧";
+"notification.message.13" = "L'acqua è la migliore bevanda energetica ⚡";
+"notification.message.14" = "Il tuo futuro sé ti ringrazierà per questo 💙";
+"notification.message.15" = "Pausa idratazione! Allunga i muscoli e bevi 🤸";
+"notification.message.16" = "È ora di bere! Modifica i promemoria nelle Impostazioni ⏰";
+"notification.message.17" = "Anche un piccolo sorso conta 🥛";
+"notification.message.18" = "Una mente lucida inizia con l'acqua giusta 🔮";
+"notification.message.19" = "Vuoi orari diversi per i promemoria? Vai nelle Impostazioni! ⚙️";
+"notification.message.20" = "Un bicchiere più vicino al tuo obiettivo 🏆";
 
 // Weekdays
 "weekday.sun" = "Dom";

@@ -277,6 +277,16 @@
 "notification.message.8" = "Concentration UP ! Un verre d'eau ? 🧠";
 "notification.message.9" = "Attendez ! D'abord un peu d'eau 🚰";
 "notification.message.10" = "Votre corps attend de l'eau 🌿";
+"notification.message.11" = "L'hydratation améliore votre humeur ! 😊";
+"notification.message.12" = "Petites gorgées, grande différence tout au long de la journée 🫧";
+"notification.message.13" = "L'eau est la meilleure boisson énergisante ⚡";
+"notification.message.14" = "Votre futur vous remerciera pour ça 💙";
+"notification.message.15" = "Pause hydratation ! Étirez-vous et buvez 🤸";
+"notification.message.16" = "L'heure de l'eau ! Ajustez vos rappels dans Réglages ⏰";
+"notification.message.17" = "Même une petite gorgée compte 🥛";
+"notification.message.18" = "Un esprit clair commence par une eau claire 🔮";
+"notification.message.19" = "Vous voulez des horaires différents ? Consultez Réglages ! ⚙️";
+"notification.message.20" = "Un verre de plus vers votre objectif 🏆";
 
 // Weekdays
 "weekday.sun" = "Dim";
