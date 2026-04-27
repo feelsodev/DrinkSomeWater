@@ -1,10 +1,10 @@
-# ARCHITECTURE.md – 벌컥벌컥 Android
+# ARCHITECTURE.md – 벌컥벌컥 (Gulp) Android
 
-> Android/Wear OS 아키텍처 상세. 전체 시스템은 루트 ARCHITECTURE.md 를 참조.
+> Android/Wear OS architecture detail. For the full system, see the root ARCHITECTURE.md.
 
 ---
 
-## 아키텍처 패턴 — MVI
+## Architecture Pattern — MVI
 
 ```
 ┌─────────────────┐
@@ -50,7 +50,7 @@ class HomeViewModel @Inject constructor(
 
 ---
 
-## 멀티 모듈 구조
+## Multi-Module Structure
 
 ```
 app ──┐
@@ -58,15 +58,15 @@ widget ├──▶ core
 wear ──┘
 ```
 
-- **core**: 도메인 모델, Repository 인터페이스, DataStore 구현체
-- **app**: UI 스크린, 서비스, DI
-- **widget**: Glance 위젯
-- **wear**: Wear OS 앱, 타일, 컴플리케이션
-- **analytics**: 독립적인 분석 추상화 레이어
+- **core**: Domain models, Repository interfaces, DataStore implementations
+- **app**: UI screens, services, DI
+- **widget**: Glance widget
+- **wear**: Wear OS app, tiles, complications
+- **analytics**: Independent analytics abstraction layer
 
 ---
 
-## 앱 진입 흐름
+## App Entry Flow
 
 ```
 DrinkSomeWaterApp (@HiltAndroidApp)
@@ -80,7 +80,7 @@ DrinkSomeWaterApp (@HiltAndroidApp)
 
 ---
 
-## 데이터 흐름
+## Data Flow
 
 ```
 User Event → Screen → ViewModel.onEvent() → Repository → DataStore
@@ -91,10 +91,10 @@ User Event → Screen → ViewModel.onEvent() → Repository → DataStore
 
 ---
 
-## 주요 의존성
+## Key Dependencies
 
-| 그룹 | 라이브러리 |
-|------|-----------|
+| Group | Libraries |
+|-------|-----------|
 | Jetpack | Compose, Navigation, Lifecycle, DataStore, WorkManager, Hilt |
 | Google | Health Connect, Play Services Wearable, AdMob |
 | Firebase | Analytics |
@@ -103,11 +103,11 @@ User Event → Screen → ViewModel.onEvent() → Repository → DataStore
 
 ---
 
-## 위젯 (Glance)
+## Widget (Glance)
 
-- Glance API 기반 위젯 렌더링
-- `GlanceAppWidget` + `GlanceAppWidgetReceiver` 조합
-- `ActionCallback`으로 사용자 인터랙션 처리
+- Widget rendering based on the Glance API
+- `GlanceAppWidget` + `GlanceAppWidgetReceiver` combination
+- User interactions handled via `ActionCallback`
 
 ---
 
@@ -115,8 +115,8 @@ User Event → Screen → ViewModel.onEvent() → Repository → DataStore
 
 - `WearMainActivity` → Navigation
 - `WaterTileService`, `WaterComplicationService`
-- `WearDataListenerService` (폰 ↔ 워치 동기화)
+- `WearDataListenerService` (phone ↔ watch sync)
 
 ---
 
-*상세 계획은 docs/ANDROID_PROJECT_PLAN.md 를 참조하세요.*
+*For the detailed plan, see docs/ANDROID_PROJECT_PLAN.md.*

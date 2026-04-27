@@ -1,6 +1,6 @@
-# 벌컥벌컥 Android
+# 벌컥벌컥 (Gulp) Android
 
-> 💧 물 섭취 기록 Android & Wear OS 앱
+> 💧 Water intake tracker for Android & Wear OS
 
 <p align="center">
   <img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.0-purple.svg">
@@ -11,49 +11,49 @@
 
 ---
 
-> ⚠️ **현재 상태: 문서 단계 (Pre-Scaffolding)**
+> ⚠️ **Current Status: Documentation Phase (Pre-Scaffolding)**
 > 
-> 이 폴더에는 현재 **문서만** 있습니다. 실제 Android 프로젝트(Gradle, 소스 코드)는 아직 생성되지 않았습니다.
+> This folder currently contains **documentation only**. The actual Android project (Gradle, source code) has not been created yet.
 > 
-> - ✅ 완료: 프로젝트 계획서, TDD 가이드, iOS-Android 매핑 문서
-> - ⏳ 다음 단계: Phase 1 - 프로젝트 스캐폴딩 (Gradle 초기화, 모듈 생성)
+> - ✅ Done: Project plan, TDD guide, iOS-Android mapping documents
+> - ⏳ Next step: Phase 1 - Project scaffolding (Gradle init, module creation)
 > 
-> 빌드 명령어(`./gradlew build`)는 Phase 1 완료 후 사용 가능합니다.
+> Build commands (`./gradlew build`) will be available after Phase 1 is complete.
 
 ---
 
-## 📱 주요 기능
+## 📱 Key Features
 
-### 💧 오늘 탭
-- 퀵버튼으로 간편하게 물 섭취량 기록
-- 물 추가/빼기 모드 전환
-- 물결 애니메이션으로 진행도 시각화
-- 목표량 퀵설정
+### 💧 Today Tab
+- Log water intake easily with quick buttons
+- Toggle between add/subtract mode
+- Wave animation to visualize progress
+- Quick-set daily goal
 
-### 📅 기록 탭
-- **캘린더 모드**: 월별 달성 현황
-- **리스트 모드**: 최신순 기록 목록
-- **타임라인 모드**: 월별 그룹화된 타임라인
+### 📅 History Tab
+- **Calendar mode**: Monthly achievement overview
+- **List mode**: Chronological log entries
+- **Timeline mode**: Monthly grouped timeline
 
-### ⚙️ 설정 탭
-- 일일 목표량 설정 (1,000ml ~ 4,500ml)
-- 퀵버튼 커스터마이징
-- 알림 설정
-- Health Connect 연동
+### ⚙️ Settings Tab
+- Set daily goal (1,000ml – 4,500ml)
+- Customize quick buttons
+- Notification settings
+- Health Connect integration
 
-### 📱 홈 화면 위젯
-- Small 위젯: 원형 진행도
-- Medium 위젯: 진행도 + 버튼 2개
-- Large 위젯: 진행도 + 버튼 3개
+### 📱 Home Screen Widget
+- Small widget: Circular progress
+- Medium widget: Progress + 2 buttons
+- Large widget: Progress + 3 buttons
 
-### ⌚ Wear OS 앱
-- 손목에서 바로 물 기록
-- 퀵 추가 버튼 (150/250/300/500ml)
-- 타일 & 컴플리케이션
+### ⌚ Wear OS App
+- Log water directly from your wrist
+- Quick-add buttons (150/250/300/500ml)
+- Tiles & complications
 
 ---
 
-## 🛠 기술 스택
+## 🛠 Tech Stack
 
 | Category | Technology |
 |----------|------------|
@@ -72,24 +72,24 @@
 
 ---
 
-## 📁 프로젝트 구조
+## 📁 Project Structure
 
 ```
 android/
-├── core/             # 🆕 공유 모듈 (domain/data/util)
-├── app/              # 메인 앱 모듈 (Phone UI)
-├── widget/           # Glance 위젯 모듈
-├── wear/             # Wear OS 모듈
-├── analytics/        # Analytics 모듈
-├── docs/             # 문서
-├── gradle/           # Gradle 설정
+├── core/             # 🆕 Shared module (domain/data/util)
+├── app/              # Main app module (Phone UI)
+├── widget/           # Glance widget module
+├── wear/             # Wear OS module
+├── analytics/        # Analytics module
+├── docs/             # Documentation
+├── gradle/           # Gradle configuration
 └── build.gradle.kts  # Root build script
 ```
 
-### 모듈 의존성
+### Module Dependencies
 
-- `app`, `widget`, `wear` → `:core` (모델, Repository, DataStore 공유)
-- `analytics` → 독립 모듈 (어디서든 사용 가능)
+- `app`, `widget`, `wear` → `:core` (shared models, Repository, DataStore)
+- `analytics` → independent module (usable anywhere)
 
 ```
 app ──┐
@@ -97,103 +97,103 @@ widget ├──▶ core
 wear ──┘
 ```
 
-> 📖 자세한 구조는 [프로젝트 계획서](./docs/ANDROID_PROJECT_PLAN.md)를 참고하세요.
+> 📖 For detailed structure, see the [Project Plan](./docs/ANDROID_PROJECT_PLAN.md).
 
 ---
 
-## 🚀 빌드 방법
+## 🚀 Build Instructions
 
-### 요구사항
+### Requirements
 
-- Android Studio Ladybug (2024.2.1) 이상
+- Android Studio Ladybug (2024.2.1) or later
 - JDK 17
 - Android SDK 29+ (minSdk)
 - Android SDK 35 (targetSdk)
 
-### 빌드
+### Build
 
 ```bash
-# 프로젝트 루트로 이동
+# Navigate to project root
 cd DrinkSomeWater/android
 
-# 빌드
+# Build
 ./gradlew build
 
-# 테스트
+# Test
 ./gradlew test
 
-# 앱 설치 (디바이스 연결 필요)
+# Install app (device required)
 ./gradlew :app:installDebug
 
-# Wear OS 앱 설치
+# Install Wear OS app
 ./gradlew :wear:installDebug
 ```
 
-### 위젯 테스트
+### Widget Testing
 
 ```bash
-# 위젯 모듈 빌드
+# Build widget module
 ./gradlew :widget:build
 
-# 앱 설치 후 홈 화면에서 위젯 추가
+# After installing the app, add the widget from the home screen
 ```
 
 ---
 
-## 🧪 테스트
+## 🧪 Testing
 
-### TDD 개발 방식
+### TDD Development Approach
 
-이 프로젝트는 TDD(Test-Driven Development) 방식으로 개발됩니다.
+This project is developed using TDD (Test-Driven Development).
 
 ```
-1. Red   - 실패하는 테스트 먼저 작성
-2. Green - 테스트 통과하는 최소 코드 작성
-3. Refactor - 코드 개선 (테스트 유지)
+1. Red   - Write a failing test first
+2. Green - Write minimal code to pass the test
+3. Refactor - Improve the code (keep tests passing)
 ```
 
-### 테스트 실행
+### Running Tests
 
 ```bash
-# 전체 테스트
+# All tests
 ./gradlew test
 
-# 모듈별 테스트
+# Per-module tests
 ./gradlew :app:test
 ./gradlew :widget:test
 ./gradlew :wear:test
 
-# 특정 테스트 클래스
+# Specific test class
 ./gradlew :app:test --tests "*.HomeViewModelTest"
 
-# 커버리지 리포트
+# Coverage report
 ./gradlew koverHtmlReport
 ```
 
-### 테스트 도구
+### Test Tools
 
-- **JUnit 5**: 단위 테스트
-- **Turbine**: Flow 테스트
-- **MockK**: 모킹
-- **Compose Testing**: UI 테스트
+- **JUnit 5**: Unit testing
+- **Turbine**: Flow testing
+- **MockK**: Mocking
+- **Compose Testing**: UI testing
 
-자세한 내용은 [TDD 가이드](./docs/ANDROID_TDD_GUIDE.md)를 참고하세요.
-
----
-
-## 📖 문서
-
-| 문서 | 설명 |
-|------|------|
-| [프로젝트 계획서](./docs/ANDROID_PROJECT_PLAN.md) | 전체 개발 계획 및 체크리스트 |
-| [TDD 가이드](./docs/ANDROID_TDD_GUIDE.md) | 테스트 작성 가이드 및 명세 |
-| [iOS-Android 매핑](./docs/IOS_ANDROID_MAPPING.md) | iOS 코드 참조 매핑 테이블 |
+For more details, see the [TDD Guide](./docs/ANDROID_TDD_GUIDE.md).
 
 ---
 
-## 🏗 아키텍처
+## 📖 Documentation
 
-### MVI 패턴
+| Document | Description |
+|----------|-------------|
+| [Project Plan](./docs/ANDROID_PROJECT_PLAN.md) | Full development plan and checklist |
+| [TDD Guide](./docs/ANDROID_TDD_GUIDE.md) | Test writing guide and specifications |
+| [iOS-Android Mapping](./docs/IOS_ANDROID_MAPPING.md) | iOS code reference mapping table |
+
+---
+
+## 🏗 Architecture
+
+### MVI Pattern
 
 ```
 ┌─────────────────┐
@@ -221,7 +221,7 @@ cd DrinkSomeWater/android
 └─────────────────┘
 ```
 
-### 예시 코드
+### Example Code
 
 **ViewModel:**
 ```kotlin
@@ -274,9 +274,9 @@ fun HomeScreen(
 
 ---
 
-## 📱 스크린샷
+## 📱 Screenshots
 
-> TODO: 개발 완료 후 추가
+> TODO: Add after development is complete
 
 ---
 
@@ -286,8 +286,8 @@ MIT License - [LICENSE](../LICENSE)
 
 ---
 
-## 🔗 관련 링크
+## 🔗 Related Links
 
-- [iOS 프로젝트 문서](../ios/docs/IOS_PROJECT_DOCUMENTATION.md)
-- [iOS 기술 명세](../ios/docs/TECH_SPEC.md)
+- [iOS Project Documentation](../ios/docs/IOS_PROJECT_DOCUMENTATION.md)
+- [iOS Tech Spec](../ios/docs/TECH_SPEC.md)
 - [App Store (iOS)](https://apps.apple.com/kr/app/%EB%B2%8C%EC%BB%A5%EB%B2%8C%EC%BB%A5/id1563673158)

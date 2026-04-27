@@ -1,82 +1,82 @@
-# AGENTS.md – 벌컥벌컥 Android
+# AGENTS.md – 벌컥벌컥 (Gulp) Android
 
-> Android/Wear OS 플랫폼 에이전트 진입점(ToC/맵).
+> Android/Wear OS platform agent entry point (ToC/map).
 
 ---
 
-## 빠른 참조
+## Quick Reference
 
-| 항목 | 내용 |
-|------|------|
-| 앱 이름 | 벌컥벌컥 (Gulp) |
-| 언어 | Kotlin 2.0 |
+| Item | Details |
+|------|---------|
+| App Name | 벌컥벌컥 (Gulp) |
+| Language | Kotlin 2.0 |
 | UI | Jetpack Compose |
-| 아키텍처 | MVI (ViewModel + StateFlow) |
+| Architecture | MVI (ViewModel + StateFlow) |
 | DI | Hilt |
-| 비동기 | Coroutines + Flow |
-| 저장소 | DataStore Preferences |
-| 빌드 | Gradle KTS + Version Catalog |
-| 최소 지원 | Android 10+ (API 29), Wear OS 3+ |
-| 주요 퍼미션 | Health Connect, Notifications |
+| Async | Coroutines + Flow |
+| Storage | DataStore Preferences |
+| Build | Gradle KTS + Version Catalog |
+| Min Support | Android 10+ (API 29), Wear OS 3+ |
+| Key Permissions | Health Connect, Notifications |
 
 ---
 
-## 디렉터리 맵
+## Directory Map
 
 ```
 android/
-├── app/                    # 메인 폰 앱
+├── app/                    # Main phone app
 │   └── src/main/java/.../
 │       ├── ui/             # Home, History, Settings, Onboarding
 │       ├── service/        # Notifications, Ads, Health
-│       └── di/             # Hilt 모듈
-├── core/                   # 공유 domain/data
+│       └── di/             # Hilt modules
+├── core/                   # Shared domain/data
 │   └── src/main/java/.../
-│       ├── domain/         # 모델, Repository 인터페이스
-│       └── data/           # DataStore, Repository 구현
-├── widget/                 # Glance 위젯
+│       ├── domain/         # Models, Repository interfaces
+│       └── data/           # DataStore, Repository implementations
+├── widget/                 # Glance widget
 │   └── src/main/java/.../
-│       ├── ui/             # 위젯 렌더링
-│       ├── data/           # 위젯 데이터
-│       └── action/         # 위젯 액션
-├── wear/                   # Wear OS 앱
+│       ├── ui/             # Widget rendering
+│       ├── data/           # Widget data
+│       └── action/         # Widget actions
+├── wear/                   # Wear OS app
 │   └── src/main/java/.../
 │       ├── ui/             # Wear UI
-│       ├── tile/           # 타일 서비스
-│       ├── complication/   # 컴플리케이션
-│       ├── sync/           # 데이터 동기화
-│       └── di/             # Hilt 모듈
-├── analytics/              # 분석 모듈
-├── docs/                   # Android 전용 문서
-├── gradle/libs.versions.toml # 버전 카탈로그
-└── settings.gradle.kts     # 모듈 설정
+│       ├── tile/           # Tile service
+│       ├── complication/   # Complications
+│       ├── sync/           # Data sync
+│       └── di/             # Hilt modules
+├── analytics/              # Analytics module
+├── docs/                   # Android-specific docs
+├── gradle/libs.versions.toml # Version catalog
+└── settings.gradle.kts     # Module settings
 ```
 
 ---
 
-## 주요 문서
+## Key Documents
 
-| 문서 | 경로 | 설명 |
-|------|------|------|
-| Android 아키텍처 상세 | `android/ARCHITECTURE.md` | Android 아키텍처 상세 |
-| Android 품질 루브릭 | `android/QUALITY_SCORE.md` | Android 품질 루브릭 |
-| Android 보안 규칙 | `android/SECURITY.md` | Android 보안 규칙 |
-| Android 개요 및 빌드 | `android/README.md` | Android 개요 및 빌드 |
-| 프로젝트 계획서 | `android/docs/ANDROID_PROJECT_PLAN.md` | 프로젝트 계획서 |
-| TDD 가이드 | `android/docs/ANDROID_TDD_GUIDE.md` | TDD 가이드 |
-| iOS-Android 매핑 | `android/docs/IOS_ANDROID_MAPPING.md` | iOS-Android 매핑 |
-| 스토어 등록 정보 | `android/docs/PLAY_STORE_LISTING.md` | 스토어 등록 정보 |
-| 릴리즈 가이드 | `android/docs/RELEASE_GUIDE.md` | 릴리즈 가이드 |
-
----
-
-## 컨벤션 요약
-
-- **빌드**: `./gradlew build`
-- **테스트**: `./gradlew test`
-- **앱 설치**: `./gradlew :app:installDebug`
-- **모듈 의존성**: `app`, `widget`, `wear` → `:core`
+| Document | Path | Description |
+|----------|------|-------------|
+| Android Architecture Detail | `android/ARCHITECTURE.md` | Android architecture detail |
+| Android Quality Rubric | `android/QUALITY_SCORE.md` | Android quality rubric |
+| Android Security Rules | `android/SECURITY.md` | Android security rules |
+| Android Overview & Build | `android/README.md` | Android overview and build |
+| Project Plan | `android/docs/ANDROID_PROJECT_PLAN.md` | Project plan |
+| TDD Guide | `android/docs/ANDROID_TDD_GUIDE.md` | TDD guide |
+| iOS-Android Mapping | `android/docs/IOS_ANDROID_MAPPING.md` | iOS-Android mapping |
+| Store Listing | `android/docs/PLAY_STORE_LISTING.md` | Store listing |
+| Release Guide | `android/docs/RELEASE_GUIDE.md` | Release guide |
 
 ---
 
-*상세 설계는 docs/ 하위 문서를 확인하세요.*
+## Convention Summary
+
+- **Build**: `./gradlew build`
+- **Test**: `./gradlew test`
+- **Install App**: `./gradlew :app:installDebug`
+- **Module Dependencies**: `app`, `widget`, `wear` → `:core`
+
+---
+
+*For detailed design, see the docs/ subdirectory documents.*
