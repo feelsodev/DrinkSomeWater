@@ -1,71 +1,71 @@
 # App Store Connect Setup Guide - Premium Subscriptions
 
-> 벌컥벌컥 (Gulp) 앱의 프리미엄 구독 기능을 App Store Connect에 설정하는 가이드
+> A guide for setting up premium subscription products in App Store Connect for the 벌컥벌컥 (Gulp) app
 
 ## Overview
 
-이 가이드는 벌컥벌컥 앱에 다음 3가지 프리미엄 상품을 App Store Connect에 설정하는 방법을 다룹니다:
+This guide covers how to set up the following 3 premium products in App Store Connect for the 벌컥벌컥 app:
 
-- **월간 구독** (₩2,900/월, 7일 무료 체험)
-- **연간 구독** (₩19,000/년, 7일 무료 체험)
-- **평생 이용권** (₩49,000, 일회성 구매)
+- **Monthly Subscription** (₩2,900/month, 7-day free trial)
+- **Annual Subscription** (₩19,000/year, 7-day free trial)
+- **Lifetime Access** (₩49,000, one-time purchase)
 
 ## Prerequisites
 
-### 1. App Store Connect 접근 권한
-- Apple Developer Program 멤버십 활성화
-- App Store Connect에서 "Admin" 또는 "App Manager" 역할
+### 1. App Store Connect Access
+- Active Apple Developer Program membership
+- "Admin" or "App Manager" role in App Store Connect
 
-### 2. 필수 계약 동의
-1. App Store Connect → **Agreements, Tax, and Banking** 이동
-2. **Paid Applications Agreement** 동의 (아직 안 했다면)
-3. 세금 정보 입력 완료
-4. 은행 계좌 정보 입력 완료
+### 2. Required Agreements
+1. Go to App Store Connect → **Agreements, Tax, and Banking**
+2. Accept the **Paid Applications Agreement** (if not already done)
+3. Complete tax information
+4. Complete bank account information
 
-⚠️ **중요**: 구독 상품을 생성하려면 위 계약이 모두 완료되어야 합니다.
+⚠️ **Important**: All agreements above must be completed before you can create subscription products.
 
-### 3. 앱 정보
+### 3. App Information
 - **App Name**: 벌컥벌컥 (Gulp)
 - **Bundle ID**: `com.onceagain.drinksomewater`
 - **Platform**: iOS 18+
-- **Status**: 이미 App Store에 출시된 앱 (업데이트)
+- **Status**: App already published on the App Store (update)
 
 ---
 
-## Step 1: Subscription Group 생성
+## Step 1: Create a Subscription Group
 
-### 1.1 Subscription Group 만들기
+### 1.1 Create the Subscription Group
 
-1. App Store Connect → **My Apps** → **벌컥벌컥** 선택
-2. 왼쪽 메뉴에서 **Subscriptions** 클릭
-3. **Create Subscription Group** 버튼 클릭
-4. 다음 정보 입력:
+1. App Store Connect → **My Apps** → select **벌컥벌컥**
+2. Click **Subscriptions** in the left menu
+3. Click **Create Subscription Group**
+4. Enter the following:
    - **Reference Name**: `premium`
-   - **App Name**: `벌컥벌컥` (자동 입력됨)
+   - **App Name**: `벌컥벌컥` (auto-filled)
 
-### 1.2 Subscription Group 로컬라이제이션
+### 1.2 Subscription Group Localization
 
 **Korean (ko)**:
 - **Subscription Group Display Name**: `프리미엄 구독`
-- **Custom App Name** (선택): 비워두기
+- **Custom App Name** (optional): leave blank
 - **Description**: `프리미엄 구독으로 광고 없이 모든 기능을 이용하세요`
 
 **English (en_US)**:
 - **Subscription Group Display Name**: `Premium Subscription`
-- **Custom App Name** (선택): 비워두기
+- **Custom App Name** (optional): leave blank
 - **Description**: `Access all premium features without ads`
 
-5. **Save** 클릭
+5. Click **Save**
 
 ---
 
-## Step 2: 월간 구독 상품 생성
+## Step 2: Create the Monthly Subscription Product
 
-### 2.1 기본 정보
+### 2.1 Basic Information
 
-1. 방금 생성한 `premium` Subscription Group 선택
-2. **Create Subscription** 버튼 클릭
-3. 다음 정보 입력:
+1. Select the `premium` Subscription Group you just created
+2. Click **Create Subscription**
+3. Enter the following:
 
 | Field | Value |
 |-------|-------|
@@ -73,26 +73,26 @@
 | **Product ID** | `com.onceagain.drinksomewater.premium.monthly` |
 | **Subscription Duration** | `1 Month` |
 
-⚠️ **중요**: Product ID는 정확히 입력해야 합니다. 코드에서 이 ID를 사용합니다.
+⚠️ **Important**: The Product ID must be entered exactly. This ID is used in the code.
 
 ### 2.2 Subscription Pricing
 
-1. **Subscription Prices** 섹션에서 **Add Subscription Price** 클릭
-2. 다음 정보 입력:
-   - **Price**: `₩2,900` (또는 Tier 선택)
-   - **Start Date**: 즉시 시작
-   - **End Date**: 없음 (계속 유지)
+1. In the **Subscription Prices** section, click **Add Subscription Price**
+2. Enter the following:
+   - **Price**: `₩2,900` (or select the appropriate tier)
+   - **Start Date**: immediate
+   - **End Date**: none (ongoing)
 
-### 2.3 Free Trial (7일 무료 체험)
+### 2.3 Free Trial (7-day free trial)
 
-1. **Introductory Offers** 섹션에서 **Create Introductory Offer** 클릭
-2. 다음 정보 입력:
+1. In the **Introductory Offers** section, click **Create Introductory Offer**
+2. Enter the following:
    - **Offer Type**: `Free Trial`
    - **Duration**: `7 Days`
    - **Eligibility**: `New Subscribers`
-   - **Start Date**: 즉시 시작
+   - **Start Date**: immediate
 
-### 2.4 로컬라이제이션
+### 2.4 Localization
 
 **Korean (ko)**:
 - **Subscription Display Name**: `월간 구독`
@@ -104,19 +104,19 @@
 
 ### 2.5 App Store Information
 
-- **App Store Promotion** (선택): 활성화하면 App Store에서 구독 프로모션 가능
-- **Promotional Image** (선택): 1600x1200px 이미지 업로드
+- **App Store Promotion** (optional): enable to allow subscription promotion on the App Store
+- **Promotional Image** (optional): upload a 1600x1200px image
 
-3. **Save** 클릭
+3. Click **Save**
 
 ---
 
-## Step 3: 연간 구독 상품 생성
+## Step 3: Create the Annual Subscription Product
 
-### 3.1 기본 정보
+### 3.1 Basic Information
 
-1. `premium` Subscription Group에서 **Create Subscription** 클릭
-2. 다음 정보 입력:
+1. Click **Create Subscription** in the `premium` Subscription Group
+2. Enter the following:
 
 | Field | Value |
 |-------|-------|
@@ -126,24 +126,24 @@
 
 ### 3.2 Subscription Pricing
 
-1. **Subscription Prices** 섹션에서 **Add Subscription Price** 클릭
-2. 다음 정보 입력:
+1. In the **Subscription Prices** section, click **Add Subscription Price**
+2. Enter the following:
    - **Price**: `₩19,000`
-   - **Start Date**: 즉시 시작
-   - **End Date**: 없음
+   - **Start Date**: immediate
+   - **End Date**: none
 
-💡 **Tip**: 연간 구독은 월간 대비 45% 할인 (₩34,800 → ₩19,000)
+💡 **Tip**: The annual subscription is 45% cheaper than monthly (₩34,800 → ₩19,000)
 
-### 3.3 Free Trial (7일 무료 체험)
+### 3.3 Free Trial (7-day free trial)
 
-1. **Introductory Offers** 섹션에서 **Create Introductory Offer** 클릭
-2. 다음 정보 입력:
+1. In the **Introductory Offers** section, click **Create Introductory Offer**
+2. Enter the following:
    - **Offer Type**: `Free Trial`
    - **Duration**: `7 Days`
    - **Eligibility**: `New Subscribers`
-   - **Start Date**: 즉시 시작
+   - **Start Date**: immediate
 
-### 3.4 로컬라이제이션
+### 3.4 Localization
 
 **Korean (ko)**:
 - **Subscription Display Name**: `연간 구독`
@@ -153,36 +153,36 @@
 - **Subscription Display Name**: `Yearly`
 - **Description**: `Yearly Premium Subscription (7-day free trial, 45% off)`
 
-3. **Save** 클릭
+3. Click **Save**
 
 ---
 
-## Step 4: 평생 이용권 (Non-Consumable) 생성
+## Step 4: Create the Lifetime Access (Non-Consumable) Product
 
-### 4.1 In-App Purchases 섹션으로 이동
+### 4.1 Navigate to In-App Purchases
 
-1. App Store Connect → **My Apps** → **벌컥벌컥** 선택
-2. 왼쪽 메뉴에서 **In-App Purchases** 클릭
-3. **Create** 버튼 클릭
-4. **Non-Consumable** 선택
+1. App Store Connect → **My Apps** → select **벌컥벌컥**
+2. Click **In-App Purchases** in the left menu
+3. Click **Create**
+4. Select **Non-Consumable**
 
-### 4.2 기본 정보
+### 4.2 Basic Information
 
 | Field | Value |
 |-------|-------|
 | **Reference Name** | `Premium Lifetime` |
 | **Product ID** | `com.onceagain.drinksomewater.premium.lifetime` |
 
-⚠️ **중요**: Product ID는 정확히 입력해야 합니다.
+⚠️ **Important**: The Product ID must be entered exactly.
 
 ### 4.3 Pricing
 
-1. **Price** 섹션에서 **Add Pricing** 클릭
-2. 다음 정보 입력:
+1. In the **Price** section, click **Add Pricing**
+2. Enter the following:
    - **Price**: `₩49,000`
-   - **Availability**: 모든 지역
+   - **Availability**: all regions
 
-### 4.4 로컬라이제이션
+### 4.4 Localization
 
 **Korean (ko)**:
 - **Display Name**: `평생 이용권`
@@ -194,204 +194,204 @@
 
 ### 4.5 Family Sharing
 
-- **Family Sharing**: ✅ **Enabled** (가족 공유 허용)
+- **Family Sharing**: ✅ **Enabled** (allow family sharing)
 
-💡 **Tip**: Non-Consumable 상품은 가족 공유를 활성화하는 것이 좋습니다.
+💡 **Tip**: It's recommended to enable Family Sharing for Non-Consumable products.
 
 ### 4.6 Review Information
 
-- **Screenshot**: 평생 이용권 구매 화면 스크린샷 업로드
-- **Review Notes**: "평생 프리미엄 이용권으로 광고가 제거됩니다"
+- **Screenshot**: upload a screenshot of the lifetime access purchase screen
+- **Review Notes**: "Lifetime premium access removes all ads"
 
-3. **Save** 클릭
+3. Click **Save**
 
 ---
 
-## Step 5: 상품 심사 제출
+## Step 5: Submit Products for Review
 
-### 5.1 상품 상태 확인
+### 5.1 Check Product Status
 
-모든 상품이 다음 상태여야 합니다:
-- ✅ **Ready to Submit** 또는 **Waiting for Review**
+All products must be in one of these states:
+- ✅ **Ready to Submit** or **Waiting for Review**
 
-### 5.2 앱 버전에 상품 연결
+### 5.2 Link Products to the App Version
 
-1. **App Store** → **iOS App** → 최신 버전 선택
-2. **In-App Purchases and Subscriptions** 섹션에서 **Add** 클릭
-3. 생성한 3개 상품 모두 선택:
+1. **App Store** → **iOS App** → select the latest version
+2. In the **In-App Purchases and Subscriptions** section, click **Add**
+3. Select all 3 products:
    - Premium Monthly
    - Premium Yearly
    - Premium Lifetime
-4. **Done** 클릭
+4. Click **Done**
 
-### 5.3 앱 버전 제출
+### 5.3 Submit the App Version
 
-1. 앱 버전의 모든 필수 정보 입력 완료
-2. **Submit for Review** 클릭
+1. Complete all required fields for the app version
+2. Click **Submit for Review**
 
-⚠️ **중요**: 상품은 앱 버전과 함께 심사됩니다. 앱이 승인되면 상품도 함께 승인됩니다.
+⚠️ **Important**: Products are reviewed alongside the app version. When the app is approved, the products are approved too.
 
 ---
 
-## Step 6: Testing (테스트)
+## Step 6: Testing
 
-### 6.1 Sandbox Testing (로컬 테스트)
+### 6.1 Sandbox Testing (Local Testing)
 
 #### Xcode StoreKit Configuration File
-- 이미 `ios/DrinkSomeWater/DrinkSomeWater.storekit` 파일이 생성되어 있습니다
-- Xcode Scheme에 연결되어 있어 시뮬레이터에서 바로 테스트 가능
+- The `ios/DrinkSomeWater/DrinkSomeWater.storekit` file is already created
+- It's linked to the Xcode Scheme, so you can test directly in the simulator
 
-#### 테스트 방법
-1. Xcode에서 앱 실행 (시뮬레이터 또는 실제 기기)
-2. 설정 화면 → "프리미엄 업그레이드" 탭
-3. 구독 상품 선택 → 구매 진행
-4. StoreKit 테스트 다이얼로그에서 "Subscribe" 클릭
-5. 프리미엄 상태 확인 (광고 제거 확인)
+#### How to Test
+1. Run the app in Xcode (simulator or real device)
+2. Settings screen → "Premium Upgrade" tab
+3. Select a subscription product → proceed with purchase
+4. Click "Subscribe" in the StoreKit test dialog
+5. Verify premium status (confirm ads are removed)
 
-#### 구매 복원 테스트
-1. 앱 삭제 후 재설치
-2. 설정 화면 → "구매 복원" 버튼 탭
-3. 프리미엄 상태 복원 확인
+#### Purchase Restore Testing
+1. Delete and reinstall the app
+2. Settings screen → tap "Restore Purchases"
+3. Confirm premium status is restored
 
-### 6.2 Sandbox Account Testing (실제 서버 테스트)
+### 6.2 Sandbox Account Testing (Live Server Testing)
 
-#### Sandbox Account 생성
+#### Create a Sandbox Account
 1. App Store Connect → **Users and Access** → **Sandbox Testers**
-2. **Add Tester** 클릭
-3. 테스트용 Apple ID 생성 (예: `test@example.com`)
+2. Click **Add Tester**
+3. Create a test Apple ID (e.g., `test@example.com`)
 
-#### 테스트 방법
-1. 실제 기기에서 **Settings** → **App Store** → **Sandbox Account** 로그인
-2. 앱 실행 후 구독 구매 진행
-3. Sandbox 계정으로 구매 (실제 결제 안 됨)
-4. 구독 상태 확인
+#### How to Test
+1. On a real device: **Settings** → **App Store** → sign in with **Sandbox Account**
+2. Open the app and proceed with a subscription purchase
+3. Purchase with the Sandbox account (no real charge)
+4. Verify subscription status
 
-💡 **Tip**: Sandbox 환경에서는 구독 기간이 가속됩니다:
-- 1개월 구독 → 5분
-- 1년 구독 → 1시간
-- 7일 무료 체험 → 3분
+💡 **Tip**: Subscription periods are accelerated in the Sandbox environment:
+- 1-month subscription → 5 minutes
+- 1-year subscription → 1 hour
+- 7-day free trial → 3 minutes
 
 ### 6.3 TestFlight Testing
 
-#### TestFlight 빌드 업로드
-1. Xcode에서 **Product** → **Archive**
+#### Upload a TestFlight Build
+1. In Xcode: **Product** → **Archive**
 2. **Distribute App** → **App Store Connect**
-3. TestFlight에 빌드 업로드
+3. Upload the build to TestFlight
 
-#### 테스터 초대
-1. App Store Connect → **TestFlight** → **Internal Testing** 또는 **External Testing**
-2. 테스터 이메일 추가
-3. 테스터가 TestFlight 앱에서 앱 설치
+#### Invite Testers
+1. App Store Connect → **TestFlight** → **Internal Testing** or **External Testing**
+2. Add tester email addresses
+3. Testers install the app from the TestFlight app
 
-#### 테스트 방법
-- TestFlight 빌드는 **실제 App Store Connect 상품**을 사용합니다
-- Sandbox 계정으로 로그인하여 테스트
-- 구매, 복원, 구독 갱신 모두 테스트
+#### How to Test
+- TestFlight builds use **actual App Store Connect products**
+- Sign in with a Sandbox account to test
+- Test purchases, restores, and subscription renewals
 
 ---
 
 ## Step 7: Production Submission Checklist
 
-### 7.1 상품 설정 확인
+### 7.1 Product Configuration
 
-- [ ] 3개 상품 모두 생성 완료 (월간, 연간, 평생)
-- [ ] Product ID가 코드와 정확히 일치
-- [ ] 가격 설정 완료 (₩2,900, ₩19,000, ₩49,000)
-- [ ] 무료 체험 설정 완료 (월간/연간 7일)
-- [ ] 로컬라이제이션 완료 (Korean + English)
-- [ ] Family Sharing 설정 (평생 이용권만 활성화)
+- [ ] All 3 products created (monthly, annual, lifetime)
+- [ ] Product IDs match the code exactly
+- [ ] Pricing configured (₩2,900, ₩19,000, ₩49,000)
+- [ ] Free trial configured (7 days for monthly/annual)
+- [ ] Localization complete (Korean + English)
+- [ ] Family Sharing configured (enabled for lifetime only)
 
-### 7.2 앱 코드 확인
+### 7.2 App Code
 
-- [ ] StoreKit 2 구현 완료
-- [ ] Product ID가 코드에 정확히 입력됨
-- [ ] 구매 플로우 테스트 완료
-- [ ] 구매 복원 기능 테스트 완료
-- [ ] 프리미엄 상태 지속성 확인 (앱 재시작 시)
-- [ ] 광고 제거 로직 동작 확인
+- [ ] StoreKit 2 implementation complete
+- [ ] Product IDs entered correctly in code
+- [ ] Purchase flow tested
+- [ ] Purchase restore tested
+- [ ] Premium status persistence confirmed (on app restart)
+- [ ] Ad removal logic confirmed working
 
-### 7.3 테스트 완료
+### 7.3 Testing Complete
 
-- [ ] Xcode StoreKit Configuration File 테스트 완료
-- [ ] Sandbox Account 테스트 완료
-- [ ] TestFlight 테스트 완료
-- [ ] 구독 갱신 테스트 완료
-- [ ] 구독 취소 테스트 완료
+- [ ] Xcode StoreKit Configuration File testing done
+- [ ] Sandbox Account testing done
+- [ ] TestFlight testing done
+- [ ] Subscription renewal testing done
+- [ ] Subscription cancellation testing done
 
-### 7.4 App Store 제출
+### 7.4 App Store Submission
 
-- [ ] 앱 버전에 상품 연결 완료
-- [ ] 스크린샷 업데이트 (프리미엄 기능 포함)
-- [ ] 앱 설명 업데이트 (구독 정보 포함)
-- [ ] Privacy Policy 업데이트 (구독 정보 포함)
-- [ ] Review Notes 작성 (심사자용 테스트 계정 제공)
+- [ ] Products linked to app version
+- [ ] Screenshots updated (including premium features)
+- [ ] App description updated (including subscription info)
+- [ ] Privacy Policy updated (including subscription info)
+- [ ] Review Notes written (provide test account for reviewers)
 
-### 7.5 심사 후
+### 7.5 After Review
 
-- [ ] 앱 승인 확인
-- [ ] 상품 승인 확인 (App Store Connect에서 "Ready for Sale" 상태)
-- [ ] 실제 구매 테스트 (실제 Apple ID로)
-- [ ] Analytics 이벤트 확인 (Firebase)
+- [ ] App approval confirmed
+- [ ] Product approval confirmed ("Ready for Sale" status in App Store Connect)
+- [ ] Real purchase tested (with a real Apple ID)
+- [ ] Analytics events confirmed (Firebase)
 
 ---
 
 ## Troubleshooting
 
-### 문제 1: "Subscription Group을 생성할 수 없습니다"
+### Issue 1: "Cannot create Subscription Group"
 
-**원인**: Paid Applications Agreement가 완료되지 않음
+**Cause**: Paid Applications Agreement not completed
 
-**해결**:
+**Fix**:
 1. App Store Connect → **Agreements, Tax, and Banking**
-2. Paid Applications Agreement 동의
-3. 세금 정보 및 은행 계좌 정보 입력
+2. Accept the Paid Applications Agreement
+3. Enter tax information and bank account details
 
-### 문제 2: "Product ID가 이미 사용 중입니다"
+### Issue 2: "Product ID is already in use"
 
-**원인**: 다른 앱에서 동일한 Product ID 사용 중
+**Cause**: Another app is using the same Product ID
 
-**해결**:
-- Product ID는 Bundle ID를 prefix로 사용해야 합니다
-- 예: `com.onceagain.drinksomewater.premium.monthly`
-- 다른 앱의 Bundle ID와 겹치지 않도록 확인
+**Fix**:
+- Product IDs must use the Bundle ID as a prefix
+- Example: `com.onceagain.drinksomewater.premium.monthly`
+- Make sure it doesn't overlap with another app's Bundle ID
 
-### 문제 3: "상품을 로드할 수 없습니다" (코드에서)
+### Issue 3: "Cannot load products" (in code)
 
-**원인**: Product ID 불일치 또는 상품이 아직 승인되지 않음
+**Cause**: Product ID mismatch or product not yet approved
 
-**해결**:
-1. App Store Connect에서 Product ID 확인
-2. 코드의 Product ID와 정확히 일치하는지 확인
-3. 상품 상태가 "Ready for Sale" 또는 "Waiting for Review"인지 확인
-4. Sandbox 계정으로 로그인했는지 확인
+**Fix**:
+1. Verify the Product ID in App Store Connect
+2. Confirm it matches the Product ID in code exactly
+3. Confirm the product status is "Ready for Sale" or "Waiting for Review"
+4. Confirm you're signed in with a Sandbox account
 
-### 문제 4: "구매가 완료되지 않습니다"
+### Issue 4: "Purchase does not complete"
 
-**원인**: Transaction 검증 실패 또는 네트워크 문제
+**Cause**: Transaction validation failure or network issue
 
-**해결**:
-1. 네트워크 연결 확인
-2. Sandbox 계정 로그인 확인
-3. Xcode Console에서 에러 로그 확인
-4. `Transaction.updates` 리스너가 동작하는지 확인
+**Fix**:
+1. Check network connection
+2. Confirm Sandbox account is signed in
+3. Check error logs in the Xcode Console
+4. Confirm the `Transaction.updates` listener is running
 
-### 문제 5: "구독 갱신이 안 됩니다"
+### Issue 5: "Subscription does not renew"
 
-**원인**: Sandbox 환경에서는 구독이 자동으로 갱신되지만 제한이 있음
+**Cause**: The Sandbox environment auto-renews subscriptions but with limits
 
-**해결**:
-- Sandbox에서는 최대 6회까지만 자동 갱신됨
-- 실제 프로덕션에서는 무제한 갱신
-- TestFlight에서 실제 갱신 동작 테스트
+**Fix**:
+- Sandbox auto-renews up to 6 times maximum
+- In production, renewals are unlimited
+- Test actual renewal behavior in TestFlight
 
-### 문제 6: "Family Sharing이 동작하지 않습니다"
+### Issue 6: "Family Sharing doesn't work"
 
-**원인**: Non-Consumable 상품만 Family Sharing 지원
+**Cause**: Only Non-Consumable products support Family Sharing
 
-**해결**:
-- 구독 상품 (월간/연간)은 Family Sharing 불가
-- 평생 이용권만 Family Sharing 활성화
-- App Store Connect에서 설정 확인
+**Fix**:
+- Subscription products (monthly/annual) don't support Family Sharing
+- Only the lifetime access product has Family Sharing enabled
+- Confirm the setting in App Store Connect
 
 ---
 
@@ -424,23 +424,23 @@
 ### After Approval
 
 1. **Monitor Analytics**
-   - Firebase Analytics에서 구매 이벤트 확인
-   - 전환율 모니터링 (페이월 표시 → 구매)
-   - 구독 갱신율 확인
+   - Check purchase events in Firebase Analytics
+   - Monitor conversion rates (paywall shown → purchase)
+   - Track subscription renewal rates
 
 2. **Optimize Pricing**
-   - A/B 테스트 고려 (가격, 무료 체험 기간)
-   - 지역별 가격 최적화
+   - Consider A/B testing (price, free trial duration)
+   - Optimize pricing by region
 
 3. **Marketing**
-   - App Store 구독 프로모션 활성화
-   - 프로모션 코드 생성 (마케팅 캠페인용)
-   - 소셜 미디어 홍보
+   - Enable App Store subscription promotions
+   - Generate promo codes (for marketing campaigns)
+   - Social media promotion
 
 4. **Future Enhancements**
-   - 프로모션 오퍼 추가 (재구독 유도)
-   - 윈백 오퍼 (Winback Offer)
-   - 가격 인상 전략
+   - Add promotional offers (to encourage re-subscription)
+   - Winback offers
+   - Price increase strategy
 
 ---
 
