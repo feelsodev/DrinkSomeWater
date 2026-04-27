@@ -14,12 +14,18 @@ final class SnapshotMockStoreKitService: StoreKitServiceProtocol {
     
     var isPremium: Bool { false }
     var isSubscribed: Bool { false }
+    var isLifetime: Bool { false }
+    var subscriptionExpirationDate: Date? { nil }
     var hasWidgetAccess: Bool { false }
     var hasWatchAccess: Bool { false }
     
     func loadProducts() async throws -> [Product] { [] }
     func purchase(_ product: Product) async throws -> Transaction { fatalError() }
     func restorePurchases() async throws { }
+    
+    #if DEBUG
+    func setDebugPremiumOverride(_ enabled: Bool) { }
+    #endif
 }
 
 @MainActor
@@ -193,6 +199,8 @@ final class MockWatchConnectivityService: WatchConnectivityServiceProtocol {
     func activate() {}
     func syncToWatch(todayWater: Int, goal: Int) {}
     func setWaterService(_ waterService: WaterServiceProtocol) {}
+    func setStoreKitService(_ storeKitService: StoreKitServiceProtocol) {}
+    func syncSubscriptionStatus() {}
 }
 
 @MainActor

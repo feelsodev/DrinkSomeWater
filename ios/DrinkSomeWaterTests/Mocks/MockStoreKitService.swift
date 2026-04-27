@@ -21,10 +21,12 @@ final class MockStoreKitService: StoreKitServiceProtocol {
     var shouldThrowOnLoadProducts = false
     var shouldThrowOnPurchase = false
     var shouldThrowOnRestore = false
+    private var entitlementContinuations: [AsyncStream<EntitlementState>.Continuation] = []
     
     var currentEntitlements: AsyncStream<EntitlementState> {
         AsyncStream { continuation in
             continuation.yield(mockEntitlementState)
+            entitlementContinuations.append(continuation)
         }
     }
     
@@ -90,6 +92,7 @@ final class MockStoreKitService: StoreKitServiceProtocol {
             mockHasWidgetAccess = true
             mockHasWatchAccess = true
         }
+        entitlementContinuations.forEach { $0.yield(state) }
     }
     
     func reset() {
@@ -108,6 +111,7 @@ final class MockStoreKitService: StoreKitServiceProtocol {
         shouldThrowOnLoadProducts = false
         shouldThrowOnPurchase = false
         shouldThrowOnRestore = false
+        entitlementContinuations.removeAll()
     }
     
     private func fetchMockTransaction() async throws -> Transaction {
