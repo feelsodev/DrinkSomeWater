@@ -328,6 +328,28 @@ final class MockSocialSharingService: SocialSharingServiceProtocol {
 }
 
 @MainActor
+final class MockReviewEligibilityService: ReviewEligibilityServiceProtocol {
+    var goalCompletionCount: Int = 0
+    var daysSinceInstall: Int = 30
+    var shouldRequestReviewResult = false
+    var recordGoalCompletionCallCount = 0
+    var markReviewRequestedCallCount = 0
+    
+    func recordGoalCompletion() {
+        recordGoalCompletionCallCount += 1
+        goalCompletionCount += 1
+    }
+    
+    func shouldRequestReview() -> Bool {
+        shouldRequestReviewResult
+    }
+    
+    func markReviewRequested() {
+        markReviewRequestedCallCount += 1
+    }
+}
+
+@MainActor
 final class MockServiceProvider: ServiceProviderProtocol {
     let userDefaultsService: UserDefaultsServiceProtocol
     let cloudSyncService: CloudSyncServiceProtocol
@@ -339,6 +361,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
     let instagramSharingService: InstagramSharingServiceProtocol
     let socialSharingService: SocialSharingServiceProtocol
     let storeKitService: StoreKitServiceProtocol
+    let reviewEligibilityService: ReviewEligibilityServiceProtocol
 
     init(
         userDefaultsService: UserDefaultsServiceProtocol = MockUserDefaultsService(),
@@ -350,7 +373,8 @@ final class MockServiceProvider: ServiceProviderProtocol {
         watchConnectivityService: WatchConnectivityServiceProtocol = MockWatchConnectivityService(),
         instagramSharingService: InstagramSharingServiceProtocol = MockInstagramSharingService(),
         socialSharingService: SocialSharingServiceProtocol = MockSocialSharingService(),
-        storeKitService: StoreKitServiceProtocol = MockStoreKitService()
+        storeKitService: StoreKitServiceProtocol = MockStoreKitService(),
+        reviewEligibilityService: ReviewEligibilityServiceProtocol = MockReviewEligibilityService()
     ) {
         self.userDefaultsService = userDefaultsService
         self.cloudSyncService = cloudSyncService
@@ -362,5 +386,6 @@ final class MockServiceProvider: ServiceProviderProtocol {
         self.instagramSharingService = instagramSharingService
         self.socialSharingService = socialSharingService
         self.storeKitService = storeKitService
+        self.reviewEligibilityService = reviewEligibilityService
     }
 }

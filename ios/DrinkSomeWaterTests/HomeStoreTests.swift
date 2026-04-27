@@ -216,6 +216,60 @@ struct HomeStoreTests {
         #expect(store.quickButtons == HomeStore.defaultQuickButtons)
     }
     
+    // MARK: - Review Tests
+    
+    @Test func addWaterGoalAchievedSetsShouldRequestReviewWhenEligible() async {
+        let mockWaterService = MockWaterService()
+        let today = Date()
+        mockWaterService.waterRecords = [
+            WaterRecord(date: today, value: 1800, isSuccess: false, goal: 2000)
+        ]
+        mockWaterService.goal = 2000
+        
+        let mockReview = MockReviewEligibilityService()
+        mockReview.shouldRequestReviewResult = true
+        
+        let provider = MockServiceProvider(
+            waterService: mockWaterService,
+            reviewEligibilityService: mockReview
+        )
+        let store = HomeStore(provider: provider)
+        
+        await store.send(.refreshGoal)
+        await store.send(.refresh)
+        await store.send(.addWater(300))
+        
+        #expect(mockReview.recordGoalCompletionCallCount == 1)
+        #expect(mockReview.markReviewRequestedCallCount == 1)
+        #expect(store.shouldRequestReview == true)
+    }
+    
+    @Test func addWaterGoalAchievedDoesNotRequestReviewWhenNotEligible() async {
+        let mockWaterService = MockWaterService()
+        let today = Date()
+        mockWaterService.waterRecords = [
+            WaterRecord(date: today, value: 1800, isSuccess: false, goal: 2000)
+        ]
+        mockWaterService.goal = 2000
+        
+        let mockReview = MockReviewEligibilityService()
+        mockReview.shouldRequestReviewResult = false
+        
+        let provider = MockServiceProvider(
+            waterService: mockWaterService,
+            reviewEligibilityService: mockReview
+        )
+        let store = HomeStore(provider: provider)
+        
+        await store.send(.refreshGoal)
+        await store.send(.refresh)
+        await store.send(.addWater(300))
+        
+        #expect(mockReview.recordGoalCompletionCallCount == 1)
+        #expect(mockReview.markReviewRequestedCallCount == 0)
+        #expect(store.shouldRequestReview == false)
+    }
+    
     // MARK: - Notification Banner Tests
     
     @Test func checkNotificationPermissionShowsBannerWhenNotAuthorized() async {
