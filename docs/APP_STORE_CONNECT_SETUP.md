@@ -6,8 +6,8 @@
 
 This guide covers how to set up the following 3 premium products in App Store Connect for the 벌컥벌컥 app:
 
-- **Monthly Subscription** (₩2,900/month, 7-day free trial)
-- **Annual Subscription** (₩19,000/year, 7-day free trial)
+- **Monthly Subscription** (₩990/month, 7-day free trial)
+- **Annual Subscription** (₩9,900/year, 7-day free trial)
 - **Lifetime Access** (₩49,000, one-time purchase)
 
 ## Prerequisites
@@ -69,8 +69,8 @@ This guide covers how to set up the following 3 premium products in App Store Co
 
 | Field | Value |
 |-------|-------|
-| **Reference Name** | `Premium Monthly` |
-| **Product ID** | `com.onceagain.drinksomewater.premium.monthly` |
+| **Reference Name** | `Subscription Monthly` |
+| **Product ID** | `com.onceagain.drinksomewater.subscription.monthly` |
 | **Subscription Duration** | `1 Month` |
 
 ⚠️ **Important**: The Product ID must be entered exactly. This ID is used in the code.
@@ -79,7 +79,7 @@ This guide covers how to set up the following 3 premium products in App Store Co
 
 1. In the **Subscription Prices** section, click **Add Subscription Price**
 2. Enter the following:
-   - **Price**: `₩2,900` (or select the appropriate tier)
+   - **Price**: `₩990` (or select the appropriate tier)
    - **Start Date**: immediate
    - **End Date**: none (ongoing)
 
@@ -120,19 +120,19 @@ This guide covers how to set up the following 3 premium products in App Store Co
 
 | Field | Value |
 |-------|-------|
-| **Reference Name** | `Premium Yearly` |
-| **Product ID** | `com.onceagain.drinksomewater.premium.yearly` |
+| **Reference Name** | `Subscription Yearly` |
+| **Product ID** | `com.onceagain.drinksomewater.subscription.yearly` |
 | **Subscription Duration** | `1 Year` |
 
 ### 3.2 Subscription Pricing
 
 1. In the **Subscription Prices** section, click **Add Subscription Price**
 2. Enter the following:
-   - **Price**: `₩19,000`
+   - **Price**: `₩9,900`
    - **Start Date**: immediate
    - **End Date**: none
 
-💡 **Tip**: The annual subscription is 45% cheaper than monthly (₩34,800 → ₩19,000)
+💡 **Tip**: The annual subscription is about 17% cheaper than paying monthly for 12 months (₩11,880 → ₩9,900)
 
 ### 3.3 Free Trial (7-day free trial)
 
@@ -147,11 +147,11 @@ This guide covers how to set up the following 3 premium products in App Store Co
 
 **Korean (ko)**:
 - **Subscription Display Name**: `연간 구독`
-- **Description**: `연간 프리미엄 구독 (7일 무료 체험, 45% 할인)`
+- **Description**: `연간 프리미엄 구독 (7일 무료 체험, 월 결제 대비 약 17% 절약)`
 
 **English (en_US)**:
 - **Subscription Display Name**: `Yearly`
-- **Description**: `Yearly Premium Subscription (7-day free trial, 45% off)`
+- **Description**: `Yearly Premium Subscription (7-day free trial, about 17% savings vs monthly)`
 
 3. Click **Save**
 
@@ -219,8 +219,8 @@ All products must be in one of these states:
 1. **App Store** → **iOS App** → select the latest version
 2. In the **In-App Purchases and Subscriptions** section, click **Add**
 3. Select all 3 products:
-   - Premium Monthly
-   - Premium Yearly
+   - Subscription Monthly
+   - Subscription Yearly
    - Premium Lifetime
 4. Click **Done**
 
@@ -296,7 +296,7 @@ All products must be in one of these states:
 
 - [ ] All 3 products created (monthly, annual, lifetime)
 - [ ] Product IDs match the code exactly
-- [ ] Pricing configured (₩2,900, ₩19,000, ₩49,000)
+- [ ] Pricing configured (₩990, ₩9,900, ₩49,000)
 - [ ] Free trial configured (7 days for monthly/annual)
 - [ ] Localization complete (Korean + English)
 - [ ] Family Sharing configured (enabled for lifetime only)
@@ -333,6 +333,22 @@ All products must be in one of these states:
 - [ ] Real purchase tested (with a real Apple ID)
 - [ ] Analytics events confirmed (Firebase)
 
+### 7.6 Country-Specific Price Audit
+
+Before submitting a build, verify country pricing from App Store Connect rather than relying on hardcoded app strings:
+
+- [ ] Monthly subscription (`com.onceagain.drinksomewater.subscription.monthly`) Korean base price is ₩990.
+- [ ] Yearly subscription (`com.onceagain.drinksomewater.subscription.yearly`) Korean base price is ₩9,900.
+- [ ] Lifetime product (`com.onceagain.drinksomewater.premium.lifetime`) Korean base price is ₩49,000.
+- [ ] All products are available in every intended country/region.
+- [ ] Each storefront shows an App Store generated local price and currency; do not copy the Korean KRW value into other storefronts manually unless that is the intended local tier.
+- [ ] The monthly/yearly products remain in the `premium` subscription group.
+- [ ] Monthly and yearly introductory offers are both 7-day free trials for new subscribers.
+- [ ] Korean and English product display names/descriptions are present, and any additional localized metadata is reviewed before release.
+- [ ] Paywall displays renewal/cancellation disclosure, restore access, Terms of Use, and Privacy Policy links.
+- [ ] TestFlight paywall screenshots show three distinct cards: monthly, yearly, and unlimited lifetime.
+- [ ] If a storefront price is changed in App Store Connect, capture the effective start date and re-test the paywall with that storefront before release.
+
 ---
 
 ## Troubleshooting
@@ -352,7 +368,7 @@ All products must be in one of these states:
 
 **Fix**:
 - Product IDs must use the Bundle ID as a prefix
-- Example: `com.onceagain.drinksomewater.premium.monthly`
+- Example: `com.onceagain.drinksomewater.subscription.monthly`
 - Make sure it doesn't overlap with another app's Bundle ID
 
 ### Issue 3: "Cannot load products" (in code)
