@@ -1,7 +1,6 @@
 import UIKit
 import GoogleMobileAds
 import Analytics
-import StoreKit
 
 #if canImport(FirebaseCore)
 import FirebaseCore
@@ -9,7 +8,6 @@ import FirebaseCore
 
 @MainActor
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  var transactionListenerTask: Task<Void, Error>?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     #if canImport(FirebaseCore)
@@ -21,10 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let center = UNUserNotificationCenter.current()
     center.delegate = self
     
-    // Start transaction listener for external purchases/renewals/cancellations
-    transactionListenerTask = listenForTransactions()
-    print("[StoreKit] Transaction listener started")
-    
     return true
   }
   
@@ -33,31 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-  }
-  
-  private func listenForTransactions() -> Task<Void, Error> {
-    Task.detached {
-      for await result in Transaction.updates {
-        await self.handleTransactionUpdate(result)
-      }
-    }
-  }
-  
-  @MainActor
-  private func handleTransactionUpdate(_ result: VerificationResult<Transaction>) async {
-    switch result {
-    case .verified(let transaction):
-      NotificationCenter.default.post(name: NSNotification.Name("TransactionUpdated"), object: nil)
-      await transaction.finish()
-    case .unverified:
-      break
-    @unknown default:
-      break
-    }
-  }
-  
-  func applicationWillTerminate(_ application: UIApplication) {
-    transactionListenerTask?.cancel()
   }
 }
 

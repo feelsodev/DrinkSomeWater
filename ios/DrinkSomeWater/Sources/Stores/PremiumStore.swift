@@ -3,6 +3,47 @@ import Observation
 import StoreKit
 import Analytics
 
+enum PremiumProductKind: Int, CaseIterable, Equatable, Hashable, Sendable {
+    case monthly
+    case yearly
+    case lifetime
+    
+    var productID: String {
+        switch self {
+        case .monthly:
+            return "com.onceagain.drinksomewater.subscription.monthly"
+        case .yearly:
+            return "com.onceagain.drinksomewater.subscription.yearly"
+        case .lifetime:
+            return "com.onceagain.drinksomewater.premium.lifetime"
+        }
+    }
+    
+    init?(productID: String) {
+        guard let kind = Self.allCases.first(where: { $0.productID == productID }) else {
+            return nil
+        }
+        self = kind
+    }
+}
+
+private final class EntitlementObserver {
+    private let task: Task<Void, Never>
+    
+    @MainActor
+    init(storeKitService: StoreKitServiceProtocol, onChange: @escaping @MainActor @Sendable () async -> Void) {
+        task = Task { @MainActor in
+            for await _ in storeKitService.currentEntitlements {
+                await onChange()
+            }
+        }
+    }
+    
+    deinit {
+        task.cancel()
+    }
+}
+
 @MainActor
 @Observable
 final class PremiumStore {
@@ -18,30 +59,19 @@ final class PremiumStore {
     var isSubscribed: Bool = false
     var isLoading: Bool = false
     var error: Error?
+    var restoreSuccess: Bool = false
+    var hasLoadedProducts: Bool = false
     
     private let storeKitService: StoreKitServiceProtocol
-  private nonisolated(unsafe) var transactionObserver: NSObjectProtocol?
+    private var entitlementObserver: EntitlementObserver?
     
     init(storeKitService: StoreKitServiceProtocol) {
         self.storeKitService = storeKitService
         Task {
             await send(.refreshEntitlements)
         }
-        
-        transactionObserver = NotificationCenter.default.addObserver(
-            forName: NSNotification.Name("TransactionUpdated"),
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            Task {
-                await self?.send(.refreshEntitlements)
-            }
-        }
-    }
-    
-    deinit {
-        if let observer = transactionObserver {
-            NotificationCenter.default.removeObserver(observer)
+        entitlementObserver = EntitlementObserver(storeKitService: storeKitService) { [weak self] in
+            await self?.send(.refreshEntitlements)
         }
     }
     
@@ -53,7 +83,8 @@ final class PremiumStore {
             defer { isLoading = false }
             
             do {
-                products = try await storeKitService.loadProducts()
+                products = Self.sortedPremiumProducts(try await storeKitService.loadProducts())
+                hasLoadedProducts = true
             } catch {
                 self.error = error
             }
@@ -85,11 +116,13 @@ final class PremiumStore {
         case .restore:
             isLoading = true
             error = nil
+            restoreSuccess = false
             defer { isLoading = false }
             
             do {
                 try await storeKitService.restorePurchases()
                 await send(.refreshEntitlements)
+                restoreSuccess = isPremium
             } catch {
                 self.error = error
             }
@@ -110,6 +143,32 @@ final class PremiumStore {
         if productId.contains("yearly") { return .subscriberYearly }
         if productId.contains("lifetime") { return .legacyLifetime }
         return .free
+    }
+    
+    static func premiumProductKind(for productID: String) -> PremiumProductKind? {
+        PremiumProductKind(productID: productID)
+    }
+    
+    static func premiumProductSortPriority(for productID: String) -> Int {
+        premiumProductKind(for: productID)?.rawValue ?? PremiumProductKind.allCases.count
+    }
+    
+    static func hasCompletePremiumProductCatalog(productIDs: [String]) -> Bool {
+        let loadedKinds = Set(productIDs.compactMap(PremiumProductKind.init(productID:)))
+        return loadedKinds == Set(PremiumProductKind.allCases)
+    }
+    
+    static func sortedPremiumProducts(_ products: [Product]) -> [Product] {
+        products.sorted { lhs, rhs in
+            let lhsPriority = premiumProductSortPriority(for: lhs.id)
+            let rhsPriority = premiumProductSortPriority(for: rhs.id)
+            
+            if lhsPriority != rhsPriority {
+                return lhsPriority < rhsPriority
+            }
+            
+            return lhs.price < rhs.price
+        }
     }
 }
 
