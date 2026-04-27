@@ -107,11 +107,21 @@ final class SettingsViewController: BaseViewController {
       ("info.circle.fill", L.Settings.version, nil, .version)
     ]))
     
+    #if DEBUG
+    let premiumStatus = store.provider.storeKitService.isPremium ? "ON" : "OFF"
+    allSections.append(("DEBUG", [
+      ("hammer.fill", "Premium Override", premiumStatus, .debugTogglePremium)
+    ]))
+    #endif
+    
     return allSections
   }
   
   enum SettingsAction {
     case profile, goal, quickButtons, notification, widgetGuide, appGuide, icloudStatus, supportDeveloper, review, contact, version, premium, subscriptionManagement
+    #if DEBUG
+    case debugTogglePremium
+    #endif
   }
   
   init(store: SettingsStore) {
@@ -198,6 +208,10 @@ final class SettingsViewController: BaseViewController {
        showPaywall()
      case .subscriptionManagement:
        openSubscriptionManagement()
+     #if DEBUG
+     case .debugTogglePremium:
+       toggleDebugPremium()
+     #endif
      }
    }
   
@@ -364,6 +378,14 @@ final class SettingsViewController: BaseViewController {
        UIApplication.shared.open(url)
      }
    }
+  
+  #if DEBUG
+  private func toggleDebugPremium() {
+    let current = store.provider.storeKitService.isPremium
+    store.provider.storeKitService.setDebugPremiumOverride(!current)
+    tableView.reloadData()
+  }
+  #endif
  }
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {

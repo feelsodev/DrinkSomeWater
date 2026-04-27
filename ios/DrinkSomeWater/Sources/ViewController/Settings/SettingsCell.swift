@@ -75,7 +75,8 @@ final class SettingsCell: UITableViewCell {
     "heart.fill": DS.Color.iconRed,
     "star.fill": DS.Color.iconYellow,
     "envelope.fill": DS.Color.iconBlue,
-    "info.circle.fill": DS.Color.iconGray
+    "info.circle.fill": DS.Color.iconGray,
+    "hammer.fill": .systemOrange
   ]
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
