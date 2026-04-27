@@ -526,7 +526,7 @@ final class AdMobService {
 - ✅ Created `ios/DrinkSomeWater/Sources/Views/PaywallView.swift`
 - ✅ Used SubscriptionStoreView for monthly/yearly subscriptions
 - ✅ Used ProductView for lifetime non-consumable product
-- ✅ Added "구매 복원" restore button
+- ✅ Added "Restore Purchases" button
 - ✅ Analytics event logged on appear
 - ✅ Loading state handled
 
@@ -567,21 +567,21 @@ final class AdMobService {
 6. **Build Issues**: PaywallView preview had reference to non-existent `MockStoreKitService`. Fixed by using actual `StoreKitService()` instance in preview.
 
 7. **Section Structure**: Premium section shows different content based on subscription status:
-   - Free users: "프리미엄 업그레이드" cell
-   - Premium users: "구독 상태: 프리미엄" + "구독 관리" cells
+   - Free users: "Upgrade to Premium" cell
+   - Premium users: "Subscription Status: Premium" + "Manage Subscription" cells
 
 ### Implementation Pattern
 
 ```swift
 // Dynamic section building
 if isPremium {
-  allSections.append(("프리미엄", [
-    ("crown.fill", "구독 상태: 프리미엄", nil, .premium),
-    ("gear", "구독 관리", nil, .subscriptionManagement)
+  allSections.append(("Premium", [
+    ("crown.fill", "Subscription Status: Premium", nil, .premium),
+    ("gear", "Manage Subscription", nil, .subscriptionManagement)
   ]))
 } else {
-  allSections.append(("프리미엄", [
-    ("star.fill", "프리미엄 업그레이드", nil, .premium)
+  allSections.append(("Premium", [
+    ("star.fill", "Upgrade to Premium", nil, .premium)
   ]))
 }
 ```

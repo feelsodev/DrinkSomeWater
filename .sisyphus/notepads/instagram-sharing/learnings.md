@@ -119,7 +119,7 @@
 
 ### ActionSheet Integration
 - confirmationDialog for Stories/Feed selection (line 78-90)
-- Two options: "Instagram Stories로 공유" and "Instagram Feed로 공유"
+- Two options: "Share to Instagram Stories" and "Share to Instagram Feed"
 - Cancel button included
 
 ### Share Flow
