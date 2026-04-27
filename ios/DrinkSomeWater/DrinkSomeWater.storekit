@@ -1,118 +1,118 @@
 {
-  "identifier" : "DrinkSomeWater",
-  "nonRenewingSubscriptions" : [],
-  "products" : [
+  "identifier": "DrinkSomeWater",
+  "nonRenewingSubscriptions": [],
+  "products": [
     {
-      "displayPrice" : "49000",
-      "familyShareable" : true,
-      "internalID" : "6738462001",
-      "localizations" : [
+      "displayPrice": "49000",
+      "familyShareable": true,
+      "internalID": "6738462001",
+      "localizations": [
         {
-          "description" : "평생 프리미엄 이용권",
-          "displayName" : "평생 이용권",
-          "locale" : "ko"
+          "description": "평생 프리미엄 이용권",
+          "displayName": "평생 이용권",
+          "locale": "ko"
         },
         {
-          "description" : "Lifetime Premium Access",
-          "displayName" : "Lifetime",
-          "locale" : "en_US"
+          "description": "Lifetime Premium Access",
+          "displayName": "Lifetime",
+          "locale": "en_US"
         }
       ],
-      "productID" : "com.onceagain.drinksomewater.premium.lifetime",
-      "referenceName" : "Premium Lifetime",
-      "type" : "NonConsumable"
+      "productID": "com.onceagain.drinksomewater.premium.lifetime",
+      "referenceName": "Premium Lifetime",
+      "type": "NonConsumable"
     }
   ],
-  "settings" : {
-    "_failTransactionsEnabled" : false,
-    "_locale" : "ko",
-    "_storefront" : "KOR",
-    "_storeKitErrors" : []
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "ko",
+    "_storefront": "KOR",
+    "_storeKitErrors": []
   },
-  "subscriptionGroups" : [
+  "subscriptionGroups": [
     {
-      "id" : "21527764",
-      "localizations" : [
+      "id": "21527764",
+      "localizations": [
         {
-          "description" : "프리미엄 구독으로 광고 없이 모든 기능을 이용하세요",
-          "displayName" : "프리미엄 구독",
-          "locale" : "ko"
+          "description": "프리미엄 구독으로 광고 없이 모든 기능을 이용하세요",
+          "displayName": "프리미엄 구독",
+          "locale": "ko"
         },
         {
-          "description" : "Access all premium features without ads",
-          "displayName" : "Premium Subscription",
-          "locale" : "en_US"
+          "description": "Access all premium features without ads",
+          "displayName": "Premium Subscription",
+          "locale": "en_US"
         }
       ],
-      "name" : "premium",
-      "subscriptions" : [
+      "name": "premium",
+      "subscriptions": [
         {
-          "adHocOffers" : [],
-          "codeOffers" : [],
-          "displayPrice" : "990",
-          "familyShareable" : false,
-          "groupNumber" : 1,
-          "internalID" : "6738461001",
-          "introductoryOffer" : {
-            "internalID" : "6738461002",
-            "numberOfPeriods" : 1,
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P1W"
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "990",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "6738461001",
+          "introductoryOffer": {
+            "internalID": "6738461002",
+            "numberOfPeriods": 1,
+            "paymentMode": "free",
+            "subscriptionPeriod": "P1W"
           },
-          "localizations" : [
+          "localizations": [
             {
-              "description" : "월간 구독 (7일 무료 체험)",
-              "displayName" : "월간 구독",
-              "locale" : "ko"
+              "description": "월간 구독 (7일 무료 체험)",
+              "displayName": "월간 구독",
+              "locale": "ko"
             },
             {
-              "description" : "Monthly Subscription (7-day free trial)",
-              "displayName" : "Monthly",
-              "locale" : "en_US"
+              "description": "Monthly Subscription (7-day free trial)",
+              "displayName": "Monthly",
+              "locale": "en_US"
             }
           ],
-          "productID" : "com.onceagain.drinksomewater.subscription.monthly",
-          "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "Subscription Monthly",
-          "subscriptionGroupID" : "21527764",
-          "type" : "RecurringSubscription"
+          "productID": "com.onceagain.drinksomewater.subscription.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Subscription Monthly",
+          "subscriptionGroupID": "21527764",
+          "type": "RecurringSubscription"
         },
         {
-          "adHocOffers" : [],
-          "codeOffers" : [],
-          "displayPrice" : "9900",
-          "familyShareable" : false,
-          "groupNumber" : 2,
-          "internalID" : "6738461501",
-          "introductoryOffer" : {
-            "internalID" : "6738461502",
-            "numberOfPeriods" : 1,
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P1W"
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "9900",
+          "familyShareable": false,
+          "groupNumber": 2,
+          "internalID": "6738461501",
+          "introductoryOffer": {
+            "internalID": "6738461502",
+            "numberOfPeriods": 1,
+            "paymentMode": "free",
+            "subscriptionPeriod": "P1W"
           },
-          "localizations" : [
+          "localizations": [
             {
-              "description" : "연간 구독 (7일 무료 체험, 45% 할인)",
-              "displayName" : "연간 구독",
-              "locale" : "ko"
+              "description": "연간 구독 (7일 무료 체험, 월 결제 대비 약 17% 절약)",
+              "displayName": "연간 구독",
+              "locale": "ko"
             },
             {
-              "description" : "Yearly Subscription (7-day free trial, 45% off)",
-              "displayName" : "Yearly",
-              "locale" : "en_US"
+              "description": "Yearly Subscription (7-day free trial, about 17% savings vs monthly)",
+              "displayName": "Yearly",
+              "locale": "en_US"
             }
           ],
-          "productID" : "com.onceagain.drinksomewater.subscription.yearly",
-          "recurringSubscriptionPeriod" : "P1Y",
-          "referenceName" : "Subscription Yearly",
-          "subscriptionGroupID" : "21527764",
-          "type" : "RecurringSubscription"
+          "productID": "com.onceagain.drinksomewater.subscription.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Subscription Yearly",
+          "subscriptionGroupID": "21527764",
+          "type": "RecurringSubscription"
         }
       ]
     }
   ],
-  "version" : {
-    "major" : 3,
-    "minor" : 0
+  "version": {
+    "major": 3,
+    "minor": 0
   }
 }
