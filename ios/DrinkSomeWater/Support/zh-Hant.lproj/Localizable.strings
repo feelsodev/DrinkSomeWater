@@ -348,10 +348,10 @@
 
 // Paywall
 "paywall.loading" = "正在載入商品...";
-"paywall.title" = "升級進階版";
-"paywall.subtitle" = "享受無廣告的清爽體驗";
-"paywall.ad.free" = "無廣告使用";
-"paywall.subscription.description" = "透過月費或年費訂閱移除廣告";
+"paywall.title" = "Gulp 訂閱";
+"paywall.subtitle" = "為更健康的習慣提供進階功能";
+"paywall.ad.free" = "進階訂閱";
+"paywall.subscription.description" = "訂閱即可無限制享受所有功能";
 "paywall.or" = "或";
 "paywall.lifetime" = "終身";
 "paywall.lifetime.description" = "一次購買，永久使用";
@@ -412,3 +412,24 @@
 // Accessibility
 "accessibility.home.share" = "分享到 Instagram";
 "accessibility.history.share" = "分享到 Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "免費";
+"paywall.feature.subscribed" = "已訂閱";
+"paywall.feature.ads" = "每3杯顯示廣告";
+"paywall.feature.noAds" = "無廣告";
+"paywall.feature.noWidget" = "無小工具";
+"paywall.feature.widget" = "小工具";
+"paywall.feature.noWatch" = "無手錶App";
+"paywall.feature.watch" = "手錶App";
+
+// Ad Gate
+"adGate.title" = "觀看短片";
+"adGate.subtitle" = "觀看影片以記錄飲水量";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "免費";
+"settings.subscription.subscribed" = "已訂閱";
+"settings.subscription.lifetime" = "終身";
+"settings.subscription.subscribe" = "訂閱";
+"settings.subscription.manage" = "管理訂閱";

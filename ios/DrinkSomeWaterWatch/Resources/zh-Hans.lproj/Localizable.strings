@@ -13,3 +13,7 @@
 // Watch Complication
 "complication.displayname" = "饮水量";
 "complication.description" = "查看今天喝了多少水。";
+
+// Watch Locked
+"watch.locked.title" = "需要订阅";
+"watch.locked.subtitle" = "在iPhone应用中订阅";

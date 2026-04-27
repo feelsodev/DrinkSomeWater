@@ -19,3 +19,8 @@
 // Widget Configuration
 "widget.configuration.name" = "水分摂取量";
 "widget.configuration.description" = "毎日の水分摂取量を追跡";
+
+// Widget Locked
+"widget.locked.title" = "サブスクリプションが必要です";
+"widget.locked.subtitle" = "ウィジェットを使用するには購読してください";
+"widget.locked.cta" = "購読する";

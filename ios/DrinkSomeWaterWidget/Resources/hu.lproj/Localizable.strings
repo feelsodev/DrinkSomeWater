@@ -14,3 +14,8 @@
 "widget.motivation.start" = "Ideje hidratálni! 🥤";
 "widget.configuration.name" = "Vízfogyasztás";
 "widget.configuration.description" = "Kövesd nyomon a napi vízfogyasztásodat";
+
+// Widget Locked
+"widget.locked.title" = "Előfizetés szükséges";
+"widget.locked.subtitle" = "Fizess elő a widget használatához";
+"widget.locked.cta" = "Előfizetés";

@@ -13,3 +13,7 @@
 // Watch Complication
 "complication.displayname" = "Wasseraufnahme";
 "complication.description" = "Prüfe, wie viel Wasser du heute getrunken hast.";
+
+// Watch Locked
+"watch.locked.title" = "Abo erforderlich";
+"watch.locked.subtitle" = "Abonniere in der iPhone-App";

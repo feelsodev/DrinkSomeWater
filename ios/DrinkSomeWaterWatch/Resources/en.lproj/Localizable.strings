@@ -11,3 +11,7 @@
 // Watch Complication
 "complication.displayname" = "Water Intake";
 "complication.description" = "Check how much water you drank today.";
+
+// Watch Locked
+"watch.locked.title" = "Subscription Required";
+"watch.locked.subtitle" = "Subscribe in iPhone app";

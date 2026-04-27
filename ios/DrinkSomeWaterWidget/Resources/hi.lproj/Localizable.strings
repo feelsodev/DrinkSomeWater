@@ -19,3 +19,8 @@
 // Widget Configuration
 "widget.configuration.name" = "पानी सेवन";
 "widget.configuration.description" = "अपने दैनिक पानी सेवन को ट्रैक करें";
+
+// Widget Locked
+"widget.locked.title" = "सदस्यता आवश्यक";
+"widget.locked.subtitle" = "विजेट उपयोग के लिए सदस्यता लें";
+"widget.locked.cta" = "सदस्यता लें";

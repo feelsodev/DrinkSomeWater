@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "商品を読み込み中...";
-"paywall.title" = "プレミアムアップグレード";
-"paywall.subtitle" = "広告なしのすっきりした体験をお楽しみください";
-"paywall.ad.free" = "広告なしで使用";
-"paywall.subscription.description" = "月額または年額サブスクリプションで広告を削除";
+"paywall.title" = "Gulp サブスクリプション";
+"paywall.subtitle" = "より健康的な習慣のためのプレミアム機能";
+"paywall.ad.free" = "プレミアムサブスクリプション";
+"paywall.subscription.description" = "サブスクリプションですべての機能を制限なくお楽しみください";
 "paywall.or" = "または";
 "paywall.lifetime" = "買い切り";
 "paywall.lifetime.description" = "一度の購入で永久にご利用いただけます";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Instagramに共有";
 "accessibility.history.share" = "Instagramに共有";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "無料";
+"paywall.feature.subscribed" = "購読中";
+"paywall.feature.ads" = "3回ごとに広告";
+"paywall.feature.noAds" = "広告なし";
+"paywall.feature.noWidget" = "ウィジェットなし";
+"paywall.feature.widget" = "ウィジェット";
+"paywall.feature.noWatch" = "Watchアプリなし";
+"paywall.feature.watch" = "Watchアプリ";
+
+// Ad Gate
+"adGate.title" = "短い動画を視聴";
+"adGate.subtitle" = "動画を視聴して水分摂取を記録しましょう";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "無料";
+"settings.subscription.subscribed" = "購読中";
+"settings.subscription.lifetime" = "永久ライセンス";
+"settings.subscription.subscribe" = "購読する";
+"settings.subscription.manage" = "サブスクリプション管理";

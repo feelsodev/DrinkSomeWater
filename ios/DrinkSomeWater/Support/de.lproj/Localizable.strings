@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Produkte werden geladen...";
-"paywall.title" = "Premium-Upgrade";
-"paywall.subtitle" = "Genieße ein sauberes Erlebnis ohne Werbung";
-"paywall.ad.free" = "Ohne Werbung nutzen";
-"paywall.subscription.description" = "Werbung mit monatlichem oder jährlichem Abo entfernen";
+"paywall.title" = "Gulp Abo";
+"paywall.subtitle" = "Premium-Funktionen für gesündere Gewohnheiten";
+"paywall.ad.free" = "Premium-Abo";
+"paywall.subscription.description" = "Abonniere und genieße alle Funktionen ohne Einschränkungen";
 "paywall.or" = "oder";
 "paywall.lifetime" = "Lebenslang";
 "paywall.lifetime.description" = "Einmal kaufen, für immer nutzen";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Auf Instagram teilen";
 "accessibility.history.share" = "Auf Instagram teilen";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Kostenlos";
+"paywall.feature.subscribed" = "Abonniert";
+"paywall.feature.ads" = "Werbung alle 3 Getränke";
+"paywall.feature.noAds" = "Keine Werbung";
+"paywall.feature.noWidget" = "Kein Widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Keine Watch-App";
+"paywall.feature.watch" = "Watch-App";
+
+// Ad Gate
+"adGate.title" = "Kurzes Video ansehen";
+"adGate.subtitle" = "Video ansehen, um Wasseraufnahme zu speichern";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Kostenlos";
+"settings.subscription.subscribed" = "Abonniert";
+"settings.subscription.lifetime" = "Lebenslang";
+"settings.subscription.subscribe" = "Abonnieren";
+"settings.subscription.manage" = "Abo verwalten";

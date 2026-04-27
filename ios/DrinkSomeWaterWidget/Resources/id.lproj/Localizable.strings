@@ -19,3 +19,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Asupan Air";
 "widget.configuration.description" = "Lacak asupan air harianmu";
+
+// Widget Locked
+"widget.locked.title" = "Langganan diperlukan";
+"widget.locked.subtitle" = "Berlangganan untuk menggunakan widget";
+"widget.locked.cta" = "Berlangganan";

@@ -348,10 +348,10 @@
 
 // Paywall
 "paywall.loading" = "Memuat produk...";
-"paywall.title" = "Upgrade Premium";
-"paywall.subtitle" = "Nikmati pengalaman bersih tanpa iklan";
-"paywall.ad.free" = "Gunakan tanpa iklan";
-"paywall.subscription.description" = "Hapus iklan dengan langganan bulanan atau tahunan";
+"paywall.title" = "Langganan Gulp";
+"paywall.subtitle" = "Fitur premium untuk kebiasaan yang lebih sehat";
+"paywall.ad.free" = "Langganan premium";
+"paywall.subscription.description" = "Berlangganan dan nikmati semua fitur tanpa batasan";
 "paywall.or" = "atau";
 "paywall.lifetime" = "Seumur Hidup";
 "paywall.lifetime.description" = "Beli sekali, gunakan selamanya";
@@ -412,3 +412,24 @@
 // Accessibility
 "accessibility.home.share" = "Bagikan ke Instagram";
 "accessibility.history.share" = "Bagikan ke Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Gratis";
+"paywall.feature.subscribed" = "Berlangganan";
+"paywall.feature.ads" = "Iklan setiap 3 minum";
+"paywall.feature.noAds" = "Tanpa iklan";
+"paywall.feature.noWidget" = "Tanpa widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Tanpa app jam";
+"paywall.feature.watch" = "App jam tangan";
+
+// Ad Gate
+"adGate.title" = "Tonton video singkat";
+"adGate.subtitle" = "Tonton video untuk mencatat asupan air";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Gratis";
+"settings.subscription.subscribed" = "Berlangganan";
+"settings.subscription.lifetime" = "Seumur hidup";
+"settings.subscription.subscribe" = "Berlangganan";
+"settings.subscription.manage" = "Kelola langganan";

@@ -16,3 +16,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Waterinname";
 "widget.configuration.description" = "Volg je dagelijkse waterinname";
+
+// Widget Locked
+"widget.locked.title" = "Abonnement vereist";
+"widget.locked.subtitle" = "Abonneer om widget te gebruiken";
+"widget.locked.cta" = "Abonneren";

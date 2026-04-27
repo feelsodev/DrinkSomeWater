@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Ladataan tuotteita...";
-"paywall.title" = "Premium-päivitys";
-"paywall.subtitle" = "Nauti puhtaasta kokemuksesta ilman mainoksia";
-"paywall.ad.free" = "Käytä ilman mainoksia";
-"paywall.subscription.description" = "Poista mainokset kuukausi- tai vuositilauksella";
+"paywall.title" = "Gulp-tilaus";
+"paywall.subtitle" = "Premium-ominaisuudet terveellisempiin tapoihin";
+"paywall.ad.free" = "Premium-tilaus";
+"paywall.subscription.description" = "Tilaa ja nauti kaikista ominaisuuksista ilman rajoituksia";
 "paywall.or" = "tai";
 "paywall.lifetime" = "Elinikäinen";
 "paywall.lifetime.description" = "Osta kerran, käytä ikuisesti";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Jaa Instagramiin";
 "accessibility.history.share" = "Jaa Instagramiin";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Ilmainen";
+"paywall.feature.subscribed" = "Tilattu";
+"paywall.feature.ads" = "Mainos joka 3. juoma";
+"paywall.feature.noAds" = "Ei mainoksia";
+"paywall.feature.noWidget" = "Ei widgetiä";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Ei kellosovellusta";
+"paywall.feature.watch" = "Kellosovellus";
+
+// Ad Gate
+"adGate.title" = "Katso lyhyt video";
+"adGate.subtitle" = "Katso video tallentaaksesi vedenkulutuksen";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Ilmainen";
+"settings.subscription.subscribed" = "Tilattu";
+"settings.subscription.lifetime" = "Elinikäinen";
+"settings.subscription.subscribe" = "Tilaa";
+"settings.subscription.manage" = "Hallitse tilausta";

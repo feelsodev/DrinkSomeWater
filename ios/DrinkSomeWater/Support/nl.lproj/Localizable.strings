@@ -350,10 +350,10 @@
 
 // Paywall
 "paywall.loading" = "Producten laden...";
-"paywall.title" = "Premium-upgrade";
-"paywall.subtitle" = "Geniet van een schone ervaring zonder advertenties";
-"paywall.ad.free" = "Gebruiken zonder advertenties";
-"paywall.subscription.description" = "Verwijder advertenties met een maandelijks of jaarlijks abonnement";
+"paywall.title" = "Gulp Abonnement";
+"paywall.subtitle" = "Premiumfuncties voor gezondere gewoonten";
+"paywall.ad.free" = "Premium abonnement";
+"paywall.subscription.description" = "Abonneer en geniet van alle functies zonder beperkingen";
 "paywall.or" = "of";
 "paywall.lifetime" = "Levenslang";
 "paywall.lifetime.description" = "Eenmalige aankoop, voor altijd gebruiken";
@@ -414,3 +414,24 @@
 // Accessibility
 "accessibility.home.share" = "Delen op Instagram";
 "accessibility.history.share" = "Delen op Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Gratis";
+"paywall.feature.subscribed" = "Geabonneerd";
+"paywall.feature.ads" = "Advertentie elke 3 drankjes";
+"paywall.feature.noAds" = "Geen advertenties";
+"paywall.feature.noWidget" = "Geen widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Geen horloge-app";
+"paywall.feature.watch" = "Horloge-app";
+
+// Ad Gate
+"adGate.title" = "Bekijk een korte video";
+"adGate.subtitle" = "Bekijk een video om waterinname vast te leggen";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Gratis";
+"settings.subscription.subscribed" = "Geabonneerd";
+"settings.subscription.lifetime" = "Levenslang";
+"settings.subscription.subscribe" = "Abonneren";
+"settings.subscription.manage" = "Abonnement beheren";

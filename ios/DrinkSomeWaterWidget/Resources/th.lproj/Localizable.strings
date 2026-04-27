@@ -19,3 +19,8 @@
 // Widget Configuration
 "widget.configuration.name" = "ปริมาณน้ำ";
 "widget.configuration.description" = "ติดตามปริมาณน้ำที่ดื่มประจำวัน";
+
+// Widget Locked
+"widget.locked.title" = "ต้องสมัครสมาชิก";
+"widget.locked.subtitle" = "สมัครสมาชิกเพื่อใช้วิดเจ็ต";
+"widget.locked.cta" = "สมัครสมาชิก";

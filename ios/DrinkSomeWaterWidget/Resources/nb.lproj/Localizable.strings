@@ -16,3 +16,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Vanninntak";
 "widget.configuration.description" = "Spor ditt daglige vanninntak";
+
+// Widget Locked
+"widget.locked.title" = "Abonnement påkrevd";
+"widget.locked.subtitle" = "Abonner for å bruke widget";
+"widget.locked.cta" = "Abonner";

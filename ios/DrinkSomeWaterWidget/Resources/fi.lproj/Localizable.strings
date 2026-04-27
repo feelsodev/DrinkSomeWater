@@ -16,3 +16,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Vedenkulutus";
 "widget.configuration.description" = "Seuraa päivittäistä vedenkulutustasi";
+
+// Widget Locked
+"widget.locked.title" = "Tilaus vaaditaan";
+"widget.locked.subtitle" = "Tilaa käyttääksesi widgetiä";
+"widget.locked.cta" = "Tilaa";

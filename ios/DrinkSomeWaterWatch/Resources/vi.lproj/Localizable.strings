@@ -13,3 +13,7 @@
 // Watch Complication
 "complication.displayname" = "Lượng nước";
 "complication.description" = "Kiểm tra bạn đã uống bao nhiêu nước hôm nay.";
+
+// Watch Locked
+"watch.locked.title" = "Cần đăng ký";
+"watch.locked.subtitle" = "Đăng ký trong ứng dụng iPhone";

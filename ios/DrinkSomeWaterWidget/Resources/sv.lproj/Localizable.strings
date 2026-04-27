@@ -16,3 +16,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Vattenintag";
 "widget.configuration.description" = "Spåra ditt dagliga vattenintag";
+
+// Widget Locked
+"widget.locked.title" = "Prenumeration krävs";
+"widget.locked.subtitle" = "Prenumerera för att använda widget";
+"widget.locked.cta" = "Prenumerera";

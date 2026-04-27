@@ -348,10 +348,10 @@
 
 // Paywall
 "paywall.loading" = "กำลังโหลดสินค้า...";
-"paywall.title" = "อัปเกรดพรีเมียม";
-"paywall.subtitle" = "เพลิดเพลินกับประสบการณ์ที่สะอาดไร้โฆษณา";
-"paywall.ad.free" = "ใช้งานโดยไม่มีโฆษณา";
-"paywall.subscription.description" = "ลบโฆษณาด้วยการสมัครสมาชิกรายเดือนหรือรายปี";
+"paywall.title" = "สมัครสมาชิก Gulp";
+"paywall.subtitle" = "ฟีเจอร์พรีเมียมเพื่อนิสัยที่ดีต่อสุขภาพ";
+"paywall.ad.free" = "สมัครสมาชิกพรีเมียม";
+"paywall.subscription.description" = "สมัครสมาชิกและใช้งานฟีเจอร์ทั้งหมดได้ไม่จำกัด";
 "paywall.or" = "หรือ";
 "paywall.lifetime" = "ตลอดชีพ";
 "paywall.lifetime.description" = "ซื้อครั้งเดียว ใช้ตลอดไป";
@@ -412,3 +412,24 @@
 // Accessibility
 "accessibility.home.share" = "แชร์ไปยัง Instagram";
 "accessibility.history.share" = "แชร์ไปยัง Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "ฟรี";
+"paywall.feature.subscribed" = "สมาชิก";
+"paywall.feature.ads" = "โฆษณาทุก 3 แก้ว";
+"paywall.feature.noAds" = "ไม่มีโฆษณา";
+"paywall.feature.noWidget" = "ไม่มีวิดเจ็ต";
+"paywall.feature.widget" = "วิดเจ็ต";
+"paywall.feature.noWatch" = "ไม่มีแอปนาฬิกา";
+"paywall.feature.watch" = "แอปนาฬิกา";
+
+// Ad Gate
+"adGate.title" = "ดูวิดีโอสั้นๆ";
+"adGate.subtitle" = "ดูวิดีโอเพื่อบันทึกการดื่มน้ำ";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "ฟรี";
+"settings.subscription.subscribed" = "สมาชิก";
+"settings.subscription.lifetime" = "ตลอดชีพ";
+"settings.subscription.subscribe" = "สมัครสมาชิก";
+"settings.subscription.manage" = "จัดการสมาชิก";

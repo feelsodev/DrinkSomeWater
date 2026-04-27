@@ -8,3 +8,7 @@
 "watch.add" = "Add";
 "complication.displayname" = "Water Intake";
 "complication.description" = "Check how much water you drank today.";
+
+// Watch Locked
+"watch.locked.title" = "सदस्यता आवश्यक";
+"watch.locked.subtitle" = "iPhone ऐप में सदस्यता लें";

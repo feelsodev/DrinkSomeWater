@@ -17,3 +17,8 @@
 // Widget Configuration
 "widget.configuration.name" = "물 섭취량";
 "widget.configuration.description" = "일일 물 섭취량을 추적하세요";
+
+// Widget Locked
+"widget.locked.title" = "구독 필요";
+"widget.locked.subtitle" = "구독하고 위젯을 사용하세요";
+"widget.locked.cta" = "구독하기";

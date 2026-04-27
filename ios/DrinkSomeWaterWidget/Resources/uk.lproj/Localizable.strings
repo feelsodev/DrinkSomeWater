@@ -14,3 +14,8 @@
 "widget.motivation.start" = "Час зволожитись! 🥤";
 "widget.configuration.name" = "Споживання води";
 "widget.configuration.description" = "Відстежуйте щоденне споживання води";
+
+// Widget Locked
+"widget.locked.title" = "Потрібна підписка";
+"widget.locked.subtitle" = "Підпишіться для використання віджета";
+"widget.locked.cta" = "Підписатися";

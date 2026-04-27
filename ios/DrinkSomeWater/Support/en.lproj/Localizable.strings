@@ -373,10 +373,10 @@
 
 // Paywall
 "paywall.loading" = "Loading products...";
-"paywall.title" = "Premium Upgrade";
-"paywall.subtitle" = "Enjoy a clean experience without ads";
-"paywall.ad.free" = "Use without ads";
-"paywall.subscription.description" = "Remove ads with monthly or yearly subscription";
+"paywall.title" = "Gulp Subscription";
+"paywall.subtitle" = "Premium features for healthier habits";
+"paywall.ad.free" = "Premium Subscription";
+"paywall.subscription.description" = "Subscribe to enjoy all features without limits";
 "paywall.or" = "or";
 "paywall.lifetime" = "Lifetime";
 "paywall.lifetime.description" = "One purchase, use forever";
@@ -412,5 +412,26 @@
 "statistics.period.30days" = "30 Days";
 "statistics.period" = "Period";
 "statistics.unit.ml" = "ml";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Free";
+"paywall.feature.subscribed" = "Subscribed";
+"paywall.feature.ads" = "Ads every 3 drinks";
+"paywall.feature.noAds" = "No ads";
+"paywall.feature.noWidget" = "No widget";
+"paywall.feature.widget" = "Widget access";
+"paywall.feature.noWatch" = "No watch app";
+"paywall.feature.watch" = "Watch app access";
+
+// Ad Gate
+"adGate.title" = "Watch a short video";
+"adGate.subtitle" = "Watch a video to record your water intake";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Free";
+"settings.subscription.subscribed" = "Subscribed";
+"settings.subscription.lifetime" = "Lifetime";
+"settings.subscription.subscribe" = "Subscribe";
+"settings.subscription.manage" = "Manage Subscription";
 
 // Drink Types

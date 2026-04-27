@@ -14,3 +14,8 @@
 "widget.motivation.start" = "Czas na wodę! 🥤";
 "widget.configuration.name" = "Spożycie wody";
 "widget.configuration.description" = "Śledź dzienne spożycie wody";
+
+// Widget Locked
+"widget.locked.title" = "Wymagana subskrypcja";
+"widget.locked.subtitle" = "Subskrybuj, aby używać widgetu";
+"widget.locked.cta" = "Subskrybuj";

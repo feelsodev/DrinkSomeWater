@@ -13,3 +13,7 @@
 // Watch Complication
 "complication.displayname" = "ปริมาณน้ำ";
 "complication.description" = "ดูว่าวันนี้ดื่มน้ำไปเท่าไหร่";
+
+// Watch Locked
+"watch.locked.title" = "ต้องสมัครสมาชิก";
+"watch.locked.subtitle" = "สมัครสมาชิกในแอป iPhone";

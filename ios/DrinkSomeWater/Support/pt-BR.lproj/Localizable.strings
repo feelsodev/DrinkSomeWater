@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Carregando produtos...";
-"paywall.title" = "Upgrade Premium";
-"paywall.subtitle" = "Aproveite uma experiência limpa sem anúncios";
-"paywall.ad.free" = "Usar sem anúncios";
-"paywall.subscription.description" = "Remova os anúncios com uma assinatura mensal ou anual";
+"paywall.title" = "Assinatura Gulp";
+"paywall.subtitle" = "Recursos premium para hábitos mais saudáveis";
+"paywall.ad.free" = "Assinatura premium";
+"paywall.subscription.description" = "Assine e aproveite todos os recursos sem limites";
 "paywall.or" = "ou";
 "paywall.lifetime" = "Vitalício";
 "paywall.lifetime.description" = "Uma compra, use para sempre";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Compartilhar no Instagram";
 "accessibility.history.share" = "Compartilhar no Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Grátis";
+"paywall.feature.subscribed" = "Assinante";
+"paywall.feature.ads" = "Anúncio a cada 3 bebidas";
+"paywall.feature.noAds" = "Sem anúncios";
+"paywall.feature.noWidget" = "Sem widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Sem app do relógio";
+"paywall.feature.watch" = "App do relógio";
+
+// Ad Gate
+"adGate.title" = "Assista a um vídeo curto";
+"adGate.subtitle" = "Assista a um vídeo para registrar o consumo de água";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Grátis";
+"settings.subscription.subscribed" = "Assinante";
+"settings.subscription.lifetime" = "Vitalício";
+"settings.subscription.subscribe" = "Assinar";
+"settings.subscription.manage" = "Gerenciar assinatura";

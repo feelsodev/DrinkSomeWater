@@ -19,3 +19,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Wasseraufnahme";
 "widget.configuration.description" = "Verfolge deine tägliche Wasseraufnahme";
+
+// Widget Locked
+"widget.locked.title" = "Abo erforderlich";
+"widget.locked.subtitle" = "Abonniere für Widget-Zugang";
+"widget.locked.cta" = "Abonnieren";

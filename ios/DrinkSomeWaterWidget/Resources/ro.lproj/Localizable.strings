@@ -16,3 +16,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Consumul de apă";
 "widget.configuration.description" = "Urmărește-ți consumul zilnic de apă";
+
+// Widget Locked
+"widget.locked.title" = "Abonament necesar";
+"widget.locked.subtitle" = "Abonează-te pentru a folosi widgetul";
+"widget.locked.cta" = "Abonare";

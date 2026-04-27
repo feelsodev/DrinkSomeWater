@@ -19,3 +19,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Consumo de água";
 "widget.configuration.description" = "Acompanhe seu consumo diário de água";
+
+// Widget Locked
+"widget.locked.title" = "Assinatura necessária";
+"widget.locked.subtitle" = "Assine para usar o widget";
+"widget.locked.cta" = "Assinar";

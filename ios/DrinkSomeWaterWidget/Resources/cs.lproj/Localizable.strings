@@ -14,3 +14,8 @@
 "widget.motivation.start" = "Čas na hydrataci! 🥤";
 "widget.configuration.name" = "Příjem vody";
 "widget.configuration.description" = "Sledujte svůj denní příjem vody";
+
+// Widget Locked
+"widget.locked.title" = "Vyžadováno předplatné";
+"widget.locked.subtitle" = "Předplaťte si pro použití widgetu";
+"widget.locked.cta" = "Předplatit";

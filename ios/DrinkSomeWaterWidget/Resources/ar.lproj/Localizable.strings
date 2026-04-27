@@ -19,3 +19,8 @@
 // Widget Configuration
 "widget.configuration.name" = "استهلاك الماء";
 "widget.configuration.description" = "تتبع استهلاكك اليومي من الماء";
+
+// Widget Locked
+"widget.locked.title" = "الاشتراك مطلوب";
+"widget.locked.subtitle" = "اشترك لاستخدام الودجت";
+"widget.locked.cta" = "اشتراك";

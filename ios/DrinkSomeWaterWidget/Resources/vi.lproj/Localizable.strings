@@ -19,3 +19,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Lượng nước";
 "widget.configuration.description" = "Theo dõi lượng nước uống hàng ngày";
+
+// Widget Locked
+"widget.locked.title" = "Cần đăng ký";
+"widget.locked.subtitle" = "Đăng ký để sử dụng widget";
+"widget.locked.cta" = "Đăng ký";

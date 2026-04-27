@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Ürünler yükleniyor...";
-"paywall.title" = "Premium Yükseltme";
-"paywall.subtitle" = "Reklamsız temiz bir deneyimin keyfini çıkarın";
-"paywall.ad.free" = "Reklamsız kullanın";
-"paywall.subscription.description" = "Aylık veya yıllık abonelikle reklamları kaldırın";
+"paywall.title" = "Gulp Abonelik";
+"paywall.subtitle" = "Daha sağlıklı alışkanlıklar için premium özellikler";
+"paywall.ad.free" = "Premium abonelik";
+"paywall.subscription.description" = "Abone olun ve tüm özelliklerin keyfini sınırsız çıkarın";
 "paywall.or" = "veya";
 "paywall.lifetime" = "Ömür Boyu";
 "paywall.lifetime.description" = "Bir kez satın al, sonsuza kadar kullan";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Instagram'da Paylaş";
 "accessibility.history.share" = "Instagram'da Paylaş";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Ücretsiz";
+"paywall.feature.subscribed" = "Abone";
+"paywall.feature.ads" = "Her 3 içecekte reklam";
+"paywall.feature.noAds" = "Reklamsız";
+"paywall.feature.noWidget" = "Widget yok";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Saat uygulaması yok";
+"paywall.feature.watch" = "Saat uygulaması";
+
+// Ad Gate
+"adGate.title" = "Kısa bir video izle";
+"adGate.subtitle" = "Su tüketimini kaydetmek için video izle";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Ücretsiz";
+"settings.subscription.subscribed" = "Abone";
+"settings.subscription.lifetime" = "Ömür boyu";
+"settings.subscription.subscribe" = "Abone ol";
+"settings.subscription.manage" = "Aboneliği yönet";

@@ -19,3 +19,8 @@
 // Widget Configuration
 "widget.configuration.name" = "飲水量";
 "widget.configuration.description" = "追蹤每日飲水量";
+
+// Widget Locked
+"widget.locked.title" = "需要訂閱";
+"widget.locked.subtitle" = "訂閱以使用小工具";
+"widget.locked.cta" = "訂閱";

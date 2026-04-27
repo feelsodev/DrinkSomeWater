@@ -13,3 +13,7 @@
 // Watch Complication
 "complication.displayname" = "水分摂取量";
 "complication.description" = "今日どれくらい水を飲んだか確認します。";
+
+// Watch Locked
+"watch.locked.title" = "サブスクリプションが必要です";
+"watch.locked.subtitle" = "iPhoneアプリで購読してください";

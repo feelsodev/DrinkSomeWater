@@ -13,3 +13,7 @@
 // Watch Complication
 "complication.displayname" = "Pengambilan Air";
 "complication.description" = "Lihat berapa banyak air yang anda minum hari ini.";
+
+// Watch Locked
+"watch.locked.title" = "Langganan diperlukan";
+"watch.locked.subtitle" = "Langgan dalam app iPhone";

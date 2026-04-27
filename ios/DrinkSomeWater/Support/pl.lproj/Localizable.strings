@@ -350,10 +350,10 @@
 
 // Paywall
 "paywall.loading" = "Ładowanie produktów...";
-"paywall.title" = "Ulepszenie Premium";
-"paywall.subtitle" = "Ciesz się czystym doświadczeniem bez reklam";
-"paywall.ad.free" = "Korzystaj bez reklam";
-"paywall.subscription.description" = "Usuń reklamy dzięki subskrypcji miesięcznej lub rocznej";
+"paywall.title" = "Subskrypcja Gulp";
+"paywall.subtitle" = "Funkcje premium dla zdrowszych nawyków";
+"paywall.ad.free" = "Subskrypcja premium";
+"paywall.subscription.description" = "Subskrybuj i korzystaj ze wszystkich funkcji bez ograniczeń";
 "paywall.or" = "lub";
 "paywall.lifetime" = "Dożywotni";
 "paywall.lifetime.description" = "Jeden zakup, korzystaj na zawsze";
@@ -414,3 +414,24 @@
 // Accessibility
 "accessibility.home.share" = "Udostępnij na Instagram";
 "accessibility.history.share" = "Udostępnij na Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Bezpłatnie";
+"paywall.feature.subscribed" = "Subskrybent";
+"paywall.feature.ads" = "Reklama co 3 napoje";
+"paywall.feature.noAds" = "Bez reklam";
+"paywall.feature.noWidget" = "Bez widgetu";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Bez app zegarka";
+"paywall.feature.watch" = "App zegarka";
+
+// Ad Gate
+"adGate.title" = "Obejrzyj krótki film";
+"adGate.subtitle" = "Obejrzyj film, aby zarejestrować spożycie wody";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Bezpłatnie";
+"settings.subscription.subscribed" = "Subskrybowane";
+"settings.subscription.lifetime" = "Dożywotnio";
+"settings.subscription.subscribe" = "Subskrybuj";
+"settings.subscription.manage" = "Zarządzaj subskrypcją";

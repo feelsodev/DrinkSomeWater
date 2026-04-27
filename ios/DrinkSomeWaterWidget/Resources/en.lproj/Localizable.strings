@@ -17,3 +17,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Water Intake";
 "widget.configuration.description" = "Track your daily water intake";
+
+// Widget Locked
+"widget.locked.title" = "Subscription Required";
+"widget.locked.subtitle" = "Subscribe to use widget";
+"widget.locked.cta" = "Subscribe";

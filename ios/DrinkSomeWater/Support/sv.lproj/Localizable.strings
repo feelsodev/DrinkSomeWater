@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Laddar produkter...";
-"paywall.title" = "Premiumuppgradering";
-"paywall.subtitle" = "Njut av en ren upplevelse utan annonser";
-"paywall.ad.free" = "Använd utan annonser";
-"paywall.subscription.description" = "Ta bort annonser med månads- eller årsprenumeration";
+"paywall.title" = "Gulp-prenumeration";
+"paywall.subtitle" = "Premiumfunktioner för hälsosammare vanor";
+"paywall.ad.free" = "Premiumprenumeration";
+"paywall.subscription.description" = "Prenumerera och njut av alla funktioner utan begränsningar";
 "paywall.or" = "eller";
 "paywall.lifetime" = "Livstid";
 "paywall.lifetime.description" = "Köp en gång, använd för alltid";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Dela till Instagram";
 "accessibility.history.share" = "Dela till Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Gratis";
+"paywall.feature.subscribed" = "Prenumerant";
+"paywall.feature.ads" = "Annons var 3:e gång";
+"paywall.feature.noAds" = "Inga annonser";
+"paywall.feature.noWidget" = "Ingen widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Ingen klockapp";
+"paywall.feature.watch" = "Klockapp";
+
+// Ad Gate
+"adGate.title" = "Titta på en kort video";
+"adGate.subtitle" = "Titta på en video för att registrera vattenintag";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Gratis";
+"settings.subscription.subscribed" = "Prenumererar";
+"settings.subscription.lifetime" = "Livstid";
+"settings.subscription.subscribe" = "Prenumerera";
+"settings.subscription.manage" = "Hantera prenumeration";

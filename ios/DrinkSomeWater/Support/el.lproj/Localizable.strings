@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Φόρτωση προϊόντων...";
-"paywall.title" = "Αναβάθμιση Premium";
-"paywall.subtitle" = "Απολαύστε μια καθαρή εμπειρία χωρίς διαφημίσεις";
-"paywall.ad.free" = "Χρήση χωρίς διαφημίσεις";
-"paywall.subscription.description" = "Αφαιρέστε τις διαφημίσεις με μηνιαία ή ετήσια συνδρομή";
+"paywall.title" = "Συνδρομή Gulp";
+"paywall.subtitle" = "Premium λειτουργίες για πιο υγιεινές συνήθειες";
+"paywall.ad.free" = "Premium συνδρομή";
+"paywall.subscription.description" = "Εγγραφείτε και απολαύστε όλες τις λειτουργίες χωρίς περιορισμούς";
 "paywall.or" = "ή";
 "paywall.lifetime" = "Εφ' όρου ζωής";
 "paywall.lifetime.description" = "Μία αγορά, χρήση για πάντα";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Κοινοποίηση στο Instagram";
 "accessibility.history.share" = "Κοινοποίηση στο Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Δωρεάν";
+"paywall.feature.subscribed" = "Συνδρομή";
+"paywall.feature.ads" = "Διαφήμιση κάθε 3 ποτά";
+"paywall.feature.noAds" = "Χωρίς διαφημίσεις";
+"paywall.feature.noWidget" = "Χωρίς widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Χωρίς ρολόι";
+"paywall.feature.watch" = "Εφαρμογή ρολογιού";
+
+// Ad Gate
+"adGate.title" = "Δείτε ένα σύντομο βίντεο";
+"adGate.subtitle" = "Δείτε βίντεο για να καταγράψετε την κατανάλωση νερού";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Δωρεάν";
+"settings.subscription.subscribed" = "Εγγεγραμμένος";
+"settings.subscription.lifetime" = "Εφ' όρου ζωής";
+"settings.subscription.subscribe" = "Εγγραφή";
+"settings.subscription.manage" = "Διαχείριση συνδρομής";

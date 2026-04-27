@@ -330,10 +330,10 @@
 
 // Paywall
 "paywall.loading" = "جارٍ تحميل المنتجات...";
-"paywall.title" = "ترقية بريميوم";
-"paywall.subtitle" = "استمتع بتجربة نظيفة بدون إعلانات";
-"paywall.ad.free" = "استخدام بدون إعلانات";
-"paywall.subscription.description" = "إزالة الإعلانات مع اشتراك شهري أو سنوي";
+"paywall.title" = "اشتراك Gulp";
+"paywall.subtitle" = "ميزات مميزة لعادات صحية أفضل";
+"paywall.ad.free" = "اشتراك مميز";
+"paywall.subscription.description" = "اشترك واستمتع بجميع الميزات بدون قيود";
 "paywall.or" = "أو";
 "paywall.lifetime" = "مدى الحياة";
 "paywall.lifetime.description" = "شراء مرة واحدة، استخدام للأبد";
@@ -394,3 +394,24 @@
 // Accessibility
 "accessibility.home.share" = "مشاركة على Instagram";
 "accessibility.history.share" = "مشاركة على Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "مجاني";
+"paywall.feature.subscribed" = "مشترك";
+"paywall.feature.ads" = "إعلان كل 3 مرات";
+"paywall.feature.noAds" = "بدون إعلانات";
+"paywall.feature.noWidget" = "بدون ودجت";
+"paywall.feature.widget" = "ودجت";
+"paywall.feature.noWatch" = "بدون ساعة";
+"paywall.feature.watch" = "تطبيق الساعة";
+
+// Ad Gate
+"adGate.title" = "شاهد فيديو قصير";
+"adGate.subtitle" = "شاهد فيديو لتسجيل شرب الماء";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "مجاني";
+"settings.subscription.subscribed" = "مشترك";
+"settings.subscription.lifetime" = "مدى الحياة";
+"settings.subscription.subscribe" = "اشتراك";
+"settings.subscription.manage" = "إدارة الاشتراك";

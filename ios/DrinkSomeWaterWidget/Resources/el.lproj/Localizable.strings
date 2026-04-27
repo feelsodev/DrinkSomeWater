@@ -14,3 +14,8 @@
 "widget.motivation.start" = "Ώρα για ενυδάτωση! 🥤";
 "widget.configuration.name" = "Κατανάλωση νερού";
 "widget.configuration.description" = "Παρακολουθήστε την ημερήσια κατανάλωση νερού";
+
+// Widget Locked
+"widget.locked.title" = "Απαιτείται συνδρομή";
+"widget.locked.subtitle" = "Εγγραφείτε για χρήση widget";
+"widget.locked.cta" = "Εγγραφή";

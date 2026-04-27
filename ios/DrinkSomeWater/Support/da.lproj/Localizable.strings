@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Indlæser produkter...";
-"paywall.title" = "Premium-opgradering";
-"paywall.subtitle" = "Nyd en ren oplevelse uden reklamer";
-"paywall.ad.free" = "Brug uden reklamer";
-"paywall.subscription.description" = "Fjern reklamer med månedligt eller årligt abonnement";
+"paywall.title" = "Gulp Abonnement";
+"paywall.subtitle" = "Premiumfunktioner for sundere vaner";
+"paywall.ad.free" = "Premium abonnement";
+"paywall.subscription.description" = "Abonner og nyd alle funktioner uden begrænsninger";
 "paywall.or" = "eller";
 "paywall.lifetime" = "Livslangt";
 "paywall.lifetime.description" = "Køb én gang, brug for altid";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Del på Instagram";
 "accessibility.history.share" = "Del på Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Gratis";
+"paywall.feature.subscribed" = "Abonnent";
+"paywall.feature.ads" = "Reklame hver 3. gang";
+"paywall.feature.noAds" = "Ingen reklamer";
+"paywall.feature.noWidget" = "Ingen widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Ingen ur-app";
+"paywall.feature.watch" = "Ur-app";
+
+// Ad Gate
+"adGate.title" = "Se en kort video";
+"adGate.subtitle" = "Se en video for at registrere dit vandindtag";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Gratis";
+"settings.subscription.subscribed" = "Abonnerer";
+"settings.subscription.lifetime" = "Livstid";
+"settings.subscription.subscribe" = "Abonner";
+"settings.subscription.manage" = "Administrer abonnement";

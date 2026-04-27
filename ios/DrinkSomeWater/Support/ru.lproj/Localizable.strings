@@ -350,10 +350,10 @@
 
 // Paywall
 "paywall.loading" = "Загрузка продуктов...";
-"paywall.title" = "Премиум обновление";
-"paywall.subtitle" = "Наслаждайтесь чистым опытом без рекламы";
-"paywall.ad.free" = "Используйте без рекламы";
-"paywall.subscription.description" = "Уберите рекламу с помощью ежемесячной или годовой подписки";
+"paywall.title" = "Подписка Gulp";
+"paywall.subtitle" = "Премиум-функции для здоровых привычек";
+"paywall.ad.free" = "Премиум-подписка";
+"paywall.subscription.description" = "Подпишитесь и пользуйтесь всеми функциями без ограничений";
 "paywall.or" = "или";
 "paywall.lifetime" = "Навсегда";
 "paywall.lifetime.description" = "Одна покупка, используйте вечно";
@@ -414,3 +414,24 @@
 // Accessibility
 "accessibility.home.share" = "Поделиться в Instagram";
 "accessibility.history.share" = "Поделиться в Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Бесплатно";
+"paywall.feature.subscribed" = "Подписка";
+"paywall.feature.ads" = "Реклама каждые 3 напитка";
+"paywall.feature.noAds" = "Без рекламы";
+"paywall.feature.noWidget" = "Без виджета";
+"paywall.feature.widget" = "Виджет";
+"paywall.feature.noWatch" = "Без часов";
+"paywall.feature.watch" = "Приложение для часов";
+
+// Ad Gate
+"adGate.title" = "Посмотрите короткое видео";
+"adGate.subtitle" = "Посмотрите видео, чтобы записать потребление воды";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Бесплатно";
+"settings.subscription.subscribed" = "Подписано";
+"settings.subscription.lifetime" = "Навсегда";
+"settings.subscription.subscribe" = "Подписаться";
+"settings.subscription.manage" = "Управление подпиской";

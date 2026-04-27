@@ -373,10 +373,10 @@
 
 // Paywall
 "paywall.loading" = "상품 로딩 중...";
-"paywall.title" = "프리미엄 업그레이드";
-"paywall.subtitle" = "광고 없이 깨끗한 경험을 즐기세요";
-"paywall.ad.free" = "광고 없이 사용하기";
-"paywall.subscription.description" = "월간 또는 연간 구독으로 광고를 제거하세요";
+"paywall.title" = "벌컥벌컥 구독";
+"paywall.subtitle" = "더 건강한 습관을 위한 프리미엄 기능";
+"paywall.ad.free" = "프리미엄 구독";
+"paywall.subscription.description" = "구독하고 모든 기능을 제한 없이 사용하세요";
 "paywall.or" = "또는";
 "paywall.lifetime" = "평생 이용권";
 "paywall.lifetime.description" = "한 번 구매로 영원히 사용하세요";
@@ -412,5 +412,26 @@
 "statistics.period.30days" = "30일";
 "statistics.period" = "기간";
 "statistics.unit.ml" = "ml";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "무료";
+"paywall.feature.subscribed" = "구독";
+"paywall.feature.ads" = "3회마다 광고";
+"paywall.feature.noAds" = "광고 없음";
+"paywall.feature.noWidget" = "위젯 사용 불가";
+"paywall.feature.widget" = "위젯 사용";
+"paywall.feature.noWatch" = "워치앱 사용 불가";
+"paywall.feature.watch" = "워치앱 사용";
+
+// Ad Gate
+"adGate.title" = "짧은 영상을 시청하세요";
+"adGate.subtitle" = "영상을 시청하면 물 섭취를 기록할 수 있어요";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "무료";
+"settings.subscription.subscribed" = "구독 중";
+"settings.subscription.lifetime" = "평생 이용권";
+"settings.subscription.subscribe" = "구독하기";
+"settings.subscription.manage" = "구독 관리";
 
 // Drink Types

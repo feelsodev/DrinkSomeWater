@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Načítání produktů...";
-"paywall.title" = "Prémiový upgrade";
-"paywall.subtitle" = "Užívejte si čistý zážitek bez reklam";
-"paywall.ad.free" = "Používejte bez reklam";
-"paywall.subscription.description" = "Odstraňte reklamy měsíčním nebo ročním předplatným";
+"paywall.title" = "Předplatné Gulp";
+"paywall.subtitle" = "Prémiové funkce pro zdravější návyky";
+"paywall.ad.free" = "Prémiové předplatné";
+"paywall.subscription.description" = "Předplaťte si a užívejte si všechny funkce bez omezení";
 "paywall.or" = "nebo";
 "paywall.lifetime" = "Doživotní";
 "paywall.lifetime.description" = "Jeden nákup, používejte navždy";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Sdílet na Instagram";
 "accessibility.history.share" = "Sdílet na Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Zdarma";
+"paywall.feature.subscribed" = "Předplatné";
+"paywall.feature.ads" = "Reklama každé 3 nápoje";
+"paywall.feature.noAds" = "Bez reklam";
+"paywall.feature.noWidget" = "Bez widgetu";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Bez hodinek";
+"paywall.feature.watch" = "Aplikace pro hodinky";
+
+// Ad Gate
+"adGate.title" = "Podívejte se na krátké video";
+"adGate.subtitle" = "Podívejte se na video a zaznamenejte příjem vody";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Zdarma";
+"settings.subscription.subscribed" = "Předplaceno";
+"settings.subscription.lifetime" = "Doživotní";
+"settings.subscription.subscribe" = "Předplatit";
+"settings.subscription.manage" = "Spravovat předplatné";

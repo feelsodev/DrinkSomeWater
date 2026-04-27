@@ -330,10 +330,10 @@
 
 // Paywall
 "paywall.loading" = "उत्पाद लोड हो रहे हैं...";
-"paywall.title" = "प्रीमियम अपग्रेड";
-"paywall.subtitle" = "विज्ञापनों के बिना स्वच्छ अनुभव का आनंद लें";
-"paywall.ad.free" = "विज्ञापनों के बिना उपयोग करें";
-"paywall.subscription.description" = "मासिक या वार्षिक सदस्यता से विज्ञापन हटाएं";
+"paywall.title" = "Gulp सदस्यता";
+"paywall.subtitle" = "स्वस्थ आदतों के लिए प्रीमियम सुविधाएँ";
+"paywall.ad.free" = "प्रीमियम सदस्यता";
+"paywall.subscription.description" = "सदस्यता लें और सभी सुविधाओं का बिना सीमा के आनंद लें";
 "paywall.or" = "या";
 "paywall.lifetime" = "आजीवन";
 "paywall.lifetime.description" = "एक बार खरीदें, हमेशा उपयोग करें";
@@ -394,3 +394,24 @@
 // Accessibility
 "accessibility.home.share" = "Instagram पर साझा करें";
 "accessibility.history.share" = "Instagram पर साझा करें";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "मुफ़्त";
+"paywall.feature.subscribed" = "सदस्य";
+"paywall.feature.ads" = "हर 3 बार विज्ञापन";
+"paywall.feature.noAds" = "विज्ञापन नहीं";
+"paywall.feature.noWidget" = "विजेट नहीं";
+"paywall.feature.widget" = "विजेट";
+"paywall.feature.noWatch" = "वॉच ऐप नहीं";
+"paywall.feature.watch" = "वॉच ऐप";
+
+// Ad Gate
+"adGate.title" = "एक छोटा वीडियो देखें";
+"adGate.subtitle" = "पानी पीने का रिकॉर्ड करने के लिए वीडियो देखें";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "मुफ़्त";
+"settings.subscription.subscribed" = "सदस्य";
+"settings.subscription.lifetime" = "आजीवन";
+"settings.subscription.subscribe" = "सदस्यता लें";
+"settings.subscription.manage" = "सदस्यता प्रबंधित करें";

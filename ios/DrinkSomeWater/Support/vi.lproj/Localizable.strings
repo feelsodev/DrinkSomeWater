@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Đang tải sản phẩm...";
-"paywall.title" = "Nâng cấp Premium";
-"paywall.subtitle" = "Tận hưởng trải nghiệm sạch không quảng cáo";
-"paywall.ad.free" = "Sử dụng không quảng cáo";
-"paywall.subscription.description" = "Xóa quảng cáo với gói đăng ký hàng tháng hoặc hàng năm";
+"paywall.title" = "Đăng ký Gulp";
+"paywall.subtitle" = "Tính năng cao cấp cho thói quen lành mạnh hơn";
+"paywall.ad.free" = "Đăng ký cao cấp";
+"paywall.subscription.description" = "Đăng ký và tận hưởng tất cả tính năng không giới hạn";
 "paywall.or" = "hoặc";
 "paywall.lifetime" = "Trọn đời";
 "paywall.lifetime.description" = "Mua một lần, dùng mãi mãi";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Chia sẻ lên Instagram";
 "accessibility.history.share" = "Chia sẻ lên Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Miễn phí";
+"paywall.feature.subscribed" = "Đã đăng ký";
+"paywall.feature.ads" = "Quảng cáo mỗi 3 lần uống";
+"paywall.feature.noAds" = "Không quảng cáo";
+"paywall.feature.noWidget" = "Không có widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Không có ứng dụng đồng hồ";
+"paywall.feature.watch" = "Ứng dụng đồng hồ";
+
+// Ad Gate
+"adGate.title" = "Xem video ngắn";
+"adGate.subtitle" = "Xem video để ghi lại lượng nước uống";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Miễn phí";
+"settings.subscription.subscribed" = "Đã đăng ký";
+"settings.subscription.lifetime" = "Trọn đời";
+"settings.subscription.subscribe" = "Đăng ký";
+"settings.subscription.manage" = "Quản lý đăng ký";

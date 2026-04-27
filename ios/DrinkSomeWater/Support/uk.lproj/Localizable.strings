@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Завантаження продуктів...";
-"paywall.title" = "Преміум оновлення";
-"paywall.subtitle" = "Насолоджуйтеся чистим досвідом без реклами";
-"paywall.ad.free" = "Використовуйте без реклами";
-"paywall.subscription.description" = "Видаліть рекламу за допомогою щомісячної або річної підписки";
+"paywall.title" = "Підписка Gulp";
+"paywall.subtitle" = "Преміум-функції для здорових звичок";
+"paywall.ad.free" = "Преміум-підписка";
+"paywall.subscription.description" = "Підпишіться та користуйтесь усіма функціями без обмежень";
 "paywall.or" = "або";
 "paywall.lifetime" = "Назавжди";
 "paywall.lifetime.description" = "Одна покупка, використовуйте назавжди";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Поділитися в Instagram";
 "accessibility.history.share" = "Поділитися в Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Безкоштовно";
+"paywall.feature.subscribed" = "Підписка";
+"paywall.feature.ads" = "Реклама кожні 3 напої";
+"paywall.feature.noAds" = "Без реклами";
+"paywall.feature.noWidget" = "Без віджета";
+"paywall.feature.widget" = "Віджет";
+"paywall.feature.noWatch" = "Без годинника";
+"paywall.feature.watch" = "Додаток для годинника";
+
+// Ad Gate
+"adGate.title" = "Перегляньте коротке відео";
+"adGate.subtitle" = "Перегляньте відео, щоб записати споживання води";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Безкоштовно";
+"settings.subscription.subscribed" = "Підписано";
+"settings.subscription.lifetime" = "Назавжди";
+"settings.subscription.subscribe" = "Підписатися";
+"settings.subscription.manage" = "Керування підпискою";

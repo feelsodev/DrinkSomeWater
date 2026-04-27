@@ -16,3 +16,8 @@
 // Widget Configuration
 "widget.configuration.name" = "Vandindtag";
 "widget.configuration.description" = "Spor dit daglige vandindtag";
+
+// Widget Locked
+"widget.locked.title" = "Abonnement påkrævet";
+"widget.locked.subtitle" = "Abonner for at bruge widget";
+"widget.locked.cta" = "Abonner";

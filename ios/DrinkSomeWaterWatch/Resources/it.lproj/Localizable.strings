@@ -13,3 +13,7 @@
 // Watch Complication
 "complication.displayname" = "Consumo acqua";
 "complication.description" = "Controlla quanta acqua hai bevuto oggi.";
+
+// Watch Locked
+"watch.locked.title" = "Abbonamento richiesto";
+"watch.locked.subtitle" = "Abbonati nell'app iPhone";

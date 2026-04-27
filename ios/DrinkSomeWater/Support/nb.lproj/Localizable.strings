@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Laster produkter...";
-"paywall.title" = "Premium-oppgradering";
-"paywall.subtitle" = "Nyt en ren opplevelse uten annonser";
-"paywall.ad.free" = "Bruk uten annonser";
-"paywall.subscription.description" = "Fjern annonser med månedlig eller årlig abonnement";
+"paywall.title" = "Gulp-abonnement";
+"paywall.subtitle" = "Premiumfunksjoner for sunnere vaner";
+"paywall.ad.free" = "Premium-abonnement";
+"paywall.subscription.description" = "Abonner og nyt alle funksjoner uten begrensninger";
 "paywall.or" = "eller";
 "paywall.lifetime" = "Livstid";
 "paywall.lifetime.description" = "Kjøp én gang, bruk for alltid";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Del til Instagram";
 "accessibility.history.share" = "Del til Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Gratis";
+"paywall.feature.subscribed" = "Abonnent";
+"paywall.feature.ads" = "Annonse hver 3. gang";
+"paywall.feature.noAds" = "Ingen annonser";
+"paywall.feature.noWidget" = "Ingen widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Ingen klokke-app";
+"paywall.feature.watch" = "Klokke-app";
+
+// Ad Gate
+"adGate.title" = "Se en kort video";
+"adGate.subtitle" = "Se en video for å registrere vanninntak";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Gratis";
+"settings.subscription.subscribed" = "Abonnerer";
+"settings.subscription.lifetime" = "Livstid";
+"settings.subscription.subscribe" = "Abonner";
+"settings.subscription.manage" = "Administrer abonnement";

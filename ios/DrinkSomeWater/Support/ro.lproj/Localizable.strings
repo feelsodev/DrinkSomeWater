@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Se încarcă produsele...";
-"paywall.title" = "Upgrade Premium";
-"paywall.subtitle" = "Bucură-te de o experiență curată fără reclame";
-"paywall.ad.free" = "Folosește fără reclame";
-"paywall.subscription.description" = "Elimină reclamele cu un abonament lunar sau anual";
+"paywall.title" = "Abonament Gulp";
+"paywall.subtitle" = "Funcții premium pentru obiceiuri mai sănătoase";
+"paywall.ad.free" = "Abonament premium";
+"paywall.subscription.description" = "Abonează-te și bucură-te de toate funcțiile fără limite";
 "paywall.or" = "sau";
 "paywall.lifetime" = "Pe viață";
 "paywall.lifetime.description" = "O singură achiziție, folosește pentru totdeauna";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Partajează pe Instagram";
 "accessibility.history.share" = "Partajează pe Instagram";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Gratuit";
+"paywall.feature.subscribed" = "Abonat";
+"paywall.feature.ads" = "Reclamă la fiecare 3 băuturi";
+"paywall.feature.noAds" = "Fără reclame";
+"paywall.feature.noWidget" = "Fără widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Fără app ceas";
+"paywall.feature.watch" = "App ceas";
+
+// Ad Gate
+"adGate.title" = "Vizionează un scurt videoclip";
+"adGate.subtitle" = "Vizionează un videoclip pentru a înregistra consumul de apă";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Gratuit";
+"settings.subscription.subscribed" = "Abonat";
+"settings.subscription.lifetime" = "Pe viață";
+"settings.subscription.subscribe" = "Abonare";
+"settings.subscription.manage" = "Gestionează abonamentul";

@@ -349,10 +349,10 @@
 
 // Paywall
 "paywall.loading" = "Termékek betöltése...";
-"paywall.title" = "Prémium frissítés";
-"paywall.subtitle" = "Élvezd a tiszta élményt reklámok nélkül";
-"paywall.ad.free" = "Használd reklámok nélkül";
-"paywall.subscription.description" = "Távolítsd el a hirdetéseket havi vagy éves előfizetéssel";
+"paywall.title" = "Gulp előfizetés";
+"paywall.subtitle" = "Prémium funkciók egészségesebb szokásokhoz";
+"paywall.ad.free" = "Prémium előfizetés";
+"paywall.subscription.description" = "Fizess elő és élvezd az összes funkciót korlátlanul";
 "paywall.or" = "vagy";
 "paywall.lifetime" = "Élethosszig";
 "paywall.lifetime.description" = "Egy vásárlás, örökre használható";
@@ -413,3 +413,24 @@
 // Accessibility
 "accessibility.home.share" = "Megosztás Instagramon";
 "accessibility.history.share" = "Megosztás Instagramon";
+
+// Paywall - Feature Comparison
+"paywall.feature.free" = "Ingyenes";
+"paywall.feature.subscribed" = "Előfizető";
+"paywall.feature.ads" = "Hirdetés minden 3. italnál";
+"paywall.feature.noAds" = "Hirdetések nélkül";
+"paywall.feature.noWidget" = "Nincs widget";
+"paywall.feature.widget" = "Widget";
+"paywall.feature.noWatch" = "Nincs óra app";
+"paywall.feature.watch" = "Óra app";
+
+// Ad Gate
+"adGate.title" = "Nézz meg egy rövid videót";
+"adGate.subtitle" = "Nézz meg egy videót a vízfogyasztás rögzítéséhez";
+
+// Settings - Subscription Status (new)
+"settings.subscription.free" = "Ingyenes";
+"settings.subscription.subscribed" = "Előfizetve";
+"settings.subscription.lifetime" = "Élethosszig";
+"settings.subscription.subscribe" = "Előfizetés";
+"settings.subscription.manage" = "Előfizetés kezelése";
