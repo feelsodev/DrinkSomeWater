@@ -11,7 +11,7 @@ on:
           - Android
         required: true
       bump_type:
-        description: 'Version bump type (Android only; iOS auto-calculates YY.WW.N)'
+        description: '⚠️ Android ONLY (iOS ignores this — auto-calculates YY.WW.N)'
         type: choice
         options:
           - patch
