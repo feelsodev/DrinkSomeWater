@@ -24,10 +24,10 @@
 | # | Task | Status | Notes |
 |---|------|--------|-------|
 | 2.1 | WaterService async/await | ✅ Done | RxSwift removed |
-| 2.2 | UserDefaultsService | ✅ Done | Sendable 제거 |
+| 2.2 | UserDefaultsService | ✅ Done | Sendable removed |
 | 2.3 | ServiceProvider | ✅ Done | warterService -> waterService |
 | 2.4 | WaveAnimationView+Reactive | ✅ Done | Deleted |
-| 2.5 | AlertService | ✅ Done | async/await, Sendable 제거 |
+| 2.5 | AlertService | ✅ Done | async/await, Sendable removed |
 
 ### Phase 3: Stores (Reactor -> Store) ✅
 | # | Task | Status | Notes |
@@ -59,16 +59,16 @@
 | 5.1 | tuist install | ✅ Done | Dependencies resolved |
 | 5.2 | tuist generate | ✅ Done | Xcode project created |
 | 5.3 | tuist build | ✅ Done | **BUILD SUCCESS** |
-| 5.4 | Swift 6 Concurrency fixes | ✅ Done | MainActor isolation 수정 |
+| 5.4 | Swift 6 Concurrency fixes | ✅ Done | MainActor isolation fix |
 
 ### Phase 6: Final Cleanup ✅
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 6.1 | Unit tests update | ✅ Done | async/await, Store 패턴 적용 |
-| 6.2 | Deprecated warnings 정리 | ✅ Done | imageEdgeInsets -> UIButton.Configuration |
-| 6.3 | SceneDelegate UIScreen.main 수정 | ✅ Done | UIWindow(windowScene:) 사용 |
-| 6.4 | README.md 업데이트 | ✅ Done | 새 아키텍처 반영 |
-| 6.5 | 시뮬레이터/기기 테스트 | ⏳ Pending | 실제 동작 확인 필요 |
+| 6.1 | Unit tests update | ✅ Done | async/await, Store pattern applied |
+| 6.2 | Deprecated warnings cleanup | ✅ Done | imageEdgeInsets -> UIButton.Configuration |
+| 6.3 | SceneDelegate UIScreen.main fix | ✅ Done | UIWindow(windowScene:) used |
+| 6.4 | README.md update | ✅ Done | New architecture reflected |
+| 6.5 | Simulator/device test | ⏳ Pending | Actual behavior verification needed |
 
 ---
 
@@ -77,34 +77,34 @@
 ### 2025-01-04 (Session 3) - MIGRATION COMPLETE 🎉
 
 #### Completed
-- [x] Unit tests 마이그레이션 (ReactorKit -> @Observable Store)
+- [x] Unit tests migration (ReactorKit -> @Observable Store)
   - DrinkViewReactor -> DrinkStore
-  - async/await 패턴 적용
-  - 7개 테스트 모두 통과
-- [x] Deprecated warnings 수정
+  - async/await pattern applied
+  - All 7 tests passed
+- [x] Deprecated warnings fixed
   - imageEdgeInsets -> UIButton.Configuration
   - CalendarViewController, InformationViewController, LicensesViewController
-- [x] SceneDelegate UIScreen.main 수정
+- [x] SceneDelegate UIScreen.main fix
   - UIWindow(frame: UIScreen.main.bounds) -> UIWindow(windowScene:)
-- [x] README.md 업데이트
-  - Swift 6, iOS 26+ 반영
-  - Tuist SPM 의존성 반영
-  - 빌드 방법 추가
+- [x] README.md update
+  - Swift 6, iOS 26+ reflected
+  - Tuist SPM dependencies reflected
+  - Build instructions added
 
 ### 2025-01-03 (Session 2) - BUILD SUCCESS 🎉
 
 #### Completed
-- [x] WaveAnimationView SPM 미지원 → 로컬 소스로 포함
-- [x] RxSwift/Firebase imports 제거 (AppDelegate, SceneDelegate, etc.)
-- [x] Licenses.swift 업데이트 (Rx 라이브러리 제거)
-- [x] Swift 6 Concurrency 문제 해결:
+- [x] WaveAnimationView SPM not supported → included as local source
+- [x] RxSwift/Firebase imports removed (AppDelegate, SceneDelegate, etc.)
+- [x] Licenses.swift updated (Rx libraries removed)
+- [x] Swift 6 Concurrency issues resolved:
   - ObservationToken: nonisolated cancel()
   - AppDelegate: @MainActor + nonisolated delegate
   - FSCalendar delegates: nonisolated + MainActor.assumeIsolated
   - UIScreen.main deprecated: lazy computed properties
-  - deinit isolation: viewWillDisappear로 이동
-- [x] Localization key 충돌 수정 (" Today!!" → "TodaySuffix")
-- [x] **빌드 성공!**
+  - deinit isolation: moved to viewWillDisappear
+- [x] Localization key conflict fixed (" Today!!" → "TodaySuffix")
+- [x] **Build succeeded!**
 
 ### 2025-01-03 (Session 1)
 
@@ -145,7 +145,7 @@
 
 ### Modified Files
 ```
-M DrinkSomeWaterTests/DrinkSomeWaterTests.swift  # async/await, Store 패턴
+M DrinkSomeWaterTests/DrinkSomeWaterTests.swift  # async/await, Store pattern
 M DrinkSomeWater/Sources/SceneDelegate.swift      # UIWindow(windowScene:)
 M DrinkSomeWater/Sources/ViewController/Calendar/CalendarViewController.swift
 M DrinkSomeWater/Sources/ViewController/Information/InformationViewController.swift
@@ -176,19 +176,19 @@ Executed 7 tests, with 0 failures in 0.004 seconds
 ## Commands Reference
 
 ```bash
-# 프로젝트 재생성
+# Regenerate project
 tuist generate
 
-# 빌드
+# Build
 tuist build
 
-# 테스트
+# Test
 tuist test
 
-# 클린 빌드
+# Clean build
 tuist clean && tuist generate && tuist build
 
-# Xcode에서 열기
+# Open in Xcode
 open DrinkSomeWater.xcworkspace
 ```
 
@@ -196,5 +196,5 @@ open DrinkSomeWater.xcworkspace
 
 ## Remaining Tasks
 
-- [ ] 시뮬레이터/기기에서 실제 동작 테스트
-- [ ] App Store 배포 준비 (필요시)
+- [ ] Test actual behavior on simulator/device
+- [ ] Prepare for App Store release (if needed)

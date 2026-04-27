@@ -1,14 +1,14 @@
-# iOS 수용 기준
+# iOS Acceptance Criteria
 
-iOS 기능별 수용 기준(Acceptance Criteria) 저장소.
+Repository for iOS feature acceptance criteria.
 
-## 포함 내용
+## Contents
 
-- Given/When/Then 형식 시나리오
-- 기능별 검증 항목
-- 엣지 케이스 정의
-- 성능 기준
+- Given/When/Then format scenarios
+- Per-feature validation items
+- Edge case definitions
+- Performance criteria
 
-## 작성 방식
+## Format
 
-BDD(Behavior Driven Development) 스타일로 작성. 각 기능별 마크다운 문서.
+Written in BDD (Behavior Driven Development) style. Per-feature markdown documents.

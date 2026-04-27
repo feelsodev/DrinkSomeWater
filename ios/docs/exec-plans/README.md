@@ -1,15 +1,15 @@
-# iOS 실행 계획
+# iOS Execution Plans
 
-iOS 기능 구현 실행 계획 저장소.
+Repository for iOS feature implementation execution plans.
 
-## 포함 내용
+## Contents
 
-- Phase/Wave 단위 작업 가이드
-- 마일스톤 및 타임라인
-- 태스크 분해 및 의존성
-- 리스크 및 완화 전략
-- 테스트 계획
+- Phase/Wave-level task guides
+- Milestones and timelines
+- Task breakdown and dependencies
+- Risks and mitigation strategies
+- Test plans
 
-## 작성 방식
+## Format
 
-각 기능 또는 릴리즈 사이클별 실행 계획 문서 작성.
+Write execution plan documents per feature or release cycle.

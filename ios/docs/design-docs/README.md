@@ -1,15 +1,15 @@
-# iOS 설계 문서
+# iOS Design Documents
 
-iOS 기능별 상세 설계 문서 저장소.
+Repository for detailed design documents by iOS feature.
 
-## 포함 내용
+## Contents
 
-- SwiftUI 뷰 설계
-- Store 패턴 설계
-- 위젯 설계
-- 아키텍처 다이어그램
-- 상태 관리 플로우
+- SwiftUI view design
+- Store pattern design
+- Widget design
+- Architecture diagrams
+- State management flow
 
-## 작성 방식
+## Format
 
-각 기능별 마크다운 문서로 작성. 시각적 다이어그램은 Mermaid 형식 지원.
+Written as per-feature markdown documents. Visual diagrams support Mermaid format.
