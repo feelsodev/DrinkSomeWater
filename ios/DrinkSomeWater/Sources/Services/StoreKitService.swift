@@ -1,5 +1,6 @@
 import Foundation
 import StoreKit
+import WidgetKit
 
 // MARK: - Entitlement State
 
@@ -17,6 +18,11 @@ protocol StoreKitServiceProtocol: AnyObject {
     func restorePurchases() async throws
     var currentEntitlements: AsyncStream<EntitlementState> { get }
     var isPremium: Bool { get }
+    var isSubscribed: Bool { get }
+    var isLifetime: Bool { get }
+    var subscriptionExpirationDate: Date? { get }
+    var hasWidgetAccess: Bool { get }
+    var hasWatchAccess: Bool { get }
 }
 
 // MARK: - StoreKit Errors
@@ -47,8 +53,8 @@ enum StoreKitServiceError: Error, LocalizedError {
 final class StoreKitService: StoreKitServiceProtocol {
     
     private static let productIDs: Set<String> = [
-        "com.onceagain.drinksomewater.premium.monthly",
-        "com.onceagain.drinksomewater.premium.yearly",
+        "com.onceagain.drinksomewater.subscription.monthly",
+        "com.onceagain.drinksomewater.subscription.yearly",
         "com.onceagain.drinksomewater.premium.lifetime"
     ]
     
@@ -70,11 +76,25 @@ final class StoreKitService: StoreKitServiceProtocol {
     }
     
     var isPremium: Bool {
-        if case .premium = _currentEntitlementState {
-            return true
+        switch _currentEntitlementState {
+        case .free:
+            return false
+        case .premium(let expirationDate):
+            return expirationDate.map { $0 > Date() } ?? true
         }
+    }
+    
+    var isSubscribed: Bool { isPremium }
+    var isLifetime: Bool {
+        if case .premium(expirationDate: nil) = _currentEntitlementState { return true }
         return false
     }
+    var subscriptionExpirationDate: Date? {
+        if case .premium(let expDate) = _currentEntitlementState { return expDate }
+        return nil
+    }
+    var hasWidgetAccess: Bool { isSubscribed }
+    var hasWatchAccess: Bool { isSubscribed }
     
     lazy var currentEntitlements: AsyncStream<EntitlementState> = {
         AsyncStream { [weak self] continuation in
@@ -181,7 +201,8 @@ final class StoreKitService: StoreKitServiceProtocol {
                 if let subscriptionStatus = await getSubscriptionStatus(for: transaction.productID) {
                     switch subscriptionStatus.state {
                     case .subscribed, .inGracePeriod, .inBillingRetryPeriod:
-                        let expDate = Self.extractExpirationDate(from: subscriptionStatus)
+                        let expDate = Self.extractExpirationDate(from: subscriptionStatus) ?? transaction.expirationDate
+                        guard let expDate else { break }
                         subscriptionState = .premium(expirationDate: expDate)
                     case .expired, .revoked:
                         break
@@ -238,10 +259,25 @@ final class StoreKitService: StoreKitServiceProtocol {
             UserDefaults.standard.set(false, forKey: CacheKeys.isPremium)
             UserDefaults.standard.set(false, forKey: CacheKeys.isLifetime)
             UserDefaults.standard.removeObject(forKey: CacheKeys.expirationDate)
+            
+            let appGroupDefaults = UserDefaults(suiteName: "group.com.onceagain.DrinkSomeWater")
+            appGroupDefaults?.set(false, forKey: "shared_is_subscribed")
+            appGroupDefaults?.set(false, forKey: "shared_is_lifetime")
+            appGroupDefaults?.removeObject(forKey: "shared_subscription_expiration")
+            appGroupDefaults?.synchronize()
+            WidgetCenter.shared.reloadAllTimelines()
+            
         case .premium(let expirationDate):
             UserDefaults.standard.set(true, forKey: CacheKeys.isPremium)
             UserDefaults.standard.set(expirationDate == nil, forKey: CacheKeys.isLifetime)
             UserDefaults.standard.set(expirationDate, forKey: CacheKeys.expirationDate)
+            
+            let appGroupDefaults = UserDefaults(suiteName: "group.com.onceagain.DrinkSomeWater")
+            appGroupDefaults?.set(true, forKey: "shared_is_subscribed")
+            appGroupDefaults?.set(expirationDate == nil, forKey: "shared_is_lifetime")
+            appGroupDefaults?.set(expirationDate, forKey: "shared_subscription_expiration")
+            appGroupDefaults?.synchronize()
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     

@@ -15,6 +15,7 @@ final class PremiumStore {
     
     var products: [Product] = []
     var isPremium: Bool = false
+    var isSubscribed: Bool = false
     var isLoading: Bool = false
     var error: Error?
     
@@ -68,12 +69,13 @@ final class PremiumStore {
             do {
                 _ = try await storeKitService.purchase(product)
                 isPremium = true
+                isSubscribed = true
                 Analytics.shared.log(.purchaseCompleted(
                     productId: product.id,
                     price: price,
                     currency: product.priceFormatStyle.currencyCode
                 ))
-                Analytics.shared.setPremiumStatus(.premium)
+                Analytics.shared.setPremiumStatus(Self.premiumStatus(for: product.id))
             } catch {
                 self.error = error
                 let errorCode = (error as? StoreKitServiceError)?.errorCode ?? "unknown"
@@ -95,11 +97,19 @@ final class PremiumStore {
         case .refreshEntitlements:
             let wasPremium = isPremium
             isPremium = storeKitService.isPremium
+            isSubscribed = storeKitService.isSubscribed
             
             if wasPremium != isPremium {
-                Analytics.shared.setPremiumStatus(isPremium ? .premium : .free)
+                Analytics.shared.setPremiumStatus(isPremium ? .legacyLifetime : .free)
             }
         }
+    }
+    
+    private static func premiumStatus(for productId: String) -> PremiumStatus {
+        if productId.contains("monthly") { return .subscriberMonthly }
+        if productId.contains("yearly") { return .subscriberYearly }
+        if productId.contains("lifetime") { return .legacyLifetime }
+        return .free
     }
 }
 
