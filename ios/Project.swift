@@ -239,7 +239,13 @@ let project = Project(
                 [.testableTarget(target: "DrinkSomeWaterTests")],
                 configuration: .debug
             ),
-            runAction: .runAction(configuration: .debug, executable: "DrinkSomeWater")
+            runAction: .runAction(
+                configuration: .debug,
+                executable: "DrinkSomeWater",
+                options: .options(
+                    storeKitConfigurationPath: "DrinkSomeWater/DrinkSomeWater.storekit"
+                )
+            )
         ),
         .scheme(
             name: "DrinkSomeWaterSnapshotTests",
