@@ -1,124 +1,124 @@
-# Android TDD 구현 가이드
+# Android TDD Implementation Guide
 
-> 💧 벌컥벌컥 Android 프로젝트 - Test-Driven Development 가이드
-
----
-
-## 메타 정보
-
-| 항목 | 값 |
-|------|-----|
-| **버전** | 1.0.0 |
-| **최종 업데이트** | 2026-01-20 |
-| **테스트 프레임워크** | JUnit5, Turbine, MockK |
+> 💧 Gulp Android Project - Test-Driven Development Guide
 
 ---
 
-## 목차
+## Meta Information
 
-1. [TDD 원칙](#1-tdd-원칙)
-2. [테스트 도구](#2-테스트-도구)
-3. [레이어별 테스트 전략](#3-레이어별-테스트-전략)
-4. [Phase별 테스트 명세](#4-phase별-테스트-명세)
-5. [테스트 유틸리티](#5-테스트-유틸리티)
-6. [테스트 실행 가이드](#6-테스트-실행-가이드)
+| Field | Value |
+|-------|-------|
+| **Version** | 1.0.0 |
+| **Last Updated** | 2026-01-20 |
+| **Test Framework** | JUnit5, Turbine, MockK |
 
 ---
 
-## 1. TDD 원칙
+## Table of Contents
 
-### 1.1 Red-Green-Refactor 사이클
+1. [TDD Principles](#1-tdd-principles)
+2. [Test Tools](#2-test-tools)
+3. [Testing Strategy by Layer](#3-testing-strategy-by-layer)
+4. [Test Specs by Phase](#4-test-specs-by-phase)
+5. [Test Utilities](#5-test-utilities)
+6. [Test Execution Guide](#6-test-execution-guide)
+
+---
+
+## 1. TDD Principles
+
+### 1.1 Red-Green-Refactor Cycle
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
 │     ┌─────────┐     ┌─────────┐     ┌─────────────┐        │
 │     │   RED   │ ──▶ │  GREEN  │ ──▶ │  REFACTOR   │        │
-│     │ (실패)  │     │ (통과)   │     │ (개선)      │        │
+│     │ (Fail)  │     │ (Pass)  │     │ (Improve)   │        │
 │     └─────────┘     └─────────┘     └─────────────┘        │
 │          │                                   │              │
 │          └───────────────────────────────────┘              │
-│                       반복                                   │
+│                        Repeat                               │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-1. **Red (빨강)**: 실패하는 테스트를 먼저 작성
-2. **Green (초록)**: 테스트를 통과하는 최소한의 코드 작성
-3. **Refactor (리팩토링)**: 코드 개선 (테스트는 계속 통과해야 함)
+1. **Red**: Write a failing test first
+2. **Green**: Write the minimum code to pass the test
+3. **Refactor**: Improve the code (tests must keep passing)
 
-### 1.2 TDD 규칙
+### 1.2 TDD Rules
 
-| 규칙 | 설명 |
-|------|------|
-| **테스트 먼저** | 프로덕션 코드 작성 전에 실패하는 테스트 작성 |
-| **최소 코드** | 테스트 통과에 필요한 최소한의 코드만 작성 |
-| **한 번에 하나** | 한 번에 하나의 테스트만 추가 |
-| **리팩토링** | 테스트 통과 후 코드 정리 |
-| **테스트 유지** | 리팩토링 중 테스트는 항상 통과해야 함 |
+| Rule | Description |
+|------|-------------|
+| **Test first** | Write a failing test before writing production code |
+| **Minimum code** | Write only the minimum code needed to pass the test |
+| **One at a time** | Add only one test at a time |
+| **Refactor** | Clean up code after tests pass |
+| **Keep tests green** | Tests must always pass during refactoring |
 
-### 1.3 테스트 네이밍 컨벤션
+### 1.3 Test Naming Convention
 
 ```kotlin
-// 한글 백틱 스타일 (권장)
+// Korean backtick style (recommended)
 @Test
-fun `물 추가 시 현재 섭취량이 증가한다`() { }
+fun `adding water increases current intake`() { }
 
 @Test
-fun `목표 달성 시 isSuccess가 true가 된다`() { }
+fun `isSuccess becomes true when goal is reached`() { }
 
 @Test
-fun `음수 양은 추가되지 않는다`() { }
+fun `negative amounts are not added`() { }
 
-// Given-When-Then 스타일 (대안)
+// Given-When-Then style (alternative)
 @Test
 fun givenEmptyRecord_whenAddWater100ml_thenCurrentMlIs100() { }
 ```
 
 ---
 
-## 2. 테스트 도구
+## 2. Test Tools
 
-### 2.1 테스트 환경 분류
+### 2.1 Test Environment Types
 
-> ⚠️ **중요**: Android에서는 테스트 환경이 JVM과 Android 런타임으로 분리됩니다. 각 환경의 제약을 이해하고 적절한 테스트를 작성해야 합니다.
+> ⚠️ **Important**: On Android, tests run in two separate environments: JVM and Android runtime. Understand the constraints of each and write tests accordingly.
 
-| 테스트 유형 | 위치 | 러너 | 실행 환경 | 속도 | 용도 |
-|------------|------|------|----------|------|------|
-| **Unit Test (JVM)** | `src/test/` | JUnit5 | JVM | 빠름 ⚡ | Domain, ViewModel, Repository |
-| **Instrumented Test** | `src/androidTest/` | AndroidJUnitRunner (JUnit4) | Android Device/Emulator | 느림 🐢 | Context 필요, DataStore, Room |
-| **Compose UI Test** | `src/androidTest/` | AndroidJUnitRunner | Android Device/Emulator | 느림 🐢 | UI 상호작용, 스크린샷 |
+| Test Type | Location | Runner | Environment | Speed | Purpose |
+|-----------|----------|--------|-------------|-------|---------|
+| **Unit Test (JVM)** | `src/test/` | JUnit5 | JVM | Fast ⚡ | Domain, ViewModel, Repository |
+| **Instrumented Test** | `src/androidTest/` | AndroidJUnitRunner (JUnit4) | Android Device/Emulator | Slow 🐢 | Needs Context, DataStore, Room |
+| **Compose UI Test** | `src/androidTest/` | AndroidJUnitRunner | Android Device/Emulator | Slow 🐢 | UI interactions, screenshots |
 
-#### 테스트 환경 선택 가이드
+#### Test Environment Selection Guide
 
 ```
-테스트 대상이 Android Context 필요?
+Does the test target need Android Context?
   │
   ├─ NO → JVM Unit Test (src/test/)
   │        ✅ Domain Model, ViewModel, Repository (with mocks)
   │        ✅ UseCase, Mapper, Util
-  │        ✅ Flow/StateFlow 테스트 (Turbine)
+  │        ✅ Flow/StateFlow tests (Turbine)
   │
   └─ YES → Instrumented Test (src/androidTest/)
-           ├─ UI 테스트? → Compose UI Test
-           │   ✅ 화면 렌더링, 클릭, 스크롤
-           │   ✅ 접근성 검증
-           │   ✅ 스크린샷 테스트
+           ├─ UI test? → Compose UI Test
+           │   ✅ Screen rendering, clicks, scrolls
+           │   ✅ Accessibility verification
+           │   ✅ Screenshot tests
            │
-           └─ 비-UI 테스트?
-               ✅ DataStore 실제 동작
+           └─ Non-UI test?
+               ✅ DataStore real behavior
                ✅ WorkManager
-               ✅ Health Connect 권한
+               ✅ Health Connect permissions
 ```
 
-### 2.2 의존성
+### 2.2 Dependencies
 
-> **Kotlin 2.0 + Compose**: Kotlin 2.0부터 Compose 컴파일러는 `org.jetbrains.kotlin.plugin.compose` 플러그인으로 통합되었습니다. 별도의 `compose-compiler` artifact 버전을 지정하지 않습니다. 자세한 내용은 [프로젝트 계획서](./ANDROID_PROJECT_PLAN.md)의 Version Catalog 섹션을 참고하세요.
+> **Kotlin 2.0 + Compose**: Starting with Kotlin 2.0, the Compose compiler is integrated via the `org.jetbrains.kotlin.plugin.compose` plugin. No separate `compose-compiler` artifact version is needed. See the Version Catalog section in the project plan for details.
 
 ```kotlin
 // build.gradle.kts (app module)
 plugins {
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.compose.compiler)  // Kotlin 2.0 Compose 플러그인
+    alias(libs.plugins.compose.compiler)  // Kotlin 2.0 Compose plugin
 }
 
 dependencies {
@@ -126,13 +126,13 @@ dependencies {
     // JVM Unit Tests (src/test/)
     // ═══════════════════════════════════════════════════
     
-    // JUnit 5 - JVM 테스트 프레임워크
+    // JUnit 5 - JVM test framework
     testImplementation(libs.junit5)
     
-    // Turbine - Flow 테스트 (StateFlow, SharedFlow)
+    // Turbine - Flow testing (StateFlow, SharedFlow)
     testImplementation(libs.turbine)
     
-    // MockK - Kotlin 모킹 라이브러리
+    // MockK - Kotlin mocking library
     testImplementation(libs.mockk)
     
     // Coroutines Test - runTest, TestDispatcher
@@ -142,7 +142,7 @@ dependencies {
     // Instrumented Tests (src/androidTest/)
     // ═══════════════════════════════════════════════════
     
-    // AndroidJUnitRunner (JUnit4 기반)
+    // AndroidJUnitRunner (JUnit4-based)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.rules)
     
@@ -150,30 +150,30 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     
-    // MockK Android (Instrumented에서 모킹 필요 시)
+    // MockK Android (for mocking in instrumented tests)
     androidTestImplementation(libs.mockk.android)
     
-    // Hilt Testing (DI 테스트)
+    // Hilt Testing (DI testing)
     androidTestImplementation(libs.hilt.android.testing)
     kspAndroidTest(libs.hilt.compiler)
 }
 ```
 
-### 2.3 JUnit5 vs JUnit4 (중요!)
+### 2.3 JUnit5 vs JUnit4 (Important!)
 
-| 항목 | JUnit5 (JVM) | JUnit4 (Instrumented) |
+| Item | JUnit5 (JVM) | JUnit4 (Instrumented) |
 |------|-------------|----------------------|
-| **사용 위치** | `src/test/` | `src/androidTest/` |
-| **어노테이션** | `@Test` (jupiter) | `@Test` (junit4) |
+| **Used in** | `src/test/` | `src/androidTest/` |
+| **Annotation** | `@Test` (jupiter) | `@Test` (junit4) |
 | **Setup** | `@BeforeEach` | `@Before` |
 | **Teardown** | `@AfterEach` | `@After` |
-| **Nested 클래스** | `@Nested` ✅ | ❌ 미지원 |
-| **DisplayName** | `@DisplayName` ✅ | ❌ 미지원 |
-| **한글 메서드명** | `` `한글 테스트명`() `` ✅ | `` `한글 테스트명`() `` ✅ |
+| **Nested classes** | `@Nested` ✅ | ❌ Not supported |
+| **DisplayName** | `@DisplayName` ✅ | ❌ Not supported |
+| **Korean method names** | `` `Korean test name`() `` ✅ | `` `Korean test name`() `` ✅ |
 
-#### JUnit5 Gradle 설정 (필수!)
+#### JUnit5 Gradle Setup (Required!)
 
-> ⚠️ **중요**: JUnit5를 사용하려면 `build.gradle.kts`에 `useJUnitPlatform()` 설정이 **반드시** 필요합니다.
+> ⚠️ **Important**: To use JUnit5, `useJUnitPlatform()` **must** be set in `build.gradle.kts`.
 
 ```kotlin
 // app/build.gradle.kts
@@ -182,28 +182,28 @@ android {
 }
 
 dependencies {
-    // ✅ JUnit5 통합 artifact (api + engine + params 포함)
+    // ✅ JUnit5 unified artifact (includes api + engine + params)
     testImplementation(libs.junit5)
 }
 
 tasks.withType<Test> {
-    useJUnitPlatform()  // ← 이 설정 없으면 JUnit5 테스트가 실행되지 않음!
+    useJUnitPlatform()  // ← Without this, JUnit5 tests won't run!
 }
 ```
 
-#### libs.versions.toml에 필요한 항목
+#### Required entries in libs.versions.toml
 
 ```toml
 [versions]
 junit5 = "5.10.0"
 
 [libraries]
-# ✅ 메인 경로 (권장): 통합 artifact 사용
-# junit-jupiter는 api + engine + params를 모두 포함
+# ✅ Recommended: use the unified artifact
+# junit-jupiter includes api + engine + params
 junit5 = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit5" }
 ```
 
-> **참고**: `junit-jupiter` 통합 artifact를 사용하면 api/engine을 따로 지정할 필요가 없습니다. 프로젝트 계획서의 Version Catalog도 이 방식을 사용합니다.
+> **Note**: Using the `junit-jupiter` unified artifact means you don't need to specify api/engine separately. The project plan's Version Catalog uses this approach.
 
 ```kotlin
 // ✅ JVM Test (src/test/) - JUnit5
@@ -218,7 +218,7 @@ class WaterRecordTest {
     @Nested
     inner class ProgressTest {
         @Test
-        fun `progress는 value를 goal로 나눈 값이다`() { }
+        fun `progress is value divided by goal`() { }
     }
 }
 
@@ -235,11 +235,11 @@ class DataStoreTest {
     fun setup() { }
     
     @Test
-    fun `DataStore에 값이 저장된다`() { }
+    fun `value is saved to DataStore`() { }
 }
 ```
 
-### 2.4 도구별 사용법
+### 2.4 Tool Usage
 
 #### JUnit 5
 
@@ -265,17 +265,17 @@ class WaterRecordTest {
     }
     
     @Nested
-    @DisplayName("progress 계산")
+    @DisplayName("progress calculation")
     inner class ProgressTest {
         
         @Test
-        fun `goal이 0일 때 progress는 0이다`() {
+        fun `progress is 0 when goal is 0`() {
             val record = WaterRecord(date = LocalDate.now(), value = 100, isSuccess = false, goal = 0)
             assertEquals(0f, record.progress)
         }
         
         @Test
-        fun `value가 goal의 절반일 때 progress는 0점5이다`() {
+        fun `progress is 0 point 5 when value is half of goal`() {
             val record = WaterRecord(date = LocalDate.now(), value = 1000, isSuccess = false, goal = 2000)
             assertEquals(0.5f, record.progress, 0.01f)
         }
@@ -283,7 +283,7 @@ class WaterRecordTest {
 }
 ```
 
-#### Turbine (Flow 테스트)
+#### Turbine (Flow Testing)
 
 ```kotlin
 import app.cash.turbine.test
@@ -292,17 +292,17 @@ import kotlinx.coroutines.test.runTest
 class HomeViewModelTest {
     
     @Test
-    fun `AddWater 이벤트 시 currentMl이 증가한다`() = runTest {
+    fun `currentMl increases on AddWater event`() = runTest {
         val viewModel = HomeViewModel(fakeRepository)
         
         viewModel.uiState.test {
-            // 초기 상태
+            // Initial state
             assertEquals(0, awaitItem().currentMl)
             
-            // 이벤트 발생
+            // Trigger event
             viewModel.onEvent(HomeEvent.AddWater(100))
             
-            // 상태 변경 확인
+            // Verify state change
             assertEquals(100, awaitItem().currentMl)
             
             cancelAndIgnoreRemainingEvents()
@@ -311,7 +311,7 @@ class HomeViewModelTest {
 }
 ```
 
-#### MockK (모킹)
+#### MockK (Mocking)
 
 ```kotlin
 import io.mockk.*
@@ -327,7 +327,7 @@ class WaterRepositoryTest {
     }
     
     @Test
-    fun `addWater 호출 시 DataStore에 저장된다`() = runTest {
+    fun `calling addWater saves to DataStore`() = runTest {
         // Given
         coEvery { dataStore.getTodayRecord() } returns WaterRecord(
             date = LocalDate.now(),
@@ -350,38 +350,38 @@ class WaterRepositoryTest {
 
 ---
 
-## 3. 레이어별 테스트 전략
+## 3. Testing Strategy by Layer
 
-### 3.1 테스트 피라미드
+### 3.1 Test Pyramid
 
 ```
                     ┌───────────┐
-                    │    E2E    │  ← 적은 수, 느림
+                    │    E2E    │  ← Few, slow
                     │  (UI Test)│
                    ─┴───────────┴─
                   ╱               ╲
-                 ╱   Integration   ╲  ← 중간
+                 ╱   Integration   ╲  ← Medium
                 ╱───────────────────╲
                ╱                     ╲
-              ╱     Unit Tests        ╲  ← 많은 수, 빠름
+              ╱     Unit Tests        ╲  ← Many, fast
              ╱─────────────────────────╲
 ```
 
-### 3.2 Domain Layer 테스트
+### 3.2 Domain Layer Tests
 
-**테스트 대상:** Model, Use Case
+**Test targets:** Model, Use Case
 
-**특징:**
-- 순수 Kotlin 코드
-- 외부 의존성 없음
-- 빠른 실행
+**Characteristics:**
+- Pure Kotlin code
+- No external dependencies
+- Fast execution
 
 ```kotlin
 // domain/model/WaterRecordTest.kt
 class WaterRecordTest {
     
     @Test
-    fun `id는 날짜 문자열로 생성된다`() {
+    fun `id is generated from date string`() {
         val date = LocalDate.of(2026, 1, 20)
         val record = WaterRecord(date, 1000, true, 2000)
         
@@ -389,38 +389,38 @@ class WaterRecordTest {
     }
     
     @Test
-    fun `isSuccess는 value가 goal 이상일 때 true`() {
+    fun `isSuccess is true when value is at least goal`() {
         val record = WaterRecord(LocalDate.now(), 2000, true, 2000)
         assertTrue(record.isSuccess)
     }
     
     @Test
-    fun `progress는 value를 goal로 나눈 값`() {
+    fun `progress is value divided by goal`() {
         val record = WaterRecord(LocalDate.now(), 1500, false, 2000)
         assertEquals(0.75f, record.progress, 0.001f)
     }
     
     @Test
-    fun `remainingMl은 goal에서 value를 뺀 값`() {
+    fun `remainingMl is goal minus value`() {
         val record = WaterRecord(LocalDate.now(), 1500, false, 2000)
         assertEquals(500, record.remainingMl)
     }
     
     @Test
-    fun `remainingMl은 음수가 되지 않는다`() {
+    fun `remainingMl does not go negative`() {
         val record = WaterRecord(LocalDate.now(), 2500, true, 2000)
         assertEquals(0, record.remainingMl)
     }
 }
 ```
 
-### 3.3 Data Layer 테스트
+### 3.3 Data Layer Tests
 
-**테스트 대상:** Repository, DataStore
+**Test targets:** Repository, DataStore
 
-**특징:**
-- DataStore 모킹 필요
-- Coroutines 테스트
+**Characteristics:**
+- DataStore mocking required
+- Coroutines testing
 
 ```kotlin
 // data/repository/WaterRepositoryImplTest.kt
@@ -435,7 +435,7 @@ class WaterRepositoryImplTest {
     }
     
     @Test
-    fun `getTodayRecord - 오늘 기록이 있으면 반환한다`() = runTest {
+    fun `getTodayRecord - returns record when today's record exists`() = runTest {
         // Given
         val todayRecord = WaterRecord(LocalDate.now(), 500, false, 2000)
         coEvery { dataStore.getTodayRecord() } returns todayRecord
@@ -448,7 +448,7 @@ class WaterRepositoryImplTest {
     }
     
     @Test
-    fun `getTodayRecord - 오늘 기록이 없으면 새로 생성한다`() = runTest {
+    fun `getTodayRecord - creates new record when none exists today`() = runTest {
         // Given
         coEvery { dataStore.getTodayRecord() } returns null
         coEvery { dataStore.getGoal() } returns 2000
@@ -465,7 +465,7 @@ class WaterRepositoryImplTest {
     }
     
     @Test
-    fun `addWater - 현재 값에 양이 추가된다`() = runTest {
+    fun `addWater - adds amount to current value`() = runTest {
         // Given
         val currentRecord = WaterRecord(LocalDate.now(), 500, false, 2000)
         coEvery { dataStore.getTodayRecord() } returns currentRecord
@@ -483,7 +483,7 @@ class WaterRepositoryImplTest {
     }
     
     @Test
-    fun `addWater - 목표 달성 시 isSuccess가 true가 된다`() = runTest {
+    fun `addWater - isSuccess becomes true when goal is reached`() = runTest {
         // Given
         val currentRecord = WaterRecord(LocalDate.now(), 1800, false, 2000)
         coEvery { dataStore.getTodayRecord() } returns currentRecord
@@ -499,7 +499,7 @@ class WaterRepositoryImplTest {
     }
     
     @Test
-    fun `subtractWater - 음수가 되지 않는다`() = runTest {
+    fun `subtractWater - does not go negative`() = runTest {
         // Given
         val currentRecord = WaterRecord(LocalDate.now(), 100, false, 2000)
         coEvery { dataStore.getTodayRecord() } returns currentRecord
@@ -515,7 +515,7 @@ class WaterRepositoryImplTest {
     }
     
     @Test
-    fun `resetToday - 오늘 기록이 0으로 초기화된다`() = runTest {
+    fun `resetToday - resets today's record to 0`() = runTest {
         // Given
         val currentRecord = WaterRecord(LocalDate.now(), 1500, true, 2000)
         coEvery { dataStore.getTodayRecord() } returns currentRecord
@@ -534,13 +534,13 @@ class WaterRepositoryImplTest {
 }
 ```
 
-### 3.4 UI Layer (ViewModel) 테스트
+### 3.4 UI Layer (ViewModel) Tests
 
-**테스트 대상:** ViewModel
+**Test targets:** ViewModel
 
-**특징:**
-- StateFlow 테스트 (Turbine 사용)
-- Repository 모킹
+**Characteristics:**
+- StateFlow testing (using Turbine)
+- Repository mocking
 
 ```kotlin
 // ui/home/HomeViewModelTest.kt
@@ -553,7 +553,7 @@ class HomeViewModelTest {
     
     @BeforeEach
     fun setup() {
-        // 기본 모킹 설정
+        // Default mock setup
         coEvery { waterRepository.getTodayRecord() } returns WaterRecord(
             date = LocalDate.now(),
             value = 0,
@@ -566,7 +566,7 @@ class HomeViewModelTest {
     }
     
     @Test
-    fun `초기 상태는 로딩 후 데이터가 로드된다`() = runTest {
+    fun `initial state loads data after loading`() = runTest {
         viewModel.uiState.test {
             val state = awaitItem()
             assertEquals(0, state.currentMl)
@@ -577,7 +577,7 @@ class HomeViewModelTest {
     }
     
     @Test
-    fun `AddWater 이벤트 시 currentMl이 증가한다`() = runTest {
+    fun `AddWater event increases currentMl`() = runTest {
         coEvery { waterRepository.addWater(any()) } just Runs
         coEvery { waterRepository.getTodayRecord() } returnsMany listOf(
             WaterRecord(LocalDate.now(), 0, false, 2000),
@@ -585,7 +585,7 @@ class HomeViewModelTest {
         )
         
         viewModel.uiState.test {
-            skipItems(1) // 초기 상태
+            skipItems(1) // initial state
             
             viewModel.onEvent(HomeEvent.AddWater(100))
             
@@ -597,7 +597,7 @@ class HomeViewModelTest {
     }
     
     @Test
-    fun `목표 달성 시 Analytics 이벤트가 전송된다`() = runTest {
+    fun `Analytics event is sent when goal is achieved`() = runTest {
         coEvery { waterRepository.addWater(any()) } just Runs
         coEvery { waterRepository.getTodayRecord() } returnsMany listOf(
             WaterRecord(LocalDate.now(), 1900, false, 2000),
@@ -611,7 +611,7 @@ class HomeViewModelTest {
             
             viewModel.onEvent(HomeEvent.AddWater(200))
             
-            awaitItem() // 상태 변경 대기
+            awaitItem() // wait for state change
             cancelAndIgnoreRemainingEvents()
         }
         
@@ -619,7 +619,7 @@ class HomeViewModelTest {
     }
     
     @Test
-    fun `SubtractWater 이벤트 시 currentMl이 감소한다`() = runTest {
+    fun `SubtractWater event decreases currentMl`() = runTest {
         coEvery { waterRepository.subtractWater(any()) } just Runs
         coEvery { waterRepository.getTodayRecord() } returnsMany listOf(
             WaterRecord(LocalDate.now(), 500, false, 2000),
@@ -639,7 +639,7 @@ class HomeViewModelTest {
     }
     
     @Test
-    fun `ToggleSubtractMode 시 모드가 전환된다`() = runTest {
+    fun `ToggleSubtractMode toggles the mode`() = runTest {
         viewModel.uiState.test {
             val initial = awaitItem()
             assertFalse(initial.isSubtractMode)
@@ -655,7 +655,7 @@ class HomeViewModelTest {
     }
     
     @Test
-    fun `progress 계산이 정확하다`() = runTest {
+    fun `progress calculation is accurate`() = runTest {
         coEvery { waterRepository.getTodayRecord() } returns WaterRecord(
             date = LocalDate.now(),
             value = 1500,
@@ -673,7 +673,7 @@ class HomeViewModelTest {
     }
     
     @Test
-    fun `remainingCups 계산이 정확하다`() = runTest {
+    fun `remainingCups calculation is accurate`() = runTest {
         coEvery { waterRepository.getTodayRecord() } returns WaterRecord(
             date = LocalDate.now(),
             value = 1500,
@@ -685,25 +685,25 @@ class HomeViewModelTest {
         
         viewModel.uiState.test {
             val state = awaitItem()
-            assertEquals(2, state.remainingCups) // 500ml / 250ml = 2잔
+            assertEquals(2, state.remainingCups) // 500ml / 250ml = 2 cups
             cancelAndIgnoreRemainingEvents()
         }
     }
 }
 ```
 
-### 3.5 UI Component 테스트 (Instrumented)
+### 3.5 UI Component Tests (Instrumented)
 
-**테스트 대상:** Compose UI 컴포넌트
+**Test targets:** Compose UI components
 
-**위치:** `src/androidTest/`
+**Location:** `src/androidTest/`
 
-**특징:**
-- Compose Testing 사용 (JUnit4 기반)
-- UI 상호작용 테스트
-- 실제 디바이스/에뮬레이터에서 실행
+**Characteristics:**
+- Uses Compose Testing (JUnit4-based)
+- UI interaction testing
+- Runs on real device/emulator
 
-> ⚠️ **주의**: Compose UI 테스트는 `androidTest`에서 JUnit4로 실행됩니다. JUnit5 어노테이션 사용 불가!
+> ⚠️ **Note**: Compose UI tests run with JUnit4 in `androidTest`. JUnit5 annotations cannot be used!
 
 ```kotlin
 // src/androidTest/java/.../ui/components/WaveAnimationTest.kt
@@ -717,7 +717,7 @@ class WaveAnimationTest {
     val composeTestRule = createComposeRule()
     
     @Test
-    fun progress가_0일_때_물이_표시되지_않는다() {  // JUnit4에서는 한글 백틱 대신 언더스코어 권장
+    fun progress_0_shows_no_water() {  // Underscores recommended instead of Korean backticks in JUnit4
         composeTestRule.setContent {
             WaveAnimationView(
                 progress = 0f,
@@ -725,11 +725,11 @@ class WaveAnimationTest {
             )
         }
         
-        // Canvas 내부 확인은 스크린샷 테스트로 대체 가능
+        // Canvas internals can be verified with screenshot tests instead
     }
     
     @Test
-    fun progress가_1일_때_물이_가득_찬다() {
+    fun progress_1_shows_full_water() {
         composeTestRule.setContent {
             WaveAnimationView(
                 progress = 1f,
@@ -749,7 +749,7 @@ class HomeScreenTest {
     val composeTestRule = createComposeRule()
     
     @Test
-    fun 퀵버튼_클릭_시_onAddWater가_호출된다() {
+    fun quick_button_click_calls_onAddWater() {
         var addedAmount = 0
         
         composeTestRule.setContent {
@@ -766,7 +766,7 @@ class HomeScreenTest {
     }
     
     @Test
-    fun 빼기_모드에서는_버튼_텍스트가_마이너스로_표시된다() {
+    fun subtract_mode_shows_minus_in_button_text() {
         composeTestRule.setContent {
             QuickButton(
                 amount = 100,
@@ -779,7 +779,7 @@ class HomeScreenTest {
     }
     
     @Test
-    fun 목표_달성_시_축하_메시지가_표시된다() {
+    fun goal_achieved_shows_celebration_message() {
         composeTestRule.setContent {
             HomeScreen(
                 uiState = HomeUiState(
@@ -795,7 +795,7 @@ class HomeScreenTest {
 }
 ```
 
-### 3.6 테스트 파일 위치 요약
+### 3.6 Test File Location Summary
 
 ```
 app/src/
@@ -818,50 +818,49 @@ app/src/
     └── java/com/onceagain/drinksomewater/
         ├── data/
         │   └── datastore/
-        │       └── WaterDataStoreTest.kt     ✅ JUnit4 (Context 필요)
+        │       └── WaterDataStoreTest.kt     ✅ JUnit4 (needs Context)
         └── ui/
             ├── components/
             │   └── WaveAnimationTest.kt      ✅ JUnit4 + ComposeTestRule
             └── home/
                 └── HomeScreenTest.kt         ✅ JUnit4 + ComposeTestRule
 ```
-```
 
 ---
 
-## 4. Phase별 테스트 명세
+## 4. Test Specs by Phase
 
-### Phase 2: 데이터 레이어 테스트
+### Phase 2: Data Layer Tests
 
-#### 2.1 WaterRecord 모델
+#### 2.1 WaterRecord Model
 
 ```kotlin
 class WaterRecordTest {
-    // 생성 테스트
-    @Test fun `id는 날짜 문자열로 생성된다`()
-    @Test fun `기본 생성자로 객체가 생성된다`()
+    // Creation tests
+    @Test fun `id is generated from date string`()
+    @Test fun `object is created with default constructor`()
     
-    // 계산 프로퍼티 테스트
-    @Test fun `progress는 value를 goal로 나눈 값이다`()
-    @Test fun `progress는 goal이 0일 때 0이다`()
-    @Test fun `progress는 1을 초과하지 않는다`()
-    @Test fun `remainingMl은 goal에서 value를 뺀 값이다`()
-    @Test fun `remainingMl은 음수가 되지 않는다`()
-    @Test fun `remainingCups는 remainingMl을 250으로 나눈 값이다`()
+    // Computed property tests
+    @Test fun `progress is value divided by goal`()
+    @Test fun `progress is 0 when goal is 0`()
+    @Test fun `progress does not exceed 1`()
+    @Test fun `remainingMl is goal minus value`()
+    @Test fun `remainingMl does not go negative`()
+    @Test fun `remainingCups is remainingMl divided by 250`()
     
-    // isSuccess 테스트
-    @Test fun `value가 goal 이상이면 isSuccess는 true이다`()
-    @Test fun `value가 goal 미만이면 isSuccess는 false이다`()
+    // isSuccess tests
+    @Test fun `isSuccess is true when value is at least goal`()
+    @Test fun `isSuccess is false when value is less than goal`()
 }
 ```
 
-#### 2.2 UserProfile 모델
+#### 2.2 UserProfile Model
 
 ```kotlin
 class UserProfileTest {
-    @Test fun `recommendedIntake는 체중에 33을 곱한 값이다`()
-    @Test fun `기본 체중은 65kg이다`()
-    @Test fun `체중이 0이면 권장량은 0이다`()
+    @Test fun `recommendedIntake is weight multiplied by 33`()
+    @Test fun `default weight is 65kg`()
+    @Test fun `recommended intake is 0 when weight is 0`()
 }
 ```
 
@@ -869,65 +868,65 @@ class UserProfileTest {
 
 ```kotlin
 class WaterRepositoryTest {
-    // 조회
-    @Test fun `getTodayRecord - 오늘 기록이 있으면 반환한다`()
-    @Test fun `getTodayRecord - 오늘 기록이 없으면 새로 생성한다`()
-    @Test fun `getAllRecords - 전체 기록을 날짜 역순으로 반환한다`()
-    @Test fun `getGoal - 저장된 목표량을 반환한다`()
-    @Test fun `getGoal - 목표량이 없으면 기본값 2000을 반환한다`()
+    // Retrieval
+    @Test fun `getTodayRecord - returns record when today's record exists`()
+    @Test fun `getTodayRecord - creates new record when none exists today`()
+    @Test fun `getAllRecords - returns all records in descending date order`()
+    @Test fun `getGoal - returns saved goal`()
+    @Test fun `getGoal - returns default 2000 when no goal is saved`()
     
-    // 수정
-    @Test fun `addWater - 현재 값에 양이 추가된다`()
-    @Test fun `addWater - 목표 달성 시 isSuccess가 true가 된다`()
-    @Test fun `addWater - 위젯 데이터가 동기화된다`()
-    @Test fun `subtractWater - 현재 값에서 양이 빠진다`()
-    @Test fun `subtractWater - 음수가 되지 않는다`()
-    @Test fun `resetToday - 오늘 기록이 0으로 초기화된다`()
-    @Test fun `updateGoal - 목표량이 변경된다`()
-    @Test fun `updateGoal - 오늘 기록의 goal도 업데이트된다`()
+    // Modification
+    @Test fun `addWater - adds amount to current value`()
+    @Test fun `addWater - isSuccess becomes true when goal is reached`()
+    @Test fun `addWater - widget data is synced`()
+    @Test fun `subtractWater - subtracts amount from current value`()
+    @Test fun `subtractWater - does not go negative`()
+    @Test fun `resetToday - resets today's record to 0`()
+    @Test fun `updateGoal - changes the goal`()
+    @Test fun `updateGoal - also updates today's record goal`()
 }
 ```
 
-### Phase 3: 홈 화면 테스트
+### Phase 3: Home Screen Tests
 
 #### 3.1 HomeViewModel
 
 ```kotlin
 class HomeViewModelTest {
-    // 초기화
-    @Test fun `초기 상태는 로딩 후 데이터가 로드된다`()
-    @Test fun `초기 퀵버튼은 설정에서 로드된다`()
+    // Initialization
+    @Test fun `initial state loads data after loading`()
+    @Test fun `initial quick buttons are loaded from settings`()
     
     // Refresh
-    @Test fun `Refresh 시 최신 데이터가 로드된다`()
+    @Test fun `Refresh loads the latest data`()
     
     // AddWater
-    @Test fun `AddWater 시 currentMl이 증가한다`()
-    @Test fun `AddWater 후 목표 달성 시 goalAchieved가 true`()
-    @Test fun `AddWater 시 Analytics 이벤트가 전송된다`()
-    @Test fun `목표 달성 시 goalAchieved Analytics 이벤트가 전송된다`()
+    @Test fun `AddWater increases currentMl`()
+    @Test fun `goalAchieved is true after AddWater reaches goal`()
+    @Test fun `Analytics event is sent on AddWater`()
+    @Test fun `goalAchieved Analytics event is sent when goal is reached`()
     
     // SubtractWater
-    @Test fun `SubtractWater 시 currentMl이 감소한다`()
-    @Test fun `SubtractWater 시 음수가 되지 않는다`()
-    @Test fun `SubtractWater 시 Analytics 이벤트가 전송된다`()
+    @Test fun `SubtractWater decreases currentMl`()
+    @Test fun `SubtractWater does not go negative`()
+    @Test fun `Analytics event is sent on SubtractWater`()
     
     // ResetToday
-    @Test fun `ResetToday 시 currentMl이 0이 된다`()
-    @Test fun `ResetToday 시 Analytics 이벤트가 전송된다`()
+    @Test fun `ResetToday sets currentMl to 0`()
+    @Test fun `Analytics event is sent on ResetToday`()
     
     // Mode Toggle
-    @Test fun `ToggleSubtractMode 시 모드가 전환된다`()
+    @Test fun `ToggleSubtractMode toggles the mode`()
     
-    // 계산 프로퍼티
-    @Test fun `progress 계산이 정확하다`()
-    @Test fun `remainingMl 계산이 정확하다`()
-    @Test fun `remainingCups 계산이 정확하다`()
-    @Test fun `isGoalAchieved 계산이 정확하다`()
+    // Computed properties
+    @Test fun `progress calculation is accurate`()
+    @Test fun `remainingMl calculation is accurate`()
+    @Test fun `remainingCups calculation is accurate`()
+    @Test fun `isGoalAchieved calculation is accurate`()
     
     // Notification Banner
-    @Test fun `알림 권한이 없으면 배너가 표시된다`()
-    @Test fun `배너 닫기 시 다시 표시되지 않는다`()
+    @Test fun `banner is shown when notification permission is missing`()
+    @Test fun `banner does not show again after being dismissed`()
 }
 ```
 
@@ -935,31 +934,31 @@ class HomeViewModelTest {
 
 ```kotlin
 class WaveAnimationTest {
-    @Test fun `progress가 0일 때 물이 없다`()
-    @Test fun `progress가 1일 때 물이 가득 찬다`()
-    @Test fun `progress가 범위를 벗어나면 클램핑된다`()
-    @Test fun `애니메이션이 무한 반복된다`()
+    @Test fun `no water when progress is 0`()
+    @Test fun `water is full when progress is 1`()
+    @Test fun `progress is clamped when out of range`()
+    @Test fun `animation repeats infinitely`()
 }
 ```
 
-### Phase 4: 기록 화면 테스트
+### Phase 4: History Screen Tests
 
 #### 4.1 HistoryViewModel
 
 ```kotlin
 class HistoryViewModelTest {
-    // 데이터 로드
-    @Test fun `ViewDidLoad 시 전체 기록이 로드된다`()
-    @Test fun `successDates가 올바르게 필터링된다`()
+    // Data loading
+    @Test fun `all records are loaded on ViewDidLoad`()
+    @Test fun `successDates are filtered correctly`()
     
-    // 날짜 선택
-    @Test fun `SelectDate 시 해당 날짜 기록이 선택된다`()
-    @Test fun `SelectDate 시 Analytics 이벤트가 전송된다`()
-    @Test fun `존재하지 않는 날짜 선택 시 null이 된다`()
+    // Date selection
+    @Test fun `SelectDate selects the record for that date`()
+    @Test fun `Analytics event is sent on SelectDate`()
+    @Test fun `selecting a non-existent date results in null`()
     
-    // 월간 통계
-    @Test fun `monthlySuccessCount 계산이 정확하다`()
-    @Test fun `monthlyTotalDays 계산이 정확하다`()
+    // Monthly stats
+    @Test fun `monthlySuccessCount calculation is accurate`()
+    @Test fun `monthlyTotalDays calculation is accurate`()
 }
 ```
 
@@ -967,37 +966,37 @@ class HistoryViewModelTest {
 
 ```kotlin
 class CustomCalendarTest {
-    @Test fun `달성일이 하이라이트 표시된다`()
-    @Test fun `오늘 날짜가 구분 표시된다`()
-    @Test fun `선택된 날짜가 강조 표시된다`()
-    @Test fun `이전 월 버튼 클릭 시 월이 변경된다`()
-    @Test fun `다음 월 버튼 클릭 시 월이 변경된다`()
-    @Test fun `날짜 클릭 시 onDateSelected가 호출된다`()
+    @Test fun `achieved dates are highlighted`()
+    @Test fun `today's date is distinctly shown`()
+    @Test fun `selected date is emphasized`()
+    @Test fun `clicking the previous month button changes the month`()
+    @Test fun `clicking the next month button changes the month`()
+    @Test fun `onDateSelected is called when a date is clicked`()
 }
 ```
 
-### Phase 5: 설정 화면 테스트
+### Phase 5: Settings Screen Tests
 
 #### 5.1 SettingsViewModel
 
 ```kotlin
 class SettingsViewModelTest {
-    @Test fun `초기 상태에서 설정값이 로드된다`()
-    @Test fun `UpdateGoal 시 목표량이 변경된다`()
-    @Test fun `UpdateGoal 시 Analytics 이벤트가 전송된다`()
-    @Test fun `UpdateQuickButtons 시 퀵버튼이 변경된다`()
+    @Test fun `settings values are loaded in initial state`()
+    @Test fun `UpdateGoal changes the goal`()
+    @Test fun `Analytics event is sent on UpdateGoal`()
+    @Test fun `UpdateQuickButtons changes the quick buttons`()
 }
 ```
 
-### Phase 6: 알림 시스템 테스트
+### Phase 6: Notification System Tests
 
 #### 6.1 NotificationMessages
 
 ```kotlin
 class NotificationMessagesTest {
-    @Test fun `메시지가 10개 이상 존재한다`()
-    @Test fun `random 호출 시 null이 아닌 값을 반환한다`()
-    @Test fun `모든 메시지가 비어있지 않다`()
+    @Test fun `at least 10 messages exist`()
+    @Test fun `random call returns a non-null value`()
+    @Test fun `all messages are non-empty`()
 }
 ```
 
@@ -1005,43 +1004,43 @@ class NotificationMessagesTest {
 
 ```kotlin
 class NotificationHelperTest {
-    @Test fun `알림 권한 확인이 정확하다`()
-    @Test fun `알림 채널이 올바르게 생성된다`()
-    @Test fun `알림이 올바른 내용으로 생성된다`()
+    @Test fun `notification permission check is accurate`()
+    @Test fun `notification channel is created correctly`()
+    @Test fun `notification is created with correct content`()
 }
 ```
 
-### Phase 7: 위젯 테스트
+### Phase 7: Widget Tests
 
 #### 7.1 AddWaterAction
 
 ```kotlin
 class AddWaterActionTest {
-    @Test fun `onAction 시 Repository addWater가 호출된다`()
-    @Test fun `onAction 후 위젯이 갱신된다`()
+    @Test fun `Repository addWater is called on onAction`()
+    @Test fun `widget is updated after onAction`()
 }
 ```
 
-### Phase 9: Health Connect 테스트
+### Phase 9: Health Connect Tests
 
 #### 9.1 HealthConnectHelper
 
 ```kotlin
 class HealthConnectHelperTest {
-    @Test fun `체중 읽기가 정상 동작한다`()
-    @Test fun `권장량 계산이 정확하다`()
-    @Test fun `물 섭취 기록이 저장된다`()
+    @Test fun `weight reading works correctly`()
+    @Test fun `recommended intake calculation is accurate`()
+    @Test fun `water intake record is saved`()
 }
 ```
 
-### Phase 11: Wear OS 테스트
+### Phase 11: Wear OS Tests
 
 #### 11.1 WatchViewModel
 
 ```kotlin
 class WatchViewModelTest {
-    @Test fun `Phone에서 데이터 수신 시 상태가 업데이트된다`()
-    @Test fun `AddWater 시 Phone으로 메시지가 전송된다`()
+    @Test fun `state is updated when data is received from phone`()
+    @Test fun `message is sent to phone on AddWater`()
 }
 ```
 
@@ -1049,16 +1048,16 @@ class WatchViewModelTest {
 
 ```kotlin
 class DataLayerSyncTest {
-    @Test fun `syncToWatch 호출 시 데이터가 전송된다`()
-    @Test fun `onDataChanged 시 콜백이 호출된다`()
+    @Test fun `data is sent when syncToWatch is called`()
+    @Test fun `callback is called on onDataChanged`()
 }
 ```
 
 ---
 
-## 5. 테스트 유틸리티
+## 5. Test Utilities
 
-### 5.1 테스트 픽스처
+### 5.1 Test Fixtures
 
 ```kotlin
 // test/util/TestFixtures.kt
@@ -1152,7 +1151,7 @@ class FakeWaterRepository : WaterRepository {
         goal = newGoal
     }
     
-    // 테스트 헬퍼
+    // Test helper
     fun setRecords(newRecords: List<WaterRecord>) {
         records.clear()
         records.addAll(newRecords)
@@ -1178,13 +1177,13 @@ class MainDispatcherRule(
     }
 }
 
-// 사용 예시
+// Usage example
 class HomeViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
     
     @Test
-    fun `테스트`() = runTest {
+    fun `test`() = runTest {
         // ...
     }
 }
@@ -1192,47 +1191,47 @@ class HomeViewModelTest {
 
 ---
 
-## 6. 테스트 실행 가이드
+## 6. Test Execution Guide
 
-### 6.1 명령어
+### 6.1 Commands
 
 ```bash
-# 전체 테스트 실행
+# Run all tests
 ./gradlew test
 
-# 특정 모듈 테스트
+# Run tests for specific module
 ./gradlew :app:test
 ./gradlew :widget:test
 ./gradlew :wear:test
 ./gradlew :analytics:test
 
-# 특정 테스트 클래스 실행
+# Run specific test class
 ./gradlew :app:test --tests "*.HomeViewModelTest"
 
-# 특정 테스트 메서드 실행
+# Run specific test method
 ./gradlew :app:test --tests "*.HomeViewModelTest.AddWater*"
 
-# 실패한 테스트만 재실행
+# Re-run failed tests only
 ./gradlew test --rerun-tasks
 
-# 테스트 리포트 생성
+# Generate test report
 ./gradlew test jacocoTestReport
 
-# 커버리지 리포트 (Kover)
+# Coverage report (Kover)
 ./gradlew koverHtmlReport
 ```
 
-### 6.2 커버리지 목표
+### 6.2 Coverage Goals
 
-| 레이어 | 목표 커버리지 |
-|--------|-------------|
+| Layer | Target Coverage |
+|-------|----------------|
 | Domain (Model, UseCase) | 90%+ |
 | Data (Repository) | 80%+ |
 | UI (ViewModel) | 80%+ |
 | UI (Composable) | 60%+ |
 | Service | 70%+ |
 
-### 6.3 CI 테스트 설정 (GitHub Actions)
+### 6.3 CI Test Setup (GitHub Actions)
 
 ```yaml
 # .github/workflows/android-test.yml
@@ -1278,16 +1277,16 @@ jobs:
 
 ---
 
-## 부록
+## Appendix
 
-### A. 참고 자료
+### A. References
 
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 - [Turbine - Flow Testing](https://github.com/cashapp/turbine)
 - [MockK - Kotlin Mocking](https://mockk.io/)
 - [Compose Testing](https://developer.android.com/jetpack/compose/testing)
 
-### B. 관련 문서
+### B. Related Documents
 
-- [프로젝트 계획서](./ANDROID_PROJECT_PLAN.md)
-- [iOS-Android 매핑](./IOS_ANDROID_MAPPING.md)
+- [Project Plan](./ANDROID_PROJECT_PLAN.md)
+- [iOS-Android Mapping](./IOS_ANDROID_MAPPING.md)

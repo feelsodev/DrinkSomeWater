@@ -1,60 +1,60 @@
-# iOS - Android 파일 매핑 테이블
+# iOS - Android File Mapping Table
 
-> 💧 벌컥벌컥 iOS → Android 코드 포팅 참조 문서
-
----
-
-## 메타 정보
-
-| 항목 | 값 |
-|------|-----|
-| **버전** | 1.0.0 |
-| **최종 업데이트** | 2026-01-20 |
-| **iOS 버전** | 26.2.0 |
+> 💧 Gulp iOS → Android code porting reference document
 
 ---
 
-## 목차
+## Meta Information
 
-1. [아키텍처 매핑](#1-아키텍처-매핑)
-2. [모델 매핑](#2-모델-매핑)
-3. [서비스 매핑](#3-서비스-매핑)
-4. [Store/ViewModel 매핑](#4-storeviewmodel-매핑)
-5. [View/Screen 매핑](#5-viewscreen-매핑)
-6. [컴포넌트 매핑](#6-컴포넌트-매핑)
-7. [위젯 매핑](#7-위젯-매핑)
-8. [Watch/Wear OS 매핑](#8-watchwear-os-매핑)
-9. [유틸리티 매핑](#9-유틸리티-매핑)
+| Field | Value |
+|-------|-------|
+| **Version** | 1.0.0 |
+| **Last Updated** | 2026-01-20 |
+| **iOS Version** | 26.2.0 |
 
 ---
 
-## 상태 범례
+## Table of Contents
 
-| 상태 | 의미 |
-|------|------|
-| ⏳ | 대기 중 |
-| 🚧 | 진행 중 |
-| ✅ | 완료 |
-| 🔄 | 리팩토링 필요 |
-| ❌ | 해당 없음 (Android에서 불필요) |
+1. [Architecture Mapping](#1-architecture-mapping)
+2. [Model Mapping](#2-model-mapping)
+3. [Service Mapping](#3-service-mapping)
+4. [Store/ViewModel Mapping](#4-storeviewmodel-mapping)
+5. [View/Screen Mapping](#5-viewscreen-mapping)
+6. [Component Mapping](#6-component-mapping)
+7. [Widget Mapping](#7-widget-mapping)
+8. [Watch/Wear OS Mapping](#8-watchwear-os-mapping)
+9. [Utility Mapping](#9-utility-mapping)
 
 ---
 
-## 1. 아키텍처 매핑
+## Status Legend
 
-### 1.1 패턴 비교
+| Status | Meaning |
+|--------|---------|
+| ⏳ | Pending |
+| 🚧 | In progress |
+| ✅ | Complete |
+| 🔄 | Needs refactoring |
+| ❌ | Not applicable (not needed on Android) |
 
-| iOS | Android | 설명 |
-|-----|---------|------|
-| `@Observable` | `StateFlow` | 상태 관찰 |
-| `@MainActor` | `viewModelScope` | 메인 스레드 |
-| `send(_ action:)` | `onEvent(event:)` | 액션 전달 |
-| `Action enum` | `sealed class Event` | 이벤트 정의 |
-| `var state` | `data class UiState` | 상태 정의 |
-| `async/await` | `suspend` | 비동기 |
-| Protocol | Interface | 추상화 |
+---
 
-### 1.2 구조 비교
+## 1. Architecture Mapping
+
+### 1.1 Pattern Comparison
+
+| iOS | Android | Description |
+|-----|---------|-------------|
+| `@Observable` | `StateFlow` | State observation |
+| `@MainActor` | `viewModelScope` | Main thread |
+| `send(_ action:)` | `onEvent(event:)` | Action dispatch |
+| `Action enum` | `sealed class Event` | Event definition |
+| `var state` | `data class UiState` | State definition |
+| `async/await` | `suspend` | Async |
+| Protocol | Interface | Abstraction |
+
+### 1.2 Structure Comparison
 
 ```
 iOS:                              Android:
@@ -79,19 +79,19 @@ iOS:                              Android:
 
 ---
 
-## 2. 모델 매핑
+## 2. Model Mapping
 
-| iOS 파일 | Android 파일 | 상태 | 비고 |
-|----------|-------------|------|------|
+| iOS File | Android File | Status | Notes |
+|----------|-------------|--------|-------|
 | `Models/WaterRecord.swift` | `domain/model/WaterRecord.kt` | ⏳ | data class |
 | `Models/UserProfile.swift` | `domain/model/UserProfile.kt` | ⏳ | data class |
 | `Models/NotificationSettings.swift` | `domain/model/NotificationSettings.kt` | ⏳ | data class |
-| `Models/ModelType.swift` | ❌ | ❌ | Kotlin에서 불필요 |
-| `Models/Info.swift` | `domain/model/SettingsItem.kt` | ⏳ | 설정 아이템 |
+| `Models/ModelType.swift` | ❌ | ❌ | Not needed in Kotlin |
+| `Models/Info.swift` | `domain/model/SettingsItem.kt` | ⏳ | Settings item |
 | `Models/AppVersion.swift` | `domain/model/AppVersion.kt` | ⏳ | - |
 | `Models/AppUpdateConfig.swift` | `domain/model/AppUpdateConfig.kt` | ⏳ | - |
 
-### 2.1 WaterRecord 상세 매핑
+### 2.1 WaterRecord Detailed Mapping
 
 **iOS (WaterRecord.swift)**
 ```swift
@@ -122,23 +122,23 @@ data class WaterRecord(
 
 ---
 
-## 3. 서비스 매핑
+## 3. Service Mapping
 
-| iOS 파일 | Android 파일 | 상태 | 비고 |
-|----------|-------------|------|------|
-| `Services/WaterService.swift` | `data/repository/WaterRepositoryImpl.kt` | ⏳ | Repository 패턴 |
+| iOS File | Android File | Status | Notes |
+|----------|-------------|--------|-------|
+| `Services/WaterService.swift` | `data/repository/WaterRepositoryImpl.kt` | ⏳ | Repository pattern |
 | `Services/UserDefaultsService.swift` | `data/datastore/WaterDataStore.kt` | ⏳ | DataStore |
 | `Services/HealthKitService.swift` | `service/health/HealthConnectHelper.kt` | ⏳ | Health Connect |
 | `Services/NotificationService.swift` | `service/notification/NotificationHelper.kt` | ⏳ | WorkManager |
 | `Services/WatchConnectivityService.swift` | `service/sync/DataLayerHelper.kt` | ⏳ | Wear Data Layer |
-| `Services/AlertService.swift` | ❌ | ❌ | Compose Dialog 사용 |
+| `Services/AlertService.swift` | ❌ | ❌ | Uses Compose Dialog |
 | `Services/AdMobService.swift` | `service/ad/AdMobHelper.kt` | ⏳ | - |
 | `Services/RemoteConfigService.swift` | `service/config/RemoteConfigHelper.kt` | ⏳ | - |
 | `Services/AppUpdateChecker.swift` | `service/update/AppUpdateChecker.kt` | ⏳ | - |
-| `Services/ServiceProvider.swift` | ❌ | ❌ | Hilt DI 사용 |
-| `Services/BaseService.swift` | ❌ | ❌ | 불필요 |
+| `Services/ServiceProvider.swift` | ❌ | ❌ | Uses Hilt DI |
+| `Services/BaseService.swift` | ❌ | ❌ | Not needed |
 
-### 3.1 WaterService → WaterRepository 상세 매핑
+### 3.1 WaterService → WaterRepository Detailed Mapping
 
 **iOS (WaterService.swift)**
 ```swift
@@ -168,24 +168,24 @@ interface WaterRepository {
 
 ---
 
-## 4. Store/ViewModel 매핑
+## 4. Store/ViewModel Mapping
 
-| iOS 파일 | Android 파일 | 상태 | 비고 |
-|----------|-------------|------|------|
+| iOS File | Android File | Status | Notes |
+|----------|-------------|--------|-------|
 | `Stores/HomeStore.swift` | `ui/home/HomeViewModel.kt` | ⏳ | MVI |
 | `Stores/HistoryStore.swift` | `ui/history/HistoryViewModel.kt` | ⏳ | MVI |
 | `Stores/SettingsStore.swift` | `ui/settings/SettingsViewModel.kt` | ⏳ | MVI |
 | `Stores/OnboardingStore.swift` | `ui/onboarding/OnboardingViewModel.kt` | ⏳ | MVI |
 | `Stores/ProfileStore.swift` | `ui/settings/ProfileViewModel.kt` | ⏳ | MVI |
 | `Stores/NotificationStore.swift` | `ui/settings/NotificationViewModel.kt` | ⏳ | MVI |
-| `Stores/CalendarStore.swift` | ❌ | ❌ | HistoryViewModel에 통합 |
-| `Stores/MainStore.swift` | ❌ | ❌ | 불필요 |
-| `Stores/DrinkStore.swift` | ❌ | ❌ | HomeViewModel에 통합 |
-| `Stores/SettingStore.swift` | ❌ | ❌ | SettingsViewModel에 통합 |
-| `Stores/InformationStore.swift` | ❌ | ❌ | SettingsViewModel에 통합 |
-| `Stores/ObservationToken.swift` | ❌ | ❌ | StateFlow 사용 |
+| `Stores/CalendarStore.swift` | ❌ | ❌ | Merged into HistoryViewModel |
+| `Stores/MainStore.swift` | ❌ | ❌ | Not needed |
+| `Stores/DrinkStore.swift` | ❌ | ❌ | Merged into HomeViewModel |
+| `Stores/SettingStore.swift` | ❌ | ❌ | Merged into SettingsViewModel |
+| `Stores/InformationStore.swift` | ❌ | ❌ | Merged into SettingsViewModel |
+| `Stores/ObservationToken.swift` | ❌ | ❌ | Uses StateFlow |
 
-### 4.1 HomeStore → HomeViewModel 상세 매핑
+### 4.1 HomeStore → HomeViewModel Detailed Mapping
 
 **iOS Action → Android Event**
 
@@ -217,10 +217,10 @@ interface WaterRepository {
 
 ---
 
-## 5. View/Screen 매핑
+## 5. View/Screen Mapping
 
-| iOS 파일 | Android 파일 | 상태 | 비고 |
-|----------|-------------|------|------|
+| iOS File | Android File | Status | Notes |
+|----------|-------------|--------|-------|
 | `Views/MainTabView.swift` | `ui/navigation/AppNavigation.kt` | ⏳ | Navigation Compose |
 | `Views/HomeView.swift` | `ui/home/HomeScreen.kt` | ⏳ | Compose |
 | `Views/HistoryView.swift` | `ui/history/HistoryScreen.kt` | ⏳ | Compose |
@@ -230,13 +230,13 @@ interface WaterRepository {
 | `ViewController/Settings/ProfileSettingViewController.swift` | `ui/settings/ProfileSettingScreen.kt` | ⏳ | Compose |
 | `ViewController/Settings/WidgetGuideViewController.swift` | `ui/settings/WidgetGuideScreen.kt` | ⏳ | Compose |
 | `ViewController/Onboarding/OnboardingViewController.swift` | `ui/onboarding/OnboardingScreen.kt` | ⏳ | Compose |
-| `ViewController/Onboarding/OnboardingPageViewController.swift` | ❌ | ❌ | HorizontalPager 사용 |
-| `ViewController/BaseComponent/BaseViewController.swift` | ❌ | ❌ | 불필요 |
+| `ViewController/Onboarding/OnboardingPageViewController.swift` | ❌ | ❌ | Uses HorizontalPager |
+| `ViewController/BaseComponent/BaseViewController.swift` | ❌ | ❌ | Not needed |
 | `IntroViewController.swift` | `ui/splash/SplashScreen.kt` | ⏳ | Compose |
 | `SceneDelegate.swift` | `MainActivity.kt` | ⏳ | Activity |
 | `AppDelegate.swift` | `DrinkSomeWaterApp.kt` | ⏳ | Application |
 
-### 5.1 HomeView 컴포넌트 매핑
+### 5.1 HomeView Component Mapping
 
 | iOS Component | Android Composable |
 |---------------|-------------------|
@@ -249,7 +249,7 @@ interface WaterRepository {
 | `QuickButtonSettingView` | `QuickButtonSettingSheet()` |
 | `WaterAdjustmentView` | `WaterAdjustmentSheet()` |
 
-### 5.2 HistoryView 컴포넌트 매핑
+### 5.2 HistoryView Component Mapping
 
 | iOS Component | Android Composable |
 |---------------|-------------------|
@@ -266,23 +266,23 @@ interface WaterRepository {
 
 ---
 
-## 6. 컴포넌트 매핑
+## 6. Component Mapping
 
-| iOS 파일 | Android 파일 | 상태 | 비고 |
-|----------|-------------|------|------|
+| iOS File | Android File | Status | Notes |
+|----------|-------------|--------|-------|
 | `Vendor/WaveAnimationView.swift` | `ui/components/WaveAnimation.kt` | ⏳ | Compose Canvas |
-| `ViewComponent/WaveAnimationViewRepresentable.swift` | ❌ | ❌ | Compose 직접 사용 |
-| `ViewComponent/FSCalendarRepresentable.swift` | `ui/components/CustomCalendar.kt` | ⏳ | 커스텀 구현 |
+| `ViewComponent/WaveAnimationViewRepresentable.swift` | ❌ | ❌ | Uses Compose directly |
+| `ViewComponent/FSCalendarRepresentable.swift` | `ui/components/CustomCalendar.kt` | ⏳ | Custom implementation |
 | `ViewComponent/Beaker.swift` | `ui/components/BottleView.kt` | ⏳ | Compose |
 | `ViewComponent/WaterRecordResultView.swift` | `ui/components/RecordCard.kt` | ⏳ | Compose |
-| `ViewComponent/CalendarDescriptView.swift` | ❌ | ❌ | CustomCalendar에 통합 |
+| `ViewComponent/CalendarDescriptView.swift` | ❌ | ❌ | Merged into CustomCalendar |
 | `ViewComponent/NativeAdView.swift` | `ui/components/NativeAdView.kt` | ⏳ | Compose |
-| `ViewComponent/NativeAdTableViewCell.swift` | ❌ | ❌ | Compose 직접 사용 |
-| `ViewComponent/IntrinsicTableView.swift` | ❌ | ❌ | LazyColumn 사용 |
-| `ViewController/Settings/SettingsCell.swift` | ❌ | ❌ | Compose 직접 사용 |
-| `ViewController/BaseComponent/BaseTableViewCell.swift` | ❌ | ❌ | 불필요 |
+| `ViewComponent/NativeAdTableViewCell.swift` | ❌ | ❌ | Uses Compose directly |
+| `ViewComponent/IntrinsicTableView.swift` | ❌ | ❌ | Uses LazyColumn |
+| `ViewController/Settings/SettingsCell.swift` | ❌ | ❌ | Uses Compose directly |
+| `ViewController/BaseComponent/BaseTableViewCell.swift` | ❌ | ❌ | Not needed |
 
-### 6.1 WaveAnimationView 상세 매핑
+### 6.1 WaveAnimationView Detailed Mapping
 
 **iOS**
 ```swift
@@ -290,7 +290,7 @@ class WaveAnimationView: UIView {
     var progress: Float
     var frontColor: UIColor
     var backColor: UIColor
-    // CADisplayLink로 애니메이션
+    // Animation via CADisplayLink
 }
 ```
 
@@ -307,44 +307,44 @@ fun WaveAnimation(
     val waveOffset by infiniteTransition.animateFloat(...)
     
     Canvas(modifier = modifier) {
-        // drawPath로 물결 그리기
+        // Draw wave with drawPath
     }
 }
 ```
 
 ---
 
-## 7. 위젯 매핑
+## 7. Widget Mapping
 
-| iOS 파일 | Android 파일 | 상태 | 비고 |
-|----------|-------------|------|------|
+| iOS File | Android File | Status | Notes |
+|----------|-------------|--------|-------|
 | `DrinkSomeWaterWidget/DrinkSomeWaterWidget.swift` | `widget/WaterGlanceWidget.kt` | ⏳ | Glance |
 | `DrinkSomeWaterWidget/WaterEntry.swift` | `widget/WaterWidgetState.kt` | ⏳ | - |
 | `DrinkSomeWaterWidget/WaterProvider.swift` | `widget/WaterWidgetReceiver.kt` | ⏳ | - |
 | `DrinkSomeWaterWidget/Views/SmallWidgetView.swift` | `widget/ui/SmallWidget.kt` | ⏳ | Glance |
 | `DrinkSomeWaterWidget/Views/MediumWidgetView.swift` | `widget/ui/MediumWidget.kt` | ⏳ | Glance |
 | `DrinkSomeWaterWidget/Views/LargeWidgetView.swift` | `widget/ui/LargeWidget.kt` | ⏳ | Glance |
-| `DrinkSomeWaterWidget/Views/LockScreenWidgetView.swift` | ❌ | ❌ | Android 잠금화면 위젯 없음 |
+| `DrinkSomeWaterWidget/Views/LockScreenWidgetView.swift` | ❌ | ❌ | No lock screen widget on Android |
 | `DrinkSomeWaterWidget/Intents/AddWaterIntent.swift` | `widget/action/AddWaterAction.kt` | ⏳ | ActionCallback |
 | `Shared/WidgetDataManager.swift` | `widget/data/WidgetDataManager.kt` | ⏳ | DataStore |
 
-### 7.1 위젯 크기 매핑
+### 7.1 Widget Size Mapping
 
-| iOS Family | Android Size | 크기 |
+| iOS Family | Android Size | Size |
 |------------|--------------|------|
 | `.systemSmall` | `DpSize(110.dp, 110.dp)` | 2x2 |
 | `.systemMedium` | `DpSize(250.dp, 110.dp)` | 4x2 |
 | `.systemLarge` | `DpSize(250.dp, 250.dp)` | 4x4 |
-| `.accessoryCircular` | ❌ | 해당 없음 |
-| `.accessoryRectangular` | ❌ | 해당 없음 |
-| `.accessoryInline` | ❌ | 해당 없음 |
+| `.accessoryCircular` | ❌ | Not applicable |
+| `.accessoryRectangular` | ❌ | Not applicable |
+| `.accessoryInline` | ❌ | Not applicable |
 
 ---
 
-## 8. Watch/Wear OS 매핑
+## 8. Watch/Wear OS Mapping
 
-| iOS 파일 | Android 파일 | 상태 | 비고 |
-|----------|-------------|------|------|
+| iOS File | Android File | Status | Notes |
+|----------|-------------|--------|-------|
 | `DrinkSomeWaterWatch/Sources/DrinkSomeWaterWatchApp.swift` | `wear/WearApplication.kt` | ⏳ | Application |
 | `DrinkSomeWaterWatch/Sources/Stores/WatchStore.swift` | `wear/WatchViewModel.kt` | ⏳ | ViewModel |
 | `DrinkSomeWaterWatch/Sources/Views/ContentView.swift` | `wear/ui/WearNavigation.kt` | ⏳ | Navigation |
@@ -354,7 +354,7 @@ fun WaveAnimation(
 | `DrinkSomeWaterWatch/Sources/Complications/WaterComplication.swift` | `wear/complication/WaterComplicationService.kt` | ⏳ | Complication |
 | `DrinkSomeWaterWatch/Sources/Complications/DrinkSomeWaterWidgetBundle.swift` | `wear/tile/WaterTileService.kt` | ⏳ | Tile |
 
-### 8.1 Watch 통신 매핑
+### 8.1 Watch Communication Mapping
 
 | iOS (WatchConnectivity) | Android (Data Layer) |
 |-------------------------|----------------------|
@@ -367,20 +367,20 @@ fun WaveAnimation(
 
 ---
 
-## 9. 유틸리티 매핑
+## 9. Utility Mapping
 
-| iOS 파일 | Android 파일 | 상태 | 비고 |
-|----------|-------------|------|------|
+| iOS File | Android File | Status | Notes |
+|----------|-------------|--------|-------|
 | `Extensions-Utillities/Date+Ext.swift` | `util/DateExtensions.kt` | ⏳ | - |
-| `Extensions-Utillities/Float+Ext.swift` | ❌ | ❌ | Kotlin stdlib 사용 |
-| `Extensions-Utillities/String+Ext.swift` | ❌ | ❌ | Kotlin stdlib 사용 |
-| `Extensions-Utillities/UIView+Ext.swift` | ❌ | ❌ | Compose Modifier 사용 |
+| `Extensions-Utillities/Float+Ext.swift` | ❌ | ❌ | Uses Kotlin stdlib |
+| `Extensions-Utillities/String+Ext.swift` | ❌ | ❌ | Uses Kotlin stdlib |
+| `Extensions-Utillities/UIView+Ext.swift` | ❌ | ❌ | Uses Compose Modifier |
 | `Types/UserDefaultsKey.swift` | `data/datastore/PreferencesKeys.kt` | ⏳ | - |
 | `StaticComponent/NotificationMessages.swift` | `service/notification/NotificationMessages.kt` | ⏳ | - |
-| `StaticComponent/WaterImage.swift` | ❌ | ❌ | Drawable 사용 |
+| `StaticComponent/WaterImage.swift` | ❌ | ❌ | Uses Drawable |
 | `DesignSystem/DesignTokens.swift` | `ui/theme/DesignTokens.kt` | ⏳ | - |
 
-### 9.1 DesignTokens 매핑
+### 9.1 DesignTokens Mapping
 
 | iOS | Android |
 |-----|---------|
@@ -395,15 +395,15 @@ fun WaveAnimation(
 
 ---
 
-## 10. Analytics 매핑
+## 10. Analytics Mapping
 
-| iOS 파일 | Android 파일 | 상태 | 비고 |
-|----------|-------------|------|------|
+| iOS File | Android File | Status | Notes |
+|----------|-------------|--------|-------|
 | `Analytics/Sources/Analytics.swift` | `analytics/AnalyticsTracker.kt` | ⏳ | - |
 | `Analytics/Sources/AnalyticsEvent.swift` | `analytics/AnalyticsEvent.kt` | ⏳ | sealed class |
 | `Analytics/Sources/AnalyticsUserProperty.swift` | `analytics/UserProperty.kt` | ⏳ | - |
 
-### 10.1 Analytics Event 매핑
+### 10.1 Analytics Event Mapping
 
 | iOS Event | Android Event |
 |-----------|---------------|
@@ -416,26 +416,26 @@ fun WaveAnimation(
 
 ---
 
-## 부록: 빠른 참조
+## Appendix: Quick Reference
 
-### A. 파일 검색 경로
+### A. File Search Paths
 
-| 기능 | iOS 경로 | Android 경로 |
-|------|---------|-------------|
-| 모델 | `DrinkSomeWater/Sources/Models/` | `app/.../domain/model/` |
-| 서비스 | `DrinkSomeWater/Sources/Services/` | `app/.../data/repository/` |
+| Feature | iOS Path | Android Path |
+|---------|---------|-------------|
+| Models | `DrinkSomeWater/Sources/Models/` | `app/.../domain/model/` |
+| Services | `DrinkSomeWater/Sources/Services/` | `app/.../data/repository/` |
 | Store/VM | `DrinkSomeWater/Sources/Stores/` | `app/.../ui/[feature]/` |
-| 뷰 | `DrinkSomeWater/Sources/Views/` | `app/.../ui/[feature]/` |
-| 컴포넌트 | `DrinkSomeWater/Sources/ViewComponent/` | `app/.../ui/components/` |
-| 디자인 | `DrinkSomeWater/Sources/DesignSystem/` | `app/.../ui/theme/` |
-| 유틸 | `DrinkSomeWater/Sources/Extensions-Utillities/` | `app/.../util/` |
-| 위젯 | `DrinkSomeWaterWidget/` | `widget/` |
-| 워치 | `DrinkSomeWaterWatch/` | `wear/` |
-| 분석 | `Analytics/` | `analytics/` |
+| Views | `DrinkSomeWater/Sources/Views/` | `app/.../ui/[feature]/` |
+| Components | `DrinkSomeWater/Sources/ViewComponent/` | `app/.../ui/components/` |
+| Design | `DrinkSomeWater/Sources/DesignSystem/` | `app/.../ui/theme/` |
+| Utilities | `DrinkSomeWater/Sources/Extensions-Utillities/` | `app/.../util/` |
+| Widget | `DrinkSomeWaterWidget/` | `widget/` |
+| Watch | `DrinkSomeWaterWatch/` | `wear/` |
+| Analytics | `Analytics/` | `analytics/` |
 
-### B. 관련 문서
+### B. Related Documents
 
-- [프로젝트 계획서](./ANDROID_PROJECT_PLAN.md)
-- [TDD 가이드](./ANDROID_TDD_GUIDE.md)
-- [iOS 프로젝트 문서](../../ios/docs/IOS_PROJECT_DOCUMENTATION.md)
-- [iOS 기술 명세](../../ios/docs/TECH_SPEC.md)
+- [Project Plan](./ANDROID_PROJECT_PLAN.md)
+- [TDD Guide](./ANDROID_TDD_GUIDE.md)
+- [iOS Project Documentation](../../ios/docs/IOS_PROJECT_DOCUMENTATION.md)
+- [iOS Tech Spec](../../ios/docs/TECH_SPEC.md)

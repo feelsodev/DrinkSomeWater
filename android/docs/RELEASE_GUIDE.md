@@ -1,12 +1,12 @@
-# 릴리스 가이드
+# Release Guide
 
-> 벌컥벌컥 Android 앱 릴리스 절차
+> Gulp Android app release procedure
 
 ---
 
-## 1. 키스토어 생성
+## 1. Creating a Keystore
 
-### 1.1 키스토어 생성 명령어
+### 1.1 Keystore creation command
 
 ```bash
 keytool -genkey -v -keystore drinksomewater-release.keystore \
@@ -16,7 +16,7 @@ keytool -genkey -v -keystore drinksomewater-release.keystore \
   -validity 10000
 ```
 
-### 1.2 입력 정보 예시
+### 1.2 Input example
 
 ```
 Enter keystore password: ********
@@ -40,21 +40,21 @@ Enter key password for <drinksomewater>
   (RETURN if same as keystore password): ********
 ```
 
-### 1.3 키스토어 파일 보관
+### 1.3 Storing the keystore file
 
-> **중요**: 키스토어 파일과 비밀번호를 안전하게 보관하세요. 분실 시 앱 업데이트가 불가능합니다!
+> **Important**: Keep the keystore file and password in a safe place. If lost, you won't be able to update the app!
 
-- 키스토어 파일: 프로젝트 외부 안전한 위치에 보관
-- 비밀번호: 비밀번호 관리자나 안전한 장소에 기록
-- 백업: 최소 2곳 이상에 백업 권장
+- Keystore file: store in a safe location outside the project
+- Password: record in a password manager or secure location
+- Backup: at least 2 backup copies recommended
 
 ---
 
-## 2. 로컬 빌드 설정
+## 2. Local Build Configuration
 
-### 2.1 local.properties 설정
+### 2.1 local.properties setup
 
-`android/local.properties` 파일에 다음 내용 추가:
+Add the following to your `android/local.properties` file:
 
 ```properties
 # Signing Config (DO NOT COMMIT!)
@@ -64,24 +64,24 @@ KEY_ALIAS=drinksomewater
 KEY_PASSWORD=your_key_password
 ```
 
-> **주의**: `local.properties`는 `.gitignore`에 이미 포함되어 있습니다. 절대 커밋하지 마세요!
+> **Warning**: `local.properties` is already in `.gitignore`. Never commit it!
 
-### 2.2 릴리스 빌드
+### 2.2 Release build
 
 ```bash
 cd android
 
-# App 릴리스 빌드
+# App release build
 ./gradlew :app:assembleRelease
 
-# Wear OS 릴리스 빌드  
+# Wear OS release build  
 ./gradlew :wear:assembleRelease
 
-# 전체 릴리스 빌드
+# Full release build
 ./gradlew assembleRelease
 ```
 
-### 2.3 빌드 결과물 위치
+### 2.3 Build output locations
 
 - App APK: `app/build/outputs/apk/release/app-release.apk`
 - App Bundle: `app/build/outputs/bundle/release/app-release.aab`
@@ -89,32 +89,32 @@ cd android
 
 ---
 
-## 3. CI/CD 설정 (GitHub Actions)
+## 3. CI/CD Setup (GitHub Actions)
 
-### 3.1 GitHub Secrets 설정
+### 3.1 GitHub Secrets configuration
 
-Repository Settings → Secrets and variables → Actions에서 다음 시크릿 추가:
+Go to Repository Settings → Secrets and variables → Actions and add the following secrets:
 
 | Secret Name | Description |
 |-------------|-------------|
-| `KEYSTORE_BASE64` | 키스토어 파일을 Base64 인코딩한 값 |
-| `KEYSTORE_PASSWORD` | 키스토어 비밀번호 |
-| `KEY_ALIAS` | 키 별칭 |
-| `KEY_PASSWORD` | 키 비밀번호 |
+| `KEYSTORE_BASE64` | Base64-encoded keystore file |
+| `KEYSTORE_PASSWORD` | Keystore password |
+| `KEY_ALIAS` | Key alias |
+| `KEY_PASSWORD` | Key password |
 
-### 3.2 Base64 인코딩 방법
+### 3.2 Base64 encoding method
 
 ```bash
 # macOS / Linux
 base64 -i drinksomewater-release.keystore | pbcopy
-# 또는
+# or
 cat drinksomewater-release.keystore | base64
 
 # Windows (PowerShell)
 [Convert]::ToBase64String([IO.File]::ReadAllBytes("drinksomewater-release.keystore"))
 ```
 
-### 3.3 GitHub Actions Workflow 예시
+### 3.3 GitHub Actions Workflow example
 
 ```yaml
 name: Release Build
@@ -161,75 +161,75 @@ jobs:
 
 ---
 
-## 4. Play Store 업로드
+## 4. Play Store Upload
 
-### 4.1 App Bundle 생성 (권장)
+### 4.1 Generate App Bundle (recommended)
 
 ```bash
 ./gradlew :app:bundleRelease
 ```
 
-결과물: `app/build/outputs/bundle/release/app-release.aab`
+Output: `app/build/outputs/bundle/release/app-release.aab`
 
-### 4.2 Play Console 업로드
+### 4.2 Play Console upload
 
-1. [Google Play Console](https://play.google.com/console) 접속
-2. 앱 선택 → 릴리스 → 프로덕션 (또는 테스트 트랙)
-3. "새 릴리스 만들기" 클릭
-4. App Bundle (.aab) 파일 업로드
-5. 릴리스 노트 작성
-6. 검토 및 출시
+1. Go to [Google Play Console](https://play.google.com/console)
+2. Select app → Release → Production (or test track)
+3. Click "Create new release"
+4. Upload App Bundle (.aab) file
+5. Write release notes
+6. Review and publish
 
-### 4.3 내부 테스트 트랙
+### 4.3 Internal test track
 
-첫 릴리스 전에 내부 테스트 트랙에서 테스트 권장:
+Before the first release, it's recommended to test on the internal test track:
 
-1. 릴리스 → 테스트 → 내부 테스트
-2. 테스터 이메일 등록
-3. AAB 업로드 후 테스트 링크 공유
-
----
-
-## 5. 릴리스 체크리스트
-
-### 빌드 전
-
-- [ ] `versionCode` 증가 확인 (app/build.gradle.kts)
-- [ ] `versionName` 업데이트 확인
-- [ ] 모든 테스트 통과 (`./gradlew test`)
-- [ ] Lint 검사 통과 (`./gradlew lint`)
-- [ ] 디버그 코드/로그 제거 확인
-
-### 빌드 후
-
-- [ ] 릴리스 APK/AAB 생성 확인
-- [ ] 릴리스 빌드 설치 및 기본 기능 테스트
-- [ ] ProGuard 적용 확인 (난독화된 코드)
-- [ ] 크래시 없이 앱 실행 확인
-
-### Play Store 업로드 전
-
-- [ ] 스크린샷 최신 버전 확인
-- [ ] 앱 설명 업데이트 (새 기능)
-- [ ] 릴리스 노트 작성
-- [ ] 개인정보 처리방침 URL 확인
+1. Release → Testing → Internal testing
+2. Register tester email addresses
+3. Upload AAB and share the test link
 
 ---
 
-## 6. 버전 관리
+## 5. Release Checklist
 
-### 버전 코드 규칙
+### Before build
+
+- [ ] `versionCode` incremented (app/build.gradle.kts)
+- [ ] `versionName` updated
+- [ ] All tests passing (`./gradlew test`)
+- [ ] Lint checks passing (`./gradlew lint`)
+- [ ] Debug code/logs removed
+
+### After build
+
+- [ ] Release APK/AAB generated successfully
+- [ ] Release build installed and basic features tested
+- [ ] ProGuard applied (obfuscated code)
+- [ ] App launches without crashes
+
+### Before Play Store upload
+
+- [ ] Screenshots are up to date
+- [ ] App description updated (new features)
+- [ ] Release notes written
+- [ ] Privacy policy URL confirmed
+
+---
+
+## 6. Version Management
+
+### Version code rules
 
 ```
 versionCode = MAJOR * 10000 + MINOR * 100 + PATCH
 ```
 
-예시:
+Examples:
 - 1.0.0 → 10000
 - 1.2.3 → 10203
 - 2.0.0 → 20000
 
-### app/build.gradle.kts 업데이트
+### app/build.gradle.kts update
 
 ```kotlin
 defaultConfig {
@@ -243,9 +243,9 @@ defaultConfig {
 
 ---
 
-## 7. 트러블슈팅
+## 7. Troubleshooting
 
-### 서명 오류
+### Signing error
 
 ```
 Execution failed for task ':app:packageRelease'.
@@ -253,20 +253,20 @@ Execution failed for task ':app:packageRelease'.
 > SigningConfig "release" is missing required property "storeFile"
 ```
 
-**해결**: `local.properties` 또는 환경 변수에 서명 정보가 설정되었는지 확인
+**Fix**: Verify that signing information is set in `local.properties` or environment variables.
 
-### 난독화 오류
+### Obfuscation error
 
 ```
 R8: ... can't find referenced class
 ```
 
-**해결**: `proguard-rules.pro`에 해당 클래스 keep 규칙 추가
+**Fix**: Add a keep rule for the relevant class in `proguard-rules.pro`.
 
-### Play Store 업로드 실패
+### Play Store upload failure
 
 ```
 You uploaded an APK that is signed with a different certificate
 ```
 
-**해결**: 동일한 키스토어로 서명해야 함. 키스토어 분실 시 Play App Signing 사용 고려
+**Fix**: Must sign with the same keystore. If the keystore is lost, consider using Play App Signing.

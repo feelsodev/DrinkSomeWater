@@ -1,16 +1,16 @@
-# Android 실행 계획
+# Android Execution Plans
 
-Android 기능 구현 실행 계획 저장소입니다.
+A repository for Android feature implementation execution plans.
 
-## 구성
+## Structure
 
-Phase/Wave 단위 작업 가이드:
-- 각 Phase의 목표 및 범위
-- 세부 작업 항목(Task)
-- 의존성 및 선행 작업
-- 예상 일정 및 리소스
-- 위험요소 및 대응책
+Phase/Wave-based task guides covering:
+- Goals and scope for each phase
+- Detailed task items
+- Dependencies and prerequisites
+- Estimated schedule and resources
+- Risks and mitigation strategies
 
-## 용도
+## Purpose
 
-개발 팀이 구조화된 방식으로 기능을 구현하도록 가이드합니다. Sprint 계획과 연동됩니다.
+Guides the development team to implement features in a structured way. Aligned with sprint planning.

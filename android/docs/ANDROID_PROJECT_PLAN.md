@@ -1,99 +1,99 @@
-# 벌컥벌컥 (Gulp) Android 프로젝트 계획서
+# Gulp Android Project Plan
 
-> 💧 물 섭취 기록 Android & Wear OS 앱 개발 마스터 문서
-
----
-
-## 메타 정보
-
-| 항목 | 값 |
-|------|-----|
-| **버전** | 1.0.0 |
-| **최종 업데이트** | 2026-01-20 |
-| **상태** | 📝 문서 단계 (프로젝트 스캐폴딩 전) |
-| **개발 방식** | TDD (Test-Driven Development) |
-| **iOS 참조 버전** | 26.2.0 |
+> 💧 Water intake tracking Android & Wear OS app master document
 
 ---
 
-## 목차
+## Meta Information
 
-1. [프로젝트 개요](#1-프로젝트-개요)
-2. [기술 스택](#2-기술-스택)
-3. [프로젝트 구조](#3-프로젝트-구조)
-4. [Phase별 작업 목록](#4-phase별-작업-목록)
-5. [의존성 목록](#5-의존성-목록)
-6. [진행 상황 로그](#6-진행-상황-로그)
+| Field | Value |
+|-------|-------|
+| **Version** | 1.0.0 |
+| **Last Updated** | 2026-01-20 |
+| **Status** | 📝 Documentation phase (pre-scaffolding) |
+| **Development Approach** | TDD (Test-Driven Development) |
+| **iOS Reference Version** | 26.2.0 |
 
 ---
 
-## 1. 프로젝트 개요
+## Table of Contents
 
-### 1.1 목표
-iOS 벌컥벌컥 앱의 완전한 Android 버전 개발
+1. [Project Overview](#1-project-overview)
+2. [Tech Stack](#2-tech-stack)
+3. [Project Structure](#3-project-structure)
+4. [Task List by Phase](#4-task-list-by-phase)
+5. [Dependency List](#5-dependency-list)
+6. [Progress Log](#6-progress-log)
 
-### 1.2 범위
-- ✅ Phone 앱 (메인)
-- ✅ 홈 화면 위젯 (Glance)
-- ✅ Wear OS 앱
+---
 
-### 1.3 핵심 기능
-| 기능 | 설명 | iOS 참조 |
-|------|------|----------|
-| 물 섭취 기록 | 퀵버튼으로 간편 기록 | HomeView.swift |
-| 물 빼기/초기화 | 잘못 기록한 양 수정 | HomeStore.swift |
-| 기록 조회 | 캘린더/리스트/타임라인 3가지 뷰 | HistoryView.swift |
-| 목표 설정 | 일일 목표량 (1,000~4,500ml) | GoalSettingView |
-| 퀵버튼 커스텀 | 자주 마시는 용량 설정 | QuickButtonSettingView |
-| 알림 시스템 | 10가지 랜덤 문구 알림 | NotificationService.swift |
-| Health Connect | 체중/물 섭취 연동 | HealthKitService.swift |
-| 홈 위젯 | Small/Medium/Large 위젯 | DrinkSomeWaterWidget |
-| Wear OS | 워치에서 물 기록 | DrinkSomeWaterWatch |
+## 1. Project Overview
 
-### 1.4 개발 원칙
-1. **TDD 필수**: 테스트 먼저 작성, 구현, 리팩토링
-2. **iOS 동일 UX**: 사용자 경험 일관성 유지
-3. **Clean Architecture**: Domain/Data/UI 레이어 분리
-4. **단방향 데이터 흐름**: MVI 패턴 적용
+### 1.1 Goal
+Build a complete Android version of the iOS Gulp app.
 
-### 1.5 현재 상태
+### 1.2 Scope
+- ✅ Phone app (main)
+- ✅ Home screen widget (Glance)
+- ✅ Wear OS app
 
-> ⚠️ **주의**: 현재는 **문서 단계**입니다. `android/` 폴더에는 문서만 있고, 실제 Gradle 프로젝트는 Phase 1에서 생성됩니다.
+### 1.3 Core Features
+| Feature | Description | iOS Reference |
+|---------|-------------|---------------|
+| Water intake logging | Quick logging via quick buttons | HomeView.swift |
+| Subtract/reset water | Correct mistaken entries | HomeStore.swift |
+| History view | Calendar/List/Timeline views | HistoryView.swift |
+| Goal setting | Daily goal (1,000~4,500ml) | GoalSettingView |
+| Quick button customization | Set frequently used amounts | QuickButtonSettingView |
+| Notification system | 10 random motivational messages | NotificationService.swift |
+| Health Connect | Body weight and water intake sync | HealthKitService.swift |
+| Home widget | Small/Medium/Large widgets | DrinkSomeWaterWidget |
+| Wear OS | Log water from watch | DrinkSomeWaterWatch |
+
+### 1.4 Development Principles
+1. **TDD required**: Write tests first, then implement, then refactor
+2. **Same UX as iOS**: Maintain consistent user experience
+3. **Clean Architecture**: Separate Domain/Data/UI layers
+4. **Unidirectional data flow**: Apply MVI pattern
+
+### 1.5 Current Status
+
+> ⚠️ **Note**: This is currently in the **documentation phase**. The `android/` folder contains only documents. The actual Gradle project will be created in Phase 1.
 
 ```
-현재 상태:
+Current state:
 android/
-├── docs/           ✅ 문서 (완료)
-├── README.md       ✅ 가이드 (완료)
-└── .gitignore      ✅ 설정 (완료)
+├── docs/           ✅ Documentation (complete)
+├── README.md       ✅ Guide (complete)
+└── .gitignore      ✅ Config (complete)
 
-Phase 1 완료 후:
+After Phase 1:
 android/
-├── app/            ⏳ 메인 앱 모듈
-├── widget/         ⏳ 위젯 모듈
-├── wear/           ⏳ Wear OS 모듈
-├── analytics/      ⏳ Analytics 모듈
+├── app/            ⏳ Main app module
+├── widget/         ⏳ Widget module
+├── wear/           ⏳ Wear OS module
+├── analytics/      ⏳ Analytics module
 ├── gradle/         ⏳ Version Catalog
 ├── build.gradle.kts ⏳ Root build script
-└── settings.gradle.kts ⏳ 모듈 설정
+└── settings.gradle.kts ⏳ Module settings
 ```
 
-### 1.6 저장소 전략
+### 1.6 Storage Strategy
 
-| 데이터 | 저장 방식 | 이유 |
-|--------|----------|------|
-| **목표량, 퀵버튼, 설정** | DataStore Preferences | 단순 key-value |
-| **물 섭취 기록 (History)** | DataStore Preferences + JSON 직렬화 | 레코드 수가 적음 (일 1개) |
-| **온보딩 완료 플래그** | DataStore Preferences | 단순 Boolean |
+| Data | Storage Method | Reason |
+|------|----------------|--------|
+| **Goal, quick buttons, settings** | DataStore Preferences | Simple key-value |
+| **Water intake history** | DataStore Preferences + JSON serialization | Low record count (1 per day) |
+| **Onboarding completion flag** | DataStore Preferences | Simple Boolean |
 
-**History 저장 전략:**
-- 일별 1개 레코드 → 연간 최대 365개
-- `List<WaterRecord>`를 JSON으로 직렬화하여 저장
-- 마이그레이션: 버전 필드 포함, 스키마 변경 시 변환 로직 추가
-- 향후 확장: 레코드 수 1000개 초과 시 Room DB로 마이그레이션 고려
+**History Storage Strategy:**
+- 1 record per day → max 365 per year
+- Serialize `List<WaterRecord>` to JSON for storage
+- Migration: include version field, add conversion logic on schema changes
+- Future scaling: consider migrating to Room DB if record count exceeds 1000
 
 ```kotlin
-// 저장 형태 예시
+// Storage format example
 @Serializable
 data class WaterRecordsWrapper(
     val version: Int = 1,
@@ -101,79 +101,79 @@ data class WaterRecordsWrapper(
 )
 ```
 
-### 1.7 플랫폼별 제약사항
+### 1.7 Platform Constraints
 
-#### Glance (홈 화면 위젯)
+#### Glance (Home Screen Widget)
 
-| 제약 | 설명 | 대응 |
-|------|------|------|
-| **제한된 Composable** | Row, Column, Box, Text, Image 등 기본만 지원 | Compose Canvas 사용 불가 → PNG/Vector 이미지로 대체 |
-| **상호작용 제한** | 클릭만 가능, 드래그/스와이프 불가 | 퀵버튼은 단순 클릭으로 설계 |
-| **스타일 제한** | Material 3 테마 직접 적용 불가 | `glance-material3` 어댑터 사용 |
-| **갱신 빈도** | 최소 30분 간격 (시스템 제한) | 사용자 액션 시 즉시 갱신 + 주기적 백그라운드 갱신 |
-| **크기 제약** | 위젯 크기에 따라 레이아웃 분기 필요 | Small/Medium/Large 별도 UI 구현 |
+| Constraint | Description | Workaround |
+|------------|-------------|------------|
+| **Limited Composables** | Only basic ones supported: Row, Column, Box, Text, Image, etc. | Compose Canvas not available → use PNG/Vector images |
+| **Interaction limit** | Only clicks; no drag/swipe | Design quick buttons as simple clicks |
+| **Style limit** | Cannot apply Material 3 theme directly | Use `glance-material3` adapter |
+| **Update frequency** | Minimum 30-minute interval (system limit) | Immediate update on user action + periodic background update |
+| **Size constraint** | Layout must branch based on widget size | Implement separate UI for Small/Medium/Large |
 
 ```kotlin
-// Wave 애니메이션 대체 전략
-// ❌ Compose Canvas (Glance에서 미지원)
-// ✅ 정적 진행률 표시 (CircularProgressIndicator 유사)
-// ✅ 또는 미리 렌더링된 이미지 에셋 사용
+// Wave animation alternative strategy
+// ❌ Compose Canvas (not supported in Glance)
+// ✅ Static progress indicator (similar to CircularProgressIndicator)
+// ✅ Or use pre-rendered image assets
 ```
 
 #### Wear OS
 
-| 제약 | 설명 | 대응 |
-|------|------|------|
-| **데이터 동기화 지연** | Phone ↔ Watch 동기화에 수초~수십초 소요 가능 | 낙관적 UI 업데이트 + 백그라운드 동기화 |
-| **타일 갱신 제한** | 시스템이 타일 갱신 시점 제어 | `TileService.getRequester().requestUpdate()` 호출하되, 즉시 반영 보장 X |
-| **배터리 민감** | 백그라운드 작업 제한적 | Data Layer API 사용, 불필요한 폴링 X |
-| **화면 크기** | 작은 원형 디스플레이 | 최소 정보만 표시, 큰 터치 영역 |
-| **입력 제한** | 키보드 입력 불편 | 50ml 단위 스텝퍼로 직접 입력 대체 |
-| **독립 실행 제한** | Phone 앱 설치 필수 (Dependent app) | Phone 미연결 시 오프라인 모드 안내 |
+| Constraint | Description | Workaround |
+|------------|-------------|------------|
+| **Data sync delay** | Phone ↔ Watch sync may take seconds to tens of seconds | Optimistic UI update + background sync |
+| **Tile update limit** | System controls tile update timing | Call `TileService.getRequester().requestUpdate()` but immediate reflection not guaranteed |
+| **Battery sensitivity** | Limited background work | Use Data Layer API, avoid unnecessary polling |
+| **Screen size** | Small circular display | Show minimal info only, large touch targets |
+| **Input limit** | Keyboard input is inconvenient | Replace direct input with 50ml stepper |
+| **Standalone limit** | Phone app required (dependent app) | Show offline mode guidance when phone disconnected |
 
 ```kotlin
-// 데이터 동기화 전략
-// 1. Watch에서 물 추가 → 로컬 UI 즉시 업데이트 (낙관적)
-// 2. MessageClient로 Phone에 전송
-// 3. Phone에서 처리 후 DataClient로 확정 데이터 동기화
-// 4. 충돌 시: Phone 데이터 우선 (source of truth)
+// Data sync strategy
+// 1. Add water on Watch → immediately update local UI (optimistic)
+// 2. Send to Phone via MessageClient
+// 3. Phone processes and syncs confirmed data via DataClient
+// 4. On conflict: Phone data takes priority (source of truth)
 ```
 
 #### Health Connect
 
-| 제약 | 설명 | 대응 |
-|------|------|------|
-| **가용성** | Android 14+ 기본 탑재, 이전 버전은 별도 앱 설치 필요 | `HealthConnectClient.getSdkStatus()` 또는 `sdkStatus` 체크 후 미설치 시 Play Store 안내 |
-| **권한 플로우** | 각 데이터 타입별 별도 권한 요청 | 체중 읽기, 물 섭취 쓰기 권한 분리 요청 |
-| **지역 제한** | 일부 국가/디바이스에서 사용 불가 | SDK status 체크로 가용성 확인, 불가 시 graceful degradation |
-| **백그라운드/주기 작업** | OS 정책/쿼터로 제한, foreground 중심 설계 권장 | 앱 실행 시 최신 체중 조회 + 로컬 캐싱, 백그라운드 실패 대비 |
-| **히스토리 접근 제한** | 권한 승인 후 과거 데이터 접근 제한 (예: 최근 30일) | 과거 데이터 없을 시 UX 안내, 수동 입력 fallback |
-| **데이터 중복** | 다른 앱과 중복 기록 가능 | `metadata.clientRecordId`로 우리 앱 기록만 관리 |
+| Constraint | Description | Workaround |
+|------------|-------------|------------|
+| **Availability** | Built-in on Android 14+; earlier versions need separate app install | Check `HealthConnectClient.getSdkStatus()` or `sdkStatus`, guide to Play Store if not installed |
+| **Permission flow** | Separate permission request per data type | Request weight read and water write permissions separately |
+| **Regional restriction** | Unavailable on some countries/devices | Check availability via SDK status, graceful degradation if unavailable |
+| **Background/periodic work** | Limited by OS policy/quota; foreground-focused design recommended | Fetch latest weight on app launch + local caching, handle background failure |
+| **History access limit** | Past data access limited after permission grant (e.g., last 30 days) | Guide user when past data unavailable, fallback to manual input |
+| **Data duplication** | Other apps may create duplicate records | Use `metadata.clientRecordId` to manage only our app's records |
 
 ```kotlin
-// Health Connect 초기화 플로우
-// 1. HealthConnectClient.getSdkStatus(context) 체크
-//    - SDK_UNAVAILABLE: Health Connect 미지원 (기능 비활성화)
-//    - SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED: Play Store 업데이트 안내
-//    - SDK_AVAILABLE: 사용 가능
-// 2. 권한 요청: HealthPermission.getReadPermission(WeightRecord::class)
-//              HealthPermission.getWritePermission(HydrationRecord::class)
-// 3. 권한 거부 시: 기능 비활성화, 수동 체중 입력 유도
-// 4. 히스토리 읽기 실패/빈 결과 시: "최근 기록이 없습니다" 안내
+// Health Connect initialization flow
+// 1. Check HealthConnectClient.getSdkStatus(context)
+//    - SDK_UNAVAILABLE: Health Connect not supported (disable feature)
+//    - SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED: Guide to Play Store update
+//    - SDK_AVAILABLE: Ready to use
+// 2. Request permissions: HealthPermission.getReadPermission(WeightRecord::class)
+//                         HealthPermission.getWritePermission(HydrationRecord::class)
+// 3. On permission denied: disable feature, prompt manual weight entry
+// 4. On history read failure/empty result: show "No recent records" message
 
-// UX 실패 대비 플로우
-// - Health Connect 연동 ON이지만 데이터 없음 → "체중을 직접 입력해주세요"
-// - 권한 취소됨 → 다음 실행 시 재요청 또는 설정 화면 안내
-// - 쓰기 실패 → 로컬에는 저장, 나중에 재시도 (best effort)
+// UX failure fallback flow
+// - Health Connect sync ON but no data → "Please enter your weight manually"
+// - Permission revoked → re-request on next launch or guide to settings
+// - Write failure → save locally, retry later (best effort)
 ```
 
 ---
 
-## 2. 기술 스택
+## 2. Tech Stack
 
-### 2.1 iOS → Android 매핑
+### 2.1 iOS → Android Mapping
 
-| 영역 | iOS | Android |
+| Area | iOS | Android |
 |------|-----|---------|
 | **Language** | Swift 6 | Kotlin 2.0 |
 | **UI Framework** | SwiftUI | Jetpack Compose |
@@ -190,26 +190,26 @@ data class WaterRecordsWrapper(
 | **Ads** | Google AdMob | Google AdMob |
 | **Build** | Tuist | Gradle + Version Catalog |
 
-### 2.2 핵심 라이브러리
+### 2.2 Core Libraries
 
-| 라이브러리 | 버전 | 용도 |
-|-----------|------|------|
-| Kotlin | 2.0.0 | 언어 |
-| Compose BOM | 2024.09.00 | UI 프레임워크 |
-| Hilt | 2.51 | 의존성 주입 |
-| DataStore | 1.1.1 | 로컬 저장소 |
-| Coroutines | 1.8.0 | 비동기 처리 |
-| Glance | 1.1.0 | 위젯 |
-| Health Connect | 1.1.0-alpha07 | 건강 데이터 |
-| Firebase BOM | 33.1.0 | 분석/광고 |
-| JUnit5 | 5.10.0 | 테스트 |
-| Turbine | 1.1.0 | Flow 테스트 |
-| MockK | 1.13.10 | 모킹 |
+| Library | Version | Purpose |
+|---------|---------|---------|
+| Kotlin | 2.0.0 | Language |
+| Compose BOM | 2024.09.00 | UI framework |
+| Hilt | 2.51 | Dependency injection |
+| DataStore | 1.1.1 | Local storage |
+| Coroutines | 1.8.0 | Async processing |
+| Glance | 1.1.0 | Widget |
+| Health Connect | 1.1.0-alpha07 | Health data |
+| Firebase BOM | 33.1.0 | Analytics/Ads |
+| JUnit5 | 5.10.0 | Testing |
+| Turbine | 1.1.0 | Flow testing |
+| MockK | 1.13.10 | Mocking |
 
-### 2.3 빌드 환경
+### 2.3 Build Environment
 
-| 항목 | 값 |
-|------|-----|
+| Field | Value |
+|-------|-------|
 | minSdk | 29 (Android 10) |
 | targetSdk | 35 (Android 15) |
 | compileSdk | 35 |
@@ -219,47 +219,47 @@ data class WaterRecordsWrapper(
 
 ---
 
-## 3. 프로젝트 구조
+## 3. Project Structure
 
-### 3.1 모듈 구조
+### 3.1 Module Structure
 
-> ⚠️ **중요**: `widget`과 `wear` 모듈이 `app`의 domain/data 코드를 재사용해야 합니다.
-> 따라서 **공유 모듈 `:core`**를 두어 모델, Repository 인터페이스, DataStore를 분리합니다.
+> ⚠️ **Important**: The `widget` and `wear` modules need to reuse domain/data code from `app`.
+> A shared **`:core` module** separates models, Repository interfaces, and DataStore.
 
 ```
 android/
-├── core/                         # 🆕 공유 모듈 (app, widget, wear 공통)
+├── core/                         # 🆕 Shared module (common to app, widget, wear)
 │   ├── src/main/java/com/onceagain/drinksomewater/core/
-│   │   ├── domain/               # 도메인 레이어 (공유)
-│   │   │   ├── model/            # WaterRecord, UserProfile 등
-│   │   │   └── repository/       # Repository 인터페이스
-│   │   ├── data/                 # 데이터 레이어 (공유)
-│   │   │   ├── repository/       # Repository 구현
+│   │   ├── domain/               # Domain layer (shared)
+│   │   │   ├── model/            # WaterRecord, UserProfile, etc.
+│   │   │   └── repository/       # Repository interfaces
+│   │   ├── data/                 # Data layer (shared)
+│   │   │   ├── repository/       # Repository implementations
 │   │   │   ├── datastore/        # DataStore
-│   │   │   └── mapper/           # 데이터 매퍼
-│   │   └── util/                 # 공통 유틸리티
-│   ├── src/test/                 # core 단위 테스트
+│   │   │   └── mapper/           # Data mappers
+│   │   └── util/                 # Common utilities
+│   ├── src/test/                 # core unit tests
 │   └── build.gradle.kts
 │
-├── app/                          # 메인 앱 모듈 (Phone)
+├── app/                          # Main app module (Phone)
 │   ├── src/main/java/com/onceagain/drinksomewater/
-│   │   ├── di/                   # Hilt 모듈
-│   │   ├── ui/                   # UI 레이어
-│   │   │   ├── home/             # 홈 화면
-│   │   │   ├── history/          # 기록 화면
-│   │   │   ├── settings/         # 설정 화면
-│   │   │   ├── onboarding/       # 온보딩
-│   │   │   ├── theme/            # 테마/디자인 토큰
-│   │   │   ├── components/       # 공통 컴포넌트
-│   │   │   └── navigation/       # 네비게이션
-│   │   └── service/              # 서비스
-│   │       ├── notification/     # 알림
+│   │   ├── di/                   # Hilt modules
+│   │   ├── ui/                   # UI layer
+│   │   │   ├── home/             # Home screen
+│   │   │   ├── history/          # History screen
+│   │   │   ├── settings/         # Settings screen
+│   │   │   ├── onboarding/       # Onboarding
+│   │   │   ├── theme/            # Theme/design tokens
+│   │   │   ├── components/       # Common components
+│   │   │   └── navigation/       # Navigation
+│   │   └── service/              # Services
+│   │       ├── notification/     # Notifications
 │   │       └── health/           # Health Connect
-│   ├── src/test/                 # app 단위 테스트 (JUnit5)
-│   ├── src/androidTest/          # UI 테스트 (JUnit4)
+│   ├── src/test/                 # app unit tests (JUnit5)
+│   ├── src/androidTest/          # UI tests (JUnit4)
 │   └── build.gradle.kts          # implementation(project(":core"))
 │
-├── widget/                       # Glance 위젯 모듈
+├── widget/                       # Glance widget module
 │   ├── src/main/java/.../widget/
 │   │   ├── WaterGlanceWidget.kt
 │   │   ├── WaterWidgetReceiver.kt
@@ -271,7 +271,7 @@ android/
 │   │       └── AddWaterAction.kt
 │   └── build.gradle.kts          # implementation(project(":core"))
 │
-├── wear/                         # Wear OS 모듈
+├── wear/                         # Wear OS module
 │   ├── src/main/java/.../wear/
 │   │   ├── WearApplication.kt
 │   │   ├── ui/
@@ -284,31 +284,31 @@ android/
 │   │       └── WaterComplicationService.kt
 │   └── build.gradle.kts          # implementation(project(":core"))
 │
-├── analytics/                    # Analytics 모듈
+├── analytics/                    # Analytics module
 │   ├── src/main/java/.../analytics/
 │   │   ├── Analytics.kt
 │   │   ├── AnalyticsEvent.kt
 │   │   └── AnalyticsTracker.kt
 │   └── build.gradle.kts
 │
-├── docs/                         # 문서
-│   ├── ANDROID_PROJECT_PLAN.md   # 이 문서
-│   ├── ANDROID_TDD_GUIDE.md      # TDD 가이드
-│   └── IOS_ANDROID_MAPPING.md    # 파일 매핑
+├── docs/                         # Documentation
+│   ├── ANDROID_PROJECT_PLAN.md   # This document
+│   ├── ANDROID_TDD_GUIDE.md      # TDD guide
+│   └── IOS_ANDROID_MAPPING.md    # File mapping
 │
 ├── gradle/
 │   └── libs.versions.toml        # Version Catalog
 │
 ├── build.gradle.kts              # Root build script
 ├── settings.gradle.kts           # include(":core", ":app", ":widget", ":wear", ":analytics")
-└── README.md                     # 빌드 가이드
+└── README.md                     # Build guide
 ```
 
-#### 모듈 의존성 그래프
+#### Module Dependency Graph
 
 ```
               ┌─────────────┐
-              │  analytics  │  (독립, 어디서든 사용)
+              │  analytics  │  (independent, usable anywhere)
               └─────────────┘
                      │
     ┌────────────────┼────────────────┐
@@ -322,13 +322,13 @@ android/
                      │
                      ▼
               ┌─────────────┐
-              │    core     │  (domain + data 공유)
+              │    core     │  (shared domain + data)
               └─────────────┘
 ```
 
-### 3.2 패키지 구조
+### 3.2 Package Structure
 
-#### core 모듈 (공유)
+#### core module (shared)
 
 ```
 com.onceagain.drinksomewater.core
@@ -356,7 +356,7 @@ com.onceagain.drinksomewater.core
     └── FlowExtensions.kt
 ```
 
-#### app 모듈 (Phone UI)
+#### app module (Phone UI)
 
 ```
 com.onceagain.drinksomewater
@@ -406,57 +406,57 @@ com.onceagain.drinksomewater
 
 ---
 
-## 4. Phase별 작업 목록
+## 4. Task List by Phase
 
-> ✅ 완료 | 🚧 진행 중 | ⏳ 대기 중 | ❌ 차단됨
+> ✅ Complete | 🚧 In Progress | ⏳ Pending | ❌ Blocked
 
-### Phase 1: 프로젝트 초기 설정 (예상 1주) ✅
+### Phase 1: Initial Project Setup (est. 1 week) ✅
 
-| # | 작업 | 테스트 | 상태 | 비고 |
-|---|------|--------|------|------|
-| 1.1 | Android 프로젝트 생성 | - | ✅ | Kotlin 2.0, Compose |
-| 1.2 | 멀티모듈 구조 설정 | - | ✅ | app, widget, wear, analytics |
-| 1.3 | Version Catalog 설정 | - | ✅ | libs.versions.toml |
-| 1.4 | Hilt DI 설정 | - | ✅ | AppModule 기본 구성 |
-| 1.5 | 디자인 시스템 | DesignTokensTest | ✅ | DesignTokens.kt |
-| 1.6 | 테마 설정 | - | ✅ | Material 3 테마 |
-| 1.7 | 네비게이션 설정 | - | ✅ | Navigation Compose |
-| 1.8 | 테스트 인프라 | - | ✅ | JUnit5, Turbine, MockK |
-| 1.9 | CI 설정 | - | ✅ | GitHub Actions (.github/workflows/android-ci.yml) |
+| # | Task | Test | Status | Notes |
+|---|------|------|--------|-------|
+| 1.1 | Create Android project | - | ✅ | Kotlin 2.0, Compose |
+| 1.2 | Multi-module structure setup | - | ✅ | app, widget, wear, analytics |
+| 1.3 | Version Catalog setup | - | ✅ | libs.versions.toml |
+| 1.4 | Hilt DI setup | - | ✅ | Basic AppModule |
+| 1.5 | Design system | DesignTokensTest | ✅ | DesignTokens.kt |
+| 1.6 | Theme setup | - | ✅ | Material 3 theme |
+| 1.7 | Navigation setup | - | ✅ | Navigation Compose |
+| 1.8 | Test infrastructure | - | ✅ | JUnit5, Turbine, MockK |
+| 1.9 | CI setup | - | ✅ | GitHub Actions (.github/workflows/android-ci.yml) |
 
-### Phase 2: 데이터 레이어 (예상 1주) ✅
+### Phase 2: Data Layer (est. 1 week) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 2.1 | WaterRecord 모델 | WaterRecordTest | ✅ | WaterRecord.swift |
-| 2.2 | UserProfile 모델 | UserProfileTest | ✅ | UserProfile.swift |
-| 2.3 | NotificationSettings 모델 | NotificationSettingsTest | ✅ | NotificationSettings.swift |
-| 2.4 | PreferencesKeys 정의 | - | ✅ | UserDefaultsKey.swift |
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
+| 2.1 | WaterRecord model | WaterRecordTest | ✅ | WaterRecord.swift |
+| 2.2 | UserProfile model | UserProfileTest | ✅ | UserProfile.swift |
+| 2.3 | NotificationSettings model | NotificationSettingsTest | ✅ | NotificationSettings.swift |
+| 2.4 | PreferencesKeys definition | - | ✅ | UserDefaultsKey.swift |
 | 2.5 | WaterDataStore | WaterDataStoreTest | ✅ | UserDefaultsService.swift |
-| 2.6 | WaterRepository 인터페이스 | - | ✅ | WaterServiceProtocol |
+| 2.6 | WaterRepository interface | - | ✅ | WaterServiceProtocol |
 | 2.7 | WaterRepositoryImpl | WaterRepositoryTest | ✅ | WaterService.swift |
 | 2.8 | SettingsRepository | SettingsRepositoryTest | ✅ | - |
 
-### Phase 3: 홈 화면 (예상 2주) ✅
+### Phase 3: Home Screen (est. 2 weeks) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 3.1 | HomeUiState 정의 | - | ✅ | HomeStore state |
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
+| 3.1 | HomeUiState definition | - | ✅ | HomeStore state |
 | 3.2 | HomeViewModel | HomeViewModelTest | ✅ | HomeStore.swift |
 | 3.3 | WaveAnimation | WaveAnimationTest | ✅ | WaveAnimationView.swift |
 | 3.4 | BottleView | - | ✅ | HomeView bottleSection |
-| 3.5 | QuickButton 컴포넌트 | - | ✅ | HomeView quickButtonsSection |
-| 3.6 | HomeScreen 레이아웃 | HomeScreenTest | ✅ | HomeView.swift |
+| 3.5 | QuickButton component | - | ✅ | HomeView quickButtonsSection |
+| 3.6 | HomeScreen layout | HomeScreenTest | ✅ | HomeView.swift |
 | 3.7 | GoalSettingSheet | GoalSettingTest | ✅ | GoalSettingView |
 | 3.8 | QuickButtonSettingSheet | - | ✅ | QuickButtonSettingView |
 | 3.9 | NotificationBanner | - | ✅ | notificationBanner |
-| 3.10 | 접근성 레이블 | - | ✅ | contentDescription, semantics 적용 |
+| 3.10 | Accessibility labels | - | ✅ | contentDescription, semantics applied |
 
-### Phase 4: 기록 화면 (예상 2주) ✅
+### Phase 4: History Screen (est. 2 weeks) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 4.1 | HistoryUiState 정의 | - | ✅ | HistoryStore state |
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
+| 4.1 | HistoryUiState definition | - | ✅ | HistoryStore state |
 | 4.2 | HistoryViewModel | HistoryViewModelTest | ✅ | HistoryStore.swift |
 | 4.3 | CustomCalendar | CustomCalendarTest | ✅ | FSCalendarRepresentable |
 | 4.4 | CalendarTab | - | ✅ | HistoryCalendarTab |
@@ -466,82 +466,82 @@ com.onceagain.drinksomewater
 | 4.8 | HistoryScreen (Pager) | HistoryScreenTest | ✅ | HistoryView.swift |
 | 4.9 | MonthSummaryBadge | - | ✅ | monthSummaryBadge |
 
-### Phase 5: 설정 화면 (예상 1주) ✅
+### Phase 5: Settings Screen (est. 1 week) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
 | 5.1 | SettingsViewModel | SettingsViewModelTest | ✅ | SettingsStore.swift |
 | 5.2 | SettingsScreen | - | ✅ | SettingsViewController |
 | 5.3 | NotificationSettingScreen | - | ✅ | NotificationSettingVC |
 | 5.4 | ProfileSettingScreen | ProfileSettingTest | ✅ | ProfileSettingVC |
 | 5.5 | WidgetGuideScreen | - | ✅ | WidgetGuideVC |
-| 5.6 | AboutSection | - | ✅ | 버전, 리뷰, 문의 |
+| 5.6 | AboutSection | - | ✅ | Version, review, contact |
 
-### Phase 6: 알림 시스템 (예상 1주) ✅
+### Phase 6: Notification System (est. 1 week) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
 | 6.1 | NotificationMessages | NotificationMessagesTest | ✅ | NotificationMessages.swift |
 | 6.2 | NotificationHelper | NotificationHelperTest | ✅ | NotificationService.swift |
 | 6.3 | WaterReminderWorker | WorkerTest | ✅ | - |
-| 6.4 | NotificationChannel 설정 | - | ✅ | - |
-| 6.5 | BootReceiver | - | ✅ | 부팅 시 알림 재스케줄링 |
-| 6.6 | 권한 요청 (Android 13+) | - | ✅ | PermissionHandler.kt |
+| 6.4 | NotificationChannel setup | - | ✅ | - |
+| 6.5 | BootReceiver | - | ✅ | Reschedule notifications on boot |
+| 6.6 | Permission request (Android 13+) | - | ✅ | PermissionHandler.kt |
 
-### Phase 7: 홈 화면 위젯 (예상 2주) ✅
+### Phase 7: Home Screen Widget (est. 2 weeks) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 7.1 | widget 모듈 설정 | - | ✅ | DrinkSomeWaterWidget |
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
+| 7.1 | widget module setup | - | ✅ | DrinkSomeWaterWidget |
 | 7.2 | WaterWidgetState | - | ✅ | WaterEntry.swift |
 | 7.3 | WaterGlanceWidget | - | ✅ | DrinkSomeWaterWidget.swift |
 | 7.4 | SmallWidget UI | SmallWidgetTest | ✅ | SmallWidgetView.swift |
 | 7.5 | MediumWidget UI | MediumWidgetTest | ✅ | MediumWidgetView.swift |
 | 7.6 | LargeWidget UI | LargeWidgetTest | ✅ | LargeWidgetView.swift |
 | 7.7 | AddWaterAction | AddWaterActionTest | ✅ | AddWaterIntent.swift |
-| 7.8 | 위젯 데이터 동기화 | - | ✅ | WidgetDataManager.swift |
+| 7.8 | Widget data sync | - | ✅ | WidgetDataManager.swift |
 
-### Phase 8: 온보딩 (예상 1주) ✅
+### Phase 8: Onboarding (est. 1 week) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
 | 8.1 | OnboardingViewModel | OnboardingViewModelTest | ✅ | OnboardingStore.swift |
 | 8.2 | OnboardingScreen (Pager) | - | ✅ | OnboardingViewController |
-| 8.3 | IntroPage | - | ✅ | 앱 소개 |
-| 8.4 | GoalSettingPage | - | ✅ | 목표 설정 |
-| 8.5 | HealthConnectPage | - | ✅ | HealthKit 연동 |
-| 8.6 | NotificationPage | - | ✅ | 알림 설정 |
-| 8.7 | WidgetGuidePage | - | ✅ | 위젯 안내 |
-| 8.8 | 완료 플래그 저장 | - | ✅ | onboardingCompleted |
+| 8.3 | IntroPage | - | ✅ | App introduction |
+| 8.4 | GoalSettingPage | - | ✅ | Goal setup |
+| 8.5 | HealthConnectPage | - | ✅ | HealthKit integration |
+| 8.6 | NotificationPage | - | ✅ | Notification setup |
+| 8.7 | WidgetGuidePage | - | ✅ | Widget guide |
+| 8.8 | Save completion flag | - | ✅ | onboardingCompleted |
 
-### Phase 9: Health Connect (예상 1주) ✅
+### Phase 9: Health Connect (est. 1 week) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 9.1 | Health Connect SDK 설정 | - | ✅ | HealthKitService.swift |
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
+| 9.1 | Health Connect SDK setup | - | ✅ | HealthKitService.swift |
 | 9.2 | HealthConnectHelper | HealthConnectHelperTest | ✅ | - |
-| 9.3 | 체중 읽기 | - | ✅ | fetchWeight |
-| 9.4 | 권장량 계산 | RecommendedIntakeTest | ✅ | recommendedIntake |
-| 9.5 | 물 섭취 기록 저장 | - | ✅ | writeHydration |
-| 9.6 | 권한 요청 화면 | - | ✅ | HealthConnectPermissionHandler |
+| 9.3 | Read weight | - | ✅ | fetchWeight |
+| 9.4 | Recommended intake calculation | RecommendedIntakeTest | ✅ | recommendedIntake |
+| 9.5 | Save water intake record | - | ✅ | writeHydration |
+| 9.6 | Permission request screen | - | ✅ | HealthConnectPermissionHandler |
 
-### Phase 10: Analytics & AdMob (예상 1주) ✅
+### Phase 10: Analytics & AdMob (est. 1 week) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 10.1 | analytics 모듈 설정 | - | ✅ | Analytics/ |
-| 10.2 | AnalyticsEvent 정의 | - | ✅ | AnalyticsEvent.swift |
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
+| 10.1 | analytics module setup | - | ✅ | Analytics/ |
+| 10.2 | AnalyticsEvent definition | - | ✅ | AnalyticsEvent.swift |
 | 10.3 | AnalyticsTracker | AnalyticsTrackerTest | ✅ | Analytics.swift |
-| 10.4 | Firebase 초기화 | - | ✅ | google-services.json |
-| 10.5 | AdMob 초기화 | - | ✅ | AdMobService.swift |
+| 10.4 | Firebase initialization | - | ✅ | google-services.json |
+| 10.5 | AdMob initialization | - | ✅ | AdMobService.swift |
 | 10.6 | NativeAdView | - | ✅ | NativeAdHelper.kt |
 | 10.7 | RewardedAdHelper | - | ✅ | RewardedAdHelper.kt |
 
-### Phase 11: Wear OS (예상 2주) ✅
+### Phase 11: Wear OS (est. 2 weeks) ✅
 
-| # | 작업 | 테스트 | 상태 | iOS 참조 |
-|---|------|--------|------|----------|
-| 11.1 | wear 모듈 설정 | - | ✅ | DrinkSomeWaterWatch |
+| # | Task | Test | Status | iOS Reference |
+|---|------|------|--------|---------------|
+| 11.1 | wear module setup | - | ✅ | DrinkSomeWaterWatch |
 | 11.2 | WearApplication | - | ✅ | DrinkSomeWaterWatchApp |
 | 11.3 | WatchViewModel | WatchViewModelTest | ✅ | WatchStore.swift |
 | 11.4 | HomeScreen | - | ✅ | HomeView.swift (Watch) |
@@ -551,25 +551,25 @@ com.onceagain.drinksomewater
 | 11.8 | WaterTileService | - | ✅ | WaterComplication.swift |
 | 11.9 | Complication | - | ✅ | WaterComplicationService.kt |
 
-### Phase 12: 테스트 & 마무리 (예상 1주) ✅
+### Phase 12: Testing & Finalization (est. 1 week) ✅
 
-| # | 작업 | 상태 | 비고 |
-|---|------|------|------|
-| 12.1 | 통합 테스트 | ✅ | HomeScreenTest, NavigationTest |
-| 12.2 | UI 테스트 | ✅ | Compose UI 테스트 |
-| 12.3 | 접근성 검증 | ✅ | contentDescription 추가, TalkBack 지원 |
-| 12.4 | 다국어 지원 | ✅ | 한국어/영어 (values-en) |
-| 12.5 | ProGuard 설정 | ✅ | 완전한 난독화 룰 (Hilt, Compose, Health Connect 등) |
-| 12.6 | 릴리스 서명 | ✅ | signing config + RELEASE_GUIDE.md |
-| 12.7 | Play Store 준비 | ✅ | PLAY_STORE_LISTING.md |
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 12.1 | Integration tests | ✅ | HomeScreenTest, NavigationTest |
+| 12.2 | UI tests | ✅ | Compose UI tests |
+| 12.3 | Accessibility verification | ✅ | contentDescription added, TalkBack support |
+| 12.4 | Localization | ✅ | Korean/English (values-en) |
+| 12.5 | ProGuard setup | ✅ | Full obfuscation rules (Hilt, Compose, Health Connect, etc.) |
+| 12.6 | Release signing | ✅ | signing config + RELEASE_GUIDE.md |
+| 12.7 | Play Store preparation | ✅ | PLAY_STORE_LISTING.md |
 
 ---
 
-## 5. 의존성 목록
+## 5. Dependency List
 
 ### 5.1 Version Catalog (libs.versions.toml)
 
-> ⚠️ **Kotlin 2.0 + Compose 설정**: Kotlin 2.0부터 Compose 컴파일러는 별도 artifact가 아닌 `org.jetbrains.kotlin.plugin.compose` 플러그인으로 통합되었습니다. `compose-compiler` 버전을 별도로 지정하지 않습니다.
+> ⚠️ **Kotlin 2.0 + Compose setup**: Starting with Kotlin 2.0, the Compose compiler is integrated via the `org.jetbrains.kotlin.plugin.compose` plugin rather than a separate artifact. No separate `compose-compiler` version is specified.
 
 ```toml
 [versions]
@@ -578,7 +578,7 @@ kotlin = "2.0.0"
 agp = "8.3.0"
 ksp = "2.0.0-1.0.21"
 
-# Compose (Kotlin 2.0에서는 compose-compiler 버전 불필요)
+# Compose (no compose-compiler version needed with Kotlin 2.0)
 compose-bom = "2024.09.00"
 activity-compose = "1.9.0"
 navigation-compose = "2.7.7"
@@ -698,15 +698,15 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-# Kotlin 2.0: Compose 컴파일러 플러그인 (별도 버전 지정 불필요, kotlin 버전 사용)
+# Kotlin 2.0: Compose compiler plugin (no separate version needed, uses kotlin version)
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version = "4.4.1" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version = "2.9.9" }
 
-# 참고: build.gradle.kts 적용 예시
+# Note: build.gradle.kts usage example
 # plugins {
 #     alias(libs.plugins.kotlin.android)
-#     alias(libs.plugins.compose.compiler)  // Kotlin 2.0 Compose 플러그인
+#     alias(libs.plugins.compose.compiler)  // Kotlin 2.0 Compose plugin
 # }
 
 [bundles]
@@ -725,7 +725,7 @@ lifecycle = [
     "androidx-lifecycle-runtime",
     "androidx-lifecycle-viewmodel-compose"
 ]
-# JVM 테스트 (src/test/)
+# JVM tests (src/test/)
 testing-jvm = [
     "junit5",
     "turbine",
@@ -733,7 +733,7 @@ testing-jvm = [
     "kotlinx-coroutines-test"
 ]
 
-# Instrumented 테스트 (src/androidTest/)
+# Instrumented tests (src/androidTest/)
 testing-android = [
     "androidx-test-runner",
     "androidx-test-rules",
@@ -744,106 +744,106 @@ testing-android = [
 
 ---
 
-## 6. 진행 상황 로그
+## 6. Progress Log
 
 ### 2026-01-20
 
-**작업 내용:**
-- [x] Android 프로젝트 계획 수립
-- [x] TDD 가이드 문서 작성
-- [x] iOS-Android 매핑 테이블 작성
-- [x] 문서 구조 확정
+**Completed:**
+- [x] Android project plan established
+- [x] TDD guide document written
+- [x] iOS-Android mapping table written
+- [x] Document structure finalized
 
-**다음 작업:**
-- Phase 1 시작: 프로젝트 초기 설정
+**Next steps:**
+- Start Phase 1: Initial project setup
 
 ---
 
 ### 2026-01-21
 
-**완료 (Phase 12 마무리):**
-- [x] 12.1 UI Tests - HomeScreenTest.kt, NavigationTest.kt 생성
-- [x] 12.2 UI Tests 완료
-- [x] 12.3 접근성 - contentDescription, semantics 추가
-- [x] 12.4 다국어 - values-en/strings.xml (app, wear, widget)
-- [x] 12.5 ProGuard - 모든 모듈 proguard-rules.pro 완성
-- [x] 12.6 릴리스 서명 - signingConfigs 추가, RELEASE_GUIDE.md 생성
-- [x] 12.7 Play Store - PLAY_STORE_LISTING.md 생성
+**Completed (Phase 12 finalization):**
+- [x] 12.1 UI Tests - HomeScreenTest.kt, NavigationTest.kt created
+- [x] 12.2 UI Tests complete
+- [x] 12.3 Accessibility - contentDescription, semantics added
+- [x] 12.4 Localization - values-en/strings.xml (app, wear, widget)
+- [x] 12.5 ProGuard - proguard-rules.pro complete for all modules
+- [x] 12.6 Release signing - signingConfigs added, RELEASE_GUIDE.md created
+- [x] 12.7 Play Store - PLAY_STORE_LISTING.md created
 
-**누락 항목 보완:**
-- [x] 1.9 CI 설정 - .github/workflows/android-ci.yml 생성
-- [x] 6.5 BootReceiver - BootReceiver.kt 생성 및 수정 완료
-- [x] 6.6 권한 요청 - PermissionHandler.kt 생성
-- [x] 9.6 Health Connect 권한 - HealthConnectPermissionHandler 추가
-- [x] 10.6 NativeAdHelper - NativeAdHelper.kt 생성
-- [x] 10.7 RewardedAdHelper - RewardedAdHelper.kt 생성
-- [x] 11.9 Complication - WaterComplicationService.kt, ic_water_drop.xml 생성
+**Missing items filled in:**
+- [x] 1.9 CI setup - .github/workflows/android-ci.yml created
+- [x] 6.5 BootReceiver - BootReceiver.kt created and updated
+- [x] 6.6 Permission request - PermissionHandler.kt created
+- [x] 9.6 Health Connect permission - HealthConnectPermissionHandler added
+- [x] 10.6 NativeAdHelper - NativeAdHelper.kt created
+- [x] 10.7 RewardedAdHelper - RewardedAdHelper.kt created
+- [x] 11.9 Complication - WaterComplicationService.kt, ic_water_drop.xml created
 
-**빌드 결과:**
-- `./gradlew assembleDebug test` 성공
-- 모든 단위 테스트 통과
+**Build results:**
+- `./gradlew assembleDebug test` succeeded
+- All unit tests passing
 
-**프로젝트 상태:**
-- ✅ Phase 1-12 전체 완료
-- ✅ 전체 빌드 성공
-- ✅ 모든 테스트 통과
+**Project status:**
+- ✅ Phases 1-12 all complete
+- ✅ Full build successful
+- ✅ All tests passing
 
 ---
 
-### 템플릿 (복사해서 사용)
+### Template (copy and use)
 
 ```markdown
 ### YYYY-MM-DD
 
-**완료:**
+**Completed:**
 - [ ] 
 
-**진행 중:**
+**In Progress:**
 - [ ] 
 
-**차단 사항:**
+**Blockers:**
 - 
 
-**다음 작업:**
+**Next steps:**
 - 
 ```
 
 ---
 
-## 부록
+## Appendix
 
-### A. 명령어 참조
+### A. Command Reference
 
 ```bash
-# 빌드
+# Build
 ./gradlew build
 
-# 테스트 (전체)
+# Test (all)
 ./gradlew test
 
-# 테스트 (모듈별)
+# Test (by module)
 ./gradlew :app:test
 ./gradlew :widget:test
 ./gradlew :wear:test
 
-# 커버리지 리포트
+# Coverage report
 ./gradlew koverHtmlReport
 
-# 앱 설치
+# Install app
 ./gradlew :app:installDebug
 ./gradlew :wear:installDebug
 
-# 린트
+# Lint
 ./gradlew lint
 
-# 클린 빌드
+# Clean build
 ./gradlew clean build
 ```
 
-### B. 관련 문서 링크
+### B. Related Document Links
 
-- [TDD 가이드](./ANDROID_TDD_GUIDE.md)
-- [iOS-Android 매핑](./IOS_ANDROID_MAPPING.md)
-- [빌드 가이드](../README.md)
-- [iOS 프로젝트 문서](../../ios/docs/IOS_PROJECT_DOCUMENTATION.md)
-- [iOS 기술 명세](../../ios/docs/TECH_SPEC.md)
+- [TDD Guide](./ANDROID_TDD_GUIDE.md)
+- [iOS-Android Mapping](./IOS_ANDROID_MAPPING.md)
+- [Build Guide](../README.md)
+- [iOS Project Documentation](../../ios/docs/IOS_PROJECT_DOCUMENTATION.md)
+- [iOS Tech Spec](../../ios/docs/TECH_SPEC.md)
