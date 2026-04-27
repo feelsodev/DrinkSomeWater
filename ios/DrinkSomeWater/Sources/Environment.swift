@@ -19,6 +19,12 @@ enum Environment {
         #endif
     }
     
+    static var isTestFlight: Bool {
+        guard !isDebug else { return false }
+        guard let receiptURL = Bundle.main.appStoreReceiptURL else { return false }
+        return receiptURL.lastPathComponent == "sandboxReceipt"
+    }
+    
     static var apiBaseURL: String {
         value(for: .apiBaseURL) ?? "https://api.drinksomewater.com"
     }

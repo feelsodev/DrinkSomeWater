@@ -23,6 +23,9 @@ protocol StoreKitServiceProtocol: AnyObject {
     var subscriptionExpirationDate: Date? { get }
     var hasWidgetAccess: Bool { get }
     var hasWatchAccess: Bool { get }
+    #if DEBUG
+    func setDebugPremiumOverride(_ enabled: Bool)
+    #endif
 }
 
 // MARK: - StoreKit Errors
@@ -69,10 +72,12 @@ final class StoreKitService: StoreKitServiceProtocol {
     
     private var updateListenerTask: Task<Void, Error>?
     private var entitlementContinuation: AsyncStream<EntitlementState>.Continuation?
-    private var _currentEntitlementState: EntitlementState = .free {
-        didSet {
-            cacheEntitlementState(_currentEntitlementState)
-        }
+    private var _currentEntitlementState: EntitlementState = .free
+    
+    private func applyEntitlementState(_ state: EntitlementState) {
+        _currentEntitlementState = state
+        cacheEntitlementState(state)
+        entitlementContinuation?.yield(state)
     }
     
     var isPremium: Bool {
@@ -107,12 +112,28 @@ final class StoreKitService: StoreKitServiceProtocol {
     }()
     
     init() {
-        _currentEntitlementState = Self.loadCachedEntitlementState()
-        updateListenerTask = listenForTransactions()
-        Task {
-            await updateEntitlementState()
+        #if DEBUG
+        _currentEntitlementState = .premium(expirationDate: nil)
+        #else
+        if Environment.isTestFlight {
+            _currentEntitlementState = .premium(expirationDate: nil)
+        } else {
+            _currentEntitlementState = Self.loadCachedEntitlementState()
+            updateListenerTask = listenForTransactions()
+            Task {
+                await updateEntitlementState()
+            }
         }
+        #endif
+        
+        cacheEntitlementState(_currentEntitlementState)
     }
+    
+    #if DEBUG
+    func setDebugPremiumOverride(_ enabled: Bool) {
+        applyEntitlementState(enabled ? .premium(expirationDate: nil) : .free)
+    }
+    #endif
     
     deinit {
         updateListenerTask?.cancel()
@@ -185,6 +206,9 @@ final class StoreKitService: StoreKitServiceProtocol {
     }
     
     private func updateEntitlementState() async {
+        #if !DEBUG
+        guard !Environment.isTestFlight else { return }
+        
         var hasLifetime = false
         var subscriptionState: EntitlementState = .free
         
@@ -217,8 +241,8 @@ final class StoreKitService: StoreKitServiceProtocol {
         }
         
         let newState: EntitlementState = hasLifetime ? .premium(expirationDate: nil) : subscriptionState
-        _currentEntitlementState = newState
-        entitlementContinuation?.yield(newState)
+        applyEntitlementState(newState)
+        #endif
     }
     
     private static func extractExpirationDate(from status: Product.SubscriptionInfo.Status) -> Date? {

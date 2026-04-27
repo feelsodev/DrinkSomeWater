@@ -70,6 +70,12 @@ final class MockStoreKitService: StoreKitServiceProtocol {
         }
     }
     
+    #if DEBUG
+    func setDebugPremiumOverride(_ enabled: Bool) {
+        setEntitlementState(enabled ? .premium(expirationDate: nil) : .free)
+    }
+    #endif
+    
     func setEntitlementState(_ state: EntitlementState) {
         mockEntitlementState = state
         switch state {
