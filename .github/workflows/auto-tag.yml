@@ -2,6 +2,14 @@ name: Auto Tag Release
 
 on:
   workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform to release'
+        required: true
+        type: choice
+        options:
+          - iOS
+          - Android
 
 jobs:
   tag:
@@ -15,15 +23,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Read version from xcconfig
+      - name: Read iOS version
+        if: ${{ github.event.inputs.platform == 'iOS' }}
         run: |
-          VERSION=$(grep '^MARKETING_VERSION' Tuist/Config/Base.xcconfig | sed 's/.*= *//')
+          VERSION=$(grep '^MARKETING_VERSION' ios/Tuist/Config/Base.xcconfig | sed 's/.*= *//')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "Read version: $VERSION"
+          echo "Read iOS version: $VERSION"
+
+      - name: Read Android version
+        if: ${{ github.event.inputs.platform == 'Android' }}
+        run: |
+          VERSION=$(grep 'versionName' android/app/build.gradle.kts | sed 's/.*"\(.*\)".*/\1/')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Read Android version: $VERSION"
 
       - name: Create and push tag
         run: |
-          NEW_TAG="v${VERSION}"
+          PLATFORM="${{ github.event.inputs.platform }}"
+          NEW_TAG="${PLATFORM}/v${VERSION}"
           
           if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
             echo "Tag $NEW_TAG already exists!"
@@ -39,6 +56,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ env.VERSION }}
-          name: v${{ env.VERSION }}
+          tag_name: ${{ env.NEW_TAG }}
+          name: ${{ github.event.inputs.platform == 'iOS' && 'iOS' || 'Android' }} v${{ env.VERSION }}
           generate_release_notes: true

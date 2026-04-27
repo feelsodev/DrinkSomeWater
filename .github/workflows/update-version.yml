@@ -2,6 +2,22 @@ name: Update Version
 
 on:
   workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform to bump version for'
+        type: choice
+        options:
+          - iOS
+          - Android
+        required: true
+      bump_type:
+        description: 'Version bump type (Android only; iOS auto-calculates YY.WW.N)'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
 
 jobs:
   update-version:
@@ -9,7 +25,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    
+
     steps:
       - name: Checkout master
         uses: actions/checkout@v4
@@ -18,105 +34,229 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Read current version from xcconfig
-        id: current
+      - name: '[iOS] Read current version'
+        if: inputs.platform == 'iOS'
+        id: ios_current
         run: |
-          CURRENT_VERSION=$(grep '^MARKETING_VERSION' Tuist/Config/Base.xcconfig | sed 's/.*= *//')
+          CURRENT_VERSION=$(grep '^MARKETING_VERSION' ios/Tuist/Config/Base.xcconfig | sed 's/.*= *//')
           echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
-          echo "Current version: $CURRENT_VERSION"
+          echo "Current iOS version: $CURRENT_VERSION"
 
-      - name: Calculate new version
-        id: new
+      - name: '[iOS] Calculate new version (YY.WW.N)'
+        if: inputs.platform == 'iOS'
+        id: ios_new
         run: |
           YEAR=$(date +%y)
           WEEK=$(date +%V | sed 's/^0*//')
-          
+
           VERSION_PREFIX="${YEAR}.${WEEK}."
-          TAG_PREFIX="v${VERSION_PREFIX}"
-          
-          # Find the latest N for this year.week
-          LATEST_N=$(git tag -l "${TAG_PREFIX}*" | sed "s/${TAG_PREFIX}//" | sort -n | tail -1)
-          
+          TAG_PREFIX="iOS/v${VERSION_PREFIX}"
+
+          LATEST_N=$(git tag -l "${TAG_PREFIX}*" | sed "s|${TAG_PREFIX}||" | sort -n | tail -1)
+
           if [ -z "$LATEST_N" ]; then
             NEW_N=0
           else
             NEW_N=$((LATEST_N + 1))
           fi
-          
+
           NEW_VERSION="${VERSION_PREFIX}${NEW_N}"
-          
-          echo "New version: $NEW_VERSION"
+
+          echo "New iOS version: $NEW_VERSION"
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
-      - name: Create version update branch
-        id: branch
+      - name: '[iOS] Create branch'
+        if: inputs.platform == 'iOS'
+        id: ios_branch
         run: |
-          NEW_VERSION="${{ steps.new.outputs.version }}"
-          BRANCH_NAME="version-update/v${NEW_VERSION}"
-          
+          NEW_VERSION="${{ steps.ios_new.outputs.version }}"
+          BRANCH_NAME="version-update/iOS/v${NEW_VERSION}"
           git checkout -b "$BRANCH_NAME"
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
-          echo "Created branch: $BRANCH_NAME"
 
-      - name: Update version in xcconfig
+      - name: '[iOS] Update xcconfig'
+        if: inputs.platform == 'iOS'
         run: |
-          NEW_VERSION="${{ steps.new.outputs.version }}"
-          
-          # Update MARKETING_VERSION in Base.xcconfig
-          sed -i "s/^MARKETING_VERSION = .*/MARKETING_VERSION = $NEW_VERSION/" Tuist/Config/Base.xcconfig
-          
-          echo "Updated Base.xcconfig:"
-          grep -E '^(MARKETING_VERSION|CURRENT_PROJECT_VERSION)' Tuist/Config/Base.xcconfig
+          NEW_VERSION="${{ steps.ios_new.outputs.version }}"
+          sed -i "s/^MARKETING_VERSION = .*/MARKETING_VERSION = $NEW_VERSION/" ios/Tuist/Config/Base.xcconfig
+          grep -E '^(MARKETING_VERSION|CURRENT_PROJECT_VERSION)' ios/Tuist/Config/Base.xcconfig
 
-      - name: Commit and push changes
+      - name: '[iOS] Commit and push'
+        if: inputs.platform == 'iOS'
         run: |
-          NEW_VERSION="${{ steps.new.outputs.version }}"
-          BRANCH_NAME="${{ steps.branch.outputs.branch }}"
-          
+          NEW_VERSION="${{ steps.ios_new.outputs.version }}"
+          BRANCH_NAME="${{ steps.ios_branch.outputs.branch }}"
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          git add Tuist/Config/Base.xcconfig
-          git commit -m "chore: bump version to $NEW_VERSION"
-          git push origin "$BRANCH_NAME"
-          
-          echo "Pushed branch: $BRANCH_NAME"
 
-      - name: Create Pull Request
-        id: pr
+          git add ios/Tuist/Config/Base.xcconfig
+          git commit -m "chore: bump iOS version to $NEW_VERSION"
+          git push origin "$BRANCH_NAME"
+
+      - name: '[iOS] Create Pull Request'
+        if: inputs.platform == 'iOS'
+        id: ios_pr
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          NEW_VERSION="${{ steps.new.outputs.version }}"
-          CURRENT_VERSION="${{ steps.current.outputs.version }}"
-          BRANCH_NAME="${{ steps.branch.outputs.branch }}"
-          
+          NEW_VERSION="${{ steps.ios_new.outputs.version }}"
+          CURRENT_VERSION="${{ steps.ios_current.outputs.version }}"
+          BRANCH_NAME="${{ steps.ios_branch.outputs.branch }}"
+
           PR_BODY="## Version Update
-          
+
           | Item | Value |
           |------|-------|
+          | Platform | iOS |
           | Previous Version | ${CURRENT_VERSION} |
           | New Version | ${NEW_VERSION} |
-          
+
           ---
           *This PR was automatically created by the Update Version workflow.*"
-          
+
           PR_URL=$(gh pr create \
             --base master \
             --head "$BRANCH_NAME" \
-            --title "chore: bump version to $NEW_VERSION" \
+            --title "chore: bump iOS version to $NEW_VERSION" \
             --body "$PR_BODY")
-          
-          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
-          echo "Created PR: $PR_URL"
 
-      - name: Summary
+          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
+
+      - name: '[iOS] Summary'
+        if: inputs.platform == 'iOS'
         run: |
           echo "## Version Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Previous Version | ${{ steps.current.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| New Version | ${{ steps.new.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Branch | ${{ steps.branch.outputs.branch }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Pull Request | ${{ steps.pr.outputs.pr_url }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Platform | iOS |" >> $GITHUB_STEP_SUMMARY
+          echo "| Previous Version | ${{ steps.ios_current.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| New Version | ${{ steps.ios_new.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | ${{ steps.ios_branch.outputs.branch }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Pull Request | ${{ steps.ios_pr.outputs.pr_url }} |" >> $GITHUB_STEP_SUMMARY
+
+      - name: '[Android] Read current version'
+        if: inputs.platform == 'Android'
+        id: android_current
+        run: |
+          CURRENT_NAME=$(grep 'versionName' android/app/build.gradle.kts | sed 's/.*"\(.*\)".*/\1/')
+          CURRENT_CODE=$(grep 'versionCode' android/app/build.gradle.kts | sed 's/[^0-9]//g')
+          echo "version_name=$CURRENT_NAME" >> $GITHUB_OUTPUT
+          echo "version_code=$CURRENT_CODE" >> $GITHUB_OUTPUT
+          echo "Current Android versionName: $CURRENT_NAME  versionCode: $CURRENT_CODE"
+
+      - name: '[Android] Calculate new version'
+        if: inputs.platform == 'Android'
+        id: android_new
+        run: |
+          CURRENT_NAME="${{ steps.android_current.outputs.version_name }}"
+          CURRENT_CODE="${{ steps.android_current.outputs.version_code }}"
+          BUMP_TYPE="${{ inputs.bump_type }}"
+
+          MAJOR=$(echo "$CURRENT_NAME" | cut -d. -f1)
+          MINOR=$(echo "$CURRENT_NAME" | cut -d. -f2)
+          PATCH=$(echo "$CURRENT_NAME" | cut -d. -f3)
+
+          case "$BUMP_TYPE" in
+            major)
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+              ;;
+            minor)
+              MINOR=$((MINOR + 1))
+              PATCH=0
+              ;;
+            patch)
+              PATCH=$((PATCH + 1))
+              ;;
+          esac
+
+          NEW_NAME="${MAJOR}.${MINOR}.${PATCH}"
+          NEW_CODE=$((CURRENT_CODE + 1))
+
+          echo "New Android versionName: $NEW_NAME  versionCode: $NEW_CODE"
+          echo "version_name=$NEW_NAME" >> $GITHUB_OUTPUT
+          echo "version_code=$NEW_CODE" >> $GITHUB_OUTPUT
+
+      - name: '[Android] Create branch'
+        if: inputs.platform == 'Android'
+        id: android_branch
+        run: |
+          NEW_VERSION="${{ steps.android_new.outputs.version_name }}"
+          BRANCH_NAME="version-update/Android/v${NEW_VERSION}"
+          git checkout -b "$BRANCH_NAME"
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
+      - name: '[Android] Update build.gradle.kts'
+        if: inputs.platform == 'Android'
+        run: |
+          NEW_NAME="${{ steps.android_new.outputs.version_name }}"
+          NEW_CODE="${{ steps.android_new.outputs.version_code }}"
+          sed -i "s/versionName = \".*\"/versionName = \"$NEW_NAME\"/" android/app/build.gradle.kts
+          sed -i "s/versionCode = [0-9]*/versionCode = $NEW_CODE/" android/app/build.gradle.kts
+          grep -E 'versionName|versionCode' android/app/build.gradle.kts
+
+      - name: '[Android] Commit and push'
+        if: inputs.platform == 'Android'
+        run: |
+          NEW_VERSION="${{ steps.android_new.outputs.version_name }}"
+          BRANCH_NAME="${{ steps.android_branch.outputs.branch }}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add android/app/build.gradle.kts
+          git commit -m "chore: bump Android version to $NEW_VERSION"
+          git push origin "$BRANCH_NAME"
+
+      - name: '[Android] Create Pull Request'
+        if: inputs.platform == 'Android'
+        id: android_pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NEW_NAME="${{ steps.android_new.outputs.version_name }}"
+          NEW_CODE="${{ steps.android_new.outputs.version_code }}"
+          CURRENT_NAME="${{ steps.android_current.outputs.version_name }}"
+          CURRENT_CODE="${{ steps.android_current.outputs.version_code }}"
+          BRANCH_NAME="${{ steps.android_branch.outputs.branch }}"
+
+          PR_BODY="## Version Update
+
+          | Item | Value |
+          |------|-------|
+          | Platform | Android |
+          | Previous versionName | ${CURRENT_NAME} |
+          | New versionName | ${NEW_NAME} |
+          | Previous versionCode | ${CURRENT_CODE} |
+          | New versionCode | ${NEW_CODE} |
+          | Bump Type | ${{ inputs.bump_type }} |
+
+          ---
+          *This PR was automatically created by the Update Version workflow.*"
+
+          PR_URL=$(gh pr create \
+            --base master \
+            --head "$BRANCH_NAME" \
+            --title "chore: bump Android version to $NEW_NAME" \
+            --body "$PR_BODY")
+
+          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
+
+      - name: '[Android] Summary'
+        if: inputs.platform == 'Android'
+        run: |
+          echo "## Version Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Platform | Android |" >> $GITHUB_STEP_SUMMARY
+          echo "| Previous versionName | ${{ steps.android_current.outputs.version_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| New versionName | ${{ steps.android_new.outputs.version_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Previous versionCode | ${{ steps.android_current.outputs.version_code }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| New versionCode | ${{ steps.android_new.outputs.version_code }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Bump Type | ${{ inputs.bump_type }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | ${{ steps.android_branch.outputs.branch }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Pull Request | ${{ steps.android_pr.outputs.pr_url }} |" >> $GITHUB_STEP_SUMMARY
