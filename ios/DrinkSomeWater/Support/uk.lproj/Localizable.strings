@@ -328,23 +328,88 @@
 "accessibility.history.achieved" = "Ціль досягнута";
 "accessibility.history.progress" = "%@ від цілі";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "Поділитися";
+"share.system" = "Поділитися в інших додатках";
+"share.system.description" = "Twitter, Facebook, Повідомлення тощо";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "Статистика";
+"statistics.period.week" = "7 днів";
+"statistics.period.month" = "30 днів";
+"statistics.daily.average" = "Середнє за день";
+"statistics.goal.achievement" = "Досягнення цілі";
+"statistics.current.streak" = "Поточна серія";
+"statistics.longest.streak" = "Найдовша серія";
+"statistics.days" = "днів";
+"statistics.chart.title" = "Щоденне споживання";
+"statistics.chart.goal.line" = "Ціль";
+"statistics.empty" = "Записів ще немає";
+"accessibility.statistics.button" = "Переглянути статистику";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "Завантаження продуктів...";
+"paywall.title" = "Преміум оновлення";
+"paywall.subtitle" = "Насолоджуйтеся чистим досвідом без реклами";
+"paywall.ad.free" = "Використовуйте без реклами";
+"paywall.subscription.description" = "Видаліть рекламу за допомогою щомісячної або річної підписки";
+"paywall.or" = "або";
+"paywall.lifetime" = "Назавжди";
+"paywall.lifetime.description" = "Одна покупка, використовуйте назавжди";
+"paywall.restore" = "Відновити покупку";
+
+// Share Card
+"share.streak.days %lld" = "%lld днів";
+"share.consecutive.achievement" = "Послідовне досягнення";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "Преміум";
+"settings.subscription.status.premium" = "Підписка: Преміум";
+"settings.manage.subscription" = "Керувати підпискою";
+"settings.upgrade.premium" = "Оновити до Преміум";
+
+// Errors
+"error.image.generation.failed" = "Не вдалося створити зображення.";
+"error.share.sheet.unavailable" = "Не вдалося відкрити вікно поділитися.";
+"error.instagram.not.installed" = "Instagram не встановлено.";
+"error.photo.library.permission" = "Потрібен доступ до бібліотеки фото.";
+"error.photo.save.failed" = "Не вдалося зберегти фото.";
+"error.instagram.cannot.open" = "Не вдалося відкрити Instagram.";
+"error.product.not.found" = "Продукт не знайдено";
+"error.purchase.failed" = "Покупка не вдалася";
+"error.purchase.cancelled" = "Покупку скасовано";
+"error.purchase.pending" = "Покупка очікується";
+"error.verification.failed" = "Верифікація транзакції не вдалася";
+"error.unknown" = "Сталася невідома помилка";
+
+// Statistics (new)
+"statistics.period.7days" = "7 днів";
+"statistics.period.30days" = "30 днів";
+"statistics.period" = "Період";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "Синхронізація iCloud";
+"settings.icloud.connected" = "Підключено";
+"settings.icloud.disconnected" = "Не підключено";
+"settings.icloud.info.connected.title" = "iCloud підключено";
+"settings.icloud.info.connected.message" = "Ваші дані автоматично зберігаються в iCloud. Дані зберігаються навіть якщо ви видалите додаток та синхронізуються між вашими пристроями.";
+"settings.icloud.info.disconnected.title" = "iCloud не підключено";
+"settings.icloud.info.disconnected.message" = "Ви не ввійшли в iCloud або iCloud Drive вимкнено.\n\nПеревірте Налаштування > [Ваше ім'я] > iCloud.";
+"icloud.error.quota.title" = "Сховище iCloud заповнене";
+"icloud.error.quota.message" = "Ваше сховище iCloud заповнене. Деякі дані можуть не синхронізуватися.\n\nЗвільніть місце в Налаштування > [Ваше ім'я] > iCloud > Керування сховищем.";
+"icloud.error.account.title" = "Обліковий запис iCloud змінено";
+"icloud.error.account.message" = "Ваш обліковий запис iCloud змінився. Дані синхронізуватимуться з новим обліковим записом.";
+
+// Share
+"share.title" = "Поділитися в Instagram";
+"share.instagram.stories" = "Поділитися в Stories";
+"share.instagram.feed" = "Поділитися в стрічці";
+"share.error.title" = "Не вдається поділитися";
+"share.error.ok" = "OK";
+"share.error.instagram.not.installed" = "Instagram не встановлено на цьому пристрої.";
+
+// Accessibility
+"accessibility.home.share" = "Поділитися в Instagram";
+"accessibility.history.share" = "Поділитися в Instagram";

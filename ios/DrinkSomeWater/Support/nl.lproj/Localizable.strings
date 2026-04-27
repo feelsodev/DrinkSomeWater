@@ -329,23 +329,88 @@
 "accessibility.history.achieved" = "Doel behaald";
 "accessibility.history.progress" = "%@ van doel";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "Delen";
+"share.system" = "Delen met andere apps";
+"share.system.description" = "Twitter, Facebook, Berichten, enz.";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "Statistieken";
+"statistics.period.week" = "7 dagen";
+"statistics.period.month" = "30 dagen";
+"statistics.daily.average" = "Dagelijks gemiddelde";
+"statistics.goal.achievement" = "Doelbereiking";
+"statistics.current.streak" = "Huidige reeks";
+"statistics.longest.streak" = "Langste reeks";
+"statistics.days" = "dagen";
+"statistics.chart.title" = "Dagelijkse inname";
+"statistics.chart.goal.line" = "Doel";
+"statistics.empty" = "Nog geen registraties";
+"accessibility.statistics.button" = "Statistieken bekijken";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "Producten laden...";
+"paywall.title" = "Premium-upgrade";
+"paywall.subtitle" = "Geniet van een schone ervaring zonder advertenties";
+"paywall.ad.free" = "Gebruiken zonder advertenties";
+"paywall.subscription.description" = "Verwijder advertenties met een maandelijks of jaarlijks abonnement";
+"paywall.or" = "of";
+"paywall.lifetime" = "Levenslang";
+"paywall.lifetime.description" = "Eenmalige aankoop, voor altijd gebruiken";
+"paywall.restore" = "Aankoop herstellen";
+
+// Share Card
+"share.streak.days %lld" = "%lld dagen";
+"share.consecutive.achievement" = "Opeenvolgende prestatie";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "Premium";
+"settings.subscription.status.premium" = "Abonnement: Premium";
+"settings.manage.subscription" = "Abonnement beheren";
+"settings.upgrade.premium" = "Upgraden naar Premium";
+
+// Errors
+"error.image.generation.failed" = "Afbeelding genereren mislukt.";
+"error.share.sheet.unavailable" = "Kan deelvenster niet openen.";
+"error.instagram.not.installed" = "Instagram is niet geïnstalleerd.";
+"error.photo.library.permission" = "Toegang tot de fotobibliotheek is vereist.";
+"error.photo.save.failed" = "Foto opslaan mislukt.";
+"error.instagram.cannot.open" = "Kan Instagram niet openen.";
+"error.product.not.found" = "Product niet gevonden";
+"error.purchase.failed" = "Aankoop mislukt";
+"error.purchase.cancelled" = "Aankoop is geannuleerd";
+"error.purchase.pending" = "Aankoop is in behandeling";
+"error.verification.failed" = "Transactieverificatie mislukt";
+"error.unknown" = "Er is een onbekende fout opgetreden";
+
+// Statistics (new)
+"statistics.period.7days" = "7 dagen";
+"statistics.period.30days" = "30 dagen";
+"statistics.period" = "Periode";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "iCloud-synchronisatie";
+"settings.icloud.connected" = "Verbonden";
+"settings.icloud.disconnected" = "Niet verbonden";
+"settings.icloud.info.connected.title" = "iCloud verbonden";
+"settings.icloud.info.connected.message" = "Je gegevens worden automatisch opgeslagen in iCloud. Gegevens blijven bewaard, zelfs als je de app verwijdert, en worden gesynchroniseerd tussen je apparaten.";
+"settings.icloud.info.disconnected.title" = "iCloud niet verbonden";
+"settings.icloud.info.disconnected.message" = "Je bent niet ingelogd bij iCloud of iCloud Drive is uitgeschakeld.\n\nControleer Instellingen > [je naam] > iCloud.";
+"icloud.error.quota.title" = "iCloud-opslag vol";
+"icloud.error.quota.message" = "Je iCloud-opslag is vol. Sommige gegevens worden mogelijk niet gesynchroniseerd.\n\nMaak ruimte vrij in Instellingen > [je naam] > iCloud > Beheer opslag.";
+"icloud.error.account.title" = "iCloud-account gewijzigd";
+"icloud.error.account.message" = "Je iCloud-account is gewijzigd. Gegevens worden gesynchroniseerd met het nieuwe account.";
+
+// Share
+"share.title" = "Delen op Instagram";
+"share.instagram.stories" = "Delen in Stories";
+"share.instagram.feed" = "Delen in Feed";
+"share.error.title" = "Kan niet delen";
+"share.error.ok" = "OK";
+"share.error.instagram.not.installed" = "Instagram is niet geïnstalleerd op dit apparaat.";
+
+// Accessibility
+"accessibility.home.share" = "Delen op Instagram";
+"accessibility.history.share" = "Delen op Instagram";

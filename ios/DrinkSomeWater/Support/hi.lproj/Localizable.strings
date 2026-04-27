@@ -309,23 +309,88 @@
 "accessibility.history.achieved" = "लक्ष्य प्राप्त";
 "accessibility.history.progress" = "लक्ष्य का %@";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "साझा करें";
+"share.system" = "अन्य ऐप्स में साझा करें";
+"share.system.description" = "Twitter, Facebook, संदेश, आदि";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "सांख्यिकी";
+"statistics.period.week" = "7 दिन";
+"statistics.period.month" = "30 दिन";
+"statistics.daily.average" = "दैनिक औसत";
+"statistics.goal.achievement" = "लक्ष्य उपलब्धि";
+"statistics.current.streak" = "वर्तमान लगातार दिन";
+"statistics.longest.streak" = "सबसे लंबी लगातार अवधि";
+"statistics.days" = "दिन";
+"statistics.chart.title" = "दैनिक सेवन";
+"statistics.chart.goal.line" = "लक्ष्य";
+"statistics.empty" = "अभी तक कोई रिकॉर्ड नहीं";
+"accessibility.statistics.button" = "सांख्यिकी देखें";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "उत्पाद लोड हो रहे हैं...";
+"paywall.title" = "प्रीमियम अपग्रेड";
+"paywall.subtitle" = "विज्ञापनों के बिना स्वच्छ अनुभव का आनंद लें";
+"paywall.ad.free" = "विज्ञापनों के बिना उपयोग करें";
+"paywall.subscription.description" = "मासिक या वार्षिक सदस्यता से विज्ञापन हटाएं";
+"paywall.or" = "या";
+"paywall.lifetime" = "आजीवन";
+"paywall.lifetime.description" = "एक बार खरीदें, हमेशा उपयोग करें";
+"paywall.restore" = "खरीदारी पुनर्स्थापित करें";
+
+// Share Card
+"share.streak.days %lld" = "%lld दिन";
+"share.consecutive.achievement" = "लगातार उपलब्धि";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "प्रीमियम";
+"settings.subscription.status.premium" = "सदस्यता: प्रीमियम";
+"settings.manage.subscription" = "सदस्यता प्रबंधित करें";
+"settings.upgrade.premium" = "प्रीमियम में अपग्रेड करें";
+
+// Errors
+"error.image.generation.failed" = "छवि बनाने में विफल।";
+"error.share.sheet.unavailable" = "शेयर शीट खोलने में असमर्थ।";
+"error.instagram.not.installed" = "Instagram इंस्टॉल नहीं है।";
+"error.photo.library.permission" = "फोटो लाइब्रेरी तक पहुंच आवश्यक है।";
+"error.photo.save.failed" = "फोटो सहेजने में विफल।";
+"error.instagram.cannot.open" = "Instagram खोलने में असमर्थ।";
+"error.product.not.found" = "उत्पाद नहीं मिला";
+"error.purchase.failed" = "खरीदारी विफल";
+"error.purchase.cancelled" = "खरीदारी रद्द की गई";
+"error.purchase.pending" = "खरीदारी लंबित है";
+"error.verification.failed" = "लेनदेन सत्यापन विफल";
+"error.unknown" = "एक अज्ञात त्रुटि हुई";
+
+// Statistics (new)
+"statistics.period.7days" = "7 दिन";
+"statistics.period.30days" = "30 दिन";
+"statistics.period" = "अवधि";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "iCloud सिंक";
+"settings.icloud.connected" = "जुड़ा हुआ";
+"settings.icloud.disconnected" = "जुड़ा नहीं है";
+"settings.icloud.info.connected.title" = "iCloud जुड़ा हुआ है";
+"settings.icloud.info.connected.message" = "आपका डेटा स्वचालित रूप से iCloud पर बैकअप होता है। ऐप हटाने पर भी डेटा सुरक्षित रहता है और आपके सभी उपकरणों में सिंक होता है।";
+"settings.icloud.info.disconnected.title" = "iCloud जुड़ा नहीं है";
+"settings.icloud.info.disconnected.message" = "आपने iCloud में साइन इन नहीं किया है या iCloud Drive अक्षम है।\n\nकृपया Settings > [आपका नाम] > iCloud जांचें।";
+"icloud.error.quota.title" = "iCloud संग्रहण भर गया है";
+"icloud.error.quota.message" = "आपका iCloud संग्रहण भर गया है। कुछ डेटा सिंक नहीं हो सकता।\n\nकृपया Settings > [आपका नाम] > iCloud > संग्रहण प्रबंधित करें में जगह खाली करें।";
+"icloud.error.account.title" = "iCloud खाता बदल गया";
+"icloud.error.account.message" = "आपका iCloud खाता बदल गया है। डेटा नए खाते के साथ सिंक होगा।";
+
+// Share
+"share.title" = "Instagram पर साझा करें";
+"share.instagram.stories" = "Stories पर साझा करें";
+"share.instagram.feed" = "Feed पर साझा करें";
+"share.error.title" = "साझा नहीं कर सकते";
+"share.error.ok" = "ठीक है";
+"share.error.instagram.not.installed" = "इस डिवाइस पर Instagram इंस्टॉल नहीं है।";
+
+// Accessibility
+"accessibility.home.share" = "Instagram पर साझा करें";
+"accessibility.history.share" = "Instagram पर साझा करें";

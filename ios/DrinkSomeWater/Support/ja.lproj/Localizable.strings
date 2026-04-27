@@ -328,23 +328,88 @@
 "accessibility.history.achieved" = "目標達成";
 "accessibility.history.progress" = "目標の %@";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "共有";
+"share.system" = "他のアプリに共有";
+"share.system.description" = "Twitter、Facebook、メッセージなど";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "統計";
+"statistics.period.week" = "7日間";
+"statistics.period.month" = "30日間";
+"statistics.daily.average" = "1日の平均";
+"statistics.goal.achievement" = "目標達成率";
+"statistics.current.streak" = "現在の連続日数";
+"statistics.longest.streak" = "最長連続日数";
+"statistics.days" = "日";
+"statistics.chart.title" = "1日の摂取量";
+"statistics.chart.goal.line" = "目標";
+"statistics.empty" = "まだ記録がありません";
+"accessibility.statistics.button" = "統計を見る";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "商品を読み込み中...";
+"paywall.title" = "プレミアムアップグレード";
+"paywall.subtitle" = "広告なしのすっきりした体験をお楽しみください";
+"paywall.ad.free" = "広告なしで使用";
+"paywall.subscription.description" = "月額または年額サブスクリプションで広告を削除";
+"paywall.or" = "または";
+"paywall.lifetime" = "買い切り";
+"paywall.lifetime.description" = "一度の購入で永久にご利用いただけます";
+"paywall.restore" = "購入を復元";
+
+// Share Card
+"share.streak.days %lld" = "%lld日";
+"share.consecutive.achievement" = "連続達成";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "プレミアム";
+"settings.subscription.status.premium" = "サブスクリプション：プレミアム";
+"settings.manage.subscription" = "サブスクリプション管理";
+"settings.upgrade.premium" = "プレミアムにアップグレード";
+
+// Errors
+"error.image.generation.failed" = "画像の生成に失敗しました。";
+"error.share.sheet.unavailable" = "共有シートを開けません。";
+"error.instagram.not.installed" = "Instagramがインストールされていません。";
+"error.photo.library.permission" = "写真ライブラリへのアクセスが必要です。";
+"error.photo.save.failed" = "写真の保存に失敗しました。";
+"error.instagram.cannot.open" = "Instagramを開けません。";
+"error.product.not.found" = "商品が見つかりません";
+"error.purchase.failed" = "購入に失敗しました";
+"error.purchase.cancelled" = "購入がキャンセルされました";
+"error.purchase.pending" = "購入は保留中です";
+"error.verification.failed" = "トランザクションの検証に失敗しました";
+"error.unknown" = "不明なエラーが発生しました";
+
+// Statistics (new)
+"statistics.period.7days" = "7日間";
+"statistics.period.30days" = "30日間";
+"statistics.period" = "期間";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "iCloud同期";
+"settings.icloud.connected" = "接続済み";
+"settings.icloud.disconnected" = "未接続";
+"settings.icloud.info.connected.title" = "iCloud接続済み";
+"settings.icloud.info.connected.message" = "データは自動的にiCloudにバックアップされます。アプリを削除してもデータは保持され、お使いのデバイス間で同期されます。";
+"settings.icloud.info.disconnected.title" = "iCloud未接続";
+"settings.icloud.info.disconnected.message" = "iCloudにサインインしていないか、iCloud Driveが無効になっています。\n\n設定 > [自分の名前] > iCloudをご確認ください。";
+"icloud.error.quota.title" = "iCloudストレージがいっぱいです";
+"icloud.error.quota.message" = "iCloudストレージがいっぱいです。一部のデータが同期されない場合があります。\n\n設定 > [自分の名前] > iCloud > ストレージを管理で空き容量を確保してください。";
+"icloud.error.account.title" = "iCloudアカウントが変更されました";
+"icloud.error.account.message" = "iCloudアカウントが変更されました。新しいアカウントとデータが同期されます。";
+
+// Share
+"share.title" = "Instagramに共有";
+"share.instagram.stories" = "ストーリーズに共有";
+"share.instagram.feed" = "フィードに共有";
+"share.error.title" = "共有できません";
+"share.error.ok" = "OK";
+"share.error.instagram.not.installed" = "このデバイスにInstagramがインストールされていません。";
+
+// Accessibility
+"accessibility.home.share" = "Instagramに共有";
+"accessibility.history.share" = "Instagramに共有";

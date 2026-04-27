@@ -328,23 +328,88 @@
 "accessibility.history.achieved" = "Tavoite saavutettu";
 "accessibility.history.progress" = "%@ tavoitteesta";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "Jaa";
+"share.system" = "Jaa muihin sovelluksiin";
+"share.system.description" = "Twitter, Facebook, Viestit jne.";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "Tilastot";
+"statistics.period.week" = "7 päivää";
+"statistics.period.month" = "30 päivää";
+"statistics.daily.average" = "Päivittäinen keskiarvo";
+"statistics.goal.achievement" = "Tavoitteen saavutus";
+"statistics.current.streak" = "Nykyinen putki";
+"statistics.longest.streak" = "Pisin putki";
+"statistics.days" = "päivää";
+"statistics.chart.title" = "Päivittäinen saanti";
+"statistics.chart.goal.line" = "Tavoite";
+"statistics.empty" = "Ei vielä merkintöjä";
+"accessibility.statistics.button" = "Näytä tilastot";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "Ladataan tuotteita...";
+"paywall.title" = "Premium-päivitys";
+"paywall.subtitle" = "Nauti puhtaasta kokemuksesta ilman mainoksia";
+"paywall.ad.free" = "Käytä ilman mainoksia";
+"paywall.subscription.description" = "Poista mainokset kuukausi- tai vuositilauksella";
+"paywall.or" = "tai";
+"paywall.lifetime" = "Elinikäinen";
+"paywall.lifetime.description" = "Osta kerran, käytä ikuisesti";
+"paywall.restore" = "Palauta ostos";
+
+// Share Card
+"share.streak.days %lld" = "%lld päivää";
+"share.consecutive.achievement" = "Peräkkäinen saavutus";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "Premium";
+"settings.subscription.status.premium" = "Tilaus: Premium";
+"settings.manage.subscription" = "Hallitse tilausta";
+"settings.upgrade.premium" = "Päivitä Premiumiin";
+
+// Errors
+"error.image.generation.failed" = "Kuvan luonti epäonnistui.";
+"error.share.sheet.unavailable" = "Jakamisnäyttöä ei voi avata.";
+"error.instagram.not.installed" = "Instagram ei ole asennettu.";
+"error.photo.library.permission" = "Kuvakirjaston käyttöoikeus vaaditaan.";
+"error.photo.save.failed" = "Kuvan tallentaminen epäonnistui.";
+"error.instagram.cannot.open" = "Instagramia ei voi avata.";
+"error.product.not.found" = "Tuotetta ei löytynyt";
+"error.purchase.failed" = "Osto epäonnistui";
+"error.purchase.cancelled" = "Osto peruutettiin";
+"error.purchase.pending" = "Osto on käsittelyssä";
+"error.verification.failed" = "Tapahtuman vahvistus epäonnistui";
+"error.unknown" = "Tuntematon virhe tapahtui";
+
+// Statistics (new)
+"statistics.period.7days" = "7 päivää";
+"statistics.period.30days" = "30 päivää";
+"statistics.period" = "Ajanjakso";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "iCloud-synkronointi";
+"settings.icloud.connected" = "Yhdistetty";
+"settings.icloud.disconnected" = "Ei yhdistetty";
+"settings.icloud.info.connected.title" = "iCloud yhdistetty";
+"settings.icloud.info.connected.message" = "Tietosi varmuuskopioidaan automaattisesti iCloudiin. Tiedot säilyvät, vaikka poistaisit sovelluksen, ja synkronoituvat laitteidesi välillä.";
+"settings.icloud.info.disconnected.title" = "iCloud ei yhdistetty";
+"settings.icloud.info.disconnected.message" = "Et ole kirjautunut iCloudiin tai iCloud Drive on poistettu käytöstä.\n\nTarkista Asetukset > [Nimesi] > iCloud.";
+"icloud.error.quota.title" = "iCloud-tallennustila täynnä";
+"icloud.error.quota.message" = "iCloud-tallennustilasi on täynnä. Osa tiedoista ei ehkä synkronoidu.\n\nVapauta tilaa kohdassa Asetukset > [Nimesi] > iCloud > Hallinnoi tallennustilaa.";
+"icloud.error.account.title" = "iCloud-tili vaihdettu";
+"icloud.error.account.message" = "iCloud-tilisi on vaihtunut. Tiedot synkronoidaan uuden tilin kanssa.";
+
+// Share
+"share.title" = "Jaa Instagramiin";
+"share.instagram.stories" = "Jaa tarinoihin";
+"share.instagram.feed" = "Jaa syötteeseen";
+"share.error.title" = "Jakaminen ei onnistu";
+"share.error.ok" = "OK";
+"share.error.instagram.not.installed" = "Instagram ei ole asennettu tähän laitteeseen.";
+
+// Accessibility
+"accessibility.home.share" = "Jaa Instagramiin";
+"accessibility.history.share" = "Jaa Instagramiin";

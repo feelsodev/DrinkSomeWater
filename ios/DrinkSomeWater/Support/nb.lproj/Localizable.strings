@@ -328,23 +328,88 @@
 "accessibility.history.achieved" = "Mål oppnådd";
 "accessibility.history.progress" = "%@ av mål";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "Del";
+"share.system" = "Del med andre apper";
+"share.system.description" = "Twitter, Facebook, Meldinger osv.";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "Statistikk";
+"statistics.period.week" = "7 dager";
+"statistics.period.month" = "30 dager";
+"statistics.daily.average" = "Daglig gjennomsnitt";
+"statistics.goal.achievement" = "Måloppnåelse";
+"statistics.current.streak" = "Nåværende rekke";
+"statistics.longest.streak" = "Lengste rekke";
+"statistics.days" = "dager";
+"statistics.chart.title" = "Daglig inntak";
+"statistics.chart.goal.line" = "Mål";
+"statistics.empty" = "Ingen registreringer ennå";
+"accessibility.statistics.button" = "Vis statistikk";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "Laster produkter...";
+"paywall.title" = "Premium-oppgradering";
+"paywall.subtitle" = "Nyt en ren opplevelse uten annonser";
+"paywall.ad.free" = "Bruk uten annonser";
+"paywall.subscription.description" = "Fjern annonser med månedlig eller årlig abonnement";
+"paywall.or" = "eller";
+"paywall.lifetime" = "Livstid";
+"paywall.lifetime.description" = "Kjøp én gang, bruk for alltid";
+"paywall.restore" = "Gjenopprett kjøp";
+
+// Share Card
+"share.streak.days %lld" = "%lld dager";
+"share.consecutive.achievement" = "Sammenhengende prestasjon";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "Premium";
+"settings.subscription.status.premium" = "Abonnement: Premium";
+"settings.manage.subscription" = "Administrer abonnement";
+"settings.upgrade.premium" = "Oppgrader til Premium";
+
+// Errors
+"error.image.generation.failed" = "Kunne ikke generere bilde.";
+"error.share.sheet.unavailable" = "Kan ikke åpne delingsark.";
+"error.instagram.not.installed" = "Instagram er ikke installert.";
+"error.photo.library.permission" = "Tilgang til fotobiblioteket er påkrevd.";
+"error.photo.save.failed" = "Kunne ikke lagre foto.";
+"error.instagram.cannot.open" = "Kan ikke åpne Instagram.";
+"error.product.not.found" = "Produkt ikke funnet";
+"error.purchase.failed" = "Kjøp mislyktes";
+"error.purchase.cancelled" = "Kjøp ble avbrutt";
+"error.purchase.pending" = "Kjøp venter";
+"error.verification.failed" = "Transaksjonsverifisering mislyktes";
+"error.unknown" = "En ukjent feil oppsto";
+
+// Statistics (new)
+"statistics.period.7days" = "7 dager";
+"statistics.period.30days" = "30 dager";
+"statistics.period" = "Periode";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "iCloud-synkronisering";
+"settings.icloud.connected" = "Tilkoblet";
+"settings.icloud.disconnected" = "Ikke tilkoblet";
+"settings.icloud.info.connected.title" = "iCloud tilkoblet";
+"settings.icloud.info.connected.message" = "Dataene dine sikkerhetskopieres automatisk til iCloud. Data bevares selv om du sletter appen og synkroniseres på tvers av enhetene dine.";
+"settings.icloud.info.disconnected.title" = "iCloud ikke tilkoblet";
+"settings.icloud.info.disconnected.message" = "Du er ikke logget inn på iCloud eller iCloud Drive er deaktivert.\n\nSjekk Innstillinger > [Ditt navn] > iCloud.";
+"icloud.error.quota.title" = "iCloud-lagring fullt";
+"icloud.error.quota.message" = "iCloud-lagringen din er full. Noen data kan ikke synkroniseres.\n\nFrigjør plass i Innstillinger > [Ditt navn] > iCloud > Administrer lagring.";
+"icloud.error.account.title" = "iCloud-konto endret";
+"icloud.error.account.message" = "iCloud-kontoen din er endret. Data vil synkroniseres med den nye kontoen.";
+
+// Share
+"share.title" = "Del til Instagram";
+"share.instagram.stories" = "Del til Stories";
+"share.instagram.feed" = "Del til Feed";
+"share.error.title" = "Kan ikke dele";
+"share.error.ok" = "OK";
+"share.error.instagram.not.installed" = "Instagram er ikke installert på denne enheten.";
+
+// Accessibility
+"accessibility.home.share" = "Del til Instagram";
+"accessibility.history.share" = "Del til Instagram";

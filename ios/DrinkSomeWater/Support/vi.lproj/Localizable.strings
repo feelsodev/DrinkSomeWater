@@ -328,23 +328,88 @@
 "accessibility.history.achieved" = "Đạt mục tiêu";
 "accessibility.history.progress" = "%@ mục tiêu";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "Chia sẻ";
+"share.system" = "Chia sẻ đến ứng dụng khác";
+"share.system.description" = "Twitter, Facebook, Tin nhắn, v.v.";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "Thống kê";
+"statistics.period.week" = "7 ngày";
+"statistics.period.month" = "30 ngày";
+"statistics.daily.average" = "Trung bình hàng ngày";
+"statistics.goal.achievement" = "Đạt mục tiêu";
+"statistics.current.streak" = "Chuỗi hiện tại";
+"statistics.longest.streak" = "Chuỗi dài nhất";
+"statistics.days" = "ngày";
+"statistics.chart.title" = "Lượng nước hàng ngày";
+"statistics.chart.goal.line" = "Mục tiêu";
+"statistics.empty" = "Chưa có bản ghi nào";
+"accessibility.statistics.button" = "Xem thống kê";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "Đang tải sản phẩm...";
+"paywall.title" = "Nâng cấp Premium";
+"paywall.subtitle" = "Tận hưởng trải nghiệm sạch không quảng cáo";
+"paywall.ad.free" = "Sử dụng không quảng cáo";
+"paywall.subscription.description" = "Xóa quảng cáo với gói đăng ký hàng tháng hoặc hàng năm";
+"paywall.or" = "hoặc";
+"paywall.lifetime" = "Trọn đời";
+"paywall.lifetime.description" = "Mua một lần, dùng mãi mãi";
+"paywall.restore" = "Khôi phục giao dịch";
+
+// Share Card
+"share.streak.days %lld" = "%lld ngày";
+"share.consecutive.achievement" = "Thành tích liên tiếp";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "Premium";
+"settings.subscription.status.premium" = "Đăng ký: Premium";
+"settings.manage.subscription" = "Quản lý đăng ký";
+"settings.upgrade.premium" = "Nâng cấp lên Premium";
+
+// Errors
+"error.image.generation.failed" = "Không thể tạo hình ảnh.";
+"error.share.sheet.unavailable" = "Không thể mở trang chia sẻ.";
+"error.instagram.not.installed" = "Instagram chưa được cài đặt.";
+"error.photo.library.permission" = "Cần quyền truy cập thư viện ảnh.";
+"error.photo.save.failed" = "Không thể lưu ảnh.";
+"error.instagram.cannot.open" = "Không thể mở Instagram.";
+"error.product.not.found" = "Không tìm thấy sản phẩm";
+"error.purchase.failed" = "Giao dịch thất bại";
+"error.purchase.cancelled" = "Giao dịch đã bị hủy";
+"error.purchase.pending" = "Giao dịch đang chờ xử lý";
+"error.verification.failed" = "Xác minh giao dịch thất bại";
+"error.unknown" = "Đã xảy ra lỗi không xác định";
+
+// Statistics (new)
+"statistics.period.7days" = "7 ngày";
+"statistics.period.30days" = "30 ngày";
+"statistics.period" = "Kỳ";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "Đồng bộ iCloud";
+"settings.icloud.connected" = "Đã kết nối";
+"settings.icloud.disconnected" = "Chưa kết nối";
+"settings.icloud.info.connected.title" = "iCloud đã kết nối";
+"settings.icloud.info.connected.message" = "Dữ liệu của bạn được tự động sao lưu lên iCloud. Dữ liệu được giữ lại ngay cả khi bạn xóa ứng dụng và đồng bộ giữa các thiết bị.";
+"settings.icloud.info.disconnected.title" = "iCloud chưa kết nối";
+"settings.icloud.info.disconnected.message" = "Bạn chưa đăng nhập iCloud hoặc iCloud Drive đã bị tắt.\n\nVui lòng kiểm tra Settings > [Tên của bạn] > iCloud.";
+"icloud.error.quota.title" = "Dung lượng iCloud đã đầy";
+"icloud.error.quota.message" = "Dung lượng iCloud của bạn đã đầy. Một số dữ liệu có thể không đồng bộ được.\n\nVui lòng giải phóng dung lượng tại Settings > [Tên của bạn] > iCloud > Quản lý dung lượng.";
+"icloud.error.account.title" = "Tài khoản iCloud đã thay đổi";
+"icloud.error.account.message" = "Tài khoản iCloud của bạn đã thay đổi. Dữ liệu sẽ đồng bộ với tài khoản mới.";
+
+// Share
+"share.title" = "Chia sẻ lên Instagram";
+"share.instagram.stories" = "Chia sẻ lên Stories";
+"share.instagram.feed" = "Chia sẻ lên Feed";
+"share.error.title" = "Không thể chia sẻ";
+"share.error.ok" = "OK";
+"share.error.instagram.not.installed" = "Instagram chưa được cài đặt trên thiết bị này.";
+
+// Accessibility
+"accessibility.home.share" = "Chia sẻ lên Instagram";
+"accessibility.history.share" = "Chia sẻ lên Instagram";

@@ -329,23 +329,88 @@
 "accessibility.history.achieved" = "Cel osiągnięty";
 "accessibility.history.progress" = "%@ celu";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "Udostępnij";
+"share.system" = "Udostępnij w innych aplikacjach";
+"share.system.description" = "Twitter, Facebook, Wiadomości itp.";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "Statystyki";
+"statistics.period.week" = "7 dni";
+"statistics.period.month" = "30 dni";
+"statistics.daily.average" = "Średnia dzienna";
+"statistics.goal.achievement" = "Osiągnięcie celu";
+"statistics.current.streak" = "Aktualna seria";
+"statistics.longest.streak" = "Najdłuższa seria";
+"statistics.days" = "dni";
+"statistics.chart.title" = "Dzienne spożycie";
+"statistics.chart.goal.line" = "Cel";
+"statistics.empty" = "Brak zapisów";
+"accessibility.statistics.button" = "Wyświetl statystyki";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "Ładowanie produktów...";
+"paywall.title" = "Ulepszenie Premium";
+"paywall.subtitle" = "Ciesz się czystym doświadczeniem bez reklam";
+"paywall.ad.free" = "Korzystaj bez reklam";
+"paywall.subscription.description" = "Usuń reklamy dzięki subskrypcji miesięcznej lub rocznej";
+"paywall.or" = "lub";
+"paywall.lifetime" = "Dożywotni";
+"paywall.lifetime.description" = "Jeden zakup, korzystaj na zawsze";
+"paywall.restore" = "Przywróć zakup";
+
+// Share Card
+"share.streak.days %lld" = "%lld dni";
+"share.consecutive.achievement" = "Osiągnięcie z rzędu";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "Premium";
+"settings.subscription.status.premium" = "Subskrypcja: Premium";
+"settings.manage.subscription" = "Zarządzaj subskrypcją";
+"settings.upgrade.premium" = "Uaktualnij do Premium";
+
+// Errors
+"error.image.generation.failed" = "Nie udało się wygenerować obrazu.";
+"error.share.sheet.unavailable" = "Nie można otworzyć arkusza udostępniania.";
+"error.instagram.not.installed" = "Instagram nie jest zainstalowany.";
+"error.photo.library.permission" = "Wymagany jest dostęp do biblioteki zdjęć.";
+"error.photo.save.failed" = "Nie udało się zapisać zdjęcia.";
+"error.instagram.cannot.open" = "Nie można otworzyć Instagram.";
+"error.product.not.found" = "Nie znaleziono produktu";
+"error.purchase.failed" = "Zakup nie powiódł się";
+"error.purchase.cancelled" = "Zakup został anulowany";
+"error.purchase.pending" = "Zakup jest w toku";
+"error.verification.failed" = "Weryfikacja transakcji nie powiodła się";
+"error.unknown" = "Wystąpił nieznany błąd";
+
+// Statistics (new)
+"statistics.period.7days" = "7 dni";
+"statistics.period.30days" = "30 dni";
+"statistics.period" = "Okres";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "Synchronizacja iCloud";
+"settings.icloud.connected" = "Połączono";
+"settings.icloud.disconnected" = "Nie połączono";
+"settings.icloud.info.connected.title" = "iCloud połączono";
+"settings.icloud.info.connected.message" = "Twoje dane są automatycznie zapisywane w iCloud. Dane zostaną zachowane nawet po usunięciu aplikacji i są synchronizowane między Twoimi urządzeniami.";
+"settings.icloud.info.disconnected.title" = "iCloud nie połączono";
+"settings.icloud.info.disconnected.message" = "Nie jesteś zalogowany w iCloud lub iCloud Drive jest wyłączony.\n\nSprawdź Ustawienia > [Twoje imię] > iCloud.";
+"icloud.error.quota.title" = "Pamięć iCloud pełna";
+"icloud.error.quota.message" = "Pamięć iCloud jest pełna. Niektóre dane mogą się nie synchronizować.\n\nZwolnij miejsce w Ustawienia > [Twoje imię] > iCloud > Zarządzaj pamięcią.";
+"icloud.error.account.title" = "Zmieniono konto iCloud";
+"icloud.error.account.message" = "Twoje konto iCloud zostało zmienione. Dane będą synchronizowane z nowym kontem.";
+
+// Share
+"share.title" = "Udostępnij na Instagram";
+"share.instagram.stories" = "Udostępnij w Stories";
+"share.instagram.feed" = "Udostępnij w Aktualnościach";
+"share.error.title" = "Nie można udostępnić";
+"share.error.ok" = "OK";
+"share.error.instagram.not.installed" = "Instagram nie jest zainstalowany na tym urządzeniu.";
+
+// Accessibility
+"accessibility.home.share" = "Udostępnij na Instagram";
+"accessibility.history.share" = "Udostępnij na Instagram";

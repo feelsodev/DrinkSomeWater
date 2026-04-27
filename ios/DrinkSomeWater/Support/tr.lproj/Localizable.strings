@@ -328,23 +328,88 @@
 "accessibility.history.achieved" = "Hedef başarıldı";
 "accessibility.history.progress" = "Hedefin %@'i";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "Paylaş";
+"share.system" = "Diğer Uygulamalarda Paylaş";
+"share.system.description" = "Twitter, Facebook, Mesajlar vb.";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "İstatistikler";
+"statistics.period.week" = "7 Gün";
+"statistics.period.month" = "30 Gün";
+"statistics.daily.average" = "Günlük Ortalama";
+"statistics.goal.achievement" = "Hedef Başarısı";
+"statistics.current.streak" = "Mevcut Seri";
+"statistics.longest.streak" = "En Uzun Seri";
+"statistics.days" = "gün";
+"statistics.chart.title" = "Günlük Tüketim";
+"statistics.chart.goal.line" = "Hedef";
+"statistics.empty" = "Henüz kayıt yok";
+"accessibility.statistics.button" = "İstatistikleri Görüntüle";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "Ürünler yükleniyor...";
+"paywall.title" = "Premium Yükseltme";
+"paywall.subtitle" = "Reklamsız temiz bir deneyimin keyfini çıkarın";
+"paywall.ad.free" = "Reklamsız kullanın";
+"paywall.subscription.description" = "Aylık veya yıllık abonelikle reklamları kaldırın";
+"paywall.or" = "veya";
+"paywall.lifetime" = "Ömür Boyu";
+"paywall.lifetime.description" = "Bir kez satın al, sonsuza kadar kullan";
+"paywall.restore" = "Satın Almayı Geri Yükle";
+
+// Share Card
+"share.streak.days %lld" = "%lld gün";
+"share.consecutive.achievement" = "Ardışık Başarı";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "Premium";
+"settings.subscription.status.premium" = "Abonelik: Premium";
+"settings.manage.subscription" = "Aboneliği Yönet";
+"settings.upgrade.premium" = "Premium'a Yükselt";
+
+// Errors
+"error.image.generation.failed" = "Görsel oluşturulamadı.";
+"error.share.sheet.unavailable" = "Paylaşım sayfası açılamıyor.";
+"error.instagram.not.installed" = "Instagram yüklü değil.";
+"error.photo.library.permission" = "Fotoğraf kitaplığı erişimi gerekli.";
+"error.photo.save.failed" = "Fotoğraf kaydedilemedi.";
+"error.instagram.cannot.open" = "Instagram açılamıyor.";
+"error.product.not.found" = "Ürün bulunamadı";
+"error.purchase.failed" = "Satın alma başarısız";
+"error.purchase.cancelled" = "Satın alma iptal edildi";
+"error.purchase.pending" = "Satın alma beklemede";
+"error.verification.failed" = "İşlem doğrulaması başarısız";
+"error.unknown" = "Bilinmeyen bir hata oluştu";
+
+// Statistics (new)
+"statistics.period.7days" = "7 Gün";
+"statistics.period.30days" = "30 Gün";
+"statistics.period" = "Dönem";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "iCloud Senkronizasyonu";
+"settings.icloud.connected" = "Bağlı";
+"settings.icloud.disconnected" = "Bağlı Değil";
+"settings.icloud.info.connected.title" = "iCloud Bağlı";
+"settings.icloud.info.connected.message" = "Verileriniz otomatik olarak iCloud'a yedeklenir. Uygulamayı silseniz bile veriler korunur ve cihazlarınız arasında senkronize edilir.";
+"settings.icloud.info.disconnected.title" = "iCloud Bağlı Değil";
+"settings.icloud.info.disconnected.message" = "iCloud'a giriş yapmadınız veya iCloud Drive devre dışı.\n\nLütfen Ayarlar > [Adınız] > iCloud bölümünü kontrol edin.";
+"icloud.error.quota.title" = "iCloud Depolama Alanı Dolu";
+"icloud.error.quota.message" = "iCloud depolama alanınız dolu. Bazı veriler senkronize edilemeyebilir.\n\nLütfen Ayarlar > [Adınız] > iCloud > Depolamayı Yönet bölümünden yer açın.";
+"icloud.error.account.title" = "iCloud Hesabı Değişti";
+"icloud.error.account.message" = "iCloud hesabınız değişti. Veriler yeni hesapla senkronize edilecektir.";
+
+// Share
+"share.title" = "Instagram'da Paylaş";
+"share.instagram.stories" = "Hikâyelerde Paylaş";
+"share.instagram.feed" = "Akışta Paylaş";
+"share.error.title" = "Paylaşılamıyor";
+"share.error.ok" = "Tamam";
+"share.error.instagram.not.installed" = "Bu cihazda Instagram yüklü değil.";
+
+// Accessibility
+"accessibility.home.share" = "Instagram'da Paylaş";
+"accessibility.history.share" = "Instagram'da Paylaş";

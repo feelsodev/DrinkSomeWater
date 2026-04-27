@@ -328,23 +328,88 @@
 "accessibility.history.achieved" = "Cél elérve";
 "accessibility.history.progress" = "A cél %@-a";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "Megosztás";
+"share.system" = "Megosztás más alkalmazásokba";
+"share.system.description" = "Twitter, Facebook, Üzenetek stb.";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "Statisztikák";
+"statistics.period.week" = "7 nap";
+"statistics.period.month" = "30 nap";
+"statistics.daily.average" = "Napi átlag";
+"statistics.goal.achievement" = "Cél elérése";
+"statistics.current.streak" = "Aktuális sorozat";
+"statistics.longest.streak" = "Leghosszabb sorozat";
+"statistics.days" = "nap";
+"statistics.chart.title" = "Napi bevitel";
+"statistics.chart.goal.line" = "Cél";
+"statistics.empty" = "Még nincsenek bejegyzések";
+"accessibility.statistics.button" = "Statisztikák megtekintése";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "Termékek betöltése...";
+"paywall.title" = "Prémium frissítés";
+"paywall.subtitle" = "Élvezd a tiszta élményt reklámok nélkül";
+"paywall.ad.free" = "Használd reklámok nélkül";
+"paywall.subscription.description" = "Távolítsd el a hirdetéseket havi vagy éves előfizetéssel";
+"paywall.or" = "vagy";
+"paywall.lifetime" = "Élethosszig";
+"paywall.lifetime.description" = "Egy vásárlás, örökre használható";
+"paywall.restore" = "Vásárlás visszaállítása";
+
+// Share Card
+"share.streak.days %lld" = "%lld nap";
+"share.consecutive.achievement" = "Egymást követő elérés";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "Prémium";
+"settings.subscription.status.premium" = "Előfizetés: Prémium";
+"settings.manage.subscription" = "Előfizetés kezelése";
+"settings.upgrade.premium" = "Frissítés Prémiumra";
+
+// Errors
+"error.image.generation.failed" = "Nem sikerült a kép létrehozása.";
+"error.share.sheet.unavailable" = "Nem sikerült megnyitni a megosztás panelt.";
+"error.instagram.not.installed" = "Az Instagram nincs telepítve.";
+"error.photo.library.permission" = "Fotótár-hozzáférés szükséges.";
+"error.photo.save.failed" = "Nem sikerült a fotó mentése.";
+"error.instagram.cannot.open" = "Nem sikerült megnyitni az Instagramot.";
+"error.product.not.found" = "A termék nem található";
+"error.purchase.failed" = "A vásárlás sikertelen";
+"error.purchase.cancelled" = "A vásárlás megszakítva";
+"error.purchase.pending" = "A vásárlás függőben";
+"error.verification.failed" = "A tranzakció ellenőrzése sikertelen";
+"error.unknown" = "Ismeretlen hiba történt";
+
+// Statistics (new)
+"statistics.period.7days" = "7 nap";
+"statistics.period.30days" = "30 nap";
+"statistics.period" = "Időszak";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "iCloud szinkronizálás";
+"settings.icloud.connected" = "Csatlakoztatva";
+"settings.icloud.disconnected" = "Nincs csatlakoztatva";
+"settings.icloud.info.connected.title" = "iCloud csatlakoztatva";
+"settings.icloud.info.connected.message" = "Az adataid automatikusan biztonsági mentésre kerülnek az iCloudba. Az adatok megmaradnak, még ha törölöd is az alkalmazást, és szinkronizálódnak az eszközeid között.";
+"settings.icloud.info.disconnected.title" = "iCloud nincs csatlakoztatva";
+"settings.icloud.info.disconnected.message" = "Nem vagy bejelentkezve az iCloudba, vagy az iCloud Drive le van tiltva.\n\nEllenőrizd a Beállítások > [A neved] > iCloud menüpontot.";
+"icloud.error.quota.title" = "iCloud-tárhely megtelt";
+"icloud.error.quota.message" = "Az iCloud-tárhelyed megtelt. Egyes adatok nem feltétlenül szinkronizálódnak.\n\nSzabadíts fel helyet a Beállítások > [A neved] > iCloud > Tárhely kezelése menüben.";
+"icloud.error.account.title" = "iCloud-fiók megváltozott";
+"icloud.error.account.message" = "Az iCloud-fiókod megváltozott. Az adatok az új fiókkal szinkronizálódnak.";
+
+// Share
+"share.title" = "Megosztás Instagramon";
+"share.instagram.stories" = "Megosztás a Történetekben";
+"share.instagram.feed" = "Megosztás a Hírfolyamban";
+"share.error.title" = "Nem sikerült megosztani";
+"share.error.ok" = "OK";
+"share.error.instagram.not.installed" = "Az Instagram nincs telepítve ezen az eszközön.";
+
+// Accessibility
+"accessibility.home.share" = "Megosztás Instagramon";
+"accessibility.history.share" = "Megosztás Instagramon";

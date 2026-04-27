@@ -327,23 +327,88 @@
 "accessibility.history.achieved" = "บรรลุเป้าหมาย";
 "accessibility.history.progress" = "%@ ของเป้าหมาย";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "แชร์";
+"share.system" = "แชร์ไปยังแอพอื่น";
+"share.system.description" = "Twitter, Facebook, ข้อความ ฯลฯ";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "สถิติ";
+"statistics.period.week" = "7 วัน";
+"statistics.period.month" = "30 วัน";
+"statistics.daily.average" = "ค่าเฉลี่ยต่อวัน";
+"statistics.goal.achievement" = "ความสำเร็จของเป้าหมาย";
+"statistics.current.streak" = "สถิติต่อเนื่องปัจจุบัน";
+"statistics.longest.streak" = "สถิติต่อเนื่องสูงสุด";
+"statistics.days" = "วัน";
+"statistics.chart.title" = "ปริมาณน้ำรายวัน";
+"statistics.chart.goal.line" = "เป้าหมาย";
+"statistics.empty" = "ยังไม่มีบันทึก";
+"accessibility.statistics.button" = "ดูสถิติ";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "กำลังโหลดสินค้า...";
+"paywall.title" = "อัปเกรดพรีเมียม";
+"paywall.subtitle" = "เพลิดเพลินกับประสบการณ์ที่สะอาดไร้โฆษณา";
+"paywall.ad.free" = "ใช้งานโดยไม่มีโฆษณา";
+"paywall.subscription.description" = "ลบโฆษณาด้วยการสมัครสมาชิกรายเดือนหรือรายปี";
+"paywall.or" = "หรือ";
+"paywall.lifetime" = "ตลอดชีพ";
+"paywall.lifetime.description" = "ซื้อครั้งเดียว ใช้ตลอดไป";
+"paywall.restore" = "กู้คืนการซื้อ";
+
+// Share Card
+"share.streak.days %lld" = "%lld วัน";
+"share.consecutive.achievement" = "ความสำเร็จต่อเนื่อง";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "พรีเมียม";
+"settings.subscription.status.premium" = "สมัครสมาชิก: พรีเมียม";
+"settings.manage.subscription" = "จัดการการสมัครสมาชิก";
+"settings.upgrade.premium" = "อัปเกรดเป็นพรีเมียม";
+
+// Errors
+"error.image.generation.failed" = "ไม่สามารถสร้างรูปภาพได้";
+"error.share.sheet.unavailable" = "ไม่สามารถเปิดหน้าต่างแชร์ได้";
+"error.instagram.not.installed" = "ยังไม่ได้ติดตั้ง Instagram";
+"error.photo.library.permission" = "ต้องได้รับอนุญาตเข้าถึงคลังรูปภาพ";
+"error.photo.save.failed" = "ไม่สามารถบันทึกรูปภาพได้";
+"error.instagram.cannot.open" = "ไม่สามารถเปิด Instagram ได้";
+"error.product.not.found" = "ไม่พบสินค้า";
+"error.purchase.failed" = "การซื้อล้มเหลว";
+"error.purchase.cancelled" = "การซื้อถูกยกเลิก";
+"error.purchase.pending" = "การซื้อกำลังดำเนินการ";
+"error.verification.failed" = "การตรวจสอบธุรกรรมล้มเหลว";
+"error.unknown" = "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ";
+
+// Statistics (new)
+"statistics.period.7days" = "7 วัน";
+"statistics.period.30days" = "30 วัน";
+"statistics.period" = "ช่วงเวลา";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "การซิงค์ iCloud";
+"settings.icloud.connected" = "เชื่อมต่อแล้ว";
+"settings.icloud.disconnected" = "ไม่ได้เชื่อมต่อ";
+"settings.icloud.info.connected.title" = "iCloud เชื่อมต่อแล้ว";
+"settings.icloud.info.connected.message" = "ข้อมูลของคุณจะถูกสำรองไปยัง iCloud โดยอัตโนมัติ ข้อมูลจะยังคงอยู่แม้ลบแอพ และจะซิงค์ระหว่างอุปกรณ์ของคุณ";
+"settings.icloud.info.disconnected.title" = "iCloud ไม่ได้เชื่อมต่อ";
+"settings.icloud.info.disconnected.message" = "คุณยังไม่ได้ลงชื่อเข้า iCloud หรือ iCloud Drive ถูกปิดใช้งาน\n\nกรุณาตรวจสอบที่ Settings > [ชื่อของคุณ] > iCloud";
+"icloud.error.quota.title" = "พื้นที่ iCloud เต็ม";
+"icloud.error.quota.message" = "พื้นที่เก็บข้อมูล iCloud ของคุณเต็มแล้ว ข้อมูลบางส่วนอาจไม่ซิงค์\n\nกรุณาเพิ่มพื้นที่ว่างที่ Settings > [ชื่อของคุณ] > iCloud > จัดการพื้นที่จัดเก็บ";
+"icloud.error.account.title" = "บัญชี iCloud เปลี่ยนแปลง";
+"icloud.error.account.message" = "บัญชี iCloud ของคุณมีการเปลี่ยนแปลง ข้อมูลจะซิงค์กับบัญชีใหม่";
+
+// Share
+"share.title" = "แชร์ไปยัง Instagram";
+"share.instagram.stories" = "แชร์ไปยังสตอรี่";
+"share.instagram.feed" = "แชร์ไปยังฟีด";
+"share.error.title" = "ไม่สามารถแชร์ได้";
+"share.error.ok" = "ตกลง";
+"share.error.instagram.not.installed" = "ยังไม่ได้ติดตั้ง Instagram บนอุปกรณ์นี้";
+
+// Accessibility
+"accessibility.home.share" = "แชร์ไปยัง Instagram";
+"accessibility.history.share" = "แชร์ไปยัง Instagram";

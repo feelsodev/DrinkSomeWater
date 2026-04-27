@@ -328,23 +328,88 @@
 "accessibility.history.achieved" = "目标达成";
 "accessibility.history.progress" = "目标的 %@";
 
-// Share - Extended (English fallback)
-"share.title.extended" = "Share";
-"share.system" = "Share to Other Apps";
-"share.system.description" = "Twitter, Facebook, Messages, etc.";
+// Share - Extended
+"share.title.extended" = "分享";
+"share.system" = "分享到其他应用";
+"share.system.description" = "Twitter、Facebook、信息等";
 
-// Statistics (English fallback)
-"statistics.title" = "Statistics";
-"statistics.period.week" = "7 Days";
-"statistics.period.month" = "30 Days";
-"statistics.daily.average" = "Daily Average";
-"statistics.goal.achievement" = "Goal Achievement";
-"statistics.current.streak" = "Current Streak";
-"statistics.longest.streak" = "Longest Streak";
-"statistics.days" = "days";
-"statistics.chart.title" = "Daily Intake";
-"statistics.chart.goal.line" = "Goal";
-"statistics.empty" = "No records yet";
-"accessibility.statistics.button" = "View Statistics";
+// Statistics
+"statistics.title" = "统计";
+"statistics.period.week" = "7 天";
+"statistics.period.month" = "30 天";
+"statistics.daily.average" = "日均饮水";
+"statistics.goal.achievement" = "目标达成率";
+"statistics.current.streak" = "当前连续天数";
+"statistics.longest.streak" = "最长连续天数";
+"statistics.days" = "天";
+"statistics.chart.title" = "每日摄入量";
+"statistics.chart.goal.line" = "目标";
+"statistics.empty" = "暂无记录";
+"accessibility.statistics.button" = "查看统计";
 
-// Drink Types (English fallback)
+// Paywall
+"paywall.loading" = "正在加载商品...";
+"paywall.title" = "升级高级版";
+"paywall.subtitle" = "享受无广告的清爽体验";
+"paywall.ad.free" = "无广告使用";
+"paywall.subscription.description" = "通过月度或年度订阅移除广告";
+"paywall.or" = "或";
+"paywall.lifetime" = "终身";
+"paywall.lifetime.description" = "一次购买，永久使用";
+"paywall.restore" = "恢复购买";
+
+// Share Card
+"share.streak.days %lld" = "%lld 天";
+"share.consecutive.achievement" = "连续达成";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "高级版";
+"settings.subscription.status.premium" = "订阅：高级版";
+"settings.manage.subscription" = "管理订阅";
+"settings.upgrade.premium" = "升级到高级版";
+
+// Errors
+"error.image.generation.failed" = "图片生成失败。";
+"error.share.sheet.unavailable" = "无法打开分享面板。";
+"error.instagram.not.installed" = "未安装 Instagram。";
+"error.photo.library.permission" = "需要照片库访问权限。";
+"error.photo.save.failed" = "照片保存失败。";
+"error.instagram.cannot.open" = "无法打开 Instagram。";
+"error.product.not.found" = "未找到商品";
+"error.purchase.failed" = "购买失败";
+"error.purchase.cancelled" = "购买已取消";
+"error.purchase.pending" = "购买待处理";
+"error.verification.failed" = "交易验证失败";
+"error.unknown" = "发生未知错误";
+
+// Statistics (new)
+"statistics.period.7days" = "7 天";
+"statistics.period.30days" = "30 天";
+"statistics.period" = "时间段";
+"statistics.unit.ml" = "ml";
+
+// iCloud
+"settings.icloud.status" = "iCloud 同步";
+"settings.icloud.connected" = "已连接";
+"settings.icloud.disconnected" = "未连接";
+"settings.icloud.info.connected.title" = "iCloud 已连接";
+"settings.icloud.info.connected.message" = "您的数据会自动备份到 iCloud。即使删除应用，数据也会保留，并在您的设备之间同步。";
+"settings.icloud.info.disconnected.title" = "iCloud 未连接";
+"settings.icloud.info.disconnected.message" = "您尚未登录 iCloud 或 iCloud Drive 已禁用。\n\n请检查 设置 > [您的姓名] > iCloud。";
+"icloud.error.quota.title" = "iCloud 储存空间已满";
+"icloud.error.quota.message" = "您的 iCloud 储存空间已满。部分数据可能无法同步。\n\n请在 设置 > [您的姓名] > iCloud > 管理储存空间 中释放空间。";
+"icloud.error.account.title" = "iCloud 账户已更改";
+"icloud.error.account.message" = "您的 iCloud 账户已更改。数据将与新账户同步。";
+
+// Share
+"share.title" = "分享到 Instagram";
+"share.instagram.stories" = "分享到快拍";
+"share.instagram.feed" = "分享到动态";
+"share.error.title" = "无法分享";
+"share.error.ok" = "好的";
+"share.error.instagram.not.installed" = "此设备上未安装 Instagram。";
+
+// Accessibility
+"accessibility.home.share" = "分享到 Instagram";
+"accessibility.history.share" = "分享到 Instagram";

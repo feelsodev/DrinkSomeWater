@@ -371,4 +371,46 @@
 "statistics.empty" = "아직 기록이 없습니다";
 "accessibility.statistics.button" = "통계 보기";
 
+// Paywall
+"paywall.loading" = "상품 로딩 중...";
+"paywall.title" = "프리미엄 업그레이드";
+"paywall.subtitle" = "광고 없이 깨끗한 경험을 즐기세요";
+"paywall.ad.free" = "광고 없이 사용하기";
+"paywall.subscription.description" = "월간 또는 연간 구독으로 광고를 제거하세요";
+"paywall.or" = "또는";
+"paywall.lifetime" = "평생 이용권";
+"paywall.lifetime.description" = "한 번 구매로 영원히 사용하세요";
+"paywall.restore" = "구매 복원";
+
+// Share Card
+"share.streak.days %lld" = "%lld일";
+"share.consecutive.achievement" = "연속 달성";
+"share.app.name" = "벌컥벌컥";
+
+// Settings - Premium
+"settings.premium" = "프리미엄";
+"settings.subscription.status.premium" = "구독 상태: 프리미엄";
+"settings.manage.subscription" = "구독 관리";
+"settings.upgrade.premium" = "프리미엄 업그레이드";
+
+// Errors
+"error.image.generation.failed" = "이미지 생성에 실패했습니다.";
+"error.share.sheet.unavailable" = "공유 시트를 열 수 없습니다.";
+"error.instagram.not.installed" = "Instagram이 설치되어 있지 않습니다.";
+"error.photo.library.permission" = "사진 라이브러리 접근 권한이 필요합니다.";
+"error.photo.save.failed" = "사진 저장에 실패했습니다.";
+"error.instagram.cannot.open" = "Instagram을 열 수 없습니다.";
+"error.product.not.found" = "상품을 찾을 수 없습니다";
+"error.purchase.failed" = "구매에 실패했습니다";
+"error.purchase.cancelled" = "구매가 취소되었습니다";
+"error.purchase.pending" = "구매가 처리 중입니다";
+"error.verification.failed" = "거래 확인에 실패했습니다";
+"error.unknown" = "알 수 없는 오류가 발생했습니다";
+
+// Statistics (new)
+"statistics.period.7days" = "7일";
+"statistics.period.30days" = "30일";
+"statistics.period" = "기간";
+"statistics.unit.ml" = "ml";
+
 // Drink Types

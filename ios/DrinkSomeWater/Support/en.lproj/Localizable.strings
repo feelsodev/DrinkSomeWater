@@ -371,4 +371,46 @@
 "statistics.empty" = "No records yet";
 "accessibility.statistics.button" = "View Statistics";
 
+// Paywall
+"paywall.loading" = "Loading products...";
+"paywall.title" = "Premium Upgrade";
+"paywall.subtitle" = "Enjoy a clean experience without ads";
+"paywall.ad.free" = "Use without ads";
+"paywall.subscription.description" = "Remove ads with monthly or yearly subscription";
+"paywall.or" = "or";
+"paywall.lifetime" = "Lifetime";
+"paywall.lifetime.description" = "One purchase, use forever";
+"paywall.restore" = "Restore Purchase";
+
+// Share Card
+"share.streak.days %lld" = "%lld days";
+"share.consecutive.achievement" = "Consecutive Achievement";
+"share.app.name" = "Gulp";
+
+// Settings - Premium
+"settings.premium" = "Premium";
+"settings.subscription.status.premium" = "Subscription: Premium";
+"settings.manage.subscription" = "Manage Subscription";
+"settings.upgrade.premium" = "Upgrade to Premium";
+
+// Errors
+"error.image.generation.failed" = "Failed to generate image.";
+"error.share.sheet.unavailable" = "Unable to open share sheet.";
+"error.instagram.not.installed" = "Instagram is not installed.";
+"error.photo.library.permission" = "Photo library access is required.";
+"error.photo.save.failed" = "Failed to save photo.";
+"error.instagram.cannot.open" = "Unable to open Instagram.";
+"error.product.not.found" = "Product not found";
+"error.purchase.failed" = "Purchase failed";
+"error.purchase.cancelled" = "Purchase was cancelled";
+"error.purchase.pending" = "Purchase is pending";
+"error.verification.failed" = "Transaction verification failed";
+"error.unknown" = "An unknown error occurred";
+
+// Statistics (new)
+"statistics.period.7days" = "7 Days";
+"statistics.period.30days" = "30 Days";
+"statistics.period" = "Period";
+"statistics.unit.ml" = "ml";
+
 // Drink Types
