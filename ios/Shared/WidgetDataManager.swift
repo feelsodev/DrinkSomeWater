@@ -103,6 +103,15 @@ final class WidgetDataManager: @unchecked Sendable {
     Int(progress * 100)
   }
   
+  var hasWidgetAccess: Bool {
+    let isLifetime = defaults?.bool(forKey: "shared_is_lifetime") ?? false
+    if isLifetime { return true }
+    
+    guard defaults?.bool(forKey: "shared_is_subscribed") == true else { return false }
+    guard let expiration = defaults?.object(forKey: "shared_subscription_expiration") as? Date else { return false }
+    return expiration > Date()
+  }
+  
   var lastUpdated: Date? {
     lock.withLock {
       defaults?.object(forKey: Keys.lastUpdated) as? Date

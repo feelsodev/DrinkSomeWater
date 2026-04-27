@@ -26,21 +26,25 @@ struct DrinkSomeWaterWidgetEntryView: View {
   let entry: WaterEntry
   
   var body: some View {
-    switch family {
-    case .systemSmall:
-      SmallWidgetView(entry: entry)
-    case .systemMedium:
-      MediumWidgetView(entry: entry)
-    case .systemLarge:
-      LargeWidgetView(entry: entry)
-    case .accessoryCircular:
-      LockScreenCircularView(entry: entry)
-    case .accessoryRectangular:
-      LockScreenRectangularView(entry: entry)
-    case .accessoryInline:
-      LockScreenInlineView(entry: entry)
-    default:
-      SmallWidgetView(entry: entry)
+    if entry.hasWidgetAccess {
+      switch family {
+      case .systemSmall:
+        SmallWidgetView(entry: entry)
+      case .systemMedium:
+        MediumWidgetView(entry: entry)
+      case .systemLarge:
+        LargeWidgetView(entry: entry)
+      case .accessoryCircular:
+        LockScreenCircularView(entry: entry)
+      case .accessoryRectangular:
+        LockScreenRectangularView(entry: entry)
+      case .accessoryInline:
+        LockScreenInlineView(entry: entry)
+      default:
+        SmallWidgetView(entry: entry)
+      }
+    } else {
+      WidgetLockedView()
     }
   }
 }

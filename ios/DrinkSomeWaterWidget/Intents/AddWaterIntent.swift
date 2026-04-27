@@ -17,6 +17,9 @@ struct AddWaterIntent: AppIntent {
   }
   
   func perform() async throws -> some IntentResult {
+    guard WidgetDataManager.shared.hasWidgetAccess else {
+      return .result()
+    }
     await WidgetDataManager.shared.addWater(amount)
     WidgetCenter.shared.reloadAllTimelines()
     return .result()

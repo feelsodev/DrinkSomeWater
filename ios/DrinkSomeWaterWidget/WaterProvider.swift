@@ -24,7 +24,8 @@ struct WaterProvider: TimelineProvider {
     return WaterEntry(
       date: Date(),
       todayWater: manager.todayWater,
-      goal: manager.goal
+      goal: manager.goal,
+      hasWidgetAccess: manager.hasWidgetAccess
     )
   }
 }

@@ -5,6 +5,7 @@ struct WaterEntry: TimelineEntry {
   let date: Date
   let todayWater: Int
   let goal: Int
+  let hasWidgetAccess: Bool
   
   var progress: Float {
     guard goal > 0 else { return 0 }
@@ -20,10 +21,10 @@ struct WaterEntry: TimelineEntry {
   }
   
   static var placeholder: WaterEntry {
-    WaterEntry(date: Date(), todayWater: 1200, goal: 2000)
+    WaterEntry(date: Date(), todayWater: 1200, goal: 2000, hasWidgetAccess: true)
   }
   
   static var snapshot: WaterEntry {
-    WaterEntry(date: Date(), todayWater: 1200, goal: 2000)
+    WaterEntry(date: Date(), todayWater: 1200, goal: 2000, hasWidgetAccess: true)
   }
 }
