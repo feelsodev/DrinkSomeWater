@@ -27,12 +27,12 @@ final class AlertService: AlertServiceProtocol {
       return
     }
     
-    await withCheckedContinuation { continuation in
-      let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-      let alertAction = UIAlertAction(title: String(localized: "common.confirm"), style: .default) { _ in
-        continuation.resume()
-      }
-      alert.addAction(alertAction)
+     await withCheckedContinuation { continuation in
+       let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+       let alertAction = UIAlertAction(title: L.Common.confirm, style: .default) { _ in
+         continuation.resume()
+       }
+       alert.addAction(alertAction)
       
       var presenter = rootViewController
       while let presented = presenter.presentedViewController {

@@ -31,12 +31,12 @@ enum StoreKitServiceError: Error, LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .productNotFound: return "Product not found"
-        case .purchaseFailed: return "Purchase failed"
-        case .userCancelled: return "Purchase was cancelled"
-        case .pending: return "Purchase is pending"
-        case .verificationFailed: return "Transaction verification failed"
-        case .unknown: return "An unknown error occurred"
+        case .productNotFound: return L.Error.productNotFound
+        case .purchaseFailed: return L.Error.purchaseFailed
+        case .userCancelled: return L.Error.purchaseCancelled
+        case .pending: return L.Error.purchasePending
+        case .verificationFailed: return L.Error.verificationFailed
+        case .unknown: return L.Error.unknown
         }
     }
 }

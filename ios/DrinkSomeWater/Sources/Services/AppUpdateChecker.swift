@@ -35,20 +35,20 @@ final class AppUpdateChecker {
     }
 
     if currentVersion < minimumVersion {
-      let defaultMessage = String(localized: "update.required.message")
-      return .force(
-        message: config.forceUpdateMessage ?? defaultMessage,
-        storeUrl: config.appStoreUrl
-      )
-    }
+       let defaultMessage = L.Update.requiredMessage
+       return .force(
+         message: config.forceUpdateMessage ?? defaultMessage,
+         storeUrl: config.appStoreUrl
+       )
+     }
 
-    if currentVersion < latestVersion {
-      let defaultMessage = String(localized: "update.available.message")
-      return .optional(
-        message: config.optionalUpdateMessage ?? defaultMessage,
-        storeUrl: config.appStoreUrl
-      )
-    }
+     if currentVersion < latestVersion {
+       let defaultMessage = L.Update.availableMessage
+       return .optional(
+         message: config.optionalUpdateMessage ?? defaultMessage,
+         storeUrl: config.appStoreUrl
+       )
+     }
 
     return .none
   }
@@ -68,45 +68,45 @@ final class AppUpdateChecker {
     }
   }
 
-  private func showOptionalUpdateAlert(on viewController: UIViewController, message: String, storeUrl: String) {
-    let alert = UIAlertController(
-      title: String(localized: "update.available.title"),
-      message: message,
-      preferredStyle: .alert
-    )
+   private func showOptionalUpdateAlert(on viewController: UIViewController, message: String, storeUrl: String) {
+     let alert = UIAlertController(
+       title: L.Update.availableTitle,
+       message: message,
+       preferredStyle: .alert
+     )
 
-    alert.addAction(UIAlertAction(
-      title: String(localized: "update.later"),
-      style: .cancel
-    ))
+     alert.addAction(UIAlertAction(
+       title: L.Update.later,
+       style: .cancel
+     ))
 
-    alert.addAction(UIAlertAction(
-      title: String(localized: "update.now"),
-      style: .default
-    ) { _ in
-      self.openAppStore(urlString: storeUrl)
-    })
+     alert.addAction(UIAlertAction(
+       title: L.Update.now,
+       style: .default
+     ) { _ in
+       self.openAppStore(urlString: storeUrl)
+     })
 
-    viewController.present(alert, animated: true)
-  }
+     viewController.present(alert, animated: true)
+   }
 
-  private func showForceUpdateAlert(on viewController: UIViewController, message: String, storeUrl: String) {
-    let alert = UIAlertController(
-      title: String(localized: "update.required.title"),
-      message: message,
-      preferredStyle: .alert
-    )
+   private func showForceUpdateAlert(on viewController: UIViewController, message: String, storeUrl: String) {
+     let alert = UIAlertController(
+       title: L.Update.requiredTitle,
+       message: message,
+       preferredStyle: .alert
+     )
 
-    alert.addAction(UIAlertAction(
-      title: String(localized: "update.now"),
-      style: .default
-    ) { _ in
-      self.openAppStore(urlString: storeUrl)
-      self.showForceUpdateAlert(on: viewController, message: message, storeUrl: storeUrl)
-    })
+     alert.addAction(UIAlertAction(
+       title: L.Update.now,
+       style: .default
+     ) { _ in
+       self.openAppStore(urlString: storeUrl)
+       self.showForceUpdateAlert(on: viewController, message: message, storeUrl: storeUrl)
+     })
 
-    viewController.present(alert, animated: true)
-  }
+     viewController.present(alert, animated: true)
+   }
 
   private func openAppStore(urlString: String) {
     guard let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) else {

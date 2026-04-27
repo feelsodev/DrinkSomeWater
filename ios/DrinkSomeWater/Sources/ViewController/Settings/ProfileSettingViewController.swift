@@ -7,7 +7,7 @@ final class ProfileSettingViewController: BaseViewController {
   
   private lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("profile.title", comment: "")
+    label.text = L.Profile.title
     label.font = DS.Font.title1
     label.textColor = DS.Color.textPrimary
     return label
@@ -30,7 +30,7 @@ final class ProfileSettingViewController: BaseViewController {
   
   private lazy var healthKitLabel: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("profile.healthkit.title", comment: "")
+    label.text = L.Profile.healthKitTitle
     label.font = DS.Font.headline
     label.textColor = DS.Color.textPrimary
     return label
@@ -44,7 +44,7 @@ final class ProfileSettingViewController: BaseViewController {
   
   private lazy var healthKitDescription: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("profile.healthkit.description", comment: "")
+    label.text = L.Profile.healthKitDescription
     label.font = DS.Font.footnote
     label.textColor = DS.Color.textSecondary
     return label
@@ -59,7 +59,7 @@ final class ProfileSettingViewController: BaseViewController {
   
   private lazy var weightLabel: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("profile.weight", comment: "")
+    label.text = L.Profile.weight
     label.font = DS.Font.subheadSemibold
     label.textColor = DS.Color.textSecondary
     return label
@@ -85,7 +85,7 @@ final class ProfileSettingViewController: BaseViewController {
   
   private lazy var weightRangeLabel: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("profile.weight.range", comment: "")
+    label.text = L.Profile.weightRange
     label.font = DS.Font.caption
     label.textColor = DS.Color.textTertiary
     label.textAlignment = .center
@@ -108,7 +108,7 @@ final class ProfileSettingViewController: BaseViewController {
   
   private lazy var recommendTitleLabel: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("profile.recommended.title", comment: "")
+    label.text = L.Profile.recommendedTitle
     label.font = DS.Font.subheadMedium
     label.textColor = DS.Color.textPrimary
     return label
@@ -124,7 +124,7 @@ final class ProfileSettingViewController: BaseViewController {
   
   private lazy var recommendDescLabel: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("profile.recommended.description", comment: "")
+    label.text = L.Profile.recommendedDescription
     label.font = DS.Font.caption
     label.textColor = DS.Color.textSecondary
     return label
@@ -133,7 +133,7 @@ final class ProfileSettingViewController: BaseViewController {
   private lazy var applyButton: UIButton = {
     let button = UIButton()
     var config = UIButton.Configuration.filled()
-    config.title = NSLocalizedString("profile.apply.button", comment: "")
+    config.title = L.Profile.applyButton
     config.baseBackgroundColor = DS.Color.primary
     config.baseForegroundColor = .white
     config.cornerStyle = .large
@@ -315,13 +315,13 @@ final class ProfileSettingViewController: BaseViewController {
       await store.send(.updateWeight(weight))
       await store.send(.applyRecommendedGoal)
       
-      let message = String(format: NSLocalizedString("profile.apply.success.message", comment: ""), "\(store.recommendedIntake)")
-      let alert = UIAlertController(
-        title: NSLocalizedString("profile.apply.success.title", comment: ""),
-        message: message,
-        preferredStyle: .alert
-      )
-      alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default) { [weak self] _ in
+      let message = L.Profile.applySuccessMessage("\(store.recommendedIntake)")
+       let alert = UIAlertController(
+         title: L.Profile.applySuccessTitle,
+         message: message,
+         preferredStyle: .alert
+       )
+       alert.addAction(UIAlertAction(title: L.Common.confirm, style: .default) { [weak self] _ in
         self?.dismiss(animated: true)
       })
       present(alert, animated: true)

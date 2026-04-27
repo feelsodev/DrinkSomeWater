@@ -25,13 +25,13 @@ enum NotificationInterval: Int, CaseIterable {
   case threeHours = 180
 
   var displayString: String {
-    switch self {
-    case .thirtyMinutes: return String(localized: "interval.30min")
-    case .oneHour: return String(localized: "interval.1hour")
-    case .twoHours: return String(localized: "interval.2hours")
-    case .threeHours: return String(localized: "interval.3hours")
-    }
-  }
+     switch self {
+     case .thirtyMinutes: return L.Interval.thirtyMin
+     case .oneHour: return L.Interval.oneHour
+     case .twoHours: return L.Interval.twoHours
+     case .threeHours: return L.Interval.threeHours
+     }
+   }
 }
 
 enum Weekday: Int, CaseIterable {
@@ -44,16 +44,16 @@ enum Weekday: Int, CaseIterable {
   case saturday = 7
 
   var shortName: String {
-    switch self {
-    case .sunday: return String(localized: "weekday.sun")
-    case .monday: return String(localized: "weekday.mon")
-    case .tuesday: return String(localized: "weekday.tue")
-    case .wednesday: return String(localized: "weekday.wed")
-    case .thursday: return String(localized: "weekday.thu")
-    case .friday: return String(localized: "weekday.fri")
-    case .saturday: return String(localized: "weekday.sat")
-    }
-  }
+     switch self {
+     case .sunday: return L.Weekday.sun
+     case .monday: return L.Weekday.mon
+     case .tuesday: return L.Weekday.tue
+     case .wednesday: return L.Weekday.wed
+     case .thursday: return L.Weekday.thu
+     case .friday: return L.Weekday.fri
+     case .saturday: return L.Weekday.sat
+     }
+   }
 }
 
 struct NotificationSettings {

@@ -19,7 +19,7 @@ final class SettingsViewController: BaseViewController {
   
   private lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("settings.title", comment: "")
+    label.text = L.Settings.title
     label.font = DS.Font.display
     label.textColor = DS.Color.textPrimary
     return label
@@ -27,7 +27,7 @@ final class SettingsViewController: BaseViewController {
   
   private lazy var subtitleLabel: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("settings.subtitle", comment: "")
+    label.text = L.Settings.subtitle
     label.font = DS.Font.title3
     label.textColor = DS.Color.textSecondary
     return label
@@ -73,38 +73,38 @@ final class SettingsViewController: BaseViewController {
     
     var allSections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] = []
     
-    allSections.append((NSLocalizedString("settings.section.personal", comment: "개인 설정"), [
-      ("person.fill", NSLocalizedString("settings.profile", comment: ""), nil, .profile),
-      ("target", NSLocalizedString("settings.goal", comment: ""), nil, .goal),
-      ("bolt.fill", NSLocalizedString("settings.quickbuttons", comment: ""), nil, .quickButtons)
+    allSections.append((L.Settings.sectionPersonal, [
+      ("person.fill", L.Settings.profile, nil, .profile),
+      ("target", L.Settings.goal, nil, .goal),
+      ("bolt.fill", L.Settings.quickButtons, nil, .quickButtons)
     ]))
     
-    allSections.append((NSLocalizedString("settings.section.app", comment: "앱 설정"), [
-      ("bell.fill", NSLocalizedString("settings.notification", comment: ""), nil, .notification),
-      ("apps.iphone", NSLocalizedString("settings.widget.guide", comment: ""), nil, .widgetGuide),
-      ("book.fill", NSLocalizedString("settings.app.guide", comment: ""), nil, .appGuide),
-      ("icloud.fill", NSLocalizedString("settings.icloud.status", comment: ""), nil, .icloudStatus)
+    allSections.append((L.Settings.sectionApp, [
+      ("bell.fill", L.Settings.notification, nil, .notification),
+      ("apps.iphone", L.Settings.widgetGuide, nil, .widgetGuide),
+      ("book.fill", L.Settings.appGuide, nil, .appGuide),
+      ("icloud.fill", L.Settings.icloudStatus, nil, .icloudStatus)
     ]))
     
     if isPremium {
-      allSections.append(("프리미엄", [
-        ("crown.fill", "구독 상태: 프리미엄", nil, .premium),
-        ("gear", "구독 관리", nil, .subscriptionManagement)
+      allSections.append((L.Settings.premium, [
+        ("crown.fill", L.Settings.subscriptionStatusPremium, nil, .premium),
+        ("gear", L.Settings.manageSubscription, nil, .subscriptionManagement)
       ]))
     } else {
-      allSections.append(("프리미엄", [
-        ("star.fill", "프리미엄 업그레이드", nil, .premium)
+      allSections.append((L.Settings.premium, [
+        ("star.fill", L.Settings.upgradePremium, nil, .premium)
       ]))
     }
     
-    allSections.append((NSLocalizedString("settings.section.support", comment: ""), [
-      ("heart.fill", NSLocalizedString("settings.support.developer", comment: ""), nil, .supportDeveloper),
-      ("star.fill", NSLocalizedString("settings.review", comment: ""), nil, .review),
-      ("envelope.fill", NSLocalizedString("settings.contact", comment: ""), nil, .contact)
+    allSections.append((L.Settings.sectionSupport, [
+      ("heart.fill", L.Settings.supportDeveloper, nil, .supportDeveloper),
+      ("star.fill", L.Settings.review, nil, .review),
+      ("envelope.fill", L.Settings.contact, nil, .contact)
     ]))
     
-    allSections.append((NSLocalizedString("settings.section.info", comment: ""), [
-      ("info.circle.fill", NSLocalizedString("settings.version", comment: ""), nil, .version)
+    allSections.append((L.Settings.sectionInfo, [
+      ("info.circle.fill", L.Settings.version, nil, .version)
     ]))
     
     return allSections
@@ -203,14 +203,14 @@ final class SettingsViewController: BaseViewController {
   
   private func showICloudStatusInfo() {
     let title = store.isCloudAvailable
-      ? NSLocalizedString("settings.icloud.info.connected.title", comment: "")
-      : NSLocalizedString("settings.icloud.info.disconnected.title", comment: "")
+      ? L.Settings.icloudInfoConnectedTitle
+      : L.Settings.icloudInfoDisconnectedTitle
     let message = store.isCloudAvailable
-      ? NSLocalizedString("settings.icloud.info.connected.message", comment: "")
-      : NSLocalizedString("settings.icloud.info.disconnected.message", comment: "")
+      ? L.Settings.icloudInfoConnectedMessage
+      : L.Settings.icloudInfoDisconnectedMessage
     
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+    alert.addAction(UIAlertAction(title: L.Common.confirm, style: .default))
     present(alert, animated: true)
   }
   
@@ -298,49 +298,49 @@ final class SettingsViewController: BaseViewController {
   
   private func showContactAlert() {
     let alert = UIAlertController(
-      title: NSLocalizedString("contact.title", comment: ""),
-      message: NSLocalizedString("contact.message", comment: ""),
+      title: L.Contact.title,
+      message: L.Contact.message,
       preferredStyle: .alert
     )
-    alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+    alert.addAction(UIAlertAction(title: L.Common.confirm, style: .default))
     present(alert, animated: true)
   }
   
   private func showRewardedAd() {
     let confirmAlert = UIAlertController(
-      title: NSLocalizedString("ad.confirm.title", comment: ""),
-      message: NSLocalizedString("ad.confirm.message", comment: ""),
+      title: L.Ad.confirmTitle,
+      message: L.Ad.confirmMessage,
       preferredStyle: .alert
     )
     
-    confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("common.cancel", comment: ""), style: .cancel))
-    confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default) { [weak self] _ in
+    confirmAlert.addAction(UIAlertAction(title: L.Common.cancel, style: .cancel))
+    confirmAlert.addAction(UIAlertAction(title: L.Common.confirm, style: .default) { [weak self] _ in
       self?.presentRewardedAd()
     })
     
     present(confirmAlert, animated: true)
   }
   
-   private func presentRewardedAd() {
-     guard AdMobService.shared.isRewardedAdReady else {
-       let alert = UIAlertController(
-         title: NSLocalizedString("ad.loading.title", comment: ""),
-         message: NSLocalizedString("ad.loading.message", comment: ""),
-         preferredStyle: .alert
-       )
-       alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+    private func presentRewardedAd() {
+      guard AdMobService.shared.isRewardedAdReady else {
+        let alert = UIAlertController(
+          title: L.Ad.loadingTitle,
+          message: L.Ad.loadingMessage,
+          preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: L.Common.confirm, style: .default))
        present(alert, animated: true)
        return
      }
      
-     AdMobService.shared.showRewardedAd(from: self) { [weak self] rewarded in
-       if rewarded {
-         let alert = UIAlertController(
-           title: NSLocalizedString("ad.thanks.title", comment: ""),
-           message: NSLocalizedString("ad.thanks.message", comment: ""),
-           preferredStyle: .alert
-         )
-         alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
+      AdMobService.shared.showRewardedAd(from: self) { [weak self] rewarded in
+        if rewarded {
+          let alert = UIAlertController(
+            title: L.Ad.thanksTitle,
+            message: L.Ad.thanksMessage,
+            preferredStyle: .alert
+          )
+          alert.addAction(UIAlertAction(title: L.Common.confirm, style: .default))
          self?.present(alert, animated: true)
        }
      }
@@ -437,10 +437,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
       detail = store.quickButtons.map { "\($0)" }.joined(separator: ", ") + "ml"
     case .version:
       detail = store.appVersion
-    case .icloudStatus:
-      detail = store.isCloudAvailable
-        ? NSLocalizedString("settings.icloud.connected", comment: "")
-        : NSLocalizedString("settings.icloud.disconnected", comment: "")
+     case .icloudStatus:
+       detail = store.isCloudAvailable
+         ? L.Settings.icloudConnected
+         : L.Settings.icloudDisconnected
     default:
       break
     }

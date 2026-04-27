@@ -12,9 +12,9 @@ enum SocialSharingError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .imageRenderingFailed:
-            return "이미지 생성에 실패했습니다."
+            return L.Error.imageGenerationFailed
         case .activityViewControllerFailed:
-            return "공유 시트를 열 수 없습니다."
+            return L.Error.shareSheetUnavailable
         }
     }
 }

@@ -10,9 +10,9 @@ enum HistoryViewMode: CaseIterable {
 
   var localizedName: String {
     switch self {
-    case .calendar: return String(localized: "history.mode.calendar")
-    case .list: return String(localized: "history.mode.list")
-    case .timeline: return String(localized: "history.mode.timeline")
+    case .calendar: return L.History.modeCalendar
+    case .list: return L.History.modeList
+    case .timeline: return L.History.modeTimeline
     }
   }
 
@@ -73,10 +73,10 @@ struct HistoryView: View {
   
   private var headerSection: some View {
     HStack {
-      Text(String(localized: "history.title"))
-        .font(DS.SwiftUIFont.title1)
-        .foregroundStyle(DS.SwiftUIColor.textPrimary)
-        .accessibilityAddTraits(.isHeader)
+       Text(L.History.title)
+         .font(DS.SwiftUIFont.title1)
+         .foregroundStyle(DS.SwiftUIColor.textPrimary)
+         .accessibilityAddTraits(.isHeader)
 
       Spacer()
 
@@ -103,7 +103,7 @@ struct HistoryView: View {
         .background(DS.SwiftUIColor.primary.opacity(0.12))
         .clipShape(Circle())
     }
-    .accessibilityLabel(String(localized: "accessibility.statistics.button"))
+     .accessibilityLabel(L.Accessibility.statisticsButton)
   }
 
   private var monthSummaryBadge: some View {
@@ -111,12 +111,12 @@ struct HistoryView: View {
       Text("📊")
         .font(DS.SwiftUIFont.subhead)
         .accessibilityHidden(true)
-      Text(String(format: String(localized: "history.month.summary"), "\(store.monthlySuccessCount)"))
+       Text(L.History.monthSummary("\(store.monthlySuccessCount)"))
         .font(DS.SwiftUIFont.footnoteSemibold)
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
     }
     .accessibilityElement(children: .combine)
-    .accessibilityLabel(String(localized: "accessibility.history.summary", defaultValue: "This month \(store.monthlySuccessCount) days achieved"))
+     .accessibilityLabel(L.Accessibility.historySummary(store.monthlySuccessCount))
     .padding(.horizontal, DS.Spacing.sm)
     .padding(.vertical, DS.Spacing.xs)
     .background(
@@ -200,13 +200,13 @@ struct HistoryCalendarTab: View {
     .animation(.easeInOut(duration: 0.2), value: store.selectedRecord != nil)
   }
   
-  private var legendSection: some View {
-    HStack(spacing: DS.Spacing.xl) {
-      LegendItem(color: DS.SwiftUIColor.primary.opacity(0.3), text: String(localized: "history.legend.today"))
-      LegendItem(color: Color(DS.Color.textPrimary), text: String(localized: "history.legend.selected"))
-      LegendItem(color: DS.SwiftUIColor.primary, text: String(localized: "history.legend.achieved"))
-    }
-  }
+   private var legendSection: some View {
+     HStack(spacing: DS.Spacing.xl) {
+       LegendItem(color: DS.SwiftUIColor.primary.opacity(0.3), text: L.History.legendToday)
+       LegendItem(color: Color(DS.Color.textPrimary), text: L.History.legendSelected)
+       LegendItem(color: DS.SwiftUIColor.primary, text: L.History.legendAchieved)
+     }
+   }
 }
 
 // MARK: - List Tab
@@ -269,7 +269,7 @@ struct ListRecordRow: View {
             Image(systemName: "drop.fill")
               .font(DS.SwiftUIFont.caption)
               .foregroundStyle(DS.SwiftUIColor.textTertiary)
-           Text(String(format: String(localized: "history.record.progress"), "\(record.value)", "\(record.goal)"))
+            Text(L.History.recordProgress("\(record.value)", "\(record.goal)"))
              .font(DS.SwiftUIFont.captionMedium)
              .foregroundStyle(DS.SwiftUIColor.textTertiary)
          }
@@ -298,12 +298,12 @@ struct ListRecordRow: View {
     .accessibilityLabel(accessibilityDescription)
   }
   
-  private var accessibilityDescription: String {
-    let status = record.isSuccess 
-      ? String(localized: "accessibility.history.achieved", defaultValue: "Goal achieved")
-      : String(localized: "accessibility.history.progress", defaultValue: "\(percentageString) of goal")
-    return "\(weekdayString), \(monthString) \(dayString). \(record.value) of \(record.goal) milliliters. \(status)"
-  }
+   private var accessibilityDescription: String {
+     let status = record.isSuccess 
+       ? L.Accessibility.historyAchieved
+       : L.Accessibility.historyProgress(percentageString)
+     return "\(weekdayString), \(monthString) \(dayString). \(record.value) of \(record.goal) milliliters. \(status)"
+   }
   
   private var dayString: String {
     let formatter = DateFormatter()
@@ -311,12 +311,12 @@ struct ListRecordRow: View {
     return formatter.string(from: record.date)
   }
   
-  private var monthString: String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = NSLocalizedString("dateformat.month", comment: "")
-    formatter.locale = Locale.current
-    return formatter.string(from: record.date)
-  }
+   private var monthString: String {
+     let formatter = DateFormatter()
+     formatter.dateFormat = L.DateFormat.month
+     formatter.locale = Locale.current
+     return formatter.string(from: record.date)
+   }
   
   private var weekdayString: String {
     let formatter = DateFormatter()
@@ -335,15 +335,15 @@ struct ListRecordRow: View {
 struct HistoryTimelineTab: View {
   @Bindable var store: HistoryStore
   
-  private var groupedRecords: [(String, [WaterRecord])] {
-    let grouped = Dictionary(grouping: store.waterRecordList) { record -> String in
-      let formatter = DateFormatter()
-      formatter.dateFormat = NSLocalizedString("dateformat.yearmonth", comment: "")
-      formatter.locale = Locale.current
-      return formatter.string(from: record.date)
-    }
-    return grouped.sorted { $0.key > $1.key }
-  }
+   private var groupedRecords: [(String, [WaterRecord])] {
+     let grouped = Dictionary(grouping: store.waterRecordList) { record -> String in
+       let formatter = DateFormatter()
+       formatter.dateFormat = L.DateFormat.yearMonth
+       formatter.locale = Locale.current
+       return formatter.string(from: record.date)
+     }
+     return grouped.sorted { $0.key > $1.key }
+   }
   
   var body: some View {
     ScrollView {
@@ -378,7 +378,7 @@ struct TimelineMonthSection: View {
 
         Spacer()
 
-        Text(String(format: String(localized: "history.timeline.achieved"), "\(successCount)", "\(records.count)"))
+         Text(L.History.timelineAchieved("\(successCount)", "\(records.count)"))
           .font(DS.SwiftUIFont.footnoteMedium)
           .foregroundStyle(DS.SwiftUIColor.textSecondary)
       }
@@ -419,11 +419,11 @@ struct TimelineRecordRow: View {
           
           Spacer()
           
-          if record.isSuccess {
-            Label(String(localized: "history.label.achieved"), systemImage: "checkmark.circle.fill")
-              .font(DS.SwiftUIFont.captionSemibold)
-              .foregroundStyle(DS.SwiftUIColor.success)
-          }
+           if record.isSuccess {
+             Label(L.History.labelAchieved, systemImage: "checkmark.circle.fill")
+               .font(DS.SwiftUIFont.captionSemibold)
+               .foregroundStyle(DS.SwiftUIColor.success)
+           }
         }
 
          HStack(spacing: DS.Spacing.md) {
@@ -431,7 +431,7 @@ struct TimelineRecordRow: View {
               .font(DS.SwiftUIFont.footnoteMedium)
               .foregroundStyle(DS.SwiftUIColor.primary)
 
-          Text(String(format: String(localized: "history.record.goal"), "\(record.goal)"))
+           Text(L.History.recordGoal("\(record.goal)"))
             .font(DS.SwiftUIFont.footnoteMedium)
             .foregroundStyle(DS.SwiftUIColor.textTertiary)
         }
@@ -440,12 +440,12 @@ struct TimelineRecordRow: View {
     }
   }
   
-  private var dateString: String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = NSLocalizedString("dateformat.monthday", comment: "")
-    formatter.locale = Locale.current
-    return formatter.string(from: record.date)
-  }
+   private var dateString: String {
+     let formatter = DateFormatter()
+     formatter.dateFormat = L.DateFormat.monthDay
+     formatter.locale = Locale.current
+     return formatter.string(from: record.date)
+   }
 }
 
 // MARK: - Shared Components
@@ -464,20 +464,20 @@ struct RecordCard: View {
           .font(DS.SwiftUIFont.bodyBold)
           .foregroundStyle(DS.SwiftUIColor.textPrimary)
         
-        HStack(spacing: DS.Spacing.md) {
-          VStack(alignment: .leading, spacing: 2) {
-            Text(String(localized: "history.card.goal"))
-              .font(DS.SwiftUIFont.captionMedium)
-              .foregroundStyle(DS.SwiftUIColor.textTertiary)
-            Text("\(record.goal)ml")
-              .font(DS.SwiftUIFont.subheadSemibold)
-              .foregroundStyle(DS.SwiftUIColor.textSecondary)
-          }
-
+         HStack(spacing: DS.Spacing.md) {
            VStack(alignment: .leading, spacing: 2) {
-             Text(String(localized: "history.card.intake"))
+             Text(L.History.cardGoal)
                .font(DS.SwiftUIFont.captionMedium)
                .foregroundStyle(DS.SwiftUIColor.textTertiary)
+             Text("\(record.goal)ml")
+               .font(DS.SwiftUIFont.subheadSemibold)
+               .foregroundStyle(DS.SwiftUIColor.textSecondary)
+           }
+
+            VStack(alignment: .leading, spacing: 2) {
+              Text(L.History.cardIntake)
+                .font(DS.SwiftUIFont.captionMedium)
+                .foregroundStyle(DS.SwiftUIColor.textTertiary)
               HStack(spacing: DS.Spacing.xxs) {
                 Image(systemName: "drop.fill")
                   .font(DS.SwiftUIFont.caption)
@@ -496,11 +496,11 @@ struct RecordCard: View {
           .font(DS.SwiftUIFont.title2)
           .foregroundStyle(record.isSuccess ? DS.SwiftUIColor.success : DS.SwiftUIColor.primary)
 
-        if record.isSuccess {
-          Text(String(localized: "history.card.achieved"))
-            .font(DS.SwiftUIFont.captionSemibold)
-            .foregroundStyle(DS.SwiftUIColor.success)
-        }
+         if record.isSuccess {
+           Text(L.History.cardAchieved)
+             .font(DS.SwiftUIFont.captionSemibold)
+             .foregroundStyle(DS.SwiftUIColor.success)
+         }
       }
       
       Button {
@@ -513,7 +513,7 @@ struct RecordCard: View {
           .background(DS.SwiftUIColor.primary.opacity(0.12))
           .clipShape(Circle())
       }
-      .accessibilityLabel(String(localized: "accessibility.history.share", defaultValue: "Share to Instagram"))
+       .accessibilityLabel(L.Accessibility.historyShare)
     }
     .padding(DS.Spacing.lg)
     .background(
@@ -521,30 +521,30 @@ struct RecordCard: View {
         .fill(.white)
         .shadow(color: DS.SwiftUIColor.primary.opacity(0.15), radius: DS.Spacing.sm, y: DS.Spacing.xxs)
     )
-    .confirmationDialog(
-      String(localized: "share.title.extended"),
-      isPresented: $showShareSheet,
-      titleVisibility: .visible
-    ) {
-      Button(String(localized: "share.instagram.stories")) {
-        Task { await shareToInstagram(destination: .stories) }
-      }
-      Button(String(localized: "share.instagram.feed")) {
-        Task { await shareToInstagram(destination: .feed) }
-      }
-      Button(String(localized: "share.system")) {
-        Task { await shareViaSystemSheet() }
-      }
-      Button(String(localized: "home.goal.cancel"), role: .cancel) {}
-    }
-    .alert(
-      String(localized: "share.error.title"),
-      isPresented: $showInstagramNotInstalledAlert
-    ) {
-      Button(String(localized: "share.error.ok"), role: .cancel) {}
-    } message: {
-      Text(String(localized: "share.error.instagram.not.installed"))
-    }
+     .confirmationDialog(
+       L.Share.titleExtended,
+       isPresented: $showShareSheet,
+       titleVisibility: .visible
+     ) {
+       Button(L.Share.instagramStories) {
+         Task { await shareToInstagram(destination: .stories) }
+       }
+       Button(L.Share.instagramFeed) {
+         Task { await shareToInstagram(destination: .feed) }
+       }
+       Button(L.Share.system) {
+         Task { await shareViaSystemSheet() }
+       }
+       Button(L.Home.goalCancel, role: .cancel) {}
+     }
+     .alert(
+       L.Share.errorTitle,
+       isPresented: $showInstagramNotInstalledAlert
+     ) {
+       Button(L.Share.errorOk, role: .cancel) {}
+     } message: {
+       Text(L.Share.errorInstagramNotInstalled)
+     }
   }
   
   private func shareToInstagram(destination: ShareDestination) async {
@@ -582,12 +582,12 @@ struct RecordCard: View {
     }
   }
   
-  private func formatDate(_ date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = NSLocalizedString("dateformat.monthday", comment: "")
-    formatter.locale = Locale.current
-    return "📌 " + formatter.string(from: date)
-  }
+   private func formatDate(_ date: Date) -> String {
+     let formatter = DateFormatter()
+     formatter.dateFormat = L.DateFormat.monthDay
+     formatter.locale = Locale.current
+     return "📌 " + formatter.string(from: date)
+   }
   
   private func calculatePercentage(_ record: WaterRecord) -> String {
     let percentage = Float(record.value) / Float(record.goal) * 100

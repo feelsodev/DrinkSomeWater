@@ -15,7 +15,7 @@ final class NotificationSettingViewController: BaseViewController {
   
   private lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = String(localized: "notification.settings.title")
+    label.text = L.NotificationSettings.title
     label.font = .systemFont(ofSize: 24, weight: .bold)
     label.textColor = .darkGray
     return label
@@ -29,7 +29,7 @@ final class NotificationSettingViewController: BaseViewController {
 
   private lazy var enabledLabel: UILabel = {
     let label = UILabel()
-    label.text = String(localized: "notification.settings.enable")
+    label.text = L.NotificationSettings.enable
     label.font = .systemFont(ofSize: 17, weight: .medium)
     label.textColor = .darkGray
     return label
@@ -37,7 +37,7 @@ final class NotificationSettingViewController: BaseViewController {
 
   private lazy var timeRangeLabel: UILabel = {
     let label = UILabel()
-    label.text = String(localized: "notification.settings.timerange")
+    label.text = L.NotificationSettings.timeRange
     label.font = .systemFont(ofSize: 14, weight: .semibold)
     label.textColor = .gray
     return label
@@ -75,7 +75,7 @@ final class NotificationSettingViewController: BaseViewController {
   
   private lazy var intervalLabel: UILabel = {
     let label = UILabel()
-    label.text = String(localized: "notification.settings.interval")
+    label.text = L.NotificationSettings.interval
     label.font = .systemFont(ofSize: 14, weight: .semibold)
     label.textColor = .gray
     return label
@@ -92,7 +92,7 @@ final class NotificationSettingViewController: BaseViewController {
   
   private lazy var weekdayLabel: UILabel = {
     let label = UILabel()
-    label.text = String(localized: "notification.settings.weekdays")
+    label.text = L.NotificationSettings.weekdays
     label.font = .systemFont(ofSize: 14, weight: .semibold)
     label.textColor = .gray
     return label
@@ -108,7 +108,7 @@ final class NotificationSettingViewController: BaseViewController {
   
   private lazy var customTimesLabel: UILabel = {
     let label = UILabel()
-    label.text = String(localized: "notification.settings.custom")
+    label.text = L.NotificationSettings.custom
     label.font = .systemFont(ofSize: 14, weight: .semibold)
     label.textColor = .gray
     return label
@@ -124,7 +124,7 @@ final class NotificationSettingViewController: BaseViewController {
   private lazy var addCustomTimeButton: UIButton = {
     let button = UIButton()
     var config = UIButton.Configuration.plain()
-    config.title = "+ " + String(localized: "notification.settings.addtime")
+    config.title = "+ " + L.NotificationSettings.addTime
     config.baseForegroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attr in
       var attr = attr
@@ -137,7 +137,7 @@ final class NotificationSettingViewController: BaseViewController {
   
   private lazy var messageInfoLabel: UILabel = {
     let label = UILabel()
-    label.text = "💬 " + String(localized: "notification.message.info")
+    label.text = "💬 " + L.Notification.messageInfo
     label.font = .systemFont(ofSize: 14, weight: .medium)
     label.textColor = .gray
     label.textAlignment = .center
@@ -348,9 +348,9 @@ final class NotificationSettingViewController: BaseViewController {
     }
   }
   
-  private func showTimePicker(isStartTime: Bool) {
-    let title = isStartTime ? String(localized: "notification.settings.starttime") : String(localized: "notification.settings.endtime")
-    let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+   private func showTimePicker(isStartTime: Bool) {
+     let title = isStartTime ? L.NotificationSettings.startTime : L.NotificationSettings.endTime
+     let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
 
     let datePicker = UIDatePicker()
     datePicker.datePickerMode = .time
@@ -380,25 +380,25 @@ final class NotificationSettingViewController: BaseViewController {
     let height = NSLayoutConstraint(item: alert.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 320)
     alert.view.addConstraint(height)
     
-    alert.addAction(UIAlertAction(title: String(localized: "common.confirm"), style: .default) { [weak self] _ in
-      let components = Calendar.current.dateComponents([.hour, .minute], from: datePicker.date)
-      let newTime = NotificationTime(hour: components.hour ?? 0, minute: components.minute ?? 0)
-      Task {
-        if isStartTime {
-          await self?.store.send(.updateStartTime(newTime))
-        } else {
-          await self?.store.send(.updateEndTime(newTime))
-        }
-      }
-    })
+     alert.addAction(UIAlertAction(title: L.Common.confirm, style: .default) { [weak self] _ in
+       let components = Calendar.current.dateComponents([.hour, .minute], from: datePicker.date)
+       let newTime = NotificationTime(hour: components.hour ?? 0, minute: components.minute ?? 0)
+       Task {
+         if isStartTime {
+           await self?.store.send(.updateStartTime(newTime))
+         } else {
+           await self?.store.send(.updateEndTime(newTime))
+         }
+       }
+     })
 
-    alert.addAction(UIAlertAction(title: String(localized: "common.cancel"), style: .cancel))
+     alert.addAction(UIAlertAction(title: L.Common.cancel, style: .cancel))
 
     present(alert, animated: true)
   }
 
-  private func showAddCustomTimePicker() {
-    let alert = UIAlertController(title: String(localized: "notification.settings.addtime"), message: nil, preferredStyle: .actionSheet)
+   private func showAddCustomTimePicker() {
+     let alert = UIAlertController(title: L.NotificationSettings.addTime, message: nil, preferredStyle: .actionSheet)
 
     let datePicker = UIDatePicker()
     datePicker.datePickerMode = .time
@@ -422,15 +422,15 @@ final class NotificationSettingViewController: BaseViewController {
     let height = NSLayoutConstraint(item: alert.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 320)
     alert.view.addConstraint(height)
     
-    alert.addAction(UIAlertAction(title: String(localized: "home.quickbutton.add"), style: .default) { [weak self] _ in
-      let components = Calendar.current.dateComponents([.hour, .minute], from: datePicker.date)
-      let newTime = NotificationTime(hour: components.hour ?? 0, minute: components.minute ?? 0)
-      Task {
-        await self?.store.send(.addCustomTime(newTime))
-      }
-    })
+     alert.addAction(UIAlertAction(title: L.Home.quickButtonAdd, style: .default) { [weak self] _ in
+       let components = Calendar.current.dateComponents([.hour, .minute], from: datePicker.date)
+       let newTime = NotificationTime(hour: components.hour ?? 0, minute: components.minute ?? 0)
+       Task {
+         await self?.store.send(.addCustomTime(newTime))
+       }
+     })
 
-    alert.addAction(UIAlertAction(title: String(localized: "common.cancel"), style: .cancel))
+     alert.addAction(UIAlertAction(title: L.Common.cancel, style: .cancel))
     
     present(alert, animated: true)
   }

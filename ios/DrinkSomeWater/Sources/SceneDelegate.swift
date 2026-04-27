@@ -71,14 +71,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let title: String
     let message: String
     
-    switch error {
-    case .quotaViolation:
-      title = NSLocalizedString("icloud.error.quota.title", comment: "")
-      message = NSLocalizedString("icloud.error.quota.message", comment: "")
-    case .accountChanged:
-      title = NSLocalizedString("icloud.error.account.title", comment: "")
-      message = NSLocalizedString("icloud.error.account.message", comment: "")
-    }
+     switch error {
+     case .quotaViolation:
+       title = L.ICloud.errorQuotaTitle
+       message = L.ICloud.errorQuotaMessage
+     case .accountChanged:
+       title = L.ICloud.errorAccountTitle
+       message = L.ICloud.errorAccountMessage
+     }
     
     guard let windowScene = window?.windowScene,
           let rootVC = windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController else {
@@ -93,11 +93,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       presentingVC = presented
     }
     
-    lastErrorAlertTime = Date()
-    
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: NSLocalizedString("common.confirm", comment: ""), style: .default))
-    presentingVC.present(alert, animated: true)
+     lastErrorAlertTime = Date()
+     
+     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+     alert.addAction(UIAlertAction(title: L.Common.confirm, style: .default))
+     presentingVC.present(alert, animated: true)
   }
   
   private func handleCloudDataChange() async {

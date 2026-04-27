@@ -8,8 +8,8 @@ struct DrinkSomeWaterWidget: Widget {
     StaticConfiguration(kind: kind, provider: WaterProvider()) { entry in
       DrinkSomeWaterWidgetEntryView(entry: entry)
     }
-    .configurationDisplayName("Water Intake")
-    .description("Track your daily water intake")
+    .configurationDisplayName(String(localized: "widget.configuration.name"))
+    .description(String(localized: "widget.configuration.description"))
     .supportedFamilies([
       .systemSmall,
       .systemMedium,

@@ -18,12 +18,12 @@ struct FSCalendarRepresentable: UIViewRepresentable {
     calendar.clipsToBounds = true
 
     let appearance = calendar.appearance
-    appearance.selectionColor = DS.Color.textPrimary
-    appearance.todayColor = DS.Color.primary.withAlphaComponent(0.3)
-    appearance.todaySelectionColor = DS.Color.primary
-    appearance.headerMinimumDissolvedAlpha = 0.0
-    appearance.headerDateFormat = NSLocalizedString("MMMM, YYYY", comment: "")
-    appearance.headerTitleColor = DS.Color.textPrimary
+     appearance.selectionColor = DS.Color.textPrimary
+     appearance.todayColor = DS.Color.primary.withAlphaComponent(0.3)
+     appearance.todaySelectionColor = DS.Color.primary
+     appearance.headerMinimumDissolvedAlpha = 0.0
+     appearance.headerDateFormat = L.Calendar.dateFormat
+     appearance.headerTitleColor = DS.Color.textPrimary
     appearance.weekdayTextColor = DS.Color.textSecondary
     appearance.headerTitleFont = UIFont.systemFont(ofSize: 18, weight: .bold)
     appearance.weekdayFont = UIFont.systemFont(ofSize: 14, weight: .semibold)

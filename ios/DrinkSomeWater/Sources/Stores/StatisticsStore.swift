@@ -2,9 +2,23 @@ import Foundation
 import Observation
 import Analytics
 
-enum StatisticsPeriod: String, CaseIterable {
-  case week = "7일"
-  case month = "30일"
+enum StatisticsPeriod: CaseIterable {
+  case week
+  case month
+  
+  var displayName: String {
+    switch self {
+    case .week: return L.Statistics.period7days
+    case .month: return L.Statistics.period30days
+    }
+  }
+  
+  var analyticsValue: String {
+    switch self {
+    case .week: return "7days"
+    case .month: return "30days"
+    }
+  }
   
   var days: Int {
     switch self {
@@ -116,7 +130,7 @@ final class StatisticsStore {
       
     case .selectPeriod(let period):
       selectedPeriod = period
-      Analytics.shared.log(.statisticsPeriodSelected(period: period.rawValue))
+      Analytics.shared.log(.statisticsPeriodSelected(period: period.analyticsValue))
     }
   }
   

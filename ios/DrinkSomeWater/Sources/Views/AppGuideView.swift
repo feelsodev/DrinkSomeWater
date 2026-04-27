@@ -34,11 +34,11 @@ struct AppGuideView: View {
         .foregroundStyle(DS.SwiftUIColor.primary)
         .padding(.top, DS.Spacing.lg)
 
-      Text(NSLocalizedString("appguide.title", comment: ""))
+      Text(L.AppGuide.title)
         .font(DS.SwiftUIFont.title1)
         .foregroundStyle(DS.SwiftUIColor.textPrimary)
 
-      Text(NSLocalizedString("appguide.subtitle", comment: ""))
+      Text(L.AppGuide.subtitle)
         .font(DS.SwiftUIFont.bodyMedium)
         .foregroundStyle(DS.SwiftUIColor.textSecondary)
         .multilineTextAlignment(.center)
@@ -51,27 +51,27 @@ struct AppGuideView: View {
     FeatureSectionView(
       icon: "house.fill",
       iconColor: DS.SwiftUIColor.primary,
-      title: NSLocalizedString("appguide.home.title", comment: ""),
+      title: L.AppGuide.homeTitle,
       features: [
         FeatureItem(
           icon: "drop.fill",
-          title: NSLocalizedString("appguide.home.feature1.title", comment: ""),
-          description: NSLocalizedString("appguide.home.feature1.desc", comment: "")
+          title: L.AppGuide.homeFeature1Title,
+          description: L.AppGuide.homeFeature1Desc
         ),
         FeatureItem(
           icon: "bolt.fill",
-          title: NSLocalizedString("appguide.home.feature2.title", comment: ""),
-          description: NSLocalizedString("appguide.home.feature2.desc", comment: "")
+          title: L.AppGuide.homeFeature2Title,
+          description: L.AppGuide.homeFeature2Desc
         ),
         FeatureItem(
           icon: "target",
-          title: NSLocalizedString("appguide.home.feature3.title", comment: ""),
-          description: NSLocalizedString("appguide.home.feature3.desc", comment: "")
+          title: L.AppGuide.homeFeature3Title,
+          description: L.AppGuide.homeFeature3Desc
         ),
         FeatureItem(
           icon: "minus.circle.fill",
-          title: NSLocalizedString("appguide.home.feature4.title", comment: ""),
-          description: NSLocalizedString("appguide.home.feature4.desc", comment: "")
+          title: L.AppGuide.homeFeature4Title,
+          description: L.AppGuide.homeFeature4Desc
         )
       ]
     )
@@ -83,22 +83,22 @@ struct AppGuideView: View {
     FeatureSectionView(
       icon: "calendar",
       iconColor: .orange,
-      title: NSLocalizedString("appguide.history.title", comment: ""),
+      title: L.AppGuide.historyTitle,
       features: [
         FeatureItem(
           icon: "calendar.badge.checkmark",
-          title: NSLocalizedString("appguide.history.feature1.title", comment: ""),
-          description: NSLocalizedString("appguide.history.feature1.desc", comment: "")
+          title: L.AppGuide.historyFeature1Title,
+          description: L.AppGuide.historyFeature1Desc
         ),
         FeatureItem(
           icon: "list.bullet",
-          title: NSLocalizedString("appguide.history.feature2.title", comment: ""),
-          description: NSLocalizedString("appguide.history.feature2.desc", comment: "")
+          title: L.AppGuide.historyFeature2Title,
+          description: L.AppGuide.historyFeature2Desc
         ),
         FeatureItem(
           icon: "chart.line.uptrend.xyaxis",
-          title: NSLocalizedString("appguide.history.feature3.title", comment: ""),
-          description: NSLocalizedString("appguide.history.feature3.desc", comment: "")
+          title: L.AppGuide.historyFeature3Title,
+          description: L.AppGuide.historyFeature3Desc
         )
       ]
     )
@@ -110,22 +110,22 @@ struct AppGuideView: View {
     FeatureSectionView(
       icon: "applewatch",
       iconColor: .red,
-      title: NSLocalizedString("appguide.watch.title", comment: ""),
+      title: L.AppGuide.watchTitle,
       features: [
         FeatureItem(
           icon: "plus.circle.fill",
-          title: NSLocalizedString("appguide.watch.feature1.title", comment: ""),
-          description: NSLocalizedString("appguide.watch.feature1.desc", comment: "")
+          title: L.AppGuide.watchFeature1Title,
+          description: L.AppGuide.watchFeature1Desc
         ),
         FeatureItem(
           icon: "arrow.triangle.2.circlepath",
-          title: NSLocalizedString("appguide.watch.feature2.title", comment: ""),
-          description: NSLocalizedString("appguide.watch.feature2.desc", comment: "")
+          title: L.AppGuide.watchFeature2Title,
+          description: L.AppGuide.watchFeature2Desc
         ),
         FeatureItem(
           icon: "dial.low.fill",
-          title: NSLocalizedString("appguide.watch.feature3.title", comment: ""),
-          description: NSLocalizedString("appguide.watch.feature3.desc", comment: "")
+          title: L.AppGuide.watchFeature3Title,
+          description: L.AppGuide.watchFeature3Desc
         )
       ]
     )
@@ -137,22 +137,22 @@ struct AppGuideView: View {
     FeatureSectionView(
       icon: "apps.iphone",
       iconColor: .teal,
-      title: NSLocalizedString("appguide.widget.title", comment: ""),
+      title: L.AppGuide.widgetTitle,
       features: [
         FeatureItem(
           icon: "square.grid.2x2",
-          title: NSLocalizedString("appguide.widget.feature1.title", comment: ""),
-          description: NSLocalizedString("appguide.widget.feature1.desc", comment: "")
+          title: L.AppGuide.widgetFeature1Title,
+          description: L.AppGuide.widgetFeature1Desc
         ),
         FeatureItem(
           icon: "lock.fill",
-          title: NSLocalizedString("appguide.widget.feature2.title", comment: ""),
-          description: NSLocalizedString("appguide.widget.feature2.desc", comment: "")
+          title: L.AppGuide.widgetFeature2Title,
+          description: L.AppGuide.widgetFeature2Desc
         ),
         FeatureItem(
           icon: "hand.tap.fill",
-          title: NSLocalizedString("appguide.widget.feature3.title", comment: ""),
-          description: NSLocalizedString("appguide.widget.feature3.desc", comment: "")
+          title: L.AppGuide.widgetFeature3Title,
+          description: L.AppGuide.widgetFeature3Desc
         )
       ]
     )
@@ -164,22 +164,22 @@ struct AppGuideView: View {
     FeatureSectionView(
       icon: "bell.fill",
       iconColor: .purple,
-      title: NSLocalizedString("appguide.notification.title", comment: ""),
+      title: L.AppGuide.notificationTitle,
       features: [
         FeatureItem(
           icon: "clock.fill",
-          title: NSLocalizedString("appguide.notification.feature1.title", comment: ""),
-          description: NSLocalizedString("appguide.notification.feature1.desc", comment: "")
+          title: L.AppGuide.notificationFeature1Title,
+          description: L.AppGuide.notificationFeature1Desc
         ),
         FeatureItem(
           icon: "calendar.badge.clock",
-          title: NSLocalizedString("appguide.notification.feature2.title", comment: ""),
-          description: NSLocalizedString("appguide.notification.feature2.desc", comment: "")
+          title: L.AppGuide.notificationFeature2Title,
+          description: L.AppGuide.notificationFeature2Desc
         ),
         FeatureItem(
           icon: "text.bubble.fill",
-          title: NSLocalizedString("appguide.notification.feature3.title", comment: ""),
-          description: NSLocalizedString("appguide.notification.feature3.desc", comment: "")
+          title: L.AppGuide.notificationFeature3Title,
+          description: L.AppGuide.notificationFeature3Desc
         )
       ]
     )
@@ -191,17 +191,17 @@ struct AppGuideView: View {
     FeatureSectionView(
       icon: "heart.fill",
       iconColor: .pink,
-      title: NSLocalizedString("appguide.health.title", comment: ""),
+      title: L.AppGuide.healthTitle,
       features: [
         FeatureItem(
           icon: "scalemass.fill",
-          title: NSLocalizedString("appguide.health.feature1.title", comment: ""),
-          description: NSLocalizedString("appguide.health.feature1.desc", comment: "")
+          title: L.AppGuide.healthFeature1Title,
+          description: L.AppGuide.healthFeature1Desc
         ),
         FeatureItem(
           icon: "square.and.arrow.up",
-          title: NSLocalizedString("appguide.health.feature2.title", comment: ""),
-          description: NSLocalizedString("appguide.health.feature2.desc", comment: "")
+          title: L.AppGuide.healthFeature2Title,
+          description: L.AppGuide.healthFeature2Desc
         )
       ]
     )

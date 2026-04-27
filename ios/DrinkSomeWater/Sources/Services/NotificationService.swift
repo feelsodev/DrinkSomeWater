@@ -15,8 +15,8 @@ protocol NotificationServiceProtocol: AnyObject {
 final class NotificationService: NotificationServiceProtocol {
 
   private let notificationCenter = UNUserNotificationCenter.current()
-  private var notificationTitle: String { String(localized: "notification.title") }
-  private let maxPendingNotifications = 64
+   private var notificationTitle: String { L.Notification.title }
+   private let maxPendingNotifications = 64
   private let userDefaultsService: UserDefaultsServiceProtocol
   
   init(userDefaultsService: UserDefaultsServiceProtocol) {

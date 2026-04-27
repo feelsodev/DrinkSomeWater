@@ -16,7 +16,7 @@ final class WidgetGuideViewController: UIViewController {
   
   private lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = NSLocalizedString("widget.guide.title", comment: "")
+    label.text = L.Widget.guideTitle
     label.font = .systemFont(ofSize: 24, weight: .bold)
     label.textAlignment = .center
     return label
@@ -33,7 +33,7 @@ final class WidgetGuideViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    title = NSLocalizedString("widget.guide.nav.title", comment: "")
+    title = L.Widget.guideNavTitle
     setupUI()
     setupSteps()
   }
@@ -72,11 +72,11 @@ final class WidgetGuideViewController: UIViewController {
   
   private func setupSteps() {
     let steps: [(String, String, String)] = [
-      ("1", NSLocalizedString("widget.guide.step1.title", comment: ""), NSLocalizedString("widget.guide.step1.description", comment: "")),
-      ("2", NSLocalizedString("widget.guide.step2.title", comment: ""), NSLocalizedString("widget.guide.step2.description", comment: "")),
-      ("3", NSLocalizedString("widget.guide.step3.title", comment: ""), NSLocalizedString("widget.guide.step3.description", comment: "")),
-      ("4", NSLocalizedString("widget.guide.step4.title", comment: ""), NSLocalizedString("widget.guide.step4.description", comment: "")),
-      ("5", NSLocalizedString("widget.guide.step5.title", comment: ""), NSLocalizedString("widget.guide.step5.description", comment: ""))
+      ("1", L.Widget.guideStep1Title, L.Widget.guideStep1Description),
+      ("2", L.Widget.guideStep2Title, L.Widget.guideStep2Description),
+      ("3", L.Widget.guideStep3Title, L.Widget.guideStep3Description),
+      ("4", L.Widget.guideStep4Title, L.Widget.guideStep4Description),
+      ("5", L.Widget.guideStep5Title, L.Widget.guideStep5Description)
     ]
 
     for step in steps {
@@ -84,13 +84,13 @@ final class WidgetGuideViewController: UIViewController {
       stepsStackView.addArrangedSubview(stepView)
     }
 
-    let lockScreenSection = createSectionHeader(NSLocalizedString("widget.guide.lockscreen.header", comment: ""))
+    let lockScreenSection = createSectionHeader(L.Widget.guideLockScreenHeader)
     stepsStackView.addArrangedSubview(lockScreenSection)
 
     let lockScreenSteps: [(String, String, String)] = [
-      ("1", NSLocalizedString("widget.guide.lockscreen.step1.title", comment: ""), NSLocalizedString("widget.guide.lockscreen.step1.description", comment: "")),
-      ("2", NSLocalizedString("widget.guide.lockscreen.step2.title", comment: ""), NSLocalizedString("widget.guide.lockscreen.step2.description", comment: "")),
-      ("3", NSLocalizedString("widget.guide.lockscreen.step3.title", comment: ""), NSLocalizedString("widget.guide.lockscreen.step3.description", comment: ""))
+      ("1", L.Widget.guideLockScreenStep1Title, L.Widget.guideLockScreenStep1Description),
+      ("2", L.Widget.guideLockScreenStep2Title, L.Widget.guideLockScreenStep2Description),
+      ("3", L.Widget.guideLockScreenStep3Title, L.Widget.guideLockScreenStep3Description)
     ]
 
     for step in lockScreenSteps {

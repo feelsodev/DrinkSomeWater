@@ -89,17 +89,17 @@ struct ShareCardView: View {
                     
                     if streak > 0 {
                         VStack(alignment: .leading, spacing: 4 * scaleFactor) {
-                            HStack(spacing: 8 * scaleFactor) {
-                                Image(systemName: "flame.fill")
-                                    .font(.system(size: 32 * scaleFactor))
-                                    .foregroundStyle(.orange)
-                                Text("\(streak)일")
-                                    .font(.system(size: 44 * scaleFactor, weight: .bold, design: .rounded))
-                                    .foregroundStyle(DS.SwiftUIColor.textPrimary)
-                            }
-                            Text("연속 달성")
-                                .font(.system(size: 24 * scaleFactor, weight: .medium))
-                                .foregroundStyle(DS.SwiftUIColor.textSecondary)
+                             HStack(spacing: 8 * scaleFactor) {
+                                 Image(systemName: "flame.fill")
+                                     .font(.system(size: 32 * scaleFactor))
+                                     .foregroundStyle(.orange)
+                                 Text(L.Share.streakDays(streak))
+                                     .font(.system(size: 44 * scaleFactor, weight: .bold, design: .rounded))
+                                     .foregroundStyle(DS.SwiftUIColor.textPrimary)
+                             }
+                             Text(L.Share.consecutiveAchievement)
+                                 .font(.system(size: 24 * scaleFactor, weight: .medium))
+                                 .foregroundStyle(DS.SwiftUIColor.textSecondary)
                         }
                     }
                 }
@@ -114,14 +114,14 @@ struct ShareCardView: View {
                 Spacer()
                 
                 VStack(spacing: 8 * scaleFactor) {
-                    Text(formatDate(record.date))
-                        .font(.system(size: 24 * scaleFactor, weight: .medium))
-                        .foregroundStyle(DS.SwiftUIColor.textSecondary)
-                    
-                    Text("벌컥벌컥")
-                        .font(.system(size: 28 * scaleFactor, weight: .bold))
-                        .foregroundStyle(DS.SwiftUIColor.primary)
-                }
+                     Text(formatDate(record.date))
+                         .font(.system(size: 24 * scaleFactor, weight: .medium))
+                         .foregroundStyle(DS.SwiftUIColor.textSecondary)
+                     
+                     Text(L.Share.appName)
+                         .font(.system(size: 28 * scaleFactor, weight: .bold))
+                         .foregroundStyle(DS.SwiftUIColor.primary)
+                 }
                 
                 Spacer()
                     .frame(height: style == .stories ? 100 : 50)
@@ -132,10 +132,7 @@ struct ShareCardView: View {
     }
     
     private func formatDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 M월 d일"
-        formatter.locale = Locale(identifier: "ko_KR")
-        return formatter.string(from: date)
+        return date.formatted(.dateTime.year().month().day())
     }
 }
 

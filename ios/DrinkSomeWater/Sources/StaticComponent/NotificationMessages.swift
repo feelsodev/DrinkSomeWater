@@ -3,17 +3,17 @@ import Foundation
 enum NotificationMessages {
 
   static let messages: [String] = [
-    String(localized: "notification.message.1"),
-    String(localized: "notification.message.2"),
-    String(localized: "notification.message.3"),
-    String(localized: "notification.message.4"),
-    String(localized: "notification.message.5"),
-    String(localized: "notification.message.6"),
-    String(localized: "notification.message.7"),
-    String(localized: "notification.message.8"),
-    String(localized: "notification.message.9"),
-    String(localized: "notification.message.10")
-  ]
+     L.NotificationMessage.message1,
+     L.NotificationMessage.message2,
+     L.NotificationMessage.message3,
+     L.NotificationMessage.message4,
+     L.NotificationMessage.message5,
+     L.NotificationMessage.message6,
+     L.NotificationMessage.message7,
+     L.NotificationMessage.message8,
+     L.NotificationMessage.message9,
+     L.NotificationMessage.message10
+   ]
 
   static var random: String {
     messages.randomElement() ?? messages[0]

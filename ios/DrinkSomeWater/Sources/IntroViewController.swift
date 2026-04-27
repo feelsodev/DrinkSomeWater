@@ -105,48 +105,48 @@ class IntroViewController: UIViewController {
   }
  }
 
- private func showForceUpdateAlert(message: String, storeUrl: String) {
-  let alert = UIAlertController(
-   title: String(localized: "update.required.title"),
-   message: message,
-   preferredStyle: .alert
-  )
+  private func showForceUpdateAlert(message: String, storeUrl: String) {
+   let alert = UIAlertController(
+    title: L.Update.requiredTitle,
+    message: message,
+    preferredStyle: .alert
+   )
 
-  alert.addAction(UIAlertAction(
-   title: String(localized: "update.now"),
-   style: .default
-  ) { [weak self] _ in
-   self?.openAppStore(urlString: storeUrl)
-   self?.showForceUpdateAlert(message: message, storeUrl: storeUrl)
-  })
+   alert.addAction(UIAlertAction(
+    title: L.Update.now,
+    style: .default
+   ) { [weak self] _ in
+    self?.openAppStore(urlString: storeUrl)
+    self?.showForceUpdateAlert(message: message, storeUrl: storeUrl)
+   })
 
-  present(alert, animated: true)
- }
+   present(alert, animated: true)
+  }
 
- private func showOptionalUpdateAlert(message: String, storeUrl: String) {
-  let alert = UIAlertController(
-   title: String(localized: "update.available.title"),
-   message: message,
-   preferredStyle: .alert
-  )
+  private func showOptionalUpdateAlert(message: String, storeUrl: String) {
+   let alert = UIAlertController(
+    title: L.Update.availableTitle,
+    message: message,
+    preferredStyle: .alert
+   )
 
-  alert.addAction(UIAlertAction(
-   title: String(localized: "update.later"),
-   style: .cancel
-  ) { [weak self] _ in
-   self?.navigateToMain()
-  })
+   alert.addAction(UIAlertAction(
+    title: L.Update.later,
+    style: .cancel
+   ) { [weak self] _ in
+    self?.navigateToMain()
+   })
 
-  alert.addAction(UIAlertAction(
-   title: String(localized: "update.now"),
-   style: .default
-  ) { [weak self] _ in
-   self?.openAppStore(urlString: storeUrl)
-   self?.navigateToMain()
-  })
+   alert.addAction(UIAlertAction(
+    title: L.Update.now,
+    style: .default
+   ) { [weak self] _ in
+    self?.openAppStore(urlString: storeUrl)
+    self?.navigateToMain()
+   })
 
-  present(alert, animated: true)
- }
+   present(alert, animated: true)
+  }
 
  private func openAppStore(urlString: String) {
   guard let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) else { return }

@@ -20,15 +20,15 @@ enum InstagramSharingError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .instagramNotInstalled:
-            return "Instagram이 설치되어 있지 않습니다."
+            return L.Error.instagramNotInstalled
         case .imageRenderingFailed:
-            return "이미지 생성에 실패했습니다."
+            return L.Error.imageGenerationFailed
         case .photoLibraryAccessDenied:
-            return "사진 라이브러리 접근 권한이 필요합니다."
+            return L.Error.photoLibraryPermission
         case .photoSaveFailed:
-            return "사진 저장에 실패했습니다."
+            return L.Error.photoSaveFailed
         case .urlOpenFailed:
-            return "Instagram을 열 수 없습니다."
+            return L.Error.instagramCannotOpen
         }
     }
 }

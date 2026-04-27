@@ -96,35 +96,35 @@ final class OnboardingPageViewController: UIViewController {
     switch pageType {
     case .intro:
       iconImageView.image = UIImage(systemName: "drop.fill")
-      titleLabel.text = NSLocalizedString("onboarding.intro.title", comment: "")
-      descriptionLabel.text = NSLocalizedString("onboarding.intro.description", comment: "")
+      titleLabel.text = L.Onboarding.introTitle
+      descriptionLabel.text = L.Onboarding.introDescription
       actionButton.isHidden = true
       
     case .goal:
       iconImageView.image = UIImage(systemName: "target")
-      titleLabel.text = NSLocalizedString("onboarding.goal.title", comment: "")
-      descriptionLabel.text = NSLocalizedString("onboarding.goal.description", comment: "")
+      titleLabel.text = L.Onboarding.goalTitle
+      descriptionLabel.text = L.Onboarding.goalDescription
       goalValueLabel.text = "\(store.goal)"
       actionButton.isHidden = true
       
     case .healthKit:
       iconImageView.image = UIImage(systemName: "heart.fill")
       iconImageView.tintColor = .systemPink
-      titleLabel.text = NSLocalizedString("onboarding.healthkit.title", comment: "")
-      descriptionLabel.text = NSLocalizedString("onboarding.healthkit.description", comment: "")
+      titleLabel.text = L.Onboarding.healthKitTitle
+      descriptionLabel.text = L.Onboarding.healthKitDescription
       actionButton.isHidden = true
       
     case .notification:
       iconImageView.image = UIImage(systemName: "bell.fill")
       iconImageView.tintColor = .systemOrange
-      titleLabel.text = NSLocalizedString("onboarding.notification.title", comment: "")
-      descriptionLabel.text = NSLocalizedString("onboarding.notification.description", comment: "")
+      titleLabel.text = L.Onboarding.notificationTitle
+      descriptionLabel.text = L.Onboarding.notificationDescription
       actionButton.isHidden = true
       
     case .widget:
       iconImageView.image = UIImage(systemName: "apps.iphone")
-      titleLabel.text = NSLocalizedString("onboarding.widget.title", comment: "")
-      descriptionLabel.text = NSLocalizedString("onboarding.widget.description", comment: "")
+      titleLabel.text = L.Onboarding.widgetTitle
+      descriptionLabel.text = L.Onboarding.widgetDescription
       actionButton.isHidden = true
     }
   }

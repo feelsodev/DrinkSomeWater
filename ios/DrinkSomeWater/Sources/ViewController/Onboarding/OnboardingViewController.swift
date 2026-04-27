@@ -17,7 +17,7 @@ final class OnboardingViewController: UIViewController {
   
   private lazy var skipButton: UIButton = {
     let button = UIButton(type: .system)
-    button.setTitle(NSLocalizedString("onboarding.skip", comment: ""), for: .normal)
+    button.setTitle(L.Onboarding.skip, for: .normal)
     button.setTitleColor(DS.Color.textSecondary, for: .normal)
     button.titleLabel?.font = DS.Font.bodyMedium
     return button
@@ -25,7 +25,7 @@ final class OnboardingViewController: UIViewController {
   
   private lazy var nextButton: UIButton = {
     let button = UIButton(type: .system)
-    button.setTitle(NSLocalizedString("onboarding.next", comment: ""), for: .normal)
+    button.setTitle(L.Onboarding.next, for: .normal)
     button.backgroundColor = DS.Color.primary
     button.setTitleColor(.white, for: .normal)
     button.titleLabel?.font = DS.Font.headline
@@ -177,8 +177,8 @@ final class OnboardingViewController: UIViewController {
   private func updateNextButtonTitle() {
     let isLastPage = pageControl.currentPage == pages.count - 1
     let title = isLastPage
-      ? NSLocalizedString("onboarding.start", comment: "")
-      : NSLocalizedString("onboarding.next", comment: "")
+      ? L.Onboarding.start
+      : L.Onboarding.next
     nextButton.setTitle(title, for: .normal)
   }
   

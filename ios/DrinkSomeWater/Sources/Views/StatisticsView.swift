@@ -15,7 +15,7 @@ struct StatisticsView: View {
         .padding(DS.Spacing.md)
       }
       .background(DS.SwiftUIColor.backgroundPrimary)
-      .navigationTitle(String(localized: "statistics.title"))
+      .navigationTitle(L.Statistics.title)
       .navigationBarTitleDisplayMode(.inline)
       .task {
         await store.send(.viewDidLoad)
@@ -25,15 +25,15 @@ struct StatisticsView: View {
   
   // MARK: - Period Picker
   
-  private var periodPicker: some View {
-    Picker("Period", selection: Binding(
+   private var periodPicker: some View {
+     Picker(L.Statistics.period, selection: Binding(
       get: { store.selectedPeriod },
       set: { period in
         Task { await store.send(.selectPeriod(period)) }
       }
     )) {
       ForEach(StatisticsPeriod.allCases, id: \.self) { period in
-        Text(period.rawValue).tag(period)
+        Text(period.displayName).tag(period)
       }
     }
     .pickerStyle(.segmented)
@@ -41,27 +41,27 @@ struct StatisticsView: View {
   
   // MARK: - Summary Cards
   
-  private var summaryCards: some View {
-    HStack(spacing: DS.Spacing.sm) {
-      summaryCard(
-        title: String(localized: "statistics.daily.average"),
-        value: "\(store.dailyAverage)",
-        subtitle: "ml"
-      )
-      
-      summaryCard(
-        title: String(localized: "statistics.goal.achievement"),
-        value: "\(Int(store.goalAchievementRate * 100))",
-        subtitle: "%"
-      )
-      
-      summaryCard(
-        title: String(localized: "statistics.current.streak"),
-        value: "\(store.currentStreak)",
-        subtitle: String(localized: "statistics.days")
-      )
-    }
-  }
+   private var summaryCards: some View {
+     HStack(spacing: DS.Spacing.sm) {
+       summaryCard(
+         title: L.Statistics.dailyAverage,
+         value: "\(store.dailyAverage)",
+         subtitle: L.Statistics.unitMl
+       )
+       
+       summaryCard(
+         title: L.Statistics.goalAchievement,
+         value: "\(Int(store.goalAchievementRate * 100))",
+         subtitle: "%"
+       )
+       
+       summaryCard(
+         title: L.Statistics.currentStreak,
+         value: "\(store.currentStreak)",
+         subtitle: L.Statistics.days
+       )
+     }
+   }
   
   private func summaryCard(title: String, value: String, subtitle: String) -> some View {
     VStack(spacing: DS.Spacing.xxs) {
@@ -91,11 +91,11 @@ struct StatisticsView: View {
   
   // MARK: - Chart Section
   
-  private var chartSection: some View {
-    VStack(alignment: .leading, spacing: DS.Spacing.sm) {
-      Text(String(localized: "statistics.chart.title"))
-        .font(DS.SwiftUIFont.headline)
-        .foregroundStyle(DS.SwiftUIColor.textPrimary)
+   private var chartSection: some View {
+     VStack(alignment: .leading, spacing: DS.Spacing.sm) {
+       Text(L.Statistics.chartTitle)
+         .font(DS.SwiftUIFont.headline)
+         .foregroundStyle(DS.SwiftUIColor.textPrimary)
       
       if store.dailyData.isEmpty {
         emptyState
@@ -123,11 +123,11 @@ struct StatisticsView: View {
         RuleMark(y: .value("Goal", avgGoal))
           .foregroundStyle(DS.SwiftUIColor.textSecondary.opacity(0.6))
           .lineStyle(StrokeStyle(lineWidth: 1, dash: [5, 5]))
-          .annotation(position: .top, alignment: .trailing) {
-            Text(String(localized: "statistics.chart.goal.line"))
-              .font(DS.SwiftUIFont.captionSmall)
-              .foregroundStyle(DS.SwiftUIColor.textSecondary)
-          }
+           .annotation(position: .top, alignment: .trailing) {
+             Text(L.Statistics.chartGoalLine)
+               .font(DS.SwiftUIFont.captionSmall)
+               .foregroundStyle(DS.SwiftUIColor.textSecondary)
+           }
       }
     }
     .chartXAxis {
@@ -146,16 +146,16 @@ struct StatisticsView: View {
     .animation(.easeInOut, value: store.selectedPeriod)
   }
   
-  private var emptyState: some View {
-    VStack(spacing: DS.Spacing.sm) {
-      Image(systemName: "chart.bar.xaxis")
-        .font(.system(size: 40))
-        .foregroundStyle(DS.SwiftUIColor.textTertiary)
-      
-      Text(String(localized: "statistics.empty"))
-        .font(DS.SwiftUIFont.body)
-        .foregroundStyle(DS.SwiftUIColor.textSecondary)
-    }
+   private var emptyState: some View {
+     VStack(spacing: DS.Spacing.sm) {
+       Image(systemName: "chart.bar.xaxis")
+         .font(.system(size: 40))
+         .foregroundStyle(DS.SwiftUIColor.textTertiary)
+       
+       Text(L.Statistics.empty)
+         .font(DS.SwiftUIFont.body)
+         .foregroundStyle(DS.SwiftUIColor.textSecondary)
+     }
     .frame(maxWidth: .infinity)
     .frame(height: 220)
   }

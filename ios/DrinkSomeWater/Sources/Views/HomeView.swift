@@ -76,28 +76,28 @@ struct HomeView: View {
         .presentationDragIndicator(.visible)
     }
     .confirmationDialog(
-      String(localized: "share.title.extended"),
+      L.Share.titleExtended,
       isPresented: $showShareSheet,
       titleVisibility: .visible
     ) {
-      Button(String(localized: "share.instagram.stories")) {
+      Button(L.Share.instagramStories) {
         Task { await shareToInstagram(destination: .stories) }
       }
-      Button(String(localized: "share.instagram.feed")) {
+      Button(L.Share.instagramFeed) {
         Task { await shareToInstagram(destination: .feed) }
       }
-      Button(String(localized: "share.system")) {
+      Button(L.Share.system) {
         Task { await shareViaSystemSheet() }
       }
-      Button(String(localized: "home.goal.cancel"), role: .cancel) {}
+      Button(L.Home.goalCancel, role: .cancel) {}
     }
     .alert(
-      String(localized: "share.error.title"),
+      L.Share.errorTitle,
       isPresented: $showInstagramNotInstalledAlert
     ) {
-      Button(String(localized: "share.error.ok"), role: .cancel) {}
+      Button(L.Share.errorOk, role: .cancel) {}
     } message: {
-      Text(String(localized: "share.error.instagram.not.installed"))
+      Text(L.Share.errorInstagramNotInstalled)
     }
   }
   
@@ -156,44 +156,44 @@ struct HomeView: View {
   
   private var headerSection: some View {
     VStack(spacing: DS.Spacing.xxs) {
-      HStack {
-        Spacer()
-        Text("\(Int(store.ml))ml")
-          .font(DS.SwiftUIFont.display)
-          .foregroundStyle(DS.SwiftUIColor.textPrimary)
-          .accessibilityLabel(String(localized: "accessibility.home.current", defaultValue: "Current intake \(Int(store.ml)) milliliters"))
-        Spacer()
-        
-        Button {
-          showShareSheet = true
-        } label: {
-          Image(systemName: "square.and.arrow.up")
-            .font(DS.SwiftUIFont.title3)
-            .foregroundStyle(DS.SwiftUIColor.primary)
-            .frame(width: DS.Size.iconContainerMedium, height: DS.Size.iconContainerMedium)
-            .background(DS.SwiftUIColor.primary.opacity(0.12))
-            .clipShape(Circle())
-        }
-        .accessibilityLabel(String(localized: "accessibility.home.share", defaultValue: "Share to Instagram"))
-      }
+       HStack {
+         Spacer()
+         Text("\(Int(store.ml))ml")
+           .font(DS.SwiftUIFont.display)
+           .foregroundStyle(DS.SwiftUIColor.textPrimary)
+           .accessibilityLabel(L.Accessibility.homeCurrent(Int(store.ml)))
+         Spacer()
+         
+         Button {
+           showShareSheet = true
+         } label: {
+           Image(systemName: "square.and.arrow.up")
+             .font(DS.SwiftUIFont.title3)
+             .foregroundStyle(DS.SwiftUIColor.primary)
+             .frame(width: DS.Size.iconContainerMedium, height: DS.Size.iconContainerMedium)
+             .background(DS.SwiftUIColor.primary.opacity(0.12))
+             .clipShape(Circle())
+         }
+         .accessibilityLabel(L.Accessibility.homeShare)
+       }
 
-      Button {
-        showGoalSetting = true
-      } label: {
-        HStack(spacing: DS.Spacing.xs) {
-          Text(String(format: String(localized: "home.goal"), "\(Int(store.total))"))
-            .font(DS.SwiftUIFont.subheadSemibold)
-          Image(systemName: "pencil.circle.fill")
-            .font(DS.SwiftUIFont.subheadMedium)
-        }
-        .foregroundStyle(DS.SwiftUIColor.primary)
-        .padding(.horizontal, DS.Spacing.md)
-        .padding(.vertical, DS.Spacing.xs)
-        .background(DS.SwiftUIColor.primary.opacity(0.12))
-        .clipShape(Capsule())
-      }
-      .accessibilityLabel(String(localized: "accessibility.home.goal", defaultValue: "Daily goal \(Int(store.total)) milliliters"))
-      .accessibilityHint(String(localized: "accessibility.home.goal.hint", defaultValue: "Double tap to change goal"))
+       Button {
+         showGoalSetting = true
+       } label: {
+         HStack(spacing: DS.Spacing.xs) {
+           Text(L.Home.goal("\(Int(store.total))"))
+             .font(DS.SwiftUIFont.subheadSemibold)
+           Image(systemName: "pencil.circle.fill")
+             .font(DS.SwiftUIFont.subheadMedium)
+         }
+         .foregroundStyle(DS.SwiftUIColor.primary)
+         .padding(.horizontal, DS.Spacing.md)
+         .padding(.vertical, DS.Spacing.xs)
+         .background(DS.SwiftUIColor.primary.opacity(0.12))
+         .clipShape(Capsule())
+       }
+       .accessibilityLabel(L.Accessibility.homeGoal(Int(store.total)))
+       .accessibilityHint(L.Accessibility.homeGoalHint)
       
       messageCard
         .padding(.top, DS.Spacing.xs)
@@ -201,16 +201,16 @@ struct HomeView: View {
     .padding(.top, DS.Spacing.xs)
   }
   
-  private var messageCard: some View {
-    HStack(spacing: DS.Spacing.xs) {
-      Text(store.remainingMl <= 0 ? "🎉" : "💧")
-        .font(DS.SwiftUIFont.title3)
-        .accessibilityHidden(true)
+   private var messageCard: some View {
+     HStack(spacing: DS.Spacing.xs) {
+       Text(store.remainingMl <= 0 ? "🎉" : "💧")
+         .font(DS.SwiftUIFont.title3)
+         .accessibilityHidden(true)
 
-      Text(store.remainingMl <= 0 ? String(localized: "home.goal.achieved") : String(format: String(localized: "home.goal.remaining"), "\(store.remainingCups)"))
-        .font(DS.SwiftUIFont.subheadSemibold)
-        .foregroundStyle(DS.SwiftUIColor.textPrimary)
-    }
+       Text(store.remainingMl <= 0 ? L.Home.goalAchieved : L.Home.goalRemaining("\(store.remainingCups)"))
+         .font(DS.SwiftUIFont.subheadSemibold)
+         .foregroundStyle(DS.SwiftUIColor.textPrimary)
+     }
     .padding(.horizontal, DS.Spacing.md)
     .padding(.vertical, DS.Spacing.sm)
     .background(
@@ -224,31 +224,31 @@ struct HomeView: View {
     )
   }
 
-  private var notificationBanner: some View {
-    HStack(alignment: .center, spacing: DS.Spacing.sm) {
-      Image(systemName: "bell.badge")
-        .font(DS.SwiftUIFont.title3)
-        .foregroundStyle(.orange)
+   private var notificationBanner: some View {
+     HStack(alignment: .center, spacing: DS.Spacing.sm) {
+       Image(systemName: "bell.badge")
+         .font(DS.SwiftUIFont.title3)
+         .foregroundStyle(.orange)
 
-      VStack(alignment: .leading, spacing: DS.Spacing.xxs) {
-        Text(String(localized: "home.notification.banner.title"))
-          .font(DS.SwiftUIFont.subheadSemibold)
-          .foregroundStyle(DS.SwiftUIColor.textPrimary)
-        Text(String(localized: "home.notification.banner.description"))
-          .font(DS.SwiftUIFont.caption)
-          .foregroundStyle(.secondary)
-          .fixedSize(horizontal: false, vertical: true)
-      }
-      .layoutPriority(1)
+       VStack(alignment: .leading, spacing: DS.Spacing.xxs) {
+         Text(L.Home.notificationBannerTitle)
+           .font(DS.SwiftUIFont.subheadSemibold)
+           .foregroundStyle(DS.SwiftUIColor.textPrimary)
+         Text(L.Home.notificationBannerDescription)
+           .font(DS.SwiftUIFont.caption)
+           .foregroundStyle(.secondary)
+           .fixedSize(horizontal: false, vertical: true)
+       }
+       .layoutPriority(1)
 
-      Spacer()
+       Spacer()
 
-      Button {
-        if let url = URL(string: UIApplication.openSettingsURLString) {
-          UIApplication.shared.open(url)
-        }
-      } label: {
-        Text(String(localized: "home.notification.banner.settings"))
+       Button {
+         if let url = URL(string: UIApplication.openSettingsURLString) {
+           UIApplication.shared.open(url)
+         }
+       } label: {
+         Text(L.Home.notificationBannerSettings)
           .font(DS.SwiftUIFont.captionSemibold)
           .foregroundStyle(.white)
           .padding(.horizontal, DS.Spacing.sm)
@@ -306,42 +306,42 @@ struct HomeView: View {
      }
    }
    
-   private var quickButtonsSection: some View {
-     VStack(spacing: DS.Spacing.sm) {
-       HStack {
-        Text(isSubtractMode ? String(localized: "home.quick.subtract") : String(localized: "home.quick.add"))
-          .font(DS.SwiftUIFont.subheadMedium)
-          .foregroundStyle(.gray)
+    private var quickButtonsSection: some View {
+      VStack(spacing: DS.Spacing.sm) {
+        HStack {
+         Text(isSubtractMode ? L.Home.quickSubtract : L.Home.quickAdd)
+           .font(DS.SwiftUIFont.subheadMedium)
+           .foregroundStyle(.gray)
 
-        Spacer()
+         Spacer()
 
-        Button {
-          withAnimation(.easeInOut(duration: 0.2)) {
-            isSubtractMode.toggle()
-          }
-        } label: {
-          HStack(spacing: DS.Spacing.xxs) {
-            Text(isSubtractMode ? "−" : "+")
-              .font(DS.SwiftUIFont.bodyBold)
-            Image(systemName: "arrow.triangle.2.circlepath")
-              .font(DS.SwiftUIFont.captionMedium)
-          }
-          .foregroundStyle(isSubtractMode ? .red : DS.SwiftUIColor.primary)
-          .padding(.horizontal, DS.Spacing.sm)
-          .padding(.vertical, DS.Spacing.xs)
-          .background(
-            Capsule()
-              .fill(isSubtractMode ? Color.red.opacity(0.12) : DS.SwiftUIColor.primary.opacity(0.12))
-          )
-        }
-        .accessibilityLabel(isSubtractMode
-          ? String(localized: "accessibility.home.mode.subtract", defaultValue: "Subtract mode active")
-          : String(localized: "accessibility.home.mode.add", defaultValue: "Add mode active"))
-        .accessibilityHint(String(localized: "accessibility.home.mode.hint", defaultValue: "Double tap to toggle between add and subtract mode"))
+         Button {
+           withAnimation(.easeInOut(duration: 0.2)) {
+             isSubtractMode.toggle()
+           }
+         } label: {
+           HStack(spacing: DS.Spacing.xxs) {
+             Text(isSubtractMode ? "−" : "+")
+               .font(DS.SwiftUIFont.bodyBold)
+             Image(systemName: "arrow.triangle.2.circlepath")
+               .font(DS.SwiftUIFont.captionMedium)
+           }
+           .foregroundStyle(isSubtractMode ? .red : DS.SwiftUIColor.primary)
+           .padding(.horizontal, DS.Spacing.sm)
+           .padding(.vertical, DS.Spacing.xs)
+           .background(
+             Capsule()
+               .fill(isSubtractMode ? Color.red.opacity(0.12) : DS.SwiftUIColor.primary.opacity(0.12))
+           )
+         }
+         .accessibilityLabel(isSubtractMode
+           ? L.Accessibility.homeModeSubtract
+           : L.Accessibility.homeModeAdd)
+         .accessibilityHint(L.Accessibility.homeModeHint)
 
-        Button(String(localized: "home.edit")) {
-          showQuickButtonSetting = true
-        }
+         Button(L.Home.edit) {
+           showQuickButtonSetting = true
+         }
         .font(DS.SwiftUIFont.subheadMedium)
         .foregroundStyle(.gray)
         .padding(.leading, DS.Spacing.xs)
@@ -378,13 +378,13 @@ struct HomeView: View {
             .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium, style: .continuous))
             .shadow(color: .black.opacity(0.1), radius: DS.Spacing.xxs, y: 2)
         }
-        .disabled(isSubtractMode && store.ml <= 0)
-        .accessibilityLabel(isSubtractMode 
-          ? String(localized: "accessibility.home.subtract", defaultValue: "Subtract \(amount) milliliters")
-          : String(localized: "accessibility.home.add", defaultValue: "Add \(amount) milliliters"))
-        .accessibilityHint(isSubtractMode
-          ? String(localized: "accessibility.home.subtract.hint", defaultValue: "Double tap to subtract water")
-          : String(localized: "accessibility.home.add.hint", defaultValue: "Double tap to add water"))
+         .disabled(isSubtractMode && store.ml <= 0)
+         .accessibilityLabel(isSubtractMode 
+           ? L.Accessibility.homeSubtract(amount)
+           : L.Accessibility.homeAdd(amount))
+         .accessibilityHint(isSubtractMode
+           ? L.Accessibility.homeSubtractHint
+           : L.Accessibility.homeAddHint)
       }
     }
   }
@@ -415,45 +415,45 @@ struct GoalSettingView: View {
           .tint(DS.SwiftUIColor.primary)
           .padding(.horizontal)
 
-        HStack {
-          Text(String(localized: "home.goal.min"))
-            .font(.caption)
-            .foregroundStyle(.secondary)
-          Spacer()
-          Text(String(localized: "home.goal.max"))
-            .font(.caption)
-            .foregroundStyle(.secondary)
-        }
-        .padding(.horizontal)
+         HStack {
+           Text(L.Home.goalMin)
+             .font(.caption)
+             .foregroundStyle(.secondary)
+           Spacer()
+           Text(L.Home.goalMax)
+             .font(.caption)
+             .foregroundStyle(.secondary)
+         }
+         .padding(.horizontal)
 
-        Spacer()
+         Spacer()
 
-        Button {
-          Task {
-            let oldGoal = currentGoal
-            _ = await provider.waterService.updateGoal(to: Int(goal))
-            Analytics.shared.log(.goalChanged(oldGoal: oldGoal, newGoal: Int(goal), source: .settings))
-            Analytics.shared.setDailyGoal(Int(goal))
-            onSave()
-            dismiss()
-          }
-        } label: {
-          Text(String(localized: "home.goal.save"))
-            .font(.headline)
-            .foregroundStyle(.white)
-            .frame(maxWidth: .infinity)
-            .frame(height: DS.Size.buttonHeight)
-            .background(DS.SwiftUIColor.primary)
-            .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium))
-        }
-        .padding(.horizontal)
-      }
-      .padding(.vertical, DS.Spacing.xl)
-      .navigationTitle(String(localized: "home.goal.setting.title"))
-      .navigationBarTitleDisplayMode(.inline)
-      .toolbar {
-        ToolbarItem(placement: .cancellationAction) {
-          Button(String(localized: "home.goal.cancel")) { dismiss() }
+         Button {
+           Task {
+             let oldGoal = currentGoal
+             _ = await provider.waterService.updateGoal(to: Int(goal))
+             Analytics.shared.log(.goalChanged(oldGoal: oldGoal, newGoal: Int(goal), source: .settings))
+             Analytics.shared.setDailyGoal(Int(goal))
+             onSave()
+             dismiss()
+           }
+         } label: {
+           Text(L.Home.goalSave)
+             .font(.headline)
+             .foregroundStyle(.white)
+             .frame(maxWidth: .infinity)
+             .frame(height: DS.Size.buttonHeight)
+             .background(DS.SwiftUIColor.primary)
+             .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium))
+         }
+         .padding(.horizontal)
+       }
+       .padding(.vertical, DS.Spacing.xl)
+       .navigationTitle(L.Home.goalSettingTitle)
+       .navigationBarTitleDisplayMode(.inline)
+       .toolbar {
+         ToolbarItem(placement: .cancellationAction) {
+           Button(L.Home.goalCancel) { dismiss() }
         }
       }
     }
@@ -477,48 +477,48 @@ struct QuickButtonSettingView: View {
   
   var body: some View {
     NavigationStack {
-      List {
-        Section(String(localized: "home.quickbutton.current")) {
-          ForEach(buttons, id: \.self) { amount in
-            HStack {
-              Text("+\(amount)ml")
-              Spacer()
-            }
-          }
-          .onDelete(perform: deleteButton)
-          .onMove(perform: moveButton)
-        }
+       List {
+         Section(L.Home.quickButtonCurrent) {
+           ForEach(buttons, id: \.self) { amount in
+             HStack {
+               Text("+\(amount)ml")
+               Spacer()
+             }
+           }
+           .onDelete(perform: deleteButton)
+           .onMove(perform: moveButton)
+         }
 
-        Section(String(localized: "home.quickbutton.add.section")) {
-          HStack {
-            TextField(String(localized: "home.quickbutton.placeholder"), text: $newAmount)
-              .keyboardType(.numberPad)
+         Section(L.Home.quickButtonAddSection) {
+           HStack {
+             TextField(L.Home.quickButtonPlaceholder, text: $newAmount)
+               .keyboardType(.numberPad)
 
-            Button(String(localized: "home.quickbutton.add")) {
-              if let amount = Int(newAmount), amount > 0 {
-                buttons.append(amount)
-                newAmount = ""
-              }
-            }
-            .disabled(newAmount.isEmpty)
-          }
-        }
+             Button(L.Home.quickButtonAdd) {
+               if let amount = Int(newAmount), amount > 0 {
+                 buttons.append(amount)
+                 newAmount = ""
+               }
+             }
+             .disabled(newAmount.isEmpty)
+           }
+         }
 
-        Section {
-          Button(String(localized: "home.quickbutton.reset")) {
-            buttons = HomeStore.defaultQuickButtons
-          }
-          .foregroundStyle(.red)
-        }
-      }
-      .navigationTitle(String(localized: "home.quickbutton.title"))
-      .navigationBarTitleDisplayMode(.inline)
-      .toolbar {
-        ToolbarItem(placement: .cancellationAction) {
-          Button(String(localized: "home.goal.cancel")) { dismiss() }
-        }
-        ToolbarItem(placement: .confirmationAction) {
-          Button(String(localized: "home.goal.save")) {
+         Section {
+           Button(L.Home.quickButtonReset) {
+             buttons = HomeStore.defaultQuickButtons
+           }
+           .foregroundStyle(.red)
+         }
+       }
+       .navigationTitle(L.Home.quickButtonTitle)
+       .navigationBarTitleDisplayMode(.inline)
+       .toolbar {
+         ToolbarItem(placement: .cancellationAction) {
+           Button(L.Home.goalCancel) { dismiss() }
+         }
+         ToolbarItem(placement: .confirmationAction) {
+           Button(L.Home.goalSave) {
             provider.userDefaultsService.set(value: buttons, forkey: .quickButtons)
             for (index, amount) in buttons.enumerated() {
               Analytics.shared.log(.quickButtonCustomized(buttonIndex: index, amountMl: amount))
@@ -557,13 +557,13 @@ struct WaterAdjustmentView: View {
           .font(DS.SwiftUIFont.display)
           .foregroundStyle(DS.SwiftUIColor.primary)
 
-        VStack(spacing: DS.Spacing.md) {
-          Text(String(localized: "home.quick.subtract"))
-            .font(DS.SwiftUIFont.subheadMedium)
-            .foregroundStyle(.secondary)
-            .frame(maxWidth: .infinity, alignment: .leading)
+         VStack(spacing: DS.Spacing.md) {
+           Text(L.Home.quickSubtract)
+             .font(DS.SwiftUIFont.subheadMedium)
+             .foregroundStyle(.secondary)
+             .frame(maxWidth: .infinity, alignment: .leading)
 
-          LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: DS.Spacing.sm) {
+           LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: DS.Spacing.sm) {
             ForEach(subtractAmounts, id: \.self) { amount in
               Button {
                 Task {
@@ -587,47 +587,47 @@ struct WaterAdjustmentView: View {
         Divider()
           .padding(.horizontal)
 
-        Button(role: .destructive) {
-          showResetConfirmation = true
-        } label: {
-          HStack {
-            Image(systemName: "arrow.counterclockwise")
-            Text(String(localized: "home.adjustment.reset"))
-          }
-          .font(DS.SwiftUIFont.bodyMedium)
-          .foregroundStyle(.red)
-          .frame(maxWidth: .infinity)
-          .frame(height: DS.Spacing.xxxxl)
-          .background(Color.red.opacity(0.1))
-          .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium, style: .continuous))
-        }
-        .padding(.horizontal)
-        .disabled(store.ml <= 0)
+         Button(role: .destructive) {
+           showResetConfirmation = true
+         } label: {
+           HStack {
+             Image(systemName: "arrow.counterclockwise")
+             Text(L.Home.adjustmentReset)
+           }
+           .font(DS.SwiftUIFont.bodyMedium)
+           .foregroundStyle(.red)
+           .frame(maxWidth: .infinity)
+           .frame(height: DS.Spacing.xxxxl)
+           .background(Color.red.opacity(0.1))
+           .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusMedium, style: .continuous))
+         }
+         .padding(.horizontal)
+         .disabled(store.ml <= 0)
 
-        Spacer()
-      }
-      .padding(.vertical, DS.Spacing.xl)
-      .navigationTitle(String(localized: "home.adjustment.title"))
-      .navigationBarTitleDisplayMode(.inline)
-      .toolbar {
-        ToolbarItem(placement: .confirmationAction) {
-          Button(String(localized: "home.adjustment.done")) { dismiss() }
-        }
-      }
-      .confirmationDialog(
-        String(localized: "home.adjustment.reset.confirm"),
-        isPresented: $showResetConfirmation,
-        titleVisibility: .visible
-      ) {
-        Button(String(localized: "home.adjustment.reset.button"), role: .destructive) {
-          Task {
-            await store.send(.resetTodayWater)
-          }
-        }
-        Button(String(localized: "home.goal.cancel"), role: .cancel) {}
-      } message: {
-        Text(String(localized: "home.adjustment.reset.message"))
-      }
+         Spacer()
+       }
+       .padding(.vertical, DS.Spacing.xl)
+       .navigationTitle(L.Home.adjustmentTitle)
+       .navigationBarTitleDisplayMode(.inline)
+       .toolbar {
+         ToolbarItem(placement: .confirmationAction) {
+           Button(L.Home.adjustmentDone) { dismiss() }
+         }
+       }
+       .confirmationDialog(
+         L.Home.adjustmentResetConfirm,
+         isPresented: $showResetConfirmation,
+         titleVisibility: .visible
+       ) {
+         Button(L.Home.adjustmentResetButton, role: .destructive) {
+           Task {
+             await store.send(.resetTodayWater)
+           }
+         }
+         Button(L.Home.goalCancel, role: .cancel) {}
+       } message: {
+         Text(L.Home.adjustmentResetMessage)
+       }
     }
   }
 }
