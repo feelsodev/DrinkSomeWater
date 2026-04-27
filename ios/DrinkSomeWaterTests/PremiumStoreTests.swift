@@ -121,4 +121,23 @@ struct PremiumStoreTests {
         #expect(store.isLoading == false)
         #expect(store.error == nil)
     }
+    
+    // MARK: - isSubscribed
+    
+    @Test func store_refreshEntitlements_updatesIsSubscribed() async throws {
+        let mockService = MockStoreKitService()
+        let store = PremiumStore(storeKitService: mockService)
+        
+        #expect(store.isSubscribed == false)
+        
+        mockService.setEntitlementState(.premium(expirationDate: nil))
+        await store.send(.refreshEntitlements)
+        
+        #expect(store.isSubscribed == true)
+        
+        mockService.setEntitlementState(.free)
+        await store.send(.refreshEntitlements)
+        
+        #expect(store.isSubscribed == false)
+    }
 }

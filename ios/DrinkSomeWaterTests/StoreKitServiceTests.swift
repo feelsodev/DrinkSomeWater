@@ -134,4 +134,39 @@ struct StoreKitServiceTests {
             #expect(expiration == nil)
         }
     }
+    
+    // MARK: - isSubscribed / hasWidgetAccess / hasWatchAccess
+    
+    @Test func mockService_isSubscribed_reflectsEntitlementState() {
+        let mock = MockStoreKitService()
+        
+        #expect(mock.isSubscribed == false)
+        #expect(mock.hasWidgetAccess == false)
+        #expect(mock.hasWatchAccess == false)
+        
+        mock.setEntitlementState(.premium(expirationDate: nil))
+        
+        #expect(mock.isSubscribed == true)
+        #expect(mock.hasWidgetAccess == true)
+        #expect(mock.hasWatchAccess == true)
+        
+        mock.setEntitlementState(.free)
+        
+        #expect(mock.isSubscribed == false)
+        #expect(mock.hasWidgetAccess == false)
+        #expect(mock.hasWatchAccess == false)
+    }
+    
+    @Test func mockService_reset_clearsSubscriptionProperties() {
+        let mock = MockStoreKitService()
+        
+        mock.setEntitlementState(.premium(expirationDate: nil))
+        #expect(mock.isSubscribed == true)
+        
+        mock.reset()
+        
+        #expect(mock.isSubscribed == false)
+        #expect(mock.hasWidgetAccess == false)
+        #expect(mock.hasWatchAccess == false)
+    }
 }

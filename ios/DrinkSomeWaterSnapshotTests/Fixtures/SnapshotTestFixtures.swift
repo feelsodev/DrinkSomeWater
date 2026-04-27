@@ -13,6 +13,9 @@ final class SnapshotMockStoreKitService: StoreKitServiceProtocol {
     }
     
     var isPremium: Bool { false }
+    var isSubscribed: Bool { false }
+    var hasWidgetAccess: Bool { false }
+    var hasWatchAccess: Bool { false }
     
     func loadProducts() async throws -> [Product] { [] }
     func purchase(_ product: Product) async throws -> Transaction { fatalError() }
@@ -259,6 +262,29 @@ final class MockCloudSyncService: CloudSyncServiceProtocol {
 }
 
 @MainActor
+final class SnapshotMockReviewEligibilityService: ReviewEligibilityServiceProtocol {
+    var goalCompletionCount: Int = 0
+    var daysSinceInstall: Int = 30
+    func recordGoalCompletion() {}
+    func shouldRequestReview() -> Bool { false }
+    func markReviewRequested() {}
+}
+
+@MainActor
+final class SnapshotMockFreeDrinkCounterService: FreeDrinkCounterServiceProtocol {
+    var drinksToday: Int { 0 }
+    var adFrequency: Int { 3 }
+    func recordDrink() -> Bool { false }
+    func reset() {}
+}
+
+@MainActor
+final class SnapshotMockRewardedAdCoordinator: RewardedAdCoordinatorProtocol {
+    func showRewardedAd() async -> Bool { true }
+    func setRootViewController(_ viewController: UIViewController) {}
+}
+
+@MainActor
 final class MockServiceProvider: ServiceProviderProtocol {
     let userDefaultsService: UserDefaultsServiceProtocol
     let cloudSyncService: CloudSyncServiceProtocol
@@ -270,6 +296,9 @@ final class MockServiceProvider: ServiceProviderProtocol {
     let instagramSharingService: InstagramSharingServiceProtocol
     let socialSharingService: SocialSharingServiceProtocol
     let storeKitService: StoreKitServiceProtocol
+    let reviewEligibilityService: ReviewEligibilityServiceProtocol
+    let freeDrinkCounterService: FreeDrinkCounterServiceProtocol
+    let rewardedAdCoordinator: RewardedAdCoordinatorProtocol
 
     init(
         userDefaultsService: UserDefaultsServiceProtocol = MockUserDefaultsService(),
@@ -281,7 +310,10 @@ final class MockServiceProvider: ServiceProviderProtocol {
         watchConnectivityService: WatchConnectivityServiceProtocol = MockWatchConnectivityService(),
         instagramSharingService: InstagramSharingServiceProtocol = SnapshotMockInstagramSharingService(),
         socialSharingService: SocialSharingServiceProtocol = SnapshotMockSocialSharingService(),
-        storeKitService: StoreKitServiceProtocol = SnapshotMockStoreKitService()
+        storeKitService: StoreKitServiceProtocol = SnapshotMockStoreKitService(),
+        reviewEligibilityService: ReviewEligibilityServiceProtocol = SnapshotMockReviewEligibilityService(),
+        freeDrinkCounterService: FreeDrinkCounterServiceProtocol = SnapshotMockFreeDrinkCounterService(),
+        rewardedAdCoordinator: RewardedAdCoordinatorProtocol = SnapshotMockRewardedAdCoordinator()
     ) {
         self.userDefaultsService = userDefaultsService
         self.cloudSyncService = cloudSyncService
@@ -293,5 +325,8 @@ final class MockServiceProvider: ServiceProviderProtocol {
         self.instagramSharingService = instagramSharingService
         self.socialSharingService = socialSharingService
         self.storeKitService = storeKitService
+        self.reviewEligibilityService = reviewEligibilityService
+        self.freeDrinkCounterService = freeDrinkCounterService
+        self.rewardedAdCoordinator = rewardedAdCoordinator
     }
 }

@@ -7,6 +7,11 @@ final class MockStoreKitService: StoreKitServiceProtocol {
     var mockProducts: [Product] = []
     var mockEntitlementState: EntitlementState = .free
     var mockIsPremium: Bool = false
+    var mockIsSubscribed: Bool = false
+    var mockHasWidgetAccess: Bool = false
+    var mockHasWatchAccess: Bool = false
+    var mockIsLifetime: Bool = false
+    var mockSubscriptionExpirationDate: Date?
     
     var loadProductsCalled = false
     var purchaseCalled = false
@@ -23,9 +28,12 @@ final class MockStoreKitService: StoreKitServiceProtocol {
         }
     }
     
-    var isPremium: Bool {
-        mockIsPremium
-    }
+    var isPremium: Bool { mockIsPremium }
+    var isSubscribed: Bool { mockIsSubscribed }
+    var isLifetime: Bool { mockIsLifetime }
+    var subscriptionExpirationDate: Date? { mockSubscriptionExpirationDate }
+    var hasWidgetAccess: Bool { mockHasWidgetAccess }
+    var hasWatchAccess: Bool { mockHasWatchAccess }
     
     func loadProducts() async throws -> [Product] {
         loadProductsCalled = true
@@ -46,6 +54,9 @@ final class MockStoreKitService: StoreKitServiceProtocol {
         }
         
         mockIsPremium = true
+        mockIsSubscribed = true
+        mockHasWidgetAccess = true
+        mockHasWatchAccess = true
         mockEntitlementState = .premium(expirationDate: nil)
         
         return try await fetchMockTransaction()
@@ -64,8 +75,14 @@ final class MockStoreKitService: StoreKitServiceProtocol {
         switch state {
         case .free:
             mockIsPremium = false
+            mockIsSubscribed = false
+            mockHasWidgetAccess = false
+            mockHasWatchAccess = false
         case .premium:
             mockIsPremium = true
+            mockIsSubscribed = true
+            mockHasWidgetAccess = true
+            mockHasWatchAccess = true
         }
     }
     
@@ -73,6 +90,11 @@ final class MockStoreKitService: StoreKitServiceProtocol {
         mockProducts = []
         mockEntitlementState = .free
         mockIsPremium = false
+        mockIsSubscribed = false
+        mockHasWidgetAccess = false
+        mockHasWatchAccess = false
+        mockIsLifetime = false
+        mockSubscriptionExpirationDate = nil
         loadProductsCalled = false
         purchaseCalled = false
         restorePurchasesCalled = false

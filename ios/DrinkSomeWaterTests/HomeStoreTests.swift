@@ -270,6 +270,165 @@ struct HomeStoreTests {
         #expect(store.shouldRequestReview == false)
     }
     
+    // MARK: - Rewarded Ad Gate Tests
+    
+    @Test func subscriberBypassesAdGate() async {
+        let mockWaterService = MockWaterService()
+        let today = Date()
+        mockWaterService.waterRecords = [
+            WaterRecord(date: today, value: 0, isSuccess: false, goal: 2000)
+        ]
+        mockWaterService.goal = 2000
+        
+        let mockStoreKit = MockStoreKitService()
+        mockStoreKit.mockIsSubscribed = true
+        
+        let mockFreeDrink = MockFreeDrinkCounterService()
+        
+        let provider = MockServiceProvider(
+            waterService: mockWaterService,
+            storeKitService: mockStoreKit,
+            freeDrinkCounterService: mockFreeDrink
+        )
+        let store = HomeStore(provider: provider)
+        
+        await store.send(.refreshGoal)
+        await store.send(.refresh)
+        await store.send(.addWater(300))
+        
+        #expect(store.ml == 300)
+        #expect(store.showingRewardedAd == false)
+        #expect(mockFreeDrink.recordDrinkCalled == false)
+    }
+    
+    @Test func freeUserNonNthDrinkRecordsDirectly() async {
+        let mockWaterService = MockWaterService()
+        let today = Date()
+        mockWaterService.waterRecords = [
+            WaterRecord(date: today, value: 0, isSuccess: false, goal: 2000)
+        ]
+        mockWaterService.goal = 2000
+        
+        let mockStoreKit = MockStoreKitService()
+        mockStoreKit.mockIsSubscribed = false
+        
+        let mockFreeDrink = MockFreeDrinkCounterService()
+        mockFreeDrink.mockShouldShowAd = false
+        
+        let provider = MockServiceProvider(
+            waterService: mockWaterService,
+            storeKitService: mockStoreKit,
+            freeDrinkCounterService: mockFreeDrink
+        )
+        let store = HomeStore(provider: provider)
+        
+        await store.send(.refreshGoal)
+        await store.send(.refresh)
+        await store.send(.addWater(200))
+        
+        #expect(store.ml == 200)
+        #expect(store.showingRewardedAd == false)
+        #expect(mockFreeDrink.recordDrinkCalled == true)
+    }
+    
+    @Test func freeUserNthDrinkTriggersAdGate() async {
+        let mockWaterService = MockWaterService()
+        let today = Date()
+        mockWaterService.waterRecords = [
+            WaterRecord(date: today, value: 0, isSuccess: false, goal: 2000)
+        ]
+        mockWaterService.goal = 2000
+        
+        let mockStoreKit = MockStoreKitService()
+        mockStoreKit.mockIsSubscribed = false
+        
+        let mockFreeDrink = MockFreeDrinkCounterService()
+        mockFreeDrink.mockShouldShowAd = true
+        
+        let provider = MockServiceProvider(
+            waterService: mockWaterService,
+            storeKitService: mockStoreKit,
+            freeDrinkCounterService: mockFreeDrink
+        )
+        let store = HomeStore(provider: provider)
+        
+        await store.send(.refreshGoal)
+        await store.send(.refresh)
+        await store.send(.addWater(300))
+        
+        #expect(store.ml == 0)
+        #expect(store.showingRewardedAd == true)
+        #expect(store.pendingWaterAmount == 300)
+    }
+    
+    @Test func rewardedAdCompletedSuccessRecordsWater() async {
+        let mockWaterService = MockWaterService()
+        let today = Date()
+        mockWaterService.waterRecords = [
+            WaterRecord(date: today, value: 0, isSuccess: false, goal: 2000)
+        ]
+        mockWaterService.goal = 2000
+        
+        let mockStoreKit = MockStoreKitService()
+        mockStoreKit.mockIsSubscribed = false
+        
+        let mockFreeDrink = MockFreeDrinkCounterService()
+        mockFreeDrink.mockShouldShowAd = true
+        
+        let provider = MockServiceProvider(
+            waterService: mockWaterService,
+            storeKitService: mockStoreKit,
+            freeDrinkCounterService: mockFreeDrink
+        )
+        let store = HomeStore(provider: provider)
+        
+        await store.send(.refreshGoal)
+        await store.send(.refresh)
+        await store.send(.addWater(300))
+        
+        #expect(store.showingRewardedAd == true)
+        
+        await store.send(.rewardedAdCompleted(success: true))
+        
+        #expect(store.ml == 300)
+        #expect(store.showingRewardedAd == false)
+        #expect(store.pendingWaterAmount == nil)
+    }
+    
+    @Test func rewardedAdCompletedFailureStillRecordsWater() async {
+        let mockWaterService = MockWaterService()
+        let today = Date()
+        mockWaterService.waterRecords = [
+            WaterRecord(date: today, value: 0, isSuccess: false, goal: 2000)
+        ]
+        mockWaterService.goal = 2000
+        
+        let mockStoreKit = MockStoreKitService()
+        mockStoreKit.mockIsSubscribed = false
+        
+        let mockFreeDrink = MockFreeDrinkCounterService()
+        mockFreeDrink.mockShouldShowAd = true
+        
+        let provider = MockServiceProvider(
+            waterService: mockWaterService,
+            storeKitService: mockStoreKit,
+            freeDrinkCounterService: mockFreeDrink
+        )
+        let store = HomeStore(provider: provider)
+        
+        await store.send(.refreshGoal)
+        await store.send(.refresh)
+        await store.send(.addWater(300))
+        
+        #expect(store.showingRewardedAd == true)
+        
+        await store.send(.rewardedAdCompleted(success: false))
+        
+        #expect(store.ml == 300)
+        #expect(store.showingRewardedAd == false)
+        #expect(store.pendingWaterAmount == nil)
+    }
+    
     // MARK: - Notification Banner Tests
     
     @Test func checkNotificationPermissionShowsBannerWhenNotAuthorized() async {

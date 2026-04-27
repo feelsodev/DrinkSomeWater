@@ -40,6 +40,8 @@ final class MockWatchConnectivityService: WatchConnectivityServiceProtocol {
     func activate() {}
     func syncToWatch(todayWater: Int, goal: Int) {}
     func setWaterService(_ waterService: WaterServiceProtocol) {}
+    func setStoreKitService(_ storeKitService: StoreKitServiceProtocol) {}
+    func syncSubscriptionStatus() {}
 }
 
 @MainActor
@@ -350,6 +352,19 @@ final class MockReviewEligibilityService: ReviewEligibilityServiceProtocol {
 }
 
 @MainActor
+final class MockRewardedAdCoordinator: RewardedAdCoordinatorProtocol {
+    var mockResult: Bool = true
+    var showRewardedAdCallCount = 0
+    
+    func showRewardedAd() async -> Bool {
+        showRewardedAdCallCount += 1
+        return mockResult
+    }
+    
+    func setRootViewController(_ viewController: UIViewController) {}
+}
+
+@MainActor
 final class MockServiceProvider: ServiceProviderProtocol {
     let userDefaultsService: UserDefaultsServiceProtocol
     let cloudSyncService: CloudSyncServiceProtocol
@@ -362,6 +377,8 @@ final class MockServiceProvider: ServiceProviderProtocol {
     let socialSharingService: SocialSharingServiceProtocol
     let storeKitService: StoreKitServiceProtocol
     let reviewEligibilityService: ReviewEligibilityServiceProtocol
+    let freeDrinkCounterService: FreeDrinkCounterServiceProtocol
+    let rewardedAdCoordinator: RewardedAdCoordinatorProtocol
 
     init(
         userDefaultsService: UserDefaultsServiceProtocol = MockUserDefaultsService(),
@@ -374,7 +391,9 @@ final class MockServiceProvider: ServiceProviderProtocol {
         instagramSharingService: InstagramSharingServiceProtocol = MockInstagramSharingService(),
         socialSharingService: SocialSharingServiceProtocol = MockSocialSharingService(),
         storeKitService: StoreKitServiceProtocol = MockStoreKitService(),
-        reviewEligibilityService: ReviewEligibilityServiceProtocol = MockReviewEligibilityService()
+        reviewEligibilityService: ReviewEligibilityServiceProtocol = MockReviewEligibilityService(),
+        freeDrinkCounterService: FreeDrinkCounterServiceProtocol = MockFreeDrinkCounterService(),
+        rewardedAdCoordinator: RewardedAdCoordinatorProtocol = MockRewardedAdCoordinator()
     ) {
         self.userDefaultsService = userDefaultsService
         self.cloudSyncService = cloudSyncService
@@ -387,5 +406,7 @@ final class MockServiceProvider: ServiceProviderProtocol {
         self.socialSharingService = socialSharingService
         self.storeKitService = storeKitService
         self.reviewEligibilityService = reviewEligibilityService
+        self.freeDrinkCounterService = freeDrinkCounterService
+        self.rewardedAdCoordinator = rewardedAdCoordinator
     }
 }
