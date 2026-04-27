@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import WidgetKit
 
 extension Notification.Name {
@@ -43,6 +44,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     window?.makeKeyAndVisible()
+    
+    if let rootVC = window?.rootViewController {
+      serviceProvider.rewardedAdCoordinator.setRootViewController(rootVC)
+    }
   }
   
   private func setupCloudSyncObserver() {
@@ -126,6 +131,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       WidgetDataManager.shared.syncFromMainApp(todayWater: todayWater, goal: goal)
       serviceProvider.watchConnectivityService.syncToWatch(todayWater: todayWater, goal: goal)
     }
+  }
+  
+  func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+    guard let url = URLContexts.first?.url,
+          url.scheme == "drinksomewater",
+          url.host == "paywall" else { return }
+    presentPaywall()
+  }
+  
+  private func presentPaywall() {
+    guard let rootVC = window?.rootViewController else { return }
+    
+    var topVC = rootVC
+    while let presented = topVC.presentedViewController {
+      topVC = presented
+    }
+    
+    let premiumStore = PremiumStore(storeKitService: serviceProvider.storeKitService)
+    let paywallView = PaywallView(premiumStore: premiumStore, triggerPoint: "deeplink")
+    let hostingController = UIHostingController(rootView: paywallView)
+    topVC.present(hostingController, animated: true)
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {

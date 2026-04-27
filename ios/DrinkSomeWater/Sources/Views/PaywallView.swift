@@ -12,89 +12,27 @@ struct PaywallView: View {
     }
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: DS.Spacing.lg) {
             if premiumStore.isLoading {
                 ProgressView(L.Paywall.loading)
                     .padding()
             } else {
                 ScrollView {
-                    VStack(spacing: 24) {
+                    VStack(spacing: DS.Spacing.xl) {
                         // Header
-                         VStack(spacing: 8) {
-                             Text(L.Paywall.title)
-                                 .font(.title)
-                                 .bold()
-                             
-                             Text(L.Paywall.subtitle)
-                                 .font(.subheadline)
-                                 .foregroundColor(.secondary)
-                         }
-                        .padding(.top)
+                        headerSection
+                        
+                        // Feature Comparison
+                        featureComparisonSection
                         
                         // Subscription products (monthly, yearly)
-                        SubscriptionStoreView(groupID: "premium") {
-                            VStack(spacing: 12) {
-                                 Image(systemName: "sparkles")
-                                     .font(.system(size: 48))
-                                     .foregroundColor(.blue)
-                                 
-                                 Text(L.Paywall.adFree)
-                                     .font(.headline)
-                                 
-                                 Text(L.Paywall.subscriptionDescription)
-                                     .font(.caption)
-                                     .foregroundColor(.secondary)
-                                     .multilineTextAlignment(.center)
-                             }
-                            .padding()
-                        }
-                        
-                        // Lifetime product
-                        if let lifetimeProduct = premiumStore.products.first(where: { $0.id.contains("lifetime") }) {
-                             VStack(spacing: 12) {
-                                 Divider()
-                                 
-                                 Text(L.Paywall.or)
-                                     .font(.caption)
-                                     .foregroundColor(.secondary)
-                                 
-                                 ProductView(id: lifetimeProduct.id) {
-                                     VStack(spacing: 8) {
-                                         Image(systemName: "infinity")
-                                             .font(.system(size: 32))
-                                             .foregroundColor(.purple)
-                                         
-                                         Text(L.Paywall.lifetime)
-                                             .font(.headline)
-                                         
-                                         Text(L.Paywall.lifetimeDescription)
-                                             .font(.caption)
-                                             .foregroundColor(.secondary)
-                                     }
-                                    .padding()
-                                }
-                            }
-                        }
+                        subscriptionSection
                         
                         // Restore button
-                         Button {
-                             Task {
-                                 await premiumStore.send(.restore)
-                             }
-                         } label: {
-                             Text(L.Paywall.restore)
-                                 .font(.subheadline)
-                         }
-                        .buttonStyle(.bordered)
-                        .padding(.top, 8)
+                        restoreButton
                         
                         // Error message
-                        if let error = premiumStore.error {
-                            Text(error.localizedDescription)
-                                .font(.caption)
-                                .foregroundColor(.red)
-                                .padding()
-                        }
+                        errorMessage
                     }
                     .padding()
                 }
@@ -109,10 +47,143 @@ struct PaywallView: View {
     }
 }
 
- #Preview {
-     let mockService = StoreKitService()
-     PaywallView(
-         premiumStore: PremiumStore(storeKitService: mockService),
-         triggerPoint: "preview"
-     )
- }
+// MARK: - Subviews
+
+private extension PaywallView {
+    
+    var headerSection: some View {
+        VStack(spacing: DS.Spacing.xs) {
+            Image(systemName: "drop.fill")
+                .font(.system(size: 44))
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [DS.SwiftUIColor.primary, DS.SwiftUIColor.primaryDark],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
+                .padding(.bottom, DS.Spacing.xxs)
+            
+            Text(L.Paywall.title)
+                .font(DS.SwiftUIFont.title1)
+                .foregroundColor(DS.SwiftUIColor.textPrimary)
+            
+            Text(L.Paywall.subtitle)
+                .font(DS.SwiftUIFont.subhead)
+                .foregroundColor(DS.SwiftUIColor.textSecondary)
+        }
+        .padding(.top, DS.Spacing.md)
+    }
+    
+    var featureComparisonSection: some View {
+        VStack(spacing: DS.Spacing.none) {
+            HStack {
+                Text("")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(L.Paywall.featureFree)
+                    .font(DS.SwiftUIFont.captionSemibold)
+                    .foregroundColor(DS.SwiftUIColor.textSecondary)
+                    .frame(width: 56)
+                Text(L.Paywall.featureSubscribed)
+                    .font(DS.SwiftUIFont.captionSemibold)
+                    .foregroundColor(DS.SwiftUIColor.primary)
+                    .frame(width: 56)
+            }
+            .padding(.horizontal, DS.Spacing.md)
+            .padding(.bottom, DS.Spacing.xs)
+            
+            Divider()
+            
+            featureRow(title: L.Paywall.featureNoAds, freeAvailable: false, description: L.Paywall.featureAds)
+            featureRow(title: L.Paywall.featureWidget, freeAvailable: false, description: L.Paywall.featureNoWidget)
+            featureRow(title: L.Paywall.featureWatch, freeAvailable: false, description: L.Paywall.featureNoWatch)
+        }
+        .padding(DS.Spacing.md)
+        .background(DS.SwiftUIColor.backgroundPrimary)
+        .clipShape(RoundedRectangle(cornerRadius: DS.Size.cornerRadiusLarge))
+    }
+    
+    func featureRow(title: String, freeAvailable: Bool, description: String) -> some View {
+        VStack(spacing: DS.Spacing.none) {
+            HStack {
+                Text(title)
+                    .font(DS.SwiftUIFont.subheadMedium)
+                    .foregroundColor(DS.SwiftUIColor.textPrimary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Image(systemName: freeAvailable ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    .font(.system(size: 18))
+                    .foregroundColor(freeAvailable ? DS.SwiftUIColor.success : DS.SwiftUIColor.error)
+                    .frame(width: 56)
+                
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 18))
+                    .foregroundColor(DS.SwiftUIColor.success)
+                    .frame(width: 56)
+            }
+            .padding(.horizontal, DS.Spacing.md)
+            .padding(.vertical, DS.Spacing.sm)
+            
+            Divider()
+                .padding(.horizontal, DS.Spacing.md)
+        }
+    }
+    
+    var subscriptionSection: some View {
+        SubscriptionStoreView(groupID: "premium") {
+            VStack(spacing: DS.Spacing.sm) {
+                Image(systemName: "sparkles")
+                    .font(.system(size: 36))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [DS.SwiftUIColor.primary, DS.SwiftUIColor.primaryDark],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                
+                Text(L.Paywall.adFree)
+                    .font(DS.SwiftUIFont.headline)
+                    .foregroundColor(DS.SwiftUIColor.textPrimary)
+                
+                Text(L.Paywall.subscriptionDescription)
+                    .font(DS.SwiftUIFont.caption)
+                    .foregroundColor(DS.SwiftUIColor.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
+            .padding()
+        }
+    }
+    
+    var restoreButton: some View {
+        Button {
+            Task {
+                await premiumStore.send(.restore)
+            }
+        } label: {
+            Text(L.Paywall.restore)
+                .font(DS.SwiftUIFont.subhead)
+                .foregroundColor(DS.SwiftUIColor.textSecondary)
+        }
+        .buttonStyle(.bordered)
+        .padding(.top, DS.Spacing.xs)
+    }
+    
+    @ViewBuilder
+    var errorMessage: some View {
+        if let error = premiumStore.error {
+            Text(error.localizedDescription)
+                .font(DS.SwiftUIFont.caption)
+                .foregroundColor(DS.SwiftUIColor.error)
+                .padding()
+        }
+    }
+}
+
+#Preview {
+    let mockService = StoreKitService()
+    PaywallView(
+        premiumStore: PremiumStore(storeKitService: mockService),
+        triggerPoint: "preview"
+    )
+}

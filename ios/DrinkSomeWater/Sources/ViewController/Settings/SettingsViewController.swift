@@ -69,7 +69,7 @@ final class SettingsViewController: BaseViewController {
   }()
   
   private var sections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] {
-    let isPremium = store.provider.storeKitService.isPremium
+    let isSubscribed = store.provider.storeKitService.isSubscribed
     
     var allSections: [(title: String, items: [(icon: String, title: String, detail: String?, action: SettingsAction)])] = []
     
@@ -86,14 +86,14 @@ final class SettingsViewController: BaseViewController {
       ("icloud.fill", L.Settings.icloudStatus, nil, .icloudStatus)
     ]))
     
-    if isPremium {
+    if isSubscribed {
       allSections.append((L.Settings.premium, [
-        ("crown.fill", L.Settings.subscriptionStatusPremium, nil, .premium),
-        ("gear", L.Settings.manageSubscription, nil, .subscriptionManagement)
+        ("crown.fill", "Subscribed", nil, .premium),
+        ("gear", "Manage Subscription", nil, .subscriptionManagement)
       ]))
     } else {
       allSections.append((L.Settings.premium, [
-        ("star.fill", L.Settings.upgradePremium, nil, .premium)
+        ("star.fill", "Upgrade", nil, .premium)
       ]))
     }
     

@@ -144,6 +144,12 @@ enum L {
         static let subscriptionStatusPremium = String(localized: "settings.subscription.status.premium")
         static let manageSubscription = String(localized: "settings.manage.subscription")
         static let upgradePremium = String(localized: "settings.upgrade.premium")
+        // Subscription Status
+        static let subscriptionFree = String(localized: "settings.subscription.free")
+        static let subscriptionSubscribed = String(localized: "settings.subscription.subscribed")
+        static let subscriptionLifetime = String(localized: "settings.subscription.lifetime")
+        static let subscriptionSubscribe = String(localized: "settings.subscription.subscribe")
+        static let subscriptionManage = String(localized: "settings.subscription.manage")
     }
 
     // MARK: - Profile
@@ -275,6 +281,10 @@ enum L {
         static let motivationAlmost = String(localized: "widget.motivation.almost")
         static let motivationHalfway = String(localized: "widget.motivation.halfway")
         static let motivationStart = String(localized: "widget.motivation.start")
+        // Locked State
+        static let lockedTitle = String(localized: "widget.locked.title")
+        static let lockedSubtitle = String(localized: "widget.locked.subtitle")
+        static let lockedCta = String(localized: "widget.locked.cta")
     }
 
     // MARK: - Watch
@@ -282,6 +292,8 @@ enum L {
         static let addWater = String(localized: "watch.add.water")
         static let customInput = String(localized: "watch.custom.input")
         static let add = String(localized: "watch.add")
+        static let lockedTitle = String(localized: "watch.locked.title")
+        static let lockedSubtitle = String(localized: "watch.locked.subtitle")
     }
 
     // MARK: - Update
@@ -470,6 +482,21 @@ enum L {
         static let lifetime = String(localized: "paywall.lifetime")
         static let lifetimeDescription = String(localized: "paywall.lifetime.description")
         static let restore = String(localized: "paywall.restore")
+        // Feature Comparison
+        static let featureFree = String(localized: "paywall.feature.free")
+        static let featureSubscribed = String(localized: "paywall.feature.subscribed")
+        static let featureAds = String(localized: "paywall.feature.ads")
+        static let featureNoAds = String(localized: "paywall.feature.noAds")
+        static let featureNoWidget = String(localized: "paywall.feature.noWidget")
+        static let featureWidget = String(localized: "paywall.feature.widget")
+        static let featureNoWatch = String(localized: "paywall.feature.noWatch")
+        static let featureWatch = String(localized: "paywall.feature.watch")
+    }
+
+    // MARK: - Ad Gate
+    enum AdGate {
+        static let title = String(localized: "adGate.title")
+        static let subtitle = String(localized: "adGate.subtitle")
     }
 
     // MARK: - Errors
