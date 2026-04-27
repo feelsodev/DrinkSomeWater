@@ -12,6 +12,7 @@ protocol ServiceProviderProtocol: AnyObject {
   var instagramSharingService: InstagramSharingServiceProtocol { get }
   var socialSharingService: SocialSharingServiceProtocol { get }
   var storeKitService: StoreKitServiceProtocol { get }
+  var reviewEligibilityService: ReviewEligibilityServiceProtocol { get }
 }
 
 @MainActor
@@ -26,6 +27,7 @@ final class ServiceProvider: ServiceProviderProtocol {
   let instagramSharingService: InstagramSharingServiceProtocol
   let socialSharingService: SocialSharingServiceProtocol
   let storeKitService: StoreKitServiceProtocol
+  let reviewEligibilityService: ReviewEligibilityServiceProtocol
   
   init() {
     let userDefaults = UserDefaultsService()
@@ -48,6 +50,7 @@ final class ServiceProvider: ServiceProviderProtocol {
     let instagramSharing = InstagramSharingService()
     let socialSharing = SocialSharingService()
     let storeKit = StoreKitService()
+    let reviewEligibility = ReviewEligibilityService(userDefaultsService: userDefaults)
     
     self.userDefaultsService = userDefaults
     self.cloudSyncService = cloudSync
@@ -59,5 +62,6 @@ final class ServiceProvider: ServiceProviderProtocol {
     self.instagramSharingService = instagramSharing
     self.socialSharingService = socialSharing
     self.storeKitService = storeKit
+    self.reviewEligibilityService = reviewEligibility
   }
 }

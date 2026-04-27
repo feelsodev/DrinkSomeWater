@@ -20,6 +20,12 @@ extension UserDefaultsKey {
   
   static var onboardingCompleted: Key<Bool> { return "onboardingCompleted" }
   static var notificationBannerDismissed: Key<Bool> { return "notificationBannerDismissed" }
+  
+  // Review tracking
+  static var reviewGoalCompletionCount: Key<Int> { return "reviewGoalCompletionCount" }
+  static var reviewLastRequestDate: Key<Double> { return "reviewLastRequestDate" }
+  static var reviewLastPromptedVersion: Key<String> { return "reviewLastPromptedVersion" }
+  static var reviewInstallDate: Key<Double> { return "reviewInstallDate" }
 }
 
 @MainActor

@@ -70,6 +70,7 @@ public enum AnalyticsEvent {
   case notificationTapped(notificationId: String, timeToTapSec: Int)
   case notificationDismissed(notificationId: String)
   case inactiveReturn(daysInactive: Int)
+  case reviewRequested(completionCount: Int, daysSinceInstall: Int)
   
   // MARK: - Tier 6: Monetization
   
@@ -128,6 +129,7 @@ public enum AnalyticsEvent {
     case .notificationTapped: return "notification_tapped"
     case .notificationDismissed: return "notification_dismissed"
     case .inactiveReturn: return "inactive_return"
+    case .reviewRequested: return "review_requested"
     case .adImpression: return "ad_impression"
     case .adClicked: return "ad_clicked"
     case .adClosed: return "ad_closed"
@@ -278,6 +280,9 @@ public enum AnalyticsEvent {
       
     case .inactiveReturn(let daysInactive):
       return ["days_inactive": daysInactive]
+      
+    case .reviewRequested(let completionCount, let daysSinceInstall):
+      return ["completion_count": completionCount, "days_since_install": daysSinceInstall]
       
     case .adImpression(let adType, let adUnitId, let screen):
       return ["ad_type": adType.rawValue, "ad_unit_id": adUnitId, "screen": screen]

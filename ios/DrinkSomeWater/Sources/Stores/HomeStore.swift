@@ -28,6 +28,7 @@ final class HomeStore {
   var quickButtons: [Int] = HomeStore.defaultQuickButtons
 
   var showNotificationBanner: Bool = false
+  var shouldRequestReview: Bool = false
   
   init(provider: ServiceProviderProtocol) {
     self.provider = provider
@@ -59,6 +60,16 @@ final class HomeStore {
       if !wasAchieved && ml >= total {
         let streakDays = calculateStreak()
         Analytics.shared.logGoalAchieved(goalMl: Int(total), actualMl: Int(ml), streakDays: streakDays)
+        
+        provider.reviewEligibilityService.recordGoalCompletion()
+        if provider.reviewEligibilityService.shouldRequestReview() {
+          provider.reviewEligibilityService.markReviewRequested()
+          Analytics.shared.log(.reviewRequested(
+            completionCount: provider.reviewEligibilityService.goalCompletionCount,
+            daysSinceInstall: provider.reviewEligibilityService.daysSinceInstall
+          ))
+          shouldRequestReview = true
+        }
       }
 
     case .subtractWater(let amount):

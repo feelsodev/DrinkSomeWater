@@ -1,4 +1,5 @@
 import SwiftUI
+import StoreKit
 import UIKit
 import Analytics
 
@@ -10,6 +11,7 @@ struct HomeView: View {
   @State private var isSubtractMode = false
   @State private var showShareSheet = false
   @State private var showInstagramNotInstalledAlert = false
+  @SwiftUI.Environment(\.requestReview) private var requestReview
   
   var body: some View {
     ZStack {
@@ -44,6 +46,14 @@ struct HomeView: View {
       await store.send(.refresh)
       await store.send(.checkNotificationPermission)
       Analytics.shared.logScreenView("home_screen")
+    }
+    .onChange(of: store.shouldRequestReview) { _, shouldRequest in
+      guard shouldRequest else { return }
+      store.shouldRequestReview = false
+      Task {
+        try? await Task.sleep(for: .seconds(2))
+        requestReview()
+      }
     }
     .sheet(isPresented: $showGoalSetting) {
       GoalSettingView(
