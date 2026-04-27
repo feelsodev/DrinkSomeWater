@@ -47,6 +47,13 @@ struct HomeView: View {
       await store.send(.checkNotificationPermission)
       Analytics.shared.logScreenView("home_screen")
     }
+    .onChange(of: store.showingRewardedAd) { _, showing in
+      guard showing else { return }
+      Task {
+        let success = await store.provider.rewardedAdCoordinator.showRewardedAd()
+        await store.send(.rewardedAdCompleted(success: success))
+      }
+    }
     .onChange(of: store.shouldRequestReview) { _, shouldRequest in
       guard shouldRequest else { return }
       store.shouldRequestReview = false

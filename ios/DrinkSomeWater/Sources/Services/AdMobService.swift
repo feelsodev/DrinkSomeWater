@@ -3,12 +3,13 @@ import GoogleMobileAds
 import Analytics
 
 @MainActor
-final class AdMobService {
+final class AdMobService: NSObject {
   
-  static var shared: AdMobService = {
-    let storeKit = StoreKitService()
-    return AdMobService(storeKitService: storeKit)
-  }()
+  static var shared: AdMobService!
+  
+  static func configure(storeKitService: StoreKitServiceProtocol) {
+    shared = AdMobService(storeKitService: storeKitService)
+  }
   
   private enum AdUnitID {
     static var banner: String {
@@ -27,6 +28,8 @@ final class AdMobService {
   private var isRewardedAdLoading = false
   
   private var nativeAdLoader: NativeAdLoader?
+  private var rewardedCompletion: (@MainActor (Bool) -> Void)?
+  private var didEarnReward = false
   
   init(storeKitService: StoreKitServiceProtocol) {
     self.storeKitService = storeKitService
@@ -87,14 +90,16 @@ final class AdMobService {
       return
     }
     
+    didEarnReward = false
+    rewardedCompletion = completion
+    
     Analytics.shared.log(.rewardedAdStarted(rewardType: "support"))
+    rewardedAd.fullScreenContentDelegate = self
     rewardedAd.present(fromRootViewController: viewController) { [weak self] in
       let reward = rewardedAd.adReward
       print("[AdMob] User earned reward: \(reward.amount) \(reward.type)")
       Analytics.shared.log(.rewardedAdCompleted(rewardType: reward.type, rewardAmount: reward.amount.intValue))
-      completion(true)
-      self?.rewardedAd = nil
-      self?.loadRewardedAd()
+      self?.didEarnReward = true
     }
   }
   
@@ -121,6 +126,27 @@ final class AdMobService {
   
   var hasNativeAd: Bool {
     (nativeAdLoader?.adCount ?? 0) > 0
+  }
+}
+
+extension AdMobService: GADFullScreenContentDelegate {
+  nonisolated func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    Task { @MainActor in
+      rewardedCompletion?(didEarnReward)
+      rewardedCompletion = nil
+      rewardedAd = nil
+      loadRewardedAd()
+    }
+  }
+  
+  nonisolated func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+    Task { @MainActor in
+      print("[AdMob] Rewarded ad failed to present: \(error.localizedDescription)")
+      rewardedCompletion?(false)
+      rewardedCompletion = nil
+      rewardedAd = nil
+      loadRewardedAd()
+    }
   }
 }
 

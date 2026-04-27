@@ -14,6 +14,7 @@ final class HomeStore {
     case resetTodayWater
     case checkNotificationPermission
     case dismissNotificationBanner
+    case rewardedAdCompleted(success: Bool)
   }
   
   let provider: ServiceProviderProtocol
@@ -29,6 +30,8 @@ final class HomeStore {
 
   var showNotificationBanner: Bool = false
   var shouldRequestReview: Bool = false
+  var showingRewardedAd: Bool = false
+  var pendingWaterAmount: Int?
   
   init(provider: ServiceProviderProtocol) {
     self.provider = provider
@@ -51,26 +54,24 @@ final class HomeStore {
       loadQuickButtons()
       
     case .addWater(let amount):
-      let wasAchieved = ml >= total
-      _ = await provider.waterService.updateWater(by: Float(amount))
-      await send(.refresh)
-
-      Analytics.shared.logWaterIntake(amountMl: amount, method: .quickButton)
-
-      if !wasAchieved && ml >= total {
-        let streakDays = calculateStreak()
-        Analytics.shared.logGoalAchieved(goalMl: Int(total), actualMl: Int(ml), streakDays: streakDays)
-        
-        provider.reviewEligibilityService.recordGoalCompletion()
-        if provider.reviewEligibilityService.shouldRequestReview() {
-          provider.reviewEligibilityService.markReviewRequested()
-          Analytics.shared.log(.reviewRequested(
-            completionCount: provider.reviewEligibilityService.goalCompletionCount,
-            daysSinceInstall: provider.reviewEligibilityService.daysSinceInstall
-          ))
-          shouldRequestReview = true
+      if provider.storeKitService.isSubscribed {
+        await recordWater(amount: amount)
+      } else {
+        let shouldShowAd = provider.freeDrinkCounterService.recordDrink()
+        if shouldShowAd {
+          pendingWaterAmount = amount
+          showingRewardedAd = true
+        } else {
+          await recordWater(amount: amount)
         }
       }
+
+    case .rewardedAdCompleted(_):
+      if let amount = pendingWaterAmount {
+        await recordWater(amount: amount)
+      }
+      pendingWaterAmount = nil
+      showingRewardedAd = false
 
     case .subtractWater(let amount):
       let newValue = max(0, Int(ml) - amount)
@@ -95,6 +96,29 @@ final class HomeStore {
     case .dismissNotificationBanner:
       provider.userDefaultsService.set(value: true, forkey: .notificationBannerDismissed)
       showNotificationBanner = false
+    }
+  }
+  
+  private func recordWater(amount: Int) async {
+    let wasAchieved = ml >= total
+    _ = await provider.waterService.updateWater(by: Float(amount))
+    await send(.refresh)
+
+    Analytics.shared.logWaterIntake(amountMl: amount, method: .quickButton)
+
+    if !wasAchieved && ml >= total {
+      let streakDays = calculateStreak()
+      Analytics.shared.logGoalAchieved(goalMl: Int(total), actualMl: Int(ml), streakDays: streakDays)
+      
+      provider.reviewEligibilityService.recordGoalCompletion()
+      if provider.reviewEligibilityService.shouldRequestReview() {
+        provider.reviewEligibilityService.markReviewRequested()
+        Analytics.shared.log(.reviewRequested(
+          completionCount: provider.reviewEligibilityService.goalCompletionCount,
+          daysSinceInstall: provider.reviewEligibilityService.daysSinceInstall
+        ))
+        shouldRequestReview = true
+      }
     }
   }
   

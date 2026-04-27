@@ -13,6 +13,7 @@ final class DrinkStore {
     case set300
     case addWater
     case cancel
+    case rewardedAdCompleted(success: Bool)
   }
   
   private let provider: ServiceProviderProtocol
@@ -21,6 +22,8 @@ final class DrinkStore {
   var currentValue: Float = 150
   var progress: Float = 0
   var shouldDismiss: Bool = false
+  var showingRewardedAd: Bool = false
+  var pendingWaterAmount: Float?
   
   init(provider: ServiceProviderProtocol) {
     self.provider = provider
@@ -72,8 +75,27 @@ final class DrinkStore {
       progress = currentValue / maxValue
       
     case .addWater:
-      _ = await provider.waterService.updateWater(by: currentValue)
-      shouldDismiss = true
+      if provider.storeKitService.isSubscribed {
+        _ = await provider.waterService.updateWater(by: currentValue)
+        shouldDismiss = true
+      } else {
+        let shouldShowAd = provider.freeDrinkCounterService.recordDrink()
+        if shouldShowAd {
+          pendingWaterAmount = currentValue
+          showingRewardedAd = true
+        } else {
+          _ = await provider.waterService.updateWater(by: currentValue)
+          shouldDismiss = true
+        }
+      }
+
+    case .rewardedAdCompleted(_):
+      if let amount = pendingWaterAmount {
+        _ = await provider.waterService.updateWater(by: amount)
+        shouldDismiss = true
+      }
+      pendingWaterAmount = nil
+      showingRewardedAd = false
       
     case .cancel:
       if !shouldDismiss {
