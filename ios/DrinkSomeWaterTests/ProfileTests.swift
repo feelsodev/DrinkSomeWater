@@ -28,7 +28,7 @@ final class ProfileTests: XCTestCase {
     func testNotificationMessagesNotEmpty() {
         // then
         XCTAssertFalse(NotificationMessages.messages.isEmpty)
-        XCTAssertEqual(NotificationMessages.messages.count, 10)
+        XCTAssertEqual(NotificationMessages.messages.count, 20)
     }
     
     func testNotificationMessagesRandomReturnsValidMessage() {
