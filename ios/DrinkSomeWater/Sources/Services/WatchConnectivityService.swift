@@ -6,11 +6,14 @@ protocol WatchConnectivityServiceProtocol: AnyObject {
   func activate()
   func syncToWatch(todayWater: Int, goal: Int)
   func setWaterService(_ waterService: WaterServiceProtocol)
+  func setStoreKitService(_ storeKitService: StoreKitServiceProtocol)
+  func syncSubscriptionStatus()
 }
 
 @MainActor
 final class WatchConnectivityService: NSObject, WatchConnectivityServiceProtocol {
   private var waterService: WaterServiceProtocol?
+  private var storeKitService: StoreKitServiceProtocol?
   private var session: WCSession?
 
   override init() {
@@ -19,6 +22,10 @@ final class WatchConnectivityService: NSObject, WatchConnectivityServiceProtocol
   
   func setWaterService(_ waterService: WaterServiceProtocol) {
     self.waterService = waterService
+  }
+  
+  func setStoreKitService(_ storeKitService: StoreKitServiceProtocol) {
+    self.storeKitService = storeKitService
   }
 
   func activate() {
@@ -29,13 +36,24 @@ final class WatchConnectivityService: NSObject, WatchConnectivityServiceProtocol
   }
 
   func syncToWatch(todayWater: Int, goal: Int) {
+    let isSubscribed = storeKitService?.isSubscribed ?? false
+    let isLifetime = storeKitService?.isLifetime ?? false
+    let expirationDate = storeKitService?.subscriptionExpirationDate
+    
+    syncSubscriptionToCloud(isSubscribed: isSubscribed, isLifetime: isLifetime, expirationDate: expirationDate)
+    
     guard let session = session, session.activationState == .activated else { return }
 
-    let context: [String: Any] = [
+    var context: [String: Any] = [
       "todayWater": todayWater,
       "goal": goal,
-      "timestamp": Date().timeIntervalSince1970
+      "timestamp": Date().timeIntervalSince1970,
+      "is_subscribed": isSubscribed,
+      "is_lifetime": isLifetime
     ]
+    if let expirationDate {
+      context["subscription_expiration"] = expirationDate.timeIntervalSince1970
+    }
 
     do {
       try session.updateApplicationContext(context)
@@ -46,6 +64,37 @@ final class WatchConnectivityService: NSObject, WatchConnectivityServiceProtocol
     if session.isReachable {
       session.sendMessage(context, replyHandler: nil)
     }
+  }
+  
+  func syncSubscriptionStatus() {
+    let isSubscribed = storeKitService?.isSubscribed ?? false
+    let isLifetime = storeKitService?.isLifetime ?? false
+    let expirationDate = storeKitService?.subscriptionExpirationDate
+    
+    syncSubscriptionToCloud(isSubscribed: isSubscribed, isLifetime: isLifetime, expirationDate: expirationDate)
+    
+    guard let session = session, session.activationState == .activated else { return }
+    
+    var payload: [String: Any] = [
+      "is_subscribed": isSubscribed,
+      "is_lifetime": isLifetime
+    ]
+    if let expirationDate {
+      payload["subscription_expiration"] = expirationDate.timeIntervalSince1970
+    }
+    
+    try? session.updateApplicationContext(payload)
+    if session.isReachable {
+      session.sendMessage(payload, replyHandler: nil)
+    }
+  }
+  
+  private func syncSubscriptionToCloud(isSubscribed: Bool, isLifetime: Bool, expirationDate: Date?) {
+    let cloud = NSUbiquitousKeyValueStore.default
+    cloud.set(isSubscribed, forKey: "cloud_is_subscribed")
+    cloud.set(isLifetime, forKey: "cloud_is_lifetime")
+    cloud.set(expirationDate?.timeIntervalSince1970 ?? 0, forKey: "cloud_subscription_expiration")
+    cloud.synchronize()
   }
   
   private func syncCurrentStateToWatch() async {

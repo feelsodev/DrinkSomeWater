@@ -4,12 +4,16 @@ struct ContentView: View {
   @Environment(WatchStore.self) private var store
 
   var body: some View {
-    NavigationStack {
-      TabView {
-        HomeView()
-        QuickAddView()
+    if store.isSubscribed {
+      NavigationStack {
+        TabView {
+          HomeView()
+          QuickAddView()
+        }
+        .tabViewStyle(.verticalPage)
       }
-      .tabViewStyle(.verticalPage)
+    } else {
+      WatchLockedView()
     }
   }
 }

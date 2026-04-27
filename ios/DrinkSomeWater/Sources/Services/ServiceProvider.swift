@@ -13,6 +13,8 @@ protocol ServiceProviderProtocol: AnyObject {
   var socialSharingService: SocialSharingServiceProtocol { get }
   var storeKitService: StoreKitServiceProtocol { get }
   var reviewEligibilityService: ReviewEligibilityServiceProtocol { get }
+  var freeDrinkCounterService: FreeDrinkCounterServiceProtocol { get }
+  var rewardedAdCoordinator: RewardedAdCoordinatorProtocol { get }
 }
 
 @MainActor
@@ -28,6 +30,8 @@ final class ServiceProvider: ServiceProviderProtocol {
   let socialSharingService: SocialSharingServiceProtocol
   let storeKitService: StoreKitServiceProtocol
   let reviewEligibilityService: ReviewEligibilityServiceProtocol
+  let freeDrinkCounterService: FreeDrinkCounterServiceProtocol
+  let rewardedAdCoordinator: RewardedAdCoordinatorProtocol
   
   init() {
     let userDefaults = UserDefaultsService()
@@ -50,7 +54,18 @@ final class ServiceProvider: ServiceProviderProtocol {
     let instagramSharing = InstagramSharingService()
     let socialSharing = SocialSharingService()
     let storeKit = StoreKitService()
+    watchConnectivity.setStoreKitService(storeKit)
     let reviewEligibility = ReviewEligibilityService(userDefaultsService: userDefaults)
+    let freeDrinkCounter = FreeDrinkCounterService()
+    let rewardedAdCoord = RewardedAdCoordinator()
+    
+    AdMobService.configure(storeKitService: storeKit)
+    
+    Task { @MainActor [weak watchConnectivity] in
+      for await _ in storeKit.currentEntitlements {
+        watchConnectivity?.syncSubscriptionStatus()
+      }
+    }
     
     self.userDefaultsService = userDefaults
     self.cloudSyncService = cloudSync
@@ -63,5 +78,7 @@ final class ServiceProvider: ServiceProviderProtocol {
     self.socialSharingService = socialSharing
     self.storeKitService = storeKit
     self.reviewEligibilityService = reviewEligibility
+    self.freeDrinkCounterService = freeDrinkCounter
+    self.rewardedAdCoordinator = rewardedAdCoord
   }
 }

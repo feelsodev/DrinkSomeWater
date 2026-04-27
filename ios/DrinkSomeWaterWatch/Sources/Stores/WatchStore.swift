@@ -15,6 +15,7 @@ private struct CloudWaterRecord: Codable {
 final class WatchStore: NSObject {
   var todayWater: Int = 0
   var goal: Int = 2000
+  var isSubscribed: Bool = false
 
   var progress: Float {
     guard goal > 0 else { return 0 }
@@ -57,14 +58,48 @@ final class WatchStore: NSObject {
     ) { [weak self] _ in
       Task { @MainActor in
         self?.loadFromCloud()
+        self?.loadSubscriptionFromCloud()
       }
     }
   }
 
   private func loadData() {
+    loadSubscriptionStatus()
     loadFromCloud()
     if todayWater == 0 && goal == 2000 {
       loadFromUserDefaults()
+    }
+  }
+  
+  private func loadSubscriptionStatus() {
+    loadSubscriptionFromCloud()
+    if !isCloudAvailable {
+      let isLifetime = UserDefaults.standard.bool(forKey: "watch_is_lifetime")
+      let sub = UserDefaults.standard.bool(forKey: "watch_is_subscribed")
+      let expiration = UserDefaults.standard.object(forKey: "watch_subscription_expiration") as? Date
+      let hasAccess = isLifetime || (sub && expiration.map { $0 > Date() } == true)
+      isSubscribed = hasAccess
+    }
+  }
+  
+  private func loadSubscriptionFromCloud() {
+    guard isCloudAvailable else { return }
+    let cloudIsLifetime = cloudStore.bool(forKey: "cloud_is_lifetime")
+    let cloudIsSubscribed = cloudStore.bool(forKey: "cloud_is_subscribed")
+    let expirationTime = cloudStore.double(forKey: "cloud_subscription_expiration")
+    let expiration = expirationTime > 0 ? Date(timeIntervalSince1970: expirationTime) : nil
+    updateSubscription(isSubscribed: cloudIsSubscribed, isLifetime: cloudIsLifetime, expiration: expiration)
+  }
+  
+  private func updateSubscription(isSubscribed sub: Bool, isLifetime: Bool, expiration: Date?) {
+    let hasAccess = isLifetime || (sub && expiration.map { $0 > Date() } == true)
+    isSubscribed = hasAccess
+    UserDefaults.standard.set(sub, forKey: "watch_is_subscribed")
+    UserDefaults.standard.set(isLifetime, forKey: "watch_is_lifetime")
+    if let expiration {
+      UserDefaults.standard.set(expiration, forKey: "watch_subscription_expiration")
+    } else {
+      UserDefaults.standard.removeObject(forKey: "watch_subscription_expiration")
     }
   }
   
@@ -156,7 +191,17 @@ final class WatchStore: NSObject {
     }
   }
 
+  private func hasSubscriptionAccess() -> Bool {
+    let defaults = UserDefaults.standard
+    if defaults.bool(forKey: "watch_is_lifetime") { return true }
+    guard defaults.bool(forKey: "watch_is_subscribed") else { return false }
+    guard let expiration = defaults.object(forKey: "watch_subscription_expiration") as? Date else { return false }
+    return expiration > Date()
+  }
+  
   func addWater(_ amount: Int) async {
+    isSubscribed = hasSubscriptionAccess()
+    guard isSubscribed else { return }
     todayWater += amount
     saveToUserDefaults()
     saveToCloud()
@@ -217,10 +262,9 @@ extension WatchStore: WCSessionDelegate {
   }
 
   nonisolated func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
-    let water = message["todayWater"] as? Int
-    let newGoal = message["goal"] as? Int
+    let parsed = Self.parseMessage(message)
     Task { @MainActor in
-      applyUpdate(water: water, goal: newGoal)
+      applyUpdate(parsed)
     }
   }
 
@@ -229,29 +273,53 @@ extension WatchStore: WCSessionDelegate {
     didReceiveMessage message: [String: Any],
     replyHandler: @escaping ([String: Any]) -> Void
   ) {
-    let water = message["todayWater"] as? Int
-    let newGoal = message["goal"] as? Int
+    let parsed = Self.parseMessage(message)
     replyHandler(["status": "received"])
     Task { @MainActor in
-      applyUpdate(water: water, goal: newGoal)
+      applyUpdate(parsed)
     }
   }
 
   nonisolated func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
-    let water = applicationContext["todayWater"] as? Int
-    let newGoal = applicationContext["goal"] as? Int
+    let parsed = Self.parseMessage(applicationContext)
     Task { @MainActor in
-      applyUpdate(water: water, goal: newGoal)
+      applyUpdate(parsed)
     }
   }
 
+  private struct ParsedMessage {
+    var water: Int?
+    var goal: Int?
+    var isSubscribed: Bool?
+    var isLifetime: Bool?
+    var expiration: Date?
+  }
+  
+  nonisolated private static func parseMessage(_ message: [String: Any]) -> ParsedMessage {
+    let expTime = message["subscription_expiration"] as? TimeInterval
+    return ParsedMessage(
+      water: message["todayWater"] as? Int,
+      goal: message["goal"] as? Int,
+      isSubscribed: message["is_subscribed"] as? Bool,
+      isLifetime: message["is_lifetime"] as? Bool,
+      expiration: expTime.flatMap { $0 > 0 ? Date(timeIntervalSince1970: $0) : nil }
+    )
+  }
+
   @MainActor
-  private func applyUpdate(water: Int?, goal newGoal: Int?) {
-    if let water {
+  private func applyUpdate(_ msg: ParsedMessage) {
+    if let water = msg.water {
       todayWater = water
     }
-    if let newGoal {
+    if let newGoal = msg.goal {
       goal = newGoal
+    }
+    if let sub = msg.isSubscribed {
+      updateSubscription(
+        isSubscribed: sub,
+        isLifetime: msg.isLifetime ?? false,
+        expiration: msg.expiration
+      )
     }
     saveToUserDefaults()
   }
