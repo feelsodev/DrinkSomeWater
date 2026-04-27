@@ -391,6 +391,29 @@
 "paywall.lifetime" = "평생 이용권";
 "paywall.lifetime.description" = "한 번 구매로 영원히 사용하세요";
 "paywall.restore" = "구매 복원";
+"paywall.restore.success" = "구매가 복원되었습니다";
+"paywall.products.unavailable" = "상품 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.";
+"paywall.products.retry" = "다시 불러오기";
+"paywall.plan.monthly" = "월간 구독";
+"paywall.plan.yearly" = "연간 구독";
+"paywall.plan.lifetime" = "무제한 평생권";
+"paywall.plan.monthly.description" = "매월 부담 없이 프리미엄 기능을 이용하세요";
+"paywall.plan.yearly.description" = "1년 동안 더 합리적인 가격으로 이용하세요";
+"paywall.plan.lifetime.description" = "한 번 구매하고 기간 제한 없이 계속 이용하세요";
+"paywall.plan.monthly.period" = "월";
+"paywall.plan.yearly.period" = "년";
+"paywall.plan.lifetime.period" = "한 번 결제";
+"paywall.plan.yearly.badge" = "추천";
+"paywall.plan.trial" = "7일 무료 체험 포함";
+"paywall.plan.includes.premium" = "광고 제거 · 위젯 · 워치앱 포함";
+"paywall.plan.monthly.renewal" = "무료 체험 후 취소할 때까지 월 %@에 자동 갱신됩니다.";
+"paywall.plan.yearly.renewal" = "무료 체험 후 취소할 때까지 연 %@에 자동 갱신됩니다.";
+"paywall.plan.lifetime.purchase" = "%@ 한 번 결제로 자동 갱신 없이 이용합니다.";
+"paywall.legal.notice" = "구독은 현재 기간 종료 최소 24시간 전까지 취소하지 않으면 자동 갱신됩니다. App Store 계정 설정에서 언제든 관리하거나 취소할 수 있습니다.";
+"paywall.legal.terms" = "이용 약관";
+"paywall.legal.privacy" = "개인정보 처리방침";
+"paywall.feature.premium" = "프리미엄";
+"paywall.feature.caption" = "구독과 무제한 평생권 모두 프리미엄 기능을 동일하게 잠금 해제합니다.";
 
 // Share Card
 "share.streak.days %lld" = "%lld일";

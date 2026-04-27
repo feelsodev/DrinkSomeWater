@@ -367,6 +367,29 @@
 "paywall.lifetime" = "A vita";
 "paywall.lifetime.description" = "Un solo acquisto, usalo per sempre";
 "paywall.restore" = "Ripristina acquisto";
+"paywall.restore.success" = "Acquisto ripristinato con successo";
+"paywall.products.unavailable" = "Unable to load product information. Please try again shortly.";
+"paywall.products.retry" = "Retry";
+"paywall.plan.monthly" = "Monthly";
+"paywall.plan.yearly" = "Yearly";
+"paywall.plan.lifetime" = "Unlimited Lifetime";
+"paywall.plan.monthly.description" = "Use premium features month to month.";
+"paywall.plan.yearly.description" = "Best value for a full year of premium.";
+"paywall.plan.lifetime.description" = "Pay once and keep premium access without a time limit.";
+"paywall.plan.monthly.period" = "month";
+"paywall.plan.yearly.period" = "year";
+"paywall.plan.lifetime.period" = "one-time";
+"paywall.plan.yearly.badge" = "Best value";
+"paywall.plan.trial" = "Includes a 7-day free trial";
+"paywall.plan.includes.premium" = "Includes no ads, widgets, and watch app access";
+"paywall.plan.monthly.renewal" = "After the free trial, renews at %@ per month until canceled.";
+"paywall.plan.yearly.renewal" = "After the free trial, renews at %@ per year until canceled.";
+"paywall.plan.lifetime.purchase" = "One-time purchase of %@. No renewal.";
+"paywall.legal.notice" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Manage or cancel anytime in App Store account settings.";
+"paywall.legal.terms" = "Terms of Use";
+"paywall.legal.privacy" = "Privacy Policy";
+"paywall.feature.premium" = "Premium";
+"paywall.feature.caption" = "Subscriptions and unlimited lifetime access unlock the same premium features.";
 
 // Share Card
 "share.streak.days %lld" = "%lld giorni";
