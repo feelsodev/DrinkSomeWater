@@ -3,7 +3,7 @@ import ProjectDescription
 let project = Project(
     name: "DrinkSomeWater",
     options: .options(
-        defaultKnownRegions: ["en", "ko"],
+        defaultKnownRegions: ["ar", "cs", "da", "de", "el", "en", "es", "fi", "fr", "hi", "hu", "id", "it", "ja", "ko", "ms", "nb", "nl", "pl", "pt-BR", "pt-PT", "ro", "ru", "sv", "th", "tr", "uk", "vi", "zh-Hans", "zh-Hant"],
         developmentRegion: "ko"
     ),
     packages: [
