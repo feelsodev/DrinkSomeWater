@@ -1,35 +1,35 @@
 # ARCHITECTURE.md – DrinkSomeWater (벌컥벌컥)
 
-> 최상위 구조 설명. 상세 설계는 각 플랫폼 docs/ 를 참조하세요.
+> Top-level structure overview. See each platform's docs/ for detailed design.
 
 ---
 
-## 시스템 개요
+## System Overview
 
-DrinkSomeWater(벌컥벌컥)는 하루 물 섭취량을 추적하고 HealthKit과 동기화하며, 주기적 알림으로 수분 섭취를 독려하는 크로스 플랫폼 앱이다.
+DrinkSomeWater (벌컥벌컥) is a cross-platform app that tracks daily water intake, syncs with HealthKit, and encourages hydration through periodic reminders.
 
-**지원 플랫폼:** iOS, watchOS, Android, Wear OS
+**Supported Platforms:** iOS, watchOS, Android, Wear OS
 
-### 핵심 도메인
+### Core Domains
 
-| 도메인 | 설명 |
+| Domain | Description |
 |--------|------|
-| Water Tracking | 섭취 기록 CRUD, 일일 목표, 음료 종류별 수분 효율 |
-| HealthKit / Health Connect | 건강 데이터 동기화 |
-| Reminders | 스마트 알림 (10가지 동기부여 문구) |
-| Widget | 홈 화면 위젯 (Small / Medium / Large / 잠금화면) |
-| Watch | Apple Watch / Wear OS 앱, 컴플리케이션 |
-| Statistics | 7일 / 30일 통계, 스트릭 추적 |
-| Cloud Sync | iCloud 동기화 |
-| Premium | 구독 / 광고 제거 (StoreKit 2) |
+| Water Tracking | Intake record CRUD, daily goals, hydration efficiency by drink type |
+| HealthKit / Health Connect | Health data synchronization |
+| Reminders | Smart notifications (10 motivational messages) |
+| Widget | Home screen widgets (Small / Medium / Large / Lock Screen) |
+| Watch | Apple Watch / Wear OS app, complications |
+| Statistics | 7-day / 30-day stats, streak tracking |
+| Cloud Sync | iCloud synchronization |
+| Premium | Subscriptions / ad removal (StoreKit 2) |
 
 ---
 
-## iOS 아키텍처
+## iOS Architecture
 
-### 패턴: @Observable Store Pattern
+### Pattern: @Observable Store Pattern
 
-ReactorKit에서 영감을 받은 단방향 데이터 흐름을 채택한다. 각 화면은 독립적인 Store를 가지며, View는 Store의 상태를 관찰하고 Action을 전달하는 역할만 한다.
+Adopts a unidirectional data flow inspired by ReactorKit. Each screen has its own independent Store. Views observe the Store's state and only dispatch Actions.
 
 ```swift
 @MainActor @Observable
@@ -40,7 +40,7 @@ final class HomeStore {
 }
 ```
 
-### 레이어 구조
+### Layer Structure
 
 ```
 ┌─────────────────────────────────────────┐
@@ -48,10 +48,10 @@ final class HomeStore {
 │  SwiftUI Views + UIKit ViewControllers  │
 ├─────────────────────────────────────────┤
 │  Store                                  │
-│  @Observable Store (Action → 상태 변환) │
+│  @Observable Store (Action → state)     │
 ├─────────────────────────────────────────┤
 │  Service                                │
-│  비즈니스 로직 (ServiceProvider)        │
+│  Business logic (ServiceProvider)       │
 ├─────────────────────────────────────────┤
 │  Data                                   │
 │  UserDefaults / HealthKit / iCloud      │
@@ -59,47 +59,47 @@ final class HomeStore {
 └─────────────────────────────────────────┘
 ```
 
-### 모듈 구조
+### Module Structure
 
-| 모듈 | 역할 |
+| Module | Role |
 |------|------|
-| `DrinkSomeWater/` | 메인 앱 (Models, Services, Stores, Views, ViewControllers, ViewComponents, DesignSystem) |
-| `DrinkSomeWaterWidget/` | 위젯 익스텐션 |
-| `DrinkSomeWaterWatch/` | watchOS 앱 |
-| `Analytics/` | 분석 프레임워크 |
-| `Shared/` | WidgetDataManager (앱 / 위젯 공유 헬퍼) |
+| `DrinkSomeWater/` | Main app (Models, Services, Stores, Views, ViewControllers, ViewComponents, DesignSystem) |
+| `DrinkSomeWaterWidget/` | Widget extension |
+| `DrinkSomeWaterWatch/` | watchOS app |
+| `Analytics/` | Analytics framework |
+| `Shared/` | WidgetDataManager (shared helper for app / widget) |
 
 ---
 
-## Android 아키텍처
+## Android Architecture
 
-### 패턴: MVI-style ViewModel + StateFlow
+### Pattern: MVI-style ViewModel + StateFlow
 
-각 화면은 ViewModel이 단일 UI 상태를 StateFlow로 노출하며, 화면은 이벤트를 ViewModel에 전달한다.
+Each screen's ViewModel exposes a single UI state via StateFlow, and the screen passes events to the ViewModel.
 
-### 멀티 모듈 구조
+### Multi-Module Structure
 
-| 모듈 | 역할 |
+| Module | Role |
 |------|------|
-| `app` | UI (Home / History / Settings / Onboarding), 서비스 (알림, 광고, 헬스), DI |
-| `core` | 도메인 모델, Repository 인터페이스, DataStore 구현체 |
-| `widget` | Glance 위젯 (UI / Data / Action) |
+| `app` | UI (Home / History / Settings / Onboarding), services (notifications, ads, health), DI |
+| `core` | Domain models, Repository interfaces, DataStore implementations |
+| `widget` | Glance widget (UI / Data / Action) |
 | `wear` | Wear OS (UI / Tile / Complication / Sync / Data / DI) |
-| `analytics` | 분석 추상화 레이어 |
+| `analytics` | Analytics abstraction layer |
 
 ---
 
-## 데이터 흐름
+## Data Flow
 
 ### iOS
 
 ```
 User Action → SwiftUI View → Store.send(action) → ServiceProvider → Persistence
                                     │
-                                    ├── HealthKit 동기화
-                                    ├── iCloud 동기화
+                                    ├── HealthKit sync
+                                    ├── iCloud sync
                                     ├── WidgetCenter.reloadAllTimelines()
-                                    └── WatchConnectivity 동기화
+                                    └── WatchConnectivity sync
 ```
 
 ### Android
@@ -113,43 +113,43 @@ User Event → Screen → ViewModel.onEvent() → Repository → DataStore
 
 ---
 
-## 주요 의존성
+## Key Dependencies
 
 ### iOS
 
-| 종류 | 내용 |
+| Type | Details |
 |------|------|
 | UI | SwiftUI + UIKit |
-| 헬스 | HealthKit |
-| 위젯 | WidgetKit |
-| 워치 | WatchConnectivity |
-| 인앱 결제 | StoreKit 2 |
-| 클라우드 | iCloud (NSUbiquitousKeyValueStore) |
-| 분석 | Firebase Analytics |
-| 광고 | Google AdMob |
-| 빌드 | Tuist |
+| Health | HealthKit |
+| Widget | WidgetKit |
+| Watch | WatchConnectivity |
+| In-App Purchase | StoreKit 2 |
+| Cloud | iCloud (NSUbiquitousKeyValueStore) |
+| Analytics | Firebase Analytics |
+| Ads | Google AdMob |
+| Build | Tuist |
 
 ### Android
 
-| 종류 | 내용 |
+| Type | Details |
 |------|------|
 | UI | Jetpack Compose |
-| 헬스 | Health Connect |
-| 위젯 | Glance |
-| 워치 | Wear Compose |
+| Health | Health Connect |
+| Widget | Glance |
+| Watch | Wear Compose |
 | DI | Hilt |
-| 비동기 | Coroutines + Flow |
-| 저장 | DataStore |
-| 백그라운드 작업 | WorkManager |
-| 분석 | Firebase Analytics |
-| 광고 | Google AdMob |
-| 빌드 | Gradle KTS + Version Catalog |
+| Async | Coroutines + Flow |
+| Storage | DataStore |
+| Background Work | WorkManager |
+| Analytics | Firebase Analytics |
+| Ads | Google AdMob |
+| Build | Gradle KTS + Version Catalog |
 
 ---
 
-## 빌드 & 타겟
+## Build & Targets
 
-| 플랫폼 | 타겟 / 모듈 | 최소 버전 |
+| Platform | Target / Module | Minimum Version |
 |--------|------------|----------|
 | iOS | DrinkSomeWater | iOS 18+ |
 | iOS | DrinkSomeWaterWidget | iOS 18+ |
@@ -165,13 +165,13 @@ User Event → Screen → ViewModel.onEvent() → Repository → DataStore
 
 ---
 
-## 플랫폼 간 공유
+## Cross-Platform Sharing
 
-공유 코드는 없다. iOS와 Android는 각각 독립적으로 구현된다.
+No shared code. iOS and Android are implemented independently.
 
-- 기능 패리티 대응표 → `android/docs/IOS_ANDROID_MAPPING.md`
-- 분석 이벤트 정의 → `docs/ANALYTICS.md`
+- Feature parity table → `android/docs/IOS_ANDROID_MAPPING.md`
+- Analytics event definitions → `docs/ANALYTICS.md`
 
 ---
 
-*상세 설계 문서는 ios/docs/, android/docs/ 를 참조하세요.*
+*See ios/docs/ and android/docs/ for detailed design documents.*
