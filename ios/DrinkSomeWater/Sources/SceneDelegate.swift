@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     self.window = UIWindow(windowScene: windowScene)
     self.window?.overrideUserInterfaceStyle = .light
     self.serviceProvider = ServiceProvider()
+    AdMobService.shared.configure()
     
     if serviceProvider.userDefaultsService.value(forkey: .goal) == nil {
       serviceProvider.userDefaultsService.set(value: 2000, forkey: .goal)

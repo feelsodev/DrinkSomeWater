@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     #endif
     Analytics.shared.configure()
     Analytics.shared.logAppOpen()
-    AdMobService.shared.configure()
     
     let center = UNUserNotificationCenter.current()
     center.delegate = self
