@@ -37,13 +37,21 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "Read Android version: $VERSION"
 
+      - name: Validate version
+        run: |
+          if [ -z "$VERSION" ]; then
+            echo "::error::VERSION is empty! Failed to read version for ${{ github.event.inputs.platform }}."
+            exit 1
+          fi
+          echo "Validated version: $VERSION"
+
       - name: Create and push tag
         run: |
           PLATFORM="${{ github.event.inputs.platform }}"
           NEW_TAG="${PLATFORM}/v${VERSION}"
           
           if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
-            echo "Tag $NEW_TAG already exists!"
+            echo "::error::Tag $NEW_TAG already exists!"
             exit 1
           fi
           
