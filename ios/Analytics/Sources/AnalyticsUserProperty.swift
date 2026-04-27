@@ -23,5 +23,7 @@ public enum UserSegment: String, Sendable {
 
 public enum PremiumStatus: String, Sendable {
   case free = "free"
-  case premium = "premium"
+  case subscriberMonthly = "subscriber_monthly"
+  case subscriberYearly = "subscriber_yearly"
+  case legacyLifetime = "legacy_lifetime"
 }

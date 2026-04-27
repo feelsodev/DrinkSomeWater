@@ -79,6 +79,12 @@ public enum AnalyticsEvent {
   case adClosed(adType: AdType, viewDurationSec: Int)
   case rewardedAdStarted(rewardType: String)
   case rewardedAdCompleted(rewardType: String, rewardAmount: Int)
+  case rewardedAdGateTriggered
+  case rewardedAdGateCompleted
+  case rewardedAdGateDismissed
+  case widgetLockedShown
+  case watchLockedShown
+  case subscriptionPromptShown(source: String)
   case premiumPromptShown(triggerPoint: String, variant: String?)
   case premiumPromptAction(action: PremiumAction)
   case purchaseStarted(productId: String, price: Double)
@@ -135,6 +141,12 @@ public enum AnalyticsEvent {
     case .adClosed: return "ad_closed"
     case .rewardedAdStarted: return "rewarded_ad_started"
     case .rewardedAdCompleted: return "rewarded_ad_completed"
+    case .rewardedAdGateTriggered: return "rewarded_ad_gate_triggered"
+    case .rewardedAdGateCompleted: return "rewarded_ad_gate_completed"
+    case .rewardedAdGateDismissed: return "rewarded_ad_gate_dismissed"
+    case .widgetLockedShown: return "widget_locked_shown"
+    case .watchLockedShown: return "watch_locked_shown"
+    case .subscriptionPromptShown: return "subscription_prompt_shown"
     case .premiumPromptShown: return "premium_prompt_shown"
     case .premiumPromptAction: return "premium_prompt_action"
     case .purchaseStarted: return "purchase_started"
@@ -146,9 +158,9 @@ public enum AnalyticsEvent {
     case .systemShareCompleted: return "system_share_completed"
     case .systemShareCancelled: return "system_share_cancelled"
     case .systemShareFailed: return "system_share_failed"
-     case .statisticsOpened: return "statistics_opened"
-     case .statisticsPeriodSelected: return "statistics_period_selected"
-     }
+    case .statisticsOpened: return "statistics_opened"
+    case .statisticsPeriodSelected: return "statistics_period_selected"
+    }
   }
   
   public var parameters: [String: Any] {
@@ -298,6 +310,24 @@ public enum AnalyticsEvent {
       
     case .rewardedAdCompleted(let rewardType, let rewardAmount):
       return ["reward_type": rewardType, "reward_amount": rewardAmount]
+      
+    case .rewardedAdGateTriggered:
+      return [:]
+      
+    case .rewardedAdGateCompleted:
+      return [:]
+      
+    case .rewardedAdGateDismissed:
+      return [:]
+      
+    case .widgetLockedShown:
+      return [:]
+      
+    case .watchLockedShown:
+      return [:]
+      
+    case .subscriptionPromptShown(let source):
+      return ["source": source]
       
     case .premiumPromptShown(let triggerPoint, let variant):
       var params: [String: Any] = ["trigger_point": triggerPoint]
