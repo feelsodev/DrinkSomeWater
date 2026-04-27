@@ -1,16 +1,16 @@
-# ARCHITECTURE.md – 벌컥벌컥 iOS
+# ARCHITECTURE.md – 벌컥벌컥 (Gulp) iOS
 
-> iOS/watchOS 아키텍처 상세. 전체 시스템은 루트 ARCHITECTURE.md 를 참조.
+> iOS/watchOS architecture details. For the full system overview, see the root ARCHITECTURE.md.
 
 ---
 
-## 아키텍처 패턴
+## Architecture Pattern
 
-@Observable Store Pattern (ReactorKit 영감, 단방향 데이터 흐름)을 사용한다.
+Uses the @Observable Store Pattern (ReactorKit-inspired, unidirectional data flow).
 
-데이터는 한 방향으로만 흐른다: **View → Store.send(action) → Service → Data**
+Data flows in one direction only: **View → Store.send(action) → Service → Data**
 
-Store는 `@MainActor @Observable`로 선언하며, `Action` enum으로 입력을 받는다.
+Stores are declared as `@MainActor @Observable`, and accept input via an `Action` enum.
 
 ```swift
 @MainActor @Observable
@@ -25,7 +25,7 @@ final class HomeStore {
 
 ---
 
-## 레이어 다이어그램
+## Layer Diagram
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -36,7 +36,7 @@ final class HomeStore {
 │  Action → State mutation                    │
 ├─────────────────────────────────────────────┤
 │  Service (ServiceProvider)                  │
-│  비즈니스 로직, 외부 연동                     │
+│  Business logic, external integrations      │
 ├─────────────────────────────────────────────┤
 │  Data                                       │
 │  UserDefaults · HealthKit · iCloud · Widget │
@@ -45,71 +45,71 @@ final class HomeStore {
 
 ---
 
-## 앱 진입 흐름
+## App Entry Flow
 
 ```
 main.swift → AppDelegate → SceneDelegate
-                              │
-                    ┌─────────┴──────────┐
-                    │ 온보딩 미완료        │ 온보딩 완료
-                    ▼                    ▼
-            OnboardingVC         IntroViewController
-                                        │
-                                        ▼
-                                   MainTabView
-                                 ┌────┼────┐
-                                Home History Settings
+                               │
+                     ┌─────────┴──────────┐
+                     │ Onboarding incomplete│ Onboarding complete
+                     ▼                    ▼
+             OnboardingVC         IntroViewController
+                                         │
+                                         ▼
+                                    MainTabView
+                                  ┌────┼────┐
+                                 Home History Settings
 ```
 
 ---
 
-## 주요 Store 목록
+## Key Stores
 
-| Store | 책임 |
-|-------|------|
-| HomeStore | 오늘 섭취량, 퀵버튼, 물 추가/빼기 |
-| HistoryStore | 기록 조회, 캘린더/리스트/타임라인 |
-| SettingsStore | 목표, 알림, 프로필 |
-| StatisticsStore | 7일/30일 통계, 스트릭 |
-| InformationStore | 앱 정보 |
+| Store | Responsibility |
+|-------|---------------|
+| HomeStore | Today's intake, quick buttons, add/remove water |
+| HistoryStore | Record lookup, calendar/list/timeline views |
+| SettingsStore | Goal, notifications, profile |
+| StatisticsStore | 7-day/30-day stats, streaks |
+| InformationStore | App info |
 
 ---
 
-## 주요 Service 목록
+## Key Services
 
-| Service | 책임 |
-|---------|------|
-| WaterStorageService | 물 섭취 CRUD (UserDefaults) |
-| HealthKitService | Apple Health 연동 |
-| CloudSyncService | iCloud 동기화 |
-| NotificationService | 스마트 알림 |
-| WatchConnectivityService | Apple Watch 동기화 |
-| StoreKitService | 구독/IAP (StoreKit 2) |
+| Service | Responsibility |
+|---------|---------------|
+| WaterStorageService | Water intake CRUD (UserDefaults) |
+| HealthKitService | Apple Health integration |
+| CloudSyncService | iCloud sync |
+| NotificationService | Smart notifications |
+| WatchConnectivityService | Apple Watch sync |
+| StoreKitService | Subscriptions/IAP (StoreKit 2) |
 | AdService | Google AdMob |
-| InstagramSharingService | 소셜 공유 |
-| AppUpdateChecker | 앱 업데이트 확인 |
+| InstagramSharingService | Social sharing |
+| AppUpdateChecker | App update check |
 
 ---
 
-## 위젯 아키텍처
+## Widget Architecture
 
-- WidgetKit + AppIntent (Interactive) 기반
-- `Shared/` 모듈의 WidgetDataManager로 앱↔위젯 데이터 공유
-- TimelineProvider 기반 타임라인 갱신
-
----
-
-## watchOS 아키텍처
-
-- WatchConnectivity로 iPhone↔Watch 데이터 동기화
-- 독립 UI (SwiftUI)
+- Based on WidgetKit + AppIntent (Interactive)
+- App and widget share data via `WidgetDataManager` in the `Shared/` module
+- Timeline updates driven by `TimelineProvider`
 
 ---
 
-## 의존성
+## watchOS Architecture
 
-| 분류 | 항목 |
-|------|------|
+- iPhone and Watch data sync via WatchConnectivity
+- Independent UI (SwiftUI)
+
+---
+
+## Dependencies
+
+| Category | Items |
+|----------|-------|
 | Apple | SwiftUI, UIKit, HealthKit, WidgetKit, WatchConnectivity, StoreKit 2, iCloud |
 | Firebase | Analytics, Crashlytics, RemoteConfig |
 | Google | AdMob |
@@ -118,4 +118,4 @@ main.swift → AppDelegate → SceneDelegate
 
 ---
 
-*상세 기술 스펙은 docs/TECH_SPEC.md 를 참조하세요.*
+*For detailed technical specs, see docs/TECH_SPEC.md.*

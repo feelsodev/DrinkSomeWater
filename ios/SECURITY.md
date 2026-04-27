@@ -1,302 +1,302 @@
-# SECURITY.md – 벌컥벌컥 iOS
-> iOS/watchOS 보안 가이드라인 및 체크리스트
+# SECURITY.md – 벌컥벌컥 (Gulp) iOS
+> iOS/watchOS security guidelines and checklist
 
 ---
 
-## 개요
+## Overview
 
-이 문서는 벌컥벌컥 iOS/watchOS 앱의 보안 정책과 구현 지침을 정의한다. 모든 PR은 하단 체크리스트를 통과해야 한다.
+This document defines the security policies and implementation guidelines for the 벌컥벌컥 (Gulp) iOS/watchOS app. All PRs must pass the checklist at the bottom.
 
-**프로젝트 설정 참고**
-- Bundle ID: `$(APP_BUNDLE_ID)` (xcconfig에서 관리)
+**Project config reference**
+- Bundle ID: `$(APP_BUNDLE_ID)` (managed via xcconfig)
 - AdMob App ID: `$(ADMOB_APP_ID)`
-- xcconfig 위치: `Tuist/Config/Debug.xcconfig`, `Tuist/Config/Release.xcconfig`
+- xcconfig locations: `Tuist/Config/Debug.xcconfig`, `Tuist/Config/Release.xcconfig`
 
 ---
 
-## 1. HealthKit 프라이버시
+## 1. HealthKit Privacy
 
-### 원칙
+### Principle
 
-HealthKit 데이터는 기기 밖으로 나가지 않는다. 수분 섭취량(`.dietaryWater`)은 사용자의 건강 정보이므로 외부 서버 전송, 로깅, 분석 이벤트 페이로드 포함이 모두 금지된다.
+HealthKit data never leaves the device. Water intake (`.dietaryWater`) is personal health information, so sending it to external servers, logging it, or including it in analytics event payloads is strictly prohibited.
 
-### 권한 설정
+### Permission Configuration
 
-`Project.swift`에 아래 두 키가 선언되어 있어야 한다. 문구는 실제 사용 목적과 일치해야 한다.
+The following two keys must be declared in `Project.swift`. The descriptions must match their actual purpose.
 
 ```
-NSHealthShareUsageDescription  — 건강 데이터 읽기 용도 설명
-NSHealthUpdateUsageDescription — 건강 데이터 쓰기 용도 설명
+NSHealthShareUsageDescription  — Explains why the app reads health data
+NSHealthUpdateUsageDescription — Explains why the app writes health data
 ```
 
-### 권한 요청 시점
+### When to Request Permission
 
-- 권한 요청은 기능을 처음 사용하는 시점에 한다. 앱 실행 직후 즉시 요청하지 않는다.
-- `HKHealthStore.isHealthDataAvailable()`을 먼저 확인한다. 시뮬레이터와 iPad에서 false를 반환할 수 있다.
-- 권한이 거부되면 앱 내 수동 입력 모드로 graceful degradation한다. 크래시나 빈 화면을 보여주면 안 된다.
+- Request permission at the moment the feature is first used. Don't request immediately on app launch.
+- Check `HKHealthStore.isHealthDataAvailable()` first. It can return false on simulators and iPads.
+- If permission is denied, gracefully degrade to manual entry mode within the app. Never show a crash or blank screen.
 
-### 금지 사항
+### Prohibitions
 
-- HealthKit에서 읽은 값을 Firebase Analytics, Amplitude 등 외부 SDK에 전달하는 것
-- `HKQuantitySample`을 로그 파일에 기록하는 것
-- 권한 상태를 서버에 업로드하는 것
-
----
-
-## 2. iCloud 동기화 보안
-
-### 사용 범위
-
-`NSUbiquitousKeyValueStore`를 통해 기기 간 동기화하는 데이터는 아래로 제한한다.
-
-- 사용자 설정값 (목표 수분량, 알림 주기 등)
-- 테마/UI 환경 설정
-
-### 제외 대상
-
-아래 데이터는 iCloud에 저장하지 않는다.
-
-- HealthKit에서 읽은 건강 수치
-- 광고 관련 식별자
-- 임시 세션 토큰
-
-### 구현 지침
-
-- `NSUbiquitousKeyValueStore`의 최대 저장 용량(1MB)을 초과하지 않도록 저장 데이터 크기를 관리한다.
-- 동기화 충돌 처리 시 `NSUbiquitousKeyValueStoreDidChangeExternallyNotification`을 올바르게 처리한다.
-- iCloud가 비활성화된 환경에서도 앱이 정상 동작해야 한다.
+- Passing values read from HealthKit to external SDKs such as Firebase Analytics or Amplitude
+- Writing `HKQuantitySample` data to log files
+- Uploading permission status to a server
 
 ---
 
-## 3. App Group / 위젯 보안
+## 2. iCloud Sync Security
 
-### 공유 데이터 범위
+### Scope
 
-App Group(`UserDefaults(suiteName:)`)을 통해 위젯과 공유하는 데이터는 화면 표시에 필요한 최솟값으로 제한한다.
+Data synced between devices via `NSUbiquitousKeyValueStore` is limited to:
 
-**허용**
-- 오늘의 수분 섭취량 합계
-- 목표 수분량
-- 마지막 업데이트 타임스탬프
+- User preferences (daily water goal, notification interval, etc.)
+- Theme and UI settings
 
-**금지**
-- 전체 섭취 히스토리
-- 사용자 계정 정보
-- HealthKit raw 샘플 데이터
+### Exclusions
 
-### WidgetDataManager 사용
+The following data must not be stored in iCloud:
 
-위젯과의 데이터 교환은 반드시 `WidgetDataManager`를 통한다. 위젯 익스텐션에서 `HKHealthStore`에 직접 접근하지 않는다.
+- Health values read from HealthKit
+- Advertising-related identifiers
+- Temporary session tokens
+
+### Implementation Guidelines
+
+- Manage stored data size to stay within `NSUbiquitousKeyValueStore`'s maximum capacity (1 MB).
+- Handle sync conflicts by correctly processing `NSUbiquitousKeyValueStoreDidChangeExternallyNotification`.
+- The app must work normally even when iCloud is disabled.
+
+---
+
+## 3. App Group / Widget Security
+
+### Shared Data Scope
+
+Data shared with the widget via App Group (`UserDefaults(suiteName:)`) is limited to the minimum needed for display.
+
+**Allowed**
+- Today's total water intake
+- Daily water goal
+- Last update timestamp
+
+**Prohibited**
+- Full intake history
+- User account information
+- HealthKit raw sample data
+
+### Using WidgetDataManager
+
+All data exchange with the widget must go through `WidgetDataManager`. The widget extension must not access `HKHealthStore` directly.
 
 ### App Group Identifier
 
-App Group identifier는 xcconfig에서 관리한다. 앱 타겟, 위젯 익스텐션, Watch 앱 익스텐션이 동일한 identifier를 사용하는지 빌드 전에 확인한다.
+The App Group identifier is managed via xcconfig. Confirm that the app target, widget extension, and Watch app extension all use the same identifier before building.
 
 ---
 
-## 4. StoreKit 2 보안
+## 4. StoreKit 2 Security
 
-### 구독 상태 관리
+### Subscription State Management
 
-- `Transaction.currentEntitlements`를 통해 현재 구독 상태를 확인한다.
-- 구독 상태는 앱 로컬에서 캐싱하되, 앱 포그라운드 복귀 시 StoreKit에서 재검증한다.
-- 구독 상태를 나타내는 Bool 플래그를 `UserDefaults`에 단독 저장하고 이를 유일한 권한 판단 기준으로 사용하지 않는다. 항상 StoreKit 트랜잭션을 기준으로 한다.
+- Use `Transaction.currentEntitlements` to check current subscription status.
+- Cache subscription state locally, but re-validate against StoreKit when the app returns to foreground.
+- Don't store a subscription status Bool flag in `UserDefaults` and treat it as the sole source of truth for entitlements. Always use StoreKit transactions as the authoritative source.
 
-### 서버사이드 검증
+### Server-Side Validation
 
-서버 연동이 있는 경우 App Store Server API를 통해 서버에서 트랜잭션을 검증한다. 클라이언트 단독 검증에만 의존하지 않는다.
+If server integration is present, validate transactions on the server via the App Store Server API. Don't rely solely on client-side validation.
 
-### 트랜잭션 완료 처리
+### Transaction Completion
 
-모든 트랜잭션에 대해 `Transaction.finish()`를 반드시 호출한다. 미완료 트랜잭션이 누적되면 구독 상태가 오작동할 수 있다.
+Always call `Transaction.finish()` for every transaction. Unfinished transactions accumulating can cause subscription state to malfunction.
 
 ---
 
-## 5. 광고 SDK 보안
+## 5. Ad SDK Security
 
-### AdMob 설정값 관리
+### Managing AdMob Config Values
 
-AdMob 관련 ID는 소스 코드에 하드코딩하지 않는다. 모두 xcconfig를 통해 주입한다.
+AdMob-related IDs must not be hardcoded in source files. All are injected via xcconfig.
 
-| 키 | xcconfig 변수 |
-|----|---------------|
+| Key | xcconfig Variable |
+|----|------------------|
 | AdMob App ID | `$(ADMOB_APP_ID)` |
 | Banner Ad Unit ID | `$(ADMOB_BANNER_ID)` |
 | Rewarded Ad Unit ID | `$(ADMOB_REWARDED_ID)` |
 | Native Ad Unit ID | `$(ADMOB_NATIVE_ID)` |
 
-`xcconfig` 파일 자체는 `.gitignore`에 포함시키거나, 민감 값을 분리한 별도 파일(`Secrets.xcconfig`)로 관리하고 git에서 제외한다.
+The `xcconfig` files themselves should be added to `.gitignore`, or sensitive values should be managed in a separate file (`Secrets.xcconfig`) that is excluded from git.
 
 ### SKAdNetwork
 
-`Info.plist`의 `SKAdNetworkItems`에는 AdMob이 공식 제공하는 목록만 포함한다. 출처 불명의 SKAdNetwork ID를 추가하지 않는다.
+`SKAdNetworkItems` in `Info.plist` should only include the list officially provided by AdMob. Don't add SKAdNetwork IDs from unknown sources.
 
-### 광고 데이터 격리
+### Ad Data Isolation
 
-광고 SDK 초기화 코드는 사용자가 ATT(앱 추적 투명성) 동의 여부를 결정한 이후에 실행한다.
+Ad SDK initialization code must run only after the user has made an ATT (App Tracking Transparency) decision.
 
 ---
 
-## 6. Firebase 보안
+## 6. Firebase Security
 
-### GoogleService-Info.plist 관리
+### Managing GoogleService-Info.plist
 
-- `GoogleService-Info.plist`는 git에 커밋하지 않는다. CI/CD에서 환경 변수 또는 시크릿 매니저를 통해 주입한다.
-- 파일이 실수로 커밋된 경우 즉시 Firebase 콘솔에서 해당 앱의 API 키를 재발급한다.
+- `GoogleService-Info.plist` must not be committed to git. Inject it in CI/CD via environment variables or a secret manager.
+- If the file is accidentally committed, immediately regenerate the API key for that app in the Firebase console.
 
-### Analytics 데이터 범위
+### Analytics Data Scope
 
-Firebase Analytics로 전송하는 이벤트 페이로드에 다음을 포함하지 않는다.
+The following must not be included in event payloads sent to Firebase Analytics:
 
-- 수분 섭취량 수치
-- HealthKit에서 읽은 모든 값
-- 사용자 식별 가능 정보 (이름, 이메일 등)
+- Water intake amounts
+- Any values read from HealthKit
+- Personally identifiable information (name, email, etc.)
 
-허용 이벤트 예시: 화면 전환, 버튼 탭, 기능 사용 여부 (수치 없이)
+Allowed event examples: screen transitions, button taps, feature usage (without numeric values)
 
 ### Firebase Remote Config
 
-Remote Config 값을 보안 게이팅(유료 기능 잠금 해제 등)의 유일한 판단 근거로 사용하지 않는다. 서버 값은 언제든 클라이언트에서 조작될 수 있다.
+Don't use Remote Config values as the sole gate for security decisions (e.g. unlocking premium features). Server-side values can always be manipulated on the client.
 
 ---
 
-## 7. Swift 6 동시성 안전
+## 7. Swift 6 Concurrency Safety
 
-### 공유 가변 상태 보호
+### Protecting Shared Mutable State
 
-- 여러 Task에서 접근하는 가변 상태는 `actor`로 감싸거나 `@MainActor`로 격리한다.
-- `@unchecked Sendable`은 내부적으로 동기화가 보장된 타입(예: `NSLock` 사용)에만 적용하고, 반드시 주석으로 근거를 남긴다.
+- Mutable state accessed from multiple Tasks must be wrapped in an `actor` or isolated with `@MainActor`.
+- Apply `@unchecked Sendable` only to types that guarantee internal synchronization (e.g. using `NSLock`), and always include a comment explaining why.
 
 ```swift
-// 예시: 올바른 @unchecked Sendable 사용
+// Example: correct use of @unchecked Sendable
 final class ThreadSafeStorage: @unchecked Sendable {
     private let lock = NSLock()
     private var cache: [String: Data] = [:]
-    // NSLock으로 내부 동기화가 보장되므로 @unchecked Sendable 적용
+    // @unchecked Sendable applied because internal sync is guaranteed via NSLock
 }
 ```
 
-### Sendable 경계
+### Sendable Boundaries
 
-- HealthKit 데이터, 사용자 설정 모델 등 isolation 경계를 넘나드는 타입은 `Sendable`을 명시적으로 준수한다.
-- `nonisolated(unsafe)` 키워드 사용은 최후 수단이며, 사용 시 코드 리뷰에서 반드시 논의한다.
-
----
-
-## 8. 알림 보안
-
-### 페이로드 제한
-
-로컬 알림(`UNMutableNotificationContent`)의 `title`, `body`, `userInfo`에 다음을 포함하지 않는다.
-
-- 수분 섭취 수치 (예: "오늘 1,200ml 마셨어요"처럼 구체적 수치)
-- 건강 관련 추론 정보
-- 세션 토큰 또는 인증 정보
-
-알림 문구는 일반적인 격려 메시지나 리마인더로 한정한다.
-
-### 알림 권한 요청 시점
-
-알림 권한도 HealthKit과 동일하게 기능 첫 사용 시점에 요청한다. 앱 실행 직후 즉시 요청하지 않는다.
+- Types that cross isolation boundaries, such as HealthKit data or user settings models, must explicitly conform to `Sendable`.
+- The `nonisolated(unsafe)` keyword is a last resort and must be discussed in code review whenever used.
 
 ---
 
-## 9. 빌드 보안
+## 8. Notification Security
 
-### Debug / Release 분리
+### Payload Restrictions
 
-`Tuist/Config/Debug.xcconfig`와 `Tuist/Config/Release.xcconfig`는 목적이 다르다.
+The `title`, `body`, and `userInfo` of local notifications (`UNMutableNotificationContent`) must not contain:
 
-| 항목 | Debug | Release |
+- Specific water intake amounts (e.g. "You've had 1,200ml today")
+- Health-related inferences
+- Session tokens or authentication credentials
+
+Notification copy is limited to general encouragement messages and reminders.
+
+### When to Request Notification Permission
+
+Notification permission, like HealthKit permission, is requested at first use of the feature. Don't request it immediately on app launch.
+
+---
+
+## 9. Build Security
+
+### Debug / Release Separation
+
+`Tuist/Config/Debug.xcconfig` and `Tuist/Config/Release.xcconfig` serve different purposes.
+
+| Item | Debug | Release |
 |------|-------|---------|
-| API_BASE_URL | 개발/스테이징 서버 | 프로덕션 서버 |
-| ADMOB_APP_ID | 테스트 AdMob ID | 실제 AdMob ID |
-| 로그 레벨 | verbose | error만 |
-| 어설션 | 활성화 | 비활성화 |
+| API_BASE_URL | Dev/staging server | Production server |
+| ADMOB_APP_ID | Test AdMob ID | Real AdMob ID |
+| Log level | verbose | error only |
+| Assertions | enabled | disabled |
 
-### 금지 사항
+### Prohibitions
 
-- `#if DEBUG` 블록 안의 테스트 코드가 Release 빌드에 포함되지 않도록 한다.
-- Release 빌드에서 `print()` 또는 `NSLog()`로 민감 데이터를 출력하지 않는다.
-- xcconfig 파일에 실제 API 키를 커밋하지 않는다. 키는 로컬 전용 파일 또는 CI 시크릿으로 관리한다.
+- Ensure test code inside `#if DEBUG` blocks is not included in Release builds.
+- Don't output sensitive data via `print()` or `NSLog()` in Release builds.
+- Don't commit real API keys in xcconfig files. Manage keys in local-only files or CI secrets.
 
-### Bitcode / 심볼
+### Bitcode / Symbols
 
-- App Store 제출 시 dSYM 파일을 Crashlytics 또는 Firebase Crashlytics에 업로드해 크래시 추적이 가능하도록 한다.
-- dSYM 파일은 외부에 공개하지 않는다.
+- When submitting to the App Store, upload dSYM files to Crashlytics or Firebase Crashlytics so crash tracking works.
+- Don't share dSYM files publicly.
 
 ---
 
-## 10. 보안 체크리스트
+## 10. Security Checklist
 
-PR 머지 전 아래 항목을 확인한다. grep 명령으로 빠르게 검증할 수 있다.
+Review the items below before merging a PR. You can verify quickly with grep commands.
 
-### 하드코딩 검사
+### Hardcoding Checks
 
 ```bash
-# AdMob ID 하드코딩 검사
+# Check for hardcoded AdMob IDs
 grep -r "ca-app-pub-" ios/ --include="*.swift"
 
-# API 키 패턴 검사
+# Check for API key patterns
 grep -r "AIza" ios/ --include="*.swift"
 
-# 하드코딩된 URL 검사 (xcconfig 변수 사용 여부)
+# Check for hardcoded URLs (verify xcconfig variable usage)
 grep -r "https://api\." ios/ --include="*.swift"
 ```
 
-위 명령에서 결과가 나오면 xcconfig 변수로 교체해야 한다.
+If any of the above commands return results, replace them with xcconfig variables.
 
-### HealthKit 데이터 유출 검사
+### HealthKit Data Leak Check
 
 ```bash
-# Analytics 이벤트에 건강 데이터 포함 여부
+# Check whether health data is included in analytics events
 grep -r "dietaryWater\|waterIntake\|healthStore" ios/ --include="*.swift" | grep -i "analytics\|log\|event"
 ```
 
-### 민감 파일 git 추적 검사
+### Sensitive File Git Tracking Check
 
 ```bash
-# GoogleService-Info.plist git 추적 여부
+# Check whether GoogleService-Info.plist is tracked by git
 git ls-files ios/ | grep "GoogleService-Info.plist"
 
-# xcconfig 파일 git 추적 여부 (Secrets 포함 파일)
+# Check whether Secrets xcconfig is tracked by git
 git ls-files ios/ | grep "Secrets.xcconfig"
 ```
 
-위 명령에 결과가 있으면 즉시 `.gitignore`에 추가하고 git history에서 제거한다.
+If the above commands return results, immediately add to `.gitignore` and remove from git history.
 
-### 체크리스트 항목
+### Checklist Items
 
 **HealthKit**
-- [ ] HealthKit 수치가 Firebase Analytics 이벤트에 포함되지 않는다
-- [ ] `HKHealthStore.isHealthDataAvailable()` 확인 후 접근한다
-- [ ] 권한 거부 시 graceful degradation이 동작한다
+- [ ] HealthKit values are not included in Firebase Analytics events
+- [ ] `HKHealthStore.isHealthDataAvailable()` is checked before access
+- [ ] Graceful degradation works when permission is denied
 
-**광고 / 설정**
-- [ ] AdMob ID가 Swift 파일에 하드코딩되어 있지 않다
-- [ ] `$(ADMOB_APP_ID)`, `$(ADMOB_BANNER_ID)` 등 xcconfig 변수를 사용한다
-- [ ] ATT 동의 이후 광고 SDK를 초기화한다
+**Ads / Config**
+- [ ] AdMob IDs are not hardcoded in Swift files
+- [ ] xcconfig variables like `$(ADMOB_APP_ID)` and `$(ADMOB_BANNER_ID)` are used
+- [ ] Ad SDK is initialized after ATT consent
 
 **Firebase**
-- [ ] `GoogleService-Info.plist`가 `.gitignore`에 포함되어 있다
-- [ ] Analytics 페이로드에 건강 수치가 없다
+- [ ] `GoogleService-Info.plist` is included in `.gitignore`
+- [ ] Analytics payloads contain no health values
 
 **iCloud / App Group**
-- [ ] `NSUbiquitousKeyValueStore`에 HealthKit 데이터를 저장하지 않는다
-- [ ] App Group 공유 데이터가 화면 표시용 최솟값으로 제한되어 있다
+- [ ] HealthKit data is not stored in `NSUbiquitousKeyValueStore`
+- [ ] App Group shared data is limited to the minimum needed for display
 
-**빌드**
-- [ ] Release 빌드에서 `print()`로 민감 데이터를 출력하지 않는다
-- [ ] Debug/Release xcconfig가 올바른 환경 값을 가리킨다
-- [ ] `#if DEBUG` 블록의 테스트 코드가 Release에 포함되지 않는다
+**Build**
+- [ ] Sensitive data is not output via `print()` in Release builds
+- [ ] Debug/Release xcconfig points to the correct environment values
+- [ ] Test code in `#if DEBUG` blocks is not included in Release
 
-**동시성**
-- [ ] Swift 6 컴파일러 모드에서 data race 경고가 0개다
-- [ ] `@unchecked Sendable` 사용 시 주석으로 근거가 명시되어 있다
+**Concurrency**
+- [ ] Zero data race warnings in Swift 6 compiler mode
+- [ ] A comment explaining the rationale is present whenever `@unchecked Sendable` is used
 
-**알림**
-- [ ] 알림 페이로드에 수분 섭취 수치나 건강 추론 정보가 없다
+**Notifications**
+- [ ] Notification payloads contain no water intake amounts or health inferences
 
 ---
 
-*최종 업데이트: 2026-04-27*
+*Last updated: 2026-04-27*
